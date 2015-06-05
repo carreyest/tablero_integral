@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>MuestraReporte</title>
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
+</head>
+<body>
+<p>{Header} </p>
+<table width="100%" border="0">
+  <tr>
+    <td style="VERTICAL-ALIGN: top" width="240">
+      <!-- BEGIN Report ReportesMyM -->
+      <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td valign="top">
+            <table class="Header" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                <td class="th"><strong>Reportes</strong></td> 
+                <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+              </tr>
+            </table>
+ 
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <!-- BEGIN Section Report_Header --><!-- END Section Report_Header -->
+              <!-- BEGIN Section Page_Header --><!-- END Section Page_Header -->
+              <!-- BEGIN Section Page_Footer -->
+              <tr class="Footer">
+                <td>
+                  <!-- BEGIN Navigator Navigator --><span class="Navigator">
+                  <!-- BEGIN First_On --><a href="{First_URL}">Inicio</a> <!-- END First_On -->
+                  <!-- BEGIN First_Off -->Inicio <!-- END First_Off -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}">Anterior</a> <!-- END Prev_On -->
+                  <!-- BEGIN Prev_Off -->Anterior <!-- END Prev_Off -->&nbsp; 
+                  <!-- BEGIN Pages -->
+                  <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                  <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de &nbsp;{Total_Pages}&nbsp; 
+                  <!-- BEGIN Next_On --><a href="{Next_URL}">Siguiente</a> <!-- END Next_On -->
+                  <!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}">Final</a> <!-- END Last_On -->
+                  <!-- BEGIN Last_Off -->Final <!-- END Last_Off --></span><!-- END Navigator Navigator --></td>
+              </tr>
+ <!-- END Section Page_Footer -->
+              <!-- BEGIN Section grupo_Header -->
+              <tr class="GroupCaption">
+                <th scope="col">{grupo} </th>
+              </tr>
+ <!-- END Section grupo_Header -->
+              <!-- BEGIN Section Detail -->
+              <tr class="Row">
+                <td><a href="{Nombre_Src}" id="ReportesMyMDetailNombre_{Detail:rowNumber}">{Nombre}</a> </td>
+              </tr>
+ <!-- END Section Detail -->
+              <!-- BEGIN Section grupo_Footer --><!-- END Section grupo_Footer -->
+              <!-- BEGIN Section Report_Footer -->
+              <!-- BEGIN Panel NoRecords -->
+              <tr class="NoRecords">
+                <td>No hay registros</td>
+              </tr>
+ <!-- END Panel NoRecords --><!-- END Section Report_Footer -->
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- END Report ReportesMyM --><br>
+    </td> 
+    <td style="vertical-align:top">{lReportContent}</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</body>
+</html>

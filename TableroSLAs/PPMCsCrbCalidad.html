@@ -1,0 +1,521 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>PPMCsCrbCalidad</title>
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-2504AB44
+</script>
+<script src="ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-A87AC9EE
+</script>
+{page:scriptIncludes}
+<script type="text/javascript">
+//End Include User Scripts
+
+function calculaSLA(){
+        var DefectosQC = document.getElementById("mc_info_rs_cr_calidadDefectosQC").value;
+        var CasosPruebas = document.getElementById("mc_info_rs_cr_calidadCasosdePrueba").value;
+        var RechazosFun = Number(document.getElementById("mc_info_rs_cr_calidadRechazosFunAVL").value); 
+        var Indice =0;
+        if(DefectosQC.valueOf() > 0 ){
+                Indice= DefectosQC.valueOf()/CasosPruebas.valueOf()*100;
+                } else {
+                        Indice=0; 
+                }
+        document.getElementById("PctDefectosCasos").innerText = Indice.toFixed(2);
+        var TotalDefectos  =0;
+
+        if(Indice <= 25){
+                TotalDefectos = 1;
+        }
+        if(Indice > 25 && Indice <= 50){
+                TotalDefectos = 2;
+        }
+        if(Indice > 50){
+                TotalDefectos = 3;
+        }
+        if(Indice <= 0){
+                TotalDefectos = 0;
+        }
+        document.getElementById("mc_info_rs_cr_calidadTotalDefectos").value=TotalDefectos ;
+        var IndiceFun = TotalDefectos.valueOf() + RechazosFun.valueOf();
+        document.getElementById("mc_info_rs_cr_calidadIndiceCalidadFun").value = IndiceFun.valueOf();
+        if(IndiceFun > 5 &&  IndiceFun <= 10 ){
+            document.getElementById("mc_info_rs_cr_calidadDeductivaFun").value= 2;
+        }
+        if(IndiceFun > 10 ){
+            document.getElementById("mc_info_rs_cr_calidadDeductivaFun").value= (2+(IndiceFun.valueOf()-10));
+        }
+}
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
+</head>
+<body>
+<p>&nbsp; <strong></strong>{Header} </p>
+<table width="100%">
+  <tr>
+    <td>&nbsp;</td> 
+    <td><a href="{lkAnterior_Src}" id="lkAnterior">{lkAnterior}</a></td> 
+    <td><a href="{lkSiguiente_Src}" id="lkSiguiente">{lkSiguiente}</a></td>
+  </tr>
+ 
+  <tr>
+    <td colspan="3">
+      <table width="100%">
+        <tr style="BACKGROUND-COLOR: rgb(218,224,228)">
+          <td><a href="{lkReqFun_Src}" id="lkReqFun">Cumplimiento de<br>
+            Requisitos Funcionales</a></td> 
+          <td><a href="{lkCalidad_Src}" id="lkCalidad">Calidad de<br>
+            Productos Terminados</a></td> 
+          <td><a href="{lkRetEnt_Calidad_Src}" id="lkRetEnt_Calidad">Retraso en Entregables</a></td> 
+          <td><a href="{lkCalidadCod_Src}" id="lkCalidadCod">Calidad de Código</a></td> 
+          <td><a href="{Link1_Src}" id="Link1">Defectos Fugados<br>
+            a Producción</a></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+ 
+  <tr>
+    <td>&nbsp;</td> 
+    <td>&nbsp; 
+      <!-- BEGIN Record mc_info_rs_cr_calidad -->
+      <form id="mc_info_rs_cr_calidad" method="post" name="{HTMLFormName}" action="{Action}">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Calificar Calidad de Productos Terminados</strong>{lReportado}</td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr id="ErrorBlock" class="Error">
+                  <td colspan="4">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"><label for="mc_info_rs_cr_calidadid_ppmc">PPMC</label></td> 
+                  <td colspan="3"><input type="hidden" id="mc_info_rs_cr_calidadid_ppmc" value="{id_ppmc}" name="{id_ppmc_Name}">{lbIdPPMC}&nbsp;&nbsp;{sNombreProyecto}</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_info_rs_cr_calidadid_estimacion">Estimación</label></td> 
+                  <td><input type="hidden" id="mc_info_rs_cr_calidadid_estimacion" value="{id_estimacion}" name="{id_estimacion_Name}">{lbIdEstimacion}</td> 
+                  <td class="th">&nbsp;{sTipoRequerimiento}</td> 
+                  <td class="th">&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Servicio de Negocio&nbsp;</td> 
+                  <td colspan="2"><input type="hidden" id="mc_info_rs_cr_calidadlsServNegocio" value="{lsServNegocio}" name="{lsServNegocio_Name}">{lbServNegocio} </td> 
+                  <td class="th">&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Servicio Contractual</td> 
+                  <td colspan="2"><input type="hidden" id="mc_info_rs_cr_calidadlsServContractual" value="{lsServContractual}" name="{lsServContractual_Name}">{lbServContractual} </td> 
+                  <td class="th">&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_info_rs_cr_calidadRechazosDocAVL">Rechazos Documentales</label></td> 
+                  <td><input type="text" id="mc_info_rs_cr_calidadRechazosDocAVL" maxlength="3" size="3" value="{RechazosDocAVL}" name="{RechazosDocAVL_Name}"></td> 
+                  <td class="th"><label for="mc_info_rs_cr_calidadRechazosFunAVL">Rechazos Funcionales&nbsp;AVL</label>&nbsp;</td> 
+                  <td class="th"><input type="text" id="mc_info_rs_cr_calidadRechazosFunAVL" maxlength="3" size="3" value="{RechazosFunAVL}" name="{RechazosFunAVL_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_info_rs_cr_calidadHallazgosDocQC">Hallazgos Documentales</label></td> 
+                  <td><input type="text" id="mc_info_rs_cr_calidadHallazgosDocQC" maxlength="3" size="3" value="{HallazgosDocQC}" name="{HallazgosDocQC_Name}"></td> 
+                  <td class="th"><label for="mc_info_rs_cr_calidadDefectosQC">Relación Defectos QC / Casos de Prueba</label></td> 
+                  <td class="th"><input type="text" id="mc_info_rs_cr_calidadDefectosQC" maxlength="3" size="3" value="{DefectosQC}" name="{DefectosQC_Name}">/<input type="text" onchange="calculaSLA()" id="mc_info_rs_cr_calidadCasosdePrueba" maxlength="3" size="3" value="{CasosdePrueba}" name="{CasosdePrueba_Name}">=<span id="PctDefectosCasos">&nbsp;</span>%=<input type="text" id="mc_info_rs_cr_calidadTotalDefectos" maxlength="3" size="3" value="{TotalDefectos}" name="{TotalDefectos_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_info_rs_cr_calidadIndiceCalidadDoc">Indice Calidad Documental</label></td> 
+                  <td><input type="text" id="mc_info_rs_cr_calidadIndiceCalidadDoc" maxlength="3" size="3" value="{IndiceCalidadDoc}" name="{IndiceCalidadDoc_Name}"></td> 
+                  <td class="th"><label for="mc_info_rs_cr_calidadTotalDefectos"><label for="mc_info_rs_cr_calidadIndiceCalidadFun">Indice Calidad Funcional</label><font style="BACKGROUND-COLOR: rgb(232,232,232)">&nbsp;</font></label></td> 
+                  <td class="th"><input type="text" id="mc_info_rs_cr_calidadIndiceCalidadFun" maxlength="3" size="3" value="{IndiceCalidadFun}" name="{IndiceCalidadFun_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_info_rs_cr_calidadDeductivaDoc">Deductiva Documental</label></td> 
+                  <td><input type="text" id="mc_info_rs_cr_calidadDeductivaDoc" maxlength="3" size="3" value="{DeductivaDoc}" name="{DeductivaDoc_Name}"></td> 
+                  <td class="th"><label for="mc_info_rs_cr_calidadTotalDefectos"><font style="BACKGROUND-COLOR: rgb(232,232,232)"><label for="mc_info_rs_cr_calidadDeductivaFun">Deductiva Funcional</label></font></label></td> 
+                  <td class="th"><input type="text" id="mc_info_rs_cr_calidadDeductivaFun" maxlength="3" size="3" value="{DeductivaFun}" name="{DeductivaFun_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_info_rs_cr_calidadCumpleCalidad">Cumple Calidad</label></td> 
+                  <td>
+                    <select id="mc_info_rs_cr_calidadCumpleCalidad" name="{CumpleCalidad_Name}">
+                      <option selected value="">No Aplica</option>
+                      {CumpleCalidad_Options}
+                    </select>
+ </td> 
+                  <td class="th">Deductiva Total</td> 
+                  <td class="th"><input type="text" id="mc_info_rs_cr_calidadDeductivaTot" maxlength="3" size="3" value="{DeductivaTot}" name="{DeductivaTot_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_info_rs_cr_calidadObservaciones">Observaciones</label></td> 
+                  <td colspan="3"><textarea id="mc_info_rs_cr_calidadObservaciones" rows="3" cols="50" name="{Observaciones_Name}">{Observaciones}</textarea></td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td>
+                    <!-- BEGIN Button btnCalcula --><input type="submit" id="mc_info_rs_cr_calidadbtnCalcula" class="Button" alt="Button1" value="Recalcular y Guardar" name="{Button_Name}" size="20"><!-- END Button btnCalcula --></td> 
+                  <td style="TEXT-ALIGN: right" colspan="3">
+                    <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_info_rs_cr_calidadButton_Insert" class="Button" alt="Agregar" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input type="submit" id="mc_info_rs_cr_calidadButton_Update" class="Button" alt="Enviar" value="Enviar" name="{Button_Name}"><!-- END Button Button_Update --><input type="hidden" id="mc_info_rs_cr_calidadUsuarioUltMod" value="{UsuarioUltMod}" name="{UsuarioUltMod_Name}"><label for="mc_info_rs_cr_calidadFechaUltMod" style="display: none;">Fcha Ult Mod</label><input type="hidden" id="mc_info_rs_cr_calidadFechaUltMod" value="{FechaUltMod}" name="{FechaUltMod_Name}"><input type="hidden" id="mc_info_rs_cr_calidadhdId" value="{hdId}" name="{hdId_Name}"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record mc_info_rs_cr_calidad -->&nbsp;&nbsp;&nbsp; </td> 
+    <td>{lDocs}</td>
+  </tr>
+ 
+  <tr>
+    <td>&nbsp;</td> 
+    <td>
+      <!-- BEGIN EditableGrid EditableGrid1 -->
+      <form id="EditableGrid1" method="post" name="{HTMLFormName}" action="{Action}">
+        <input type="hidden" value="{FormState}" name="FormState">{FormScript} 
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Detalle de Rechazos</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="99">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Caption">
+                  <th scope="col">Folio&nbsp;RDL</th>
+ 
+                  <th scope="col">Paquete</th>
+ 
+                  <th scope="col">Cierre</th>
+ 
+                  <th scope="col">Tipo&nbsp;Rechazo</th>
+ 
+                  <th scope="col">Fecha&nbsp;Ingreso&nbsp;AVL</th>
+ 
+                  <th scope="col">Ciclo</th>
+ 
+                  <th colspan="93" scope="col">Considerar</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <!-- BEGIN RowError -->
+                <tr class="Error">
+                  <td colspan="99">{Error}</td>
+                </tr>
+                <!-- END RowError -->
+                <tr class="Row">
+                  <td style="TEXT-ALIGN: center">{c_rdl}</td> 
+                  <td style="TEXT-ALIGN: center"><input type="hidden" id="EditableGrid1id_rec_{EditableGrid1:rowNumber}" value="{id_rec}" name="{id_rec_Name}">{Paquete}</td> 
+                  <td style="TEXT-ALIGN: center">{Cierre}</td> 
+                  <td style="TEXT-ALIGN: center">{Tipo}</td> 
+                  <td style="TEXT-ALIGN: center">{FechaInicioMov}</td> 
+                  <td style="TEXT-ALIGN: center">{ciclo}</td> 
+                  <td colspan="93"><label for="EditableGrid1considerar_{EditableGrid1:rowNumber}" style="display: none;">Ignorar</label><input type="checkbox" id="EditableGrid1considerar_{EditableGrid1:rowNumber}" value="1" name="{considerar_Name}" {considerar}></td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="99">No hay registros</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td style="TEXT-ALIGN: right" colspan="99">
+                    <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+                    <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+                      <option selected value="">-</option>
+ {PageSize_Options}
+                    </select>
+ 
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/FirstOff.gif"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/Prev.gif"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->
+                    <!-- BEGIN Button Button_Submit --><input type="submit" id="EditableGrid1Button_Submit" class="Button" alt="Enviar" value="Enviar" name="{Button_Name}"><!-- END Button Button_Submit --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END EditableGrid EditableGrid1 --><br>
+    </td> 
+    <td>&nbsp;</td>
+  </tr>
+ 
+  <tr>
+    <td>&nbsp;</td> 
+    <td>
+      <!-- BEGIN EditableGrid mc_info_detalle_hallazgos -->
+      <p><br>
+      </p>
+ 
+      <form id="mc_info_detalle_hallazgos" method="post" name="{HTMLFormName}" action="{Action}">
+        <p><input type="hidden" value="{FormState}" name="FormState">{FormScript} </p>
+ 
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Lista de Hallazgos</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="102">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Caption">
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter1 --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_hallazgosSorter1">Id</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter1 --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_TipoRegistro --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_hallazgosSorter_TipoRegistro">Tipo Registro</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_TipoRegistro --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_Estado --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_hallazgosSorter_Estado">Estado</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Estado --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_Tipo --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_hallazgosSorter_Tipo">Tipo Hallazgo</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Tipo --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_Paquete --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_hallazgosSorter_Paquete">Paquete</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Paquete --></th>
+ 
+                  <th scope="col">Proveedor&nbsp;Paq.</th>
+ 
+                  <th scope="col">Fecha Mov.</th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_Descripcion --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_hallazgosSorter_Descripcion">Descripcion</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Descripcion --></th>
+ 
+                  <th colspan="94" scope="col">
+                  <!-- BEGIN Sorter Sorter_Ignorar --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_hallazgosSorter_Ignorar">Ignorar</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Ignorar --></th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <!-- BEGIN RowError -->
+                <tr class="Error">
+                  <td colspan="102">{Error}</td>
+                </tr>
+                <!-- END RowError -->
+                <tr class="Row">
+                  <td>{IdRelacionado}</td> 
+                  <td>{TipoRegistro}</td> 
+                  <td>{Estado}</td> 
+                  <td>{Tipo}</td> 
+                  <td>{Paquete}</td> 
+                  <td style="TEXT-ALIGN: center">{ProveedorPaq}</td> 
+                  <td>{FechaInicioMov}</td> 
+                  <td>{Descripcion}</td> 
+                  <td colspan="94"><input type="checkbox" id="mc_info_detalle_hallazgosIgnorar_{mc_info_detalle_hallazgos:rowNumber}" value="1" name="{Ignorar_Name}" {Ignorar}><input type="hidden" id="mc_info_detalle_hallazgosIdPadre_{mc_info_detalle_hallazgos:rowNumber}" value="{IdPadre}" name="{IdPadre_Name}"><input type="hidden" id="mc_info_detalle_hallazgosId_{mc_info_detalle_hallazgos:rowNumber}" value="{Id}" name="{Id_Name}"></td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="102">No hay registros</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td style="TEXT-ALIGN: right" colspan="102">
+                    <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+                    <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+                      <option selected value="">-</option>
+ {PageSize_Options}
+                    </select>
+ 
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/FirstOff.gif"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/Prev.gif"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->
+                    <!-- BEGIN Button Button_Submit --><input type="submit" id="mc_info_detalle_hallazgosButton_Submit" class="Button" alt="Enviar" value="Guardar" name="{Button_Name}" size="20"><!-- END Button Button_Submit --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+ 
+        <p><br>
+        </p>
+      </form>
+      <!-- END EditableGrid mc_info_detalle_hallazgos --><br>
+    </td> 
+    <td>&nbsp;</td>
+  </tr>
+ 
+  <tr>
+    <td>&nbsp;</td> 
+    <td colspan="2">
+      <!-- BEGIN EditableGrid mc_info_detalle_defectos -->
+      <form id="mc_info_detalle_defectos" method="post" name="{HTMLFormName}" action="{Action}">
+        <p><input type="hidden" value="{FormState}" name="FormState">{FormScript} </p>
+ 
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Lista de Defectos</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="101">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Caption">
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter1 --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_defectosSorter1">Id</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter1 --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_TipoRegistro --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_defectosSorter_TipoRegistro">Tipo Registro</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_TipoRegistro --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_Estado --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_defectosSorter_Estado">Estado</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Estado --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_Tipo --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_defectosSorter_Tipo">Tipo</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Tipo --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_Paquete --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_defectosSorter_Paquete">Paquete</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Paquete --></th>
+ 
+                  <th scope="col">Proveedor&nbsp;Paq.</th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_Descripcion --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_defectosSorter_Descripcion">Descripcion</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Descripcion --></th>
+ 
+                  <th colspan="94" scope="col">
+                  <!-- BEGIN Sorter Sorter_Ignorar --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_defectosSorter_Ignorar">Ignorar</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Ignorar --></th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <!-- BEGIN RowError -->
+                <tr class="Error">
+                  <td colspan="101">{Error}</td>
+                </tr>
+                <!-- END RowError -->
+                <tr class="Row">
+                  <td>{IdRelacionado}</td> 
+                  <td>{TipoRegistro}</td> 
+                  <td>{Estado}</td> 
+                  <td>{Tipo}</td> 
+                  <td>{Paquete}</td> 
+                  <td style="TEXT-ALIGN: center">{ProveedorPaq}</td> 
+                  <td>{Descripcion}</td> 
+                  <td colspan="94"><input type="checkbox" id="mc_info_detalle_defectosIgnorar_{mc_info_detalle_defectos:rowNumber}" value="1" name="{Ignorar_Name}" {Ignorar}><input type="hidden" id="mc_info_detalle_defectosIdPadre_{mc_info_detalle_defectos:rowNumber}" value="{IdPadre}" name="{IdPadre_Name}"><input type="hidden" id="mc_info_detalle_defectosId_{mc_info_detalle_defectos:rowNumber}" value="{Id}" name="{Id_Name}"></td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="101">No hay registros</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td style="TEXT-ALIGN: right" colspan="101">
+                    <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+                    <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+                      <option selected value="">-</option>
+ {PageSize_Options}
+                    </select>
+ 
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/FirstOff.gif"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/Prev.gif"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->
+                    <!-- BEGIN Button Button_Submit --><input type="submit" id="mc_info_detalle_defectosButton_Submit" class="Button" alt="Enviar" value="Guardar" name="{Button_Name}" size="20"><!-- END Button Button_Submit --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+ 
+        <p><br>
+        </p>
+      </form>
+      <!-- END EditableGrid mc_info_detalle_defectos --><br>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
+<title>Lista Incidentes</title>
+ 
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-2504AB44
+</script>
+<script src="ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-A87AC9EE
+</script>
+{page:scriptIncludes} 
+<script type="text/javascript">
+//End Include User Scripts
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
+</head>
+ 
+<body>
+<p>{Header}</p>
+<!-- BEGIN Record mc_info_incidentesSearch -->
+<form name="{HTMLFormName}" id="mc_info_incidentesSearch" action="{Action}" method="post">
+  <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+            <td class="th"><strong>Filtro</strong></td> 
+            <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error" id="{@error-block}">
+            <td colspan="10">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <td class="th"><label for="mc_info_incidentesSearchs_Id_incidente_param">Id Incidente</label></td> 
+            <td><label for="mc_info_incidentesSearchs_Id_incidente_param" style="display: none;">TextBox1</label><input type="text" name="{s_Id_incidente_param_Name}" id="mc_info_incidentesSearchs_Id_incidente_param" value="{s_Id_incidente_param}"></td> 
+            <td>CDS</td> 
+            <td>&nbsp; 
+              <select name="{s_id_proveedor_Name}" id="s_cds_param">
+                <option selected value="">Select Value</option>
+                {s_id_proveedor_Options}
+              </select>
+ </td> 
+            <td>Mes Medición&nbsp;</td> 
+            <td>&nbsp; <label for="mc_info_incidentesSearchs_MesReporte" style="display: none;">ListBox1</label> 
+              <select name="{s_MesReporte_Name}" id="mc_info_incidentesSearchs_MesReporte">
+                <option selected value="">{res:CCS_SelectValue}</option>
+                {s_MesReporte_Options}
+              </select>
+ </td> 
+            <td>Año Medición&nbsp;</td> 
+            <td>
+              <select name="{s_AnioReporte_Name}" id="mc_info_incidentesSearchs_AnioReporte">
+                <option selected value="">Select Value</option>
+                {s_AnioReporte_Options}
+              </select>
+ </td> 
+            <td>Analista&nbsp;</td> 
+            <td><label for="mc_info_incidentesSearchs_analista_param" style="display: none;">ListBox2</label> 
+              <select name="{s_analista_param_Name}" id="mc_info_incidentesSearchs_analista_param">
+                <option selected value="">Seleccionar Valor</option>
+                {s_analista_param_Options}
+              </select>
+ &nbsp; </td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td style="text-align: right;" colspan="10">
+              <!-- BEGIN Button Button_DoSearch --><input type="submit" name="{Button_Name}" class="Button" id="mc_info_incidentesSearchButton_DoSearch" alt="Search" value="Buscar"><!-- END Button Button_DoSearch --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record mc_info_incidentesSearch -->
+<!-- BEGIN Grid mc_info_incidentes -->
+<table class="MainTable" id="mc_info_incidentes" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td valign="top">
+      <table class="Header" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+          <td class="th"><strong>Lista de Incidentes Niveles de Servicio</strong></td> 
+          <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+        </tr>
+      </table>
+      <strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong> 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Caption">
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_Id_incidente --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_incidentesSorter_Id_incidente">Id Incidente</a> 
+          <!-- BEGIN Asc_On --><img alt="Ascending" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Id_incidente --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_ServicioNegocio --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_incidentesSorter_ServicioNegocio">Servicio Negocio</a> 
+          <!-- BEGIN Asc_On --><img alt="Ascending" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_ServicioNegocio --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_Aplicacion --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_incidentesSorter_Aplicacion">Aplicacion</a> 
+          <!-- BEGIN Asc_On --><img alt="Ascending" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Aplicacion --></th>
+ 
+          <th scope="col">Severidad&nbsp;</th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter1 --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_incidentesSorter1">Manejo de Incidentes<br>
+          Tiempo de Atención</a> 
+          <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter1 --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter2 --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_incidentesSorter2">Manejo de Incidentes<br>
+          Tiempo de Solución</a> 
+          <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter2 --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter3 --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_incidentesSorter3">Disponibilidad del<br>
+          Personal de Soporte</a> 
+          <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter3 --></th>
+ 
+          <th scope="col">Observaciones&nbsp;</th>
+ 
+          <th scope="col">Liga Evidencia</th>
+ 
+          <th scope="col">Observaciones SAT</th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <!-- BEGIN Panel Panel1 -->
+        <tr class="Row">
+          <td><a href="{Id_incidente_Src}" id="mc_info_incidentesPanel1Id_incidente_{mc_info_incidentes:rowNumber}">{Id_incidente}</a>&nbsp;</td> 
+          <td>
+            <div align="center">
+              {ServicioNegocio} 
+            </div>
+ &nbsp;</td> 
+          <td>
+            <div align="center">
+              {Aplicacion} 
+            </div>
+ &nbsp;</td> 
+          <td>&nbsp; 
+            <div align="center">
+              {Severidad} 
+            </div>
+          </td> 
+          <td align="center">&nbsp; 
+            <p align="center"><img id="mc_info_incidentesPanel1Cumple_Inc_TiempoAsignacion_{mc_info_incidentes:rowNumber}" alt="" src="{Cumple_Inc_TiempoAsignacion}"></p>
+          </td> 
+          <td>&nbsp; 
+            <p align="center"><img id="mc_info_incidentesPanel1Cumple_Inc_TiempoSolucion_{mc_info_incidentes:rowNumber}" alt="" src="{Cumple_Inc_TiempoSolucion}"></p>
+          </td> 
+          <td>&nbsp; 
+            <p align="center"><img id="mc_info_incidentesPanel1Cumple_DISP_SOPORTE_{mc_info_incidentes:rowNumber}" alt="" src="{Cumple_DISP_SOPORTE}"></p>
+          </td> 
+          <td>&nbsp; 
+            <div>
+              {Obs_Manuales} 
+            </div>
+          </td> 
+          <td rowspan="1" colspan="1"><a href="{lkEvidencia_Src}" id="mc_info_incidentesPanel1lkEvidencia_{mc_info_incidentes:rowNumber}">Ver Evidencia</a></td> 
+          <td rowspan="1" colspan="1">{Obs_SAT}</td>
+        </tr>
+ <!-- END Panel Panel1 --><!-- END Row -->
+        <tr class="NoRecords">
+          <td rowspan="1" colspan="10"><strong>Número de Registros :</strong>&nbsp; {lblRegistros}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            <!-- BEGIN ImageLink ImageLink1 --><a href="{ImageLink1}" id="mc_info_incidentesImageLink1_{mc_info_incidentes:rowNumber}"><img width="203" height="202" style="border: 0px currentColor; border-image: none; width: 33px; height: 28px;" alt="{ImageLink1}" src="Images/xls.jpg"></a><!-- END ImageLink ImageLink1 --></td>
+        </tr>
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td rowspan="1" colspan="10">No records</td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="Footer">
+          <td rowspan="1" colspan="10">
+            <!-- BEGIN Navigator Navigator --><span class="Navigator">Records per page 
+            <select name="{FormName}PageSize" style="vertical-align: middle;" data-grid-size="{FormName}">
+              <option selected value="">-</option>
+ {PageSize_Options}
+            </select>
+ 
+            <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
+            <!-- BEGIN First_Off --><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/FirstOff.gif"><!-- END First_Off -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/Prev.gif"></a> <!-- END Prev_On -->
+            <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} of&nbsp;{Total_Pages}&nbsp; 
+            <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/Next.gif"></a> <!-- END Next_On -->
+            <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
+            <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid mc_info_incidentes --><br>
+</body>
+</html>

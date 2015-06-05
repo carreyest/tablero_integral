@@ -1,0 +1,494 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Dictamenes</TITLE>
+<STYLE needdelete>td {border-style:dotted;border-width:1px;border-color:#aaaaaa;} table {border-style:dashed;border-width:1px;border-color:#aaaaaa;}</STYLE>
+
+<META name=GENERATOR content="MSHTML 10.00.9200.16736" ccsServiceable="true">
+<META content="text/html; charset=windows-1252" http-equiv=content-type 
+ccsServiceable="true"><LINK rel=stylesheet type=text/css 
+href="../Styles/Pine2/Style_doctype.css" ccsServiceable="true" 
+ccs_href="../Styles/{CCS_Style}/Style_doctype.css"><LINK rel=stylesheet 
+type=text/css href="../Styles/Pine2/jquery-ui.css" ccsServiceable="true" 
+ccs_href="../Styles/{CCS_Style}/jquery-ui.css">
+<SCRIPT language=JavaScript type=text/javascript>
+//Begin CCS script
+//Include Common JSFunctions @1-6ADB6CED
+</SCRIPT>
+
+<SCRIPT type=text/javascript charset=utf-8 
+src="../ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" 
+ccs_src="../ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}"></SCRIPT>
+
+<SCRIPT type=text/javascript>
+//End Include Common JSFunctions
+
+//Include User Scripts @1-A87AC9EE
+</SCRIPT>
+
+<META name=ccsProxyBraces ccsServiceable="true" value="page:scriptIncludes">
+<SCRIPT type=text/javascript>
+//End Include User Scripts
+
+//End CCS script
+</SCRIPT>
+
+<META content=IE=7 http-equiv=X-UA-Compatible toremove="toremove"></HEAD>
+<BODY>
+<P><SPAN contentEditable=true 
+style="BORDER-TOP: #96e593 1px solid; BORDER-RIGHT: #96e593 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #96e593 1px solid; BORDER-LEFT: #96e593 1px solid" 
+ccsServiceable="true" ccsType="Component" ccsBlockIsWhiteSpace="true" 
+ccsName="Header" ccsId="2">Header</SPAN></P>
+<P>
+<TABLE width="100%">
+  <TBODY>
+  <TR>
+    <TD>&nbsp;</TD>
+    <TD><SPAN contentEditable=true 
+      style="BORDER-TOP: #dcdcdc 1px solid; BORDER-RIGHT: #dcdcdc 1px solid; BORDER-BOTTOM: #dcdcdc 1px solid; BORDER-LEFT: #dcdcdc 1px solid; DISPLAY: block" 
+      ccsServiceable="true" ccsType="Component" ccsName="mc_c_dictamenesSearch" 
+      ccsId="36" ccsDesignColorSelection="true">
+      <FORM id=mc_c_dictamenesSearch method=post name={HTMLFormName} 
+      action={Action} ccsServiceable="true">
+      <TABLE class=MainTable cellSpacing=0 cellPadding=0 border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=top>
+            <TABLE class=Header cellSpacing=0 cellPadding=0 border=0>
+              <TBODY>
+              <TR>
+                <TD class=HeaderLeft><IMG alt="" 
+                  src="../Styles/Pine2/Images/Spacer.gif" ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/Spacer.gif"></TD>
+                <TD class=th><STRONG>Buscar</STRONG></TD>
+                <TD class=HeaderRight><IMG alt="" 
+                  src="../Styles/Pine2/Images/Spacer.gif" ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/Spacer.gif"></TD></TR></TBODY></TABLE>
+            <TABLE class=Record cellSpacing=0 cellPadding=0><!-- BEGIN Error -->
+              <TBODY>
+              <TR id={@error-block} class=Error>
+                <TD colSpan=8>{Error}</TD></TR><!-- END Error -->
+              <TR class=Controls>
+                <TD class=th><SPAN ccsServiceable="true" 
+                  ccsHtmlTag_for="mc_c_dictamenesSearchs_Codigo" 
+                  ccsHtmlTag="label">Codigo</SPAN></TD>
+                <TD><INPUT id=mc_c_dictamenesSearchs_Codigo maxLength=5 size=5 
+                  value={s_Codigo} name={s_Codigo_Name} ccsServiceable="true" 
+                  ccsType="Component" ccsName="s_Codigo" ccsId="38"></TD>
+                <TD class=th><SPAN ccsServiceable="true" 
+                  ccsHtmlTag_for="mc_c_dictamenesSearchs_SeMideSLA" 
+                  ccsHtmlTag="label">Se Mide SLA</SPAN></TD>
+                <TD><SELECT id=mc_c_dictamenesSearchs_SeMideSLA 
+                  name={s_SeMideSLA_Name} ccsServiceable="true" 
+                  ccsType="Component" ccsName="s_SeMideSLA" ccsId="39"> 
+                    <OPTION selected value="" ccsServiceable="true">Seleccionar 
+                    Valor</OPTION> {s_SeMideSLA_Options}</SELECT> </TD>
+                <TD class=th><SPAN ccsServiceable="true" 
+                  ccsHtmlTag_for="mc_c_dictamenesSearchs_TipoSLA" 
+                  ccsHtmlTag="label">Tipo SLA</SPAN></TD>
+                <TD><SELECT id=mc_c_dictamenesSearchs_TipoSLA 
+                  name={s_TipoSLA_Name} ccsServiceable="true" 
+                  ccsType="Component" ccsName="s_TipoSLA" ccsId="40"> <OPTION 
+                    selected value="" ccsServiceable="true">Seleccionar 
+                    Valor</OPTION> {s_TipoSLA_Options}</SELECT> </TD>
+                <TD class=th><SPAN ccsServiceable="true" 
+                  ccsHtmlTag_for="mc_c_dictamenesSearchs_FugadoProduccion" 
+                  ccsHtmlTag="label">Fugado Produccion</SPAN></TD>
+                <TD><SELECT id=mc_c_dictamenesSearchs_FugadoProduccion 
+                  name={s_FugadoProduccion_Name} ccsServiceable="true" 
+                  ccsType="Component" ccsName="s_FugadoProduccion" ccsId="41"> 
+                    <OPTION selected value="" ccsServiceable="true">Seleccionar 
+                    Valor</OPTION> {s_FugadoProduccion_Options}</SELECT> </TD></TR>
+              <TR class=Bottom>
+                <TD style="TEXT-ALIGN: right" colSpan=8><INPUT id=mc_c_dictamenesSearchButton_DoSearch class=Button alt=Buscar type=submit value=Buscar name={Button_Name} ccsServiceable="true" ccsType="Component" ccsName="Button_DoSearch" ccsId="37" ccsExtendedHtml="true"></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></FORM>&nbsp;</SPAN><BR><SPAN 
+      contentEditable=true 
+      style="BORDER-TOP: #dcdcdc 1px solid; BORDER-RIGHT: #dcdcdc 1px solid; BORDER-BOTTOM: #dcdcdc 1px solid; BORDER-LEFT: #dcdcdc 1px solid; DISPLAY: block" 
+      ccsServiceable="true" ccsType="Component" ccsName="mc_c_dictamenes" 
+      ccsId="3" ccsDesignColorSelection="true">
+      <TABLE id=mc_c_dictamenes class=MainTable cellSpacing=0 cellPadding=0 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=top>
+            <TABLE class=Header cellSpacing=0 cellPadding=0 border=0>
+              <TBODY>
+              <TR>
+                <TD class=HeaderLeft><IMG alt="" 
+                  src="../Styles/Pine2/Images/Spacer.gif" ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/Spacer.gif"></TD>
+                <TD class=th><STRONG>Lista de dictamenes </STRONG></TD>
+                <TD class=HeaderRight><IMG alt="" 
+                  src="../Styles/Pine2/Images/Spacer.gif" ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/Spacer.gif"></TD></TR></TBODY></TABLE>
+            <TABLE class=Grid cellSpacing=0 cellPadding=0>
+              <TBODY>
+              <TR class=Caption>
+                <TH scope=col><SPAN ccsServiceable="true" ccsType="Sorter" 
+                  ccsName="Sorter_Id" ccsId="11" ccsExtendedHtml="true" 
+                  ccsExtendedHtmlSpan="true" atomicselection="true" 
+                  ccsControlName="Sorter_Id" ccsControlType="Sorter"><SPAN 
+                  class=Sorter><A id=mc_c_dictamenesSorter_Id href="{Sort_URL}" 
+                  ccsServiceable="true" ccs_href="{Sort_URL}">Id</A> <SPAN 
+                  contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Asc_On" 
+                  ccsId="" name="Asc_On"><IMG alt=Ascendente 
+                  src="../Styles/Pine2/Images/Asc.gif" ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/Asc.gif"></SPAN> <SPAN 
+                  contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Desc_On" 
+                  ccsId="" name="Desc_On"><IMG alt=Descendente 
+                  src="../Styles/Pine2/Images/Desc.gif" ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/Desc.gif"></SPAN></SPAN>&nbsp;</SPAN></TH>
+                <TH scope=col><SPAN ccsServiceable="true" ccsType="Sorter" 
+                  ccsName="Sorter_Codigo" ccsId="12" ccsExtendedHtml="true" 
+                  ccsExtendedHtmlSpan="true" atomicselection="true" 
+                  ccsControlName="Sorter_Codigo" ccsControlType="Sorter"><SPAN 
+                  class=Sorter><A id=mc_c_dictamenesSorter_Codigo 
+                  href="{Sort_URL}" ccsServiceable="true" 
+                  ccs_href="{Sort_URL}">Código</A> <SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Asc_On" 
+                  ccsId="" name="Asc_On"><IMG alt=Ascendente 
+                  src="../Styles/Pine2/Images/Asc.gif" ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/Asc.gif"></SPAN> <SPAN 
+                  contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Desc_On" 
+                  ccsId="" name="Desc_On"><IMG alt=Descendente 
+                  src="../Styles/Pine2/Images/Desc.gif" ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/Desc.gif"></SPAN></SPAN>&nbsp;</SPAN></TH>
+                <TH scope=col><SPAN ccsServiceable="true" ccsType="Sorter" 
+                  ccsName="Sorter_Descripcion" ccsId="13" ccsExtendedHtml="true" 
+                  ccsExtendedHtmlSpan="true" atomicselection="true" 
+                  ccsControlName="Sorter_Descripcion" 
+                  ccsControlType="Sorter"><SPAN class=Sorter><A 
+                  id=mc_c_dictamenesSorter_Descripcion href="{Sort_URL}" 
+                  ccsServiceable="true" ccs_href="{Sort_URL}">Descripción</A> 
+                  <SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Asc_On" 
+                  ccsId="" name="Asc_On"><IMG alt=Ascendente 
+                  src="../Styles/Pine2/Images/Asc.gif" ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/Asc.gif"></SPAN> <SPAN 
+                  contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Desc_On" 
+                  ccsId="" name="Desc_On"><IMG alt=Descendente 
+                  src="../Styles/Pine2/Images/Desc.gif" ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/Desc.gif"></SPAN></SPAN>&nbsp;</SPAN></TH>
+                <TH scope=col><SPAN ccsServiceable="true" ccsType="Sorter" 
+                  ccsName="Sorter_Uso" ccsId="14" ccsExtendedHtml="true" 
+                  ccsExtendedHtmlSpan="true" atomicselection="true" 
+                  ccsControlName="Sorter_Uso" ccsControlType="Sorter"><SPAN 
+                  class=Sorter><A id=mc_c_dictamenesSorter_Uso href="{Sort_URL}" 
+                  ccsServiceable="true" ccs_href="{Sort_URL}">Uso</A> <SPAN 
+                  contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Asc_On" 
+                  ccsId="" name="Asc_On"><IMG alt=Ascendente 
+                  src="../Styles/Pine2/Images/Asc.gif" ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/Asc.gif"></SPAN> <SPAN 
+                  contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Desc_On" 
+                  ccsId="" name="Desc_On"><IMG alt=Descendente 
+                  src="../Styles/Pine2/Images/Desc.gif" ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/Desc.gif"></SPAN></SPAN>&nbsp;</SPAN></TH>
+                <TH scope=col><SPAN ccsServiceable="true" ccsType="Sorter" 
+                  ccsName="Sorter_SeMideSLA" ccsId="15" ccsExtendedHtml="true" 
+                  ccsExtendedHtmlSpan="true" atomicselection="true" 
+                  ccsControlName="Sorter_SeMideSLA" 
+                  ccsControlType="Sorter"><SPAN class=Sorter><A 
+                  id=mc_c_dictamenesSorter_SeMideSLA href="{Sort_URL}" 
+                  ccsServiceable="true" ccs_href="{Sort_URL}">Se Mide SLA</A> 
+                  <SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Asc_On" 
+                  ccsId="" name="Asc_On"><IMG alt=Ascendente 
+                  src="../Styles/Pine2/Images/Asc.gif" ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/Asc.gif"></SPAN> <SPAN 
+                  contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Desc_On" 
+                  ccsId="" name="Desc_On"><IMG alt=Descendente 
+                  src="../Styles/Pine2/Images/Desc.gif" ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/Desc.gif"></SPAN></SPAN>&nbsp;</SPAN></TH>
+                <TH scope=col><SPAN ccsServiceable="true" ccsType="Sorter" 
+                  ccsName="Sorter_TipoSLA" ccsId="16" ccsExtendedHtml="true" 
+                  ccsExtendedHtmlSpan="true" atomicselection="true" 
+                  ccsControlName="Sorter_TipoSLA" ccsControlType="Sorter"><SPAN 
+                  class=Sorter><A id=mc_c_dictamenesSorter_TipoSLA 
+                  href="{Sort_URL}" ccsServiceable="true" 
+                  ccs_href="{Sort_URL}">Tipo SLA</A> <SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Asc_On" 
+                  ccsId="" name="Asc_On"><IMG alt=Ascendente 
+                  src="../Styles/Pine2/Images/Asc.gif" ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/Asc.gif"></SPAN> <SPAN 
+                  contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Desc_On" 
+                  ccsId="" name="Desc_On"><IMG alt=Descendente 
+                  src="../Styles/Pine2/Images/Desc.gif" ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/Desc.gif"></SPAN></SPAN>&nbsp;</SPAN></TH>
+                <TH scope=col><SPAN ccsServiceable="true" ccsType="Sorter" 
+                  ccsName="Sorter_FugadoProduccion" ccsId="17" 
+                  ccsExtendedHtml="true" ccsExtendedHtmlSpan="true" 
+                  atomicselection="true" 
+                  ccsControlName="Sorter_FugadoProduccion" 
+                  ccsControlType="Sorter"><SPAN class=Sorter><A 
+                  id=mc_c_dictamenesSorter_FugadoProduccion href="{Sort_URL}" 
+                  ccsServiceable="true" ccs_href="{Sort_URL}">Fugado 
+                  Producción</A> <SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Asc_On" 
+                  ccsId="" name="Asc_On"><IMG alt=Ascendente 
+                  src="../Styles/Pine2/Images/Asc.gif" ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/Asc.gif"></SPAN> <SPAN 
+                  contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Desc_On" 
+                  ccsId="" name="Desc_On"><IMG alt=Descendente 
+                  src="../Styles/Pine2/Images/Desc.gif" ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/Desc.gif"></SPAN></SPAN>&nbsp;</SPAN></TH>
+                <TH scope=col><SPAN ccsServiceable="true" ccsType="Sorter" 
+                  ccsName="Sorter_Comentarios" ccsId="18" ccsExtendedHtml="true" 
+                  ccsExtendedHtmlSpan="true" atomicselection="true" 
+                  ccsControlName="Sorter_Comentarios" 
+                  ccsControlType="Sorter"><SPAN class=Sorter><A 
+                  id=mc_c_dictamenesSorter_Comentarios href="{Sort_URL}" 
+                  ccsServiceable="true" ccs_href="{Sort_URL}">Comentarios</A> 
+                  <SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Asc_On" 
+                  ccsId="" name="Asc_On"><IMG alt=Ascendente 
+                  src="../Styles/Pine2/Images/Asc.gif" ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/Asc.gif"></SPAN> <SPAN 
+                  contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Desc_On" 
+                  ccsId="" name="Desc_On"><IMG alt=Descendente 
+                  src="../Styles/Pine2/Images/Desc.gif" ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/Desc.gif"></SPAN></SPAN>&nbsp;</SPAN></TH></TR>
+              <TR ccsServiceable="true" ccsType="Block" name="Row" 
+              isBegin="True">
+                <TD 
+                style="BORDER-TOP: 2px groove; BORDER-RIGHT: black 1px solid; BORDER-BOTTOM: black 1px solid; BORDER-LEFT: 2px groove; BACKGROUND-COLOR: #dddddd" 
+                colSpan=99 ccsServiceable="true" atomicselection="true" 
+                unselectable="on"><SPAN 
+                  style="BORDER-TOP-STYLE: none; FONT-SIZE: xx-small; BORDER-LEFT-STYLE: none; HEIGHT: 100%; FONT-FAMILY: Arial; BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; WIDTH: 100%" 
+                  ccsServiceable="true" unselectable="on">Begin Row</SPAN></TD></TR>
+              <TR class=Row>
+                <TD style="TEXT-ALIGN: right"><SPAN contentEditable=true 
+                  style="BORDER-TOP: #9bc4ed 1px solid; BORDER-RIGHT: #9bc4ed 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #9bc4ed 1px solid; BORDER-LEFT: #9bc4ed 1px solid" 
+                  ccsServiceable="true" ccsType="Component" ccsName="Id" 
+                  ccsId="19"><A id=mc_c_dictamenesId_{mc_c_dictamenes:rowNumber} 
+                  href="{Id_Src}" ccsServiceable="true" 
+                  ccs_href="{Id_Src}"><SPAN style="WHITE-SPACE: nowrap" 
+                  ccsServiceable="true" 
+                  ccsBlockIsWhiteSpace="true">{Id}</SPAN></A></SPAN>&nbsp;</TD>
+                <TD><SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Component" 
+                  ccsBlockIsWhiteSpace="true" ccsName="Codigo" 
+                  ccsId="22">Codigo</SPAN></TD>
+                <TD style="WIDTH: 240px"><SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Component" 
+                  ccsBlockIsWhiteSpace="true" ccsName="Descripcion" 
+                  ccsId="24">Descripcion</SPAN>&nbsp;</TD>
+                <TD style="WIDTH: 320px"><SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Component" 
+                  ccsBlockIsWhiteSpace="true" ccsName="Uso" 
+                  ccsId="26">Uso</SPAN>&nbsp;</TD>
+                <TD style="TEXT-ALIGN: center" align=center><SPAN 
+                  contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Component" 
+                  ccsBlockIsWhiteSpace="true" ccsName="SeMideSLA" 
+                  ccsId="28">SeMideSLA</SPAN>&nbsp;</TD>
+                <TD>&nbsp;<SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Component" 
+                  ccsBlockIsWhiteSpace="true" ccsName="TipoSLA" 
+                  ccsId="30">TipoSLA</SPAN></TD>
+                <TD style="TEXT-ALIGN: center"><SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Component" 
+                  ccsBlockIsWhiteSpace="true" ccsName="FugadoProduccion" 
+                  ccsId="32">FugadoProduccion</SPAN>&nbsp;</TD>
+                <TD style="WIDTH: 320px"><SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Component" 
+                  ccsBlockIsWhiteSpace="true" ccsName="Comentarios" 
+                  ccsId="34">Comentarios</SPAN>&nbsp;</TD></TR>
+              <TR ccsServiceable="true" ccsType="Block" name="Row" 
+              isBegin="False">
+                <TD 
+                style="BORDER-TOP: 2px groove; BORDER-RIGHT: black 1px solid; BORDER-BOTTOM: black 1px solid; BORDER-LEFT: 2px groove; BACKGROUND-COLOR: #dddddd" 
+                colSpan=99 ccsServiceable="true" atomicselection="true" 
+                unselectable="on"><SPAN 
+                  style="BORDER-TOP-STYLE: none; FONT-SIZE: xx-small; BORDER-LEFT-STYLE: none; HEIGHT: 100%; FONT-FAMILY: Arial; BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; WIDTH: 100%" 
+                  ccsServiceable="true" unselectable="on">End Row</SPAN></TD></TR><!-- BEGIN NoRecords -->
+              <TR class=NoRecords>
+                <TD colSpan=8>No hay registros</TD></TR><!-- END NoRecords -->
+              <TR class=Footer>
+                <TD colSpan=8><SPAN contentEditable=true 
+                  style="BORDER-TOP: #9bc4ed 1px solid; BORDER-RIGHT: #9bc4ed 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #9bc4ed 1px solid; BORDER-LEFT: #9bc4ed 1px solid" 
+                  ccsServiceable="true" ccsType="Component" 
+                  ccsName="mc_c_dictamenes_Insert" ccsId="6"><A 
+                  id=mc_c_dictamenesmc_c_dictamenes_Insert 
+                  href="{mc_c_dictamenes_Insert_Src}" ccsServiceable="true" 
+                  ccs_href="{mc_c_dictamenes_Insert_Src}"><SPAN 
+                  style="WHITE-SPACE: nowrap" ccsServiceable="true" 
+                  ccsBlockIsWhiteSpace="true">Agregar 
+                  Nuevo</SPAN></A></SPAN>&nbsp; <SPAN ccsServiceable="true" 
+                  ccsType="Navigator" ccsName="Navigator" ccsId="35" 
+                  ccsExtendedHtml="true" ccsExtendedHtmlSpan="true" 
+                  atomicselection="true" ccsControlName="Navigator" 
+                  ccsControlType="Navigator"><SPAN class=Navigator>Registro por 
+                  página <SELECT style="VERTICAL-ALIGN: middle" 
+                  name={FormName}PageSize ccsServiceable="true" 
+                  data-grid-size="{FormName}"> <OPTION selected value="" 
+                    ccsServiceable="true">-</OPTION> {PageSize_Options}</SELECT> 
+                  <SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="First_On" 
+                  ccsId="" name="First_On" ccsPreserveEndSpace="true"><A 
+                  href="{First_URL}" ccsServiceable="true" 
+                  ccs_href="{First_URL}"><IMG alt={First_URL} 
+                  src="../Styles/Pine2/Images/First.gif" ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/First.gif"></A> 
+                  </SPAN><SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="First_Off" 
+                  ccsId="" name="First_Off"><IMG alt={First_URL} 
+                  src="../Styles/Pine2/Images/FirstOff.gif" 
+                  ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/FirstOff.gif"></SPAN> 
+                  <SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Prev_On" 
+                  ccsId="" name="Prev_On" ccsPreserveEndSpace="true"><A 
+                  href="{Prev_URL}" ccsServiceable="true" 
+                  ccs_href="{Prev_URL}"><IMG alt={Prev_URL} 
+                  src="../Styles/Pine2/Images/Prev.gif" ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/Prev.gif"></A> 
+                  </SPAN><SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Prev_Off" 
+                  ccsId="" name="Prev_Off"><IMG alt={Prev_URL} 
+                  src="../Styles/Pine2/Images/PrevOff.gif" ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/PrevOff.gif"></SPAN>&nbsp;{Page_Number} 
+                  de&nbsp;{Total_Pages}&nbsp; <SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Next_On" 
+                  ccsId="" name="Next_On" ccsPreserveEndSpace="true"><A 
+                  href="{Next_URL}" ccsServiceable="true" 
+                  ccs_href="{Next_URL}"><IMG alt={Next_URL} 
+                  src="../Styles/Pine2/Images/Next.gif" ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/Next.gif"></A> 
+                  </SPAN><SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Next_Off" 
+                  ccsId="" name="Next_Off"><IMG alt={Next_URL} 
+                  src="../Styles/Pine2/Images/NextOff.gif" ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/NextOff.gif"></SPAN> 
+                  <SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Last_On" 
+                  ccsId="" name="Last_On" ccsPreserveEndSpace="true"><A 
+                  href="{Last_URL}" ccsServiceable="true" 
+                  ccs_href="{Last_URL}"><IMG alt={Last_URL} 
+                  src="../Styles/Pine2/Images/Last.gif" ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/Last.gif"></A> 
+                  </SPAN><SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Last_Off" 
+                  ccsId="" name="Last_Off"><IMG alt={Last_URL} 
+                  src="../Styles/Pine2/Images/LastOff.gif" ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/LastOff.gif"></SPAN></SPAN>&nbsp;</SPAN>&nbsp;</TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>&nbsp;</SPAN><BR><SPAN 
+      contentEditable=true 
+      style="BORDER-TOP: #dcdcdc 1px solid; BORDER-RIGHT: #dcdcdc 1px solid; BORDER-BOTTOM: #dcdcdc 1px solid; BORDER-LEFT: #dcdcdc 1px solid; DISPLAY: block" 
+      ccsServiceable="true" ccsType="Component" ccsName="mc_c_dictamenes1" 
+      ccsId="42" ccsDesignColorSelection="true">
+      <FORM id=mc_c_dictamenes1 method=post name={HTMLFormName} action={Action} 
+      ccsServiceable="true">
+      <TABLE class=MainTable cellSpacing=0 cellPadding=0 border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=top>
+            <TABLE class=Header cellSpacing=0 cellPadding=0 border=0>
+              <TBODY>
+              <TR>
+                <TD class=HeaderLeft><IMG alt="" 
+                  src="../Styles/Pine2/Images/Spacer.gif" ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/Spacer.gif"></TD>
+                <TD class=th><STRONG>Editar Dictamenes </STRONG></TD>
+                <TD class=HeaderRight><IMG alt="" 
+                  src="../Styles/Pine2/Images/Spacer.gif" ccsServiceable="true" 
+                  ccs_src="../Styles/{CCS_Style}/Images/Spacer.gif"></TD></TR></TBODY></TABLE>
+            <TABLE class=Record cellSpacing=0 cellPadding=0><!-- BEGIN Error -->
+              <TBODY>
+              <TR id=ErrorBlock class=Error>
+                <TD colSpan=2>{Error}</TD></TR><!-- END Error -->
+              <TR class=Controls>
+                <TD class=th><SPAN ccsServiceable="true" 
+                  ccsHtmlTag_for="mc_c_dictamenes1Codigo" 
+                  ccsHtmlTag="label">Codigo</SPAN></TD>
+                <TD><INPUT id=mc_c_dictamenes1Codigo maxLength=5 size=5 
+                  value={Codigo} name={Codigo_Name} ccsServiceable="true" 
+                  ccsType="Component" ccsName="Codigo" ccsId="47"></TD></TR>
+              <TR class=Controls>
+                <TD class=th><SPAN ccsServiceable="true" 
+                  ccsHtmlTag_for="mc_c_dictamenes1Descripcion" 
+                  ccsHtmlTag="label">Descripcion</SPAN></TD>
+                <TD><INPUT id=mc_c_dictamenes1Descripcion 
+                  style="HEIGHT: 22px; WIDTH: 418px" maxLength=250 size=50 
+                  value={Descripcion} name={Descripcion_Name} 
+                  ccsServiceable="true" ccsType="Component" 
+                  ccsName="Descripcion" ccsId="48"></TD></TR>
+              <TR class=Controls>
+                <TD class=th><SPAN ccsServiceable="true" 
+                  ccsHtmlTag_for="mc_c_dictamenes1Uso" 
+                  ccsHtmlTag="label">Uso</SPAN></TD>
+                <TD><TEXTAREA id=mc_c_dictamenes1Uso rows=3 cols=50 name={Uso_Name} ccsServiceable="true" ccsType="Component" ccsName="Uso" ccsId="49">{Uso}</TEXTAREA> 
+                </TD></TR>
+              <TR class=Controls>
+                <TD class=th><SPAN ccsServiceable="true" 
+                  ccsHtmlTag_for="mc_c_dictamenes1SeMideSLA" 
+                  ccsHtmlTag="label">Se Mide SLA</SPAN></TD>
+                <TD><INPUT id=mc_c_dictamenes1SeMideSLA type=checkbox value=1 
+                  name={SeMideSLA_Name} ccsServiceable="true" 
+                  ccsType="Component" ccsName="SeMideSLA" ccsId="50" 
+                  ccscheckedattr="{SeMideSLA}"></TD></TR>
+              <TR class=Controls>
+                <TD class=th><SPAN ccsServiceable="true" 
+                  ccsHtmlTag_for="mc_c_dictamenes1TipoSLA" 
+                  ccsHtmlTag="label">Tipo SLA</SPAN></TD>
+                <TD><INPUT id=mc_c_dictamenes1TipoSLA maxLength=15 size=15 
+                  value={TipoSLA} name={TipoSLA_Name} ccsServiceable="true" 
+                  ccsType="Component" ccsName="TipoSLA" ccsId="51"></TD></TR>
+              <TR class=Controls>
+                <TD class=th><SPAN ccsServiceable="true" 
+                  ccsHtmlTag_for="mc_c_dictamenes1FugadoProduccion" 
+                  ccsHtmlTag="label">Fugado Produccion</SPAN></TD>
+                <TD><INPUT id=mc_c_dictamenes1FugadoProduccion type=checkbox 
+                  value=1 name={FugadoProduccion_Name} ccsServiceable="true" 
+                  ccsType="Component" ccsName="FugadoProduccion" ccsId="52" 
+                  ccscheckedattr="{FugadoProduccion}"></TD></TR>
+              <TR class=Controls>
+                <TD class=th><SPAN ccsServiceable="true" 
+                  ccsHtmlTag_for="mc_c_dictamenes1Comentarios" 
+                  ccsHtmlTag="label">Comentarios</SPAN></TD>
+                <TD><TEXTAREA id=mc_c_dictamenes1Comentarios rows=3 cols=50 name={Comentarios_Name} ccsServiceable="true" ccsType="Component" ccsName="Comentarios" ccsId="53">{Comentarios}</TEXTAREA> 
+                </TD></TR>
+              <TR class=Bottom>
+                <TD style="TEXT-ALIGN: right" colSpan=2><INPUT id=mc_c_dictamenes1Button_Insert class=Button alt=Agregar type=submit value=Agregar name={Button_Name} ccsServiceable="true" ccsType="Component" ccsName="Button_Insert" ccsId="44" ccsExtendedHtml="true"> 
+<INPUT id=mc_c_dictamenes1Button_Update class=Button alt=Enviar type=submit value=Grabar name={Button_Name} ccsServiceable="true" ccsType="Component" ccsName="Button_Update" ccsId="45" ccsExtendedHtml="true"></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></FORM>&nbsp;</SPAN><BR></TD>
+    <TD>&nbsp;</TD></TR>
+  <TR>
+    <TD>&nbsp;</TD>
+    <TD>&nbsp;</TD>
+    <TD>&nbsp;</TD></TR></TBODY></TABLE></P></BODY></HTML>

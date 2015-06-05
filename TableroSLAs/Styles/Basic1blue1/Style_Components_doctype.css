@@ -1,0 +1,1224 @@
+/* CCSTheme v 3.x */
+/* General */
+
+/* Colors */
+.PageBgColorBasic1blue1 {
+	background-color: #ccd1d8;
+	}
+
+.FormTitleBgColorBasic1blue1 {
+	background-color: #667591;
+	}
+
+.FormTitleFontColorBasic1blue1 {
+	color: #ffffff;
+	}
+
+.CaptionBgColorBasic1blue1 {
+	background-color: #c8d1dd;
+	}
+
+.CaptionFontColorBasic1blue1 {
+	color: #535f77;
+	}
+
+.DataBgColorBasic1blue1 {
+	background-color: #f9f9f9;
+	}
+
+.AltDataBgColorBasic1blue1 {
+	background-color: #dae1e0;
+	}
+
+.DataFontColorBasic1blue1 {
+	color: #475165;
+	}
+
+.LinkColorBasic1blue1 {
+	color: #2626ff;
+	}
+
+.VisitedLinkColorBasic1blue1 {
+	color: #4e8a91;
+	}
+
+.HoverLinkColorBasic1blue1 {
+	color: #f34ab7;
+	}
+
+.ColorBgButtonBasic1blue1 {
+	background-color: #667591;
+}
+
+.ColorFontButtonBasic1blue1 {
+	color: #ffffff;
+}
+
+.ColorBgButtonPassiveBasic1blue1 {
+	background-color: #a3b0c8;
+}
+
+.ColorFontButtonPassiveBasic1blue1 {
+	color: #ffffff;
+}
+
+
+
+.HeaderBasic1blue1 {
+	width: 100%;
+	}
+
+.HeaderBasic1blue1 th { 
+	font-family: Verdana; font-size: 110%; font-weight: bold; text-align: left;
+	padding: 3px;
+	background-image: url('Images/HeaderBg.gif'); color: #ffffff;
+	width: 100%;
+	white-space: nowrap;
+	
+	}
+
+
+html>body .HeaderBasic1blue1 th {
+	font-family: Verdana; font-size: 140%; font-weight: bold; text-align: left;
+}
+
+
+/*ie6*/
+* html body .HeaderBasic1blue1 th {
+	font-family: Verdana; font-size: 140%; font-weight: bold; text-align: left;
+}
+/*end*/
+
+.HeaderBasic1blue1 a:link { 
+	color: #ffffff;
+	}
+
+.HeaderBasic1blue1 a:visited { 
+	color: #ffffff;
+	}
+
+.HeaderBasic1blue1 a:hover, .CaptionBasic1blue1 a:active { 
+	color: #ffffff; text-decoration: none;
+	}
+
+.HeaderLeftBasic1blue1 { 
+	background-image: url('Images/HeaderLeft.gif');
+	}
+
+.HeaderRightBasic1blue1 { 
+	background-image: url('Images/HeaderRight.gif');
+	background-position: right top;
+	}
+
+.HeaderLeftBasic1blue1 img{
+	width: 12px;
+	}
+
+.HeaderRightBasic1blue1 img{
+	width: 12px;
+	}
+
+
+/* Grid Options */
+.GridBasic1blue1 { 
+	border: 1px solid #667591;
+	width: 100%;
+	}
+
+.CaptionBasic1blue1 th { 
+	font-family: Verdana; font-size: 80%; text-align: left; vertical-align: top;
+	padding: 3px;
+	border-right: 1px solid #FFFFFF;
+	background-image: url('Images/CaptionBg.gif'); color: #535f77;
+	white-space: nowrap;
+	}
+
+.CaptionBasic1blue1 td { 
+	font-family: Verdana; font-size: 80%; text-align: left; vertical-align: top;
+	padding: 3px;
+	border-right: 1px solid #FFFFFF;
+	background-image: url('Images/CaptionBg.gif'); color: #535f77;
+	white-space: nowrap;
+	}
+
+
+html>body .CaptionBasic1blue1 th, html>body .CaptionBasic1blue1 td {
+	font-family: Verdana; font-size: 100%; text-align: left; vertical-align: top;
+}
+
+
+/*ie6*/
+* html body .CaptionBasic1blue1 th, * html body .CaptionBasic1blue1 td {
+	font-family: Verdana; font-size: 100%; text-align: left; vertical-align: top;
+}
+/*end*/
+
+.CaptionBasic1blue1 a:link { 
+	color: #535f77;
+	}
+
+.CaptionBasic1blue1 a:visited { 
+	color: #535f77;
+	}
+
+.CaptionBasic1blue1 a:hover, .CaptionBasic1blue1 a:active { 
+	color: #f34ab7;
+	}
+
+.CaptionBasic1blue1 img {
+	margin: 2px; 
+	vertical-align: middle;
+	}
+
+.CaptionBasic1blue1 input {
+	vertical-align: middle;
+	}
+
+.RowBasic1blue1 th { 
+	font-family: Verdana; font-size: 80%; font-weight: normal; text-align: left; vertical-align: top;
+	padding: 3px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	background-color: #f9f9f9; color: #475165;
+	white-space: nowrap;
+	color: #475165;
+	}
+
+.RowBasic1blue1 td { 
+	font-family: Verdana; font-size: 80%;
+	padding: 3px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	text-align: left;
+	vertical-align: top;
+	background-color: #f9f9f9; 
+	color: #475165;
+	}
+	
+
+html>body .RowBasic1blue1 th, html>body .RowBasic1blue1 td {
+	font-family: Verdana; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .RowBasic1blue1 th, * html body .RowBasic1blue1 td {
+	font-family: Verdana; font-size: 100%;
+}
+/*end*/
+
+caption.RowBasic1blue1 { 
+	font-family: Verdana; font-size: 80%;
+	padding: 3px;
+	border: 1px solid #667591; border-bottom: 0px;
+	text-align: left;
+	vertical-align: top;
+	background-color: #f9f9f9; 
+	color: #475165;
+	}
+
+
+html>body caption.RowBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body caption.RowBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+/*end*/
+
+.RowBasic1blue1 a:link { 
+	color: #2626ff;
+	}
+
+.RowBasic1blue1 a:visited { 
+	color: #4e8a91;
+	}
+
+.RowBasic1blue1 a:hover, .RowBasic1blue1 a:active { 
+	color: #f34ab7;
+	}
+
+.SeparatorBasic1blue1{
+	color: #667591;
+	}
+
+.SeparatorBasic1blue1 td{
+	height: 1px;
+	}
+
+
+.AltRowBasic1blue1 th { 
+	font-family: Verdana; font-size: 80%; font-weight: normal; text-align: left; vertical-align: top;
+	padding: 3px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	background-color: #f9f9f9; color: #475165;
+	white-space: nowrap;
+	color: #475165;
+	}
+
+.AltRowBasic1blue1 td { 
+	font-family: Verdana; font-size: 80%;
+	padding: 3px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	text-align: left;
+	vertical-align: top;
+	background-color: #dae1e0; 
+	color: #475165;
+	}
+
+
+html>body .AltRowBasic1blue1 th, html>body .AltRowBasic1blue1 td {
+	font-family: Verdana; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .AltRowBasic1blue1 th, * html body .AltRowBasic1blue1 td {
+	font-family: Verdana; font-size: 100%;
+}
+/*end*/
+
+.AltRowBasic1blue1 a:link { 
+	color: #2626ff;
+	}
+
+.AltRowBasic1blue1 a:visited { 
+	color: #4e8a91;
+	}
+
+.AltRowBasic1blue1 a:hover, .AltRowBasic1blue1 a:active { 
+	color: #f34ab7;
+	}
+
+.NoRecordsBasic1blue1 td { 
+	font-family: Verdana; font-size: 80%;
+	padding: 3px;
+	border-right: 1px solid #FFFFFF;
+	text-align: left;
+	background-color: #f9f9f9; 
+	color: #475165;
+	vertical-align: top;
+	}
+
+.FooterBasic1blue1 td { 
+	font-family: Verdana; font-size: 80%;
+	padding: 3px;
+	border-top: 1px solid #FFFFFF;
+	background-image: url('Images/CaptionBg.gif'); color: #535f77;
+	text-align: center;
+	vertical-align: middle;
+	white-space: nowrap;
+	color: #475165;
+	}
+
+
+html>body .NoRecordsBasic1blue1 td, html>body .FooterBasic1blue1 td {
+	font-family: Verdana; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .NoRecordsBasic1blue1 td, * html body .FooterBasic1blue1 td {
+	font-family: Verdana; font-size: 100%;
+}
+/*end*/
+
+.FooterBasic1blue1 a:link { 
+	color: #2626ff;
+	}
+
+.FooterBasic1blue1 a:visited { 
+	color: #4e8a91;
+	}
+
+.FooterBasic1blue1 a:hover, .FooterBasic1blue1 a:active { 
+	color: #f34ab7;
+	}
+
+.FooterBasic1blue1 img {
+	margin: 2px; 
+	vertical-align: middle;
+	}
+
+.FooterBasic1blue1 input {
+	margin: 2px;
+	vertical-align: middle;
+	}
+
+/* Record Options */
+.RecordBasic1blue1 { 
+	border: 1px solid #667591;
+	width: 100%;
+	}
+
+.ErrorBasic1blue1 td { 
+	font-family: Verdana; font-size: 80%;
+	padding: 3px;
+	border-right: 1px solid #FFFFFF;
+	text-align: left;
+	color: #FF0000;
+	vertical-align: top;
+	background-color: #f9f9f9; 
+	}
+
+
+* html>body .ErrorBasic1blue1 td {
+	font-family: Verdana; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .ErrorBasic1blue1 td {
+	font-family: Verdana; font-size: 100%;
+}
+/*end*/
+
+.ControlsBasic1blue1 th { 
+	font-family: Verdana; font-size: 80%; font-weight: normal; text-align: left; vertical-align: top;
+	padding: 3px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	background-color: #f9f9f9; color: #475165;
+	white-space: nowrap;
+	color: #475165;
+	}
+
+.ControlsBasic1blue1 td { 
+	font-family: Verdana; font-size: 80%;
+	padding: 3px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	text-align: left;
+	vertical-align: top;
+	background-color: #f9f9f9; 
+	color: #475165;
+	}
+	
+.BottomBasic1blue1 td { 
+	font-family: Verdana; font-size: 80%;
+	padding: 3px;
+	border-top: 1px solid #FFFFFF;
+	background-image: url('Images/CaptionBg.gif'); color: #535f77;
+	text-align: right;
+	vertical-align: middle;
+	white-space: nowrap;
+	color: #475165;
+	}
+
+
+html>body .ControlsBasic1blue1 th, html>body .ControlsBasic1blue1 td, html>body .BottomBasic1blue1 td {
+	font-family: Verdana; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .ControlsBasic1blue1 th, * html body .ControlsBasic1blue1 td, * html body .BottomBasic1blue1 td {
+	font-family: Verdana; font-size: 100%;
+}
+/*end*/
+
+.BottomBasic1blue1 a:link { 
+	color: #2626ff;
+	}
+
+.BottomBasic1blue1 a:visited { 
+	color: #4e8a91;
+	}
+
+.BottomBasic1blue1 a:hover, .CaptionBasic1blue1 a:active { 
+	color: #f34ab7;
+	}
+
+.BottomBasic1blue1 img {
+	margin: 2px;
+	vertical-align: middle; 
+	}
+
+.BottomBasic1blue1 input {
+	margin: 2px;
+	vertical-align: middle;
+	}
+
+/* Report */
+.GroupCaptionBasic1blue1 th{
+	font-family: Verdana; font-size: 80%;
+	padding: 3px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	white-space: nowrap;
+	text-align: left;
+	vertical-align: top;
+	font-weight: bold;
+	background-color: #dae1e0; 
+	color: #475165;
+	}
+
+.GroupCaptionBasic1blue1 td{
+	font-family: Verdana; font-size: 80%;
+	padding: 3px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	text-align: left;
+	vertical-align: top;
+	font-weight: bold;
+	background-color: #f9f9f9; 
+	color: #475165;
+	}
+
+
+html>body .GroupCaptionBasic1blue1 th, html>body .GroupCaptionBasic1blue1 td {
+	font-family: Verdana; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .GroupCaptionBasic1blue1 th, * html body .GroupCaptionBasic1blue1 td {
+	font-family: Verdana; font-size: 100%;
+}
+/*end*/
+
+.GroupCaptionBasic1blue1 a:link {
+	color: #535f77;
+	}
+
+.GroupCaptionBasic1blue1 a:visited{
+	color: #535f77;
+	}
+
+.GroupCaptionBasic1blue1 a:hover, .GroupCaptionBasic1blue1 a:active{
+	color: #f34ab7;
+	}
+
+.GroupFooterBasic1blue1 td{
+	font-family: Verdana; font-size: 80%;
+	padding: 3px;
+	border-top: 1px solid #FFFFFF;
+	text-align: center;
+	vertical-align: middle;
+	white-space: nowrap;
+	background-color: #c8d1dd; 
+	color: #475165;
+	}
+
+
+html>body .GroupFooterBasic1blue1 td {
+	font-family: Verdana; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .GroupFooterBasic1blue1 td {
+	font-family: Verdana; font-size: 100%;
+}
+/*end*/
+
+.GroupFooterBasic1blue1 a:link {
+	color: #2626ff;
+	}
+
+.GroupFooterBasic1blue1 a:visited{
+	color: #4e8a91;
+	}
+
+.GroupFooterBasic1blue1 a:hover, .GroupFooterBasic1blue1 a:active{
+	color: #f34ab7;
+	}
+
+.GroupFooterBasic1blue1 img {
+	margin: 2px; 
+	vertical-align: middle;
+	}
+
+.GroupFooterBasic1blue1 input {
+	margin: 2px;
+	vertical-align: middle;
+	}
+
+.SubTotalBasic1blue1 td{
+	font-family: Verdana; font-size: 80%;
+	padding: 3px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	text-align: left;
+	vertical-align: top;
+	font-weight: bold;
+	background-color: #dae1e0; 
+	color: #475165;
+	border-bottom: 2px solid #667591;
+	}
+
+
+html>body .SubTotalBasic1blue1 td {
+	font-family: Verdana; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .SubTotalBasic1blue1 td {
+	font-family: Verdana; font-size: 100%;
+}
+/*end*/
+
+.SubTotalBasic1blue1 a:link {
+	color: #2626ff;
+	}
+
+.SubTotalBasic1blue1 a:visited{
+	color: #4e8a91;
+	}
+
+.SubTotalBasic1blue1 a:hover, .SubTotalBasic1blue1 a:active{
+	color: #f34ab7;
+	}
+
+.TotalBasic1blue1 td{
+	font-family: Verdana; font-size: 80%;
+	padding: 3px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	text-align: left;
+	vertical-align: top;
+	white-space: nowrap;
+	font-weight: bold;
+	background-color: #dae1e0; 
+	color: #475165;
+	}
+
+
+html>body .TotalBasic1blue1 td {
+	font-family: Verdana; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .TotalBasic1blue1 td {
+	font-family: Verdana; font-size: 100%;
+}
+/*end*/
+
+.TotalBasic1blue1 a:link {
+	color: #2626ff;
+	}
+
+.TotalBasic1blue1 a:visited{
+	color: #4e8a91;
+	}
+
+.TotalBasic1blue1 a:hover, .TotalBasic1blue1 a:active{
+	color: #f34ab7;
+	}
+
+/* Form Options */
+.ButtonBasic1blue1 { 
+	background-color: #667591; color: #ffffff; border-left: solid 1px #EDEDED; border-top: solid 1px #EDEDED; border-right: solid 1px #848284; border-bottom: solid 1px #848284; padding: 2px; font-weight: bold; font-family: Tahoma; font-size: 11px; font-weight: bold;
+	}
+
+/* Calendar */
+
+.CalendarBasic1blue1 { 
+	border: 1px solid #667591;
+	width: 100%;
+	}
+
+.CalendarWeekdayNameBasic1blue1{
+	font-family: Verdana; font-size: 80%;
+	padding: 3px;
+	border-right: 1px solid #FFFFFF;
+	text-align: center; 
+	vertical-align: top;
+	white-space: nowrap;
+	background-color: #dae1e0; 
+	color: #475165;
+	font-weight: normal;
+	}
+
+
+html>body .CalendarWeekdayNameBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .CalendarWeekdayNameBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+/*end*/
+
+.CalendarWeekdayNameBasic1blue1 a:link {
+	color: #2626ff;
+	}
+
+.CalendarWeekdayNameBasic1blue1 a:visited{
+	color: #4e8a91;
+	}
+
+.CalendarWeekdayNameBasic1blue1 a:hover, .CalendarWeekdayNameBasic1blue1 a:active{
+	color: #f34ab7;
+	}
+
+.CalendarWeekendNameBasic1blue1{
+	font-family: Verdana; font-size: 80%;
+	padding: 3px;
+	border-right: 1px solid #FFFFFF;
+	white-space: nowrap;
+	text-align: center; 
+	vertical-align: top;
+	background-color: #dae1e0;	
+	color: #475165;
+	font-weight: normal;
+	}
+
+
+html>body .CalendarWeekendNameBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .CalendarWeekendNameBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+/*end*/
+
+.CalendarWeekendNameBasic1blue1 a:link {
+	color: #535f77;
+	}
+
+.CalendarWeekendNameBasic1blue1 a:visited{
+	color: #535f77;
+	}
+
+.CalendarWeekendNameBasic1blue1 a:link, .CalendarWeekendNameBasic1blue1 a:visited{
+	color: #f34ab7;
+	}
+
+/* Calendar Day */
+.CalendarDayBasic1blue1{
+	font-family: Verdana; font-size: 80%;
+	padding: 3px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	text-align: center;
+	background-color: #f9f9f9;	
+	color: #475165;
+	}
+
+
+html>body .CalendarDayBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .CalendarDayBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+/*end*/
+
+.CalendarDayBasic1blue1 a:link {
+	color: #2626ff;
+	}
+
+.CalendarDayBasic1blue1 a:visited{
+	color: #4e8a91;
+	}
+
+.CalendarDayBasic1blue1 a:hover, .CalendarDayBasic1blue1 a:active{
+	color: #f34ab7;
+	}
+
+/* Calendar Weekend */
+.CalendarWeekendBasic1blue1{
+	font-family: Verdana; font-size: 80%;
+	padding: 3px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	text-align: center;
+	background-color: #dae1e0;	
+	color: #475165;
+	}
+
+
+html>body .CalendarWeekendBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .CalendarWeekendBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+/*end*/
+
+.CalendarWeekendBasic1blue1 a:link {
+	color: #2626ff;
+	}
+
+.CalendarWeekendBasic1blue1 a:visited{
+	color: #4e8a91;
+	}
+
+.CalendarWeekendBasic1blue1 a:hover, .CalendarWeekendBasic1blue1 a:active{
+	color: #f34ab7;
+	}
+
+/* Calendar Today */
+.CalendarTodayBasic1blue1 {
+	font-family: Verdana; font-size: 80%;
+	padding: 1px;
+	border: 2px solid #667591;
+	text-align: center;
+	background-color: #f9f9f9;	
+	color: #475165;
+	}
+
+
+html>body .CalendarTodayBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .CalendarTodayBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+/*end*/
+
+.CalendarTodayBasic1blue1 a:link {
+	color: #2626ff;
+	}
+
+.CalendarTodayBasic1blue1 a:visited{
+	color: #4e8a91;
+	}
+
+.CalendarTodayBasic1blue1 a:hover, .CalendarTodayBasic1blue1 a:active {
+	color: #f34ab7;
+	}
+
+/* Calendar Weekend Today */
+.CalendarWeekendTodayBasic1blue1 {
+	font-family: Verdana; font-size: 80%;
+	padding: 1px;
+	border: 2px solid #667591;
+	text-align: center;
+	background-color: #dae1e0;	
+	color: #475165;
+	}
+
+
+html>body .CalendarWeekendTodayBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .CalendarWeekendTodayBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+/*end*/
+
+.CalendarWeekendTodayBasic1blue1 a:link {
+	color: #2626ff;
+	}
+
+.CalendarWeekendTodayBasic1blue1 a:visited{
+	color: #4e8a91;
+	}
+
+.CalendarWeekendTodayBasic1blue1 a:hover, .CalendarWeekendTodayBasic1blue1 a:active{
+	color: #f34ab7;
+	}
+
+/* Calendar Other Month's Day */
+.CalendarOtherMonthDayBasic1blue1{
+	font-family: Verdana; font-size: 80%;
+	padding: 3px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	text-align: center;
+	background-color: #f9f9f9;	
+	color: #667591;
+	}
+
+
+html>body .CalendarOtherMonthDayBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .CalendarOtherMonthDayBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+/*end*/
+
+.CalendarOtherMonthDayBasic1blue1 a:link {
+	color: #667591;
+	}
+
+.CalendarOtherMonthDayBasic1blue1 a:visited{
+	color: #667591;
+	}
+
+.CalendarOtherMonthDayBasic1blue1 a:hover, .CalendarOtherMonthDayBasic1blue1 a:active{
+	color: #f34ab7;
+	}
+
+/* Calendar Other Month's Today */
+.CalendarOtherMonthTodayBasic1blue1 {
+	font-family: Verdana; font-size: 80%;
+	padding: 1px;
+	border: 2px solid #667591;
+	text-align: center;
+	background-color: #f9f9f9;	
+	color: #667591;
+	}
+
+
+html>body .CalendarOtherMonthTodayBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .CalendarOtherMonthTodayBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+/*end*/
+
+.CalendarOtherMonthTodayBasic1blue1 a:link {
+	color: #667591;
+	}
+
+.CalendarOtherMonthTodayBasic1blue1 a:visited{
+	color: #667591;
+	}
+
+.CalendarOtherMonthTodayBasic1blue1 a:hover, .CalendarOtherMonthTodayBasic1blue1 a:active{
+	color: #f34ab7;
+	}
+
+/* Calendar Other Month's Weekend */
+.CalendarOtherMonthWeekendBasic1blue1 {
+	font-family: Verdana; font-size: 80%;
+	padding: 3px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	text-align: center;
+	background-color: #dae1e0;	
+	color: #667591;
+	}
+
+
+html>body .CalendarOtherMonthWeekendBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .CalendarOtherMonthWeekendBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+/*end*/
+
+.CalendarOtherMonthWeekendBasic1blue1 a:link {
+	color: #667591;
+	}
+
+.CalendarOtherMonthWeekendBasic1blue1 a:visited{
+	color: #667591;
+	}
+
+.CalendarOtherMonthWeekendBasic1blue1 a:hover, .CalendarOtherMonthWeekendBasic1blue1 a:active{
+	color: #f34ab7;
+	}
+
+/* Calendar Other Month's Weekend Today */
+.CalendarOtherMonthWeekendTodayBasic1blue1 {
+	font-family: Verdana; font-size: 80%;
+	padding: 1px;
+	border: 2px solid #667591;
+	text-align: center;
+	color: #667591;
+	background-color: #dae1e0;	
+	}
+	
+
+html>body .CalendarOtherMonthWeekendTodayBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .CalendarOtherMonthWeekendTodayBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+/*end*/
+
+.CalendarOtherMonthWeekendTodayBasic1blue1 a:link {
+	color: #667591;
+	}
+
+.CalendarOtherMonthWeekendTodayBasic1blue1 a:visited{
+	color: #667591;
+	}
+
+.CalendarOtherMonthWeekendTodayBasic1blue1 a:hover, .CalendarOtherMonthWeekendTodayBasic1blue1 a:active{
+	color: #f34ab7;
+	}
+
+/* Calendar Selected Day (for DatePicker) */
+.CalendarSelectedDayBasic1blue1{
+	font-family: Verdana; font-size: 80%;
+	padding: 3px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	background-color: #c8d1dd;
+	color: #535f77;
+	text-align: center;
+	font-weight: bold;
+	}
+	
+
+html>body .CalendarSelectedDayBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .CalendarSelectedDayBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+/*end*/
+
+.CalendarSelectedDayBasic1blue1 a:link {
+	color: #535f77;
+	}
+
+.CalendarSelectedDayBasic1blue1 a:visited{
+	color: #535f77;
+	}
+
+.CalendarSelectedDayBasic1blue1 a:hover, .CalendarSelectedDayBasic1blue1 a:active{
+	color: #f34ab7;
+	}
+
+/* Calendar Navigator */
+.CalendarNavigatorBasic1blue1 {
+	font-family: Verdana; font-size: 80%;
+	padding: 3px;
+	background-image: url('Images/CaptionBg.gif'); color: #535f77;
+	text-align: center;
+	vertical-align: middle;
+	white-space: nowrap;
+	color: #475165;
+	}
+
+
+html>body .CalendarNavigatorBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .CalendarNavigatorBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+/*end*/
+
+.CalendarNavigatorBasic1blue1 a:link {
+	color: #2626ff;
+	}
+
+.CalendarNavigatorBasic1blue1 a:visited{
+	color: #4e8a91;
+	}
+
+.CalendarNavigatorBasic1blue1 a:hover, .CalendarNavigatorBasic1blue1 a:active{
+	color: #f34ab7;
+	}
+
+.CalendarNavigatorBasic1blue1 img{
+	margin: 2px;
+	vertical-align: middle; 	
+	}
+
+.CalendarNavigatorBasic1blue1 td {
+	font-family: Verdana; font-size: 80%;
+	}
+
+.CalendarNavigatorBasic1blue1 th {
+	font-family: Verdana; font-size: 80%;
+	}
+
+
+html>body .CalendarNavigatorBasic1blue1 th, html>body .CalendarNavigatorBasic1blue1 td {
+	font-family: Verdana; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .CalendarNavigatorBasic1blue1 th, * html body .CalendarNavigatorBasic1blue1 td {
+	font-family: Verdana; font-size: 100%;
+}
+/*end*/
+
+/* Calendar Extra */
+.CalendarEventBasic1blue1{
+	font-family: Verdana; font-size: 80%;
+	text-align: left;
+	}
+
+
+html>body .CalendarEventBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .CalendarEventBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+/*end*/
+
+.CalendarEventBasic1blue1 a:link {
+	color: #2626ff;
+	}
+
+.CalendarEventBasic1blue1 a:visited{
+	color: #4e8a91;
+	}
+
+.CalendarEventBasic1blue1 a:hover, .CalendarEventBasic1blue1 a:active{
+	color: #f34ab7;
+	}
+
+/* Changes for Section508 */
+table tr td strong {
+	padding: 0px;
+	margin: 0px;
+}
+
+.thBasic1blue1 { 
+	font-family: Verdana; font-size: 80%;
+	font-weight: bold;
+}
+
+
+html>body .thBasic1blue1 {
+	font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .thBasic1blue1 {
+	font-size: 100%;
+}
+/*end*/
+
+.HeaderBasic1blue1 .thBasic1blue1 { 
+	font-family: Verdana; font-size: 110%; font-weight: bold; text-align: left;
+	padding: 3px;
+	background-image: url('Images/HeaderBg.gif'); color: #ffffff;
+	width: 100%;
+	white-space: nowrap;
+}
+
+
+html>body .HeaderBasic1blue1 .thBasic1blue1 {
+	font-family: Verdana; font-size: 140%; font-weight: bold; text-align: left;
+}
+
+
+/*ie6*/
+* html body .HeaderBasic1blue1 .thBasic1blue1 {
+	font-family: Verdana; font-size: 140%; font-weight: bold; text-align: left;
+}
+/*end*/
+
+.CaptionBasic1blue1 .thBasic1blue1 { 
+	font-family: Verdana; font-size: 80%; text-align: left; vertical-align: top;
+	padding: 3px;
+	border-right: 1px solid #FFFFFF;
+	background-image: url('Images/CaptionBg.gif'); color: #535f77;
+	white-space: nowrap;
+}
+
+
+html>body .CaptionBasic1blue1 .thBasic1blue1 {
+	font-family: Verdana; font-size: 100%; text-align: left; vertical-align: top;
+}
+
+
+/*ie6*/
+* html body .CaptionBasic1blue1 .thBasic1blue1 {
+	font-family: Verdana; font-size: 100%; text-align: left; vertical-align: top;
+}
+/*end*/
+
+.RowBasic1blue1 .thBasic1blue1 { 
+	font-family: Verdana; font-size: 80%; font-weight: normal; text-align: left; vertical-align: top;
+	padding: 3px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	background-color: #f9f9f9; color: #475165;
+	white-space: nowrap;
+	color: #475165;
+}
+
+.AltRowBasic1blue1 .thBasic1blue1 { 
+	font-family: Verdana; font-size: 80%; font-weight: normal; text-align: left; vertical-align: top;
+	padding: 3px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	background-color: #f9f9f9; color: #475165;
+	white-space: nowrap;
+	color: #475165;
+}
+
+.ControlsBasic1blue1 .thBasic1blue1 { 
+	font-family: Verdana; font-size: 80%; font-weight: normal; text-align: left; vertical-align: top;
+	padding: 3px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	background-color: #f9f9f9; color: #475165;
+	white-space: nowrap;
+	color: #475165;
+}
+
+.GroupCaptionBasic1blue1 .thBasic1blue1 {
+	font-family: Verdana; font-size: 80%;
+	padding: 3px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	text-align: left;
+	white-space: nowrap;
+	vertical-align: top;
+	font-weight: bold;
+	background-color: #dae1e0; 
+	color: #475165;
+}
+
+
+html>body .GroupCaptionBasic1blue1 .thBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+
+html>body .RowBasic1blue1 .thBasic1blue1, html>body .AltRowBasic1blue1 .thBasic1blue1, html>body .ControlsBasic1blue1 .thBasic1blue1 {
+	font-family: Verdana; font-size: 100%; font-weight: normal; text-align: left; vertical-align: top;
+}
+
+
+/*ie6*/
+* html body .GroupCaptionBasic1blue1 .thBasic1blue1 {
+	font-family: Verdana; font-size: 100%;
+}
+
+* html body .RowBasic1blue1 .thBasic1blue1, * html body .AltRowBasic1blue1 .thBasic1blue1, * html body .ControlsBasic1blue1 .thBasic1blue1 {
+	font-family: Verdana; font-size: 100%; font-weight: normal; text-align: left; vertical-align: top;
+}
+/*end*/
+
+/* Class for Application Builder Menu */
+.simpleMenuBasic1blue1 td {
+	font-family: Verdana; font-size: 80%;
+}
+
+
+html>body .simpleMenuBasic1blue1 td {
+	font-family: Verdana; font-size: 100%;
+} 
+
+
+/*ie6*/
+* html body .simpleMenuBasic1blue1 td {
+	font-family: Verdana; font-size: 100%;
+} 
+/*end*/

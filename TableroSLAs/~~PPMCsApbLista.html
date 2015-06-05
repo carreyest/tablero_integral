@@ -1,0 +1,459 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>PPMCsApbLista</TITLE>
+<STYLE needdelete>td {border-style:dotted;border-width:1px;border-color:#aaaaaa;} table {border-style:dashed;border-width:1px;border-color:#aaaaaa;}</STYLE>
+
+<META name=GENERATOR content="MSHTML 11.00.9600.17801" ccsServiceable="true">
+<META content="text/html; charset=windows-1252" http-equiv=content-type 
+ccsServiceable="true">
+<SCRIPT language=JavaScript type=text/javascript>
+//Begin CCS script
+//Include Common JSFunctions @1-2504AB44
+</SCRIPT>
+
+<SCRIPT type=text/javascript charset=utf-8 
+src="ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" 
+ccs_src="ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}"></SCRIPT>
+
+<SCRIPT type=text/javascript>
+//End Include Common JSFunctions
+
+//Include User Scripts @1-A87AC9EE
+</SCRIPT>
+
+<META name=ccsProxyBraces ccsServiceable="true" value="page:scriptIncludes">
+<SCRIPT type=text/javascript>
+//End Include User Scripts
+
+//End CCS script
+</SCRIPT>
+<LINK rel=stylesheet type=text/css href="Styles/Austere4/Style_doctype.css" 
+ccsServiceable="true" ccs_href="Styles/{CCS_Style}/Style_doctype.css"><LINK 
+rel=stylesheet type=text/css href="Styles/Austere4/jquery-ui.css" 
+ccsServiceable="true" ccs_href="Styles/{CCS_Style}/jquery-ui.css">
+<META content=IE=7 http-equiv=X-UA-Compatible toremove="toremove"></HEAD>
+<BODY>
+<P><SPAN contentEditable=true 
+style="BORDER-TOP: #96e593 1px solid; BORDER-RIGHT: #96e593 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #96e593 1px solid; BORDER-LEFT: #96e593 1px solid" 
+ccsServiceable="true" ccsType="Component" ccsBlockIsWhiteSpace="true" 
+ccsName="Header" ccsId="2">Header</SPAN>&nbsp; </P>
+<P></P>
+<TABLE width="100%">
+  <TBODY>
+  <TR>
+    <TD></TD>
+    <TD>
+      <TABLE width="100%">
+        <TBODY>
+        <TR>
+          <TD width="70%"><SPAN contentEditable=true 
+            style="BORDER-TOP: rgb(186,107,255) 1px solid; BORDER-RIGHT: rgb(186,107,255) 1px solid; BORDER-BOTTOM: rgb(186,107,255) 1px solid; POSITION: relative; BORDER-LEFT: rgb(186,107,255) 1px solid; DISPLAY: block" 
+            ccsServiceable="true" ccsType="Component" ccsName="grsBusca" 
+            ccsId="21" ccsDesignColorSelection="true" oldBorderWidth="1px" 
+            oldBorderStyle="solid" oldBorderColor="#dcdcdc" oldBackgroundColor 
+            oldPosition oldFilter>
+            <FORM id=grsBusca method=post name={HTMLFormName} action={Action} 
+            ccsServiceable="true">
+            <TABLE class=MainTable cellSpacing=0 cellPadding=0 border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top>
+                  <TABLE class=Header cellSpacing=0 cellPadding=0 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD class=HeaderLeft><IMG alt="" 
+                        src="Styles/Austere4/Images/Spacer.gif" 
+                        ccsServiceable="true" 
+                        ccs_src="Styles/{CCS_Style}/Images/Spacer.gif"></TD>
+                      <TD class=th><STRONG>Buscar</STRONG></TD>
+                      <TD class=HeaderRight><IMG alt="" 
+                        src="Styles/Austere4/Images/Spacer.gif" 
+                        ccsServiceable="true" 
+                        ccs_src="Styles/{CCS_Style}/Images/Spacer.gif"></TD></TR></TBODY></TABLE>
+                  <TABLE class=Record cellSpacing=0 cellPadding=0>
+                    <TBODY><!-- BEGIN Error -->
+                    <TR id={@error-block} class=Error>
+                      <TD colSpan=11>{Error}</TD></TR><!-- END Error -->
+                    <TR class=Controls>
+                      <TD class=th><SPAN ccsServiceable="true" 
+                        ccsHtmlTag_for="grsBuscas_id_proveedor" 
+                        ccsHtmlTag="label">Proveedor</SPAN></TD>
+                      <TD><SELECT id=grsBuscas_id_proveedor 
+                        name={s_id_proveedor_Name} ccsServiceable="true" 
+                        ccsType="Component" ccsName="s_id_proveedor" ccsId="27"> 
+                          <OPTION selected value="" 
+                          ccsServiceable="true">Seleccionar Valor</OPTION> 
+                          {s_id_proveedor_Options}</SELECT> </TD>
+                      <TD class=th><SPAN ccsServiceable="true" 
+                        ccsHtmlTag_for="grsBuscas_numero" 
+                        ccsHtmlTag="label">Numero</SPAN></TD>
+                      <TD><INPUT id=grsBuscas_numero maxLength=25 size=25 
+                        value={s_numero} name={s_numero_Name} 
+                        ccsServiceable="true" ccsType="Component" 
+                        ccsName="s_numero" ccsId="28"></TD>
+                      <TD class=th><SPAN ccsServiceable="true" 
+                        ccsHtmlTag_for="grsBuscas_mesparam" 
+                        ccsHtmlTag="label">Mes</SPAN></TD>
+                      <TD><SELECT id=grsBuscas_mesparam name={s_mesparam_Name} 
+                        ccsServiceable="true" ccsType="Component" 
+                        ccsName="s_mesparam" ccsId="29"> <OPTION selected 
+                          value=0 ccsServiceable="true">Cualquiera</OPTION> 
+                          {s_mesparam_Options}</SELECT> </TD>
+                      <TD class=th><SPAN ccsServiceable="true" 
+                        ccsHtmlTag_for="grsBuscas_anioparam" 
+                        ccsHtmlTag="label">Año</SPAN></TD>
+                      <TD><SELECT id=grsBuscas_anioparam 
+                        name={s_anioparam_Name} ccsServiceable="true" 
+                        ccsType="Component" ccsName="s_anioparam" ccsId="30"> 
+                          <OPTION selected value="" 
+                          ccsServiceable="true">Seleccionar Valor</OPTION> 
+                          {s_anioparam_Options}</SELECT> </TD>
+                      <TD>Analista&nbsp;</TD>
+                      <TD><SELECT id=grsBuscasAnalista name={sAnalista_Name} 
+                        ccsServiceable="true" ccsType="Component" 
+                        ccsName="sAnalista" ccsId="59"> <OPTION selected 
+                          value="" ccsServiceable="true">Seleccionar 
+                          Valor</OPTION> {sAnalista_Options}</SELECT> </TD>
+                      <TD>&nbsp;xxx</TD></TR>
+                    <TR class=Bottom>
+                      <TD style="TEXT-ALIGN: right" colSpan=11><INPUT id=grsBuscaButton_DoSearch class=Button alt=Buscar type=submit value=Buscar name={Button_Name} ccsServiceable="true" ccsType="Component" ccsName="Button_DoSearch" ccsId="22" ccsExtendedHtml="true"></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></FORM>&nbsp;</SPAN></TD>
+          <TD>
+            <DIV style="TEXT-ALIGN: center"><SPAN contentEditable=true 
+            style="BORDER-TOP: #9bc4ed 1px solid; BORDER-RIGHT: #9bc4ed 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #9bc4ed 1px solid; BORDER-LEFT: #9bc4ed 1px solid" 
+            ccsServiceable="true" ccsType="Component" ccsName="lkTableroSLAs" 
+            ccsId="104"><A id=lkTableroSLAs href="{lkTableroSLAs_Src}" 
+            ccsServiceable="true" ccs_href="{lkTableroSLAs_Src}"><SPAN 
+            style="WHITE-SPACE: nowrap" ccsServiceable="true" 
+            ccsBlockIsWhiteSpace="true">Tablero SLAs</SPAN></A></SPAN> <SPAN 
+            contentEditable=true 
+            style="BORDER-TOP: #9bc4ed 1px solid; BORDER-RIGHT: #9bc4ed 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #9bc4ed 1px solid; BORDER-LEFT: #9bc4ed 1px solid" 
+            ccsServiceable="true" ccsType="Component" ccsName="lkCuadroNS" 
+            ccsId="100"><A id=lkCuadroNS href="{lkCuadroNS_Src}" 
+            ccsServiceable="true" ccs_href="{lkCuadroNS_Src}"><SPAN 
+            style="WHITE-SPACE: nowrap" ccsServiceable="true" 
+            ccsBlockIsWhiteSpace="true">Cuadro Ns RSs</SPAN></A></SPAN> <SPAN 
+            contentEditable=true 
+            style="BORDER-TOP: #9bc4ed 1px solid; BORDER-RIGHT: #9bc4ed 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #9bc4ed 1px solid; BORDER-LEFT: #9bc4ed 1px solid" 
+            ccsServiceable="true" ccsType="Component" ccsName="lkDetalleRS" 
+            ccsId="102"><A id=lkDetalleRS href="{lkDetalleRS_Src}" 
+            ccsServiceable="true" ccs_href="{lkDetalleRS_Src}"><SPAN 
+            style="WHITE-SPACE: nowrap" ccsServiceable="true" 
+            ccsBlockIsWhiteSpace="true">Detalle RSs</SPAN></A></SPAN> 
+        </DIV></TD></TR></TBODY></TABLE></TD>
+    <TD></TD></TR>
+  <TR>
+    <TD></TD>
+    <TD><SPAN contentEditable=true 
+      style="BORDER-TOP: #dcdcdc 1px solid; BORDER-RIGHT: #dcdcdc 1px solid; BORDER-BOTTOM: #dcdcdc 1px solid; BORDER-LEFT: #dcdcdc 1px solid; DISPLAY: block" 
+      ccsServiceable="true" ccsType="Component" ccsName="grdReqsApertura" 
+      ccsId="3" ccsDesignColorSelection="true">
+      <TABLE id=grdReqsApertura class=MainTable cellSpacing=0 cellPadding=0 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=top>
+            <TABLE class=Header cellSpacing=0 cellPadding=0 border=0>
+              <TBODY>
+              <TR>
+                <TD class=HeaderLeft><IMG alt="" 
+                  src="Styles/Austere4/Images/Spacer.gif" ccsServiceable="true" 
+                  ccs_src="Styles/{CCS_Style}/Images/Spacer.gif"></TD>
+                <TD class=th><STRONG>Requerimientos de Apertura </STRONG></TD>
+                <TD class=HeaderRight><IMG alt="" 
+                  src="Styles/Austere4/Images/Spacer.gif" ccsServiceable="true" 
+                  ccs_src="Styles/{CCS_Style}/Images/Spacer.gif"></TD></TR></TBODY></TABLE><STRONG></STRONG><STRONG></STRONG><STRONG></STRONG><STRONG></STRONG><STRONG></STRONG><STRONG></STRONG>
+            <TABLE class=Grid cellSpacing=0 cellPadding=0>
+              <TBODY>
+              <TR class=Caption>
+                <TH scope=col><SPAN ccsServiceable="true" ccsType="Sorter" 
+                  ccsName="Sorter_ID_PPMC" ccsId="6" ccsExtendedHtml="true" 
+                  ccsExtendedHtmlSpan="true" atomicselection="true" 
+                  ccsControlName="Sorter_ID_PPMC" ccsControlType="Sorter"><SPAN 
+                  class=Sorter><A id=grdReqsAperturaSorter_ID_PPMC 
+                  href="{Sort_URL}" ccsServiceable="true" 
+                  ccs_href="{Sort_URL}">ID PPMC</A> <SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Asc_On" 
+                  ccsId="" name="Asc_On"><IMG alt=Ascendente 
+                  src="Styles/Austere4/Images/Asc.gif" ccsServiceable="true" 
+                  ccs_src="Styles/{CCS_Style}/Images/Asc.gif"></SPAN> <SPAN 
+                  contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Desc_On" 
+                  ccsId="" name="Desc_On"><IMG alt=Descendente 
+                  src="Styles/Austere4/Images/Desc.gif" ccsServiceable="true" 
+                  ccs_src="Styles/{CCS_Style}/Images/Desc.gif"></SPAN></SPAN>&nbsp;</SPAN></TH>
+                <TH scope=col><SPAN ccsServiceable="true" ccsType="Sorter" 
+                  ccsName="Sorter3" ccsId="52" ccsExtendedHtml="true" 
+                  ccsExtendedHtmlSpan="true" atomicselection="true" 
+                  ccsControlName="Sorter3" ccsControlType="Sorter"><SPAN 
+                  class=Sorter><A id=grdReqsAperturaSorter3 href="{Sort_URL}" 
+                  ccsServiceable="true" ccs_href="{Sort_URL}">Estimación</A> 
+                  <SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Asc_On" 
+                  ccsId="" name="Asc_On"><IMG alt=Ascendente 
+                  src="Styles/Austere4/Images/Asc.gif" ccsServiceable="true" 
+                  ccs_src="Styles/{CCS_Style}/Images/Asc.gif"></SPAN> <SPAN 
+                  contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Desc_On" 
+                  ccsId="" name="Desc_On"><IMG alt=Descendente 
+                  src="Styles/Austere4/Images/Desc.gif" ccsServiceable="true" 
+                  ccs_src="Styles/{CCS_Style}/Images/Desc.gif"></SPAN></SPAN>&nbsp;</SPAN></TH>
+                <TH scope=col><SPAN ccsServiceable="true" ccsType="Sorter" 
+                  ccsName="Sorter1" ccsId="17" ccsExtendedHtml="true" 
+                  ccsExtendedHtmlSpan="true" atomicselection="true" 
+                  ccsControlName="Sorter1" ccsControlType="Sorter"><SPAN 
+                  class=Sorter><A id=grdReqsAperturaSorter1 href="{Sort_URL}" 
+                  ccsServiceable="true" ccs_href="{Sort_URL}">Proyecto</A> <SPAN 
+                  contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Asc_On" 
+                  ccsId="" name="Asc_On"><IMG alt=Ascendente 
+                  src="Styles/Austere4/Images/Asc.gif" ccsServiceable="true" 
+                  ccs_src="Styles/{CCS_Style}/Images/Asc.gif"></SPAN> <SPAN 
+                  contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Desc_On" 
+                  ccsId="" name="Desc_On"><IMG alt=Descendente 
+                  src="Styles/Austere4/Images/Desc.gif" ccsServiceable="true" 
+                  ccs_src="Styles/{CCS_Style}/Images/Desc.gif"></SPAN></SPAN>&nbsp;</SPAN></TH>
+                <TH scope=col><SPAN ccsServiceable="true" ccsType="Sorter" 
+                  ccsName="Sorter_SERVICIO_NEGOCIO" ccsId="7" 
+                  ccsExtendedHtml="true" ccsExtendedHtmlSpan="true" 
+                  atomicselection="true" 
+                  ccsControlName="Sorter_SERVICIO_NEGOCIO" 
+                  ccsControlType="Sorter"><SPAN class=Sorter><A 
+                  id=grdReqsAperturaSorter_SERVICIO_NEGOCIO href="{Sort_URL}" 
+                  ccsServiceable="true" ccs_href="{Sort_URL}">Servicio de 
+                  Negocio</A> <SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Asc_On" 
+                  ccsId="" name="Asc_On"><IMG alt=Ascendente 
+                  src="Styles/Austere4/Images/Asc.gif" ccsServiceable="true" 
+                  ccs_src="Styles/{CCS_Style}/Images/Asc.gif"></SPAN> <SPAN 
+                  contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Desc_On" 
+                  ccsId="" name="Desc_On"><IMG alt=Descendente 
+                  src="Styles/Austere4/Images/Desc.gif" ccsServiceable="true" 
+                  ccs_src="Styles/{CCS_Style}/Images/Desc.gif"></SPAN></SPAN>&nbsp;</SPAN></TH>
+                <TH scope=col>&nbsp;Asignación del<BR>Requerimiento</TH>
+                <TH scope=col>Fecha de entrega<BR>de Propuesta</TH>
+                <TH scope=col>Fecha de Aceptación<BR>de Propuesta</TH>
+                <TH scope=col>Duración de<BR>Proyecto Hrs</TH>
+                <TH scope=col><SPAN ccsServiceable="true" ccsType="Sorter" 
+                  ccsName="Sorter2" ccsId="18" ccsExtendedHtml="true" 
+                  ccsExtendedHtmlSpan="true" atomicselection="true" 
+                  ccsControlName="Sorter2" ccsControlType="Sorter"><SPAN 
+                  class=Sorter><A id=grdReqsAperturaSorter2 href="{Sort_URL}" 
+                  ccsServiceable="true" ccs_href="{Sort_URL}">Tipo 
+                  Requerimiento</A> <SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Asc_On" 
+                  ccsId="" name="Asc_On"><IMG alt=Ascendente 
+                  src="Styles/Austere4/Images/Asc.gif" ccsServiceable="true" 
+                  ccs_src="Styles/{CCS_Style}/Images/Asc.gif"></SPAN> <SPAN 
+                  contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Desc_On" 
+                  ccsId="" name="Desc_On"><IMG alt=Descendente 
+                  src="Styles/Austere4/Images/Desc.gif" ccsServiceable="true" 
+                  ccs_src="Styles/{CCS_Style}/Images/Desc.gif"></SPAN></SPAN>&nbsp;</SPAN></TH>
+                <TH scope=col><SPAN ccsServiceable="true" ccsType="Sorter" 
+                  ccsName="Sorter_nombre" ccsId="8" ccsExtendedHtml="true" 
+                  ccsExtendedHtmlSpan="true" atomicselection="true" 
+                  ccsControlName="Sorter_nombre" ccsControlType="Sorter"><SPAN 
+                  class=Sorter><A id=grdReqsAperturaSorter_nombre 
+                  href="{Sort_URL}" ccsServiceable="true" 
+                  ccs_href="{Sort_URL}">CDS</A> <SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Asc_On" 
+                  ccsId="" name="Asc_On"><IMG alt=Ascendente 
+                  src="Styles/Austere4/Images/Asc.gif" ccsServiceable="true" 
+                  ccs_src="Styles/{CCS_Style}/Images/Asc.gif"></SPAN> <SPAN 
+                  contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Desc_On" 
+                  ccsId="" name="Desc_On"><IMG alt=Descendente 
+                  src="Styles/Austere4/Images/Desc.gif" ccsServiceable="true" 
+                  ccs_src="Styles/{CCS_Style}/Images/Desc.gif"></SPAN></SPAN>&nbsp;</SPAN></TH>
+                <TH scope=col>Uso de una<BR>Herramienta<BR>de Estimación</TH>
+                <TH scope=col>Requisitos<BR>de Servicio</TH>
+                <TH scope=col><SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Component" 
+                  ccsBlockIsWhiteSpace="true" ccsName="lAnalista" 
+                  ccsId="128">lAnalista</SPAN></TH></TR>
+              <TR ccsServiceable="true" ccsType="Block" name="Row" 
+              isBegin="True">
+                <TD 
+                style="BORDER-TOP: 2px groove; BORDER-RIGHT: black 1px solid; BORDER-BOTTOM: black 1px solid; BORDER-LEFT: 2px groove; BACKGROUND-COLOR: #dddddd" 
+                colSpan=99 ccsServiceable="true" atomicselection="true" 
+                unselectable="on"><SPAN 
+                  style="BORDER-TOP-STYLE: none; FONT-SIZE: xx-small; HEIGHT: 100%; FONT-FAMILY: Arial; WIDTH: 100%; BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none" 
+                  ccsServiceable="true" unselectable="on">Begin Row</SPAN></TD></TR>
+              <TR class=Row>
+                <TD><SPAN contentEditable=true 
+                  style="BORDER-TOP: #9bc4ed 1px solid; BORDER-RIGHT: #9bc4ed 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #9bc4ed 1px solid; BORDER-LEFT: #9bc4ed 1px solid" 
+                  ccsServiceable="true" ccsType="Component" ccsName="ID_PPMC" 
+                  ccsId="9"><A 
+                  id=grdReqsAperturaID_PPMC_{grdReqsApertura:rowNumber} 
+                  href="{ID_PPMC_Src}" ccsServiceable="true" 
+                  ccs_href="{ID_PPMC_Src}"><SPAN style="WHITE-SPACE: nowrap" 
+                  ccsServiceable="true" 
+                  ccsBlockIsWhiteSpace="true">{ID_PPMC}</SPAN></A></SPAN></TD>
+                <TD><SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Component" 
+                  ccsBlockIsWhiteSpace="true" ccsName="IdEstimacion" 
+                  ccsId="51">IdEstimacion</SPAN>&nbsp;<SPAN contentEditable=true 
+                  style="BORDER-TOP: #9bc4ed 1px solid; BORDER-RIGHT: #9bc4ed 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #9bc4ed 1px solid; BORDER-LEFT: #9bc4ed 1px solid" 
+                  ccsServiceable="true" ccsType="Component" ccsName="ReqTec" 
+                  ccsId="111"><A 
+                  id=grdReqsAperturaReqTec_{grdReqsApertura:rowNumber} 
+                  href="{ReqTec_Src}" ccsServiceable="true" 
+                  ccs_href="{ReqTec_Src}"><SPAN style="WHITE-SPACE: nowrap" 
+                  ccsServiceable="true" 
+                  ccsBlockIsWhiteSpace="true">{ReqTec}</SPAN></A></SPAN></TD>
+                <TD><SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Component" 
+                  ccsBlockIsWhiteSpace="true" ccsName="NAME" 
+                  ccsId="10">NAME</SPAN></TD>
+                <TD><SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Component" 
+                  ccsBlockIsWhiteSpace="true" ccsName="SERVICIO_NEGOCIO" 
+                  ccsId="11">SERVICIO_NEGOCIO</SPAN></TD>
+                <TD><SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Component" 
+                  ccsBlockIsWhiteSpace="true" ccsName="FechaAsignacion" 
+                  ccsId="79">FechaAsignacion</SPAN></TD>
+                <TD><SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Component" 
+                  ccsBlockIsWhiteSpace="true" ccsName="FechaEntregaPropuesta" 
+                  ccsId="85">FechaEntregaPropuesta</SPAN></TD>
+                <TD><SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Component" 
+                  ccsBlockIsWhiteSpace="true" ccsName="FechaAceptacionPropuesta" 
+                  ccsId="86">FechaAceptacionPropuesta</SPAN></TD>
+                <TD><SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Component" 
+                  ccsBlockIsWhiteSpace="true" ccsName="Label1" 
+                  ccsId="87">Label1</SPAN></TD>
+                <TD><SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Component" 
+                  ccsBlockIsWhiteSpace="true" ccsName="TIPO_REQUERIMIENTO" 
+                  ccsId="12">TIPO_REQUERIMIENTO</SPAN></TD>
+                <TD><SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Component" 
+                  ccsBlockIsWhiteSpace="true" ccsName="nombre" 
+                  ccsId="13">nombre</SPAN></TD>
+                <TD style="TEXT-ALIGN: center"><SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Component" 
+                  ccsBlockIsWhiteSpace="true" ccsName="HERR_EST_COST" 
+                  ccsId="73">HERR_EST_COST</SPAN>&nbsp; <IMG 
+                  id=grdReqsAperturaimgCumpleHE alt="" src="{imgCumpleHE}" 
+                  ccsServiceable="true" ccs_src="{imgCumpleHE}" 
+                  ccsType="Component" ccsName="imgCumpleHE" ccsId="93" 
+                  ccsExtendedHtml="true"></TD>
+                <TD style="TEXT-ALIGN: center"><SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Component" 
+                  ccsBlockIsWhiteSpace="true" ccsName="REQ_SERV" 
+                  ccsId="74">REQ_SERV</SPAN>&nbsp; <IMG 
+                  id=grdReqsAperturaimgCumpleRS alt="" src="{imgCumpleRS}" 
+                  ccsServiceable="true" ccs_src="{imgCumpleRS}" 
+                  ccsType="Component" ccsName="imgCumpleRS" ccsId="94" 
+                  ccsExtendedHtml="true"></TD>
+                <TD><SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Component" 
+                  ccsBlockIsWhiteSpace="true" ccsName="Analista" 
+                  ccsId="105">Analista</SPAN></TD></TR>
+              <TR ccsServiceable="true" ccsType="Block" name="Row" 
+              isBegin="False">
+                <TD 
+                style="BORDER-TOP: 2px groove; BORDER-RIGHT: black 1px solid; BORDER-BOTTOM: black 1px solid; BORDER-LEFT: 2px groove; BACKGROUND-COLOR: #dddddd" 
+                colSpan=99 ccsServiceable="true" atomicselection="true" 
+                unselectable="on"><SPAN 
+                  style="BORDER-TOP-STYLE: none; FONT-SIZE: xx-small; HEIGHT: 100%; FONT-FAMILY: Arial; WIDTH: 100%; BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none" 
+                  ccsServiceable="true" unselectable="on">End Row</SPAN></TD></TR><!-- BEGIN NoRecords -->
+              <TR class=NoRecords>
+                <TD colSpan=13>No hay registros</TD></TR><!-- END NoRecords -->
+              <TR class=Footer>
+                <TD colSpan=13><SPAN ccsServiceable="true" ccsType="Navigator" 
+                  ccsName="Navigator" ccsId="14" ccsExtendedHtml="true" 
+                  ccsExtendedHtmlSpan="true" atomicselection="true" 
+                  ccsControlName="Navigator" ccsControlType="Navigator"><SPAN 
+                  class=Navigator>Registro por página <SELECT 
+                  style="VERTICAL-ALIGN: middle" name={FormName}PageSize 
+                  ccsServiceable="true" data-grid-size="{FormName}"> <OPTION 
+                    selected value="" ccsServiceable="true">-</OPTION> 
+                    {PageSize_Options}</SELECT> <SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="First_On" 
+                  ccsId="" name="First_On" ccsPreserveEndSpace="true"><A 
+                  href="{First_URL}" ccsServiceable="true" 
+                  ccs_href="{First_URL}"><IMG alt={First_URL} 
+                  src="Styles/Austere4/Images/First.gif" ccsServiceable="true" 
+                  ccs_src="Styles/{CCS_Style}/Images/First.gif"></A> 
+                  </SPAN><SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="First_Off" 
+                  ccsId="" name="First_Off"><IMG alt={First_URL} 
+                  src="Styles/Austere4/Images/FirstOff.gif" 
+                  ccsServiceable="true" 
+                  ccs_src="Styles/{CCS_Style}/Images/FirstOff.gif"></SPAN> <SPAN 
+                  contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Prev_On" 
+                  ccsId="" name="Prev_On" ccsPreserveEndSpace="true"><A 
+                  href="{Prev_URL}" ccsServiceable="true" 
+                  ccs_href="{Prev_URL}"><IMG alt={Prev_URL} 
+                  src="Styles/Austere4/Images/Prev.gif" ccsServiceable="true" 
+                  ccs_src="Styles/{CCS_Style}/Images/Prev.gif"></A> </SPAN><SPAN 
+                  contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Prev_Off" 
+                  ccsId="" name="Prev_Off"><IMG alt={Prev_URL} 
+                  src="Styles/Austere4/Images/PrevOff.gif" ccsServiceable="true" 
+                  ccs_src="Styles/{CCS_Style}/Images/PrevOff.gif"></SPAN>&nbsp;{Page_Number} 
+                  de&nbsp;{Total_Pages}&nbsp; <SPAN contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Next_On" 
+                  ccsId="" name="Next_On" ccsPreserveEndSpace="true"><A 
+                  href="{Next_URL}" ccsServiceable="true" 
+                  ccs_href="{Next_URL}"><IMG alt={Next_URL} 
+                  src="Styles/Austere4/Images/Next.gif" ccsServiceable="true" 
+                  ccs_src="Styles/{CCS_Style}/Images/Next.gif"></A> </SPAN><SPAN 
+                  contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Next_Off" 
+                  ccsId="" name="Next_Off"><IMG alt={Next_URL} 
+                  src="Styles/Austere4/Images/NextOff.gif" ccsServiceable="true" 
+                  ccs_src="Styles/{CCS_Style}/Images/NextOff.gif"></SPAN> <SPAN 
+                  contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Last_On" 
+                  ccsId="" name="Last_On" ccsPreserveEndSpace="true"><A 
+                  href="{Last_URL}" ccsServiceable="true" 
+                  ccs_href="{Last_URL}"><IMG alt={Last_URL} 
+                  src="Styles/Austere4/Images/Last.gif" ccsServiceable="true" 
+                  ccs_src="Styles/{CCS_Style}/Images/Last.gif"></A> </SPAN><SPAN 
+                  contentEditable=true 
+                  style="BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; WHITE-SPACE: nowrap; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid" 
+                  ccsServiceable="true" ccsType="Block" ccsName="Last_Off" 
+                  ccsId="" name="Last_Off"><IMG alt={Last_URL} 
+                  src="Styles/Austere4/Images/LastOff.gif" ccsServiceable="true" 
+                  ccs_src="Styles/{CCS_Style}/Images/LastOff.gif"></SPAN></SPAN>&nbsp;</SPAN>&nbsp;</TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>&nbsp;</SPAN><BR></TD>
+    <TD></TD></TR></TBODY></TABLE>
+<P></P></BODY></HTML>

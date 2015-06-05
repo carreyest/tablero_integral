@@ -1,0 +1,395 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>ListaUniverso</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-2504AB44
+</script>
+<script src="ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-A87AC9EE
+</script>
+{page:scriptIncludes}
+<script type="text/javascript">
+//End Include User Scripts
+
+//Common Script Start @1-8BFA436B
+jQuery(function ($) {
+    var features = { };
+    var actions = { };
+    var params = { };
+//End Common Script Start
+
+//Plugin Calls @1-2A069FD8
+    $('*:ccsControl(Panel1, universo_cds, Button_Delete)').ccsBind(function() {
+        this.bind("click", function(){ $("body").data("disableValidation", true); });
+    });
+//End Plugin Calls
+
+//Common Script End @1-562554DE
+});
+//End Common Script End
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_Components_doctype.css">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
+</head>
+<body>
+{Header}&nbsp; <strong></strong><strong></strong><strong></strong>
+<table width="100%" border="0">
+  <tr>
+    <td colspan="2">
+      <!-- BEGIN Record grdFiltra -->
+      <form id="grdFiltra" method="post" name="{HTMLFormName}" action="{Action}">
+        <table cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Filtrar</strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="11">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th">Numero&nbsp;</td> 
+                  <td class="th"><input type="text" id="grdFiltras_Numero" value="{s_Numero}" name="{s_Numero_Name}"></td> 
+                  <td class="th"><label for="grdFiltras_id_proveedor">Proveedor</label></td> 
+                  <td>
+                    <select id="grdFiltras_id_proveedor" name="{s_id_proveedor_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {s_id_proveedor_Options}
+                    </select>
+ </td> 
+                  <td class="th"><label for="grdFiltras_mes">Mes</label></td> 
+                  <td>
+                    <select id="grdFiltras_mes" name="{s_mes_Name}">
+                      <option selected value="0">Cualquiera</option>
+                      {s_mes_Options}
+                    </select>
+ </td> 
+                  <td class="th"><label for="grdFiltras_anio">Año</label></td> 
+                  <td>
+                    <select id="grdFiltras_anio" name="{s_anio_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {s_anio_Options}
+                    </select>
+ </td> 
+                  <td class="th"><label for="grdFiltras_tipo">Tipo</label></td> 
+                  <td>
+                    <select id="grdFiltras_tipo" name="{s_tipo_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {s_tipo_Options}
+                    </select>
+ </td> 
+                  <td class="th">&nbsp;<label for="grdFiltrasPendientes" style="display: inline;">Pendientes de Reportar</label><input type="checkbox" id="grdFiltrasPendientes" value="1" name="{sPendientes_Name}" {sPendientes}></td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td colspan="11" align="right">
+                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="grdFiltraButton_DoSearch" class="Button" alt="Buscar" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record grdFiltra --><br>
+    </td>
+  </tr>
+ 
+  <tr>
+    <td colspan="2"><strong></strong><strong></strong><strong></strong><strong></strong>
+      <!-- BEGIN Panel Panel2 -->
+      <table class="Header" cellspacing="0" cellpadding="0" width="50%" border="0">
+        <tr>
+          <td class="th" style="WIDTH: 300px"><a href="{Link3_Src}" id="Panel2Link3">Incidentes Relacionados</a></td> 
+          <td class="th" style="WIDTH: 300px">
+            <!-- BEGIN Link lkCargaMultiple --><a href="{lkCargaMultiple_Src}" id="Panel2lkCargaMultiple">Cargar Multiples Claves</a><!-- END Link lkCargaMultiple --></td> 
+          <td class="th" style="WIDTH: 300px">&nbsp; 
+            <!-- BEGIN Link Link1 --><a href="{Link1_Src}" id="Panel2Link1">Calcular Universo</a><!-- END Link Link1 --></td> 
+          <td class="th" style="WIDTH: 300px"><a href="{Link2_Src}" id="Panel2Link2">Distribuir Universo</a></td>
+        </tr>
+      </table>
+      <!-- END Panel Panel2 --><strong></strong></td>
+  </tr>
+ 
+  <tr style="VERTICAL-ALIGN: top">
+    <td width="40%"><strong></strong>
+      <!-- BEGIN Grid grdUniverso -->
+      <table cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td valign="top">
+            <table class="Header" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td class="HeaderLeft"><img border="0" alt="" src="data:image/png;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="></td> 
+                <td class="th"><strong>Universo de Medición</strong></td> 
+                <td class="HeaderRight"><img border="0" alt="" src="data:image/png;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="></td>
+              </tr>
+            </table>
+ 
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <tr class="Caption">
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_tipo --><a href="{Sort_URL}" id="grdUniversoSorter_tipo">Tipo</a> 
+                <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="data:image/png;base64,R0lGODlhCwAHAIABACl4k62+wiH5BAEAAAEALAAAAAALAAcAAAIPjA2nCLnR4or00Auv3rEAADs="><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="data:image/png;base64,R0lGODlhCwAHAIAAAK2+wil4kyH5BAEAAAAALAAAAAALAAcAAAIOjI+pAWsAF5xp2mMzswUAOw=="><!-- END Desc_On --><!-- END Sorter Sorter_tipo --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_numero --><a href="{Sort_URL}" id="grdUniversoSorter_numero">Numero</a> 
+                <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="data:image/png;base64,R0lGODlhCwAHAIABACl4k62+wiH5BAEAAAEALAAAAAALAAcAAAIPjA2nCLnR4or00Auv3rEAADs="><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="data:image/png;base64,R0lGODlhCwAHAIAAAK2+wil4kyH5BAEAAAAALAAAAAALAAcAAAIOjI+pAWsAF5xp2mMzswUAOw=="><!-- END Desc_On --><!-- END Sorter Sorter_numero --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_proveedor --><a href="{Sort_URL}" id="grdUniversoSorter_proveedor">Proveedor</a> 
+                <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="data:image/png;base64,R0lGODlhCwAHAIABACl4k62+wiH5BAEAAAEALAAAAAALAAcAAAIPjA2nCLnR4or00Auv3rEAADs="><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="data:image/png;base64,R0lGODlhCwAHAIAAAK2+wil4kyH5BAEAAAAALAAAAAALAAcAAAIOjI+pAWsAF5xp2mMzswUAOw=="><!-- END Desc_On --><!-- END Sorter Sorter_proveedor --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_nombre --><a href="{Sort_URL}" id="grdUniversoSorter_nombre">Mes</a> 
+                <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="data:image/png;base64,R0lGODlhCwAHAIABACl4k62+wiH5BAEAAAEALAAAAAALAAcAAAIPjA2nCLnR4or00Auv3rEAADs="><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="data:image/png;base64,R0lGODlhCwAHAIAAAK2+wil4kyH5BAEAAAAALAAAAAALAAcAAAIOjI+pAWsAF5xp2mMzswUAOw=="><!-- END Desc_On --><!-- END Sorter Sorter_nombre --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_anio --><a href="{Sort_URL}" id="grdUniversoSorter_anio">Año</a> 
+                <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="data:image/png;base64,R0lGODlhCwAHAIABACl4k62+wiH5BAEAAAEALAAAAAALAAcAAAIPjA2nCLnR4or00Auv3rEAADs="><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="data:image/png;base64,R0lGODlhCwAHAIAAAK2+wil4kyH5BAEAAAAALAAAAAALAAcAAAIOjI+pAWsAF5xp2mMzswUAOw=="><!-- END Desc_On --><!-- END Sorter Sorter_anio --></th>
+ 
+                <th scope="col">&nbsp;</th>
+ 
+                <th scope="col">&nbsp;</th>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr class="Row">
+                <td>{tipo}&nbsp;</td> 
+                <td><a href="{hnumero_Src}" id="grdUniversohnumero_{grdUniverso:rowNumber}" target="_self">{hnumero}</a></td> 
+                <td>{proveedor}&nbsp;</td> 
+                <td>{mes}&nbsp;</td> 
+                <td style="TEXT-ALIGN: right">{anio}&nbsp;</td> 
+                <td>&nbsp;{descartar_manual}&nbsp;<a href="{lbSLO_RT_Src}" id="grdUniversolbSLO_RT_{grdUniverso:rowNumber}">{lbSLO_RT}</a>&nbsp; </td> 
+                <td>
+                  <!-- BEGIN Link Link1 --><a href="{Link1_Src}" id="grdUniversoLink1_{grdUniverso:rowNumber}">Editar</a><!-- END Link Link1 --></td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="7">No hay registros</td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="Footer">
+                <td colspan="7">
+                  <!-- BEGIN Navigator Navigator -->
+                  <!-- BEGIN Page_Parameter --><input type="hidden" value="{Value}" name="{Name}"><!-- END Page_Parameter -->Per page: 
+                  <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+                    <option selected value="">-</option>
+ {PageSize_Options}
+                  </select>
+ 
+                  <!-- BEGIN First_On --><a href="{First_URL}">Inicio</a> <!-- END First_On -->
+                  <!-- BEGIN First_Off -->Inicio <!-- END First_Off -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}">Anterior</a> <!-- END Prev_On -->
+                  <!-- BEGIN Prev_Off -->Anterior <!-- END Prev_Off -->
+                  <!-- BEGIN Pages -->
+                  <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a><!-- END Page_On -->
+                  <!-- BEGIN Page_Off -->{Page_Number}<!-- END Page_Off --><!-- END Pages -->de&nbsp;{Total_Pages}&nbsp; 
+                  <!-- BEGIN Next_On --><a href="{Next_URL}">Siguiente</a> <!-- END Next_On -->
+                  <!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}">Final</a> <!-- END Last_On -->
+                  <!-- BEGIN Last_Off -->Final <!-- END Last_Off --><!-- END Navigator Navigator --></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      &nbsp; <!-- END Grid grdUniverso --></td> 
+    <td>
+      <!-- BEGIN Panel Panel1 -->
+      <!-- BEGIN Record universo_cds -->
+      <form id="Panel1universo_cds" method="post" name="{HTMLFormName}" action="{Action}">
+        <table cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Agregar/Editar </strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="2">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"><label for="Panel1universo_cdsid_proveedor">Id Proveedor</label></td> 
+                  <td>
+                    <select id="Panel1universo_cdsid_proveedor" name="{id_proveedor_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {id_proveedor_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="Panel1universo_cdsnumero">Número</label></td> 
+                  <td><input type="text" id="Panel1universo_cdsnumero" maxlength="25" size="25" value="{numero}" name="{numero_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="Panel1universo_cdstipo">Tipo</label></td> 
+                  <td>
+                    <select id="Panel1universo_cdstipo" name="{tipo_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {tipo_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="Panel1universo_cdsmes">Mes</label></td> 
+                  <td>
+                    <select id="Panel1universo_cdsmes" name="{mes_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {mes_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="Panel1universo_cdsanio">Año</label></td> 
+                  <td>
+                    <select id="Panel1universo_cdsanio" name="{anio_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {anio_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Id Estimación</td> 
+                  <td><label for="Panel1universo_cdsIdEstimacion" style="display: none;">TextBox1</label><input type="text" id="Panel1universo_cdsIdEstimacion" value="{IdEstimacion}" name="{IdEstimacion_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td colspan="2"><label for="Panel1universo_cdschkSLO" style="display: inline;">Es SLO</label><input type="checkbox" id="Panel1universo_cdschkSLO" value="1" name="{chkSLO_Name}" {chkSLO}></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td colspan="2"><input type="checkbox" id="Panel1universo_cdschkDescartar" value="1" name="{chkDescartar_Name}" {chkDescartar}>&nbsp;No considerar en el Universo</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td colspan="2"><input type="checkbox" id="Panel1universo_cdsNoMedir" value="1" name="{NoMedir_Name}" {NoMedir}>&nbsp;No medir, solo reportar</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td colspan="2">&nbsp;<label for="Panel1universo_cdschkEsReqTeq" style="display: inline;">Es Requerimiento Técnico</label><input type="checkbox" id="Panel1universo_cdschkEsReqTeq" value="1" name="{chkEsReqTeq_Name}" {chkEsReqTeq}></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td>&nbsp;Req. Técnico Relacionado</td> 
+                  <td><label for="Panel1universo_cdsReqTecnico" style="display: none;">ListBox1</label> 
+                    <select id="Panel1universo_cdsReqTecnico" name="{ReqTecnico_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {ReqTecnico_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Comentario</td> 
+                  <td><input type="text" id="Panel1universo_cdsnotas_manual" maxlength="125" size="75" value="{notas_manual}" name="{notas_manual_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">&nbsp;<input type="checkbox" id="Panel1universo_cdschkRevision" value="1" name="{chkRevision_Name}" {chkRevision}></td> 
+                  <td>2a&nbsp; Revisión&nbsp;</td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td style="BORDER-RIGHT: medium none"><a href="{Link1_Src}" id="Panel1universo_cdsLink1">Limpiar Campos</a></td> 
+                  <td align="right">
+                    <!-- BEGIN Button Button_Insert --><input type="submit" id="Panel1universo_cdsButton_Insert" class="Button" alt="Agregar" value="Insertar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input type="submit" id="Panel1universo_cdsButton_Update" class="Button" alt="Enviar" value="Grabar" name="{Button_Name}"><!-- END Button Button_Update -->
+                    <!-- BEGIN Button Button_Delete --><input type="submit" id="Panel1universo_cdsButton_Delete" class="Button" alt="Borrar" value="Borrar" name="{Button_Name}"><!-- END Button Button_Delete --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record universo_cds --><br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <!-- END Panel Panel1 --></td>
+  </tr>
+ 
+  <tr>
+    <td>&nbsp;</td> 
+    <td>
+      <!-- BEGIN Record mc_universo_cds -->
+      <form id="mc_universo_cds" method="post" name="{HTMLFormName}" action="{Action}">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Editar Requerimiento Técnico</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr id="mc_universo_cdsErrorBlock" class="Error">
+                  <td colspan="2">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"><label for="mc_universo_cdsEsReqTecnico">Es Req Tecnico</label></td> 
+                  <td><input type="checkbox" id="mc_universo_cdsEsReqTecnico" value="1" name="{EsReqTecnico_Name}" {EsReqTecnico}></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_universo_cdsReqTecnico">Req Tecnico</label></td> 
+                  <td>
+                    <select id="mc_universo_cdsReqTecnico" name="{ReqTecnico_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {ReqTecnico_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td style="TEXT-ALIGN: right" colspan="2">
+                    <!-- BEGIN Button Button_Update --><input type="submit" id="mc_universo_cdsButton_Update" class="Button" alt="Enviar" value="Enviar" name="{Button_Name}"><!-- END Button Button_Update --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record mc_universo_cds --><br>
+    </td>
+  </tr>
+</table>
+<br>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Incidentes Dictaminados</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-2504AB44
+</script>
+<script src="ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-A87AC9EE
+</script>
+{page:scriptIncludes}
+<script type="text/javascript">
+//End Include User Scripts
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
+</head>
+<body>
+<p>{Header}&nbsp; </p>
+<table width="100%" border="0">
+  <tr>
+    <td>
+      <!-- BEGIN Record grdIncidentes1 -->
+      <form id="grdIncidentes1" method="post" name="{HTMLFormName}" action="{Action}">
+        <table cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Filtrar Incidentes Calificados</strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="8">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"><label for="grdIncidentes1s_id_incidente">Id Incidente</label></td> 
+                  <td><input id="grdIncidentes1s_id_incidente" maxlength="17" size="17" value="{s_id_incidente}" name="{s_id_incidente_Name}"></td> 
+                  <td class="th"><label for="grdIncidentes1s_severidad">Severidad</label></td> 
+                  <td>
+                    <select id="grdIncidentes1s_severidad" name="{s_severidad_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {s_severidad_Options}
+                    </select>
+ </td> 
+                  <td class="th"><label for="grdIncidentes1s_descartar">Descartado Aut.</label></td> 
+                  <td>
+                    <select id="grdIncidentes1s_descartar" name="{s_descartar_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {s_descartar_Options}
+                    </select>
+ </td> 
+                  <td class="th"><label for="grdIncidentes1s_Paquete">&nbsp;</label></td> 
+                  <td></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Proveedor</td> 
+                  <td>
+                    <select id="grdIncidentes1s_id_proveedor" name="{s_id_proveedor_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {s_id_proveedor_Options}
+                    </select>
+ </td> 
+                  <td class="th">Mes Reporte</td> 
+                  <td>
+                    <select id="grdIncidentes1s_MesReporte" name="{s_MesReporte_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {s_MesReporte_Options}
+                    </select>
+ </td> 
+                  <td class="th">Año Reporte</td> 
+                  <td>
+                    <select id="grdIncidentes1s_AnioReporte" name="{s_AnioReporte_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {s_AnioReporte_Options}
+                    </select>
+ </td> 
+                  <td class="th"></td> 
+                  <td></td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td><a href="{ClearParameters_Src}" id="grdIncidentes1ClearParameters">Limpiar</a></td> 
+                  <td colspan="7" align="right">
+                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="grdIncidentes1Button_DoSearch" class="Button" alt="Buscar" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record grdIncidentes1 --></td> 
+    <td></td>
+  </tr>
+ 
+  <tr>
+    <td>
+      <!-- BEGIN Grid grdIncidentes -->
+      <table cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td valign="top">
+            <table class="Header" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td class="HeaderLeft"><img border="0" alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                <td class="th"><strong>Lista de Incidentes Calificados por el SAT</strong></td> 
+                <td class="HeaderRight"><img border="0" alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+              </tr>
+            </table>
+ 
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <tr class="Caption">
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_nombre --><a href="{Sort_URL}" id="grdIncidentesSorter_nombre">Proveedor</a> 
+                <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_nombre --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_servicio --><a href="{Sort_URL}" id="grdIncidentesSorter_servicio">Servicio</a> 
+                <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_servicio --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_id_incidente --><a href="{Sort_URL}" id="grdIncidentesSorter_id_incidente">Id Incidente</a> 
+                <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_id_incidente --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Cumple_DISP_SOPORTE --><a href="{Sort_URL}" id="grdIncidentesSorter_Cumple_DISP_SOPORTE">Cumple<br>
+                Disponibilidad<br>
+                Personal</a> 
+                <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_Cumple_DISP_SOPORTE --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Cumple_Inc_TiempoAsignacion --><a href="{Sort_URL}" id="grdIncidentesSorter_Cumple_Inc_TiempoAsignacion">Cumple<br>
+                Tiempo<br>
+                Atención</a> 
+                <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_Cumple_Inc_TiempoAsignacion --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Cumple_Inc_TiempoSolucion --><a href="{Sort_URL}" id="grdIncidentesSorter_Cumple_Inc_TiempoSolucion">Cumple<br>
+                Tiempo<br>
+                Solución</a> 
+                <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_Cumple_Inc_TiempoSolucion --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Obs_Proceso --><a href="{Sort_URL}" id="grdIncidentesSorter_Obs_Proceso">Observaciones Auto</a> 
+                <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_Obs_Proceso --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_severidad --><a href="{Sort_URL}" id="grdIncidentesSorter_severidad">Severidad</a> 
+                <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --><!-- END Sorter Sorter_severidad --></th>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr {grdIncidentes:rowStyle}>
+                <td>{nombre}&nbsp;</td> 
+                <td>{servicio}&nbsp;</td> 
+                <td><a href="{id_incidente_Src}" id="grdIncidentesid_incidente_{grdIncidentes:rowNumber}">{id_incidente}</a> &nbsp;</td> 
+                <td style="TEXT-ALIGN: center"><input type="hidden" id="grdIncidentesCumple_DISP_SOPORTE_{grdIncidentes:rowNumber}" value="{Cumple_DISP_SOPORTE}" name="{Cumple_DISP_SOPORTE_Name}">&nbsp;<img id="grdIncidentesimgDISPSOPORTE" alt="" src="{imgDISPSOPORTE}"></td> 
+                <td style="TEXT-ALIGN: center"><input type="hidden" id="grdIncidentesCumple_Inc_TiempoAsignacion_{grdIncidentes:rowNumber}" value="{Cumple_Inc_TiempoAsignacion}" name="{Cumple_Inc_TiempoAsignacion_Name}">&nbsp;<img id="grdIncidentesimgTiempoAsignacion" alt="" src="{imgTiempoAsignacion}"></td> 
+                <td style="TEXT-ALIGN: center"><input type="hidden" id="grdIncidentesCumple_Inc_TiempoSolucion_{grdIncidentes:rowNumber}" value="{Cumple_Inc_TiempoSolucion}" name="{Cumple_Inc_TiempoSolucion_Name}">&nbsp;<img id="grdIncidentesImgTiempoSolucion" alt="" src="{ImgTiempoSolucion}"></td> 
+                <td>{Obs_Proceso}&nbsp;</td> 
+                <td style="TEXT-ALIGN: right">{severidad}&nbsp;</td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="8">No hay registros</td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="Footer">
+                <td>{Label1}&nbsp;Registros&nbsp;</td> 
+                <td colspan="7">
+                  <!-- BEGIN Navigator Navigator -->
+                  <!-- BEGIN Page_Parameter --><input type="hidden" value="{Value}" name="{Name}"><!-- END Page_Parameter -->Per page: 
+                  <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">
+                    <option selected value="">-</option>
+ {PageSize_Options}
+                  </select>
+ 
+                  <!-- BEGIN First_On --><a href="{First_URL}">Inicio</a> <!-- END First_On -->
+                  <!-- BEGIN First_Off -->Inicio <!-- END First_Off -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}">Anterior</a> <!-- END Prev_On -->
+                  <!-- BEGIN Prev_Off -->Anterior <!-- END Prev_Off -->&nbsp; 
+                  <!-- BEGIN Pages -->
+                  <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                  <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de &nbsp;{Total_Pages}&nbsp; 
+                  <!-- BEGIN Next_On --><a href="{Next_URL}">Siguiente</a> <!-- END Next_On -->
+                  <!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}">Final</a> <!-- END Last_On -->
+                  <!-- BEGIN Last_Off -->Final <!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- END Grid grdIncidentes --></td> 
+    <td></td>
+  </tr>
+ 
+  <tr>
+    <td></td> 
+    <td></td>
+  </tr>
+</table>
+</body>
+</html>

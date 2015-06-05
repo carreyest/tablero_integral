@@ -1,0 +1,326 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
+<title>EficienciaPresBase</title>
+ 
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-2504AB44
+</script>
+<script src="ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-A87AC9EE
+</script>
+{page:scriptIncludes} 
+<script type="text/javascript">
+//End Include User Scripts
+
+//Common Script Start @1-8BFA436B
+jQuery(function ($) {
+    var features = { };
+    var actions = { };
+    var params = { };
+//End Common Script Start
+
+//Plugin Calls @1-57123920
+    $('*:ccsControl(mc_EfPresup_base, Button_Cancel)').ccsBind(function() {
+        this.bind("click", function(){ $("body").data("disableValidation", true); });
+    });
+//End Plugin Calls
+
+//Common Script End @1-562554DE
+});
+//End Common Script End
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
+</head>
+ 
+<body>
+<p>{Header} </p>
+<strong></strong> 
+<table width="100%">
+  <tr>
+    <td colspan="2">&nbsp; 
+      <!-- BEGIN Record mc_c_proveedor_mc_EfPresu1 -->
+      <form name="{HTMLFormName}" id="mc_c_proveedor_mc_EfPresu1" action="{Action}" method="post">
+        <p><br>
+        </p>
+ 
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Buscar</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error" id="{@error-block}">
+                  <td colspan="6">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"><label for="mc_c_proveedor_mc_EfPresu1s_Id_Proveedor">Proveedor</label></td> 
+                  <td>
+                    <select name="{s_Id_Proveedor_Name}" id="mc_c_proveedor_mc_EfPresu1s_Id_Proveedor">
+                      <option value="">Seleccionar Valor</option>
+                      {s_Id_Proveedor_Options}
+                    </select>
+ </td> 
+                  <td class="th"><label for="mc_c_proveedor_mc_EfPresu1s_GrupoAplicativos">Grupo Aplicativos</label></td> 
+                  <td><input type="text" name="{s_GrupoAplicativos_Name}" id="mc_c_proveedor_mc_EfPresu1s_GrupoAplicativos" size="50" maxlength="75" value="{s_GrupoAplicativos}"></td> 
+                  <td class="th"><label for="mc_c_proveedor_mc_EfPresu1s_ServiciosRelacionados">Servicios Relacionados</label></td> 
+                  <td><input type="text" name="{s_ServiciosRelacionados_Name}" id="mc_c_proveedor_mc_EfPresu1s_ServiciosRelacionados" size="50" maxlength="125" value="{s_ServiciosRelacionados}"></td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td style="text-align: right;" colspan="6">
+                    <!-- BEGIN Button Button_DoSearch --><input type="submit" name="{Button_Name}" class="Button" id="mc_c_proveedor_mc_EfPresu1Button_DoSearch" alt="Buscar" value="Buscar"><!-- END Button Button_DoSearch --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+ <!-- END Record mc_c_proveedor_mc_EfPresu1 --></td>
+  </tr>
+ 
+  <tr>
+    <td>&nbsp; 
+      <!-- BEGIN Grid mc_c_proveedor_mc_EfPresu -->
+      <table class="MainTable" id="mc_c_proveedor_mc_EfPresu" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td valign="top">
+            <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                <td class="th"><strong>Costo Fijo mensual</strong></td> 
+                <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+              </tr>
+            </table>
+ 
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <tr class="Row">
+                <td colspan="6">Total de Registros:&nbsp;{mc_c_proveedor_mc_EfPresu_TotalRecords}</td>
+              </tr>
+ 
+              <tr class="Caption">
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Id --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_proveedor_mc_EfPresuSorter_Id">Id</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Id --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_nombre --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_proveedor_mc_EfPresuSorter_nombre">Nombre</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_nombre --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_GrupoAplicativos --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_proveedor_mc_EfPresuSorter_GrupoAplicativos">Grupo Aplicativos</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_GrupoAplicativos --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_ServiciosRelacionados --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_proveedor_mc_EfPresuSorter_ServiciosRelacionados">Servicios Relacionados</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_ServiciosRelacionados --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_CFMAnterior --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_proveedor_mc_EfPresuSorter_CFMAnterior">CFMAnterior</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_CFMAnterior --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Vigente --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_proveedor_mc_EfPresuSorter_Vigente">Vigente</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Vigente --></th>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr class="Row">
+                <td style="text-align: right;"><a href="{Id_Src}" id="mc_c_proveedor_mc_EfPresuId_{mc_c_proveedor_mc_EfPresu:rowNumber}">{Id}</a>&nbsp;</td> 
+                <td>{nombre}&nbsp;</td> 
+                <td>{GrupoAplicativos}&nbsp;</td> 
+                <td>{ServiciosRelacionados}&nbsp;</td> 
+                <td>{CFMAnterior}&nbsp;</td> 
+                <td>{Vigente}&nbsp;</td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="6">No hay registros</td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="Footer">
+                <td colspan="6"><a href="{mc_c_proveedor_mc_EfPresu_Insert_Src}" id="mc_c_proveedor_mc_EfPresumc_c_proveedor_mc_EfPresu_Insert">Agregar Nuevo</a>&nbsp; 
+                  <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+                  <select name="{FormName}PageSize" style="vertical-align: middle;" data-grid-size="{FormName}">
+                    <option selected value="">-</option>
+ {PageSize_Options}
+                  </select>
+ 
+                  <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
+                  <!-- BEGIN First_Off --><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/FirstOff.gif"><!-- END First_Off -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/Prev.gif"></a> <!-- END Prev_On -->
+                  <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+                  <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/Next.gif"></a> <!-- END Next_On -->
+                  <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
+                  <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+ <!-- END Grid mc_c_proveedor_mc_EfPresu --></td> 
+    <td>&nbsp;</td>
+  </tr>
+ 
+  <tr>
+    <td>&nbsp; 
+      <!-- BEGIN Record mc_EfPresup_base -->
+      <form name="{HTMLFormName}" id="mc_EfPresup_base" action="{Action}" method="post">
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Registro de CFM Histórico</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error" id="ErrorBlock">
+                  <td colspan="2">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"><label for="mc_EfPresup_baseId_Proveedor">Id Proveedor</label></td> 
+                  <td>
+                    <select name="{Id_Proveedor_Name}" id="mc_EfPresup_baseId_Proveedor">
+                      <option selected value="">Seleccionar Valor</option>
+                      {Id_Proveedor_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th" rowspan="1" colspan="1">Año de Servicio</td> 
+                  <td rowspan="1" colspan="1"><input type="text" name="{AnioServicio_Name}" id="mc_EfPresup_baseAnioServicio" value="{AnioServicio}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_EfPresup_baseGrupoAplicativos">Grupo Aplicativos</label></td> 
+                  <td><input type="text" name="{GrupoAplicativos_Name}" id="mc_EfPresup_baseGrupoAplicativos" size="50" maxlength="75" value="{GrupoAplicativos}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_EfPresup_baseServiciosRelacionados">Servicios Relacionados</label></td> 
+                  <td><input type="text" name="{ServiciosRelacionados_Name}" id="mc_EfPresup_baseServiciosRelacionados" size="50" maxlength="125" value="{ServiciosRelacionados}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_EfPresup_baseCFMAnterior">CFMAnterior</label></td> 
+                  <td><input type="text" name="{CFMAnterior_Name}" id="mc_EfPresup_baseCFMAnterior" size="12" maxlength="12" value="{CFMAnterior}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_EfPresup_baseVigente">Vigente</label></td> 
+                  <td><input type="checkbox" name="{Vigente_Name}" id="mc_EfPresup_baseVigente" value="1" {Vigente}></td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td style="text-align: right;" colspan="2">
+                    <!-- BEGIN Button Button_Insert --><input type="submit" name="{Button_Name}" class="Button" id="mc_EfPresup_baseButton_Insert" alt="Agregar" value="Agregar"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input type="submit" name="{Button_Name}" class="Button" id="mc_EfPresup_baseButton_Update" alt="Enviar" value="Guardar" size="20"><!-- END Button Button_Update -->
+                    <!-- BEGIN Button Button_Cancel --><input type="submit" name="{Button_Name}" class="Button" id="mc_EfPresup_baseButton_Cancel" alt="Cancelar" value="Cancelar"><!-- END Button Button_Cancel --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+ <!-- END Record mc_EfPresup_base --></td> 
+    <td>&nbsp; 
+      <!-- BEGIN Record mc_eficiencia_presupuesta -->
+      <form name="{HTMLFormName}" id="mc_eficiencia_presupuesta" action="{Action}" method="post">
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Actualizar Costo Fijo Vigente para Medición</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error" id="ErrorBlock">
+                  <td colspan="2">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"><label for="mc_eficiencia_presupuestaId_Proveedor">Proveedor</label></td> 
+                  <td>
+                    <select name="{Id_Proveedor_Name}" id="mc_eficiencia_presupuestaId_Proveedor">
+                      <option value="">Seleccionar Valor</option>
+                      {Id_Proveedor_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_eficiencia_presupuestaMesReporte">Mes </label></td> 
+                  <td>
+                    <select name="{MesReporte_Name}" id="mc_eficiencia_presupuestaMesReporte">
+                      <option value="">Seleccionar Valor</option>
+                      {MesReporte_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_eficiencia_presupuestaanioreporte">Año</label></td> 
+                  <td>
+                    <select name="{anioreporte_Name}" id="mc_eficiencia_presupuestaanioreporte">
+                      <option value="">Seleccionar Valor</option>
+                      {anioreporte_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td style="text-align: right;" colspan="2">
+                    <!-- BEGIN Button Button_Insert --><input type="submit" name="{Button_Name}" class="Button" id="mc_eficiencia_presupuestaButton_Insert" alt="Agregar" value="Agregar"><!-- END Button Button_Insert --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+ <!-- END Record mc_eficiencia_presupuesta --><br>
+    </td>
+  </tr>
+</table>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

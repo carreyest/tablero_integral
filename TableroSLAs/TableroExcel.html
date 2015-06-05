@@ -1,0 +1,266 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>TableroExcel</title>
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-2504AB44
+</script>
+<script src="ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-FA240378
+</script>
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/ccs-jquery-ui-calendar.css">
+{page:scriptIncludes}
+<script type="text/javascript">
+//End Include User Scripts
+
+//Common Script Start @1-8BFA436B
+jQuery(function ($) {
+    var features = { };
+    var actions = { };
+    var params = { };
+//End Common Script Start
+
+//Controls Selecting @1-4A6310E5
+    $('body').ccsBind(function() {
+        features["Panel1mc_reporte_nsFechaInlineDatePicker1"] = $('*:ccsControl(Panel1, mc_reporte_ns, Fecha)');
+    });
+//End Controls Selecting
+
+//Feature Parameters @1-E0446726
+    params["Panel1mc_reporte_nsFechaInlineDatePicker1"] = { 
+        dateFormat: "dd/MM/yyyy H:mm",
+        isWeekend: true
+    };
+//End Feature Parameters
+
+//Feature Init @1-6D9DA78D
+    features["Panel1mc_reporte_nsFechaInlineDatePicker1"].ccsBind(function() {
+        this.ccsDateTimePicker(params["Panel1mc_reporte_nsFechaInlineDatePicker1"]);
+    });
+//End Feature Init
+
+//Plugin Calls @1-307F83F9
+    $('*:ccsControl(Panel1, mc_reporte_ns, Button_Delete)').ccsBind(function() {
+        this.bind("click", function(){ $("body").data("disableValidation", true); });
+    });
+//End Plugin Calls
+
+//Common Script End @1-562554DE
+});
+//End Common Script End
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
+</head>
+<body>
+<p>{Header}</p>
+<p></p>
+<table width="100%">
+  <tr>
+    <td></td> 
+    <td>
+      <p><br>
+      </p>
+      <!-- BEGIN Record mc_reporte_ns1 -->
+      <p><br>
+      </p>
+ 
+      <form id="mc_reporte_ns1" method="post" name="{HTMLFormName}" action="{Action}">
+        <p><br>
+        </p>
+ 
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Buscar Reporte</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr id="{@error-block}" class="Error">
+                  <td colspan="10">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"><label for="mc_reporte_ns1s_id_proveedor">Proveedor</label></td> 
+                  <td>
+                    <select id="mc_reporte_ns1s_id_proveedor" name="{s_id_proveedor_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {s_id_proveedor_Options}
+                    </select>
+ </td> 
+                  <td class="th"><label for="mc_reporte_ns1s_MesReporte">Mes Reporte</label></td> 
+                  <td>
+                    <select id="mc_reporte_ns1s_MesReporte" name="{s_MesReporte_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {s_MesReporte_Options}
+                    </select>
+ </td> 
+                  <td class="th"><label for="mc_reporte_ns1s_AnioReporte">Anio Reporte</label></td> 
+                  <td>
+                    <select id="mc_reporte_ns1s_AnioReporte" name="{s_AnioReporte_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {s_AnioReporte_Options}
+                    </select>
+ </td> 
+                  <td class="th"><label for="mc_reporte_ns1s_SLO">SLO</label></td> 
+                  <td><input type="checkbox" id="mc_reporte_ns1s_SLO" value="1" name="{s_SLO_Name}" {s_SLO}></td> 
+                  <td class="th"><label for="mc_reporte_ns1DyP">D y P</label></td> 
+                  <td><input type="checkbox" id="mc_reporte_ns1DyP" value="1" name="{DyP_Name}" {DyP}></td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td style="TEXT-ALIGN: right" colspan="10">
+                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="mc_reporte_ns1Button_DoSearch" class="Button" alt="Buscar" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+ 
+        <p><br>
+        </p>
+      </form>
+ 
+      <p>&nbsp;</p>
+      <!-- END Record mc_reporte_ns1 -->
+      <p><br>
+      </p>
+    </td> 
+    <td></td>
+  </tr>
+ 
+  <tr>
+    <td></td> 
+    <td>
+      <!-- BEGIN Panel Panel1 -->
+      <!-- BEGIN Record mc_reporte_ns -->
+      <form id="Panel1mc_reporte_ns" method="post" name="{HTMLFormName}" action="{Action}">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Caratula del Informe</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr id="mc_reporte_nsErrorBlock" class="Error">
+                  <td colspan="6">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th">&nbsp;Mes de Reporte: </td> 
+                  <td>
+                    <select id="Panel1mc_reporte_nss_MesReporte" name="{s_MesReporte_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {s_MesReporte_Options}
+                    </select>
+ &nbsp; </td> 
+                  <td>Año:&nbsp;</td> 
+                  <td>
+                    <select id="Panel1mc_reporte_nss_AnioReporte" name="{s_AnioReporte_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {s_AnioReporte_Options}
+                    </select>
+ &nbsp; </td> 
+                  <td>Proveedor:&nbsp;</td> 
+                  <td>
+                    <select id="Panel1mc_reporte_nss_id_proveedor" name="{s_id_proveedor_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {s_id_proveedor_Options}
+                    </select>
+ &nbsp; </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="Panel1mc_reporte_nsVersion">Versión:</label></td> 
+                  <td><input type="text" id="Panel1mc_reporte_nsVersion" value="{Version}" name="{Version_Name}"></td> 
+                  <td>&nbsp;Responsable</td> 
+                  <td>
+                    <select id="Panel1mc_reporte_nsResponsable" name="{Responsable_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {Responsable_Options}
+                    </select>
+ </td> 
+                  <td>&nbsp;Fecha:</td> 
+                  <td><input type="text" id="Panel1mc_reporte_nsFecha" value="{Fecha}" name="{Fecha_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Comentario:</td> 
+                  <td colspan="5"><textarea id="Panel1mc_reporte_nsComentario" cols="75" name="{Comentario_Name}">{Comentario}</textarea></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="Panel1mc_reporte_nsResponsable">Datos:</label></td> 
+                  <td><input type="text" id="Panel1mc_reporte_nsDatos" value="{Datos}" name="{Datos_Name}"></td> 
+                  <td>Fuente:</td> 
+                  <td><input type="text" id="Panel1mc_reporte_nsFuente" value="{Fuente}" name="{Fuente_Name}"></td> 
+                  <td>&nbsp;</td> 
+                  <td>&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">&nbsp;Instrucciones:</td> 
+                  <td colspan="5"><textarea id="Panel1mc_reporte_nsInstrucciones" rows="10" cols="75" name="{Instrucciones_Name}">{Instrucciones}</textarea>&nbsp;&nbsp; </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">&nbsp;Observaciones:</td> 
+                  <td colspan="5"><textarea id="Panel1mc_reporte_nsObservaciones" rows="10" cols="75" name="{Observaciones_Name}">{Observaciones}</textarea></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">&nbsp;<input type="hidden" id="Panel1mc_reporte_nshdSLO" value="{hdSLO}" name="{hdSLO_Name}"></td> 
+                  <td><input type="hidden" id="Panel1mc_reporte_nshdDyP" value="{hdDyP}" name="{hdDyP_Name}"></td> 
+                  <td>&nbsp;</td> 
+                  <td>&nbsp;</td> 
+                  <td>&nbsp;</td> 
+                  <td>&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">&nbsp;</td> 
+                  <td></td> 
+                  <td>&nbsp;</td> 
+                  <td>&nbsp;</td> 
+                  <td>&nbsp;</td> 
+                  <td>&nbsp;</td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td style="TEXT-ALIGN: right" colspan="6">
+                    <!-- BEGIN Button Button_Insert --><input type="submit" id="Panel1mc_reporte_nsButton_Insert" class="Button" alt="Agregar" value="Generar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input type="submit" id="Panel1mc_reporte_nsButton_Update" class="Button" alt="Enviar" value="Ver" name="{Button_Name}"><!-- END Button Button_Update -->
+                    <!-- BEGIN Button Button_Delete --><input type="submit" id="Panel1mc_reporte_nsButton_Delete" class="Button" alt="Borrar" value="Borrar" name="{Button_Name}"><!-- END Button Button_Delete --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record mc_reporte_ns --><!-- END Panel Panel1 --></td> 
+    <td></td>
+  </tr>
+</table>
+<p></p>
+</body>
+</html>

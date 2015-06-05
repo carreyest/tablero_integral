@@ -1,0 +1,266 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>AplicacionesLista</title>
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-6ADB6CED
+</script>
+<script src="../ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-A87AC9EE
+</script>
+{page:scriptIncludes}
+<script type="text/javascript">
+//End Include User Scripts
+
+//Common Script Start @1-8BFA436B
+jQuery(function ($) {
+    var features = { };
+    var actions = { };
+    var params = { };
+//End Common Script Start
+
+//Plugin Calls @1-94CD2ED1
+    $('*:ccsControl(mc_c_aplicacion1, Button_Delete)').ccsBind(function() {
+        this.bind("click", function(){ $("body").data("disableValidation", true); });
+    });
+//End Plugin Calls
+
+//Common Script End @1-562554DE
+});
+//End Common Script End
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/{CCS_Style}/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="../Styles/{CCS_Style}/jquery-ui.css">
+</head>
+<body>
+<p>&nbsp; 
+<table width="100%">
+  <tr>
+    <td>&nbsp;</td> 
+    <td>&nbsp;</td> 
+    <td>&nbsp;</td> 
+  </tr>
+ 
+  <tr>
+    <td>&nbsp;</td> 
+    <td>&nbsp; 
+      <!-- BEGIN Record mc_c_aplicacionSearch -->
+      <form id="mc_c_aplicacionSearch" method="post" name="{HTMLFormName}" action="{Action}">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/Basic/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Buscar</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/Basic/Images/Spacer.gif"></td> 
+                </tr>
+ 
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr id="{@error-block}" class="Error">
+                  <td colspan="2">{Error}</td> 
+                </tr>
+ <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"><label for="mc_c_aplicacionSearchs_id">{res:id}</label></td> 
+                  <td><input type="text" id="mc_c_aplicacionSearchs_id" maxlength="10" size="10" value="{s_id}" name="{s_id_Name}"></td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_c_aplicacionSearchs_descripcion">{res:descripcion}</label></td> 
+                  <td><input type="text" id="mc_c_aplicacionSearchs_descripcion" maxlength="250" size="50" value="{s_descripcion}" name="{s_descripcion_Name}"></td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_c_aplicacionSearchs_severidad">{res:severidad}</label></td> 
+                  <td><input type="text" id="mc_c_aplicacionSearchs_severidad" maxlength="10" size="10" value="{s_severidad}" name="{s_severidad_Name}"></td> 
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td style="TEXT-ALIGN: right" colspan="2">
+                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="mc_c_aplicacionSearchButton_DoSearch" class="Button" alt="{res:CCS_Search}" value="{res:CCS_Search}" name="{Button_Name}"><!-- END Button Button_DoSearch --></td> 
+                </tr>
+ 
+              </table>
+ </td> 
+          </tr>
+ 
+        </table>
+ 
+      </form>
+ <!-- END Record mc_c_aplicacionSearch --><br>
+      &nbsp; 
+      <table width="100%">
+        <tr>
+          <td>&nbsp;<br>
+            <!-- BEGIN Grid mc_c_aplicacion -->
+            <table id="mc_c_aplicacion" class="MainTable" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td valign="top">
+                  <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                    <tr>
+                      <td class="HeaderLeft"><img alt="" src="Styles/Basic/Images/Spacer.gif"></td> 
+                      <td class="th"><strong>Lista de Aplicaciones</strong></td> 
+                      <td class="HeaderRight"><img alt="" src="Styles/Basic/Images/Spacer.gif"></td> 
+                    </tr>
+ 
+                  </table>
+ 
+                  <table class="Grid" cellspacing="0" cellpadding="0">
+                    <tr class="Caption">
+                      <th scope="col">
+                      <!-- BEGIN Sorter Sorter_id --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_aplicacionSorter_id">{res:id}</a> 
+                      <!-- BEGIN Asc_On --><img alt="{res:CCS_ASC}" src="Styles/Basic/Images/Asc.gif"><!-- END Asc_On -->
+                      <!-- BEGIN Desc_On --><img alt="{res:CCS_DESC}" src="Styles/Basic/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_id --></th>
+ 
+                      <th scope="col">
+                      <!-- BEGIN Sorter Sorter_descripcion --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_aplicacionSorter_descripcion">{res:descripcion}</a> 
+                      <!-- BEGIN Asc_On --><img alt="{res:CCS_ASC}" src="Styles/Basic/Images/Asc.gif"><!-- END Asc_On -->
+                      <!-- BEGIN Desc_On --><img alt="{res:CCS_DESC}" src="Styles/Basic/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_descripcion --></th>
+ 
+                      <th scope="col">
+                      <!-- BEGIN Sorter Sorter_severidad --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_aplicacionSorter_severidad">{res:severidad}</a> 
+                      <!-- BEGIN Asc_On --><img alt="{res:CCS_ASC}" src="Styles/Basic/Images/Asc.gif"><!-- END Asc_On -->
+                      <!-- BEGIN Desc_On --><img alt="{res:CCS_DESC}" src="Styles/Basic/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_severidad --></th>
+ 
+                      <th scope="col">
+                      <!-- BEGIN Sorter Sorter_FechaAlta --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_aplicacionSorter_FechaAlta">{res:FechaAlta}</a> 
+                      <!-- BEGIN Asc_On --><img alt="{res:CCS_ASC}" src="Styles/Basic/Images/Asc.gif"><!-- END Asc_On -->
+                      <!-- BEGIN Desc_On --><img alt="{res:CCS_DESC}" src="Styles/Basic/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_FechaAlta --></th>
+ 
+                      <th scope="col">
+                      <!-- BEGIN Sorter Sorter_UsuarioAlta --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_aplicacionSorter_UsuarioAlta">{res:UsuarioAlta}</a> 
+                      <!-- BEGIN Asc_On --><img alt="{res:CCS_ASC}" src="Styles/Basic/Images/Asc.gif"><!-- END Asc_On -->
+                      <!-- BEGIN Desc_On --><img alt="{res:CCS_DESC}" src="Styles/Basic/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_UsuarioAlta --></th>
+ 
+                      <th scope="col">
+                      <!-- BEGIN Sorter Sorter_FechaUltMod --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_aplicacionSorter_FechaUltMod">{res:FechaUltMod}</a> 
+                      <!-- BEGIN Asc_On --><img alt="{res:CCS_ASC}" src="Styles/Basic/Images/Asc.gif"><!-- END Asc_On -->
+                      <!-- BEGIN Desc_On --><img alt="{res:CCS_DESC}" src="Styles/Basic/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_FechaUltMod --></th>
+ 
+                      <th scope="col">
+                      <!-- BEGIN Sorter Sorter_UsuarioUltMod --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_aplicacionSorter_UsuarioUltMod">{res:UsuarioUltMod}</a> 
+                      <!-- BEGIN Asc_On --><img alt="{res:CCS_ASC}" src="Styles/Basic/Images/Asc.gif"><!-- END Asc_On -->
+                      <!-- BEGIN Desc_On --><img alt="{res:CCS_DESC}" src="Styles/Basic/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_UsuarioUltMod --></th>
+ 
+                    </tr>
+ 
+                    <!-- BEGIN Row -->
+                    <tr class="Row">
+                      <td style="TEXT-ALIGN: right"><a href="{id_Src}" id="mc_c_aplicacionid_{mc_c_aplicacion:rowNumber}">{id}</a></td> 
+                      <td>{descripcion}&nbsp;</td> 
+                      <td style="TEXT-ALIGN: right">{severidad}&nbsp;</td> 
+                      <td>{FechaAlta}&nbsp;</td> 
+                      <td style="TEXT-ALIGN: right">{UsuarioAlta}&nbsp;</td> 
+                      <td>{FechaUltMod}&nbsp;</td> 
+                      <td style="TEXT-ALIGN: right">{UsuarioUltMod}&nbsp;</td> 
+                    </tr>
+ <!-- END Row -->
+                    <!-- BEGIN NoRecords -->
+                    <tr class="NoRecords">
+                      <td colspan="7">No records</td> 
+                    </tr>
+ <!-- END NoRecords -->
+                    <tr class="Footer">
+                      <td colspan="7"><a href="{mc_c_aplicacion_Insert_Src}" id="mc_c_aplicacionmc_c_aplicacion_Insert">{res:CCS_InsertLink}</a> 
+                        <!-- BEGIN Navigator Navigator --><span class="Navigator">{res:CCS_RecPerPage} 
+                        <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+                          <option selected value="">-</option>
+ {PageSize_Options} 
+                        </select>
+ 
+                        <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/Basic/Images/First.gif"></a> <!-- END First_On -->
+                        <!-- BEGIN First_Off --><img alt="{First_URL}" src="Styles/Basic/Images/FirstOff.gif"><!-- END First_Off -->
+                        <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="Styles/Basic/Images/Prev.gif"></a> <!-- END Prev_On -->
+                        <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="Styles/Basic/Images/PrevOff.gif"><!-- END Prev_Off -->{Page_Number} {res:CCS_Of}&nbsp;{Total_Pages}&nbsp; 
+                        <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/Basic/Images/Next.gif"></a> <!-- END Next_On -->
+                        <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/Basic/Images/NextOff.gif"><!-- END Next_Off -->
+                        <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/Basic/Images/Last.gif"></a> <!-- END Last_On -->
+                        <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/Basic/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator --></td> 
+                    </tr>
+ 
+                  </table>
+ </td> 
+              </tr>
+ 
+            </table>
+ <!-- END Grid mc_c_aplicacion --><br>
+          </td> 
+          <td>&nbsp; 
+            <!-- BEGIN Record mc_c_aplicacion1 -->
+            <form id="mc_c_aplicacion1" method="post" name="{HTMLFormName}" action="{Action}">
+              <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td valign="top">
+                    <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                      <tr>
+                        <td class="HeaderLeft"><img alt="" src="Styles/Basic/Images/Spacer.gif"></td> 
+                        <td class="th"><strong>Detalle&nbsp;Aplicación</strong></td> 
+                        <td class="HeaderRight"><img alt="" src="Styles/Basic/Images/Spacer.gif"></td> 
+                      </tr>
+ 
+                    </table>
+ 
+                    <table class="Record" cellspacing="0" cellpadding="0">
+                      <!-- BEGIN Error -->
+                      <tr id="ErrorBlock" class="Error">
+                        <td colspan="2">{Error}</td> 
+                      </tr>
+ <!-- END Error -->
+                      <tr class="Controls">
+                        <td class="th"><label for="mc_c_aplicacion1descripcion">{res:descripcion}</label></td> 
+                        <td><input type="text" id="mc_c_aplicacion1descripcion" maxlength="250" size="50" value="{descripcion}" name="{descripcion_Name}"></td> 
+                      </tr>
+ 
+                      <tr class="Controls">
+                        <td class="th"><label for="mc_c_aplicacion1severidad">{res:severidad}</label></td> 
+                        <td>
+                          <select id="mc_c_aplicacion1severidad" name="{severidad_Name}">
+                            <option selected value="">{res:CCS_SelectValue}</option>
+ {severidad_Options} 
+                          </select>
+ </td> 
+                      </tr>
+ 
+                      <tr class="Controls">
+                        <td class="th"><input type="hidden" id="mc_c_aplicacion1hIdUsuario" value="{hIdUsuario}" name="{hIdUsuario_Name}"></td> 
+                        <td></td> 
+                      </tr>
+ 
+                      <tr class="Bottom">
+                        <td style="TEXT-ALIGN: right" colspan="2">
+                          <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_c_aplicacion1Button_Insert" class="Button" alt="{res:CCS_Insert}" value="{res:CCS_Insert}" name="{Button_Name}"><!-- END Button Button_Insert -->
+                          <!-- BEGIN Button Button_Update --><input type="submit" id="mc_c_aplicacion1Button_Update" class="Button" alt="{res:CCS_Update}" value="{res:CCS_Update}" name="{Button_Name}"><!-- END Button Button_Update -->
+                          <!-- BEGIN Button Button_Delete --><input type="submit" id="mc_c_aplicacion1Button_Delete" class="Button" alt="{res:CCS_Delete}" value="{res:CCS_Delete}" name="{Button_Name}"><!-- END Button Button_Delete --></td> 
+                      </tr>
+ 
+                    </table>
+ </td> 
+                </tr>
+ 
+              </table>
+ 
+            </form>
+ <!-- END Record mc_c_aplicacion1 --></td> 
+        </tr>
+ 
+      </table>
+ <br>
+    </td> 
+    <td>&nbsp;</td> 
+  </tr>
+</table>
+<br>
+</p>
+</body>
+</html>

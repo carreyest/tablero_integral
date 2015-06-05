@@ -1,0 +1,434 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Tablero Principal</title>
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-2504AB44
+</script>
+<script src="ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-A87AC9EE
+</script>
+{page:scriptIncludes}
+<script type="text/javascript">
+//End Include User Scripts
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
+</head>
+<body>
+{Header} 
+<table width="100%">
+  <tr>
+    <td>&nbsp; 
+      <!-- BEGIN Record Grid2 -->
+      <form id="Grid2" method="post" name="{HTMLFormName}" action="{Action}">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Especificar Datos</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr id="{@error-block}" class="Error">
+                  <td colspan="6">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"><label for="Grid2s_id_proveedor">Proveedor</label></td> 
+                  <td>
+                    <select id="Grid2s_id_proveedor" name="{s_id_proveedor_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {s_id_proveedor_Options}
+                    </select>
+ </td> 
+                  <td class="th"><label for="Grid2s_MesReporte">Mes</label></td> 
+                  <td>
+                    <select id="Grid2s_MesReporte" name="{s_MesReporte_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {s_MesReporte_Options}
+                    </select>
+ </td> 
+                  <td class="th"><label for="Grid2s_AnioReporte">Año</label></td> 
+                  <td>
+                    <select id="Grid2s_AnioReporte" name="{s_AnioReporte_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {s_AnioReporte_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td style="TEXT-ALIGN: right" colspan="6">
+                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="Grid2Button_DoSearch" class="Button" alt="Buscar" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+ 
+        <p><br>
+        </p>
+      </form>
+ 
+      <p>&nbsp;</p>
+      <!-- END Record Grid2 -->
+      <p></p>
+    </td> 
+    <td style="VERTICAL-ALIGN: top">{MenuTablero} </td>
+  </tr>
+ 
+  <tr>
+    <td colspan="2">
+      <div style="display:{iTableroCDS}">
+        &nbsp;Tablero del CDS:&nbsp;<a href="{UrlCDS_Src}" id="UrlCDS">{UrlCDS}</a> 
+      </div>
+    </td>
+  </tr>
+ 
+  <tr>
+    <td colspan="2">&nbsp; 
+      <!-- BEGIN Grid grdTableroSLAs -->
+      <table id="grdTableroSLAs" class="MainTable" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td valign="top">
+            <table class="Header" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                <td class="th"><strong>Niveles de Servicio Reportados por el CAPC</strong></td> 
+                <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+              </tr>
+            </table>
+ 
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <tr class="Caption">
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Orden --><span class="Sorter"><a href="{Sort_URL}" id="grdTableroSLAsSorter_Orden">Servicio</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Orden --></th>
+ 
+                <th style="WIDTH: 100px" scope="col">
+                <!-- BEGIN Sorter Sorter_TotHERR_EST_COST --><span class="Sorter"><a href="{Sort_URL}" id="grdTableroSLAsSorter_TotHERR_EST_COST">Uso de una<br>
+                Herramienta<br>
+                para Estimación<br>
+                de Costo<br>
+                y Tiempos</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_TotHERR_EST_COST --></th>
+ 
+                <th style="WIDTH: 100px" scope="col">
+                <!-- BEGIN Sorter Sorter_TotREQ_SERV --><span class="Sorter"><a href="{Sort_URL}" id="grdTableroSLAsSorter_TotREQ_SERV">Requisitos<br>
+                de Servicio</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_TotREQ_SERV --></th>
+ 
+                <th style="WIDTH: 100px" scope="col">
+                <!-- BEGIN Sorter Sorter_TotCUMPL_REQ_FUNC --><span class="Sorter"><a href="{Sort_URL}" id="grdTableroSLAsSorter_TotCUMPL_REQ_FUNC">Cumplimiento en<br>
+                Requisitos<br>
+                Funcionales</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_TotCUMPL_REQ_FUNC --></th>
+ 
+                <th style="WIDTH: 100px" scope="col">
+                <!-- BEGIN Sorter Sorter_TotCALIDAD_PROD_TERM --><span class="Sorter"><a href="{Sort_URL}" id="grdTableroSLAsSorter_TotCALIDAD_PROD_TERM">Calidad de<br>
+                Productos<br>
+                Terminados</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_TotCALIDAD_PROD_TERM --></th>
+ 
+                <th style="WIDTH: 100px" scope="col">
+                <!-- BEGIN Sorter Sorter_TotRETR_ENTREGABLE --><span class="Sorter"><a href="{Sort_URL}" id="grdTableroSLAsSorter_TotRETR_ENTREGABLE">Retraso en<br>
+                Entregables</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_TotRETR_ENTREGABLE --></th>
+ 
+                <th style="WIDTH: 100px" scope="col">
+                <!-- BEGIN Sorter Sorter_TotCAL_COD --><span class="Sorter"><a href="{Sort_URL}" id="grdTableroSLAsSorter_TotCAL_COD">Calidad<br>
+                de Código</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_TotCAL_COD --></th>
+ 
+                <th style="WIDTH: 100px" scope="col">
+                <!-- BEGIN Sorter Sorter_TotDEF_FUG_AMB_PROD --><span class="Sorter"><a href="{Sort_URL}" id="grdTableroSLAsSorter_TotDEF_FUG_AMB_PROD">Defectos Fugados<br>
+                al Ambiente<br>
+                Productivo</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_TotDEF_FUG_AMB_PROD --></th>
+ 
+                <th style="WIDTH: 100px" scope="col">
+                <!-- BEGIN Sorter Sorter_TotTiempoAsignacion --><span class="Sorter"><a href="{Sort_URL}" id="grdTableroSLAsSorter_TotTiempoAsignacion">Manejo de<br>
+                Incidentes -<br>
+                Tiempo de<br>
+                Atención</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_TotTiempoAsignacion --></th>
+ 
+                <th style="WIDTH: 100px" scope="col">
+                <!-- BEGIN Sorter Sorter_TotTiempoSolucion --><span class="Sorter"><a href="{Sort_URL}" id="grdTableroSLAsSorter_TotTiempoSolucion">Manejo de<br>
+                Incidentes -<br>
+                Tiempo de<br>
+                Solución</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_TotTiempoSolucion --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_EFIC_PRES --><span class="Sorter"><a href="{Sort_URL}" id="grdTableroSLAsSorter_EFIC_PRES">Eficiencia<br>
+                Presupuestal</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_EFIC_PRES --></th>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr class="Row">
+                <td>{descripcion}&nbsp;</td> 
+                <td style="TEXT-ALIGN: center"><img id="grdTableroSLAsImg_HERR_EST_COST_{grdTableroSLAs:rowNumber}" alt="" src="{Img_HERR_EST_COST}"><br>
+                  {CumplenHERR_EST_COST}{TotHERR_EST_COST}{HERR_EST_COST}</td> 
+                <td style="TEXT-ALIGN: center"><img id="grdTableroSLAsImg_REQ_SERV_{grdTableroSLAs:rowNumber}" alt="" src="{Img_REQ_SERV}"><br>
+                  {CumplenREQ_SERV}{TotREQ_SERV}{REQ_SERV}</td> 
+                <td style="TEXT-ALIGN: center"><img id="grdTableroSLAsImg_CUMPL_REQ_FUNC_{grdTableroSLAs:rowNumber}" alt="" src="{Img_CUMPL_REQ_FUNC}"><br>
+                  {CumplenCUMPL_REQ_FUNC}{TotCUMPL_REQ_FUNC}{CUMPL_REQ_FUNC}</td> 
+                <td style="TEXT-ALIGN: center"><img id="grdTableroSLAsImg_CALIDAD_PROD_TERM_{grdTableroSLAs:rowNumber}" alt="" src="{Img_CALIDAD_PROD_TERM}"><br>
+                  {CumplenCALIDAD_PROD_TERM}{TotCALIDAD_PROD_TERM}{CALIDAD_PROD_TERM}</td> 
+                <td style="TEXT-ALIGN: center"><img id="grdTableroSLAsImg_RETR_ENTREGABLE_{grdTableroSLAs:rowNumber}" alt="" src="{Img_RETR_ENTREGABLE}"><br>
+                  {CumplenRETR_ENTREGABLE}{TotRETR_ENTREGABLE}{RETR_ENTREGABLE}</td> 
+                <td style="TEXT-ALIGN: center"><img id="grdTableroSLAsImg_CAL_COD_{grdTableroSLAs:rowNumber}" alt="" src="{Img_CAL_COD}"><br>
+                  {CumplenCAL_COD}{TotCAL_COD}{CAL_COD}</td> 
+                <td style="TEXT-ALIGN: center"><img id="grdTableroSLAsImg_DEF_FUG_AMB_PROD_{grdTableroSLAs:rowNumber}" alt="" src="{Img_DEF_FUG_AMB_PROD}"><br>
+                  {CumplenDEF_FUG_AMB_PROD}{TotDEF_FUG_AMB_PROD}{DEF_FUG_AMB_PROD}</td> 
+                <td style="TEXT-ALIGN: center"><img id="grdTableroSLAsImg_Inc_TiempoAsignacion_{grdTableroSLAs:rowNumber}" alt="" src="{Img_Inc_TiempoAsignacion}"><br>
+                  {CumplenInc_TiempoAsignacion}{TotInc_TiempoAsignacion}{Inc_TiempoAsignacion}</td> 
+                <td style="TEXT-ALIGN: center"><img id="grdTableroSLAsImg_Inc_TiempoSolucion_{grdTableroSLAs:rowNumber}" alt="" src="{Img_Inc_TiempoSolucion}"><br>
+                  {CumplenInc_TiempoSolucion}{TotInc_TiempoSolucion}{Inc_TiempoSolucion}</td> 
+                <td style="TEXT-ALIGN: center"><img id="grdTableroSLAsImg_EFIC_PRESUP_{grdTableroSLAs:rowNumber}" alt="" src="{Img_EFIC_PRESUP}"><br>
+                  {CumplenEFIC_PRESUP}{TotEFIC_PRESUP}{EFIC_PRESUP}</td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="11">No hay registros</td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="Footer">
+                <td colspan="11">
+                  <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+                  <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+                    <option selected value="">-</option>
+ {PageSize_Options}
+                  </select>
+ 
+                  <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
+                  <!-- BEGIN First_Off --><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/FirstOff.gif"><!-- END First_Off -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/Prev.gif"></a> <!-- END Prev_On -->
+                  <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+                  <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/Next.gif"></a> <!-- END Next_On -->
+                  <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
+                  <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- END Grid grdTableroSLAs --></td>
+  </tr>
+ 
+  <tr>
+    <td colspan="2">&nbsp; </td>
+  </tr>
+ 
+  <tr>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+ 
+  <tr>
+    <td colspan="2">
+      <!-- BEGIN Panel pnlSLAsCAPC -->
+      <!-- BEGIN Grid grdSLAsCAPC -->
+      <table id="pnlSLAsCAPCgrdSLAsCAPC" class="MainTable" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td valign="top">
+            <table class="Header" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                <td class="th"><strong>Tablero de Niveles de Servicio del CAPC </strong></td> 
+                <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+              </tr>
+            </table>
+ 
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <tr class="Caption">
+                <th style="BORDER-RIGHT: rgb(150,150,150) 1px solid" scope="col">&nbsp;</th>
+ 
+                <th style="BORDER-RIGHT: rgb(150,150,150) 1px solid; TEXT-ALIGN: center; BACKGROUND-COLOR: rgb(218,224,228)" colspan="2" scope="col">Calidad de Productos Terminados<br>
+                (Por entregable de cada Servicio)</th>
+ 
+                <th style="BORDER-RIGHT: rgb(150,150,150) 1px solid; TEXT-ALIGN: center; BACKGROUND-COLOR: rgb(218,224,228)" colspan="4" scope="col">Deductivas por Omisión</th>
+ 
+                <th style="BORDER-RIGHT: rgb(150,150,150) 1px solid; TEXT-ALIGN: center; BACKGROUND-COLOR: rgb(218,224,228)" colspan="4" scope="col">Eficiencia Presupuestal</th>
+ 
+                <th style="BORDER-RIGHT: rgb(150,150,150) 1px solid; TEXT-ALIGN: center; BACKGROUND-COLOR: rgb(218,224,228)" colspan="86" scope="col">Retraso en entregables</th>
+              </tr>
+ 
+              <tr class="Caption">
+                <th style="BORDER-RIGHT: rgb(150,150,150) 1px solid" scope="col">
+                <!-- BEGIN Sorter Sorter_Descripcion --><span class="Sorter"><a href="{Sort_URL}" id="pnlSLAsCAPCgrdSLAsCAPCSorter_Descripcion">Servicio</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Descripcion --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_pctcalidad --><span class="Sorter"><a href="{Sort_URL}" id="pnlSLAsCAPCgrdSLAsCAPCSorter_pctcalidad">Valor de<br>
+                Cumplimiento</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_pctcalidad --></th>
+ 
+                <th style="BORDER-RIGHT: rgb(150,150,150) 1px solid" scope="col">
+                <!-- BEGIN Sorter Sorter_CALIDAD_PROD_TERM --><span class="Sorter"><a href="{Sort_URL}" id="pnlSLAsCAPCgrdSLAsCAPCSorter_CALIDAD_PROD_TERM">Cumplimiento<br>
+                vs. Objetivo</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_CALIDAD_PROD_TERM --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_ReportesCompletos --><span class="Sorter"><a href="{Sort_URL}" id="pnlSLAsCAPCgrdSLAsCAPCSorter_ReportesCompletos">Reportes<br>
+                entregados de<br>
+                manera<br>
+                completa</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_ReportesCompletos --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_SLAsNoReportados --><span class="Sorter"><a href="{Sort_URL}" id="pnlSLAsCAPCgrdSLAsCAPCSorter_SLAsNoReportados">SLAs No<br>
+                Reportados</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_SLAsNoReportados --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_DEDUC_OMISION --><span class="Sorter"><a href="{Sort_URL}" id="pnlSLAsCAPCgrdSLAsCAPCSorter_DEDUC_OMISION">% De<br>
+                Cumplimiento</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_DEDUC_OMISION --></th>
+ 
+                <th style="BORDER-RIGHT: rgb(150,150,150) 1px solid" scope="col">Cumplimiento<br>
+                vs. Objetivo</th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_UnidadesActuales --><span class="Sorter"><a href="{Sort_URL}" id="pnlSLAsCAPCgrdSLAsCAPCSorter_UnidadesActuales">Costo Actual<br>
+                y/o<br>
+                Total de Unidades</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_UnidadesActuales --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_UnidadesAnteriores --><span class="Sorter"><a href="{Sort_URL}" id="pnlSLAsCAPCgrdSLAsCAPCSorter_UnidadesAnteriores">Costo Estimado<br>
+                y/o<br>
+                Total de<br>
+                Unidades<br>
+                Optimizadas</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_UnidadesAnteriores --></th>
+ 
+                <th scope="col">Diferencia</th>
+ 
+                <th style="BORDER-RIGHT: rgb(150,150,150) 1px solid" scope="col">
+                <!-- BEGIN Sorter Sorter_EFIC_PRESUP --><span class="Sorter"><a href="{Sort_URL}" id="pnlSLAsCAPCgrdSLAsCAPCSorter_EFIC_PRESUP">Cumplimiento<br>
+                vs. Objetivo</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_EFIC_PRESUP --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_DiasPlaneados --><span class="Sorter"><a href="{Sort_URL}" id="pnlSLAsCAPCgrdSLAsCAPCSorter_DiasPlaneados">Días Hábiles<br>
+                Planeados</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_DiasPlaneados --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_DiasReales --><span class="Sorter"><a href="{Sort_URL}" id="pnlSLAsCAPCgrdSLAsCAPCSorter_DiasReales">Días Hábiles<br>
+                Reales</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_DiasReales --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_RETR_ENTREGABLE --><span class="Sorter"><a href="{Sort_URL}" id="pnlSLAsCAPCgrdSLAsCAPCSorter_RETR_ENTREGABLE">Valor de Cumplimiento</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_RETR_ENTREGABLE --></th>
+ 
+                <th colspan="83" scope="col">&nbsp;</th>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr class="Row">
+                <td style="BORDER-RIGHT: rgb(150,150,250) 1px solid">{Descripcion}&nbsp;<br>
+                  {agrupador}</td> 
+                <td style="TEXT-ALIGN: center">{pctcalidad}&nbsp;</td> 
+                <td style="BORDER-RIGHT: rgb(150,150,250) 1px solid; TEXT-ALIGN: center">&nbsp;<img id="pnlSLAsCAPCgrdSLAsCAPCimgCALIDAD_PROD_TERM" alt="" src="{imgCALIDAD_PROD_TERM}"></td> 
+                <td style="TEXT-ALIGN: center">{ReportesCompletos}&nbsp;</td> 
+                <td style="TEXT-ALIGN: center">{SLAsNoReportados}&nbsp;</td> 
+                <td style="TEXT-ALIGN: center">{DEDUC_OMISION}&nbsp;</td> 
+                <td style="BORDER-RIGHT: rgb(150,150,250) 1px solid; TEXT-ALIGN: center"><img id="pnlSLAsCAPCgrdSLAsCAPCimgDEDUC_OMISION_{grdSLAsCAPC:rowNumber}" alt="" src="{imgDEDUC_OMISION}"></td> 
+                <td style="TEXT-ALIGN: center">{UnidadesActuales}&nbsp;</td> 
+                <td style="TEXT-ALIGN: center">{UnidadesAnteriores}&nbsp;</td> 
+                <td style="TEXT-ALIGN: center">{Label2}</td> 
+                <td style="BORDER-RIGHT: rgb(150,150,250) 1px solid; TEXT-ALIGN: center"><img id="pnlSLAsCAPCgrdSLAsCAPCimgEFIC_PRESUP_{grdSLAsCAPC:rowNumber}" alt="" src="{imgEFIC_PRESUP}"></td> 
+                <td style="TEXT-ALIGN: center">{DiasPlaneados}&nbsp;</td> 
+                <td style="TEXT-ALIGN: center">{DiasReales}&nbsp;</td> 
+                <td style="TEXT-ALIGN: center">{RETR_ENTREGABLE}&nbsp;</td> 
+                <td style="TEXT-ALIGN: center" colspan="83"><img id="pnlSLAsCAPCgrdSLAsCAPCimgRETR_ENTREGABLE" alt="" src="{imgRETR_ENTREGABLE}"></td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="97">No hay registros</td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="Footer">
+                <td colspan="97">
+                  <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+                  <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+                    <option selected value="">-</option>
+ {PageSize_Options}
+                  </select>
+ 
+                  <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
+                  <!-- BEGIN First_Off --><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/FirstOff.gif"><!-- END First_Off -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/Prev.gif"></a> <!-- END Prev_On -->
+                  <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+                  <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/Next.gif"></a> <!-- END Next_On -->
+                  <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
+                  <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- END Grid grdSLAsCAPC --><!-- END Panel pnlSLAsCAPC --></td>
+  </tr>
+ 
+  <tr>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+ 
+  <tr>
+    <td colspan="2"></td>
+  </tr>
+</table>
+<p><br>
+</p>
+<p><br>
+</p>
+<p><br>
+</p>
+</body>
+</html>

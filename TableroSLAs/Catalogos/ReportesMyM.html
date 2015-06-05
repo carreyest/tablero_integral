@@ -1,0 +1,206 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>ReportesMyM</title>
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
+<link rel="stylesheet" type="text/css" href="../Styles/{CCS_Style}/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="../Styles/{CCS_Style}/jquery-ui.css">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-6ADB6CED
+</script>
+<script src="../ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-A87AC9EE
+</script>
+{page:scriptIncludes}
+<script type="text/javascript">
+//End Include User Scripts
+
+//Common Script Start @1-8BFA436B
+jQuery(function ($) {
+    var features = { };
+    var actions = { };
+    var params = { };
+//End Common Script Start
+
+//Plugin Calls @1-20A81231
+    $('*:ccsControl(ReportesMyM2, Button_Cancel)').ccsBind(function() {
+        this.bind("click", function(){ $("body").data("disableValidation", true); });
+    });
+//End Plugin Calls
+
+//Common Script End @1-562554DE
+});
+//End Common Script End
+
+//End CCS script
+</script>
+</head>
+<body>
+<p>{Header}</p>
+<!-- BEGIN Record ReportesMyMSearch -->
+<form id="ReportesMyMSearch" method="post" name="{HTMLFormName}" action="{Action}">
+  <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+            <td class="th"><strong>Buscar</strong></td> 
+            <td class="HeaderRight"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr id="{@error-block}" class="Error">
+            <td colspan="4">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <td class="th"><label for="ReportesMyMSearchs_Nombre">Nombre</label></td> 
+            <td><input type="text" id="ReportesMyMSearchs_Nombre" maxlength="75" size="50" value="{s_Nombre}" name="{s_Nombre_Name}"></td> 
+            <td class="th"><label for="ReportesMyMSearchs_NombreRDL">Nombre RDL</label></td> 
+            <td><input type="text" id="ReportesMyMSearchs_NombreRDL" maxlength="125" size="50" value="{s_NombreRDL}" name="{s_NombreRDL_Name}"></td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td style="TEXT-ALIGN: right" colspan="4">
+              <!-- BEGIN Button Button_DoSearch --><input type="submit" id="ReportesMyMSearchButton_DoSearch" class="Button" alt="Buscar" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record ReportesMyMSearch --><br>
+<!-- BEGIN Grid ReportesMyM1 -->
+<table id="ReportesMyM1" class="MainTable" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td valign="top">
+      <table class="Header" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td class="HeaderLeft"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+          <td class="th"><strong>Lista de Reportes de Metricas y Mediciones </strong></td> 
+          <td class="HeaderRight"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Row">
+          <td colspan="3">Total de Registros:&nbsp;{ReportesMyM1_TotalRecords}</td>
+        </tr>
+ 
+        <tr class="Caption">
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_Nombre --><span class="Sorter"><a href="{Sort_URL}" id="ReportesMyM1Sorter_Nombre">Nombre</a> 
+          <!-- BEGIN Asc_On --><img alt="Ascendente" src="../Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img alt="Descendente" src="../Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Nombre --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_Descripcion --><span class="Sorter"><a href="{Sort_URL}" id="ReportesMyM1Sorter_Descripcion">Descripcion</a> 
+          <!-- BEGIN Asc_On --><img alt="Ascendente" src="../Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img alt="Descendente" src="../Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Descripcion --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_NombreRDL --><span class="Sorter"><a href="{Sort_URL}" id="ReportesMyM1Sorter_NombreRDL">Nombre RDL</a> 
+          <!-- BEGIN Asc_On --><img alt="Ascendente" src="../Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img alt="Descendente" src="../Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_NombreRDL --></th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr class="Row">
+          <td><a href="{Nombre_Src}" id="ReportesMyM1Nombre_{ReportesMyM1:rowNumber}">{Nombre}</a>&nbsp;</td> 
+          <td>{Descripcion}&nbsp;</td> 
+          <td><a href="{NombreRDL_Src}" id="ReportesMyM1NombreRDL_{ReportesMyM1:rowNumber}">Ver Reporte</a>&nbsp;</td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="3">No hay registros</td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="Footer">
+          <td colspan="3"><a href="{ReportesMyM1_Insert_Src}" id="ReportesMyM1ReportesMyM1_Insert">Agregar Nuevo</a>&nbsp; 
+            <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+            <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+              <option selected value="">-</option>
+ {PageSize_Options}
+            </select>
+ 
+            <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
+            <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/{CCS_Style}/Images/FirstOff.gif"><!-- END First_Off -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/{CCS_Style}/Images/Prev.gif"></a> <!-- END Prev_On -->
+            <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/{CCS_Style}/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+            <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/{CCS_Style}/Images/Next.gif"></a> <!-- END Next_On -->
+            <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
+            <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid ReportesMyM1 --><br>
+<!-- BEGIN Record ReportesMyM2 -->
+<form id="ReportesMyM2" method="post" name="{HTMLFormName}" action="{Action}">
+  <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+            <td class="th"><strong>Agregar/Editar Reporte</strong></td> 
+            <td class="HeaderRight"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr id="ErrorBlock" class="Error">
+            <td colspan="2">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <td class="th"><label for="ReportesMyM2Nombre">Nombre</label></td> 
+            <td><input type="text" id="ReportesMyM2Nombre" maxlength="75" size="50" value="{Nombre}" name="{Nombre_Name}"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><label for="ReportesMyM2Descripcion">Descripcion</label></td> 
+            <td><input type="text" id="ReportesMyM2Descripcion" maxlength="250" size="50" value="{Descripcion}" name="{Descripcion_Name}"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Grupo</td> 
+            <td><input type="text" id="ReportesMyM2grupo" maxlength="70" size="50" value="{grupo}" name="{grupo_Name}"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><label for="ReportesMyM2NombreRDL">Nombre RDL</label></td> 
+            <td><input type="text" id="ReportesMyM2NombreRDL" maxlength="170" size="50" value="{NombreRDL}" name="{NombreRDL_Name}"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Activo</td> 
+            <td><input type="checkbox" id="ReportesMyM2CheckBox1" value="1" name="{CheckBox1_Name}" {CheckBox1}>&nbsp;</td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td style="TEXT-ALIGN: right" colspan="2">
+              <!-- BEGIN Button Button_Insert --><input type="submit" id="ReportesMyM2Button_Insert" class="Button" alt="Agregar" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+              <!-- BEGIN Button Button_Update --><input type="submit" id="ReportesMyM2Button_Update" class="Button" alt="Enviar" value="Enviar" name="{Button_Name}"><!-- END Button Button_Update -->
+              <!-- BEGIN Button Button_Cancel --><input type="submit" id="ReportesMyM2Button_Cancel" class="Button" alt="Cancelar" value="Cancelar" name="{Button_Name}"><!-- END Button Button_Cancel --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record ReportesMyM2 --><br>
+</body>
+</html>

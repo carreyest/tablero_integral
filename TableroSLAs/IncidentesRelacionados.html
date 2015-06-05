@@ -1,0 +1,266 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
+<title>IncidentesRelacionados</title>
+ 
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-2504AB44
+</script>
+<script src="ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-A87AC9EE
+</script>
+{page:scriptIncludes} 
+<script type="text/javascript">
+//End Include User Scripts
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
+</head>
+ 
+<body>
+<p>{Header}</p>
+<p><br>
+</p>
+<table width="100%">
+  <tr>
+    <td>
+      <!-- BEGIN Record mc_universo_cds -->
+      <p><br>
+      </p>
+ 
+      <form name="{HTMLFormName}" id="mc_universo_cds" action="{Action}" method="post">
+        <p><br>
+        </p>
+ 
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Buscar Incidentes</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error" id="{@error-block}">
+                  <td colspan="6">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"><label for="mc_universo_cdss_numero">Paquete</label></td> 
+                  <td><input type="text" name="{s_numero_Name}" id="mc_universo_cdss_numero" size="25" maxlength="25" value="{s_numero}"></td> 
+                  <td class="th"><label for="mc_universo_cdss_mes">Mes</label></td> 
+                  <td>
+                    <select name="{s_mes_Name}" id="mc_universo_cdss_mes">
+                      <option value="">Seleccionar Valor</option>
+                      {s_mes_Options}
+                    </select>
+ </td> 
+                  <td class="th"><label for="mc_universo_cdss_anio">Anio</label></td> 
+                  <td>
+                    <select name="{s_anio_Name}" id="mc_universo_cdss_anio">
+                      <option value="">Seleccionar Valor</option>
+                      {s_anio_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td style="text-align: right;" colspan="6">
+                    <!-- BEGIN Button Button_DoSearch --><input type="submit" name="{Button_Name}" class="Button" id="mc_universo_cdsButton_DoSearch" alt="Buscar" value="Buscar"><!-- END Button Button_DoSearch --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+ 
+        <p><br>
+        </p>
+      </form>
+ 
+      <p>&nbsp;</p>
+ <!-- END Record mc_universo_cds -->
+      <p></p>
+    </td> 
+    <td>&nbsp;</td>
+  </tr>
+ 
+  <tr>
+    <td>
+      <!-- BEGIN EditableGrid EditableGrid1 -->
+      <p></p>
+ 
+      <form name="{HTMLFormName}" id="EditableGrid1" action="{Action}" method="post">
+        <input type="hidden" name="FormState" value="{FormState}">{FormScript} 
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Incidentes con paquetes relacionados por relacionar</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="4">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Caption">
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_id_incidente --><span class="Sorter"><a href="{Sort_URL}" id="EditableGrid1Sorter_id_incidente">Id Incidente</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_id_incidente --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_paquete --><span class="Sorter"><a href="{Sort_URL}" id="EditableGrid1Sorter_paquete">Paquete</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_paquete --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_FechaCarga --><span class="Sorter"><a href="{Sort_URL}" id="EditableGrid1Sorter_FechaCarga">Fecha Asignado</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_FechaCarga --></th>
+ 
+                  <th scope="col">Marcar como principal</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <!-- BEGIN RowError -->
+                <tr class="Error">
+                  <td colspan="4">{Error}</td>
+                </tr>
+                <!-- END RowError -->
+                <tr class="Row">
+                  <td style="background-color:{bgcolorP}">{id_incidente}<input type="hidden" name="{hdIdIncidente_Name}" id="EditableGrid1hdIdIncidente_{EditableGrid1:rowNumber}" value="{hdIdIncidente}"></td> 
+                  <td style="background-color:{bgcolorP}">{paquete}<input type="hidden" name="{hdPaquete_Name}" id="EditableGrid1hdPaquete_{EditableGrid1:rowNumber}" value="{hdPaquete}"></td> 
+                  <td style="background-color:{bgcolorP}">{FechaCarga}</td> 
+                  <td style="background-color:{bgcolorP}">
+                    <!-- BEGIN Panel CheckBox_Delete_Panel --><label for="EditableGrid1CheckBox_Delete_PanelCheckBox_Delete_{EditableGrid1:rowNumber}" style="display: none;">Borrar</label> 
+                    <!-- BEGIN CheckBox CheckBox_Delete --><input type="checkbox" name="{CheckBox_Delete_Name}" id="EditableGrid1CheckBox_Delete_PanelCheckBox_Delete_{EditableGrid1:rowNumber}" value="1" {CheckBox_Delete}><!-- END CheckBox CheckBox_Delete --><!-- END Panel CheckBox_Delete_Panel -->&nbsp;</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="4">No hay registros</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td style="text-align: right;" colspan="4">
+                    <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+                    <select name="{FormName}PageSize" style="vertical-align: middle;" data-grid-size="{FormName}">
+                      <option selected value="">-</option>
+ {PageSize_Options}
+                    </select>
+ 
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/FirstOff.gif"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/Prev.gif"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->
+                    <!-- BEGIN Button Button_Submit --><input type="submit" name="{Button_Name}" class="Button" id="EditableGrid1Button_Submit" alt="Enviar" value="Enviar"><!-- END Button Button_Submit --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+ &nbsp;<br>
+      <p></p>
+ <!-- END EditableGrid EditableGrid1 -->
+      <p></p>
+    </td> 
+    <td style="vertical-align: top;">&nbsp;&nbsp;&nbsp; 
+      <!-- BEGIN Grid Grid1 -->
+      <table class="MainTable" id="Grid1" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td valign="top">
+            <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                <td class="th"><strong>Incidentes Relacionados </strong></td> 
+                <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+              </tr>
+            </table>
+ 
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <tr class="Caption">
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Id --><span class="Sorter"><a href="{Sort_URL}" id="Grid1Sorter_Id">Id</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Id --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Inc_Principal --><span class="Sorter"><a href="{Sort_URL}" id="Grid1Sorter_Inc_Principal">Inc Principal</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Inc_Principal --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Paquete --><span class="Sorter"><a href="{Sort_URL}" id="Grid1Sorter_Paquete">Paquete</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Paquete --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Inc_Secundario --><span class="Sorter"><a href="{Sort_URL}" id="Grid1Sorter_Inc_Secundario">Inc Secundario</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Inc_Secundario --></th>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr class="Row">
+                <td style="background-color:{bgcolorP1}">{Id}&nbsp;</td> 
+                <td style="background-color:{bgcolorP1}">{Inc_Principal}&nbsp;</td> 
+                <td style="background-color:{bgcolorP1}">{Paquete}&nbsp;</td> 
+                <td style="background-color:{bgcolorP1}">{Inc_Secundario}&nbsp;</td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="4">No hay registros</td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="Footer">
+                <td colspan="4">
+                  <!-- BEGIN Navigator Navigator --><span class="Navigator">
+                  <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
+                  <!-- BEGIN First_Off --><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/FirstOff.gif"><!-- END First_Off -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/Prev.gif"></a> <!-- END Prev_On -->
+                  <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+                  <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/Next.gif"></a> <!-- END Next_On -->
+                  <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
+                  <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+ <!-- END Grid Grid1 --><br>
+      <br>
+    </td>
+  </tr>
+</table>
+<p><br>
+</p>
+<p><br>
+</p>
+<br>
+</body>
+</html>

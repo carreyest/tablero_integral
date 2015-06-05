@@ -1,0 +1,377 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
+<title>UniversoDistribucion</title>
+ 
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-2504AB44
+</script>
+<script src="ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-A87AC9EE
+</script>
+{page:scriptIncludes} 
+<script type="text/javascript">
+//End Include User Scripts
+
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
+</head>
+ 
+<body>
+<p>{Header}</p>
+<p><br>
+</p>
+<table width="100%">
+  <tr>
+    <td colspan="2">
+      <!-- BEGIN Record mc_c_proveedor_mc_EfPresu -->
+      <form name="{HTMLFormName}" id="mc_c_proveedor_mc_EfPresu" action="{Action}" method="post">
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Buscar</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error" id="{@error-block}">
+                  <td colspan="12">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"><label for="mc_c_proveedor_mc_EfPresus_id_proveedor">Proveedor</label></td> 
+                  <td>
+                    <select name="{s_id_proveedor_Name}" id="mc_c_proveedor_mc_EfPresus_id_proveedor">
+                      <option value="">Seleccionar Valor</option>
+                      {s_id_proveedor_Options}
+                    </select>
+ </td> 
+                  <td class="th"><label for="mc_c_proveedor_mc_EfPresus_numero">Numero</label></td> 
+                  <td><input type="text" name="{s_numero_Name}" id="mc_c_proveedor_mc_EfPresus_numero" size="25" maxlength="25" value="{s_numero}"></td> 
+                  <td class="th"><label for="mc_c_proveedor_mc_EfPresus_tipo">Tipo</label></td> 
+                  <td>
+                    <select name="{s_tipo_Name}" id="mc_c_proveedor_mc_EfPresus_tipo">
+                      <option value="">Seleccionar Valor</option>
+                      {s_tipo_Options}
+                    </select>
+ </td> 
+                  <td class="th"><label for="mc_c_proveedor_mc_EfPresus_mes">Mes</label></td> 
+                  <td>
+                    <select name="{s_mes_Name}" id="mc_c_proveedor_mc_EfPresus_mes">
+                      <option value="">Seleccionar Valor</option>
+                      {s_mes_Options}
+                    </select>
+ </td> 
+                  <td class="th"><label for="mc_c_proveedor_mc_EfPresus_anio">Año</label></td> 
+                  <td>
+                    <select name="{s_anio_Name}" id="mc_c_proveedor_mc_EfPresus_anio">
+                      <option value="">Seleccionar Valor</option>
+                      {s_anio_Options}
+                    </select>
+ </td> 
+                  <td class="th"><label for="mc_c_proveedor_mc_EfPresus_analista">Analista</label></td> 
+                  <td>
+                    <select name="{s_analista_Name}" id="mc_c_proveedor_mc_EfPresus_analista">
+                      <option value="">Seleccionar Valor</option>
+                      {s_analista_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td style="text-align: right;" colspan="12">
+                    <!-- BEGIN Button Button_DoSearch --><input type="submit" name="{Button_Name}" class="Button" id="mc_c_proveedor_mc_EfPresuButton_DoSearch" alt="Buscar" value="Buscar"><!-- END Button Button_DoSearch --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+ <!-- END Record mc_c_proveedor_mc_EfPresu --></td>
+  </tr>
+ 
+  <tr>
+    <td>
+      <!-- BEGIN EditableGrid mc_universo_cds -->
+      <form name="{HTMLFormName}" id="mc_universo_cds" action="{Action}" method="post">
+        <input type="hidden" name="FormState" value="{FormState}">{FormScript} 
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Distribucion Universo de Incidentes</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td rowspan="1" colspan="10">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Row">
+                  <td rowspan="1" colspan="10">Total de Registros:&nbsp;{TotalRecords}</td>
+                </tr>
+ 
+                <tr class="Caption">
+                  <th scope="col">&nbsp;</th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_id --><span class="Sorter"><a href="{Sort_URL}" id="mc_universo_cdsSorter_id">Id</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_id --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_id_proveedor --><span class="Sorter"><a href="{Sort_URL}" id="mc_universo_cdsSorter_id_proveedor">Proveedor</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_id_proveedor --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_numero --><span class="Sorter"><a href="{Sort_URL}" id="mc_universo_cdsSorter_numero">Numero</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_numero --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_tipo --><span class="Sorter"><a href="{Sort_URL}" id="mc_universo_cdsSorter_tipo">Tipo</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_tipo --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_mes --><span class="Sorter"><a href="{Sort_URL}" id="mc_universo_cdsSorter_mes">Mes</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_mes --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_anio --><span class="Sorter"><a href="{Sort_URL}" id="mc_universo_cdsSorter_anio">Anio</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_anio --></th>
+ 
+                  <th scope="col">No Considerar</th>
+ 
+                  <th rowspan="1" colspan="1" scope="col">
+                  <!-- BEGIN Sorter Sorter_analista --><span class="Sorter"><a href="{Sort_URL}" id="mc_universo_cdsSorter_analista">Analista</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_analista --></th>
+ 
+                  <th scope="col">&nbsp;Medición Cerrada<br>
+                  </th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <!-- BEGIN RowError -->
+                <tr class="Error">
+                  <td rowspan="1" colspan="101">{Error}</td>
+                </tr>
+                <!-- END RowError -->
+                <tr class="Row">
+                  <td rowspan="1" colspan="1">{NumFila}</td> 
+                  <td>{id}<input type="hidden" name="{hdID_Name}" id="mc_universo_cdshdID_{mc_universo_cds:rowNumber}" value="{hdID}"></td> 
+                  <td>{id_proveedor}</td> 
+                  <td>{numero}</td> 
+                  <td>{tipo}</td> 
+                  <td>{mes}</td> 
+                  <td>{anio}</td> 
+                  <td rowspan="1" colspan="1">{descartar_manual}</td> 
+                  <td rowspan="1" colspan="1"><label for="mc_universo_cdsanalista_{mc_universo_cds:rowNumber}" style="display: none;">Analista</label> 
+                    <select name="{analista_Name}" id="mc_universo_cdsanalista_{mc_universo_cds:rowNumber}">
+                      <option value="">Seleccionar Valor</option>
+                      {analista_Options}
+                    </select>
+ </td> 
+                  <td rowspan="1" colspan="1" style="text-align:center"><label for="mc_universo_cdsMedido_{mc_universo_cds:rowNumber}" style="display: none;">CheckBox1</label><input type="checkbox" name="{Medido_Name}" id="mc_universo_cdsMedido_{mc_universo_cds:rowNumber}" value="1" {Medido}></td>
+                </tr>
+ 
+                <tr class="Row">
+                  <td rowspan="1" colspan="9">&nbsp;{notas_manual}</td> 
+                  <td rowspan="1" colspan="1">&nbsp;</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td rowspan="1" colspan="10">No hay registros</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td colspan="2">
+                    <!-- BEGIN Button Button1 --><input type="submit" name="{Button_Name}" class="Button" id="mc_universo_cdsButton1" alt="Button1" value="Cerrar Medicion
+Incidentes"><!-- END Button Button1 --></td> 
+                  <td style="text-align: right;" rowspan="1" colspan="8">
+                    <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+                    <select name="{FormName}PageSize" style="vertical-align: middle;" data-grid-size="{FormName}">
+                      <option value="">-</option>
+ {PageSize_Options}
+                    </select>
+ 
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/FirstOff.gif"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/Prev.gif"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->
+                    <!-- BEGIN Button Button_Submit --><input type="submit" name="{Button_Name}" class="Button" id="mc_universo_cdsButton_Submit" alt="Enviar" value="Guardar" size="20"><!-- END Button Button_Submit --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+ <!-- END EditableGrid mc_universo_cds --></td> 
+    <td>
+      <!-- BEGIN EditableGrid mc_universo_cds1 -->
+      <form name="{HTMLFormName}" id="mc_universo_cds1" action="{Action}" method="post">
+        <input type="hidden" name="FormState" value="{FormState}">{FormScript} 
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Distribucion Universo de Requerimientos</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td rowspan="1" colspan="10">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Row">
+                  <td rowspan="1" colspan="10">Total de Registros:&nbsp;{TotalRecords}</td>
+                </tr>
+ 
+                <tr class="Caption">
+                  <th scope="col">&nbsp;</th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_id --><span class="Sorter"><a href="{Sort_URL}" id="mc_universo_cds1Sorter_id">Id</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_id --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_id_proveedor --><span class="Sorter"><a href="{Sort_URL}" id="mc_universo_cds1Sorter_id_proveedor">Proveedor</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_id_proveedor --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_numero --><span class="Sorter"><a href="{Sort_URL}" id="mc_universo_cds1Sorter_numero">Numero</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_numero --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_tipo --><span class="Sorter"><a href="{Sort_URL}" id="mc_universo_cds1Sorter_tipo">Tipo</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_tipo --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_mes --><span class="Sorter"><a href="{Sort_URL}" id="mc_universo_cds1Sorter_mes">Mes</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_mes --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_anio --><span class="Sorter"><a href="{Sort_URL}" id="mc_universo_cds1Sorter_anio">Anio</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_anio --></th>
+ 
+                  <th scope="col">No Considerar</th>
+ 
+                  <th rowspan="1" colspan="1" scope="col">
+                  <!-- BEGIN Sorter Sorter_analista --><span class="Sorter"><a href="{Sort_URL}" id="mc_universo_cds1Sorter_analista">Analista</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_analista --></th>
+ 
+                  <th scope="col">Medición Cerrada</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <!-- BEGIN RowError -->
+                <tr class="Error">
+                  <td rowspan="1" colspan="100">{Error}</td>
+                </tr>
+                <!-- END RowError -->
+                <tr class="Row">
+                  <td rowspan="1" colspan="1">{NumFila}</td> 
+                  <td>{id}<input type="hidden" name="{hdID_Name}" id="mc_universo_cds1hdID_{mc_universo_cds1:rowNumber}" value="{hdID}"></td> 
+                  <td>{id_proveedor}</td> 
+                  <td>{numero}</td> 
+                  <td>{tipo}</td> 
+                  <td>{mes}</td> 
+                  <td>{anio}</td> 
+                  <td rowspan="1" colspan="1">{descartar_manual}</td> 
+                  <td rowspan="1" colspan="1"><label for="mc_universo_cds1analista_{mc_universo_cds1:rowNumber}" style="display: none;">Analista</label> 
+                    <select name="{analista_Name}" id="mc_universo_cds1analista_{mc_universo_cds1:rowNumber}">
+                      <option value="">Seleccionar Valor</option>
+                      {analista_Options}
+                    </select>
+ </td> 
+                  <td rowspan="1" colspan="1" style="text-align:center">
+                    <div name="Checkbox_Seleccionar">
+                      <input type="checkbox" name="{Medido_Name}" id="mc_universo_cds1Medido_{mc_universo_cds1:rowNumber}" value="1" {Medido}>
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Row">
+                  <td rowspan="1" colspan="9">&nbsp;{notas_manual}</td> 
+                  <td rowspan="1" colspan="1">&nbsp;</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td rowspan="1" colspan="10">No hay registros</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td colspan="2">
+                    <!-- BEGIN Button Button1 --><input type="submit" name="{Button_Name}" class="Button" id="mc_universo_cds1Button1" alt="Button1" value="Cerrar Medición
+Requerimientos"><!-- END Button Button1 --></td> 
+                  <td style="text-align: right;" rowspan="1" colspan="8">
+                    <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+                    <select name="{FormName}PageSize" style="vertical-align: middle;" data-grid-size="{FormName}">
+                      <option value="">-</option>
+ {PageSize_Options}
+                    </select>
+ 
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/FirstOff.gif"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/Prev.gif"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->
+                    <!-- BEGIN Button Button_Submit --><input type="submit" name="{Button_Name}" class="Button" id="mc_universo_cds1Button_Submit" alt="Enviar" value="Grabar" size="20"><!-- END Button Button_Submit --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+ <!-- END EditableGrid mc_universo_cds1 -->&nbsp;</td>
+  </tr>
+</table>
+<p><br>
+<br>
+</p>
+</body>
+</html>

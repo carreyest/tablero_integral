@@ -1,0 +1,536 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<title>CalificaIncidenteCAPC</title>
+ 
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-2504AB44
+</script>
+<script src="ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-A87AC9EE
+</script>
+{page:scriptIncludes} 
+<script type="text/javascript">
+//End Include User Scripts
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
+</head>
+ 
+<body>
+<p>{Header}</p>
+<strong></strong> 
+<table width="100%">
+  <tr>
+    <td colspan="2">
+      <!-- BEGIN Record mc_info_incidentes -->
+      <form name="{HTMLFormName}" id="mc_info_incidentes" action="{Action}" method="post">
+      </form>
+ &nbsp; 
+      <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td valign="top">
+            <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="HeaderLeft"></td> 
+                <td class="th"><strong>Detalle de Incidente:&nbsp; {Id_incidente}&nbsp; de&nbsp;&nbsp; {slCDS}&nbsp; </strong></td> 
+                <td class="HeaderRight"></td>
+              </tr>
+            </table>
+ 
+            <table class="Record" cellspacing="0" cellpadding="0">
+              <tr class="Error">
+                <td colspan="11"><input type="hidden" name="{shId_Proveedor_Name}" id="mc_info_incidentesshId_Proveedor" value="{shId_Proveedor}"></td>
+              </tr>
+              <!-- BEGIN Error -->
+              <tr class="Error">
+                <td colspan="11"><span id="ErrorBlock">{Error}</span></td>
+              </tr>
+              <!-- END Error -->
+              <tr class="Controls">
+                <td><strong>Servicion de Negocio</strong></td> 
+                <td>&nbsp;</td> 
+                <td><strong>Nombre del Producto</strong></td> 
+                <td><strong>Nuevo</strong></td> 
+                <td><strong>Asignado&nbsp;</strong></td> 
+                <td><strong>En Curso&nbsp;</strong></td> 
+                <td><strong>Pendiente&nbsp;</strong></td> 
+                <td><strong>Resuelto&nbsp;</strong></td> 
+                <td><strong>Cerrado</strong></td> 
+                <td><strong>Dictamen</strong></td> 
+                <td>Historial&nbsp;</td>
+              </tr>
+ 
+              <tr class="Controls" style="border-style:solid;border-color: rgb(255, 255, 255); border-width: 1px;">
+                <td>{ServicioNegocio}</td> 
+                <td>&nbsp;</td> 
+                <td style="border-style:solid;border-color: rgb(255, 255, 255); border-width: 1px;">{Aplicacion}</td> 
+                <td style="border-style:solid;border-color: rgb(255, 255, 255); border-width: 1px;">{FechaNuevo}</td> 
+                <td style="border-style:solid;border-color: rgb(255, 255, 255); border-width: 1px;">{FechaAsignado}</td> 
+                <td style="border-style:solid;border-color: rgb(255, 255, 255); border-width: 1px;">{FechaEnCurso}</td> 
+                <td style="border-style:solid;border-color: rgb(255, 255, 255); border-width: 1px;">{FechaPendiente}</td> 
+                <td style="border-style:solid;border-color: rgb(255, 255, 255); border-width: 1px;">{FechaResuelto}</td> 
+                <td style="border-style:solid;border-color: rgb(255, 255, 255); border-width: 1px;">{FechaCerrado}</td> 
+                <td style="border-style:solid;border-color: rgb(255, 255, 255); border-width: 1px;">{Dictamen}&nbsp;</td> 
+                <td>&nbsp;<img id="Image1" onclick="ayudaMostrar('Historial')" alt="" src="Images/ayuda.jpg"></td>
+              </tr>
+ 
+              <tr class="Controls" width="33%">
+                <td colspan="11">
+                  <div id="Historial" style="display: none;">
+                    {slHistorial} 
+                  </div>
+                </td>
+              </tr>
+ 
+              <tr class="Bottom">
+                <td style="text-align: right;" colspan="11"></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+ <!-- END Record mc_info_incidentes --></td>
+  </tr>
+ 
+  <tr>
+    <td>&nbsp; 
+      <!-- BEGIN Record mc_info_incidentes1 -->
+      <form name="{HTMLFormName}" id="mc_info_incidentes1" action="{Action}" method="post">
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"></td> 
+                  <td class="th"><strong>Tiempo de Atención</strong></td> 
+                  <td class="HeaderRight"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="4"><span id="ErrorBlock">{Error}</span></td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"></td> 
+                  <td><strong>Asignado</strong></td> 
+                  <td><strong>En Curso</strong></td> 
+                  <td>&nbsp;<strong>Horas Invertidas</strong></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th" style="width: 280px;">Tiempo de Atención</td> 
+                  <td>{FechaAsignado}</td> 
+                  <td>{FechaEnCurso}</td> 
+                  <td>&nbsp;<label id="mc_lbl_tiempo_atencion">{HorasInvertidas}</label></td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td style="text-align: right;" colspan="4"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+ <!-- END Record mc_info_incidentes1 --></td> 
+    <td rowspan="2">&nbsp; 
+      <!-- BEGIN Record mc_c_aplicacion -->
+      <form name="{HTMLFormName}" id="mc_c_aplicacion" action="{Action}" method="post">
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong></strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error" id="ErrorBlock">
+                  <td colspan="2">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th">Descripción</td> 
+                  <td>{descripcion}</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">{res:severidad}</td> 
+                  <td>{severidad}</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Tiempo Atención&nbsp;</td> 
+                  <td>{lblTiempoAtencion}&nbsp;Horas</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Tiempo Solución</td> 
+                  <td>{lblTiempoSolucion}&nbsp;Horas</td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td colspan="2"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+ <!-- END Record mc_c_aplicacion --></td>
+  </tr>
+ 
+  <tr>
+    <td>
+      <!-- BEGIN Record mc_info_incidentes2 -->
+      <form name="{HTMLFormName}" id="mc_info_incidentes2" action="{Action}" method="post">
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"></td> 
+                  <td class="th"><strong>Tiempo de Solución&nbsp;</strong></td> 
+                  <td class="HeaderRight"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <tr class="Controls">
+                  <td class="th"></td> 
+                  <td><strong>En Curso</strong></td> 
+                  <td><strong>Registro en AVL</strong></td> 
+                  <td><strong>Horas Invertidas</strong></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th" style="width: 280px;">Tiempo del estado "En Curso" y el Registro en AVL</td> 
+                  <td>{FechaEnCurso}</td> 
+                  <td>{lblRegistroAVL}</td> 
+                  <td id="mc_lbl_tiemposolucion" style="text-align: center;">{HorasInvertidas}</td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td style="text-align: right;" colspan="4"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+ <!-- END Record mc_info_incidentes2 --></td>
+  </tr>
+ 
+  <tr>
+    <td>&nbsp; 
+      <!-- BEGIN Grid mc_detalle_incidente_avl -->
+      <table class="MainTable" id="mc_detalle_incidente_avl" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td valign="top">
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <tr class="Caption">
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_ClaveMovimiento --><span class="Sorter"><a href="{Sort_URL}" id="mc_detalle_incidente_avlSorter_ClaveMovimiento">ID Movimiento</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascending" src="Styles/Basic/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/Basic/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_ClaveMovimiento --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_DescMovimiento --><span class="Sorter"><a href="{Sort_URL}" id="mc_detalle_incidente_avlSorter_DescMovimiento">Descripción</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascending" src="Styles/Basic/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/Basic/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_DescMovimiento --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_FechaInicioMov --><span class="Sorter"><a href="{Sort_URL}" id="mc_detalle_incidente_avlSorter_FechaInicioMov">Fecha Inicio</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascending" src="Styles/Basic/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/Basic/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_FechaInicioMov --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_FechaFinMov --><span class="Sorter"><a href="{Sort_URL}" id="mc_detalle_incidente_avlSorter_FechaFinMov">Fecha Fin</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascending" src="Styles/Basic/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/Basic/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_FechaFinMov --></th>
+ 
+                <th scope="col">
+                <p>Horas </p>
+ 
+                <p>Invertidas</p>
+                </th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Paquete --><span class="Sorter"><a href="{Sort_URL}" id="mc_detalle_incidente_avlSorter_Paquete">Paquete</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascending" src="Styles/Basic/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/Basic/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Paquete --></th>
+ 
+                <th colspan="5" scope="col">
+                <p>Fecha </p>
+ 
+                <p>Liberación AVL&nbsp;</p>
+                </th>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr class="Row">
+                <td style="text-align: right;">{ClaveMovimiento}&nbsp;</td> 
+                <td>{DescMovimiento}&nbsp;</td> 
+                <td>{FechaInicioMov}&nbsp;</td> 
+                <td>{FechaFinMov}&nbsp;</td> 
+                <td style="text-align: center;">{Horas}</td> 
+                <!-- BEGIN Panel Panel1 -->
+                <td style="text-align: right;" rowspan="{iRows}">{Paquete}</td> <!-- END Panel Panel1 -->
+                <!-- BEGIN Panel Panel2 -->
+                <td style="text-align: right;" rowspan="{iRows}">{sflAVLG}</td> <!-- END Panel Panel2 -->
+                <td><input type="hidden" name="{sTotalSecPaquete_Name}" id="mc_detalle_incidente_avlsTotalSecPaquete" style="width: 24px; height: 22px;" size="1" value="{sTotalSecPaquete}"></td>
+              </tr>
+ <!-- END Row -->
+              <tr class="Total">
+                <td valign="baseline">&nbsp;</td> 
+                <td>&nbsp; </td> 
+                <td colspan="2">Total Horas en Solución</td> 
+                <td valign="baseline" style="text-align: center;">{TotalHoras} </td>
+              </tr>
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="11">No records</td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="Footer">
+                <td colspan="11">
+                  <!-- BEGIN Navigator Navigator --><span class="Navigator">Records per page 
+                  <select name="{FormName}PageSize" style="vertical-align: middle;" data-grid-size="{FormName}">
+                    <option selected value="">-</option>
+ {PageSize_Options}
+                  </select>
+ 
+                  <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/Basic/Images/First.gif"></a> <!-- END First_On -->
+                  <!-- BEGIN First_Off --><img alt="{First_URL}" src="Styles/Basic/Images/FirstOff.gif"><!-- END First_Off -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="Styles/Basic/Images/Prev.gif"></a> <!-- END Prev_On -->
+                  <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="Styles/Basic/Images/PrevOff.gif"><!-- END Prev_Off -->{Page_Number} of&nbsp;{Total_Pages}&nbsp; 
+                  <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/Basic/Images/Next.gif"></a> <!-- END Next_On -->
+                  <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/Basic/Images/NextOff.gif"><!-- END Next_Off -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/Basic/Images/Last.gif"></a> <!-- END Last_On -->
+                  <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/Basic/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator --></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+ <!-- END Grid mc_detalle_incidente_avl --></td> 
+    <td style="vertical-align: top;">&nbsp; 
+      <!-- BEGIN Record mc_calificacion_incidente -->
+      <form name="{HTMLFormName}" id="mc_calificacion_incidente" action="{Action}" method="post">
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Dictaminar Incidente</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error" id="ErrorBlock">
+                  <td colspan="2">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"><label for="mc_calificacion_incidenteCumple_DISP_SOPORTE">Disponibilidad del Personal de Soporte </label></td> 
+                  <td>
+                    <select name="{Cumple_DISP_SOPORTE_Name}" id="mc_calificacion_incidenteCumple_DISP_SOPORTE">
+                      <option value="">Seleccionar Valor</option>
+                      {Cumple_DISP_SOPORTE_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_calificacion_incidenteCumple_Inc_TiempoAsignacion">Tiempo de Atención</label></td> 
+                  <td>
+                    <select name="{Cumple_Inc_TiempoAsignacion_Name}" id="mc_calificacion_incidenteCumple_Inc_TiempoAsignacion">
+                      <option value="">Seleccionar Valor</option>
+                      {Cumple_Inc_TiempoAsignacion_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_calificacion_incidenteCumple_Inc_TiempoSolucion">Tiempo de Solución</label></td> 
+                  <td>
+                    <select name="{Cumple_Inc_TiempoSolucion_Name}" id="mc_calificacion_incidenteCumple_Inc_TiempoSolucion">
+                      <option value="">Seleccionar Valor</option>
+                      {Cumple_Inc_TiempoSolucion_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_calificacion_incidenteObs_Manuales">Observaciones</label></td> 
+                  <td><textarea name="{Obs_Manuales_Name}" id="mc_calificacion_incidenteObs_Manuales" rows="3" cols="50">{Obs_Manuales}</textarea></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th" rowspan="1" colspan="1">Observaciones CAPC&nbsp;</td> 
+                  <td style="border: 0px currentColor; border-image: none; background-color: rgb(218, 224, 228);" rowspan="1" colspan="1">{ObsCAPC}</td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td style="text-align: right;" colspan="2">
+                    <!-- BEGIN Button Button_Update --><input type="submit" name="{Button_Name}" class="Button" id="mc_calificacion_incidenteButton_Update" alt="Enviar" value="Enviar"><!-- END Button Button_Update --><input type="hidden" name="{severidad_Name}" id="mc_calificacion_incidenteseveridad" value="{severidad}"><input type="hidden" name="{MesReporte_Name}" id="mc_calificacion_incidenteMesReporte" value="{MesReporte}"><input type="hidden" name="{AnioReporte_Name}" id="mc_calificacion_incidenteAnioReporte" value="{AnioReporte}"><input type="hidden" name="{id_servicio_Name}" id="mc_calificacion_incidenteid_servicio" value="{id_servicio}"><input type="hidden" name="{id_proveedor_Name}" id="mc_calificacion_incidenteid_proveedor" value="{id_proveedor}"><input type="hidden" name="{FechaUltMod_Name}" id="mc_calificacion_incidenteFechaUltMod" value="{FechaUltMod}"><input type="hidden" name="{UsrUltMod_Name}" id="mc_calificacion_incidenteUsrUltMod" value="{UsrUltMod}"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+ <!-- END Record mc_calificacion_incidente --><br>
+    </td>
+  </tr>
+ 
+  <tr>
+    <td>&nbsp; 
+      <!-- BEGIN Record mc_info_incidentes3 -->
+      <form name="{HTMLFormName}" id="mc_info_incidentes3" action="{Action}" method="post">
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="4"><span id="ErrorBlock">{Error}</span></td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"><strong>Descripción</strong></td> 
+                  <td><strong>Liberación AVL&nbsp;</strong></td> 
+                  <td><strong>Resuelto</strong></td> 
+                  <td><strong>Horas Invertida<font size="2">s</font></strong></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th" style="width: 280px;"><strong><font size="2">Medición de pruebas concluidas a Resuelto</font></strong></td> 
+                  <td>{slblflAVL}</td> 
+                  <td>{FechaResuelto}</td> 
+                  <td style="text-align: center;">{HorasInvertidas}</td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td style="text-align: right;" colspan="4"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+ <!-- END Record mc_info_incidentes3 --></td> 
+    <td>&nbsp;</td>
+  </tr>
+ 
+  <tr>
+    <td>&nbsp; 
+      <!-- BEGIN Record mc_info_incidentes4 -->
+      <form name="{HTMLFormName}" id="mc_info_incidentes4" action="{Action}" method="post">
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="4"><span id="ErrorBlock">{Error}</span></td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"><strong>Descripción</strong></td> 
+                  <td><strong>En Curso</strong></td> 
+                  <td class="th"><strong>Resuelto&nbsp;</strong></td> 
+                  <td><strong>Horas Invertidas</strong></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th" style="width: 280px;"><strong><font size="2">Tiempo de En Curso a Resuelto</font></strong></td> 
+                  <td>{FechaEnCurso}</td> 
+                  <td class="th">{FechaResuelto}</td> 
+                  <td style="text-align: center;">{HorasInvertidas}</td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td style="text-align: right;" colspan="4"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+ <!-- END Record mc_info_incidentes4 --></td> 
+    <td>
+      <!-- BEGIN Record Final -->
+      <form name="{HTMLFormName}" id="Final" action="{Action}" method="post">
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Total tiempo de Solución</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error" id="ErrorBlock">
+                  <td>{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td style="text-align: center;">
+                    <div id="totalDiv" style="display: none;">
+                      {TotalHorasSolucion} 
+                    </div>
+ 
+                    <div id="totalDiv2" style="display: none;">
+                      {HorasCursoAResuelto} 
+                    </div>
+ 
+                    <div id="totalDivJS">
+                      {tFinal} 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td style="text-align: center;">
+                    <!-- BEGIN ImageLink ImageLink1 --><a href="{ImageLink1}" id="FinalImageLink1"><img width="204" height="203" style="border: 0px currentColor; border-image: none; width: 27px; height: 24px;" alt="{ImageLink1}" src="Images/xls.jpg"></a><!-- END ImageLink ImageLink1 --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+ &nbsp;<!-- END Record Final --></td>
+  </tr>
+ 
+  <tr>
+    <td>&nbsp;</td> 
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<br>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Charts</title>
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
+<link rel="stylesheet" type="text/css" href="../Styles/{CCS_Style}/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="../Styles/{CCS_Style}/jquery-ui.css">
+</head>
+<body>
+<p>{Header}</p>
+<p>
+<table>
+  <tr>
+    <td style="VERTICAL-ALIGN: top" width="330">
+      <!-- BEGIN Record mc_c_metrica -->
+      <form id="mc_c_metrica" method="post" name="{HTMLFormName}" action="{Action}">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Seleccionar Opciones</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                </tr>
+ 
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr id="{@error-block}" class="Error">
+                  <td>{Error}</td> 
+                </tr>
+ <!-- END Error -->
+                <tr class="Controls">
+                  <td>
+                    <!-- BEGIN CheckBoxList s_Acronimo --><input type="checkbox" id="mc_c_metricas_Acronimo_{s_Acronimo:optionNumber}" value="{Value}" name="{s_Acronimo_Name}" {Check}><label for="mc_c_metricas_Acronimo_{s_Acronimo:optionNumber}">{Description}</label><br>
+                    <!-- END CheckBoxList s_Acronimo --></td> 
+                </tr>
+ 
+                <tr>
+                  <td>&nbsp;</td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td>Dato&nbsp;&nbsp;&nbsp; 
+                    <select id="mc_c_metricas_Metrica" name="{s_Metrica_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+ {s_Metrica_Options} 
+                    </select>
+ &nbsp;</td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td><label for="mc_c_metricas_Anio" style="display: inline;">Año&nbsp;&nbsp; </label>&nbsp; 
+                    <select id="mc_c_metricas_Anio" name="{s_Anio_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+ {s_Anio_Options} 
+                    </select>
+ </td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td><label for="mc_c_metricas_Mes" style="display: inline;">Mes&nbsp;&nbsp;&nbsp;</label>
+                    <select name="{s_Mes_Name}" id="mc_c_metricas_Mes">
+                      <option value="0">Todos los Meses</option>
+ {s_Mes_Options}
+                    </select>
+                  </td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td>&nbsp;</td> 
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td style="TEXT-ALIGN: right">
+                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="mc_c_metricaButton_DoSearch" class="Button" alt="Buscar" value="Actualizar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td> 
+                </tr>
+ 
+              </table>
+ </td> 
+          </tr>
+ 
+        </table>
+ 
+      </form>
+ <!-- END Record mc_c_metrica --><br>
+      <p></p>
+ </td> 
+    <td rowspan="4">
+      <p>&nbsp;</p>
+ 
+      <p>{vGrafica}</p>
+ </td> 
+  </tr>
+ 
+  <tr>
+    <td style="VERTICAL-ALIGN: top" width="330">&nbsp;</td> 
+  </tr>
+ 
+  <tr>
+    <td style="VERTICAL-ALIGN: top" width="330">&nbsp;</td> 
+  </tr>
+ 
+  <tr>
+    <td style="VERTICAL-ALIGN: top" width="330">&nbsp;</td> 
+  </tr>
+</table>
+</p>
+</body>
+</html>

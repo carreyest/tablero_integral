@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>ListaSimpleIncidentes</title>
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
+</head>
+<body>
+<p>&nbsp; 
+<table width="100%">
+  <tr>
+    <td>
+      <!-- BEGIN Grid Grid1 -->
+      <h2>Listado Simple de Incidentes</h2>
+ 
+      <table>
+        <tr>
+          <th scope="col">Id Incidente</th>
+ 
+          <th scope="col">Cumple Inc Tiempo Atención</th>
+ 
+          <th scope="col">Cumple Inc Tiempo Solución</th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr>
+          <td>{id_incidente}</td> 
+          <td style="TEXT-ALIGN: right">{cumple_inc_tiempoasignacion}</td> 
+          <td style="TEXT-ALIGN: right">{cumple_inc_tiemposolucion}</td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr>
+          <td colspan="3">No hay registros</td>
+        </tr>
+        <!-- END NoRecords -->
+      </table>
+      <!-- END Grid Grid1 --></td> 
+    <td>&nbsp;</td> 
+    <td>&nbsp;</td> 
+    <td>
+      <!-- BEGIN Grid mc_calificacion_rs_MC -->
+      <h2>&nbsp;Lista de Requerimientos</h2>
+ 
+      <table>
+        <tr>
+          <th scope="col">Id Ppmc</th>
+ 
+          <th scope="col">Uso de una Herramienta de Estimación</th>
+ 
+          <th scope="col">Requisitos de Servicio</th>
+ 
+          <th scope="col">Cumplimiento en Requisitos Funcionale</th>
+ 
+          <th scope="col">Calidad de Productos Terminados</th>
+ 
+          <th scope="col">Retraso en Entregables</th>
+ 
+          <th scope="col">Completar Tareas en Ruta Critica</th>
+ 
+          <th scope="col">Estimación de Proyectos</th>
+ 
+          <th scope="col">Defectos Fugados</th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr>
+          <td style="TEXT-ALIGN: right">{id_ppmc}&nbsp;</td> 
+          <td>{HERR_EST_COST}&nbsp;</td> 
+          <td>{REQ_SERV}&nbsp;</td> 
+          <td>{CUMPL_REQ_FUNC}&nbsp;</td> 
+          <td>{CALIDAD_PROD_TERM}&nbsp;</td> 
+          <td>{RETR_ENTREGABLE}&nbsp;</td> 
+          <td>{COMPL_RUTA_CRITICA}&nbsp;</td> 
+          <td>{EST_PROY}&nbsp;</td> 
+          <td>{DEF_FUG_AMB_PROD}&nbsp;</td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr>
+          <td colspan="9">No hay registros</td>
+        </tr>
+        <!-- END NoRecords -->
+      </table>
+      <!-- END Grid mc_calificacion_rs_MC --><br>
+    </td>
+  </tr>
+</table>
+</p>
+<br>
+</body>
+</html>

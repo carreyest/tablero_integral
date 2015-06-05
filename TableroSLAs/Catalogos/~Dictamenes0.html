@@ -1,0 +1,259 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Dictamenes</title>
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
+<link rel="stylesheet" type="text/css" href="../Styles/{CCS_Style}/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="../Styles/{CCS_Style}/jquery-ui.css">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-6ADB6CED
+</script>
+<script src="../ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-A87AC9EE
+</script>
+{page:scriptIncludes}
+<script type="text/javascript">
+//End Include User Scripts
+
+//End CCS script
+</script>
+</head>
+<body>
+<p>{Header}</p>
+<p>
+<table width="100%">
+  <tr>
+    <td>&nbsp;</td> 
+    <td>
+      <!-- BEGIN Record mc_c_dictamenesSearch -->
+      <form id="mc_c_dictamenesSearch" method="post" name="{HTMLFormName}" action="{Action}">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Buscar</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr id="{@error-block}" class="Error">
+                  <td colspan="8">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"><label for="mc_c_dictamenesSearchs_Codigo">Codigo</label></td> 
+                  <td><input type="text" id="mc_c_dictamenesSearchs_Codigo" maxlength="5" size="5" value="{s_Codigo}" name="{s_Codigo_Name}"></td> 
+                  <td class="th"><label for="mc_c_dictamenesSearchs_SeMideSLA">Se Mide SLA</label></td> 
+                  <td>
+                    <select id="mc_c_dictamenesSearchs_SeMideSLA" name="{s_SeMideSLA_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {s_SeMideSLA_Options}
+                    </select>
+ </td> 
+                  <td class="th"><label for="mc_c_dictamenesSearchs_TipoSLA">Tipo SLA</label></td> 
+                  <td>
+                    <select id="mc_c_dictamenesSearchs_TipoSLA" name="{s_TipoSLA_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {s_TipoSLA_Options}
+                    </select>
+ </td> 
+                  <td class="th"><label for="mc_c_dictamenesSearchs_FugadoProduccion">Fugado Produccion</label></td> 
+                  <td>
+                    <select id="mc_c_dictamenesSearchs_FugadoProduccion" name="{s_FugadoProduccion_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {s_FugadoProduccion_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td style="TEXT-ALIGN: right" colspan="8">
+                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="mc_c_dictamenesSearchButton_DoSearch" class="Button" alt="Buscar" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record mc_c_dictamenesSearch --><br>
+      <!-- BEGIN Grid mc_c_dictamenes -->
+      <table id="mc_c_dictamenes" class="MainTable" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td valign="top">
+            <table class="Header" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td class="HeaderLeft"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                <td class="th"><strong>Lista de dictamenes </strong></td> 
+                <td class="HeaderRight"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td>
+              </tr>
+            </table>
+ 
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <tr class="Caption">
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Id --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_dictamenesSorter_Id">Id</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="../Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="../Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Id --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Codigo --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_dictamenesSorter_Codigo">Código</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="../Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="../Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Codigo --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Descripcion --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_dictamenesSorter_Descripcion">Descripción</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="../Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="../Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Descripcion --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Uso --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_dictamenesSorter_Uso">Uso</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="../Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="../Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Uso --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_SeMideSLA --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_dictamenesSorter_SeMideSLA">Se Mide SLA</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="../Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="../Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_SeMideSLA --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_TipoSLA --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_dictamenesSorter_TipoSLA">Tipo SLA</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="../Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="../Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_TipoSLA --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_FugadoProduccion --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_dictamenesSorter_FugadoProduccion">Fugado Producción</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="../Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="../Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_FugadoProduccion --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Comentarios --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_dictamenesSorter_Comentarios">Comentarios</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="../Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="../Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Comentarios --></th>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr class="Row">
+                <td style="TEXT-ALIGN: right"><a href="{Id_Src}" id="mc_c_dictamenesId_{mc_c_dictamenes:rowNumber}">{Id}</a>&nbsp;</td> 
+                <td>{Codigo}</td> 
+                <td style="WIDTH: 240px">{Descripcion}&nbsp;</td> 
+                <td style="WIDTH: 320px">{Uso}&nbsp;</td> 
+                <td style="TEXT-ALIGN: center" align="center">{SeMideSLA}&nbsp;</td> 
+                <td>&nbsp;{TipoSLA}</td> 
+                <td style="TEXT-ALIGN: center">{FugadoProduccion}&nbsp;</td> 
+                <td style="WIDTH: 320px">{Comentarios}&nbsp;</td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="8">No hay registros</td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="Footer">
+                <td colspan="8"><a href="{mc_c_dictamenes_Insert_Src}" id="mc_c_dictamenesmc_c_dictamenes_Insert">Agregar Nuevo</a>&nbsp; 
+                  <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+                  <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+                    <option selected value="">-</option>
+ {PageSize_Options}
+                  </select>
+ 
+                  <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
+                  <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/{CCS_Style}/Images/FirstOff.gif"><!-- END First_Off -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/{CCS_Style}/Images/Prev.gif"></a> <!-- END Prev_On -->
+                  <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/{CCS_Style}/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+                  <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/{CCS_Style}/Images/Next.gif"></a> <!-- END Next_On -->
+                  <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
+                  <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- END Grid mc_c_dictamenes --><br>
+      <!-- BEGIN Record mc_c_dictamenes1 -->
+      <form id="mc_c_dictamenes1" method="post" name="{HTMLFormName}" action="{Action}">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Editar Dictamenes </strong></td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr id="ErrorBlock" class="Error">
+                  <td colspan="2">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"><label for="mc_c_dictamenes1Codigo">Codigo</label></td> 
+                  <td><input type="text" id="mc_c_dictamenes1Codigo" maxlength="5" size="5" value="{Codigo}" name="{Codigo_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_c_dictamenes1Descripcion">Descripcion</label></td> 
+                  <td><input type="text" id="mc_c_dictamenes1Descripcion" style="HEIGHT: 22px; WIDTH: 418px" maxlength="250" size="50" value="{Descripcion}" name="{Descripcion_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_c_dictamenes1Uso">Uso</label></td> 
+                  <td><textarea id="mc_c_dictamenes1Uso" rows="3" cols="50" name="{Uso_Name}">{Uso}</textarea></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_c_dictamenes1SeMideSLA">Se Mide SLA</label></td> 
+                  <td><input type="checkbox" id="mc_c_dictamenes1SeMideSLA" value="1" name="{SeMideSLA_Name}" {SeMideSLA}></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_c_dictamenes1TipoSLA">Tipo SLA</label></td> 
+                  <td><input type="text" id="mc_c_dictamenes1TipoSLA" maxlength="15" size="15" value="{TipoSLA}" name="{TipoSLA_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_c_dictamenes1FugadoProduccion">Fugado Produccion</label></td> 
+                  <td><input type="checkbox" id="mc_c_dictamenes1FugadoProduccion" value="1" name="{FugadoProduccion_Name}" {FugadoProduccion}></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_c_dictamenes1Comentarios">Comentarios</label></td> 
+                  <td><textarea id="mc_c_dictamenes1Comentarios" rows="3" cols="50" name="{Comentarios_Name}">{Comentarios}</textarea></td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td style="TEXT-ALIGN: right" colspan="2">
+                    <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_c_dictamenes1Button_Insert" class="Button" alt="Agregar" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input type="submit" id="mc_c_dictamenes1Button_Update" class="Button" alt="Enviar" value="Grabar" name="{Button_Name}"><!-- END Button Button_Update --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record mc_c_dictamenes1 --><br>
+    </td> 
+    <td>&nbsp;</td>
+  </tr>
+ 
+  <tr>
+    <td>&nbsp;</td> 
+    <td>&nbsp;</td> 
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</p>
+</body>
+</html>

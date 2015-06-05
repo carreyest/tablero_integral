@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>CargaUniversoCDS</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-2504AB44
+</script>
+<script src="ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-FA240378
+</script>
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/ccs-jquery-ui-calendar.css">
+{page:scriptIncludes}
+<script type="text/javascript">
+//End Include User Scripts
+
+//Common Script Start @1-8BFA436B
+jQuery(function ($) {
+    var features = { };
+    var actions = { };
+    var params = { };
+//End Common Script Start
+
+//Controls Selecting @1-9871A3EC
+    $('body').ccsBind(function() {
+        features["GeneraUniversosFechaCorteInlineDatePicker1"] = $('*:ccsControl(GeneraUniverso, sFechaCorte)');
+    });
+//End Controls Selecting
+
+//Feature Parameters @1-8217913E
+    params["GeneraUniversosFechaCorteInlineDatePicker1"] = { 
+        dateFormat: "dd/MM/yyyy",
+        isWeekend: true
+    };
+//End Feature Parameters
+
+//Feature Init @1-744366E2
+    features["GeneraUniversosFechaCorteInlineDatePicker1"].ccsBind(function() {
+        this.ccsDateTimePicker(params["GeneraUniversosFechaCorteInlineDatePicker1"]);
+    });
+//End Feature Init
+
+//Common Script End @1-562554DE
+});
+//End Common Script End
+
+//End CCS script
+</script>
+</head>
+<body>
+<p>{Header}</p>
+<p>&nbsp; 
+<table width="100%">
+  <tr>
+    <td></td> 
+    <td>
+      <!-- BEGIN Record universo_cds -->
+      <form id="universo_cds" method="post" name="{HTMLFormName}" action="{Action}">
+        <table cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Cargar&nbsp;Universo CDS </strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="6">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"><label for="universo_cdsid_proveedor">CDS</label></td> 
+                  <td>
+                    <select id="universo_cdsid_proveedor" name="{id_proveedor_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {id_proveedor_Options}
+                    </select>
+ </td> 
+                  <td>Mes</td> 
+                  <td>
+                    <select id="universo_cdsmes" name="{mes_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {mes_Options}
+                    </select>
+ </td> 
+                  <td>Año</td> 
+                  <td>
+                    <select id="universo_cdsanio" name="{anio_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {anio_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td colspan="6">Incidentes<br>
+                    <textarea id="universo_cdstxtIncidentes" rows="5" cols="55" name="{txtIncidentes_Name}">{txtIncidentes}</textarea></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td colspan="6">PPMC Aprobados<br>
+                    <textarea id="universo_cdstxtPPMC_Aprobados" rows="5" cols="55" name="{txtPPMC_Aprobados_Name}">{txtPPMC_Aprobados}</textarea></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td colspan="6">PPMC Cerrados<br>
+                    <textarea id="universo_cdstxtPPMC_Cerrados" rows="5" cols="55" name="{txtPPMC_Cerrados_Name}">{txtPPMC_Cerrados}</textarea></td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td colspan="6" align="right">
+                    <!-- BEGIN Button Button_Insert --><input type="submit" id="universo_cdsButton_Insert" class="Button" alt="Agregar" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record universo_cds --></td> 
+    <td></td>
+  </tr>
+ 
+  <tr>
+    <td></td> 
+    <td>
+      <!-- BEGIN Record GeneraUniverso -->
+      <form id="GeneraUniverso" method="post" name="{HTMLFormName}" action="{Action}">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>GeneraUniverso</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr id="ErrorBlock" class="Error">
+                  <td style="FONT-SIZE: 10px" colspan="2">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th">&nbsp;</td> 
+                  <td>{lMensaje}</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="GeneraUniversosMesMedicion">Año y Mes de Medición</label></td> 
+                  <td><input type="text" id="GeneraUniversosMesMedicion" style="HEIGHT: 21px; WIDTH: 38px" size="1" value="{sMesMedicion}" name="{sMesMedicion_Name}">&nbsp;- <input type="text" id="GeneraUniversosAnioMedicion" style="HEIGHT: 21px; WIDTH: 46px" size="1" value="{sAnioMedicion}" name="{sAnioMedicion_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Fecha Cierre&nbsp;</td> 
+                  <td><input type="text" id="GeneraUniversosFechaCorte" value="{sFechaCorte}" name="{sFechaCorte_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Ruta Archivos</td> 
+                  <td><input type="text" id="GeneraUniversosRutaArchivos" size="75" value="{sRutaArchivos}" name="{sRutaArchivos_Name}"></td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td style="TEXT-ALIGN: right" colspan="2">
+                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="GeneraUniversoButton_DoSearch" class="Button" alt="Buscar" value="Generar" name="{Button_Name}" size="20"><!-- END Button Button_DoSearch --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record GeneraUniverso --></td> 
+    <td></td>
+  </tr>
+</table>
+</p>
+</body>
+</html>

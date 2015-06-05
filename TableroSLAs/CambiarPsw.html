@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>CambiarPsw</title>
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
+</head>
+<body>
+<p>{Header}</p>
+<p>
+<!-- BEGIN Record mc_c_usuarios -->
+<form id="mc_c_usuarios" method="post" name="{HTMLFormName}" action="{Action}">
+  <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+            <td class="th"><strong>Actualizar Datos</strong></td> 
+            <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr id="ErrorBlock" class="Error">
+            <td colspan="2">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <td class="th"><label for="mc_c_usuariosClave">Contraseña</label></td> 
+            <td><input type="password" id="mc_c_usuariosClave" maxlength="25" size="25" value="{Clave}" name="{Clave_Name}"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">&nbsp;Nueva Contraseña</td> 
+            <td><input type="text" id="mc_c_usuariosNewPwd" maxlength="25" size="25" value="{NewPwd}" name="{NewPwd_Name}"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">&nbsp;Confirmar Contraseña</td> 
+            <td><input type="text" id="mc_c_usuariosConfirmNewPwd" value="{ConfirmNewPwd}" name="{ConfirmNewPwd_Name}"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><label for="mc_c_usuariosUsrSharePoint">Usr Share Point</label></td> 
+            <td><input type="text" id="mc_c_usuariosUsrSharePoint" maxlength="15" size="15" value="{UsrSharePoint}" name="{UsrSharePoint_Name}"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><label for="mc_c_usuariosPwdSharePoint">Pwd Share Point</label></td> 
+            <td><input type="text" id="mc_c_usuariosPwdSharePoint" maxlength="15" size="15" value="{PwdSharePoint}" name="{PwdSharePoint_Name}"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><label for="mc_c_usuariosCDSDefault">CDSDefault</label></td> 
+            <td><input type="text" id="mc_c_usuariosCDSDefault" maxlength="15" size="15" value="{CDSDefault}" name="{CDSDefault_Name}"></td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td style="TEXT-ALIGN: right" colspan="2">
+              <!-- BEGIN Button Button_Update --><input type="submit" id="mc_c_usuariosButton_Update" class="Button" alt="Enviar" value="Enviar" name="{Button_Name}"><!-- END Button Button_Update --><input type="hidden" id="mc_c_usuariosClave_Shadow" value="{Clave_Shadow}" name="{Clave_Shadow_Name}"></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record mc_c_usuarios --><br>
+</p>
+</body>
+</html>

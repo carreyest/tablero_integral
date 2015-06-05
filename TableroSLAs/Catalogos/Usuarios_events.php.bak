@@ -1,0 +1,265 @@
+<?php
+//BindEvents Method @1-87E7AF4D
+function BindEvents()
+{
+    global $mc_c_usuarios;
+    global $mc_c_usuarios1;
+    global $Panel2;
+    global $Panel1;
+    global $CCSEvents;
+    $mc_c_usuarios->mc_c_usuarios_TotalRecords->CCSEvents["BeforeShow"] = "mc_c_usuarios_mc_c_usuarios_TotalRecords_BeforeShow";
+    $mc_c_usuarios1->Clave->CCSEvents["OnValidate"] = "mc_c_usuarios1_Clave_OnValidate";
+    $mc_c_usuarios1->CCSEvents["BeforeShow"] = "mc_c_usuarios1_BeforeShow";
+    $mc_c_usuarios1->ds->CCSEvents["BeforeBuildInsert"] = "mc_c_usuarios1_ds_BeforeBuildInsert";
+    $mc_c_usuarios1->ds->CCSEvents["BeforeBuildUpdate"] = "mc_c_usuarios1_ds_BeforeBuildUpdate";
+    $Panel2->CCSEvents["BeforeShow"] = "Panel2_BeforeShow";
+    $Panel1->CCSEvents["BeforeShow"] = "Panel1_BeforeShow";
+    $CCSEvents["AfterInitialize"] = "Page_AfterInitialize";
+    $CCSEvents["BeforeShow"] = "Page_BeforeShow";
+    $CCSEvents["BeforeOutput"] = "Page_BeforeOutput";
+    $CCSEvents["BeforeUnload"] = "Page_BeforeUnload";
+}
+//End BindEvents Method
+
+//mc_c_usuarios_mc_c_usuarios_TotalRecords_BeforeShow @8-6BA8FF6B
+function mc_c_usuarios_mc_c_usuarios_TotalRecords_BeforeShow(& $sender)
+{
+    $mc_c_usuarios_mc_c_usuarios_TotalRecords_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $mc_c_usuarios; //Compatibility
+//End mc_c_usuarios_mc_c_usuarios_TotalRecords_BeforeShow
+
+//Retrieve number of records @9-ABE656B4
+    $Component->SetValue($Container->DataSource->RecordsCount);
+//End Retrieve number of records
+
+//Close mc_c_usuarios_mc_c_usuarios_TotalRecords_BeforeShow @8-DACBD85F
+    return $mc_c_usuarios_mc_c_usuarios_TotalRecords_BeforeShow;
+}
+//End Close mc_c_usuarios_mc_c_usuarios_TotalRecords_BeforeShow
+
+//mc_c_usuarios1_Clave_OnValidate @42-5E7248B5
+function mc_c_usuarios1_Clave_OnValidate(& $sender)
+{
+    $mc_c_usuarios1_Clave_OnValidate = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $mc_c_usuarios1; //Compatibility
+//End mc_c_usuarios1_Clave_OnValidate
+
+//Reset Password Validation @43-D640AC00
+    if ($Container->EditMode && ($Container->Clave->GetValue() == "")) {
+        $Component->Errors->Clear();
+    }
+//End Reset Password Validation
+
+//Close mc_c_usuarios1_Clave_OnValidate @42-A9837ECC
+    return $mc_c_usuarios1_Clave_OnValidate;
+}
+//End Close mc_c_usuarios1_Clave_OnValidate
+
+//mc_c_usuarios1_BeforeShow @33-04D2D580
+function mc_c_usuarios1_BeforeShow(& $sender)
+{
+    $mc_c_usuarios1_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $mc_c_usuarios1; //Compatibility
+//End mc_c_usuarios1_BeforeShow
+
+//Preserve Password @35-E31995B4
+    if (!$Component->FormSubmitted) {
+        $Component->Clave_Shadow->SetValue(CCEncryptString($Component->Clave->GetValue(), CCS_ENCRYPTION_KEY_FOR_COOKIE));
+        $Component->Clave->SetValue("");
+    }
+//End Preserve Password
+
+//Close mc_c_usuarios1_BeforeShow @33-C86A5802
+    return $mc_c_usuarios1_BeforeShow;
+}
+//End Close mc_c_usuarios1_BeforeShow
+
+//mc_c_usuarios1_ds_BeforeBuildInsert @33-035B41FF
+function mc_c_usuarios1_ds_BeforeBuildInsert(& $sender)
+{
+    $mc_c_usuarios1_ds_BeforeBuildInsert = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $mc_c_usuarios1; //Compatibility
+//End mc_c_usuarios1_ds_BeforeBuildInsert
+
+//Encrypt Password @37-E8C91460
+    $Component->DataSource->Clave->SetValue(CCEncryptPasswordDB($Component->DataSource->Clave->GetValue()));
+//End Encrypt Password
+
+//Close mc_c_usuarios1_ds_BeforeBuildInsert @33-594D20F0
+    return $mc_c_usuarios1_ds_BeforeBuildInsert;
+}
+//End Close mc_c_usuarios1_ds_BeforeBuildInsert
+
+//mc_c_usuarios1_ds_BeforeBuildUpdate @33-BC6D470E
+function mc_c_usuarios1_ds_BeforeBuildUpdate(& $sender)
+{
+    $mc_c_usuarios1_ds_BeforeBuildUpdate = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $mc_c_usuarios1; //Compatibility
+//End mc_c_usuarios1_ds_BeforeBuildUpdate
+
+//Encrypt Password @39-00CE0602
+    if ("" != $Component->DataSource->Clave->GetValue()) {
+        $Component->DataSource->Clave->SetValue(CCEncryptPasswordDB($Component->DataSource->Clave->GetValue()));
+    } else {
+        $Component->DataSource->Clave->SetValue(CCDecryptString($Component->DataSource->Clave_Shadow->GetValue(), CCS_ENCRYPTION_KEY_FOR_COOKIE));
+    }
+//End Encrypt Password
+
+//Close mc_c_usuarios1_ds_BeforeBuildUpdate @33-9664E17F
+    return $mc_c_usuarios1_ds_BeforeBuildUpdate;
+}
+//End Close mc_c_usuarios1_ds_BeforeBuildUpdate
+
+//Panel2_BeforeShow @32-96696C3D
+function Panel2_BeforeShow(& $sender)
+{
+    $Panel2_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $Panel2; //Compatibility
+//End Panel2_BeforeShow
+
+//Close Panel2_BeforeShow @32-AE7F9FB3
+    return $Panel2_BeforeShow;
+}
+//End Close Panel2_BeforeShow
+
+//Panel1_BeforeShow @3-AAD8AF72
+function Panel1_BeforeShow(& $sender)
+{
+    $Panel1_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $Panel1; //Compatibility
+//End Panel1_BeforeShow
+
+//Panel1UpdatePanel1 Page BeforeShow @47-546243CA
+    global $CCSFormFilter;
+    if ($CCSFormFilter == "Panel1") {
+        $Component->BlockPrefix = "";
+        $Component->BlockSuffix = "";
+    } else {
+        $Component->BlockPrefix = "<div id=\"Panel1\">";
+        $Component->BlockSuffix = "</div>";
+    }
+//End Panel1UpdatePanel1 Page BeforeShow
+
+//Close Panel1_BeforeShow @3-D21EBA68
+    return $Panel1_BeforeShow;
+}
+//End Close Panel1_BeforeShow
+
+//Page_BeforeInitialize @1-31F7EEFA
+function Page_BeforeInitialize(& $sender)
+{
+    $Page_BeforeInitialize = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $Usuarios; //Compatibility
+//End Page_BeforeInitialize
+
+//Panel1UpdatePanel1 PageBeforeInitialize @47-B4F71FC5
+    if (CCGetFromGet("FormFilter") == "Panel1" && CCGetFromGet("IsParamsEncoded") != "true") {
+        global $TemplateEncoding, $CCSIsParamsEncoded;
+        CCConvertDataArrays("UTF-8", $TemplateEncoding);
+        $CCSIsParamsEncoded = true;
+    }
+//End Panel1UpdatePanel1 PageBeforeInitialize
+
+//Close Page_BeforeInitialize @1-23E6A029
+    return $Page_BeforeInitialize;
+}
+//End Close Page_BeforeInitialize
+
+//Page_AfterInitialize @1-5E5E34BB
+function Page_AfterInitialize(& $sender)
+{
+    $Page_AfterInitialize = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $Usuarios; //Compatibility
+//End Page_AfterInitialize
+
+//Close Page_AfterInitialize @1-379D319D
+    return $Page_AfterInitialize;
+}
+//End Close Page_AfterInitialize
+
+//Page_BeforeShow @1-9731030E
+function Page_BeforeShow(& $sender)
+{
+    $Page_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $Usuarios; //Compatibility
+//End Page_BeforeShow
+
+//Panel1UpdatePanel1 Page BeforeShow @47-9F5F0EA1
+    global $CCSFormFilter;
+    if (CCGetFromGet("FormFilter") == "Panel1") {
+        $CCSFormFilter = CCGetFromGet("FormFilter");
+        unset($_GET["FormFilter"]);
+        if (isset($_GET["IsParamsEncoded"])) unset($_GET["IsParamsEncoded"]);
+    }
+//End Panel1UpdatePanel1 Page BeforeShow
+
+//Close Page_BeforeShow @1-4BC230CD
+    return $Page_BeforeShow;
+}
+//End Close Page_BeforeShow
+
+//Page_BeforeOutput @1-C2A35E3B
+function Page_BeforeOutput(& $sender)
+{
+    $Page_BeforeOutput = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $Usuarios; //Compatibility
+//End Page_BeforeOutput
+
+//Panel1UpdatePanel1 PageBeforeOutput @47-0DFF2749
+    global $CCSFormFilter, $Tpl, $main_block;
+    if ($CCSFormFilter == "Panel1") {
+        $main_block = $_SERVER["REQUEST_URI"] . "|" . $Tpl->getvar("/Panel Panel1");
+    }
+//End Panel1UpdatePanel1 PageBeforeOutput
+
+//Close Page_BeforeOutput @1-8964C188
+    return $Page_BeforeOutput;
+}
+//End Close Page_BeforeOutput
+
+//Page_BeforeUnload @1-7CB126CC
+function Page_BeforeUnload(& $sender)
+{
+    $Page_BeforeUnload = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $Usuarios; //Compatibility
+//End Page_BeforeUnload
+
+//Panel1UpdatePanel1 PageBeforeUnload @47-483BFCB6
+    global $Redirect, $CCSFormFilter, $CCSIsParamsEncoded;
+    if ($Redirect && $CCSFormFilter == "Panel1") {
+        if ($CCSIsParamsEncoded) $Redirect = CCAddParam($Redirect, "IsParamsEncoded", "true");
+        $Redirect = CCAddParam($Redirect, "FormFilter", $CCSFormFilter);
+    }
+//End Panel1UpdatePanel1 PageBeforeUnload
+
+//Close Page_BeforeUnload @1-CFAEC742
+    return $Page_BeforeUnload;
+}
+//End Close Page_BeforeUnload
+
+
+?>

@@ -1,0 +1,916 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>PPMCsCrbDetalle</title>
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-2504AB44
+</script>
+<script src="ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-BF56BF64
+</script>
+<link rel="stylesheet" type="text/css" href="Styles/None/ccs-jquery-ui-calendar.css">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/ccs-jquery-ui-calendar.css">
+{page:scriptIncludes}
+<script type="text/javascript">
+//End Include User Scripts
+
+function someFunction(newHREF){
+ ///do stuff
+document.location.href = newHREF;
+
+var mytext = document.getElementById("mc_info_rs_cr_RE_RC_Artef1Nombre"); 
+//mytext.focus(); 
+mytext.focus();
+mytext.select();
+
+}
+
+
+function ufMarcarTodos(){
+        var sDivChecks = document.getElementsByName("CheckBox_Delete_Name");
+        for(var i=0;i<sDivChecks.length;i++){
+                        sDivChecks[i].checked =true;
+                }
+        }
+
+function validaModificacion(obj){
+ var r=confirm("Está seguro de cambiar el nivel de servicio, si no estas seguro pulsa F5");
+}
+
+
+function clearlistbox(lb,opt){
+  for (var i=document.getElementById(lb).options.length-1; i>=0; i--){
+        switch (opt)
+        {
+                case 1:
+        
+                if (document.getElementById(lb).options[i].value != "1" & document.getElementById(lb).options[i].value != "2" & document.getElementById(lb).options[i].value != "4" )
+           {document.getElementById(lb).options[i] = null;}
+                break;
+                case 2:
+        
+                if (document.getElementById(lb).options[i].value != "Control de Cambios" & document.getElementById(lb).options[i].value != "Mantenimiento Menor")
+        {document.getElementById(lb).options[i] = null;}
+                break;
+        }
+
+  }
+ // lb.selectedIndex = -1;
+}
+function ayudaMostrar(obj)
+{
+ 
+        if (document.getElementById("mc_info_rs_ap_ECsTipoRequerimiento").selectedIndex==2 || document.getElementById("mc_info_rs_ap_ECsTipoRequerimiento").selectedIndex==4)
+        {
+            document.getElementById("mc_info_rs_ap_EClbSLA").selectedIndex=1;
+        }
+                else
+                {
+                if (document.getElementById("mc_info_rs_ap_ECsTipoRequerimiento").selectedIndex==3)
+                {
+                    document.getElementById("mc_info_rs_ap_EClbSLA").selectedIndex=1;
+        
+                }
+                        else
+                        {
+                    document.getElementById("mc_info_rs_ap_EClbSLA").selectedIndex=1;
+                
+                        }                       
+        }       
+        
+
+        
+                if ( document.getElementById(obj).style.display == "")
+                {
+                                document.getElementById(obj).style.display="none";
+                }
+                else
+                {
+                        if (document.getElementById("mc_info_rs_ap_ECsTipoRequerimiento").value==1)
+                        {
+                                document.getElementById(obj).style.display="";
+                
+                        }
+                
+                        if (obj=="divEncabezado")
+                        {
+                                document.getElementById(obj).style.display="";
+                        }
+
+                
+                }
+
+MostrarSLA(1);
+CalculaChecks();
+}
+
+
+function CalculaChecks(opt){
+    switch (document.getElementById("mc_info_rs_ap_EClbSLA").selectedIndex){
+    case 1: 
+        // valida el check de CAP Firmada
+        if(!document.getElementById("mc_info_rs_ap_ECCAPFirmada").checked || !document.getElementById("mc_info_rs_ap_ECTPaquetes").checked){
+            document.getElementById("mc_info_rs_ap_ECCumplioRS").selectedIndex=3;
+            document.getElementById("mc_info_rs_ap_ECCumplioHE").selectedIndex=0;
+                }
+        break;
+    case 2:    
+        if(!document.getElementById("mc_info_rs_ap_ECCAPFirmada").checked || !document.getElementById("mc_info_rs_ap_ECTPaquetes").checked){
+            document.getElementById("mc_info_rs_ap_ECCumplioRS").selectedIndex=0;
+            document.getElementById("mc_info_rs_ap_ECCumplioHE").selectedIndex=3;
+        }
+        break;
+    }
+}
+
+function MostrarSLA(opt){
+	
+        document.getElementById("divCRC").style.display="none";
+        document.getElementById("divCRClbl").style.display="none";
+        document.getElementById("divRE").style.display="inline";
+        document.getElementById("divRElbl").style.display="inline";
+        document.getElementById("mc_info_rs_ap_ECCumplioRS").selectedIndex=0;
+        var x=document.getElementById("mc_info_rs_ap_ECButton_Update"); 
+        if(x == null){
+                calificaSLA();
+        }
+        //if (document.getElementById("mc_info_rs_ap_EChExiste").value==1 & opt==0){
+                document.getElementById("DetalleArtefacto").style.display="inline";
+                someFunction('#final');
+        /*
+        } else {
+                if (document.getElementById("mc_info_rs_ap_EChExiste").value==0){
+                        document.getElementById("DetalleArtefacto").style.display="none";
+                } else {
+                        document.getElementById("DetalleArtefacto").style.display="";
+        }
+        }*/
+}
+
+function calificaSLA(){
+    sPct = document.getElementById("mc_info_rs_ap_ECPctMax").value;
+    sDiasHabiles =   document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoHab").value;
+    switch (document.getElementById("mc_info_rs_ap_EClbSLA").selectedIndex){
+        case 1:
+            if(sPct>=1){
+                document.getElementById("mc_info_rs_ap_ECCumplioRS").selectedIndex=3;
+                document.getElementById("mc_info_rs_ap_ECCumplioHE").selectedIndex=0;
+                CalculaChecks();
+            } else {
+                document.getElementById("mc_info_rs_ap_ECCumplioRS").selectedIndex=0;
+                document.getElementById("mc_info_rs_ap_ECCumplioHE").selectedIndex=0;
+            }
+            break;
+        case 2:    
+            if(sDiasHabiles>0){
+                document.getElementById("mc_info_rs_ap_ECCumplioRS").selectedIndex=0;
+                document.getElementById("mc_info_rs_ap_ECCumplioHE").selectedIndex=3;
+                CalculaChecks();
+            } else {
+                document.getElementById("mc_info_rs_ap_ECCumplioRS").selectedIndex=0;
+                document.getElementById("mc_info_rs_ap_ECCumplioHE").selectedIndex=0;
+            }
+            break;
+        }
+}
+
+function mtoMenor(daysDiff,diasHabiles,DiasPlaneados){
+        var aDeductiva=0;
+        if(document.getElementById("mc_info_rs_cr_RE_RC_Artef1DiasHabilesDesviacion").value==""){
+                document.getElementById("mc_info_rs_cr_RE_RC_Artef1DiasHabilesDesviacion").value=0;                                             
+        }                                       
+        if ( document.getElementById("mc_info_rs_cr_RE_RC_Artef1DiasHabilesDesviacion").value >0){
+                document.getElementById("mc_info_rs_ap_ECCumplioHE").selectedIndex=3;                              
+                aDeductiva= (Math.abs(sDiasEstimados)) + ((daysDiff)-diasHabiles);
+                aDeductiva= ((aDeductiva- sDiasEstimados) / sDiasEstimados) * 100 ;                                                                                      
+                document.getElementById("mc_info_rs_cr_RE_RC_Artef1Pct").value= (diasHabiles) ;  //aDeductiva.toFixed(2);
+                if (document.getElementById("mc_info_rs_cr_RE_RC_Artef1DiasNaturalesDesviacion").value>=1 & document.getElementById("mc_info_rs_cr_RE_RC_Artef1DiasNaturalesDesviacion").value<=3){
+                        document.getElementById("mc_info_rs_cr_RE_RC_Artef1lblDeductiva").value=2 ;
+                }
+                if (document.getElementById("mc_info_rs_cr_RE_RC_Artef1DiasNaturalesDesviacion").value>=4 & document.getElementById("mc_info_rs_cr_RE_RC_Artef1DiasNaturalesDesviacion").value<=6){
+                        document.getElementById("mc_info_rs_cr_RE_RC_Artef1lblDeductiva").value=3 ;
+                }
+                if (document.getElementById("mc_info_rs_cr_RE_RC_Artef1DiasNaturalesDesviacion").value>=7 & document.getElementById("mc_info_rs_cr_RE_RC_Artef1DiasNaturalesDesviacion").value<=10){
+                        document.getElementById("mc_info_rs_cr_RE_RC_Artef1lblDeductiva").value=5 ;
+                }
+                if (document.getElementById("mc_info_rs_cr_RE_RC_Artef1DiasNaturalesDesviacion").value > 10){
+                    var dNatDesviacion = document.getElementById("mc_info_rs_cr_RE_RC_Artef1DiasNaturalesDesviacion").value;
+                    if(dNatDesviacion > 35){
+                        //dDeductiva = 30 + ((dNatDesviacion -35)*0.143); 
+                        dDeductiva = 30 +dNatDesviacion *0.143; 
+                    } else {
+                            dDeductiva =  (dNatDesviacion - 5);
+                    }
+                    document.getElementById("mc_info_rs_cr_RE_RC_Artef1lblDeductiva").value= dDeductiva.toFixed(3);
+                } 
+                } else {
+                        document.getElementById("mc_info_rs_ap_ECCumplioHE").selectedIndex=2;                              
+                       document.getElementById("mc_info_rs_cr_RE_RC_Artef1lblDeductiva").value= 0 ;  //aDeductiva.toFixed(2);
+                }
+}
+
+
+function mtoMayor(daysDiff,diasHabiles,DiasPlaneados){
+    // con el SDMA4 se aplican las mismas reglas de menores a los mayores
+    mtoMenor(daysDiff,diasHabiles,DiasPlaneados){
+    /*
+    var aDeductiva=0;
+    if (DiasPlaneados>0){
+        aDeductiva= (Math.abs(DiasPlaneados)) + ((daysDiff)-diasHabiles);
+        aDeductiva= ((aDeductiva- DiasPlaneados) / DiasPlaneados) * 100 ;
+        document.getElementById("mc_info_rs_cr_RE_RC_Artef1Pct").value = aDeductiva.toFixed(2);
+        if (aDeductiva<=10){
+            document.getElementById("mc_info_rs_cr_RE_RC_Artef1lblDeductiva").value=0 ;
+        } else {                               
+            document.getElementById("mc_info_rs_cr_RE_RC_Artef1lblDeductiva").value=5 ;
+            document.getElementById("mc_info_rs_ap_ECCumplioRS").selectedIndex=3                                                       
+        }                 
+        } else {
+        document.getElementById("mc_info_rs_cr_RE_RC_Artef1lblDeductiva").value=0 ;
+        }
+       */
+}
+
+
+function calculaSLA(){
+    sAsignacion = document.getElementById("mc_info_rs_cr_RE_RC_Artef1FechaEstFin").value;
+    sPropuesta = document.getElementById("mc_info_rs_cr_RE_RC_Artef1FechaEntrega").value;
+
+        var daysDiff =0;
+        if(sAsignacion !="" && sPropuesta!=""){
+                aAsignacion = sAsignacion.split("/");
+        aPropuesta = sPropuesta.split("/");
+
+        var dAsignacion = new Date(aAsignacion[2].valueOf(),aAsignacion[1].valueOf()-1,aAsignacion[0].valueOf());
+        var dAsignacion2 = new Date(aAsignacion[2].valueOf(),aAsignacion[1].valueOf()-1,aAsignacion[0].valueOf());
+        var dPropuesta = new Date(aPropuesta[2].valueOf(),aPropuesta[1].valueOf()-1,aPropuesta[0].valueOf());
+        var dPropuesta2= new Date(aPropuesta[2].valueOf(),aPropuesta[1].valueOf()-1,aPropuesta[0].valueOf());
+
+        daysDiff = Math.abs(Math.round((dAsignacion2-dPropuesta)/86400000));
+        } 
+
+    sTipoSLA=document.getElementById("mc_info_rs_ap_EClbSLA").value;
+    sDiasEstimados=document.getElementById("mc_info_rs_ap_ECtxtDiasEstimados").value; 
+    sTipoRequerimiento=document.getElementById("mc_info_rs_ap_ECsTipoRequerimiento").value;
+
+ 
+    //de los días de diferencia solo cuenta los hábiles
+    var sNoHabiles="{lbNoHabil}"; 
+    var aNoHabiles=sNoHabiles.split(","); 
+    var iNoHabiles=0; 
+    for(i=1;i<aNoHabiles.length;i++){ 
+        var sNoHabil=aNoHabiles[i].split("-");
+        var dNoHabil= new Date(sNoHabil[0].valueOf(), sNoHabil[1].valueOf()-1,sNoHabil[2].valueOf() )
+        if(dNoHabil >= dAsignacion && dNoHabil <= dPropuesta ){
+            iNoHabiles=iNoHabiles+1; 
+        }
+    } 
+        
+    var diasHabiles=0;
+    for (var i=0; i<daysDiff; i++) {
+        if((dAsignacion2.getDay()==0) || (dAsignacion2.getDay()==6) ){//si es fin de semana resta los días
+            diasHabiles = diasHabiles + 1;
+        }
+        dAsignacion2.setDate(dAsignacion2.getDate()+1 );
+    }
+         
+    //se restan los dias festivos
+    diasHabiles = diasHabiles+iNoHabiles;
+        //si la fecha de entrega es menor a la estimada los dias son cero
+    if(dAsignacion2>dPropuesta){
+                document.getElementById("mc_info_rs_cr_RE_RC_Artef1DiasHabilesDesviacion").value=0 ;
+                document.getElementById("mc_info_rs_cr_RE_RC_Artef1DiasNaturalesDesviacion").value=0 ;
+                document.getElementById("mc_info_rs_cr_RE_RC_Artef1DiasHabilesReales").value=0 ;
+    } else {
+            if (daysDiff<0) {
+                document.getElementById("mc_info_rs_cr_RE_RC_Artef1DiasHabilesDesviacion").value=0 ;
+                document.getElementById("mc_info_rs_cr_RE_RC_Artef1DiasNaturalesDesviacion").value=0 ;
+                document.getElementById("mc_info_rs_cr_RE_RC_Artef1DiasHabilesReales").value=0 ;
+            } else {
+                document.getElementById("mc_info_rs_cr_RE_RC_Artef1DiasHabilesDesviacion").value=(daysDiff)-diasHabiles ;
+                document.getElementById("mc_info_rs_cr_RE_RC_Artef1DiasNaturalesDesviacion").value=(daysDiff) ;
+                document.getElementById("mc_info_rs_cr_RE_RC_Artef1DiasHabilesReales").value=(Math.abs(sDiasEstimados))+(daysDiff) ;
+            }
+        }             
+    switch (sTipoSLA){                        
+        case "0":  // Ruta Critica        
+            switch (sTipoRequerimiento){
+                case "4": // NUEVO DESARROLLO                        
+                case "2": // SI ES MANTENIMIENTO MAYOR                                                                    
+                    mtoMayor(daysDiff,diasHabiles,sDiasEstimados);      
+                    break;                    
+                case "1": // SI ES CONTROL DE CAMBIOS        
+                    //if (document.getElementById("mc_info_rs_ap_ECsTipoRequerimiento1").value=="2"){ // Mantenimiento Mayor 
+                        mtoMayor(daysDiff,diasHabiles,sDiasEstimados) ;     
+                    //}
+                    //if (document.getElementById("mc_info_rs_ap_ECsTipoRequerimiento1").value=="3"){ // Mantenimiento Menor                                   
+                    //    mtoMenor(daysDiff,diasHabiles,sDiasEstimados) ;     
+                    //}
+                    break;
+            }           
+            break;                                  
+        case "1": //RETRASO EN ENTREGABLES
+            switch (sTipoRequerimiento){                 
+                case "3": // SI ES MANTENIMIENTO MENOR            
+                    mtoMenor(daysDiff,diasHabiles,sDiasEstimados) ;     
+                    break;
+                case "1": // SI ES CONTROL DE CAMBIOS        
+                    //if (document.getElementById("mc_info_rs_ap_ECsTipoRequerimiento1").value=="2"){ // Mantenimiento Mayor                                 
+                    //    mtoMayor(daysDiff,diasHabiles,sDiasEstimados) ;     
+                    //}
+                    //if (document.getElementById("mc_info_rs_ap_ECsTipoRequerimiento1").value=="3"){ // Mantenimiento Menor                                   
+                        mtoMenor(daysDiff,diasHabiles,sDiasEstimados) ;     
+                    //}
+                    break;
+            }           
+        break;
+        }
+        CalculaChecks(2);
+}
+
+//Common Script Start @1-8BFA436B
+jQuery(function ($) {
+    var features = { };
+    var actions = { };
+    var params = { };
+//End Common Script Start
+
+//Controls Selecting @1-2A671755
+    $('body').ccsBind(function() {
+        features["mc_info_rs_ap_ECFechaFirmaCAESInlineDatePicker1"] = $('*:ccsControl(mc_info_rs_ap_EC, FechaFirmaCAES)');
+        features["mc_info_rs_cr_RE_RC_Artef1FechaUltModInlineDatePicker4"] = $('*:ccsControl(mc_info_rs_cr_RE_RC_Artef1, FechaUltMod)');
+        features["mc_info_rs_cr_RE_RC_Artef1FechaEntregaInlineDatePicker2"] = $('*:ccsControl(mc_info_rs_cr_RE_RC_Artef1, FechaEntrega)');
+        features["mc_info_rs_cr_RE_RC_Artef1FechaEstFinJDateTimePicker1"] = $('*:ccsControl(mc_info_rs_cr_RE_RC_Artef1, FechaEstFin)');
+    });
+//End Controls Selecting
+
+//Feature Parameters @1-B944B8C0
+    params["mc_info_rs_ap_ECFechaFirmaCAESInlineDatePicker1"] = { 
+        dateFormat: "ShortDate",
+        isWeekend: true
+    };
+    params["mc_info_rs_cr_RE_RC_Artef1FechaUltModInlineDatePicker4"] = { 
+        dateFormat: "ShortDate",
+        isWeekend: true
+    };
+    params["mc_info_rs_cr_RE_RC_Artef1FechaEntregaInlineDatePicker2"] = { 
+        dateFormat: "ShortDate",
+        isWeekend: true
+    };
+    params["mc_info_rs_cr_RE_RC_Artef1FechaEstFinJDateTimePicker1"] = { 
+        dateFormat: "ShortDate",
+        isWeekend: true
+    };
+//End Feature Parameters
+
+//Feature Init @1-38497CD5
+    features["mc_info_rs_ap_ECFechaFirmaCAESInlineDatePicker1"].ccsBind(function() {
+        this.ccsDateTimePicker(params["mc_info_rs_ap_ECFechaFirmaCAESInlineDatePicker1"]);
+    });
+    features["mc_info_rs_cr_RE_RC_Artef1FechaUltModInlineDatePicker4"].ccsBind(function() {
+        this.ccsDateTimePicker(params["mc_info_rs_cr_RE_RC_Artef1FechaUltModInlineDatePicker4"]);
+    });
+    features["mc_info_rs_cr_RE_RC_Artef1FechaEntregaInlineDatePicker2"].ccsBind(function() {
+        this.ccsDateTimePicker(params["mc_info_rs_cr_RE_RC_Artef1FechaEntregaInlineDatePicker2"]);
+    });
+    features["mc_info_rs_cr_RE_RC_Artef1FechaEstFinJDateTimePicker1"].ccsBind(function() {
+        this.ccsDateTimePicker(params["mc_info_rs_cr_RE_RC_Artef1FechaEstFinJDateTimePicker1"]);
+    });
+//End Feature Init
+
+//mc_info_rs_ap_ECButton_InsertOnClick Event Start @-973690A0
+    actions["mc_info_rs_ap_ECButton_InsertOnClick"] = function (eventType, parameters) {
+        var result = true;
+//End mc_info_rs_ap_ECButton_InsertOnClick Event Start
+
+//Custom Code @141-2A29BDB7
+        // -------------------------
+
+        // -------------------------
+//End Custom Code
+
+//mc_info_rs_ap_ECButton_InsertOnClick Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_info_rs_ap_ECButton_InsertOnClick Event End
+
+//DEL          // -------------------------
+//DEL          calculaDiasPropuesta();
+//DEL          // -------------------------
+
+//mc_info_rs_ap_ECsTipoRequerimientoOnChange Event Start @-1BA04ECE
+    actions["mc_info_rs_ap_ECsTipoRequerimientoOnChange"] = function (eventType, parameters) {
+        var result = true;
+//End mc_info_rs_ap_ECsTipoRequerimientoOnChange Event Start
+
+//Custom Code @65-2A29BDB7
+        // -------------------------
+        calculaDiasPropuesta();
+        // -------------------------
+//End Custom Code
+
+//mc_info_rs_ap_ECsTipoRequerimientoOnChange Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_info_rs_ap_ECsTipoRequerimientoOnChange Event End
+
+//mc_info_rs_ap_ECsTipoRequerimiento1OnChange Event Start @-0B00F9F8
+    actions["mc_info_rs_ap_ECsTipoRequerimiento1OnChange"] = function (eventType, parameters) {
+        var result = true;
+//End mc_info_rs_ap_ECsTipoRequerimiento1OnChange Event Start
+
+//Custom Code @273-2A29BDB7
+        // -------------------------
+        calculaDiasPropuesta();
+        // -------------------------
+//End Custom Code
+
+//mc_info_rs_ap_ECsTipoRequerimiento1OnChange Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_info_rs_ap_ECsTipoRequerimiento1OnChange Event End
+
+//mc_info_rs_cr_RE_RC_Artef1Button_DeleteOnClick Event Start @-A94EAF85
+    actions["mc_info_rs_cr_RE_RC_Artef1Button_DeleteOnClick"] = function (eventType, parameters) {
+        var result = true;
+//End mc_info_rs_cr_RE_RC_Artef1Button_DeleteOnClick Event Start
+
+//Confirmation Message @305-BED55CD3
+        return confirm('Borrar registro?');
+//End Confirmation Message
+
+//mc_info_rs_cr_RE_RC_Artef1Button_DeleteOnClick Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_info_rs_cr_RE_RC_Artef1Button_DeleteOnClick Event End
+
+//Event Binding @1-F676C3A4
+    $('*:ccsControl(mc_info_rs_ap_EC, Button_Insert)').ccsBind(function() {
+        this.bind("click", actions["mc_info_rs_ap_ECButton_InsertOnClick"]);
+    });
+    $('*:ccsControl(mc_info_rs_ap_EC, sTipoRequerimiento)').ccsBind(function() {
+        this.bind("change", actions["mc_info_rs_ap_ECsTipoRequerimientoOnChange"]);
+    });
+    $('*:ccsControl(mc_info_rs_ap_EC, sTipoRequerimiento1)').ccsBind(function() {
+        this.bind("change", actions["mc_info_rs_ap_ECsTipoRequerimiento1OnChange"]);
+    });
+    $('*:ccsControl(mc_info_rs_cr_RE_RC_Artef1, Button_Delete)').ccsBind(function() {
+        this.bind("click", actions["mc_info_rs_cr_RE_RC_Artef1Button_DeleteOnClick"]);
+    });
+//End Event Binding
+
+//Plugin Calls @1-5F287FC2
+    $('*:ccsControl(mc_info_rs_ap_EC, Button_Delete)').ccsBind(function() {
+        this.bind("click", function(){ $("body").data("disableValidation", true); });
+    });
+    $('*:ccsControl(mc_info_rs_cr_RE_RC_Artef1, Button_Delete)').ccsBind(function() {
+        this.bind("click", function(){ $("body").data("disableValidation", true); });
+    });
+//End Plugin Calls
+
+//Common Script End @1-562554DE
+});
+//End Common Script End
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
+</head>
+<body onload="MostrarSLA(0)">
+<p>{Header}&nbsp;&nbsp;</p>
+<table cellspacing="0" cellpadding="0" width="600" border="0">
+  <tr>
+    <td>&nbsp;</td> 
+    <td><a href="{lkAnterior_Src}" id="lkAnterior">{lkAnterior}</a></td> 
+    <td style="TEXT-ALIGN: right">&nbsp;<a href="{lkSiguiente_Src}" id="lkSiguiente">{lkSiguiente}</a></td>
+  </tr>
+ 
+  <tr>
+    <td colspan="3"></td>
+  </tr>
+</table>
+<table width="100%">
+  <tr style="BACKGROUND-COLOR: rgb(218,224,228)">
+    <td><a href="{lkReqFun_Src}" id="lkReqFun">Cumplimiento de<br>
+      Requisitos Funcionales</a></td> 
+    <td><a href="{lkCalidad_Src}" id="lkCalidad">Calidad de<br>
+      Productos Terminados</a></td> 
+    <td><a href="{lkRetEnt_Calidad_Src}" id="lkRetEnt_Calidad">Retraso en Entregables</a></td> 
+    <td><a href="{lkCalidadCod_Src}" id="lkCalidadCod">Calidad de Código</a></td> 
+    <td><a href="{Link1_Src}" id="Link1">Defectos Fugados<br>
+      a Producción</a></td>
+  </tr>
+</table>
+&nbsp; 
+<!-- BEGIN Record mc_info_rs_ap_EC -->
+<form id="mc_info_rs_ap_EC" method="post" name="{HTMLFormName}" action="{Action}">
+  <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+            <td class="th">&nbsp; Calificar Requerimiento&nbsp;&nbsp;&nbsp; {sIdPPMC} {lReportado}</td> 
+            <td class="HeaderRight"><img onclick="ayudaMostrar('divEncabezado')" id="mc_info_rs_ap_ECImage1" style="HEIGHT: 26px; WIDTH: 32px" alt="" src="{Image1}" height="6"></td>
+          </tr>
+        </table>
+ 
+        <div id="divEncabezado">
+          <div>
+          </div>
+ 
+          <table class="Record" cellspacing="0" cellpadding="0">
+            <!-- BEGIN Error -->
+            <tr id="ErrorBlock" class="Error">
+              <td colspan="4"><font size="4">{Error}</font></td>
+            </tr>
+            <!-- END Error -->
+            <tr class="Controls">
+              <td class="th">SLA a Validar&nbsp;<input type="hidden" id="mc_info_rs_ap_EChExiste" value="{hExiste}" name="{hExiste_Name}"></td> 
+              <td><label for="mc_info_rs_ap_EClbSLA" style="display: none;">ListBox1</label> 
+                <select onchange="MostrarSLA(1)" id="mc_info_rs_ap_EClbSLA" name="{lbSLA_Name}">
+                  <option selected value="1">Retraso en Entregables</option>
+                </select>
+ </td> 
+              <td colspan="2">&nbsp; 
+                <table width="100%">
+                  <tr>
+                    <td>&nbsp;&nbsp;CAP Firmada</td> 
+                    <td>&nbsp;<input type="checkbox" onchange="calculaSLA()" id="mc_info_rs_ap_ECCAPFirmada" value="1" name="{CAPFirmada_Name}" {CAPFirmada}></td> 
+                    <td>Todos los paquetes cerrados?&nbsp;</td> 
+                    <td>&nbsp;<input type="checkbox" onchange="calculaSLA()" id="mc_info_rs_ap_ECTPaquetes" value="1" name="{TPaquetes_Name}" {TPaquetes}></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+ 
+            <tr class="Controls">
+              <td class="th">Nombre Proyecto</td> 
+              <td>{sNombreProyecto}<input type="hidden" id="mc_info_rs_ap_EChdNombreProyecto" value="{hdNombreProyecto}" name="{hdNombreProyecto_Name}">&nbsp;</td> 
+              <td>&nbsp;<label for="mc_info_rs_ap_ECFechaAceptacionPropuesta">Fecha Firma CAES</label></td> 
+              <td>&nbsp; 
+                <!-- BEGIN TextBox FechaFirmaCAES --><input type="text" id="mc_info_rs_ap_ECFechaFirmaCAES" value="{FechaFirmaCAES}" name="{FechaFirmaCAES_Name}"><!-- END TextBox FechaFirmaCAES --></td>
+            </tr>
+ 
+            <tr class="Controls">
+              <td class="th">Servicio de Negocio</td> 
+              <td><input type="hidden" id="mc_info_rs_ap_ECsServicioNegocio" value="{sServicioNegocio}" name="{sServicioNegocio_Name}">{lServNegocio} </td> 
+              <td>&nbsp;Días Hábiles Planeados</td> 
+              <td>&nbsp;<input type="text" onblur="calculaSLA()" id="mc_info_rs_ap_ECtxtDiasEstimados" value="{txtDiasEstimados}" name="{txtDiasEstimados_Name}"></td>
+            </tr>
+ 
+            <tr class="Controls">
+              <td class="th">Servicio Contractual</td> 
+              <td><input type="hidden" id="mc_info_rs_ap_EClstServContractual" value="{lstServContractual}" name="{lstServContractual_Name}">{lServContractual} </td> 
+              <td>&nbsp;Máximo Días de Retraso Naturales&nbsp;</td> 
+              <td>&nbsp;<input type="text" id="mc_info_rs_ap_ECMaxDiasRetrasoNat" value="{MaxDiasRetrasoNat}" name="{MaxDiasRetrasoNat_Name}"></td>
+            </tr>
+ 
+            <tr class="Controls">
+              <td class="th">Tipo Requerimiento</td> 
+              <td>
+                <select onchange="ayudaMostrar('divTipoRequerimiento')" id="mc_info_rs_ap_ECsTipoRequerimiento" name="{sTipoRequerimiento_Name}">
+                  <option selected value="">Seleccionar Valor</option>
+                  {sTipoRequerimiento_Options}
+                </select>
+ &nbsp; &nbsp; 
+                <div id="divTipoRequerimiento" style="DISPLAY: none">
+                  <p>Tipo Medición</p>
+                  <select id="mc_info_rs_ap_ECsTipoRequerimiento1" name="{sTipoRequerimiento1_Name}">
+                    <option selected value="">Seleccionar Valor</option>
+                    {sTipoRequerimiento1_Options}
+                  </select>
+ 
+                </div>
+              </td> 
+              <td>&nbsp;Máximo Días de Retraso Hábiles&nbsp;</td> 
+              <td>&nbsp;<input type="text" id="mc_info_rs_ap_ECMaxDiasRetrasoHab" value="{MaxDiasRetrasoHab}" name="{MaxDiasRetrasoHab_Name}"></td>
+            </tr>
+ 
+            <tr class="Controls">
+              <td class="th"><label for="mc_info_rs_ap_ECId_Proveedor">Proveedor</label></td> 
+              <td>{Id_Proveedor}</td> 
+              <td>&nbsp;% Maximo&nbsp;</td> 
+              <td>&nbsp;<input type="text" onblur="calificaSLA()" id="mc_info_rs_ap_ECPctMax" value="{PctMax}" name="{PctMax_Name}"></td>
+            </tr>
+ 
+            <tr class="Controls">
+              <td class="th">Estado</td> 
+              <td>{sEstadoPPMC}<input type="hidden" id="mc_info_rs_ap_EChdEstado" value="{hdEstado}" name="{hdEstado_Name}"></td> 
+              <td>&nbsp; 
+                <div id="divCRClbl" style="DISPLAY: none">
+                  Completar Ruta Critica 
+                </div>
+              </td> 
+              <td>&nbsp; 
+                <div id="divCRC" style="DISPLAY: none">
+                  <select onchange="validaModificacion()" id="mc_info_rs_ap_ECCumplioRS" name="{CumplioRS_Name}">
+                    <option selected value="">Seleccionar Valor</option>
+                    {CumplioRS_Options}
+                  </select>
+ 
+                </div>
+              </td>
+            </tr>
+ 
+            <tr class="Controls">
+              <td class="th">&nbsp;<input type="hidden" id="mc_info_rs_ap_EChIDPPMC" value="{hIDPPMC}" name="{hIDPPMC_Name}"></td> 
+              <td>&nbsp;<label for="mc_info_rs_ap_ECCAPFirmada" style="display: none;">CheckBox1</label></td> 
+              <td>&nbsp; 
+                <div id="divRElbl" style="DISPLAY: inline">
+                  Retraso en Entregables 
+                </div>
+              </td> 
+              <td>&nbsp; 
+                <div id="divRE" style="DISPLAY: inline">
+                  <select onchange="validaModificacion()" id="mc_info_rs_ap_ECCumplioHE" name="{CumplioHE_Name}">
+                    <option selected value="">Seleccionar Valor</option>
+                    {CumplioHE_Options}
+                  </select>
+ 
+                </div>
+              </td>
+            </tr>
+ 
+            <tr class="Controls">
+              <td class="th"><label for="mc_info_rs_ap_ECURLReferencia">URLReferencia</label></td> 
+              <td><textarea id="mc_info_rs_ap_ECURLReferencia" style="HEIGHT: 64px; WIDTH: 385px" rows="3" cols="1" name="{URLReferencia_Name}">{URLReferencia}</textarea></td> 
+              <td>&nbsp;<label for="mc_info_rs_ap_ECObservaciones">Observaciones</label></td> 
+              <td>&nbsp; <textarea id="mc_info_rs_ap_ECObservaciones" style="HEIGHT: 82px; WIDTH: 387px" rows="1" cols="34" name="{Observaciones_Name}">{Observaciones}</textarea></td>
+            </tr>
+ 
+            <tr class="Controls">
+              <td class="th">&nbsp;<input type="hidden" id="mc_info_rs_ap_ECsID" value="{sID}" name="{sID_Name}"></td> 
+              <td>&nbsp;<label for="mc_info_rs_ap_EChdFechaUltMod" style="display: none;">hdFechaUltMod</label><input type="hidden" id="mc_info_rs_ap_EChdFechaUltMod" value="{hdFechaUltMod}" name="{hdFechaUltMod_Name}"></td> 
+              <td>&nbsp;</td> 
+              <td>&nbsp;</td>
+            </tr>
+ 
+            <tr class="Bottom">
+              <td><input type="hidden" id="mc_info_rs_ap_EChdUsrAlta" value="{hdUsrAlta}" name="{hdUsrAlta_Name}">{DatosUltMod}</td> 
+              <td style="TEXT-ALIGN: right"><input type="hidden" id="mc_info_rs_ap_EChdUsrUltMod" value="{hdUsrUltMod}" name="{hdUsrUltMod_Name}">
+                <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_info_rs_ap_ECButton_Insert" class="Button" alt="Agregar" value="Agregar" name="{Button_Name}" size="20"><!-- END Button Button_Insert -->
+                <!-- BEGIN Button Button_Update --><input type="submit" id="mc_info_rs_ap_ECButton_Update" class="Button" alt="Enviar" value="Calificar" name="{Button_Name}" size="20"><!-- END Button Button_Update -->
+                <!-- BEGIN Button Button_Delete --><input type="submit" id="mc_info_rs_ap_ECButton_Delete" class="Button" alt="Borrar" value="Borrar" name="{Button_Name}"><!-- END Button Button_Delete --></td> 
+              <td style="TEXT-ALIGN: right">&nbsp;</td> 
+              <td style="TEXT-ALIGN: right">
+                <!-- BEGIN Button btnCalcular --><input type="submit" id="mc_info_rs_ap_ECbtnCalcular" class="Button" alt="Button1" value="Recalcular" name="{Button_Name}" size="20"><!-- END Button btnCalcular --></td>
+            </tr>
+          </table>
+        </div>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record mc_info_rs_ap_EC -->
+<p>&nbsp;</p>
+&nbsp; &nbsp; 
+<table width="100%">
+  <tr>
+    <td>&nbsp; 
+      <!-- BEGIN Record mc_info_rs_cr_RE_RC_Artef1 -->
+      <form id="mc_info_rs_cr_RE_RC_Artef1" method="post" name="{HTMLFormName}" action="{Action}">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/Austere2/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Agregar/Editar Artefacto </strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/Austere2/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+<a name="final"></a> 
+              <div id="DetalleArtefacto" style="DISPLAY: inline">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr id="ErrorBlock" class="Error">
+                    <td colspan="4">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th">&nbsp;<label for="mc_info_rs_cr_RE_RC_Artef1Nombre">Nombre</label></td> 
+                    <td><input type="text" id="mc_info_rs_cr_RE_RC_Artef1Nombre" maxlength="255" size="50" value="{Nombre}" name="{Nombre_Name}"></td> 
+                    <td><label for="mc_info_rs_cr_RE_RC_Artef1Descripcion">Descripcion</label></td> 
+                    <td>&nbsp; <textarea id="mc_info_rs_cr_RE_RC_Artef1Descripcion" rows="3" cols="50" name="{Descripcion_Name}">{Descripcion}</textarea></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="mc_info_rs_cr_RE_RC_Artef1Nombre"><label for="mc_info_rs_cr_RE_RC_Artef1Formato">Formato</label></label></td> 
+                    <td><input type="text" id="mc_info_rs_cr_RE_RC_Artef1Formato" maxlength="40" size="40" value="{Formato}" name="{Formato_Name}"></td> 
+                    <td><label for="mc_info_rs_cr_RE_RC_Artef1FechaEstFin"><label for="mc_info_rs_cr_RE_RC_Artef1NombreConHerramienta">Nombre&nbsp;en Herramienta</label></label></td> 
+                    <td>&nbsp;<input type="text" id="mc_info_rs_cr_RE_RC_Artef1NombreConHerramienta" style="HEIGHT: 22px; WIDTH: 413px" maxlength="255" size="52" value="{NombreConHerramienta}" name="{NombreConHerramienta_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="mc_info_rs_cr_RE_RC_Artef1Descripcion"><label for="mc_info_rs_cr_RE_RC_Artef1FechaEstFin">Fecha <br>
+                      Compromiso</label></label></td> 
+                    <td><input type="text" onblur="calculaSLA()" id="mc_info_rs_cr_RE_RC_Artef1FechaEstFin" style="HEIGHT: 22px; WIDTH: 146px" maxlength="100" size="10" value="{FechaEstFin}" name="{FechaEstFin_Name}"></td> 
+                    <td><label for="mc_info_rs_cr_RE_RC_Artef1FechaEntrega">Fecha Entrega</label></td> 
+                    <td>&nbsp;<input type="text" onblur="calculaSLA()" id="mc_info_rs_cr_RE_RC_Artef1FechaEntrega" style="HEIGHT: 22px; WIDTH: 132px" maxlength="100" size="10" value="{FechaEntrega}" name="{FechaEntrega_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="mc_info_rs_cr_RE_RC_Artef1Formato"><label for="mc_info_rs_cr_RE_RC_Artef1DiasHabilesDesviacion">Días Hábiles<br>
+                      de Desviacion</label></label></td> 
+                    <td><input type="text" id="mc_info_rs_cr_RE_RC_Artef1DiasHabilesDesviacion" style="HEIGHT: 22px; WIDTH: 147px" maxlength="10" size="6" value="{DiasHabilesDesviacion}" name="{DiasHabilesDesviacion_Name}"></td> 
+                    <td><label for="mc_info_rs_cr_RE_RC_Artef1DiasNaturalesDesviacion">Dias Naturales<br>
+                      de Desviacion</label></td> 
+                    <td>&nbsp;<input type="text" id="mc_info_rs_cr_RE_RC_Artef1DiasNaturalesDesviacion" style="HEIGHT: 22px; WIDTH: 132px" maxlength="10" size="7" value="{DiasNaturalesDesviacion}" name="{DiasNaturalesDesviacion_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">
+                      <p><label for="mc_info_rs_cr_RE_RC_Artef1DiasHabilesReales"><label for="mc_info_rs_cr_RE_RC_Artef1DiasHabilesReales">Dias Habiles<br>
+                      Reales</label></label></p>
+                    </td> 
+                    <td>
+                      <p><input type="text" id="mc_info_rs_cr_RE_RC_Artef1DiasHabilesReales" maxlength="10" size="10" value="{DiasHabilesReales}" name="{DiasHabilesReales_Name}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="mc_info_rs_cr_RE_RC_Artef1lblDeductiva" value="{lblDeductiva}" name="{lblDeductiva_Name}">&nbsp;% Deductiva</p>
+                    </td> 
+                    <td><label for="mc_info_rs_cr_RE_RC_Artef1Comentarios">Comentarios</label></td> 
+                    <td>&nbsp; <textarea id="mc_info_rs_cr_RE_RC_Artef1Comentarios" rows="3" cols="50" name="{Comentarios_Name}">{Comentarios}</textarea></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="mc_info_rs_cr_RE_RC_Artef1FechaAlta">&nbsp;</label></td> 
+                    <td><label for="mc_info_rs_cr_RE_RC_Artef1UsuarioAlta" style="display: none;">Usuario Alta</label><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1UsuarioAlta" value="{UsuarioAlta}" name="{UsuarioAlta_Name}"><label for="mc_info_rs_cr_RE_RC_Artef1FechaUltMod" style="display: none;">Fecha Ult Mod</label><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1FechaUltMod" value="{FechaUltMod}" name="{FechaUltMod_Name}"><label for="mc_info_rs_cr_RE_RC_Artef1UsuarioUltMod" style="display: none;">Usuario Ult Mod</label><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1UsuarioUltMod" value="{UsuarioUltMod}" name="{UsuarioUltMod_Name}"><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1Id_Padre" value="{Id_Padre}" name="{Id_Padre_Name}"></td> 
+                    <td>&nbsp;<label for="mc_info_rs_cr_RE_RC_Artef1Pct" style="display: none;">Pct</label><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1Pct" value="{Pct}" name="{Pct_Name}"><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1ID_PPMC" value="{ID_PPMC}" name="{ID_PPMC_Name}"></td> 
+                    <td>&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td style="TEXT-ALIGN: right" colspan="4">
+                      <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_info_rs_cr_RE_RC_Artef1Button_Insert" class="Button" alt="Agregar" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input type="submit" id="mc_info_rs_cr_RE_RC_Artef1Button_Update" class="Button" alt="Enviar" value="Enviar" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input type="submit" id="mc_info_rs_cr_RE_RC_Artef1Button_Delete" class="Button" alt="Borrar" value="Borrar" name="{Button_Name}"><!-- END Button Button_Delete --></td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record mc_info_rs_cr_RE_RC_Artef1 --></td> 
+    <td>&nbsp; 
+      <div style="WIDTH: 460px; MARGIN-LEFT: 20px">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img alt="" src="Styles/Austere2/Images/Spacer.gif"></td> 
+            <td class="th"><a href="{Link2_Src}" id="Link2" target="_blank">Documentos en el Repositorio</a></td> 
+            <td class="HeaderRight"><img alt="" src="Styles/Austere2/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+        {lDocs} 
+      </div>
+    </td>
+  </tr>
+</table>
+&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; 
+<!-- BEGIN EditableGrid mc_info_rs_cr_RE_RC_Artef2 -->
+<form id="mc_info_rs_cr_RE_RC_Artef2" method="post" name="{HTMLFormName}" action="{Action}">
+  <input type="hidden" value="{FormState}" name="FormState">{FormScript} 
+  <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+            <td class="th"><strong>Lista de Artefactos</strong></td> 
+            <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Grid" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="12">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Caption">
+            <th scope="col">
+            <!-- BEGIN Sorter Sorter_Id --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_rs_cr_RE_RC_Artef2Sorter_Id">Id</a> 
+            <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Id --></th>
+ 
+            <th scope="col">
+            <!-- BEGIN Sorter Sorter_Nombre --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_rs_cr_RE_RC_Artef2Sorter_Nombre">Nombre</a> 
+            <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Nombre --></th>
+ 
+            <th scope="col">
+            <!-- BEGIN Sorter Sorter_Descripcion --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_rs_cr_RE_RC_Artef2Sorter_Descripcion">Descripcion</a> 
+            <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Descripcion --></th>
+ 
+            <th scope="col">
+            <!-- BEGIN Sorter Sorter_Formato --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_rs_cr_RE_RC_Artef2Sorter_Formato">Formato</a> 
+            <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Formato --></th>
+ 
+            <th scope="col">
+            <!-- BEGIN Sorter Sorter_NombreConHerramienta --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_rs_cr_RE_RC_Artef2Sorter_NombreConHerramienta">Nombre Con Herramienta</a> 
+            <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_NombreConHerramienta --></th>
+ 
+            <th scope="col">
+            <!-- BEGIN Sorter Sorter_FechaEstFin --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_rs_cr_RE_RC_Artef2Sorter_FechaEstFin">Fecha Est Fin</a> 
+            <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_FechaEstFin --></th>
+ 
+            <th scope="col">
+            <!-- BEGIN Sorter Sorter_FechaEntrega --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_rs_cr_RE_RC_Artef2Sorter_FechaEntrega">Fecha Entrega</a> 
+            <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_FechaEntrega --></th>
+ 
+            <th scope="col">
+            <!-- BEGIN Sorter Sorter_DiasHabilesDesviacion --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_rs_cr_RE_RC_Artef2Sorter_DiasHabilesDesviacion">Dias Habiles Desviacion</a> 
+            <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_DiasHabilesDesviacion --></th>
+ 
+            <th scope="col">
+            <!-- BEGIN Sorter Sorter_DiasNaturalesDesviacion --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_rs_cr_RE_RC_Artef2Sorter_DiasNaturalesDesviacion">Dias Naturales Desviacion</a> 
+            <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_DiasNaturalesDesviacion --></th>
+ 
+            <th scope="col">
+            <!-- BEGIN Sorter Sorter_PctDeductiva --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_rs_cr_RE_RC_Artef2Sorter_PctDeductiva">Pct Deductiva</a> 
+            <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+            <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_PctDeductiva --></th>
+ 
+            <th scope="col">Comentarios</th>
+ 
+            <th scope="col">Borrar</th>
+          </tr>
+ 
+          <!-- BEGIN Row -->
+          <!-- BEGIN RowError -->
+          <tr class="Error">
+            <td colspan="12">{Error}</td>
+          </tr>
+          <!-- END RowError -->
+          <tr class="Row">
+            <td><a href="{Id_Src}" id="mc_info_rs_cr_RE_RC_Artef2Id_{mc_info_rs_cr_RE_RC_Artef2:rowNumber}">{Id}</a></td> 
+            <td>{Nombre}</td> 
+            <td>{Descripcion}</td> 
+            <td>{Formato}</td> 
+            <td>{NombreConHerramienta}</td> 
+            <td style="TEXT-ALIGN: center">{FechaEstFin}</td> 
+            <td style="TEXT-ALIGN: center">{FechaEntrega}</td> 
+            <td style="TEXT-ALIGN: center">{DiasHabilesDesviacion}</td> 
+            <td style="TEXT-ALIGN: center">{DiasNaturalesDesviacion}</td> 
+            <td style="TEXT-ALIGN: center">{PctDeductiva}</td> 
+            <td style="TEXT-ALIGN: center">{Comentarios}</td> 
+            <td>
+              <!-- BEGIN Panel CheckBox_Delete_Panel --><label for="mc_info_rs_cr_RE_RC_Artef2CheckBox_Delete_PanelCheckBox_Delete_{mc_info_rs_cr_RE_RC_Artef2:rowNumber}" style="display: none;">Borrar</label> 
+              <!-- BEGIN CheckBox CheckBox_Delete --><input type="checkbox" id="mc_info_rs_cr_RE_RC_Artef2CheckBox_Delete_PanelCheckBox_Delete_{mc_info_rs_cr_RE_RC_Artef2:rowNumber}" value="1" name="{CheckBox_Delete_Name}" {CheckBox_Delete}><!-- END CheckBox CheckBox_Delete --><!-- END Panel CheckBox_Delete_Panel -->&nbsp;</td>
+          </tr>
+ <!-- END Row -->
+          <!-- BEGIN NoRecords -->
+          <tr class="NoRecords">
+            <td colspan="12">No hay registros</td>
+          </tr>
+          <!-- END NoRecords -->
+          <tr class="Footer">
+            <td style="TEXT-ALIGN: right" colspan="12">
+              <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+              <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+                <option selected value="">-</option>
+ {PageSize_Options}
+              </select>
+ 
+              <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
+              <!-- BEGIN First_Off --><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/FirstOff.gif"><!-- END First_Off -->
+              <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/Prev.gif"></a> <!-- END Prev_On -->
+              <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+              <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/Next.gif"></a> <!-- END Next_On -->
+              <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
+              <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
+              <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->
+              <!-- BEGIN Button Button_Submit --><input type="submit" id="mc_info_rs_cr_RE_RC_Artef2Button_Submit" class="Button" alt="Enviar" value="Enviar" name="{Button_Name}"><!-- END Button Button_Submit --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END EditableGrid mc_info_rs_cr_RE_RC_Artef2 --><br>
+<br>
+&nbsp; {lErrores} 
+<!-- BEGIN Panel Panel1 -->
+<form enctype="multipart/form-data" method="post" action="{ActionFileUpload}">
+  <input type="hidden" value="100000" name="MAX_FILE_SIZE"><br>
+  <br>
+  <b>Cargar Artefactos de rchivo: </b><br>
+  <input type="file" accept="text/csv" name="userfile">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Procesar">
+</form>
+<!-- END Panel Panel1 -->
+</body>
+</html>

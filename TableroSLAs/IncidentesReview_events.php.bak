@@ -1,0 +1,125 @@
+<?php
+//BindEvents Method @1-EFFD01C8
+function BindEvents()
+{
+    global $grdIncidentesAUT;
+    $grdIncidentesAUT->CCSEvents["BeforeShowRow"] = "grdIncidentesAUT_BeforeShowRow";
+    $grdIncidentesAUT->ds->CCSEvents["BeforeBuildSelect"] = "grdIncidentesAUT_ds_BeforeBuildSelect";
+}
+//End BindEvents Method
+
+//grdIncidentesAUT_BeforeShowRow @2-CDDDD3F5
+function grdIncidentesAUT_BeforeShowRow(& $sender)
+{
+    $grdIncidentesAUT_BeforeShowRow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $grdIncidentesAUT; //Compatibility
+//End grdIncidentesAUT_BeforeShowRow
+
+//Set Row Style @15-982C9472
+    $styles = array("Row", "AltRow");
+    if (count($styles)) {
+        $Style = $styles[($Component->RowNumber - 1) % count($styles)];
+        if (strlen($Style) && !strpos($Style, "="))
+            $Style = (strpos($Style, ":") ? 'style="' : 'class="'). $Style . '"';
+        $Component->Attributes->SetValue("rowStyle", $Style);
+    }
+//End Set Row Style
+
+//Close grdIncidentesAUT_BeforeShowRow @2-ED309058
+    return $grdIncidentesAUT_BeforeShowRow;
+}
+//End Close grdIncidentesAUT_BeforeShowRow
+
+//grdIncidentesAUT_ds_BeforeBuildSelect @2-B4AF5419
+function grdIncidentesAUT_ds_BeforeBuildSelect(& $sender)
+{
+    $grdIncidentesAUT_ds_BeforeBuildSelect = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $grdIncidentesAUT; //Compatibility
+//End grdIncidentesAUT_ds_BeforeBuildSelect
+
+//Advanced Search @35-5A968F01
+    global $grdIncidentesAUT1;
+    $s_keyword = CCGetParam("s_keyword", "");
+    $searchConditions = CCGetParam("searchConditions", "");
+    if (!in_array($searchConditions, array("1", "2", "3"))) $searchConditions = 1;
+    $keywords = split(" ", trim($s_keyword));
+    if (strlen($s_keyword)) {
+        $f_id_incidente = "";
+        $f_id_proveedor = "";
+        $f_id_servicio = "";
+        $f_severidad = "";
+        $f_descartar = "";
+        $f_Paquete = "";
+        // Any of words
+        if ($searchConditions == "1") {
+            foreach ($keywords as $keyword) {
+                $keyword = str_replace("'", "''", trim($keyword));
+                if (strlen($f_id_incidente)) $f_id_incidente .= " OR ";
+                if (strlen($f_id_proveedor)) $f_id_proveedor .= " OR ";
+                if (strlen($f_id_servicio)) $f_id_servicio .= " OR ";
+                if (strlen($f_severidad)) $f_severidad .= " OR ";
+                if (strlen($f_descartar)) $f_descartar .= " OR ";
+                if (strlen($f_Paquete)) $f_Paquete .= " OR ";
+                $f_id_incidente .= "id_incidente LIKE '%" . $keyword . "%'";
+                $f_id_proveedor .= "id_proveedor LIKE '%" . $keyword . "%'";
+                $f_id_servicio .= "id_servicio LIKE '%" . $keyword . "%'";
+                $f_severidad .= "severidad LIKE '%" . $keyword . "%'";
+                $f_descartar .= "descartar LIKE '%" . $keyword . "%'";
+                $f_Paquete .= "Paquete LIKE '%" . $keyword . "%'";
+            }
+        // All words
+        } else if ($searchConditions == "2") {
+            foreach ($keywords as $keyword) {
+                $keyword = str_replace("'", "''", trim($keyword));
+                if (strlen($f_id_incidente)) $f_id_incidente .= " AND ";
+                if (strlen($f_id_proveedor)) $f_id_proveedor .= " AND ";
+                if (strlen($f_id_servicio)) $f_id_servicio .= " AND ";
+                if (strlen($f_severidad)) $f_severidad .= " AND ";
+                if (strlen($f_descartar)) $f_descartar .= " AND ";
+                if (strlen($f_Paquete)) $f_Paquete .= " AND ";
+                $f_id_incidente .= "id_incidente LIKE '%" . $keyword . "%'";
+                $f_id_proveedor .= "id_proveedor LIKE '%" . $keyword . "%'";
+                $f_id_servicio .= "id_servicio LIKE '%" . $keyword . "%'";
+                $f_severidad .= "severidad LIKE '%" . $keyword . "%'";
+                $f_descartar .= "descartar LIKE '%" . $keyword . "%'";
+                $f_Paquete .= "Paquete LIKE '%" . $keyword . "%'";
+            }
+        // Exact Phrase
+        } else if ($searchConditions == "3") {
+            $keyword = str_replace("'", "''", $s_keyword);
+            $f_id_incidente = "id_incidente LIKE '%" . $keyword . "%'";
+            $f_id_proveedor = "id_proveedor LIKE '%" . $keyword . "%'";
+            $f_id_servicio = "id_servicio LIKE '%" . $keyword . "%'";
+            $f_severidad = "severidad LIKE '%" . $keyword . "%'";
+            $f_descartar = "descartar LIKE '%" . $keyword . "%'";
+            $f_Paquete = "Paquete LIKE '%" . $keyword . "%'";
+        }
+        if (strlen($Container->DataSource->Where) > 0 ) $Container->DataSource->Where .= " AND ";
+        $Container->DataSource->Where .= "((" . $f_id_incidente . ")";
+        if (strlen($f_id_proveedor))
+            $Container->DataSource->Where .= " OR (". $f_id_proveedor .")";
+        if (strlen($f_id_servicio))
+            $Container->DataSource->Where .= " OR (". $f_id_servicio .")";
+        if (strlen($f_severidad))
+            $Container->DataSource->Where .= " OR (". $f_severidad .")";
+        if (strlen($f_descartar))
+            $Container->DataSource->Where .= " OR (". $f_descartar .")";
+        if (strlen($f_Paquete))
+            $Container->DataSource->Where .= " OR (". $f_Paquete .")";
+        $Container->DataSource->Where .= " ) ";
+    } else {
+        $grdIncidentesAUT1->s_keyword->SetValue("");
+    }
+//End Advanced Search
+
+//Close grdIncidentesAUT_ds_BeforeBuildSelect @2-E5F9CF55
+    return $grdIncidentesAUT_ds_BeforeBuildSelect;
+}
+//End Close grdIncidentesAUT_ds_BeforeBuildSelect
+
+
+?>

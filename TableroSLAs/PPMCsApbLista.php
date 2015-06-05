@@ -122,7 +122,7 @@ class clsGridgrdReqsApertura { //grdReqsApertura class @3-5176C7F6
     }
 //End Initialize Method
 
-//Show Method @3-EE088B17
+//Show Method @3-60729ADE
     function Show()
     {
         $Tpl = CCGetTemplate($this);
@@ -136,6 +136,7 @@ class clsGridgrdReqsApertura { //grdReqsApertura class @3-5176C7F6
         $this->DataSource->Parameters["urls_id_proveedor"] = CCGetFromGet("s_id_proveedor", NULL);
         $this->DataSource->Parameters["urlsAnalista"] = CCGetFromGet("sAnalista", NULL);
         $this->DataSource->Parameters["urls_numero"] = CCGetFromGet("s_numero", NULL);
+        $this->DataSource->Parameters["urlsSLO"] = CCGetFromGet("sSLO", NULL);
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
@@ -362,7 +363,7 @@ class clsgrdReqsAperturaDataSource extends clsDBcnDisenio {  //grdReqsAperturaDa
     }
 //End SetOrder Method
 
-//Prepare Method @3-2D2ABFFB
+//Prepare Method @3-AA569C2C
     function Prepare()
     {
         global $CCSLocales;
@@ -373,10 +374,11 @@ class clsgrdReqsAperturaDataSource extends clsDBcnDisenio {  //grdReqsAperturaDa
         $this->wp->AddParameter("3", "urls_id_proveedor", ccsInteger, "", "", $this->Parameters["urls_id_proveedor"], CCGetSession("CDSPreferido"), false);
         $this->wp->AddParameter("4", "urlsAnalista", ccsText, "", "", $this->Parameters["urlsAnalista"], "", false);
         $this->wp->AddParameter("5", "urls_numero", ccsInteger, "", "", $this->Parameters["urls_numero"], 0, false);
+        $this->wp->AddParameter("6", "urlsSLO", ccsInteger, "", "", $this->Parameters["urlsSLO"], 0, false);
     }
 //End Prepare Method
 
-//Open Method @3-ABF71B1D
+//Open Method @3-D1FECD72
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -411,7 +413,8 @@ class clsgrdReqsAperturaDataSource extends clsDBcnDisenio {  //grdReqsAperturaDa
         "	AND (u.id_proveedor =" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " OR 0=" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . ")\n" .
         "	AND (u.numero ='" . $this->SQLValue($this->wp->GetDBValue("5"), ccsInteger) . "' OR 0='" . $this->SQLValue($this->wp->GetDBValue("5"), ccsInteger) . "')\n" .
         "	and (tipo='PA' or tipo='AC')\n" .
-        "	and (u.analista like '%" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "%' or u.analista  is null)) cnt";
+        "	and (u.analista like '%" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "%' or u.analista  is null)\n" .
+        "	and u.slo= " . $this->SQLValue($this->wp->GetDBValue("6"), ccsInteger) . " ) cnt";
         $this->SQL = "select cast(u.numero as integer) ID_PPMC, DatosPPMC.NAME, \n" .
         "	isnull(sn.nombre,  DatosPPMC.SERVICIO_NEGOCIO ) SERVICIO_NEGOCIO , \n" .
         "	isnull(t.Descripcion,DatosPPMC.TIPO_REQUERIMIENTO) TIPO_REQUERIMIENTO,\n" .
@@ -443,7 +446,8 @@ class clsgrdReqsAperturaDataSource extends clsDBcnDisenio {  //grdReqsAperturaDa
         "	AND (u.id_proveedor =" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " OR 0=" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . ")\n" .
         "	AND (u.numero ='" . $this->SQLValue($this->wp->GetDBValue("5"), ccsInteger) . "' OR 0='" . $this->SQLValue($this->wp->GetDBValue("5"), ccsInteger) . "')\n" .
         "	and (tipo='PA' or tipo='AC')\n" .
-        "	and (u.analista like '%" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "%' or u.analista  is null)";
+        "	and (u.analista like '%" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "%' or u.analista  is null)\n" .
+        "	and u.slo= " . $this->SQLValue($this->wp->GetDBValue("6"), ccsInteger) . " ";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
@@ -512,7 +516,7 @@ class clsRecordgrsBusca { //grsBusca Class @21-B7E4B908
     // Class variables
 //End Variables
 
-//Class_Initialize Event @21-5929080C
+//Class_Initialize Event @21-AB636922
     function clsRecordgrsBusca($RelativePath, & $Parent)
     {
 
@@ -586,6 +590,9 @@ class clsRecordgrsBusca { //grsBusca Class @21-B7E4B908
             $this->sAnalista->DataSource->Where = 
                  $this->sAnalista->DataSource->wp->Criterion[1];
             $this->sAnalista->DataSource->Order = "Usuario";
+            $this->sSLO = new clsControl(ccsCheckBox, "sSLO", "sSLO", ccsInteger, "", CCGetRequestParam("sSLO", $Method, NULL), $this);
+            $this->sSLO->CheckedValue = $this->sSLO->GetParsedValue(1);
+            $this->sSLO->UncheckedValue = $this->sSLO->GetParsedValue(0);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->s_id_proveedor->Value) && !strlen($this->s_id_proveedor->Value) && $this->s_id_proveedor->Value !== false)
                     $this->s_id_proveedor->SetText(CCGetSession("CDSPreferido",""));
@@ -593,12 +600,14 @@ class clsRecordgrsBusca { //grsBusca Class @21-B7E4B908
                     $this->s_mesparam->SetText(date("m",mktime(0,0,0,date("m"),date("d")-45,date("Y"))));
                 if(!is_array($this->s_anioparam->Value) && !strlen($this->s_anioparam->Value) && $this->s_anioparam->Value !== false)
                     $this->s_anioparam->SetText(date("Y",mktime(0,0,0,date("m")-1,date("d"),date("Y"))));
+                if(!is_array($this->sSLO->Value) && !strlen($this->sSLO->Value) && $this->sSLO->Value !== false)
+                    $this->sSLO->SetValue(false);
             }
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @21-2416AA6E
+//Validate Method @21-18F6CD14
     function Validate()
     {
         global $CCSLocales;
@@ -609,17 +618,19 @@ class clsRecordgrsBusca { //grsBusca Class @21-B7E4B908
         $Validation = ($this->s_mesparam->Validate() && $Validation);
         $Validation = ($this->s_anioparam->Validate() && $Validation);
         $Validation = ($this->sAnalista->Validate() && $Validation);
+        $Validation = ($this->sSLO->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->s_id_proveedor->Errors->Count() == 0);
         $Validation =  $Validation && ($this->s_numero->Errors->Count() == 0);
         $Validation =  $Validation && ($this->s_mesparam->Errors->Count() == 0);
         $Validation =  $Validation && ($this->s_anioparam->Errors->Count() == 0);
         $Validation =  $Validation && ($this->sAnalista->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->sSLO->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @21-CB296157
+//CheckErrors Method @21-D489604E
     function CheckErrors()
     {
         $errors = false;
@@ -628,6 +639,7 @@ class clsRecordgrsBusca { //grsBusca Class @21-B7E4B908
         $errors = ($errors || $this->s_mesparam->Errors->Count());
         $errors = ($errors || $this->s_anioparam->Errors->Count());
         $errors = ($errors || $this->sAnalista->Errors->Count());
+        $errors = ($errors || $this->sSLO->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -666,7 +678,7 @@ class clsRecordgrsBusca { //grsBusca Class @21-B7E4B908
     }
 //End Operation Method
 
-//Show Method @21-37D806B5
+//Show Method @21-18485925
     function Show()
     {
         global $CCSUseAmp;
@@ -699,6 +711,7 @@ class clsRecordgrsBusca { //grsBusca Class @21-B7E4B908
             $Error = ComposeStrings($Error, $this->s_mesparam->Errors->ToString());
             $Error = ComposeStrings($Error, $this->s_anioparam->Errors->ToString());
             $Error = ComposeStrings($Error, $this->sAnalista->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->sSLO->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -722,6 +735,7 @@ class clsRecordgrsBusca { //grsBusca Class @21-B7E4B908
         $this->s_mesparam->Show();
         $this->s_anioparam->Show();
         $this->sAnalista->Show();
+        $this->sSLO->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }

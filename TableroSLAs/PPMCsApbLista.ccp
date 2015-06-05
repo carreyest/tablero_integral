@@ -36,7 +36,8 @@ where (mes = {s_mesparam} or {s_mesparam}=0)
 	AND (u.id_proveedor ={s_id_proveedor} OR 0={s_id_proveedor})
 	AND (u.numero ='{s_numero}' OR 0='{s_numero}')
 	and (tipo='PA' or tipo='AC')
-	and (u.analista like '%{sAnalista}%' or u.analista  is null)" pageSizeLimit="100" pageSize="True" wizardCaption="Requerimientos de Apertura" wizardThemeApplyTo="Page" wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No hay registros" wizardGridPagingType="Simple" wizardUseSearch="False" wizardAddNbsp="True" gridTotalRecords="False" wizardAddPanels="False" wizardType="Grid" wizardUseInterVariables="False" addTemplatePanel="False" changedCaptionGrid="True" gridExtendedHTML="False" PathID="grdReqsApertura" wizardAllowSorting="True">
+	and (u.analista like '%{sAnalista}%' or u.analista  is null)
+	and u.slo= {sSLO} " pageSizeLimit="100" pageSize="True" wizardCaption="Requerimientos de Apertura" wizardThemeApplyTo="Page" wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No hay registros" wizardGridPagingType="Simple" wizardUseSearch="False" wizardAddNbsp="True" gridTotalRecords="False" wizardAddPanels="False" wizardType="Grid" wizardUseInterVariables="False" addTemplatePanel="False" changedCaptionGrid="True" gridExtendedHTML="False" PathID="grdReqsApertura" wizardAllowSorting="True">
 			<Components>
 				<Sorter id="6" visible="True" name="Sorter_ID_PPMC" column="ID_PPMC" wizardCaption="ID PPMC" wizardSortingType="SimpleDir" wizardControl="ID_PPMC" wizardAddNbsp="False" PathID="grdReqsAperturaSorter_ID_PPMC">
 					<Components/>
@@ -203,11 +204,12 @@ where (mes = {s_mesparam} or {s_mesparam}=0)
 			<PKFields/>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="129" dataType="Integer" defaultValue="date(&quot;m&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="11" parameterSource="s_mesparam" parameterType="URL" variable="s_mesparam"/>
-<SQLParameter id="130" dataType="Integer" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;)-1,date(&quot;d&quot;),date(&quot;Y&quot;)))" designDefaultValue="2013" parameterSource="s_anioparam" parameterType="URL" variable="s_anioparam"/>
-<SQLParameter id="131" dataType="Integer" defaultValue="CCGetSession(&quot;CDSPreferido&quot;)" designDefaultValue="0" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
-<SQLParameter id="132" dataType="Text" designDefaultValue="eminero" parameterSource="sAnalista" parameterType="URL" variable="sAnalista"/>
-<SQLParameter id="133" dataType="Integer" defaultValue="0" designDefaultValue="0" parameterSource="s_numero" parameterType="URL" variable="s_numero"/>
+				<SQLParameter id="135" dataType="Integer" defaultValue="date(&quot;m&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="11" parameterSource="s_mesparam" parameterType="URL" variable="s_mesparam"/>
+<SQLParameter id="136" dataType="Integer" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;)-1,date(&quot;d&quot;),date(&quot;Y&quot;)))" designDefaultValue="2013" parameterSource="s_anioparam" parameterType="URL" variable="s_anioparam"/>
+<SQLParameter id="137" dataType="Integer" defaultValue="CCGetSession(&quot;CDSPreferido&quot;)" designDefaultValue="0" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
+<SQLParameter id="138" dataType="Text" designDefaultValue="eminero" parameterSource="sAnalista" parameterType="URL" variable="sAnalista"/>
+<SQLParameter id="139" dataType="Integer" defaultValue="0" designDefaultValue="0" parameterSource="s_numero" parameterType="URL" variable="s_numero"/>
+<SQLParameter id="140" dataType="Integer" defaultValue="0" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
 </SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
@@ -309,7 +311,13 @@ where (mes = {s_mesparam} or {s_mesparam}=0)
 					<Attributes/>
 					<Features/>
 				</ListBox>
-			</Components>
+				<CheckBox id="134" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" defaultValue="Unchecked" name="sSLO" PathID="grsBuscasSLO" checkedValue="1" uncheckedValue="0">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</CheckBox>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>

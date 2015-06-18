@@ -1,0 +1,168 @@
+
+<html >
+<head><style needdelete>td {border-style:dotted;border-width:1px;border-color:#aaaaaa;} table {border-style:dashed;border-width:1px;border-color:#aaaaaa;}</style>
+<meta ccsServiceable="true" name="GENERATOR" content="CodeCharge Studio 5.1.1.18990"/><meta ccsServiceable="true" http-equiv="content-type" content="text/html; charset=windows-1252"/>
+
+<title>Detalle Layout</title>
+
+
+
+<link ccsServiceable="true" rel="stylesheet" type="text/css" href="../Styles/Austere4/Style_doctype.css" ccs_href="../Styles/{CCS_Style}/Style_doctype.css"/>
+
+<link ccsServiceable="true" rel="stylesheet" type="text/css" href="../Styles/Austere4/jquery-ui.css" ccs_href="../Styles/{CCS_Style}/jquery-ui.css"/>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-6ADB6CED
+</script>
+<script src="../ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" ccs_src="../ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-E9235927
+</script>
+<link ccsServiceable="true" rel="stylesheet" type="text/css" href="../Styles/adx.css" ccs_href="../Styles/adx.css"/>
+
+<link ccsServiceable="true" rel="stylesheet" type="text/css" href="../Styles/Austere4/Menu.css" ccs_href="../Styles/{CCS_Style}/Menu.css"/>
+<meta ccsServiceable="true" name="ccsProxyBraces" value="page:scriptIncludes" />
+<script type="text/javascript">
+//End Include User Scripts
+
+//Common Script Start @1-8BFA436B
+jQuery(function ($) {
+    var features = { };
+    var actions = { };
+    var params = { };
+//End Common Script Start
+
+//Plugin Calls @1-AED52133
+    $('*:ccsControl(detalle_layout, Button_Delete)').ccsBind(function() {
+        this.bind("click", function(){ $("body").data("disableValidation", true); });
+    });
+    $('*:ccsControl(Menu1Container)').ccsBind(function() {
+        this.ccsMenu();
+    });
+//End Plugin Calls
+
+//Common Script End @1-562554DE
+});
+//End Common Script End
+
+//End CCS script
+</script>
+
+</head>
+<body>
+
+<p><span ccsId="15" ccsName="Header" ccsBlockIsWhiteSpace="true" style="white-space:nowrap;border-color:#96e593;border-style:solid;border-width:1px" ccsType="Component" ccsServiceable="true" contentEditable="True">Header</span></p>
+<p>
+<span contenteditable="false" ccsServiceable="true" style="background-color:#f7f7f7;background-position:center;background-repeat:no-repeat;background-image:url('C:\Program Files (x86)\CodeChargeStudio5/Components/Icons/IconMenu.gif');height:20px;width:100px" ccsId="23" ccsName="Menu1" ccsType="Component"><!--
+&lt;div class="MenuStyle Austere4" ccs_class="MenuStyle Austere4" ccs_class="MenuStyle {CCS_Style}" id="Menu1Container"&gt;
+  &lt;ul class="adxm {Menu1:MenuType} level1"&gt;
+    &lt;!-- BEGIN Item --&gt;
+    &lt;!-- BEGIN OpenLevel --&gt;
+    &lt;ul class="level{Menu1:Item_Level}"&gt;
+      &lt;!-- END OpenLevel --&gt;
+      &lt;li&gt;&lt;a href="{ItemLink_Src}" ccs_href="{ItemLink_Src}" class="{Menu1:Submenu}" target="{Menu1:Target}" title="{Menu1:Title}"&gt;{ItemLink}&lt;/a&gt; 
+      &lt;!-- BEGIN CloseItem --&gt;&lt;/li&gt;
+ &lt;!-- END CloseItem --&gt;
+      &lt;!-- BEGIN CloseLevel --&gt;
+    &lt;/ul&gt;
+ &lt;/li&gt;
+ &lt;!-- END CloseLevel --&gt;&lt;!-- END Item --&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+--></span></p>
+<span contentEditable="true"  style="display:block;border: 1px solid #DCDCDC;" ccsType="Component" ccsDesignColorSelection="true" ccsId="2" ccsServiceable="true" ccsName="detalle_layout" >
+
+<form ccsServiceable="true" id="detalle_layout" method="post" name="{HTMLFormName}" action="{Action}">
+  <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeft"><img ccsServiceable="true" alt="" src="Styles/Austere4/Images/Spacer.gif" ccs_src="Styles/{CCS_Style}/Images/Spacer.gif"/></td> 
+            <td class="th"><strong>Add/Edit Detalle Layout </strong></td> 
+            <td class="HeaderRight"><img ccsServiceable="true" alt="" src="Styles/Austere4/Images/Spacer.gif" ccs_src="Styles/{CCS_Style}/Images/Spacer.gif"/></td> 
+          </tr>
+ 
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr id="detalle_layoutErrorBlock" class="Error">
+            <td colspan="2">{Error}</td> 
+          </tr>
+ <!-- END Error -->
+          <tr class="Controls">
+            <td class="th"><span ccsServiceable="true" ccsHtmlTag="label" ccsHtmlTag_for="detalle_layoutcve_carga">Cve Carga</span></td> 
+            <td>
+              <Select ccsType="Component" ccsServiceable="true" ccsId="7"  id="detalle_layoutcve_carga" name="{cve_carga_Name}"ccsName="cve_carga">
+                <option ccsServiceable="true" selected="selected" value="">Select Value</option>
+{cve_carga_Options}</Select>
+ </td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><span ccsServiceable="true" ccsHtmlTag="label" ccsHtmlTag_for="detalle_layoutnombre_columna_tabla">Nombre Columna Tabla</span></td> 
+            <td><input ccsServiceable="true" ccsId="8" ccsName="nombre_columna_tabla" ccsType="Component" type="text" id="detalle_layoutnombre_columna_tabla" value="{nombre_columna_tabla}" maxlength="50" size="50" name="{nombre_columna_tabla_Name}"/></td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><span ccsServiceable="true" ccsHtmlTag="label" ccsHtmlTag_for="detalle_layoutnum_columna_excel">Num Columna Excel</span></td> 
+            <td><input ccsServiceable="true" ccsId="9" ccsName="num_columna_excel" ccsType="Component" type="text" id="detalle_layoutnum_columna_excel" value="{num_columna_excel}" maxlength="5" size="5" name="{num_columna_excel_Name}"/></td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><span ccsServiceable="true" ccsHtmlTag="label" ccsHtmlTag_for="detalle_layouttipo_columna">Tipo Columna</span></td> 
+            <td>
+              <Select ccsType="Component" ccsServiceable="true" ccsId="10"  id="detalle_layouttipo_columna" name="{tipo_columna_Name}"ccsName="tipo_columna">
+                <option ccsServiceable="true" selected="selected" value="">Select Value</option>
+{tipo_columna_Options}</Select>
+ </td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><span ccsServiceable="true" ccsHtmlTag="label" ccsHtmlTag_for="detalle_layoutacepta_nulo">Acepta Nulo</span></td> 
+            <td>
+              <Select ccsType="Component" ccsServiceable="true" ccsId="11"  id="detalle_layoutacepta_nulo" name="{acepta_nulo_Name}"ccsName="acepta_nulo">
+                <option ccsServiceable="true" selected="selected" value="">Select Value</option>
+{acepta_nulo_Options}</Select>
+ </td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><span ccsServiceable="true" ccsHtmlTag="label" ccsHtmlTag_for="detalle_layoutdato_indispensable">Dato Indispensable</span></td> 
+            <td><input ccsServiceable="true" ccsId="12" ccsName="dato_indispensable" ccsType="Component" type="checkbox" id="detalle_layoutdato_indispensable" value="1" name="{dato_indispensable_Name}" ccscheckedattr="{dato_indispensable}"/></td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">&nbsp;Mapeo de valores</td> 
+            <td>&nbsp;<input ccsServiceable="true" ccsId="18" ccsName="mapeo_de_valor" ccsType="Component" type="text" id="detalle_layoutmapeo_de_valor" value="{mapeo_de_valor}" name="{mapeo_de_valor_Name}"/></td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><span ccsServiceable="true" ccsHtmlTag="label" ccsHtmlTag_for="detalle_layoutvalor_x_default">Valor X Default</span></td> 
+            <td><input ccsServiceable="true" ccsId="13" ccsName="valor_x_default" ccsType="Component" type="text" id="detalle_layoutvalor_x_default" value="{valor_x_default}" maxlength="50" size="50" name="{valor_x_default_Name}"/></td> 
+          </tr>
+ 
+          <tr class="Bottom">
+            <td style="TEXT-ALIGN: right" colspan="2">
+              <input ccsServiceable="true" ccsId="3" ccsName="Button_Insert" ccsType="Component" ccsExtendedHtml="true" type="submit" id="detalle_layoutButton_Insert" class="Button" value="Add" alt="Add" name="{Button_Name}"/>
+              <input ccsServiceable="true" ccsId="4" ccsName="Button_Update" ccsType="Component" ccsExtendedHtml="true" type="submit" id="detalle_layoutButton_Update" class="Button" value="Submit" alt="Submit" name="{Button_Name}"/>
+              <input ccsServiceable="true" ccsId="5" ccsName="Button_Delete" ccsType="Component" ccsExtendedHtml="true" type="submit" id="detalle_layoutButton_Delete" class="Button" value="Delete" alt="Delete" name="{Button_Name}"/></td> 
+          </tr>
+ 
+        </table>
+ </td> 
+      <td width="20"></td> 
+      <td></td> 
+    </tr>
+ 
+  </table>
+</form>
+
+&nbsp;</span><br>
+&nbsp; 
+
+</body>
+</html>

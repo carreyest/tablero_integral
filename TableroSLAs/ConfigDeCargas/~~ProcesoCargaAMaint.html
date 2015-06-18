@@ -1,0 +1,147 @@
+
+<html >
+<head><style needdelete>td {border-style:dotted;border-width:1px;border-color:#aaaaaa;} table {border-style:dashed;border-width:1px;border-color:#aaaaaa;}</style>
+<meta ccsServiceable="true" name="GENERATOR" content="CodeCharge Studio 5.1.1.18990"/><meta ccsServiceable="true" http-equiv="content-type" content="text/html; charset=windows-1252"/>
+
+<title>Proceso Carga Archivos</title>
+
+
+
+<link ccsServiceable="true" rel="stylesheet" type="text/css" href="../Styles/Austere4/Style_doctype.css" ccs_href="../Styles/{CCS_Style}/Style_doctype.css"/>
+
+<link ccsServiceable="true" rel="stylesheet" type="text/css" href="../Styles/Austere4/jquery-ui.css" ccs_href="../Styles/{CCS_Style}/jquery-ui.css"/>
+
+</head>
+<body>
+
+<span ccsId="22" ccsName="Header" ccsBlockIsWhiteSpace="true" style="white-space:nowrap;border-color:#96e593;border-style:solid;border-width:1px" ccsType="Component" ccsServiceable="true" contentEditable="True">Header</span> 
+<span contentEditable="true"  style="display:block;border: 1px solid #DCDCDC;" ccsType="Component" ccsDesignColorSelection="true" ccsId="2" ccsServiceable="true" ccsName="proceso_carga_archivos" >
+
+<form ccsServiceable="true" id="proceso_carga_archivos" method="post" name="{HTMLFormName}" action="{Action}">
+  <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeft"><img ccsServiceable="true" alt="" src="Styles/Austere4/Images/Spacer.gif" ccs_src="Styles/{CCS_Style}/Images/Spacer.gif"/></td> 
+            <td class="th"><strong>Add/Edit Proceso Carga Archivos </strong></td> 
+            <td class="HeaderRight"><img ccsServiceable="true" alt="" src="Styles/Austere4/Images/Spacer.gif" ccs_src="Styles/{CCS_Style}/Images/Spacer.gif"/></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr id="proceso_carga_archivosErrorBlock" class="Error">
+            <td colspan="2">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <td class="th">Clave de carga</td> 
+            <td><input ccsServiceable="true" ccsId="24" ccsName="cve_carga" ccsType="Component" type="text" id="proceso_carga_archivoscve_carga" value="{cve_carga}" name="{cve_carga_Name}"/></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><span ccsServiceable="true" ccsHtmlTag="label" ccsHtmlTag_for="proceso_carga_archivosdescripcion">Descripcion</span></td> 
+            <td><input ccsServiceable="true" ccsId="7" ccsName="descripcion" ccsType="Component" type="text" id="proceso_carga_archivosdescripcion" value="{descripcion}" maxlength="200" size="50" name="{descripcion_Name}"/></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><span ccsServiceable="true" ccsHtmlTag="label" ccsHtmlTag_for="proceso_carga_archivosmascara_archivo">Mascara Archivo</span></td> 
+            <td><input ccsServiceable="true" ccsId="8" ccsName="mascara_archivo" ccsType="Component" type="text" id="proceso_carga_archivosmascara_archivo" value="{mascara_archivo}" maxlength="50" size="50" name="{mascara_archivo_Name}"/></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><span ccsServiceable="true" ccsHtmlTag="label" ccsHtmlTag_for="proceso_carga_archivosformato_archivo">Formato Archivo</span></td> 
+            <td>
+              <Select ccsType="Component" ccsServiceable="true" ccsId="9"  id="proceso_carga_archivosformato_archivo" name="{formato_archivo_Name}"ccsName="formato_archivo">
+                <option ccsServiceable="true" selected="selected" value="">Select Value</option>
+{formato_archivo_Options}</Select>
+ </td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><span ccsServiceable="true" ccsHtmlTag="label" ccsHtmlTag_for="proceso_carga_archivosrepositorio">Repositorio</span></td> 
+            <td><input ccsServiceable="true" ccsId="10" ccsName="repositorio" ccsType="Component" type="text" id="proceso_carga_archivosrepositorio" value="{repositorio}" maxlength="150" size="50" name="{repositorio_Name}"/></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><span ccsServiceable="true" ccsHtmlTag="label" ccsHtmlTag_for="proceso_carga_archivosmails_responsables">Mails Responsables</span></td> 
+            <td><input ccsServiceable="true" ccsId="11" ccsName="mails_responsables" ccsType="Component" type="text" id="proceso_carga_archivosmails_responsables" value="{mails_responsables}" maxlength="200" size="50" name="{mails_responsables_Name}"/></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><span ccsServiceable="true" ccsHtmlTag="label" ccsHtmlTag_for="proceso_carga_archivosdb_destino">Db Destino</span></td> 
+            <td>&nbsp;<span ccsServiceable="true" ccsHtmlTag="label" ccsHtmlTag_for="proceso_carga_archivosTextBox1" ccsHtmlTag_style="display: none;">TextBox1</span><input ccsServiceable="true" ccsId="30" ccsName="TextBox1" ccsType="Component" type="text" name="{TextBox1_Name}" value="{TextBox1}" id="proceso_carga_archivosTextBox1"/></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><span ccsServiceable="true" ccsHtmlTag="label" ccsHtmlTag_for="proceso_carga_archivostabla_destino">Tabla Destino</span></td> 
+            <td><input ccsServiceable="true" ccsId="13" ccsName="tabla_destino" ccsType="Component" type="text" id="proceso_carga_archivostabla_destino" value="{tabla_destino}" maxlength="100" size="50" name="{tabla_destino_Name}"/></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><span ccsServiceable="true" ccsHtmlTag="label" ccsHtmlTag_for="proceso_carga_archivosprocedimiento_extra">Procedimiento Extra</span></td> 
+            <td><input ccsServiceable="true" ccsId="14" ccsName="procedimiento_extra" ccsType="Component" type="text" id="proceso_carga_archivosprocedimiento_extra" value="{procedimiento_extra}" maxlength="200" size="50" name="{procedimiento_extra_Name}"/></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><span ccsServiceable="true" ccsHtmlTag="label" ccsHtmlTag_for="proceso_carga_archivosnumero_hoja_excel">Numero Hoja Excel</span></td> 
+            <td><input ccsServiceable="true" ccsId="15" ccsName="numero_hoja_excel" ccsType="Component" type="text" id="proceso_carga_archivosnumero_hoja_excel" value="{numero_hoja_excel}" maxlength="5" size="5" name="{numero_hoja_excel_Name}"/></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><span ccsServiceable="true" ccsHtmlTag="label" ccsHtmlTag_for="proceso_carga_archivosfilas_sin_datos_excel">Filas Sin Datos Excel</span></td> 
+            <td><input ccsServiceable="true" ccsId="16" ccsName="filas_sin_datos_excel" ccsType="Component" type="text" id="proceso_carga_archivosfilas_sin_datos_excel" value="{filas_sin_datos_excel}" maxlength="5" size="5" name="{filas_sin_datos_excel_Name}"/></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><span ccsServiceable="true" ccsHtmlTag="label" ccsHtmlTag_for="proceso_carga_archivoscampo_fecha_cierre">Campo Fecha Cierre</span></td> 
+            <td><input ccsServiceable="true" ccsId="17" ccsName="campo_fecha_cierre" ccsType="Component" type="text" id="proceso_carga_archivoscampo_fecha_cierre" value="{campo_fecha_cierre}" maxlength="50" size="50" name="{campo_fecha_cierre_Name}"/></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><span ccsServiceable="true" ccsHtmlTag="label" ccsHtmlTag_for="proceso_carga_archivoscampo_indice">Campo Indice</span></td> 
+            <td><input ccsServiceable="true" ccsId="18" ccsName="campo_indice" ccsType="Component" type="text" id="proceso_carga_archivoscampo_indice" value="{campo_indice}" maxlength="50" size="50" name="{campo_indice_Name}"/></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><span ccsServiceable="true" ccsHtmlTag="label" ccsHtmlTag_for="proceso_carga_archivoscampo_indice_identity">Campo Indice Identity</span></td> 
+            <td><input ccsServiceable="true" ccsId="19" ccsName="campo_indice_identity" ccsType="Component" type="checkbox" id="proceso_carga_archivoscampo_indice_identity" value="1" name="{campo_indice_identity_Name}" ccscheckedattr="{campo_indice_identity}"/></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th"><span ccsServiceable="true" ccsHtmlTag="label" ccsHtmlTag_for="proceso_carga_archivosperiodicidad">Periodicidad</span></td> 
+            <td>
+              <Select ccsType="Component" ccsServiceable="true" ccsId="20"  id="proceso_carga_archivosperiodicidad" name="{periodicidad_Name}"ccsName="periodicidad">
+                <option ccsServiceable="true" selected="selected" value="">Select Value</option>
+{periodicidad_Options}</Select>
+ </td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td style="TEXT-ALIGN: right" colspan="2">
+              <input ccsServiceable="true" ccsId="3" ccsName="Button_Insert" ccsType="Component" ccsExtendedHtml="true" type="submit" id="proceso_carga_archivosButton_Insert" class="Button" value="Add" alt="Add" name="{Button_Name}"/>
+              <input ccsServiceable="true" ccsId="4" ccsName="Button_Update" ccsType="Component" ccsExtendedHtml="true" type="submit" id="proceso_carga_archivosButton_Update" class="Button" value="Submit" alt="Submit" name="{Button_Name}"/>
+              <input ccsServiceable="true" ccsId="5" ccsName="Button_Delete" ccsType="Component" ccsExtendedHtml="true" type="submit" id="proceso_carga_archivosButton_Delete" class="Button" value="Delete" alt="Delete" name="{Button_Name}"/></td>
+          </tr>
+        </table>
+      </td> 
+      <td width="20"></td> 
+      <td>
+        <table class="simpleMenu">
+          <tr>
+            <td><span ccsType="Component" ccsId="26" ccsName="detalle_layout_list" style="white-space:nowrap;border-color:#9bc4ed;border-style:solid;border-width:1px" ccsServiceable="true" contentEditable="true"><a ccsServiceable="true"  href="{detalle_layout_list_Src}" ccs_href="{detalle_layout_list_Src}" id="proceso_carga_archivosdetalle_layout_list"><span style="white-space:nowrap" ccsBlockIsWhiteSpace="true" ccsServiceable="true">Layouts de Procesos de Carga</span></a></span> </td> 
+            <td width="20"></td> 
+            <td><span ccsType="Component" ccsId="28" ccsName="proceso_carga_a_list" style="white-space:nowrap;border-color:#9bc4ed;border-style:solid;border-width:1px" ccsServiceable="true" contentEditable="true"><a ccsServiceable="true"  href="{proceso_carga_a_list_Src}" ccs_href="{proceso_carga_a_list_Src}" id="proceso_carga_archivosproceso_carga_a_list"><span style="white-space:nowrap" ccsBlockIsWhiteSpace="true" ccsServiceable="true">Procesos de Carga</span></a></span></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+
+&nbsp;</span><br>
+&nbsp; 
+
+</body>
+</html>

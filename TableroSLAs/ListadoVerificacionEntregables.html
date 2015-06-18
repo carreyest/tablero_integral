@@ -1,0 +1,271 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>ListadoVerificacionEntregables</title>
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-2504AB44
+</script>
+<script src="ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-FA240378
+</script>
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/ccs-jquery-ui-calendar.css">
+{page:scriptIncludes}
+<script type="text/javascript">
+//End Include User Scripts
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
+</head>
+<body>
+<p>{Header}</p>
+<div style="FLOAT: left" id="buscardiv">
+  <p>
+  <!-- BEGIN Record Buscar -->
+  <form id="Buscar" method="post" name="{HTMLFormName}" action="{Action}">
+    <table style="WIDTH: 470px; HEIGHT: 129px" class="MainTable" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td valign="top">
+          <table class="Header" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+              <td class="th"><strong>Buscar</strong></td> 
+              <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+            </tr>
+          </table>
+ 
+          <table class="Record" cellspacing="0" cellpadding="0">
+            <!-- BEGIN Error -->
+            <tr id="{@error-block}" class="Error">
+              <td colspan="6">{Error}</td>
+            </tr>
+            <!-- END Error -->
+            <tr class="Controls">
+              <td class="th">
+                <p><label for="Buscarsearch_fecha">Mes</label></p>
+              </td> 
+              <td>
+                <select id="BuscarMesReporte" name="{MesReporte_Name}">
+                  <option selected value="">Seleccionar Valor</option>
+                  {MesReporte_Options}
+                </select>
+ </td> 
+              <td class="th">
+                <p>Año</p>
+              </td> 
+              <td>
+                <select id="Buscaranioreporte" name="{anioreporte_Name}">
+                  <option selected value="">Seleccionar Valor</option>
+                  {anioreporte_Options}
+                </select>
+ </td> 
+              <td class="th">
+                <p>Proveedor</p>
+              </td> 
+              <td>
+                <select id="Buscarbusqproveedor" name="{busqproveedor_Name}">
+                  <option selected value="">Seleccionar Valor</option>
+                  {busqproveedor_Options}
+                </select>
+ </td>
+            </tr>
+ 
+            <tr class="Bottom">
+              <td style="TEXT-ALIGN: right" colspan="6">&nbsp; 
+                <!-- BEGIN Button Button_buscar --><input type="submit" id="BuscarButton_buscar" class="Button" value="Buscar" alt="Buscar" name="{Button_Name}"><!-- END Button Button_buscar --></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </form>
+  <!-- END Record Buscar --></p>
+</div>
+<div style="FLOAT: left; MARGIN-LEFT: 75px" id="genlistdiv">
+  <p>
+  <!-- BEGIN Record GenList -->
+  <form id="GenList" method="post" name="{HTMLFormName}" action="{Action}">
+    <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td valign="top">
+          <table class="Header" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+              <td class="th"><strong>Generar Listado Entregables Nuevo Mes</strong></td> 
+              <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+            </tr>
+          </table>
+ 
+          <table class="Record" cellspacing="0" cellpadding="0">
+            <!-- BEGIN Error -->
+            <tr id="{@error-block}" class="Error">
+              <td colspan="6">{Error}</td>
+            </tr>
+            <!-- END Error -->
+            <tr class="Controls">
+              <td class="th"><label for="GenListMesGenCorte">Mes</label></td> 
+              <td>
+                <select id="GenListMesGenCorte" name="{MesGenCorte_Name}">
+                  <option selected value="">Seleccionar Valor</option>
+                  {MesGenCorte_Options}
+                </select>
+ </td> 
+              <td>&nbsp;Año</td> 
+              <td>
+                <select id="GenListAnioGenCorte" name="{AnioGenCorte_Name}">
+                  <option selected value="">Seleccionar Valor</option>
+                  {AnioGenCorte_Options}
+                </select>
+ </td> 
+              <td class="th">
+                <p>Proveedor</p>
+              </td> 
+              <td>
+                <select id="GenListGenproveedor" name="{Genproveedor_Name}">
+                  <option selected value="">Seleccionar Valor</option>
+                  {Genproveedor_Options}
+                </select>
+ </td>
+            </tr>
+ 
+            <tr class="Bottom">
+              <td style="TEXT-ALIGN: right" colspan="6">&nbsp; 
+                <!-- BEGIN Button Button_Generar --><input type="submit" id="GenListButton_Generar" class="Button" value="Generar" alt="Generar" name="{Button_Name}"><!-- END Button Button_Generar -->&nbsp; </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </form>
+  <!-- END Record GenList --></p>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div style="FLOAT: left; MARGIN-LEFT: 75px" id="lnkexceldiv">
+  <p><a href="{lnkexcellista_Src}" id="lnkexcellista"><img style="BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; VERTICAL-ALIGN: middle; BORDER-LEFT-WIDTH: 0px; border-image: none" src="images/xls.jpg" width="20" height="20">&nbsp;Excel Lista de Entregables</a></p>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div style="CLEAR: both" id="griddiv">
+  <p>
+  <!-- BEGIN EditableGrid GridEntregables -->
+  <form id="GridEntregables" method="post" name="{HTMLFormName}" action="{Action}">
+    <input type="hidden" value="{FormState}" name="FormState">{FormScript} 
+    <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td valign="top">
+          <table class="Header" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+              <td class="th"><strong>Entregables Periódicos SDMA 4 </strong></td> 
+              <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+            </tr>
+          </table>
+ 
+          <table class="Grid" cellspacing="0" cellpadding="0">
+            <!-- BEGIN Error -->
+            <tr class="Error">
+              <td colspan="9">{Error}</td>
+            </tr>
+            <!-- END Error -->
+            <tr class="Caption">
+              <th scope="col">
+              <!-- BEGIN Sorter Sorter_entregable --><span class="Sorter"><a href="{Sort_URL}" id="GridEntregablesSorter_entregable">Entregable</a> 
+              <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+              <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_entregable --></th>
+ 
+              <th scope="col">
+              <!-- BEGIN Sorter Sorter_periodicidad --><span class="Sorter"><a href="{Sort_URL}" id="GridEntregablesSorter_periodicidad">Periodicidad</a> 
+              <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+              <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_periodicidad --></th>
+ 
+              <th scope="col">
+              <!-- BEGIN Sorter Sorter_proveedor --><span class="Sorter"><a href="{Sort_URL}" id="GridEntregablesSorter_proveedor">Proveedor</a> 
+              <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+              <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_proveedor --></th>
+ 
+              <th scope="col">
+              <!-- BEGIN Sorter Sorter_entregado --><span class="Sorter"><a href="{Sort_URL}" id="GridEntregablesSorter_entregado">Entregado</a> 
+              <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+              <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_entregado --></th>
+ 
+              <th scope="col">Comentarios</th>
+ 
+              <th scope="col">
+              <!-- BEGIN Sorter Sorter_mes --><span class="Sorter"><a href="{Sort_URL}" id="GridEntregablesSorter_mes">Mes Corte</a> 
+              <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+              <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_mes --></th>
+ 
+              <th scope="col">
+              <!-- BEGIN Sorter Sorter_anio_corte --><span class="Sorter"><a href="{Sort_URL}" id="GridEntregablesSorter_anio_corte">Año Corte</a> 
+              <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+              <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_anio_corte --></th>
+            </tr>
+ 
+            <!-- BEGIN Row -->
+            <!-- BEGIN RowError -->
+            <tr class="Error">
+              <td colspan="9">{Error}</td>
+            </tr>
+            <!-- END RowError -->
+            <tr class="Row">
+              <td>{entregable}<input type="hidden" id="GridEntregablesid_entregable_{GridEntregables:rowNumber}" value="{id_entregable}" name="{id_entregable_Name}"></td> 
+              <td>{periodicidad}</td> 
+              <td>{proveedor}</td> 
+              <td><label for="GridEntregablesentregado_{GridEntregables:rowNumber}" style="display: none;">Entregado</label> 
+                <select id="GridEntregablesentregado_{GridEntregables:rowNumber}" name="{entregado_Name}">
+                  <option selected value="">Seleccionar Valor</option>
+                  {entregado_Options}
+                </select>
+ </td> 
+              <td><label for="GridEntregablescomentarios_{GridEntregables:rowNumber}" style="display: none;">Comentarios</label> <textarea id="GridEntregablescomentarios_{GridEntregables:rowNumber}" rows="3" cols="50" name="{comentarios_Name}">{comentarios}</textarea></td> 
+              <td>{mes}</td> 
+              <td>
+                <div align="right">
+                  {anio_corte} 
+                </div>
+              </td>
+            </tr>
+ <!-- END Row -->
+            <!-- BEGIN NoRecords -->
+            <tr class="NoRecords">
+              <td colspan="9">No hay registros</td>
+            </tr>
+            <!-- END NoRecords -->
+            <tr class="Footer">
+              <td style="TEXT-ALIGN: right" colspan="9">
+                <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+                <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+                  <option selected value="">-</option>
+ {PageSize_Options}
+                </select>
+ 
+                <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
+                <!-- BEGIN First_Off --><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/FirstOff.gif"><!-- END First_Off -->
+                <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/Prev.gif"></a> <!-- END Prev_On -->
+                <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+                <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/Next.gif"></a> <!-- END Next_On -->
+                <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
+                <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
+                <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->
+                <!-- BEGIN Button Button_Submit --><input type="submit" id="GridEntregablesButton_Submit" class="Button" value="Enviar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Submit --></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </form>
+  <!-- END EditableGrid GridEntregables --><br>
+  </p>
+</div>
+<p></p>
+<p>&nbsp;</p>
+</body>
+</html>

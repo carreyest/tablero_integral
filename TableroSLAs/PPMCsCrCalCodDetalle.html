@@ -5,7 +5,24 @@
 <title>PPMCCalidadCodigoDetalle</title>
 <meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
 <link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
-<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="Styles/Austere4/Style_Components_doctype.css">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-2504AB44
+</script>
+<script src="ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-A87AC9EE
+</script>
+{page:scriptIncludes}
+<script type="text/javascript">
+//End Include User Scripts
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="Styles/Austere4/jquery-ui.css">
 </head>
 <body>
 <p>{Header}</p>
@@ -39,10 +56,10 @@
     <td>&nbsp; 
       <!-- BEGIN Record mc_info_rs_CC -->
       <form id="mc_info_rs_CC" method="post" name="{HTMLFormName}" action="{Action}">
-        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="top">
-              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Calificar Calidad de Código</strong></td> 
@@ -58,7 +75,7 @@
                 <!-- END Error -->
                 <tr class="Controls">
                   <td class="th">Id PPMC</td> 
-                  <td>{Id_PPMC}</td>
+                  <td>{Id_PPMC}<input type="hidden" id="mc_info_rs_CCmesMed" value="{mesMed}" name="{mesMed_Name}"><input type="hidden" id="mc_info_rs_CCanioMed" value="{anioMed}" name="{anioMed_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
@@ -68,19 +85,19 @@
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_info_rs_CCPctReglas">% Calidad Reglas</label></td> 
-                  <td><input type="text" id="mc_info_rs_CCPctReglas" maxlength="5" size="5" value="{PctReglas}" name="{PctReglas_Name}"></td>
+                  <td><input type="text" id="mc_info_rs_CCPctReglas" value="{PctReglas}" maxlength="5" size="5" name="{PctReglas_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">&nbsp;% Calidad Métricas</td> 
-                  <td><input type="text" id="mc_info_rs_CCPctMetricas" maxlength="5" size="5" value="{PctMetricas}" name="{PctMetricas_Name}"></td>
+                  <td><input type="text" id="mc_info_rs_CCPctMetricas" value="{PctMetricas}" maxlength="5" size="5" name="{PctMetricas_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_info_rs_CCCumpleCalidadCod">Cumple Calidad Cod</label></td> 
                   <td>
                     <select id="mc_info_rs_CCCumpleCalidadCod" name="{CumpleCalidadCod_Name}">
-                      <option selected value="">Seleccionar Valor</option>
+                      <option selected value="-2">Sin datos para medir</option>
                       {CumpleCalidadCod_Options}
                     </select>
  </td>
@@ -93,8 +110,10 @@
  
                 <tr class="Bottom">
                   <td style="TEXT-ALIGN: right" colspan="2">
-                    <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_info_rs_CCButton_Insert" class="Button" alt="Agregar" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
-                    <!-- BEGIN Button Button_Update --><input type="submit" id="mc_info_rs_CCButton_Update" class="Button" alt="Enviar" value="Enviar" name="{Button_Name}"><!-- END Button Button_Update --><input type="hidden" id="mc_info_rs_CCId" value="{Id}" name="{Id_Name}"><input type="hidden" id="mc_info_rs_CCUsuarioUltMod" value="{UsuarioUltMod}" name="{UsuarioUltMod_Name}"><input type="hidden" id="mc_info_rs_CCFechaUltMod" value="{FechaUltMod}" name="{FechaUltMod_Name}"></td>
+                    <p>
+                    <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_info_rs_CCButton_Insert" class="Button" value="Agregar" alt="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input type="submit" id="mc_info_rs_CCButton_Update" class="Button" value="Enviar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Update --><input type="hidden" id="mc_info_rs_CCUsuarioUltMod" value="{UsuarioUltMod}" name="{UsuarioUltMod_Name}"><input type="hidden" id="mc_info_rs_CCFechaUltMod" value="{FechaUltMod}" name="{FechaUltMod_Name}"><input type="hidden" id="mc_info_rs_CCId_PPMC_HID" value="{Id_PPMC_HID}" name="{Id_PPMC_HID_Name}"><input type="hidden" id="mc_info_rs_CCID_Estimacion_HID" value="{ID_Estimacion_HID}" name="{ID_Estimacion_HID_Name}"><label for="mc_info_rs_CCId_PPMC_HID" style="display: none;">&nbsp;</label></p>
+                  </td>
                 </tr>
               </table>
             </td>
@@ -102,6 +121,186 @@
         </table>
       </form>
       <!-- END Record mc_info_rs_CC --><br>
+      <!-- BEGIN Grid CalidadCodigoMetricas -->
+      <table id="CalidadCodigoMetricas" class="MainTable" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td valign="top">
+            <table class="HeaderAustere4" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="HeaderLeftAustere4"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td> 
+                <td class="thAustere4"><strong>Metricas </strong></td> 
+                <td class="HeaderRightAustere4"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td>
+              </tr>
+            </table>
+ 
+            <table class="GridAustere4" cellspacing="0" cellpadding="0">
+              <tr class="CaptionAustere4">
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Paquete --><span class="Sorter"><a href="{Sort_URL}" id="CalidadCodigoMetricasSorter_Paquete">Paquete</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Paquete --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_N_mero_del_Aplicativo --><span class="Sorter"><a href="{Sort_URL}" id="CalidadCodigoMetricasSorter_N_mero_del_Aplicativo">Número Del Aplicativo</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_N_mero_del_Aplicativo --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Servicio_de_Negocio --><span class="Sorter"><a href="{Sort_URL}" id="CalidadCodigoMetricasSorter_Servicio_de_Negocio">Servicio De Negocio</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Servicio_de_Negocio --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Tipo_de_requerimiento --><span class="Sorter"><a href="{Sort_URL}" id="CalidadCodigoMetricasSorter_Tipo_de_requerimiento">Tipo De Requerimiento</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Tipo_de_requerimiento --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Nombre_del_CDS --><span class="Sorter"><a href="{Sort_URL}" id="CalidadCodigoMetricasSorter_Nombre_del_CDS">Nombre Del CDS</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Nombre_del_CDS --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Porcentaje_de_calidad_m_tricas --><span class="Sorter"><a href="{Sort_URL}" id="CalidadCodigoMetricasSorter_Porcentaje_de_calidad_m_tricas">Porcentaje De Calidad Métricas</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Porcentaje_de_calidad_m_tricas --></th>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr class="RowAustere4">
+                <td>{Paquete}&nbsp;</td> 
+                <td>{N_mero_del_Aplicativo}&nbsp;</td> 
+                <td>{Servicio_de_Negocio}&nbsp;</td> 
+                <td>{Tipo_de_requerimiento}&nbsp;</td> 
+                <td>{Nombre_del_CDS}&nbsp;</td> 
+                <td>{Porcentaje_de_calidad_m_tricas}&nbsp;</td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecordsAustere4">
+                <td colspan="6">No hay Registros</td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="FooterAustere4">
+                <td colspan="6">
+                  <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+                  <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+                    <option selected value="">-</option>
+ {PageSize_Options}
+                  </select>
+ 
+                  <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/Austere4/Images/First.gif"></a> <!-- END First_On -->
+                  <!-- BEGIN First_Off --><img alt="{First_URL}" src="Styles/Austere4/Images/FirstOff.gif"><!-- END First_Off -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="Styles/Austere4/Images/Prev.gif"></a> <!-- END Prev_On -->
+                  <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="Styles/Austere4/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+                  <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/Austere4/Images/Next.gif"></a> <!-- END Next_On -->
+                  <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/Austere4/Images/NextOff.gif"><!-- END Next_Off -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/Austere4/Images/Last.gif"></a> <!-- END Last_On -->
+                  <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/Austere4/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- END Grid CalidadCodigoMetricas -->
+      <!-- BEGIN Grid CalidadCodigoReglas -->
+      <table id="CalidadCodigoReglas" class="MainTable" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td valign="top">
+            <table class="HeaderAustere4" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="HeaderLeftAustere4"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td> 
+                <td class="thAustere4"><strong>Reglas </strong></td> 
+                <td class="HeaderRightAustere4"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td>
+              </tr>
+            </table>
+ 
+            <table class="GridAustere4" cellspacing="0" cellpadding="0">
+              <tr class="CaptionAustere4">
+                <!--<th scope="col">-->
+                <!-- BEGIN Sorter Sorter_PPMC -->
+                <!--<span class="Sorter"><a href="{Sort_URL}" id="CalidadCodigoReglasSorter_PPMC">PPMC</a> -->
+                <!-- BEGIN Asc_On -->
+                <!--<img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif">-->
+                <!-- END Asc_On -->
+                <!-- BEGIN Desc_On -->
+                <!--<img alt="Descendente" src="Styles/Austere4/Images/Desc.gif">-->
+                <!-- END Desc_On -->
+                <!--</span>-->
+                <!-- END Sorter Sorter_PPMC --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Paquete --><span class="Sorter"><a href="{Sort_URL}" id="CalidadCodigoReglasSorter_Paquete">Paquete</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Paquete --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_N_mero_del_Aplicativo --><span class="Sorter"><a href="{Sort_URL}" id="CalidadCodigoReglasSorter_N_mero_del_Aplicativo">Número Del Aplicativo</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_N_mero_del_Aplicativo --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Servicio_de_Negocio --><span class="Sorter"><a href="{Sort_URL}" id="CalidadCodigoReglasSorter_Servicio_de_Negocio">Servicio De Negocio</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Servicio_de_Negocio --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Tipo_de_requerimiento --><span class="Sorter"><a href="{Sort_URL}" id="CalidadCodigoReglasSorter_Tipo_de_requerimiento">Tipo De Requerimiento</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Tipo_de_requerimiento --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Nombre_del_CDS --><span class="Sorter"><a href="{Sort_URL}" id="CalidadCodigoReglasSorter_Nombre_del_CDS">Nombre Del CDS</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Nombre_del_CDS --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Porcentaje_de_Calidad_de_C_digo --><span class="Sorter"><a href="{Sort_URL}" id="CalidadCodigoReglasSorter_Porcentaje_de_Calidad_de_C_digo">Porcentaje De Calidad De Código</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Porcentaje_de_Calidad_de_C_digo --></th>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr class="RowAustere4">
+                <!--<td>{PPMC}&nbsp;</td> -->
+                <td>{Paquete}&nbsp;</td> 
+                <td>{N_mero_del_Aplicativo}&nbsp;</td> 
+                <td>{Servicio_de_Negocio}&nbsp;</td> 
+                <td>{Tipo_de_requerimiento}&nbsp;</td> 
+                <td>{Nombre_del_CDS}&nbsp;</td> 
+                <td>{Porcentaje_de_Calidad_de_C_digo}&nbsp;</td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecordsAustere4">
+                <td colspan="7">No hay Registros</td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="FooterAustere4">
+                <td colspan="7">
+                  <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+                  <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+                    <option selected value="">-</option>
+ {PageSize_Options}
+                  </select>
+ 
+                  <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/Austere4/Images/First.gif"></a> <!-- END First_On -->
+                  <!-- BEGIN First_Off --><img alt="{First_URL}" src="Styles/Austere4/Images/FirstOff.gif"><!-- END First_Off -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="Styles/Austere4/Images/Prev.gif"></a> <!-- END Prev_On -->
+                  <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="Styles/Austere4/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+                  <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/Austere4/Images/Next.gif"></a> <!-- END Next_On -->
+                  <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/Austere4/Images/NextOff.gif"><!-- END Next_Off -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/Austere4/Images/Last.gif"></a> <!-- END Last_On -->
+                  <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/Austere4/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- END Grid CalidadCodigoReglas --><br>
+      <br>
+      <br>
+      <br>
     </td> 
     <td>&nbsp;</td>
   </tr>

@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>ExecCarga</title>
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-6ADB6CED
+</script>
+<script src="../ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-E9235927
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/adx.css">
+<link rel="stylesheet" type="text/css" href="../Styles/{CCS_Style}/Menu.css">
+{page:scriptIncludes}
+<script type="text/javascript">
+//End Include User Scripts
+
+//Common Script Start @1-8BFA436B
+jQuery(function ($) {
+    var features = { };
+    var actions = { };
+    var params = { };
+//End Common Script Start
+
+//Plugin Calls @1-FD390785
+    $('*:ccsControl(Menu1Container)').ccsBind(function() {
+        this.ccsMenu();
+    });
+//End Plugin Calls
+
+//Common Script End @1-562554DE
+});
+//End Common Script End
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/{CCS_Style}/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="../Styles/{CCS_Style}/Style_Components_doctype.css">
+<link rel="stylesheet" type="text/css" href="../Styles/{CCS_Style}/jquery-ui.css">
+</head>
+<body>
+<p>{Header}</p>
+<p>
+<!-- BEGIN Menu Menu1 -->
+<div class="MenuStyle Austere4" ccs_class="MenuStyle {CCS_Style}" id="Menu1Container">
+  <ul class="adxm {Menu1:MenuType} level1">
+    <!-- BEGIN Item -->
+    <!-- BEGIN OpenLevel -->
+    <ul class="level{Menu1:Item_Level}">
+      <!-- END OpenLevel -->
+      <li><a href="{ItemLink_Src}" class="{Menu1:Submenu}" target="{Menu1:Target}" title="{Menu1:Title}">{ItemLink}</a> 
+      <!-- BEGIN CloseItem --></li>
+ <!-- END CloseItem -->
+      <!-- BEGIN CloseLevel -->
+    </ul>
+ </li>
+ <!-- END CloseLevel --><!-- END Item -->
+  </ul>
+</div>
+<!-- END Menu Menu1 --></p>
+<p>&nbsp;</p>
+<p>=> Al dar click sobre el proceso se realizará la carga a la base de datos y el envio de correos correspondiente</p>
+<p>
+<table style="WIDTH: 904px; HEIGHT: 209px">
+  <tr>
+    <td>
+      <!-- BEGIN Grid proceso_carga_archivos -->
+      <table id="proceso_carga_archivos" class="MainTable" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td valign="top">
+            <table border="0" cellspacing="0" cellpadding="0" class="Header{CCS_Style}">
+              <tr>
+                <td class="HeaderLeft{CCS_Style}"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                <td class="th{CCS_Style}"><strong>Proceso a ejecutar </strong></td> 
+                <td class="HeaderRight{CCS_Style}"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td>
+              </tr>
+            </table>
+ 
+            <table cellspacing="0" cellpadding="0" class="Grid{CCS_Style}">
+              <tr class="Caption{CCS_Style}">
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_cve_carga --><span class="Sorter"><a href="{Sort_URL}" id="proceso_carga_archivosSorter_cve_carga">Cve Carga</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="../Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="../Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_cve_carga --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_descripcion --><span class="Sorter"><a href="{Sort_URL}" id="proceso_carga_archivosSorter_descripcion">Descripcion</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="../Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="../Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_descripcion --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_periodicidad --><span class="Sorter"><a href="{Sort_URL}" id="proceso_carga_archivosSorter_periodicidad">Periodicidad</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="../Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="../Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_periodicidad --></th>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr class="Row{CCS_Style}">
+                <td><label for="proceso_carga_archivoscve_carga_{proceso_carga_archivos:rowNumber}" style="display: none;">Cve Carga</label> <a href="{cve_carga_Src}" id="proceso_carga_archivoscve_carga_{proceso_carga_archivos:rowNumber}">{cve_carga}</a> &nbsp;</td> 
+                <td>{descripcion}&nbsp;</td> 
+                <td>{periodicidad}&nbsp;</td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords{CCS_Style}">
+                <td colspan="3">No hay Registros</td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="Footer{CCS_Style}">
+                <td colspan="3">
+                  <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+                  <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+                    <option selected value="">-</option>
+ {PageSize_Options}
+                  </select>
+ 
+                  <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
+                  <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/{CCS_Style}/Images/FirstOff.gif"><!-- END First_Off -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/{CCS_Style}/Images/Prev.gif"></a> <!-- END Prev_On -->
+                  <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/{CCS_Style}/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+                  <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/{CCS_Style}/Images/Next.gif"></a> <!-- END Next_On -->
+                  <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
+                  <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- END Grid proceso_carga_archivos --><br>
+      &nbsp; 
+      <p>&nbsp;</p>
+ 
+      <p><br>
+      <br>
+      &nbsp;</p>
+    </td> 
+    <td></td> 
+    <td>{LExec}</td>
+  </tr>
+</table>
+</p>
+</body>
+</html>

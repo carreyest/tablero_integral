@@ -48,11 +48,25 @@
 			<Features/>
 		</Link>
 		<Link id="13" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link8" PathID="Link8" hrefSource="Catalogos/ReportesMyM.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Reportes MyM','textSourceDB':'','hrefSource':'Catalogos/ReportesMyM.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
-<Events/>
-<LinkParameters/>
-<Attributes/>
-<Features/>
-</Link>
+			<Events/>
+			<LinkParameters/>
+			<Attributes/>
+			<Features/>
+		</Link>
+		<Link id="14" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link9" PathID="Link9" hrefSource="ConfigDeCargas/ProcesoCargaAList.ccp" wizardUseTemplateBlock="False" linkProperties="{&quot;textSource&quot;:&quot;Carga Config&quot;,&quot;textSourceDB&quot;:&quot;&quot;,&quot;hrefSource&quot;:&quot;ConfigDeCargas/ProcesoCargaAList.ccp&quot;,&quot;hrefSourceDB&quot;:&quot;&quot;,&quot;title&quot;:&quot;&quot;,&quot;target&quot;:&quot;&quot;,&quot;name&quot;:&quot;&quot;,&quot;linkParameters&quot;:{&quot;length&quot;:0,&quot;objectType&quot;:&quot;linkParameters&quot;}}">
+			<Components/>
+			<Events/>
+			<LinkParameters/>
+			<Attributes/>
+			<Features/>
+		</Link>
+		<Link id="15" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link10" PathID="Link10" hrefSource="ListadoVerificacionEntregables.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Reporte Entregables','textSourceDB':'','hrefSource':'ListadoVerificacionEntregables.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}">
+			<Components/>
+			<Events/>
+			<LinkParameters/>
+			<Attributes/>
+			<Features/>
+		</Link>
 </Components>
 	<CodeFiles>
 		<CodeFile id="Code" language="PHPTemplates" name="MainAdmin.php" forShow="True" url="MainAdmin.php" comment="//" codePage="windows-1252"/>

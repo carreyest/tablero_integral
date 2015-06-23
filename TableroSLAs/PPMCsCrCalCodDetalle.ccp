@@ -60,11 +60,17 @@
 			<Attributes/>
 			<Features/>
 		</Link>
-		<Record id="27" sourceType="Table" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="mc_info_rs_CC" connection="cnDisenio" dataSource="mc_info_rs_CC" errorSummator="Error" allowCancel="False" recordDeleteConfirmation="False" buttonsType="button" wizardRecordKey="Id" encryptPasswordField="False" wizardUseInterVariables="False" pkIsAutoincrement="False" wizardCaption="Calificar Calidad de Código" wizardThemeApplyTo="Page" wizardFormMethod="post" wizardType="Record" changedCaptionRecord="True" recordDirection="Vertical" recordAddTemplatePanel="False" PathID="mc_info_rs_CC">
+		<Record id="27" sourceType="Table" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="mc_info_rs_CC" connection="cnDisenio" dataSource="mc_info_rs_CC" errorSummator="Error" allowCancel="False" recordDeleteConfirmation="False" buttonsType="button" wizardRecordKey="Id" encryptPasswordField="False" wizardUseInterVariables="False" pkIsAutoincrement="False" wizardCaption="Calificar Calidad de Código" wizardThemeApplyTo="Page" wizardFormMethod="post" wizardType="Record" changedCaptionRecord="True" recordDirection="Vertical" recordAddTemplatePanel="False" PathID="mc_info_rs_CC" activeCollection="UFormElements" activeTableType="mc_info_rs_CC" customInsertType="Table" customInsert="mc_info_rs_CC" customUpdateType="Table" customUpdate="mc_info_rs_CC">
 			<Components>
 				<Button id="29" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Agregar" PathID="mc_info_rs_CCButton_Insert">
 					<Components/>
-					<Events/>
+					<Events>
+						<Event name="BeforeShow" type="Server">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="182"/>
+							</Actions>
+						</Event>
+					</Events>
 					<Attributes/>
 					<Features/>
 				</Button>
@@ -74,15 +80,15 @@
 					<Attributes/>
 					<Features/>
 				</Button>
-				<Hidden id="32" fieldSourceType="DBColumn" dataType="Integer" name="Id" fieldSource="Id" wizardIsPassword="False" wizardUseTemplateBlock="False" visible="Yes" wizardCaption="Id" caption="Id" required="True" unique="False" PathID="mc_info_rs_CCId">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
 				<Label id="33" fieldSourceType="DBColumn" dataType="Integer" html="False" generateSpan="False" name="Id_PPMC" fieldSource="Id_PPMC" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Id PPMC" wizardAddNbsp="True" PathID="mc_info_rs_CCId_PPMC">
 					<Components/>
-					<Events/>
+					<Events>
+						<Event name="BeforeShow" type="Server">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="46"/>
+							</Actions>
+						</Event>
+					</Events>
 					<Attributes/>
 					<Features/>
 				</Label>
@@ -98,7 +104,7 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<ListBox id="36" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Integer" returnValueType="Number" name="CumpleCalidadCod" fieldSource="CumpleCalidadCod" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Cumple Calidad Cod" caption="Cumple Calidad Cod" required="False" unique="False" connection="cnDisenio" wizardEmptyCaption="Seleccionar Valor" PathID="mc_info_rs_CCCumpleCalidadCod" dataSource=";No Aplica;1;Cumplio;0;No Cumplio">
+				<ListBox id="36" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Integer" returnValueType="Number" name="CumpleCalidadCod" fieldSource="CumpleCalidadCod" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Cumple Calidad Cod" caption="Cumple Calidad Cod" required="False" unique="False" connection="cnDisenio" wizardEmptyCaption="Seleccionar Valor" PathID="mc_info_rs_CCCumpleCalidadCod" dataSource="-1;No Aplica;1;Cumplio;0;No Cumplio">
 					<Components/>
 					<Events/>
 					<TableParameters/>
@@ -135,8 +141,73 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
+				<Hidden id="165" fieldSourceType="DBColumn" dataType="Text" name="Id_PPMC_HID" PathID="mc_info_rs_CCId_PPMC_HID">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="166" fieldSourceType="DBColumn" dataType="Text" name="ID_Estimacion_HID" PathID="mc_info_rs_CCID_Estimacion_HID">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="194" fieldSourceType="DBColumn" dataType="Text" name="mesMed" PathID="mc_info_rs_CCmesMed">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="195" fieldSourceType="DBColumn" dataType="Text" name="anioMed" PathID="mc_info_rs_CCanioMed">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
 			</Components>
-			<Events/>
+			<Events>
+				<Event name="BeforeShow" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="45"/>
+					</Actions>
+				</Event>
+				<Event name="BeforeExecuteInsert" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="167"/>
+					</Actions>
+				</Event>
+				<Event name="BeforeInsert" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="168"/>
+					</Actions>
+				</Event>
+				<Event name="BeforeUpdate" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="169"/>
+					</Actions>
+				</Event>
+				<Event name="BeforeExecuteUpdate" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="170"/>
+					</Actions>
+				</Event>
+				<Event name="AfterExecuteSelect" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="181"/>
+					</Actions>
+				</Event>
+				<Event name="AfterInsert" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="198"/>
+					</Actions>
+				</Event>
+				<Event name="AfterUpdate" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="199"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters>
 				<TableParameter id="41" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Id" logicOperator="And" orderNumber="1" parameterSource="Id" parameterType="URL" searchConditionType="Equal"/>
 			</TableParameters>
@@ -154,11 +225,32 @@
 			</PKFields>
 			<ISPParameters/>
 			<ISQLParameters/>
-			<IFormElements/>
+			<IFormElements>
+				<CustomParameter id="157" field="PctReglas" dataType="Float" parameterType="Control" parameterSource="PctReglas" format="#.##" omitIfEmpty="True"/>
+				<CustomParameter id="158" field="CumpleCalidadCod" dataType="Integer" parameterType="Control" parameterSource="CumpleCalidadCod" omitIfEmpty="True"/>
+				<CustomParameter id="159" field="UsuarioUltMod" dataType="Text" parameterType="Control" parameterSource="UsuarioUltMod" omitIfEmpty="True"/>
+				<CustomParameter id="160" field="FechaUltMod" dataType="Date" parameterType="Control" parameterSource="FechaUltMod" format="ShortDate" omitIfEmpty="True"/>
+				<CustomParameter id="161" field="Observaciones" dataType="Text" parameterType="Control" parameterSource="Observaciones" omitIfEmpty="True"/>
+				<CustomParameter id="162" field="PctMetricas" dataType="Float" parameterType="Control" parameterSource="PctMetricas" format="#.##" omitIfEmpty="True"/>
+				<CustomParameter id="163" field="Id_PPMC" dataType="Integer" parameterType="Control" omitIfEmpty="True" parameterSource="Id_PPMC_HID"/>
+				<CustomParameter id="164" field="ID_Estimacion" dataType="Integer" parameterType="Control" omitIfEmpty="True" parameterSource="ID_Estimacion_HID"/>
+			</IFormElements>
 			<USPParameters/>
 			<USQLParameters/>
-			<UConditions/>
-			<UFormElements/>
+			<UConditions>
+				<TableParameter id="185" conditionType="Parameter" useIsNull="False" field="Id_PPMC" dataType="Integer" searchConditionType="Equal" parameterType="Control" logicOperator="And" parameterSource="Id_PPMC_HID"/>
+				<TableParameter id="186" conditionType="Parameter" useIsNull="False" field="ID_Estimacion" dataType="Integer" searchConditionType="Equal" parameterType="Control" logicOperator="And" parameterSource="ID_Estimacion_HID"/>
+			</UConditions>
+			<UFormElements>
+				<CustomParameter id="183" field="PctReglas" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="PctReglas"/>
+				<CustomParameter id="187" field="Id_PPMC" dataType="Integer" parameterType="Control" omitIfEmpty="True" parameterSource="Id_PPMC_HID"/>
+				<CustomParameter id="188" field="ID_Estimacion" dataType="Integer" parameterType="Control" omitIfEmpty="True" parameterSource="ID_Estimacion_HID"/>
+				<CustomParameter id="189" field="PctMetricas" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="PctMetricas"/>
+				<CustomParameter id="190" field="CumpleCalidadCod" dataType="Integer" parameterType="Control" omitIfEmpty="True" parameterSource="CumpleCalidadCod"/>
+				<CustomParameter id="191" field="UsuarioUltMod" dataType="Text" parameterType="Control" omitIfEmpty="True" parameterSource="UsuarioUltMod"/>
+				<CustomParameter id="192" field="FechaUltMod" dataType="Date" parameterType="Control" omitIfEmpty="True" parameterSource="FechaUltMod"/>
+				<CustomParameter id="193" field="Observaciones" dataType="Text" parameterType="Control" omitIfEmpty="True" parameterSource="Observaciones"/>
+			</UFormElements>
 			<DSPParameters/>
 			<DSQLParameters/>
 			<DConditions/>
@@ -166,6 +258,240 @@
 			<Attributes/>
 			<Features/>
 		</Record>
+		<Grid id="47" secured="False" sourceType="Table" returnValueType="Number" defaultPageSize="10" name="CalidadCodigoMetricas" connection="ConnCarga" dataSource="CalidadCodigoMetricas" pageSizeLimit="100" pageSize="True" wizardCaption=" Calidad Codigo Metricas" wizardTheme="Austere4" wizardThemeApplyTo="Component" wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No hay Registros" wizardGridPagingType="Simple" wizardUseSearch="False" wizardAddNbsp="True" gridTotalRecords="False" wizardAddPanels="False" wizardType="Grid" wizardUseInterVariables="False" addTemplatePanel="False" changedCaptionGrid="True" gridExtendedHTML="False" PathID="CalidadCodigoMetricas" wizardThemeVersion="3.0">
+			<Components>
+				<Sorter id="49" visible="True" name="Sorter_Paquete" column="Paquete" wizardCaption="Paquete" wizardTheme="Austere4" wizardSortingType="SimpleDir" wizardControl="Paquete" wizardAddNbsp="False" PathID="CalidadCodigoMetricasSorter_Paquete" wizardThemeVersion="3.0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="50" visible="True" name="Sorter_N_mero_del_Aplicativo" column="[Número del Aplicativo]" wizardCaption="Número Del Aplicativo" wizardTheme="Austere4" wizardSortingType="SimpleDir" wizardControl="N_mero_del_Aplicativo" wizardAddNbsp="False" PathID="CalidadCodigoMetricasSorter_N_mero_del_Aplicativo" wizardThemeVersion="3.0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="51" visible="True" name="Sorter_Servicio_de_Negocio" column="[Servicio de Negocio]" wizardCaption="Servicio De Negocio" wizardTheme="Austere4" wizardSortingType="SimpleDir" wizardControl="Servicio_de_Negocio" wizardAddNbsp="False" PathID="CalidadCodigoMetricasSorter_Servicio_de_Negocio" wizardThemeVersion="3.0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="52" visible="True" name="Sorter_Tipo_de_requerimiento" column="[Tipo de requerimiento]" wizardCaption="Tipo De Requerimiento" wizardTheme="Austere4" wizardSortingType="SimpleDir" wizardControl="Tipo_de_requerimiento" wizardAddNbsp="False" PathID="CalidadCodigoMetricasSorter_Tipo_de_requerimiento" wizardThemeVersion="3.0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="53" visible="True" name="Sorter_Nombre_del_CDS" column="[Nombre del CDS]" wizardCaption="Nombre Del CDS" wizardTheme="Austere4" wizardSortingType="SimpleDir" wizardControl="Nombre_del_CDS" wizardAddNbsp="False" PathID="CalidadCodigoMetricasSorter_Nombre_del_CDS" wizardThemeVersion="3.0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="54" visible="True" name="Sorter_Porcentaje_de_calidad_m_tricas" column="[Porcentaje de calidad métricas]" wizardCaption="Porcentaje De Calidad Métricas" wizardTheme="Austere4" wizardSortingType="SimpleDir" wizardControl="Porcentaje_de_calidad_m_tricas" wizardAddNbsp="False" PathID="CalidadCodigoMetricasSorter_Porcentaje_de_calidad_m_tricas" wizardThemeVersion="3.0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Label id="56" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Paquete" fieldSource="Paquete" wizardCaption="Paquete" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="CalidadCodigoMetricasPaquete" wizardTheme="Austere4" wizardThemeVersion="3.0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="58" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="N_mero_del_Aplicativo" fieldSource="Número_del Aplicativo" wizardCaption="Número Del Aplicativo" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="CalidadCodigoMetricasN_mero_del_Aplicativo" wizardTheme="Austere4" wizardThemeVersion="3.0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="60" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Servicio_de_Negocio" fieldSource="Servicio_de Negocio" wizardCaption="Servicio De Negocio" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="CalidadCodigoMetricasServicio_de_Negocio" wizardTheme="Austere4" wizardThemeVersion="3.0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="62" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Tipo_de_requerimiento" fieldSource="Tipo_de requerimiento" wizardCaption="Tipo De Requerimiento" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="CalidadCodigoMetricasTipo_de_requerimiento" wizardTheme="Austere4" wizardThemeVersion="3.0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="64" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Nombre_del_CDS" fieldSource="Nombre_del CDS" wizardCaption="Nombre Del CDS" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="CalidadCodigoMetricasNombre_del_CDS" wizardTheme="Austere4" wizardThemeVersion="3.0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="66" fieldSourceType="DBColumn" dataType="Float" html="False" generateSpan="False" name="Porcentaje_de_calidad_m_tricas" fieldSource="Porcentaje_de calidad métricas" wizardCaption="Porcentaje De Calidad Métricas" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="CalidadCodigoMetricasPorcentaje_de_calidad_m_tricas" wizardTheme="Austere4" wizardThemeVersion="3.0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Navigator id="67" size="10" type="Simple" pageSizes="1;5;10;25;50" name="Navigator" wizardPagingType="Simple" wizardFirst="True" wizardFirstText="Inicio" wizardPrev="True" wizardPrevText="Anterior" wizardNext="True" wizardNextText="Siguiente" wizardLast="True" wizardLastText="Final" wizardImages="Images" wizardPageNumbers="Simple" wizardSize="10" wizardTotalPages="True" wizardHideDisabled="False" wizardOfText="de" wizardPageSize="True" wizardTheme="Austere4" wizardImagesScheme="Austere4" wizardThemeVersion="3.0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Navigator>
+			</Components>
+			<Events>
+				<Event name="BeforeSelect" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="100"/>
+					</Actions>
+				</Event>
+				<Event name="BeforeBuildSelect" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="101"/>
+					</Actions>
+				</Event>
+			</Events>
+			<TableParameters/>
+			<JoinTables>
+				<JoinTable id="196" tableName="CalidadCodigoMetricas"/>
+			</JoinTables>
+			<JoinLinks/>
+			<Fields>
+				<Field id="117" fieldName="Paquete" tableName="CalidadCodigoMetricas"/>
+				<Field id="118" alias="Número_del Aplicativo" fieldName="[Número del Aplicativo]" tableName="CalidadCodigoMetricas"/>
+				<Field id="119" alias="Servicio_de Negocio" fieldName="[Servicio de Negocio]" tableName="CalidadCodigoMetricas"/>
+				<Field id="120" alias="Tipo_de requerimiento" fieldName="[Tipo de requerimiento]" tableName="CalidadCodigoMetricas"/>
+				<Field id="121" alias="Nombre_del CDS" fieldName="[Nombre del CDS]" tableName="CalidadCodigoMetricas"/>
+				<Field id="122" alias="Porcentaje_de calidad métricas" fieldName="[Porcentaje de calidad métricas]" tableName="CalidadCodigoMetricas"/>
+			</Fields>
+			<PKFields/>
+			<SPParameters/>
+			<SQLParameters/>
+			<SecurityGroups/>
+			<Attributes/>
+			<Features/>
+		</Grid>
+		<Grid id="123" secured="False" sourceType="Table" returnValueType="Number" defaultPageSize="10" name="CalidadCodigoReglas" connection="ConnCarga" dataSource="CalidadCodigoReglas" pageSizeLimit="100" pageSize="True" wizardCaption="Reglas" wizardTheme="Austere4" wizardThemeApplyTo="Component" wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No hay Registros" wizardGridPagingType="Simple" wizardUseSearch="False" wizardAddNbsp="True" gridTotalRecords="False" wizardAddPanels="False" wizardType="Grid" wizardUseInterVariables="False" addTemplatePanel="False" changedCaptionGrid="True" gridExtendedHTML="False" PathID="CalidadCodigoReglas" wizardThemeVersion="3.0">
+			<Components>
+				<Sorter id="125" visible="True" name="Sorter_PPMC" column="PPMC" wizardCaption="PPMC" wizardTheme="Austere4" wizardSortingType="SimpleDir" wizardControl="PPMC" wizardAddNbsp="False" PathID="CalidadCodigoReglasSorter_PPMC" wizardThemeVersion="3.0">
+					<Components/>
+
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="126" visible="True" name="Sorter_N_mero_del_Aplicativo" column="[Número del Aplicativo]" wizardCaption="Número Del Aplicativo" wizardTheme="Austere4" wizardSortingType="SimpleDir" wizardControl="N_mero_del_Aplicativo" wizardAddNbsp="False" PathID="CalidadCodigoReglasSorter_N_mero_del_Aplicativo" wizardThemeVersion="3.0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="127" visible="True" name="Sorter_Servicio_de_Negocio" column="[Servicio de Negocio]" wizardCaption="Servicio De Negocio" wizardTheme="Austere4" wizardSortingType="SimpleDir" wizardControl="Servicio_de_Negocio" wizardAddNbsp="False" PathID="CalidadCodigoReglasSorter_Servicio_de_Negocio" wizardThemeVersion="3.0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="129" visible="True" name="Sorter_Tipo_de_requerimiento" column="[Tipo de requerimiento]" wizardCaption="Tipo De Requerimiento" wizardTheme="Austere4" wizardSortingType="SimpleDir" wizardControl="Tipo_de_requerimiento" wizardAddNbsp="False" PathID="CalidadCodigoReglasSorter_Tipo_de_requerimiento" wizardThemeVersion="3.0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="130" visible="True" name="Sorter_Nombre_del_CDS" column="[Nombre del CDS]" wizardCaption="Nombre Del CDS" wizardTheme="Austere4" wizardSortingType="SimpleDir" wizardControl="Nombre_del_CDS" wizardAddNbsp="False" PathID="CalidadCodigoReglasSorter_Nombre_del_CDS" wizardThemeVersion="3.0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="131" visible="True" name="Sorter_Porcentaje_de_Calidad_de_C_digo" column="[Porcentaje de Calidad de Código]" wizardCaption="Porcentaje De Calidad De Código" wizardTheme="Austere4" wizardSortingType="SimpleDir" wizardControl="Porcentaje_de_Calidad_de_C_digo" wizardAddNbsp="False" PathID="CalidadCodigoReglasSorter_Porcentaje_de_Calidad_de_C_digo" wizardThemeVersion="3.0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Label id="133" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="PPMC" fieldSource="PPMC" wizardCaption="PPMC" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="CalidadCodigoReglasPPMC" wizardTheme="Austere4" wizardThemeVersion="3.0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="135" fieldSourceType="DBColumn" dataType="Float" html="False" generateSpan="False" name="N_mero_del_Aplicativo" fieldSource="Número_del Aplicativo" wizardCaption="Número Del Aplicativo" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="CalidadCodigoReglasN_mero_del_Aplicativo" wizardTheme="Austere4" wizardThemeVersion="3.0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="137" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Servicio_de_Negocio" fieldSource="Servicio_de Negocio" wizardCaption="Servicio De Negocio" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="CalidadCodigoReglasServicio_de_Negocio" wizardTheme="Austere4" wizardThemeVersion="3.0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="141" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Tipo_de_requerimiento" fieldSource="Tipo_de requerimiento" wizardCaption="Tipo De Requerimiento" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="CalidadCodigoReglasTipo_de_requerimiento" wizardTheme="Austere4" wizardThemeVersion="3.0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="143" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Nombre_del_CDS" fieldSource="Nombre_del CDS" wizardCaption="Nombre Del CDS" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="CalidadCodigoReglasNombre_del_CDS" wizardTheme="Austere4" wizardThemeVersion="3.0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="145" fieldSourceType="DBColumn" dataType="Float" html="False" generateSpan="False" name="Porcentaje_de_Calidad_de_C_digo" fieldSource="Porcentaje_de Calidad de Código" wizardCaption="Porcentaje De Calidad De Código" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="CalidadCodigoReglasPorcentaje_de_Calidad_de_C_digo" wizardTheme="Austere4" wizardThemeVersion="3.0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Navigator id="146" size="10" type="Simple" pageSizes="1;5;10;25;50" name="Navigator" wizardPagingType="Simple" wizardFirst="True" wizardFirstText="Inicio" wizardPrev="True" wizardPrevText="Anterior" wizardNext="True" wizardNextText="Siguiente" wizardLast="True" wizardLastText="Final" wizardImages="Images" wizardPageNumbers="Simple" wizardSize="10" wizardTotalPages="True" wizardHideDisabled="False" wizardOfText="de" wizardPageSize="True" wizardTheme="Austere4" wizardImagesScheme="Austere4" wizardThemeVersion="3.0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Navigator>
+				<Label id="139" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Paquete" fieldSource="Paquete" wizardCaption="Paquete" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="CalidadCodigoReglasPaquete" wizardTheme="Austere4" wizardThemeVersion="3.0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Sorter id="128" visible="True" name="Sorter_Paquete" column="Paquete" wizardCaption="Paquete" wizardTheme="Austere4" wizardSortingType="SimpleDir" wizardControl="Paquete" wizardAddNbsp="False" PathID="CalidadCodigoReglasSorter_Paquete" wizardThemeVersion="3.0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+			</Components>
+			<Events>
+				<Event name="BeforeExecuteSelect" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="147"/>
+					</Actions>
+				</Event>
+			</Events>
+			<TableParameters/>
+			<JoinTables>
+				<JoinTable id="197" tableName="CalidadCodigoReglas"/>
+			</JoinTables>
+			<JoinLinks/>
+			<Fields>
+				<Field id="149" alias="Número_del Aplicativo" fieldName="[Número del Aplicativo]" tableName="CalidadCodigoReglas"/>
+				<Field id="150" alias="Servicio_de Negocio" fieldName="[Servicio de Negocio]" tableName="CalidadCodigoReglas"/>
+				<Field id="151" fieldName="Paquete" tableName="CalidadCodigoReglas"/>
+				<Field id="152" alias="Tipo_de requerimiento" fieldName="[Tipo de requerimiento]" tableName="CalidadCodigoReglas"/>
+				<Field id="153" alias="Nombre_del CDS" fieldName="[Nombre del CDS]" tableName="CalidadCodigoReglas"/>
+				<Field id="154" alias="Porcentaje_de Calidad de Código" fieldName="[Porcentaje de Calidad de Código]" tableName="CalidadCodigoReglas"/>
+			</Fields>
+			<PKFields/>
+			<SPParameters/>
+			<SQLParameters/>
+			<SecurityGroups/>
+			<Attributes/>
+			<Features/>
+		</Grid>
 	</Components>
 	<CodeFiles>
 		<CodeFile id="Code" language="PHPTemplates" name="PPMCsCrCalCodDetalle.php" forShow="True" url="PPMCsCrCalCodDetalle.php" comment="//" codePage="windows-1252"/>

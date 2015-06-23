@@ -63,7 +63,7 @@ class clsMenuTablero { //MenuTablero class @1-5E48B5E6
     }
 //End Operations Method
 
-//Initialize Method @1-A8CCC49E
+//Initialize Method @1-7DABA332
     function Initialize($Path = "")
     {
         global $FileName;
@@ -107,6 +107,9 @@ class clsMenuTablero { //MenuTablero class @1-5E48B5E6
         $this->Link2->Visible = false;
         $this->lkReporteExcel2 = new clsControl(ccsLink, "lkReporteExcel2", "lkReporteExcel2", ccsText, "", CCGetRequestParam("lkReporteExcel2", ccsGet, NULL), $this);
         $this->lkReporteExcel2->Page = $this->RelativePath . "TableroExcel.php";
+        $this->lkEntregables1 = new clsControl(ccsLink, "lkEntregables1", "lkEntregables1", ccsText, "", CCGetRequestParam("lkEntregables1", ccsGet, NULL), $this);
+        $this->lkEntregables1->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
+        $this->lkEntregables1->Page = $this->RelativePath . "ListadoVerificacionEntregables.php";
         $this->pnlDictamen->AddComponent("Link1", $this->Link1);
         $this->BindEvents();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnInitializeView", $this);
@@ -119,7 +122,7 @@ class clsMenuTablero { //MenuTablero class @1-5E48B5E6
     }
 //End Initialize Method
 
-//Show Method @1-555355D3
+//Show Method @1-A309A506
     function Show()
     {
         global $Tpl;
@@ -147,6 +150,7 @@ class clsMenuTablero { //MenuTablero class @1-5E48B5E6
         $this->lkReporteExcel1->Show();
         $this->Link2->Show();
         $this->lkReporteExcel2->Show();
+        $this->lkEntregables1->Show();
         $Tpl->Parse();
         $Tpl->block_path = $block_path;
         $TplData = $Tpl->GetVar($this->ComponentName);

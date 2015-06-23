@@ -72,7 +72,13 @@
 			<Attributes/>
 			<Features/>
 		</Link>
-	</Components>
+		<Link id="26" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="lkEntregables1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="MenuTablerolkEntregables1" hrefSource="ListadoVerificacionEntregables.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Lista verificación','textSourceDB':'','hrefSource':'ListadoVerificacionEntregables.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
+<Events/>
+<LinkParameters/>
+<Attributes/>
+<Features/>
+</Link>
+</Components>
 	<CodeFiles>
 		<CodeFile id="Code" language="PHPTemplates" name="MenuTablero.php" forShow="True" url="MenuTablero.php" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Events" language="PHPTemplates" name="MenuTablero_events.php" forShow="False" comment="//" codePage="windows-1252"/>

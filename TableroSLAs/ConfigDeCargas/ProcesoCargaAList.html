@@ -1,0 +1,221 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>proceso_carga_archivos</title>
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-6ADB6CED
+</script>
+<script src="../ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-E9235927
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/adx.css">
+<link rel="stylesheet" type="text/css" href="../Styles/{CCS_Style}/Menu.css">
+{page:scriptIncludes}
+<script type="text/javascript">
+//End Include User Scripts
+
+//Common Script Start @1-8BFA436B
+jQuery(function ($) {
+    var features = { };
+    var actions = { };
+    var params = { };
+//End Common Script Start
+
+//Plugin Calls @1-FD390785
+    $('*:ccsControl(Menu1Container)').ccsBind(function() {
+        this.ccsMenu();
+    });
+//End Plugin Calls
+
+//Common Script End @1-562554DE
+});
+//End Common Script End
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="../Styles/{CCS_Style}/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="../Styles/{CCS_Style}/jquery-ui.css">
+</head>
+<body>
+<p>{Header} </p>
+<p>
+<!-- BEGIN Menu Menu1 -->
+<div class="MenuStyle Austere4" ccs_class="MenuStyle {CCS_Style}" id="Menu1Container">
+  <ul class="adxm {Menu1:MenuType} level1">
+    <!-- BEGIN Item -->
+    <!-- BEGIN OpenLevel -->
+    <ul class="level{Menu1:Item_Level}">
+      <!-- END OpenLevel -->
+      <li><a href="{ItemLink_Src}" class="{Menu1:Submenu}" target="{Menu1:Target}" title="{Menu1:Title}">{ItemLink}</a> 
+      <!-- BEGIN CloseItem --></li>
+ <!-- END CloseItem -->
+      <!-- BEGIN CloseLevel -->
+    </ul>
+ </li>
+ <!-- END CloseLevel --><!-- END Item -->
+  </ul>
+</div>
+<!-- END Menu Menu1 --></p>
+<!-- BEGIN Record proceso_carga_archivosSearch -->
+<form id="proceso_carga_archivosSearch" method="post" name="{HTMLFormName}" action="{Action}">
+  <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+            <td class="th"><strong>Buscar en: Procesos de carga</strong></td> 
+            <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr id="proceso_carga_archivosSearchErrorBlock" class="Error">
+            <td colspan="2">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <td class="th"><label for="proceso_carga_archivosSearchs_keyword">Cadena a buscar</label></td> 
+            <td><input type="text" id="proceso_carga_archivosSearchs_keyword" value="{s_keyword}" maxlength="50" size="50" name="{s_keyword_Name}"></td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td style="TEXT-ALIGN: right" colspan="2">
+              <!-- BEGIN Button Button_DoSearch --><input type="submit" id="proceso_carga_archivosSearchButton_DoSearch" class="Button" value="Search" alt="Search" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+          </tr>
+        </table>
+      </td> 
+      <td width="20"></td> 
+      <td></td>
+    </tr>
+  </table>
+</form>
+<!-- END Record proceso_carga_archivosSearch --><br>
+<!-- BEGIN Grid proceso_carga_archivos -->
+<table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td valign="top">
+      <table class="Header" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+          <td class="th"><strong>Lista&nbsp;de Procesos de&nbsp;Carga </strong></td> 
+          <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Caption">
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_cve_carga --><span class="Sorter"><a href="{Sort_URL}" id="proceso_carga_archivosSorter_cve_carga">Cve Carga</a> 
+          <!-- BEGIN Asc_On --><img alt="Ascending" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_cve_carga --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_descripcion --><span class="Sorter"><a href="{Sort_URL}" id="proceso_carga_archivosSorter_descripcion">Descripcion</a> 
+          <!-- BEGIN Asc_On --><img alt="Ascending" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_descripcion --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_mascara_archivo --><span class="Sorter"><a href="{Sort_URL}" id="proceso_carga_archivosSorter_mascara_archivo">Mascara Archivo</a> 
+          <!-- BEGIN Asc_On --><img alt="Ascending" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_mascara_archivo --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_formato_archivo --><span class="Sorter"><a href="{Sort_URL}" id="proceso_carga_archivosSorter_formato_archivo">Formato</a> 
+          <!-- BEGIN Asc_On --><img alt="Ascending" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_formato_archivo --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_repositorio --><span class="Sorter"><a href="{Sort_URL}" id="proceso_carga_archivosSorter_repositorio">Repositorio</a> 
+          <!-- BEGIN Asc_On --><img alt="Ascending" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_repositorio --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_db_destino --><span class="Sorter"><a href="{Sort_URL}" id="proceso_carga_archivosSorter_db_destino">Db Destino</a> 
+          <!-- BEGIN Asc_On --><img alt="Ascending" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_db_destino --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_tabla_destino --><span class="Sorter"><a href="{Sort_URL}" id="proceso_carga_archivosSorter_tabla_destino">Tabla Destino</a> 
+          <!-- BEGIN Asc_On --><img alt="Ascending" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_tabla_destino --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_numero_hoja_excel --><span class="Sorter"><a href="{Sort_URL}" id="proceso_carga_archivosSorter_numero_hoja_excel">Hoja Excel</a> 
+          <!-- BEGIN Asc_On --><img alt="Ascending" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_numero_hoja_excel --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_filas_sin_datos_excel --><span class="Sorter"><a href="{Sort_URL}" id="proceso_carga_archivosSorter_filas_sin_datos_excel">Filas Sin Datos</a> 
+          <!-- BEGIN Asc_On --><img alt="Ascending" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_filas_sin_datos_excel --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_campo_fecha_cierre --><span class="Sorter"><a href="{Sort_URL}" id="proceso_carga_archivosSorter_campo_fecha_cierre">Campo Fecha Cierre</a> 
+          <!-- BEGIN Asc_On --><img alt="Ascending" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_campo_fecha_cierre --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_campo_indice --><span class="Sorter"><a href="{Sort_URL}" id="proceso_carga_archivosSorter_campo_indice">Campo Indice</a> 
+          <!-- BEGIN Asc_On --><img alt="Ascending" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_campo_indice --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_periodicidad --><span class="Sorter"><a href="{Sort_URL}" id="proceso_carga_archivosSorter_periodicidad">Periodicidad</a> 
+          <!-- BEGIN Asc_On --><img alt="Ascending" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_periodicidad --></th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr class="Row">
+          <td><a href="{cve_carga_Src}" id="proceso_carga_archivoscve_carga_{proceso_carga_archivos:rowNumber}">{cve_carga}</a>&nbsp;</td> 
+          <td>{descripcion}&nbsp;</td> 
+          <td>{mascara_archivo}&nbsp;</td> 
+          <td>{formato_archivo}&nbsp;</td> 
+          <td>{repositorio}&nbsp;</td> 
+          <td>{db_destino}&nbsp;</td> 
+          <td>{tabla_destino}&nbsp;</td> 
+          <td style="TEXT-ALIGN: right">{numero_hoja_excel}&nbsp;</td> 
+          <td style="TEXT-ALIGN: right">{filas_sin_datos_excel}&nbsp;</td> 
+          <td>{campo_fecha_cierre}&nbsp;</td> 
+          <td>{campo_indice}&nbsp;</td> 
+          <td>{periodicidad}&nbsp;</td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="15">No records</td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="Footer">
+          <td colspan="15"><a href="{proceso_carga_archivos_Insert_Src}" id="proceso_carga_archivosproceso_carga_archivos_Insert">Agregar proceso</a>&nbsp; 
+            <!-- BEGIN Navigator Navigator --><span class="Navigator">Records per page 
+            <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+              <option selected value="">-</option>
+ {PageSize_Options}
+            </select>
+ 
+            <!-- BEGIN First_On --><a href="{First_URL}">|&lt;</a> <!-- END First_On -->
+            <!-- BEGIN First_Off -->|&lt; <!-- END First_Off -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}">&lt;&lt;</a> <!-- END Prev_On -->
+            <!-- BEGIN Prev_Off -->&lt;&lt; <!-- END Prev_Off -->&nbsp;{Page_Number} of&nbsp;{Total_Pages}&nbsp; 
+            <!-- BEGIN Next_On --><a href="{Next_URL}">&gt;&gt;</a> <!-- END Next_On -->
+            <!-- BEGIN Next_Off -->&gt;&gt; <!-- END Next_Off -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}">&gt;|</a> <!-- END Last_On -->
+            <!-- BEGIN Last_Off -->&gt;| <!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid proceso_carga_archivos --><br>
+&nbsp; 
+</body>
+</html>

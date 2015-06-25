@@ -48,7 +48,7 @@ CCSecurityRedirect("3;4", "");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-24DBB154
+//Initialize Objects @1-88E21346
 $Attributes = new clsAttributes("page:");
 $Attributes->SetValue("pathToRoot", $PathToRoot);
 $MainPage->Attributes = & $Attributes;
@@ -80,6 +80,9 @@ $Link7->Page = "Charts/Charts.php";
 $Link8 = new clsControl(ccsLink, "Link8", "Link8", ccsText, "", CCGetRequestParam("Link8", ccsGet, NULL), $MainPage);
 $Link8->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
 $Link8->Page = "Catalogos/ReportesMyM.php";
+$Link9 = new clsControl(ccsLink, "Link9", "Link9", ccsText, "", CCGetRequestParam("Link9", ccsGet, NULL), $MainPage);
+$Link9->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
+$Link9->Page = "ConfigDeCargas/ProcesoCargaAList.php";
 $MainPage->Header = & $Header;
 $MainPage->Link1 = & $Link1;
 $MainPage->Link2 = & $Link2;
@@ -89,6 +92,7 @@ $MainPage->Link5 = & $Link5;
 $MainPage->Link6 = & $Link6;
 $MainPage->Link7 = & $Link7;
 $MainPage->Link8 = & $Link8;
+$MainPage->Link9 = & $Link9;
 $ScriptIncludes = "";
 $SList = explode("|", $Scripts);
 foreach ($SList as $Script) {
@@ -136,7 +140,7 @@ if($Redirect)
 }
 //End Go to destination page
 
-//Show Page @1-E0E09F7C
+//Show Page @1-276C816D
 $Header->Show();
 $Link1->Show();
 $Link2->Show();
@@ -146,6 +150,7 @@ $Link5->Show();
 $Link6->Show();
 $Link7->Show();
 $Link8->Show();
+$Link9->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);

@@ -88,68 +88,10 @@
   </form>
   <!-- END Record Buscar --></p>
 </div>
-<div style="FLOAT: left; MARGIN-LEFT: 75px" id="genlistdiv">
-  <p>
-  <!-- BEGIN Record GenList -->
-  <form id="GenList" method="post" name="{HTMLFormName}" action="{Action}">
-    <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td valign="top">
-          <table class="Header" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-              <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
-              <td class="th"><strong>Generar Listado Entregables Nuevo Mes</strong></td> 
-              <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
-            </tr>
-          </table>
- 
-          <table class="Record" cellspacing="0" cellpadding="0">
-            <!-- BEGIN Error -->
-            <tr id="{@error-block}" class="Error">
-              <td colspan="6">{Error}</td>
-            </tr>
-            <!-- END Error -->
-            <tr class="Controls">
-              <td class="th"><label for="GenListMesGenCorte">Mes</label></td> 
-              <td>
-                <select id="GenListMesGenCorte" name="{MesGenCorte_Name}">
-                  <option selected value="">Seleccionar Valor</option>
-                  {MesGenCorte_Options}
-                </select>
- </td> 
-              <td>&nbsp;Año</td> 
-              <td>
-                <select id="GenListAnioGenCorte" name="{AnioGenCorte_Name}">
-                  <option selected value="">Seleccionar Valor</option>
-                  {AnioGenCorte_Options}
-                </select>
- </td> 
-              <td class="th">
-                <p>Proveedor</p>
-              </td> 
-              <td>
-                <select id="GenListGenproveedor" name="{Genproveedor_Name}">
-                  <option selected value="">Seleccionar Valor</option>
-                  {Genproveedor_Options}
-                </select>
- </td>
-            </tr>
- 
-            <tr class="Bottom">
-              <td style="TEXT-ALIGN: right" colspan="6">&nbsp; 
-                <!-- BEGIN Button Button_Generar --><input type="submit" id="GenListButton_Generar" class="Button" value="Generar" alt="Generar" name="{Button_Name}"><!-- END Button Button_Generar -->&nbsp; </td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-    </table>
-  </form>
-  <!-- END Record GenList --></p>
-</div>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<div style="FLOAT: left; MARGIN-LEFT: 75px" id="lnkexceldiv">
-  <p><a href="{lnkexcellista_Src}" id="lnkexcellista"><img style="BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; VERTICAL-ALIGN: middle; BORDER-LEFT-WIDTH: 0px; border-image: none" src="images/xls.jpg" width="20" height="20">&nbsp;Excel Lista de Entregables</a></p>
+<div style="FLOAT: right; MARGIN-LEFT: 75px" id="lnkexceldiv">
+  <p><!-- BEGIN Link lnkexcellista --><a href="{lnkexcellista_Src}" id="lnkexcellista"><img style="BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; VERTICAL-ALIGN: middle; BORDER-LEFT-WIDTH: 0px; border-image: none" src="images/xls.jpg" width="20" height="20">&nbsp;Generar Lista de Entregables Archivo Excel</a><!-- END Link lnkexcellista --></p>
 </div>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -267,5 +209,63 @@
 </div>
 <p></p>
 <p>&nbsp;</p>
+<div style="FLOAT: left; MARGIN-LEFT: 0px" id="genlistdiv">
+  <p>
+  <!-- BEGIN Record GenList -->
+  <form id="GenList" method="post" name="{HTMLFormName}" action="{Action}">
+    <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td valign="top">
+          <table class="Header" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+              <td class="th"><strong>Generar Nuevo Mes</strong></td> 
+              <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+            </tr>
+          </table>
+ 
+          <table class="Record" cellspacing="0" cellpadding="0">
+            <!-- BEGIN Error -->
+            <tr id="{@error-block}" class="Error">
+              <td colspan="6">{Error}</td>
+            </tr>
+            <!-- END Error -->
+            <tr class="Controls">
+              <td class="th"><label for="GenListMesGenCorte">Mes</label></td> 
+              <td>
+                <select id="GenListMesGenCorte" name="{MesGenCorte_Name}">
+                  <option selected value="">Seleccionar Valor</option>
+                  {MesGenCorte_Options}
+                </select>
+ </td> 
+              <td>&nbsp;Año</td> 
+              <td>
+                <select id="GenListAnioGenCorte" name="{AnioGenCorte_Name}">
+                  <option selected value="">Seleccionar Valor</option>
+                  {AnioGenCorte_Options}
+                </select>
+ </td> 
+              <td class="th">
+                <p>Proveedor</p>
+              </td> 
+              <td>
+                <select id="GenListGenproveedor" name="{Genproveedor_Name}">
+                  <option selected value="">Seleccionar Valor</option>
+                  {Genproveedor_Options}
+                </select>
+ </td>
+            </tr>
+ 
+            <tr class="Bottom">
+              <td style="TEXT-ALIGN: right" colspan="6">&nbsp; 
+                <!-- BEGIN Button Button_Generar --><input type="submit" id="GenListButton_Generar" class="Button" value="Generar" alt="Generar" name="{Button_Name}"><!-- END Button Button_Generar -->&nbsp; </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </form>
+  <!-- END Record GenList --></p>
+</div>
 </body>
 </html>

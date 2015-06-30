@@ -1,12 +1,15 @@
 <?php
-//BindEvents Method @1-6501BB6B
+//BindEvents Method @1-1E3FE3BB
 function BindEvents()
 {
     global $Buscar;
     global $GridEntregables;
+    global $lnkexcellista;
     global $GenList;
     $Buscar->CCSEvents["OnValidate"] = "Buscar_OnValidate";
     $GridEntregables->ds->CCSEvents["BeforeExecuteSelect"] = "GridEntregables_ds_BeforeExecuteSelect";
+    $GridEntregables->CCSEvents["BeforeShow"] = "GridEntregables_BeforeShow";
+    $lnkexcellista->CCSEvents["BeforeShow"] = "lnkexcellista_BeforeShow";
     $GenList->CCSEvents["OnValidate"] = "GenList_OnValidate";
 }
 //End BindEvents Method
@@ -65,6 +68,53 @@ LEFT JOIN mc_c_proveedor p ON p.id_proveedor = e.id_proveedor  ". $condicion;
 }
 //End Close GridEntregables_ds_BeforeExecuteSelect
 
+//GridEntregables_BeforeShow @93-233010C4
+function GridEntregables_BeforeShow(& $sender)
+{
+    $GridEntregables_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $GridEntregables; //Compatibility
+    global $lnkexcellista;
+    
+//End GridEntregables_BeforeShow
+
+//Custom Code @138-2A29BDB7
+// -------------------------
+	if ($GridEntregables->DataSource->RecordsCount<1)
+	{
+
+    	$lnkexcellista->Visible = False;
+	}
+
+// -------------------------
+//End Custom Code
+
+//Close GridEntregables_BeforeShow @93-A060F4B7
+    return $GridEntregables_BeforeShow;
+}
+//End Close GridEntregables_BeforeShow
+
+//lnkexcellista_BeforeShow @133-AD71D0E2
+function lnkexcellista_BeforeShow(& $sender)
+{
+    $lnkexcellista_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $lnkexcellista; //Compatibility
+//End lnkexcellista_BeforeShow
+
+//Custom Code @139-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
+//Close lnkexcellista_BeforeShow @133-06F234AE
+    return $lnkexcellista_BeforeShow;
+}
+//End Close lnkexcellista_BeforeShow
+
 //GenList_OnValidate @44-E789AC32
 function GenList_OnValidate(& $sender)
 {
@@ -74,26 +124,30 @@ function GenList_OnValidate(& $sender)
     global $GenList; //Compatibility
 //End GenList_OnValidate
 
-//Custom Code @119-2A29BDB7
+//DEL  // -------------------------
+//DEL      $VMes=  $GenList->MesGenCorte->GetValue();
+//DEL      $VAnio=  $GenList->AnioGenCorte->GetValue() ;
+//DEL      $VProveedor= $GenList->Genproveedor->GetValue() ;
+//DEL      if($VMes == "" || $VAnio == "" || $VProveedor == ""  ){ //Ya existe el mes
+//DEL  			$GenList->Errors->addError('Parametros incompletos');
+//DEL  	}
+//DEL      //Verificando la existencia del mes , año y proveedor 
+//DEL  	$sSQL='SELECT count(*) FROM entregables_periodicos_smda4  WHERE ' .
+//DEL  		' anio_corte = ' . $VAnio . 
+//DEL  		' and mes_corte = ' . $VMes .
+//DEL  		' and id_proveedor = ' . $VProveedor;
+//DEL  		
+//DEL  	$db = new clsDBCnDisenio;
+//DEL  	$db->query($sSQL);
+//DEL  	$db->next_record();
+//DEL  	if($db->f(0) > 0 ){ //Ya existe el mes
+//DEL  			$GenList->Errors->addError('Ya esta cargado el mes indicado');
+//DEL  	} 
+//DEL      // Write your own code here.
+//DEL  // -------------------------
+
+//Custom Code @137-2A29BDB7
 // -------------------------
-    $VMes=  $GenList->MesGenCorte->GetValue();
-    $VAnio=  $GenList->AnioGenCorte->GetValue() ;
-    $VProveedor= $GenList->Genproveedor->GetValue() ;
-    if($VMes == "" || $VAnio == "" || $VProveedor == ""  ){ //Ya existe el mes
-			$GenList->Errors->addError('Parametros incompletos');
-	}
-    //Verificando la existencia del mes , año y proveedor 
-	$sSQL='SELECT count(*) FROM entregables_periodicos_smda4  WHERE ' .
-		' anio_corte = ' . $VAnio . 
-		' and mes_corte = ' . $VMes .
-		' and id_proveedor = ' . $VProveedor;
-		
-	$db = new clsDBCnDisenio;
-	$db->query($sSQL);
-	$db->next_record();
-	if($db->f(0) > 0 ){ //Ya existe el mes
-			$GenList->Errors->addError('Ya esta cargado el mes indicado');
-	} 
     // Write your own code here.
 // -------------------------
 //End Custom Code

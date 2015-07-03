@@ -145,7 +145,6 @@
 				<MenuItem id="24" name="MenuItem2" caption="Procesos de carga" url="ProcesoCargaAList.ccp" target="_self"/>
 <MenuItem id="25" name="MenuItem3" caption="Layouts de procesos de carga" url="DetalleLayoutList.ccp" target="_self"/>
 <MenuItem id="26" name="MenuItem1" caption="Log ultimas cargas" url="UltimasCargas.ccp" target="_self"/>
-<MenuItem id="27" name="MenuItem4" caption="Ejecutar Carga" url="ExecCarga.ccp" target="_self"/>
 </MenuItems>
 			<Features/>
 		</Menu>

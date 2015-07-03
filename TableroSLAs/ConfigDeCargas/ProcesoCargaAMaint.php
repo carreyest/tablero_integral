@@ -45,7 +45,7 @@ class clsRecordproceso_carga_archivos { //proceso_carga_archivos Class @2-B88AA5
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-4A53EE0F
+//Class_Initialize Event @2-E62C4099
     function clsRecordproceso_carga_archivos($RelativePath, & $Parent)
     {
 
@@ -109,6 +109,7 @@ class clsRecordproceso_carga_archivos { //proceso_carga_archivos Class @2-B88AA5
             $this->db_destino->DSType = dsListOfValues;
             $this->db_destino->Values = array(array("Reportes_ACDMA", "Reportes_ACDMA"), array("TableroMyM_SDMA4", "TableroMyM_SDMA4"), array("archivosxls", "archivosxls"), array("MesaControl_Prod", "MesaControl_Prod"), array("MesaControlHistorico_Desa", "MesaControlHistorico_Desa"), array("replica_mcam", "replica_mcam"), array("replica_mcam_temp", "replica_mcam_temp"), array("replica_mcam_v2", "replica_mcam_v2"), array("Tablero_MesaControl_Pruebas", "Tablero_MesaControl_Pruebas"));
             $this->db_destino->Required = true;
+            $this->campo_grupo = new clsControl(ccsTextBox, "campo_grupo", "campo_grupo", ccsText, "", CCGetRequestParam("campo_grupo", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->campo_indice_identity->Value) && !strlen($this->campo_indice_identity->Value) && $this->campo_indice_identity->Value !== false)
                     $this->campo_indice_identity->SetValue(false);
@@ -128,7 +129,7 @@ class clsRecordproceso_carga_archivos { //proceso_carga_archivos Class @2-B88AA5
     }
 //End Initialize Method
 
-//Validate Method @2-1160C38D
+//Validate Method @2-3D94B05D
     function Validate()
     {
         global $CCSLocales;
@@ -149,6 +150,7 @@ class clsRecordproceso_carga_archivos { //proceso_carga_archivos Class @2-B88AA5
         $Validation = ($this->periodicidad->Validate() && $Validation);
         $Validation = ($this->cve_carga->Validate() && $Validation);
         $Validation = ($this->db_destino->Validate() && $Validation);
+        $Validation = ($this->campo_grupo->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->descripcion->Errors->Count() == 0);
         $Validation =  $Validation && ($this->mascara_archivo->Errors->Count() == 0);
@@ -165,11 +167,12 @@ class clsRecordproceso_carga_archivos { //proceso_carga_archivos Class @2-B88AA5
         $Validation =  $Validation && ($this->periodicidad->Errors->Count() == 0);
         $Validation =  $Validation && ($this->cve_carga->Errors->Count() == 0);
         $Validation =  $Validation && ($this->db_destino->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->campo_grupo->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @2-8A12FE3F
+//CheckErrors Method @2-693823C7
     function CheckErrors()
     {
         $errors = false;
@@ -188,6 +191,7 @@ class clsRecordproceso_carga_archivos { //proceso_carga_archivos Class @2-B88AA5
         $errors = ($errors || $this->periodicidad->Errors->Count());
         $errors = ($errors || $this->cve_carga->Errors->Count());
         $errors = ($errors || $this->db_destino->Errors->Count());
+        $errors = ($errors || $this->campo_grupo->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -242,7 +246,7 @@ class clsRecordproceso_carga_archivos { //proceso_carga_archivos Class @2-B88AA5
     }
 //End Operation Method
 
-//InsertRow Method @2-229B4BB6
+//InsertRow Method @2-6166F44F
     function InsertRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
@@ -262,13 +266,14 @@ class clsRecordproceso_carga_archivos { //proceso_carga_archivos Class @2-B88AA5
         $this->DataSource->periodicidad->SetValue($this->periodicidad->GetValue(true));
         $this->DataSource->cve_carga->SetValue($this->cve_carga->GetValue(true));
         $this->DataSource->db_destino->SetValue($this->db_destino->GetValue(true));
+        $this->DataSource->campo_grupo->SetValue($this->campo_grupo->GetValue(true));
         $this->DataSource->Insert();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterInsert", $this);
         return (!$this->CheckErrors());
     }
 //End InsertRow Method
 
-//UpdateRow Method @2-873C1E49
+//UpdateRow Method @2-657145D0
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
@@ -288,6 +293,7 @@ class clsRecordproceso_carga_archivos { //proceso_carga_archivos Class @2-B88AA5
         $this->DataSource->periodicidad->SetValue($this->periodicidad->GetValue(true));
         $this->DataSource->cve_carga->SetValue($this->cve_carga->GetValue(true));
         $this->DataSource->db_destino->SetValue($this->db_destino->GetValue(true));
+        $this->DataSource->campo_grupo->SetValue($this->campo_grupo->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
         return (!$this->CheckErrors());
@@ -305,7 +311,7 @@ class clsRecordproceso_carga_archivos { //proceso_carga_archivos Class @2-B88AA5
     }
 //End DeleteRow Method
 
-//Show Method @2-7B0C5C1C
+//Show Method @2-E8A85F48
     function Show()
     {
         global $CCSUseAmp;
@@ -351,6 +357,7 @@ class clsRecordproceso_carga_archivos { //proceso_carga_archivos Class @2-B88AA5
                     $this->periodicidad->SetValue($this->DataSource->periodicidad->GetValue());
                     $this->cve_carga->SetValue($this->DataSource->cve_carga->GetValue());
                     $this->db_destino->SetValue($this->DataSource->db_destino->GetValue());
+                    $this->campo_grupo->SetValue($this->DataSource->campo_grupo->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -374,6 +381,7 @@ class clsRecordproceso_carga_archivos { //proceso_carga_archivos Class @2-B88AA5
             $Error = ComposeStrings($Error, $this->periodicidad->Errors->ToString());
             $Error = ComposeStrings($Error, $this->cve_carga->Errors->ToString());
             $Error = ComposeStrings($Error, $this->db_destino->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->campo_grupo->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -413,6 +421,7 @@ class clsRecordproceso_carga_archivos { //proceso_carga_archivos Class @2-B88AA5
         $this->periodicidad->Show();
         $this->cve_carga->Show();
         $this->db_destino->Show();
+        $this->campo_grupo->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -423,7 +432,7 @@ class clsRecordproceso_carga_archivos { //proceso_carga_archivos Class @2-B88AA5
 
 class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_carga_archivosDataSource Class @2-C2127757
 
-//DataSource Variables @2-D1F6A3BB
+//DataSource Variables @2-5575ECED
     public $Parent = "";
     public $CCSEvents = "";
     public $CCSEventResult;
@@ -455,9 +464,10 @@ class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_ca
     public $periodicidad;
     public $cve_carga;
     public $db_destino;
+    public $campo_grupo;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-4541BF83
+//DataSourceClass_Initialize Event @2-E4D38297
     function clsproceso_carga_archivosDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -493,6 +503,8 @@ class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_ca
         
         $this->db_destino = new clsField("db_destino", ccsText, "");
         
+        $this->campo_grupo = new clsField("campo_grupo", ccsText, "");
+        
 
         $this->InsertFields["descripcion"] = array("Name" => "descripcion", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["mascara_archivo"] = array("Name" => "mascara_archivo", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
@@ -509,6 +521,7 @@ class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_ca
         $this->InsertFields["periodicidad"] = array("Name" => "periodicidad", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["cve_carga"] = array("Name" => "cve_carga", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["db_destino"] = array("Name" => "db_destino", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->InsertFields["grupo"] = array("Name" => "grupo", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["descripcion"] = array("Name" => "descripcion", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["mascara_archivo"] = array("Name" => "mascara_archivo", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["formato_archivo"] = array("Name" => "formato_archivo", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
@@ -524,6 +537,7 @@ class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_ca
         $this->UpdateFields["periodicidad"] = array("Name" => "periodicidad", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["cve_carga"] = array("Name" => "cve_carga", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["db_destino"] = array("Name" => "db_destino", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["grupo"] = array("Name" => "grupo", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
     }
 //End DataSourceClass_Initialize Event
 
@@ -553,7 +567,7 @@ class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_ca
     }
 //End Open Method
 
-//SetValues Method @2-43643606
+//SetValues Method @2-6AFFF0C2
     function SetValues()
     {
         $this->descripcion->SetDBValue($this->f("descripcion"));
@@ -571,10 +585,11 @@ class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_ca
         $this->periodicidad->SetDBValue($this->f("periodicidad"));
         $this->cve_carga->SetDBValue($this->f("cve_carga"));
         $this->db_destino->SetDBValue($this->f("db_destino"));
+        $this->campo_grupo->SetDBValue($this->f("grupo"));
     }
 //End SetValues Method
 
-//Insert Method @2-7EACC3CA
+//Insert Method @2-E9B35C88
     function Insert()
     {
         global $CCSLocales;
@@ -596,6 +611,7 @@ class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_ca
         $this->InsertFields["periodicidad"]["Value"] = $this->periodicidad->GetDBValue(true);
         $this->InsertFields["cve_carga"]["Value"] = $this->cve_carga->GetDBValue(true);
         $this->InsertFields["db_destino"]["Value"] = $this->db_destino->GetDBValue(true);
+        $this->InsertFields["grupo"]["Value"] = $this->campo_grupo->GetDBValue(true);
         $this->SQL = CCBuildInsert("proceso_carga_archivos", $this->InsertFields, $this);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
@@ -605,7 +621,7 @@ class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_ca
     }
 //End Insert Method
 
-//Update Method @2-5966CBCC
+//Update Method @2-16E1C379
     function Update()
     {
         global $CCSLocales;
@@ -628,6 +644,7 @@ class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_ca
         $this->UpdateFields["periodicidad"]["Value"] = $this->periodicidad->GetDBValue(true);
         $this->UpdateFields["cve_carga"]["Value"] = $this->cve_carga->GetDBValue(true);
         $this->UpdateFields["db_destino"]["Value"] = $this->db_destino->GetDBValue(true);
+        $this->UpdateFields["grupo"]["Value"] = $this->campo_grupo->GetDBValue(true);
         $this->SQL = CCBuildUpdate("proceso_carga_archivos", $this->UpdateFields, $this);
         $this->SQL .= strlen($this->Where) ? " WHERE " . $this->Where : $this->Where;
         if (!strlen($this->Where) && $this->Errors->Count() == 0) 

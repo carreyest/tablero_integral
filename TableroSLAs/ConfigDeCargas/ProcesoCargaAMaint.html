@@ -74,29 +74,30 @@ jQuery(function ($) {
           <tr>
             <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
             <td class="th"><strong>Add/Edit Proceso Carga Archivos </strong></td> 
-            <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+            <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
           </tr>
+ 
         </table>
  
         <table class="Record" cellspacing="0" cellpadding="0">
           <!-- BEGIN Error -->
           <tr id="proceso_carga_archivosErrorBlock" class="Error">
-            <td colspan="2">{Error}</td>
+            <td colspan="2">{Error}</td> 
           </tr>
-          <!-- END Error -->
+ <!-- END Error -->
           <tr class="Controls">
             <td class="th">Clave de carga</td> 
-            <td><input type="text" id="proceso_carga_archivoscve_carga" value="{cve_carga}" name="{cve_carga_Name}"></td>
+            <td><input type="text" id="proceso_carga_archivoscve_carga" value="{cve_carga}" name="{cve_carga_Name}"></td> 
           </tr>
  
           <tr class="Controls">
             <td class="th"><label for="proceso_carga_archivosdescripcion">Descripcion</label></td> 
-            <td><input type="text" id="proceso_carga_archivosdescripcion" value="{descripcion}" maxlength="200" size="50" name="{descripcion_Name}"></td>
+            <td><input type="text" id="proceso_carga_archivosdescripcion" value="{descripcion}" maxlength="200" size="50" name="{descripcion_Name}"></td> 
           </tr>
  
           <tr class="Controls">
             <td class="th"><label for="proceso_carga_archivosmascara_archivo">Mascara Archivo</label></td> 
-            <td><input type="text" id="proceso_carga_archivosmascara_archivo" value="{mascara_archivo}" maxlength="50" size="50" name="{mascara_archivo_Name}"></td>
+            <td><input type="text" id="proceso_carga_archivosmascara_archivo" value="{mascara_archivo}" maxlength="50" size="50" name="{mascara_archivo_Name}"></td> 
           </tr>
  
           <tr class="Controls">
@@ -104,19 +105,19 @@ jQuery(function ($) {
             <td>
               <select id="proceso_carga_archivosformato_archivo" name="{formato_archivo_Name}">
                 <option selected value="">Select Value</option>
-                {formato_archivo_Options}
+ {formato_archivo_Options} 
               </select>
- </td>
+ </td> 
           </tr>
  
           <tr class="Controls">
             <td class="th"><label for="proceso_carga_archivosrepositorio">Repositorio</label></td> 
-            <td><input type="text" id="proceso_carga_archivosrepositorio" value="{repositorio}" maxlength="150" size="50" name="{repositorio_Name}"></td>
+            <td><input type="text" id="proceso_carga_archivosrepositorio" value="{repositorio}" maxlength="150" size="50" name="{repositorio_Name}"></td> 
           </tr>
  
           <tr class="Controls">
             <td class="th"><label for="proceso_carga_archivosmails_responsables">Mails Responsables</label></td> 
-            <td><input type="text" id="proceso_carga_archivosmails_responsables" value="{mails_responsables}" maxlength="200" size="50" name="{mails_responsables_Name}"></td>
+            <td><input type="text" id="proceso_carga_archivosmails_responsables" value="{mails_responsables}" maxlength="200" size="50" name="{mails_responsables_Name}"></td> 
           </tr>
  
           <tr class="Controls">
@@ -124,44 +125,49 @@ jQuery(function ($) {
             <td>
               <select id="proceso_carga_archivosdb_destino" name="{db_destino_Name}">
                 <option selected value="">Seleccionar Valor</option>
-                {db_destino_Options}
+ {db_destino_Options} 
               </select>
- </td>
+ </td> 
           </tr>
  
           <tr class="Controls">
             <td class="th"><label for="proceso_carga_archivostabla_destino">Tabla Destino</label></td> 
-            <td><input type="text" id="proceso_carga_archivostabla_destino" value="{tabla_destino}" maxlength="100" size="50" name="{tabla_destino_Name}"></td>
+            <td><input type="text" id="proceso_carga_archivostabla_destino" value="{tabla_destino}" maxlength="100" size="50" name="{tabla_destino_Name}"></td> 
           </tr>
  
           <tr class="Controls">
             <td class="th"><label for="proceso_carga_archivosprocedimiento_extra">Procedimiento Extra</label></td> 
-            <td><input type="text" id="proceso_carga_archivosprocedimiento_extra" value="{procedimiento_extra}" maxlength="200" size="50" name="{procedimiento_extra_Name}"></td>
+            <td><input type="text" id="proceso_carga_archivosprocedimiento_extra" value="{procedimiento_extra}" maxlength="200" size="50" name="{procedimiento_extra_Name}"></td> 
           </tr>
  
           <tr class="Controls">
             <td class="th"><label for="proceso_carga_archivosnumero_hoja_excel">Numero Hoja Excel</label></td> 
-            <td><input type="text" id="proceso_carga_archivosnumero_hoja_excel" value="{numero_hoja_excel}" maxlength="5" size="5" name="{numero_hoja_excel_Name}"></td>
+            <td><input type="text" id="proceso_carga_archivosnumero_hoja_excel" value="{numero_hoja_excel}" maxlength="5" size="5" name="{numero_hoja_excel_Name}"></td> 
           </tr>
  
           <tr class="Controls">
             <td class="th"><label for="proceso_carga_archivosfilas_sin_datos_excel">Filas Sin Datos Excel</label></td> 
-            <td><input type="text" id="proceso_carga_archivosfilas_sin_datos_excel" value="{filas_sin_datos_excel}" maxlength="5" size="5" name="{filas_sin_datos_excel_Name}"></td>
+            <td><input type="text" id="proceso_carga_archivosfilas_sin_datos_excel" value="{filas_sin_datos_excel}" maxlength="5" size="5" name="{filas_sin_datos_excel_Name}"></td> 
           </tr>
  
           <tr class="Controls">
             <td class="th"><label for="proceso_carga_archivoscampo_fecha_cierre">Campo Fecha Cierre</label></td> 
-            <td><input type="text" id="proceso_carga_archivoscampo_fecha_cierre" value="{campo_fecha_cierre}" maxlength="50" size="50" name="{campo_fecha_cierre_Name}"></td>
+            <td><input type="text" id="proceso_carga_archivoscampo_fecha_cierre" value="{campo_fecha_cierre}" maxlength="50" size="50" name="{campo_fecha_cierre_Name}"></td> 
           </tr>
  
           <tr class="Controls">
             <td class="th"><label for="proceso_carga_archivoscampo_indice">Campo Indice</label></td> 
-            <td><input type="text" id="proceso_carga_archivoscampo_indice" value="{campo_indice}" maxlength="50" size="50" name="{campo_indice_Name}"></td>
+            <td><input type="text" id="proceso_carga_archivoscampo_indice" value="{campo_indice}" maxlength="50" size="50" name="{campo_indice_Name}"></td> 
           </tr>
  
           <tr class="Controls">
             <td class="th"><label for="proceso_carga_archivoscampo_indice_identity">Campo Indice Identity</label></td> 
-            <td><input type="checkbox" id="proceso_carga_archivoscampo_indice_identity" value="1" name="{campo_indice_identity_Name}" {campo_indice_identity}></td>
+            <td><input type="checkbox" id="proceso_carga_archivoscampo_indice_identity" value="1" name="{campo_indice_identity_Name}" {campo_indice_identity}></td> 
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">&nbsp;Grupo</td> 
+            <td>&nbsp;<label for="proceso_carga_archivoscampo_grupo" style="display: none;">TextBox1</label><input type="text" name="{campo_grupo_Name}" value="{campo_grupo}" id="proceso_carga_archivoscampo_grupo"></td> 
           </tr>
  
           <tr class="Controls">
@@ -169,30 +175,33 @@ jQuery(function ($) {
             <td>
               <select id="proceso_carga_archivosperiodicidad" name="{periodicidad_Name}">
                 <option selected value="">Select Value</option>
-                {periodicidad_Options}
+ {periodicidad_Options} 
               </select>
- </td>
+ </td> 
           </tr>
  
           <tr class="Bottom">
             <td style="TEXT-ALIGN: right" colspan="2">
               <!-- BEGIN Button Button_Insert --><input type="submit" id="proceso_carga_archivosButton_Insert" class="Button" value="Add" alt="Add" name="{Button_Name}"><!-- END Button Button_Insert -->
               <!-- BEGIN Button Button_Update --><input type="submit" id="proceso_carga_archivosButton_Update" class="Button" value="Submit" alt="Submit" name="{Button_Name}"><!-- END Button Button_Update -->
-              <!-- BEGIN Button Button_Delete --><input type="submit" id="proceso_carga_archivosButton_Delete" class="Button" value="Delete" alt="Delete" name="{Button_Name}"><!-- END Button Button_Delete --></td>
+              <!-- BEGIN Button Button_Delete --><input type="submit" id="proceso_carga_archivosButton_Delete" class="Button" value="Delete" alt="Delete" name="{Button_Name}"><!-- END Button Button_Delete --></td> 
           </tr>
+ 
         </table>
-      </td> 
+ </td> 
       <td width="20"></td> 
       <td>
         <table class="simpleMenu">
           <tr>
             <td>&nbsp;</td> 
             <td width="20"></td> 
-            <td></td>
+            <td></td> 
           </tr>
+ 
         </table>
-      </td>
+ </td> 
     </tr>
+ 
   </table>
 </form>
 <!-- END Record proceso_carga_archivos --><br>

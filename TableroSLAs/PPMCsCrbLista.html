@@ -42,22 +42,23 @@
                       <tr>
                         <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                         <td class="th"><strong>Buscar</strong></td> 
-                        <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                        <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                       </tr>
+ 
                     </table>
  
                     <table class="Record" cellspacing="0" cellpadding="0">
                       <!-- BEGIN Error -->
                       <tr id="{@error-block}" class="Error">
-                        <td colspan="10">{Error}</td>
+                        <td colspan="11">{Error}</td> 
                       </tr>
-                      <!-- END Error -->
+ <!-- END Error -->
                       <tr class="Controls">
                         <td class="th"><label for="Grid2s_id_proveedor">Proveedor</label></td> 
                         <td>
                           <select id="Grid2s_id_proveedor" name="{s_id_proveedor_Name}">
                             <option selected value="">Seleccionar Valor</option>
-                            {s_id_proveedor_Options}
+ {s_id_proveedor_Options} 
                           </select>
  </td> 
                         <td class="th"><label for="Grid2s_numero">Numero</label></td> 
@@ -66,44 +67,49 @@
                         <td>
                           <select id="Grid2s_mesparam" name="{s_mesparam_Name}">
                             <option selected value="0">Cualquiera</option>
-                            {s_mesparam_Options}
+ {s_mesparam_Options} 
                           </select>
  </td> 
                         <td class="th"><label for="Grid2s_anioparam">Año</label></td> 
                         <td>
                           <select id="Grid2s_anioparam" name="{s_anioparam_Name}">
                             <option selected value="">Seleccionar Valor</option>
-                            {s_anioparam_Options}
+ {s_anioparam_Options} 
                           </select>
  </td> 
                         <td>Analista&nbsp;</td> 
                         <td>
                           <select id="Grid2sAnalista" name="{sAnalista_Name}">
                             <option selected value="">Seleccionar Valor</option>
-                            {sAnalista_Options}
+ {sAnalista_Options} 
                           </select>
- </td>
+ </td> 
+                        <td><label for="Grid2sSLO" style="display: inline;">SLO</label><input type="checkbox" name="{sSLO_Name}" value="1" {sSLO} id="Grid2sSLO"></td> 
                       </tr>
  
                       <tr class="Bottom">
-                        <td style="TEXT-ALIGN: right" colspan="10">
-                          <!-- BEGIN Button Button_DoSearch --><input type="submit" id="Grid2Button_DoSearch" class="Button" alt="Buscar" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                        <td style="TEXT-ALIGN: right" colspan="11">
+                          <!-- BEGIN Button Button_DoSearch --><input type="submit" id="Grid2Button_DoSearch" class="Button" alt="Buscar" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td> 
                       </tr>
+ 
                     </table>
-                  </td>
+ </td> 
                 </tr>
+ 
               </table>
+ 
             </form>
-            <!-- END Record Grid2 --></td> 
+ <!-- END Record Grid2 --></td> 
           <td>
             <div style="TEXT-ALIGN: center">
 <a href="{lkTableroSLAs_Src}" id="lkTableroSLAs">Tablero SLAs</a> <a href="{lkCuadroNS_Src}" id="lkCuadroNS">Cuadro Ns RSs</a> <a href="{lkDetalleRS_Src}" id="lkDetalleRS">Detalle RSs</a> 
             </div>
-          </td>
+ </td> 
         </tr>
+ 
       </table>
-    </td> 
-    <td></td>
+ </td> 
+    <td></td> 
   </tr>
  
   <tr>
@@ -117,10 +123,11 @@
               <tr>
                 <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                 <td class="th"><strong>Requerimientos de&nbsp;Cierre </strong></td> 
-                <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
               </tr>
+ 
             </table>
-            <strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong> 
+ <strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong> 
             <table class="Grid" cellspacing="0" cellpadding="0">
               <tr class="Caption">
                 <th scope="col">
@@ -178,6 +185,7 @@
                 <!-- BEGIN Sorter Sorter4 --><span class="Sorter"><a href="{Sort_URL}" id="Grid1Sorter4">Analista</a> 
                 <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter4 --></th>
+ 
               </tr>
  
               <!-- BEGIN Row -->
@@ -205,20 +213,20 @@
                 <td style="TEXT-ALIGN: center">&nbsp;{DEF_FUG_AMB_PROD} 
                   <!-- BEGIN ImageLink imgCumpleDF --><a href="{imgCumpleDF}" id="Grid1imgCumpleDF_{Grid1:rowNumber}"><img style="BORDER-LEFT-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; border-image: none" alt="{imgCumpleDF}" src="{imgCumpleDF_Src}"></a><!-- END ImageLink imgCumpleDF -->
                   <!-- BEGIN Link lkCumpleDF --><a href="{lkCumpleDF_Src}" id="Grid1lkCumpleDF_{Grid1:rowNumber}">Ver</a><!-- END Link lkCumpleDF --></td> 
-                <td style="TEXT-ALIGN: center">{analista}</td>
+                <td style="TEXT-ALIGN: center">{analista}</td> 
               </tr>
  <!-- END Row -->
               <!-- BEGIN NoRecords -->
               <tr class="NoRecords">
-                <td colspan="14">No hay registros</td>
+                <td colspan="14">No hay registros</td> 
               </tr>
-              <!-- END NoRecords -->
+ <!-- END NoRecords -->
               <tr class="Footer">
                 <td colspan="14">
                   <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
                   <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
                     <option selected value="">-</option>
- {PageSize_Options}
+ {PageSize_Options} 
                   </select>
  
                   <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
@@ -228,21 +236,23 @@
                   <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/Next.gif"></a> <!-- END Next_On -->
                   <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
                   <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
-                  <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td>
+                  <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td> 
               </tr>
+ 
             </table>
-          </td>
+ </td> 
         </tr>
+ 
       </table>
-      <!-- END Grid Grid1 --><br>
+ <!-- END Grid Grid1 --><br>
     </td> 
-    <td></td>
+    <td></td> 
   </tr>
  
   <tr>
     <td>&nbsp;</td> 
     <td>&nbsp;</td> 
-    <td>&nbsp;</td>
+    <td>&nbsp;</td> 
   </tr>
 </table>
 <p></p>

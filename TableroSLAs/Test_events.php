@@ -19,6 +19,7 @@ function Page_AfterInitialize(& $sender)
 
 //Custom Code @2-2A29BDB7
 // -------------------------
+	phpinfo();
 	global $db;
 	$db = new clsDBcnDisenio;
 /*

@@ -179,7 +179,7 @@ where i.id_incidente = '{Id_incidente}'
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="337" dataType="Text" designDefaultValue="INC000003376478" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
-</SQLParameters>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -793,7 +793,7 @@ WHERE Id_incidente = '{Id_incidente}' " errorSummator="Error" allowCancel="False
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="338" dataType="Text" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
-</SQLParameters>
+			</SQLParameters>
 			<JoinTables>
 			</JoinTables>
 			<JoinLinks/>
@@ -945,7 +945,7 @@ WHERE Id_incidente = '{Id_incidente}' " errorSummator="Error" allowCancel="False
 	(select top 1 FechaInicioMov from mc_detalle_incidente_avl 
 	        where (Id_Incidente=mi.Id_incidente or Id_Incidente = mi.IncPadre ) 
 	        order by FechaInicioMov   ) as RegistroAVL ,
-datediff(s,FechaEnCurso,(select top 1 FechaInicioMov from mc_detalle_incidente_avl 
+dbo.ufDiffFechasMCSec(FechaEnCurso,(select top 1 FechaInicioMov from mc_detalle_incidente_avl 
                                            where (Id_Incidente=mi.Id_incidente or Id_Incidente = mi.IncPadre ) 
                                           order by FechaInicioMov   ) ) 
 as HorasInvertidas
@@ -982,8 +982,8 @@ WHERE mi.Id_incidente = '{Id_incidente}' " errorSummator="Error" allowCancel="Fa
 			<TableParameters/>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="336" dataType="Text" designDefaultValue="INC000003432416" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
-			</SQLParameters>
+				<SQLParameter id="339" dataType="Text" designDefaultValue="INC000003432416" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
+</SQLParameters>
 			<JoinTables/>
 			<JoinLinks/>
 			<Fields/>

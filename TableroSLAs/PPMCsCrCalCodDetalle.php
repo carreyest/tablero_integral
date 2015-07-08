@@ -223,13 +223,11 @@ class clsRecordmc_info_rs_CC { //mc_info_rs_CC Class @27-62C12348
     }
 //End InsertRow Method
 
-//UpdateRow Method @27-EB5BF755
+//UpdateRow Method @27-7150333B
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
         if(!$this->UpdateAllowed) return false;
-        $this->DataSource->Id_PPMC_HID->SetValue($this->Id_PPMC_HID->GetValue(true));
-        $this->DataSource->ID_Estimacion_HID->SetValue($this->ID_Estimacion_HID->GetValue(true));
         $this->DataSource->PctReglas->SetValue($this->PctReglas->GetValue(true));
         $this->DataSource->Id_PPMC_HID->SetValue($this->Id_PPMC_HID->GetValue(true));
         $this->DataSource->ID_Estimacion_HID->SetValue($this->ID_Estimacion_HID->GetValue(true));
@@ -377,7 +375,7 @@ class clsmc_info_rs_CCDataSource extends clsDBcnDisenio {  //mc_info_rs_CCDataSo
     public $anioMed;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @27-31180D1F
+//DataSourceClass_Initialize Event @27-B46144AF
     function clsmc_info_rs_CCDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -416,6 +414,7 @@ class clsmc_info_rs_CCDataSource extends clsDBcnDisenio {  //mc_info_rs_CCDataSo
         $this->InsertFields["PctMetricas"] = array("Name" => "[PctMetricas]", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
         $this->InsertFields["Id_PPMC"] = array("Name" => "[Id_PPMC]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->InsertFields["ID_Estimacion"] = array("Name" => "[ID_Estimacion]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
+        $this->InsertFields["IdUniverso"] = array("Name" => "[IdUniverso]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->UpdateFields["PctReglas"] = array("Name" => "[PctReglas]", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
         $this->UpdateFields["Id_PPMC"] = array("Name" => "[Id_PPMC]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->UpdateFields["ID_Estimacion"] = array("Name" => "[ID_Estimacion]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
@@ -427,7 +426,7 @@ class clsmc_info_rs_CCDataSource extends clsDBcnDisenio {  //mc_info_rs_CCDataSo
     }
 //End DataSourceClass_Initialize Event
 
-//Prepare Method @27-D6C1B08E
+//Prepare Method @27-D63607C7
     function Prepare()
     {
         global $CCSLocales;
@@ -435,7 +434,7 @@ class clsmc_info_rs_CCDataSource extends clsDBcnDisenio {  //mc_info_rs_CCDataSo
         $this->wp = new clsSQLParameters($this->ErrorBlock);
         $this->wp->AddParameter("1", "urlId", ccsInteger, "", "", $this->Parameters["urlId"], "", false);
         $this->AllParametersSet = $this->wp->AllParamsSet();
-        $this->wp->Criterion[1] = $this->wp->Operation(opEqual, "[Id]", $this->wp->GetDBValue("1"), $this->ToSQL($this->wp->GetDBValue("1"), ccsInteger),false);
+        $this->wp->Criterion[1] = $this->wp->Operation(opEqual, "[IdUniverso]", $this->wp->GetDBValue("1"), $this->ToSQL($this->wp->GetDBValue("1"), ccsInteger),false);
         $this->Where = 
              $this->wp->Criterion[1];
     }
@@ -467,7 +466,7 @@ class clsmc_info_rs_CCDataSource extends clsDBcnDisenio {  //mc_info_rs_CCDataSo
     }
 //End SetValues Method
 
-//Insert Method @27-92488A7F
+//Insert Method @27-7FAC5899
     function Insert()
     {
         global $CCSLocales;
@@ -481,6 +480,7 @@ class clsmc_info_rs_CCDataSource extends clsDBcnDisenio {  //mc_info_rs_CCDataSo
         $this->cp["PctMetricas"] = new clsSQLParameter("ctrlPctMetricas", ccsFloat, array(True, 2, Null, "", False, array("#"), array("#", "#"), 1, True, ""), "", $this->PctMetricas->GetValue(true), NULL, false, $this->ErrorBlock);
         $this->cp["Id_PPMC"] = new clsSQLParameter("ctrlId_PPMC_HID", ccsInteger, "", "", $this->Id_PPMC_HID->GetValue(true), NULL, false, $this->ErrorBlock);
         $this->cp["ID_Estimacion"] = new clsSQLParameter("ctrlID_Estimacion_HID", ccsInteger, "", "", $this->ID_Estimacion_HID->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["IdUniverso"] = new clsSQLParameter("urlIdUniverso", ccsInteger, "", "", CCGetFromGet("IdUniverso", NULL), NULL, false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildInsert", $this->Parent);
         if (!is_null($this->cp["PctReglas"]->GetValue()) and !strlen($this->cp["PctReglas"]->GetText()) and !is_bool($this->cp["PctReglas"]->GetValue())) 
             $this->cp["PctReglas"]->SetValue($this->PctReglas->GetValue(true));
@@ -498,6 +498,8 @@ class clsmc_info_rs_CCDataSource extends clsDBcnDisenio {  //mc_info_rs_CCDataSo
             $this->cp["Id_PPMC"]->SetValue($this->Id_PPMC_HID->GetValue(true));
         if (!is_null($this->cp["ID_Estimacion"]->GetValue()) and !strlen($this->cp["ID_Estimacion"]->GetText()) and !is_bool($this->cp["ID_Estimacion"]->GetValue())) 
             $this->cp["ID_Estimacion"]->SetValue($this->ID_Estimacion_HID->GetValue(true));
+        if (!is_null($this->cp["IdUniverso"]->GetValue()) and !strlen($this->cp["IdUniverso"]->GetText()) and !is_bool($this->cp["IdUniverso"]->GetValue())) 
+            $this->cp["IdUniverso"]->SetText(CCGetFromGet("IdUniverso", NULL));
         $this->InsertFields["PctReglas"]["Value"] = $this->cp["PctReglas"]->GetDBValue(true);
         $this->InsertFields["CumpleCalidadCod"]["Value"] = $this->cp["CumpleCalidadCod"]->GetDBValue(true);
         $this->InsertFields["UsuarioUltMod"]["Value"] = $this->cp["UsuarioUltMod"]->GetDBValue(true);
@@ -506,6 +508,7 @@ class clsmc_info_rs_CCDataSource extends clsDBcnDisenio {  //mc_info_rs_CCDataSo
         $this->InsertFields["PctMetricas"]["Value"] = $this->cp["PctMetricas"]->GetDBValue(true);
         $this->InsertFields["Id_PPMC"]["Value"] = $this->cp["Id_PPMC"]->GetDBValue(true);
         $this->InsertFields["ID_Estimacion"]["Value"] = $this->cp["ID_Estimacion"]->GetDBValue(true);
+        $this->InsertFields["IdUniverso"]["Value"] = $this->cp["IdUniverso"]->GetDBValue(true);
         $this->SQL = CCBuildInsert("mc_info_rs_CC", $this->InsertFields, $this);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
@@ -515,7 +518,7 @@ class clsmc_info_rs_CCDataSource extends clsDBcnDisenio {  //mc_info_rs_CCDataSo
     }
 //End Insert Method
 
-//Update Method @27-6166F82A
+//Update Method @27-55731000
     function Update()
     {
         global $CCSLocales;
@@ -531,11 +534,7 @@ class clsmc_info_rs_CCDataSource extends clsDBcnDisenio {  //mc_info_rs_CCDataSo
         $this->cp["FechaUltMod"] = new clsSQLParameter("ctrlFechaUltMod", ccsDate, $DefaultDateFormat, $this->DateFormat, $this->FechaUltMod->GetValue(true), NULL, false, $this->ErrorBlock);
         $this->cp["Observaciones"] = new clsSQLParameter("ctrlObservaciones", ccsText, "", "", $this->Observaciones->GetValue(true), NULL, false, $this->ErrorBlock);
         $wp = new clsSQLParameters($this->ErrorBlock);
-        $wp->AddParameter("1", "ctrlId_PPMC_HID", ccsInteger, "", "", $this->Id_PPMC_HID->GetValue(true), "", false);
-        if(!$wp->AllParamsSet()) {
-            $this->Errors->addError($CCSLocales->GetText("CCS_CustomOperationError_MissingParameters"));
-        }
-        $wp->AddParameter("2", "ctrlID_Estimacion_HID", ccsInteger, "", "", $this->ID_Estimacion_HID->GetValue(true), "", false);
+        $wp->AddParameter("1", "urlId", ccsInteger, "", "", CCGetFromGet("Id", NULL), "", false);
         if(!$wp->AllParamsSet()) {
             $this->Errors->addError($CCSLocales->GetText("CCS_CustomOperationError_MissingParameters"));
         }
@@ -556,12 +555,9 @@ class clsmc_info_rs_CCDataSource extends clsDBcnDisenio {  //mc_info_rs_CCDataSo
             $this->cp["FechaUltMod"]->SetValue($this->FechaUltMod->GetValue(true));
         if (!is_null($this->cp["Observaciones"]->GetValue()) and !strlen($this->cp["Observaciones"]->GetText()) and !is_bool($this->cp["Observaciones"]->GetValue())) 
             $this->cp["Observaciones"]->SetValue($this->Observaciones->GetValue(true));
-        $wp->Criterion[1] = $wp->Operation(opEqual, "[Id_PPMC]", $wp->GetDBValue("1"), $this->ToSQL($wp->GetDBValue("1"), ccsInteger),false);
-        $wp->Criterion[2] = $wp->Operation(opEqual, "[ID_Estimacion]", $wp->GetDBValue("2"), $this->ToSQL($wp->GetDBValue("2"), ccsInteger),false);
-        $Where = $wp->opAND(
-             false, 
-             $wp->Criterion[1], 
-             $wp->Criterion[2]);
+        $wp->Criterion[1] = $wp->Operation(opEqual, "[IdUniverso]", $wp->GetDBValue("1"), $this->ToSQL($wp->GetDBValue("1"), ccsInteger),false);
+        $Where = 
+             $wp->Criterion[1];
         $this->UpdateFields["PctReglas"]["Value"] = $this->cp["PctReglas"]->GetDBValue(true);
         $this->UpdateFields["Id_PPMC"]["Value"] = $this->cp["Id_PPMC"]->GetDBValue(true);
         $this->UpdateFields["ID_Estimacion"]["Value"] = $this->cp["ID_Estimacion"]->GetDBValue(true);

@@ -60,8 +60,11 @@ function Header_BeforeShow(& $sender)
     	}
     }
     if(CCGetGroupID()<5){
-    	$Component->pnlMenuAdmin->Visible=false;
+    	if(CCGetSession("GrupoValoracion")!="CAPC"){
+    		$Component->pnlMenuAdmin->Visible=false;
     	}
+    }
+    
 // -------------------------
 //End Custom Code
 

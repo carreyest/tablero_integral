@@ -273,7 +273,12 @@
 			<Attributes/>
 			<Features/>
 		</Grid>
-	</Components>
+		<IncludePage id="54" name="Header" PathID="Header" page="../Header.ccp">
+<Components/>
+<Events/>
+<Features/>
+</IncludePage>
+</Components>
 	<CodeFiles>
 		<CodeFile id="Code" language="PHPTemplates" name="AplicacionesLista.php" forShow="True" url="AplicacionesLista.php" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Events" language="PHPTemplates" name="AplicacionesLista_events.php" forShow="False" comment="//" codePage="windows-1252"/>

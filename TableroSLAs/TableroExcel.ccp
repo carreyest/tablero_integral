@@ -297,19 +297,22 @@ VALUES({Version}, {s_MesReporte}, '{Comentario}', {s_AnioReporte}, '{s_id_provee
 							<Events/>
 							<Attributes/>
 							<Features/>
-							<TableParameters/>
+							<TableParameters>
+<TableParameter id="186" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Activo" logicOperator="And" parameterSource="1" parameterType="Expression" searchConditionType="Equal"/>
+<TableParameter id="187" conditionType="Parameter" useIsNull="False" dataType="Text" field="Grupo" logicOperator="And" parameterSource="'CAPC'" parameterType="Expression" searchConditionType="Equal"/>
+</TableParameters>
 							<SPParameters/>
 							<SQLParameters/>
 							<JoinTables>
-								<JoinTable id="131" posHeight="180" posLeft="10" posTop="10" posWidth="118" schemaName="dbo" tableName="mc_c_usuarios" old_temp_id="117"/>
-							</JoinTables>
+								<JoinTable id="185" posHeight="180" posLeft="10" posTop="10" posWidth="118" tableName="mc_c_usuarios"/>
+</JoinTables>
 							<JoinLinks/>
 							<Fields>
-								<Field id="132" fieldName="*" old_temp_id="118"/>
-							</Fields>
+								<Field id="188" fieldName="*" old_temp_id="118"/>
+</Fields>
 							<PKFields>
-								<PKField id="133" dataType="Integer" fieldName="Id" tableName="mc_c_usuarios" old_temp_id="119"/>
-							</PKFields>
+								<PKField id="189" dataType="Integer" fieldName="Id" tableName="mc_c_usuarios"/>
+</PKFields>
 						</ListBox>
 						<TextBox id="18" visible="Yes" fieldSourceType="DBColumn" dataType="Date" name="Fecha" PathID="Panel1mc_reporte_nsFecha" features="(assigned)" fieldSource="fecha" format="dd/mm/yyyy H:nn" defaultValue="date('d/m/Y H:i')" required="True" DBFormat="yyyy-mm-dd HH:nn:ss.S">
 							<Components/>

@@ -205,12 +205,12 @@ where (mes = {s_mesparam} or {s_mesparam}=0)
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="135" dataType="Integer" defaultValue="date(&quot;m&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="11" parameterSource="s_mesparam" parameterType="URL" variable="s_mesparam"/>
-<SQLParameter id="136" dataType="Integer" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;)-1,date(&quot;d&quot;),date(&quot;Y&quot;)))" designDefaultValue="2013" parameterSource="s_anioparam" parameterType="URL" variable="s_anioparam"/>
-<SQLParameter id="137" dataType="Integer" defaultValue="CCGetSession(&quot;CDSPreferido&quot;)" designDefaultValue="0" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
-<SQLParameter id="138" dataType="Text" designDefaultValue="eminero" parameterSource="sAnalista" parameterType="URL" variable="sAnalista"/>
-<SQLParameter id="139" dataType="Integer" defaultValue="0" designDefaultValue="0" parameterSource="s_numero" parameterType="URL" variable="s_numero"/>
-<SQLParameter id="140" dataType="Integer" defaultValue="0" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
-</SQLParameters>
+				<SQLParameter id="136" dataType="Integer" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;)-1,date(&quot;d&quot;),date(&quot;Y&quot;)))" designDefaultValue="2013" parameterSource="s_anioparam" parameterType="URL" variable="s_anioparam"/>
+				<SQLParameter id="137" dataType="Integer" defaultValue="CCGetSession(&quot;CDSPreferido&quot;)" designDefaultValue="0" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
+				<SQLParameter id="138" dataType="Text" designDefaultValue="eminero" parameterSource="sAnalista" parameterType="URL" variable="sAnalista"/>
+				<SQLParameter id="139" dataType="Integer" defaultValue="0" designDefaultValue="0" parameterSource="s_numero" parameterType="URL" variable="s_numero"/>
+				<SQLParameter id="140" dataType="Integer" defaultValue="0" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -294,30 +294,31 @@ where (mes = {s_mesparam} or {s_mesparam}=0)
 					<Components/>
 					<Events/>
 					<TableParameters>
-						<TableParameter id="65" conditionType="Parameter" useIsNull="False" dataType="Integer" defaultValue="3" field="Nivel" logicOperator="And" parameterSource="Nivel" parameterType="URL" searchConditionType="Equal"/>
-					</TableParameters>
+						<TableParameter id="142" conditionType="Parameter" useIsNull="False" dataType="Integer" defaultValue="3" field="Nivel" logicOperator="And" parameterSource="Nivel" parameterType="URL" searchConditionType="Equal"/>
+<TableParameter id="143" conditionType="Parameter" useIsNull="False" dataType="Text" field="Grupo" logicOperator="And" parameterSource="'CAPC'" parameterType="Expression" searchConditionType="Equal"/>
+</TableParameters>
 					<SPParameters/>
 					<SQLParameters/>
 					<JoinTables>
-						<JoinTable id="64" posHeight="180" posLeft="10" posTop="10" posWidth="118" tableName="mc_c_usuarios"/>
-					</JoinTables>
+						<JoinTable id="141" posHeight="180" posLeft="10" posTop="10" posWidth="118" tableName="mc_c_usuarios"/>
+</JoinTables>
 					<JoinLinks/>
 					<Fields>
-						<Field id="66" fieldName="*"/>
-					</Fields>
+						<Field id="144" fieldName="*"/>
+</Fields>
 					<PKFields>
-						<PKField id="67" dataType="Integer" fieldName="Id" tableName="mc_c_usuarios"/>
-					</PKFields>
+						<PKField id="145" dataType="Integer" fieldName="Id" tableName="mc_c_usuarios"/>
+</PKFields>
 					<Attributes/>
 					<Features/>
 				</ListBox>
 				<CheckBox id="134" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" defaultValue="Unchecked" name="sSLO" PathID="grsBuscasSLO" checkedValue="1" uncheckedValue="0">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</CheckBox>
-</Components>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</CheckBox>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>

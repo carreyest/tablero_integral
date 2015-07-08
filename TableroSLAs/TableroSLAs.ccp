@@ -132,13 +132,15 @@ select
 	AVG(Cumple_EF) Cumple_EF, AVG(total_ef) Total_ef, avg(cast(Cumple_EF as float))/avg(total_ef)*100  EFIC_PRESUP,
 	 (Select Meta from mc_c_metrica where acronimo='EFIC_PRESUP') as Meta_EFIC_PRESUP,
 	 sc.Id   id_servicio_cont 
-from mc_c_ServContractual sc left join mc_calificacion_rs_MC m on sc.Id = m.id_servicio_cont  
-and m.id_ppmc  in (select numero from mc_universo_cds where SLO={sSLO} and tipo &lt;&gt; 'IN')
+from mc_c_ServContractual sc 
+left join mc_calificacion_rs_MC m on sc.Id = m.id_servicio_cont  
+and m.IdUniverso in (select id from mc_universo_cds where SLO={sSLO} and tipo &lt;&gt; 'IN')
 and m.IdUniverso not in (select id from mc_universo_cds where revision=2  )
 	 left join	(select Cumple_DISP_SOPORTE, Cumple_Inc_TiempoAsignacion, Cumple_Inc_TiempoSolucion, MesReporte , AnioReporte ,  
 				id_proveedor, 5 IdServicioCont 
 				from mc_calificacion_incidentes_MC
-				where (id_proveedor = {sProveedor} or 0={sProveedor})  and MesReporte={sMes} and AnioReporte ={sAnio}
+				where (id_proveedor = {sProveedor} or 0={sProveedor})  and MesReporte={sMes} and AnioReporte ={sAnio} 
+				and Id_incidente in (select numero from mc_universo_cds where SLO={sSLO} and tipo = 'IN') 
 				)  mi on  mi.IdServicioCont= sc.Id 
 left join  (select SUM(CumpleSLA) Cumple_EF, COUNT(CumpleSLA) Total_EF, Id_Proveedor, MesReporte , anioreporte , 2 IdServicioCont  
 			from mc_eficiencia_presupuestal  where CumpleSLA in (1,0)  
@@ -493,10 +495,10 @@ order by sc.orden" pageSizeLimit="100" pageSize="True" wizardCaption="Niveles de
 			<PKFields/>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="319" dataType="Integer" defaultValue="date('m')-2" designDefaultValue="1" parameterSource="s_MesReporte" parameterType="URL" variable="sMes"/>
-<SQLParameter id="320" dataType="Integer" defaultValue="date('Y')" designDefaultValue="2014" parameterSource="s_AnioReporte" parameterType="URL" variable="sAnio"/>
-<SQLParameter id="321" dataType="Integer" defaultValue="0" designDefaultValue="3" parameterSource="s_id_proveedor" parameterType="URL" variable="sProveedor"/>
-<SQLParameter id="322" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
+				<SQLParameter id="346" dataType="Integer" defaultValue="date('m')-2" designDefaultValue="1" parameterSource="s_MesReporte" parameterType="URL" variable="sMes"/>
+<SQLParameter id="347" dataType="Integer" defaultValue="date('Y')" designDefaultValue="2014" parameterSource="s_AnioReporte" parameterType="URL" variable="sAnio"/>
+<SQLParameter id="348" dataType="Integer" defaultValue="0" designDefaultValue="3" parameterSource="s_id_proveedor" parameterType="URL" variable="sProveedor"/>
+<SQLParameter id="349" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
 </SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
@@ -514,392 +516,188 @@ order by sc.orden" pageSizeLimit="100" pageSize="True" wizardCaption="Niveles de
 			<Features/>
 			<LinkParameters/>
 		</Link>
-		<Panel id="239" visible="True" generateDiv="False" name="pnlSLAsCAPC" wizardInnerHTML="      &lt;!-- BEGIN Grid grdSLAsCAPC --&gt;
-      &lt;table class=&quot;MainTable&quot; id=&quot;grdSLAsCAPC&quot; border=&quot;0&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;
-        &lt;tr&gt;
-          &lt;td valign=&quot;top&quot;&gt;
-            &lt;table class=&quot;Header&quot; border=&quot;0&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;
-              &lt;tr&gt;
-                &lt;td class=&quot;HeaderLeft&quot;&gt;&lt;img alt=&quot;&quot; src=&quot;Styles/{CCS_Style}/Images/Spacer.gif&quot;&gt;&lt;/td&gt; 
-                &lt;td class=&quot;th&quot;&gt;&lt;strong&gt;Tablero de Niveles de Servicio del CAPC &lt;/strong&gt;&lt;/td&gt; 
-                &lt;td class=&quot;HeaderRight&quot;&gt;&lt;img alt=&quot;&quot; src=&quot;Styles/{CCS_Style}/Images/Spacer.gif&quot;&gt;&lt;/td&gt;
-              &lt;/tr&gt;
-            &lt;/table&gt;
- 
-            &lt;table class=&quot;Grid&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;
-              &lt;tr class=&quot;Caption&quot;&gt;
-                &lt;th scope=&quot;col&quot;&gt;
-                &lt;!-- BEGIN Sorter Sorter_Descripcion --&gt;&lt;span class=&quot;Sorter&quot;&gt;&lt;a href=&quot;{Sort_URL}&quot; id=&quot;grdSLAsCAPCSorter_Descripcion&quot;&gt;Descripcion&lt;/a&gt; 
-                &lt;!-- BEGIN Asc_On --&gt;&lt;img alt=&quot;Ascendente&quot; src=&quot;Styles/{CCS_Style}/Images/Asc.gif&quot;&gt;&lt;!-- END Asc_On --&gt;
-                &lt;!-- BEGIN Desc_On --&gt;&lt;img alt=&quot;Descendente&quot; src=&quot;Styles/{CCS_Style}/Images/Desc.gif&quot;&gt;&lt;!-- END Desc_On --&gt;&lt;/span&gt;&lt;!-- END Sorter Sorter_Descripcion --&gt;&lt;/th&gt;
- 
-                &lt;th scope=&quot;col&quot;&gt;% de&lt;br&gt;
-                deductivas&lt;br&gt;
-                para el Total&lt;br&gt;
-                de Defectos&lt;br&gt;
-                de Calidad&lt;br&gt;
-                Funcional &lt;/th&gt;
- 
-                &lt;th scope=&quot;col&quot;&gt;
-                &lt;!-- BEGIN Sorter Sorter_Deductiva --&gt;&lt;span class=&quot;Sorter&quot;&gt;&lt;a href=&quot;{Sort_URL}&quot; id=&quot;grdSLAsCAPCSorter_Deductiva&quot;&gt;% de&lt;br&gt;
-                deductivas&lt;br&gt;
-                para el Total&lt;br&gt;
-                de Puntos&lt;br&gt;
-                en el Índice&lt;br&gt;
-                de Calidad&lt;br&gt;
-                Documental&lt;/a&gt; 
-                &lt;!-- BEGIN Asc_On --&gt;&lt;img alt=&quot;Ascendente&quot; src=&quot;Styles/{CCS_Style}/Images/Asc.gif&quot;&gt;&lt;!-- END Asc_On --&gt;
-                &lt;!-- BEGIN Desc_On --&gt;&lt;img alt=&quot;Descendente&quot; src=&quot;Styles/{CCS_Style}/Images/Desc.gif&quot;&gt;&lt;!-- END Desc_On --&gt;&lt;/span&gt;&lt;!-- END Sorter Sorter_Deductiva --&gt;&lt;/th&gt;
- 
-                &lt;th scope=&quot;col&quot;&gt;
-                &lt;!-- BEGIN Sorter Sorter_pctcalidad --&gt;&lt;span class=&quot;Sorter&quot;&gt;&lt;a href=&quot;{Sort_URL}&quot; id=&quot;grdSLAsCAPCSorter_pctcalidad&quot;&gt;Valor de&lt;br&gt;
-                Cumplimiento&lt;/a&gt; 
-                &lt;!-- BEGIN Asc_On --&gt;&lt;img alt=&quot;Ascendente&quot; src=&quot;Styles/{CCS_Style}/Images/Asc.gif&quot;&gt;&lt;!-- END Asc_On --&gt;
-                &lt;!-- BEGIN Desc_On --&gt;&lt;img alt=&quot;Descendente&quot; src=&quot;Styles/{CCS_Style}/Images/Desc.gif&quot;&gt;&lt;!-- END Desc_On --&gt;&lt;/span&gt;&lt;!-- END Sorter Sorter_pctcalidad --&gt;&lt;/th&gt;
- 
-                &lt;th scope=&quot;col&quot;&gt;
-                &lt;!-- BEGIN Sorter Sorter_CALIDAD_PROD_TERM --&gt;&lt;span class=&quot;Sorter&quot;&gt;&lt;a href=&quot;{Sort_URL}&quot; id=&quot;grdSLAsCAPCSorter_CALIDAD_PROD_TERM&quot;&gt;Cumplimiento&lt;br&gt;
-                vs. Objetivo&lt;/a&gt; 
-                &lt;!-- BEGIN Asc_On --&gt;&lt;img alt=&quot;Ascendente&quot; src=&quot;Styles/{CCS_Style}/Images/Asc.gif&quot;&gt;&lt;!-- END Asc_On --&gt;
-                &lt;!-- BEGIN Desc_On --&gt;&lt;img alt=&quot;Descendente&quot; src=&quot;Styles/{CCS_Style}/Images/Desc.gif&quot;&gt;&lt;!-- END Desc_On --&gt;&lt;/span&gt;&lt;!-- END Sorter Sorter_CALIDAD_PROD_TERM --&gt;&lt;/th&gt;
- 
-                &lt;th scope=&quot;col&quot;&gt;
-                &lt;!-- BEGIN Sorter Sorter_ReportesCompletos --&gt;&lt;span class=&quot;Sorter&quot;&gt;&lt;a href=&quot;{Sort_URL}&quot; id=&quot;grdSLAsCAPCSorter_ReportesCompletos&quot;&gt;Reportes&lt;br&gt;
-                entregados de&lt;br&gt;
-                manera&lt;br&gt;
-                completa&lt;/a&gt; 
-                &lt;!-- BEGIN Asc_On --&gt;&lt;img alt=&quot;Ascendente&quot; src=&quot;Styles/{CCS_Style}/Images/Asc.gif&quot;&gt;&lt;!-- END Asc_On --&gt;
-                &lt;!-- BEGIN Desc_On --&gt;&lt;img alt=&quot;Descendente&quot; src=&quot;Styles/{CCS_Style}/Images/Desc.gif&quot;&gt;&lt;!-- END Desc_On --&gt;&lt;/span&gt;&lt;!-- END Sorter Sorter_ReportesCompletos --&gt;&lt;/th&gt;
- 
-                &lt;th scope=&quot;col&quot;&gt;
-                &lt;!-- BEGIN Sorter Sorter_SLAsNoReportados --&gt;&lt;span class=&quot;Sorter&quot;&gt;&lt;a href=&quot;{Sort_URL}&quot; id=&quot;grdSLAsCAPCSorter_SLAsNoReportados&quot;&gt;SLAs No&lt;br&gt;
-                Reportados&lt;/a&gt; 
-                &lt;!-- BEGIN Asc_On --&gt;&lt;img alt=&quot;Ascendente&quot; src=&quot;Styles/{CCS_Style}/Images/Asc.gif&quot;&gt;&lt;!-- END Asc_On --&gt;
-                &lt;!-- BEGIN Desc_On --&gt;&lt;img alt=&quot;Descendente&quot; src=&quot;Styles/{CCS_Style}/Images/Desc.gif&quot;&gt;&lt;!-- END Desc_On --&gt;&lt;/span&gt;&lt;!-- END Sorter Sorter_SLAsNoReportados --&gt;&lt;/th&gt;
- 
-                &lt;th scope=&quot;col&quot;&gt;
-                &lt;!-- BEGIN Sorter Sorter_DEDUC_OMISION --&gt;&lt;span class=&quot;Sorter&quot;&gt;&lt;a href=&quot;{Sort_URL}&quot; id=&quot;grdSLAsCAPCSorter_DEDUC_OMISION&quot;&gt;% De&lt;br&gt;
-                Cumplimiento&lt;/a&gt; 
-                &lt;!-- BEGIN Asc_On --&gt;&lt;img alt=&quot;Ascendente&quot; src=&quot;Styles/{CCS_Style}/Images/Asc.gif&quot;&gt;&lt;!-- END Asc_On --&gt;
-                &lt;!-- BEGIN Desc_On --&gt;&lt;img alt=&quot;Descendente&quot; src=&quot;Styles/{CCS_Style}/Images/Desc.gif&quot;&gt;&lt;!-- END Desc_On --&gt;&lt;/span&gt;&lt;!-- END Sorter Sorter_DEDUC_OMISION --&gt;&lt;/th&gt;
- 
-                &lt;th scope=&quot;col&quot;&gt;Cumplimiento&lt;br&gt;
-                vs. Objetivo&lt;/th&gt;
- 
-                &lt;th scope=&quot;col&quot;&gt;
-                &lt;!-- BEGIN Sorter Sorter_UnidadesActuales --&gt;&lt;span class=&quot;Sorter&quot;&gt;&lt;a href=&quot;{Sort_URL}&quot; id=&quot;grdSLAsCAPCSorter_UnidadesActuales&quot;&gt;Costo Actual&lt;br&gt;
-                y/o&lt;br&gt;
-                Total de Unidades&lt;/a&gt; 
-                &lt;!-- BEGIN Asc_On --&gt;&lt;img alt=&quot;Ascendente&quot; src=&quot;Styles/{CCS_Style}/Images/Asc.gif&quot;&gt;&lt;!-- END Asc_On --&gt;
-                &lt;!-- BEGIN Desc_On --&gt;&lt;img alt=&quot;Descendente&quot; src=&quot;Styles/{CCS_Style}/Images/Desc.gif&quot;&gt;&lt;!-- END Desc_On --&gt;&lt;/span&gt;&lt;!-- END Sorter Sorter_UnidadesActuales --&gt;&lt;/th&gt;
- 
-                &lt;th scope=&quot;col&quot;&gt;
-                &lt;!-- BEGIN Sorter Sorter_UnidadesAnteriores --&gt;&lt;span class=&quot;Sorter&quot;&gt;&lt;a href=&quot;{Sort_URL}&quot; id=&quot;grdSLAsCAPCSorter_UnidadesAnteriores&quot;&gt;Costo Estimado&lt;br&gt;
-                y/o&lt;br&gt;
-                Total de&lt;br&gt;
-                Unidades&lt;br&gt;
-                Optimizadas&lt;/a&gt; 
-                &lt;!-- BEGIN Asc_On --&gt;&lt;img alt=&quot;Ascendente&quot; src=&quot;Styles/{CCS_Style}/Images/Asc.gif&quot;&gt;&lt;!-- END Asc_On --&gt;
-                &lt;!-- BEGIN Desc_On --&gt;&lt;img alt=&quot;Descendente&quot; src=&quot;Styles/{CCS_Style}/Images/Desc.gif&quot;&gt;&lt;!-- END Desc_On --&gt;&lt;/span&gt;&lt;!-- END Sorter Sorter_UnidadesAnteriores --&gt;&lt;/th&gt;
- 
-                &lt;th scope=&quot;col&quot;&gt;Diferencia&lt;/th&gt;
- 
-                &lt;th scope=&quot;col&quot;&gt;
-                &lt;!-- BEGIN Sorter Sorter_EFIC_PRESUP --&gt;&lt;span class=&quot;Sorter&quot;&gt;&lt;a href=&quot;{Sort_URL}&quot; id=&quot;grdSLAsCAPCSorter_EFIC_PRESUP&quot;&gt;Cumplimiento&lt;br&gt;
-                vs. Objetivo&lt;/a&gt; 
-                &lt;!-- BEGIN Asc_On --&gt;&lt;img alt=&quot;Ascendente&quot; src=&quot;Styles/{CCS_Style}/Images/Asc.gif&quot;&gt;&lt;!-- END Asc_On --&gt;
-                &lt;!-- BEGIN Desc_On --&gt;&lt;img alt=&quot;Descendente&quot; src=&quot;Styles/{CCS_Style}/Images/Desc.gif&quot;&gt;&lt;!-- END Desc_On --&gt;&lt;/span&gt;&lt;!-- END Sorter Sorter_EFIC_PRESUP --&gt;&lt;/th&gt;
- 
-                &lt;th scope=&quot;col&quot;&gt;
-                &lt;!-- BEGIN Sorter Sorter_DiasPlaneados --&gt;&lt;span class=&quot;Sorter&quot;&gt;&lt;a href=&quot;{Sort_URL}&quot; id=&quot;grdSLAsCAPCSorter_DiasPlaneados&quot;&gt;Días Hábiles&lt;br&gt;
-                Planeados&lt;/a&gt; 
-                &lt;!-- BEGIN Asc_On --&gt;&lt;img alt=&quot;Ascendente&quot; src=&quot;Styles/{CCS_Style}/Images/Asc.gif&quot;&gt;&lt;!-- END Asc_On --&gt;
-                &lt;!-- BEGIN Desc_On --&gt;&lt;img alt=&quot;Descendente&quot; src=&quot;Styles/{CCS_Style}/Images/Desc.gif&quot;&gt;&lt;!-- END Desc_On --&gt;&lt;/span&gt;&lt;!-- END Sorter Sorter_DiasPlaneados --&gt;&lt;/th&gt;
- 
-                &lt;th scope=&quot;col&quot;&gt;
-                &lt;!-- BEGIN Sorter Sorter_DiasReales --&gt;&lt;span class=&quot;Sorter&quot;&gt;&lt;a href=&quot;{Sort_URL}&quot; id=&quot;grdSLAsCAPCSorter_DiasReales&quot;&gt;Días Hábiles&lt;br&gt;
-                Reales&lt;/a&gt; 
-                &lt;!-- BEGIN Asc_On --&gt;&lt;img alt=&quot;Ascendente&quot; src=&quot;Styles/{CCS_Style}/Images/Asc.gif&quot;&gt;&lt;!-- END Asc_On --&gt;
-                &lt;!-- BEGIN Desc_On --&gt;&lt;img alt=&quot;Descendente&quot; src=&quot;Styles/{CCS_Style}/Images/Desc.gif&quot;&gt;&lt;!-- END Desc_On --&gt;&lt;/span&gt;&lt;!-- END Sorter Sorter_DiasReales --&gt;&lt;/th&gt;
- 
-                &lt;th scope=&quot;col&quot;&gt;
-                &lt;!-- BEGIN Sorter Sorter_RETR_ENTREGABLE --&gt;&lt;span class=&quot;Sorter&quot;&gt;&lt;a href=&quot;{Sort_URL}&quot; id=&quot;grdSLAsCAPCSorter_RETR_ENTREGABLE&quot;&gt;Valor de Cumplimiento&lt;/a&gt; 
-                &lt;!-- BEGIN Asc_On --&gt;&lt;img alt=&quot;Ascendente&quot; src=&quot;Styles/{CCS_Style}/Images/Asc.gif&quot;&gt;&lt;!-- END Asc_On --&gt;
-                &lt;!-- BEGIN Desc_On --&gt;&lt;img alt=&quot;Descendente&quot; src=&quot;Styles/{CCS_Style}/Images/Desc.gif&quot;&gt;&lt;!-- END Desc_On --&gt;&lt;/span&gt;&lt;!-- END Sorter Sorter_RETR_ENTREGABLE --&gt;&lt;/th&gt;
- 
-                &lt;th scope=&quot;col&quot;&gt;&amp;nbsp;&lt;/th&gt;
-              &lt;/tr&gt;
- 
-              &lt;!-- BEGIN Row --&gt;
-              &lt;tr class=&quot;Row&quot;&gt;
-                &lt;td&gt;{Descripcion}&amp;nbsp;&lt;/td&gt; 
-                &lt;td style=&quot;text-align: center;&quot;&gt;{Label1}&lt;/td&gt; 
-                &lt;td style=&quot;text-align: center;&quot;&gt;{Deductiva}&amp;nbsp;&lt;/td&gt; 
-                &lt;td style=&quot;text-align: center;&quot;&gt;{pctcalidad}&amp;nbsp;&lt;/td&gt; 
-                &lt;td style=&quot;text-align: center;&quot;&gt;&amp;nbsp;&lt;img id=&quot;grdSLAsCAPCimgCALIDAD_PROD_TERM&quot; alt=&quot;&quot; src=&quot;{imgCALIDAD_PROD_TERM}&quot;&gt;&lt;/td&gt; 
-                &lt;td style=&quot;text-align: center;&quot;&gt;{ReportesCompletos}&amp;nbsp;&lt;/td&gt; 
-                &lt;td style=&quot;text-align: center;&quot;&gt;{SLAsNoReportados}&amp;nbsp;&lt;/td&gt; 
-                &lt;td style=&quot;text-align: center;&quot;&gt;{DEDUC_OMISION}&amp;nbsp;&lt;/td&gt; 
-                &lt;td style=&quot;text-align: center;&quot; rowspan=&quot;1&quot; colspan=&quot;1&quot;&gt;&lt;img id=&quot;grdSLAsCAPCimgDEDUC_OMISION_{grdSLAsCAPC:rowNumber}&quot; alt=&quot;&quot; src=&quot;{imgDEDUC_OMISION}&quot;&gt;&lt;/td&gt; 
-                &lt;td style=&quot;text-align: center;&quot;&gt;{UnidadesActuales}&amp;nbsp;&lt;/td&gt; 
-                &lt;td style=&quot;text-align: center;&quot;&gt;{UnidadesAnteriores}&amp;nbsp;&lt;/td&gt; 
-                &lt;td style=&quot;text-align: center;&quot; rowspan=&quot;1&quot; colspan=&quot;1&quot;&gt;{Label2}&lt;/td&gt; 
-                &lt;td style=&quot;text-align: center;&quot;&gt;&lt;img id=&quot;grdSLAsCAPCimgEFIC_PRESUP_{grdSLAsCAPC:rowNumber}&quot; alt=&quot;&quot; src=&quot;{imgEFIC_PRESUP}&quot;&gt;&lt;/td&gt; 
-                &lt;td style=&quot;text-align: center;&quot;&gt;{DiasPlaneados}&amp;nbsp;&lt;/td&gt; 
-                &lt;td style=&quot;text-align: center;&quot;&gt;{DiasReales}&amp;nbsp;&lt;/td&gt; 
-                &lt;td style=&quot;text-align: center;&quot;&gt;{RETR_ENTREGABLE}&amp;nbsp;&lt;/td&gt; 
-                &lt;td style=&quot;text-align: center;&quot; rowspan=&quot;1&quot; colspan=&quot;1&quot;&gt;&lt;img id=&quot;grdSLAsCAPCimgRETR_ENTREGABLE&quot; alt=&quot;&quot; src=&quot;{imgRETR_ENTREGABLE}&quot;&gt;&lt;/td&gt;
-              &lt;/tr&gt;
- &lt;!-- END Row --&gt;
-              &lt;!-- BEGIN NoRecords --&gt;
-              &lt;tr class=&quot;NoRecords&quot;&gt;
-                &lt;td rowspan=&quot;1&quot; colspan=&quot;17&quot;&gt;No hay registros&lt;/td&gt;
-              &lt;/tr&gt;
-              &lt;!-- END NoRecords --&gt;
-              &lt;tr class=&quot;Footer&quot;&gt;
-                &lt;td rowspan=&quot;1&quot; colspan=&quot;17&quot;&gt;
-                  &lt;!-- BEGIN Navigator Navigator --&gt;&lt;span class=&quot;Navigator&quot;&gt;Registro por página 
-                  &lt;select name=&quot;{FormName}PageSize&quot; style=&quot;vertical-align: middle;&quot; data-grid-size=&quot;{FormName}&quot;&gt;
-                    &lt;option selected value=&quot;&quot;&gt;-&lt;/option&gt;
- {PageSize_Options}
-                  &lt;/select&gt;
- 
-                  &lt;!-- BEGIN First_On --&gt;&lt;a href=&quot;{First_URL}&quot;&gt;&lt;img alt=&quot;{First_URL}&quot; src=&quot;Styles/{CCS_Style}/Images/First.gif&quot;&gt;&lt;/a&gt; &lt;!-- END First_On --&gt;
-                  &lt;!-- BEGIN First_Off --&gt;&lt;img alt=&quot;{First_URL}&quot; src=&quot;Styles/{CCS_Style}/Images/FirstOff.gif&quot;&gt;&lt;!-- END First_Off --&gt;
-                  &lt;!-- BEGIN Prev_On --&gt;&lt;a href=&quot;{Prev_URL}&quot;&gt;&lt;img alt=&quot;{Prev_URL}&quot; src=&quot;Styles/{CCS_Style}/Images/Prev.gif&quot;&gt;&lt;/a&gt; &lt;!-- END Prev_On --&gt;
-                  &lt;!-- BEGIN Prev_Off --&gt;&lt;img alt=&quot;{Prev_URL}&quot; src=&quot;Styles/{CCS_Style}/Images/PrevOff.gif&quot;&gt;&lt;!-- END Prev_Off --&gt;&amp;nbsp;{Page_Number} de&amp;nbsp;{Total_Pages}&amp;nbsp; 
-                  &lt;!-- BEGIN Next_On --&gt;&lt;a href=&quot;{Next_URL}&quot;&gt;&lt;img alt=&quot;{Next_URL}&quot; src=&quot;Styles/{CCS_Style}/Images/Next.gif&quot;&gt;&lt;/a&gt; &lt;!-- END Next_On --&gt;
-                  &lt;!-- BEGIN Next_Off --&gt;&lt;img alt=&quot;{Next_URL}&quot; src=&quot;Styles/{CCS_Style}/Images/NextOff.gif&quot;&gt;&lt;!-- END Next_Off --&gt;
-                  &lt;!-- BEGIN Last_On --&gt;&lt;a href=&quot;{Last_URL}&quot;&gt;&lt;img alt=&quot;{Last_URL}&quot; src=&quot;Styles/{CCS_Style}/Images/Last.gif&quot;&gt;&lt;/a&gt; &lt;!-- END Last_On --&gt;
-                  &lt;!-- BEGIN Last_Off --&gt;&lt;img alt=&quot;{Last_URL}&quot; src=&quot;Styles/{CCS_Style}/Images/LastOff.gif&quot;&gt;&lt;!-- END Last_Off --&gt;&lt;/span&gt;&lt;!-- END Navigator Navigator --&gt;&amp;nbsp;&lt;/td&gt;
-              &lt;/tr&gt;
-            &lt;/table&gt;
-          &lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/table&gt;
- &lt;!-- END Grid grdSLAsCAPC --&gt;" PathID="pnlSLAsCAPC">
+		<Panel id="239" visible="True" generateDiv="False" name="pnlSLAsCAPC" PathID="pnlSLAsCAPC">
 			<Components>
-				<Grid id="213" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="20" name="grdSLAsCAPC" connection="cnDisenio" dataSource="select 
-	c.agrupador ,
-	v.Descripcion , 
-	max(c.Deductiva) Deductiva,
-	max(cast(c.CALIDAD_PROD_TERM as int)) CALIDAD_PROD_TERM ,
-	sum(c.ReportesCompletos) ReportesCompletos,
-	sum(c.SLAsNoReportados) SLAsNoReportados,
-	max(cast(c.DEDUC_OMISION as int)) DEDUC_OMISION,
-	sum(cast(c.UnidadesActuales as float)) UnidadesActuales,
-	sum(cast(c.UnidadesAnteriores as float)) UnidadesAnteriores,  
-	max(cast(c.EFIC_PRESUP as int)) EFIC_PRESUP,
-	AVG(cast(c.DiasPlaneados as int)) DiasPlaneados,
-	AVG(cast(c.DiasReales as int)) DiasReales,
-	max(cast(c.RETR_ENTREGABLE as int)) RETR_ENTREGABLE,
-	v.id IdServCont
-	, avg(c.pctcalidad) pctcalidad
-from dbo.mc_c_ServContractual v 
-     left join mc_calificacion_CAPC c 
-	on v.id = c.id_serviciocont and mes={sMes} and anio = {sAnio}
-where v.Aplica ='CAPC'
-group by 	
-	v.Descripcion ,
-	v.id ,
-c.agrupador" pageSizeLimit="100" pageSize="True" wizardCaption="Tablero de Niveles de Servicio del CAPC" wizardThemeApplyTo="Page" wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No hay registros" wizardGridPagingType="Simple" wizardUseSearch="False" wizardAddNbsp="True" gridTotalRecords="False" wizardAddPanels="False" wizardType="Grid" wizardUseInterVariables="False" addTemplatePanel="False" changedCaptionGrid="True" gridExtendedHTML="False" PathID="pnlSLAsCAPCgrdSLAsCAPC">
+				<Grid id="323" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="20" name="mc_c_ServContractual_mc_c" connection="cnDisenio" dataSource="SELECT mc_calificacion_capc.*, mc_c_ServContractual.Descripcion AS mc_c_ServContractual_Descripcion 
+FROM mc_calificacion_capc left  JOIN mc_c_ServContractual ON mc_calificacion_capc.id_serviciocont = mc_c_ServContractual.Id
+WHERE numero LIKE '%{s_numero}%'
+AND (mes = {s_mes} or  {s_mes}=0)
+AND (anio = {s_anio} or {s_anio}=0)
+AND (id_serviciocont = {s_id_serviciocont}  or 0={s_id_serviciocont} )" pageSizeLimit="100" pageSize="True" wizardCaption="Detalle SLAs CAPC" wizardThemeApplyTo="Page" wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No hay registros" wizardGridPagingType="Simple" wizardUseSearch="False" wizardAddNbsp="True" gridTotalRecords="False" wizardAddPanels="False" wizardType="Grid" wizardUseInterVariables="False" addTemplatePanel="False" changedCaptionGrid="True" gridExtendedHTML="False" PathID="pnlSLAsCAPCmc_c_ServContractual_mc_c">
 					<Components>
-						<Sorter id="214" visible="True" name="Sorter_Descripcion" column="Descripcion" wizardCaption="Descripcion" wizardSortingType="SimpleDir" wizardControl="Descripcion" wizardAddNbsp="False" PathID="pnlSLAsCAPCgrdSLAsCAPCSorter_Descripcion">
+						<Sorter id="324" visible="True" name="Sorter_mc_c_ServContractual_Descripcion" column="mc_c_ServContractual_Descripcion" wizardCaption="Mc C Serv Contractual Descripcion" wizardSortingType="SimpleDir" wizardControl="mc_c_ServContractual_Descripcion" wizardAddNbsp="False" PathID="pnlSLAsCAPCmc_c_ServContractual_mc_cSorter_mc_c_ServContractual_Descripcion">
 							<Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
 						</Sorter>
-						<Sorter id="5" visible="True" name="Sorter_CALIDAD_PROD_TERM" column="CALIDAD_PROD_TERM" wizardCaption="CALIDAD PROD TERM" wizardSortingType="SimpleDir" wizardControl="CALIDAD_PROD_TERM" wizardAddNbsp="False" PathID="pnlSLAsCAPCgrdSLAsCAPCSorter_CALIDAD_PROD_TERM">
+						<Sorter id="15" visible="True" name="Sorter_Agrupador" column="Agrupador" wizardCaption="Agrupador" wizardSortingType="SimpleDir" wizardControl="Agrupador" wizardAddNbsp="False" PathID="pnlSLAsCAPCmc_c_ServContractual_mc_cSorter_Agrupador" connection="cnDisenio">
 							<Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
 						</Sorter>
-						<Sorter id="6" visible="True" name="Sorter_ReportesCompletos" column="ReportesCompletos" wizardCaption="Reportes Completos" wizardSortingType="SimpleDir" wizardControl="ReportesCompletos" wizardAddNbsp="False" PathID="pnlSLAsCAPCgrdSLAsCAPCSorter_ReportesCompletos">
+						<Sorter id="326" visible="True" name="Sorter_CALIDAD_PROD_TERM" column="CALIDAD_PROD_TERM" wizardCaption="CALIDAD PROD TERM" wizardSortingType="SimpleDir" wizardControl="CALIDAD_PROD_TERM" wizardAddNbsp="False" PathID="pnlSLAsCAPCmc_c_ServContractual_mc_cSorter_CALIDAD_PROD_TERM">
 							<Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
 						</Sorter>
-						<Sorter id="7" visible="True" name="Sorter_SLAsNoReportados" column="SLAsNoReportados" wizardCaption="SLAs No Reportados" wizardSortingType="SimpleDir" wizardControl="SLAsNoReportados" wizardAddNbsp="False" PathID="pnlSLAsCAPCgrdSLAsCAPCSorter_SLAsNoReportados">
+						<Sorter id="17" visible="True" name="Sorter_DEDUC_OMISION" column="DEDUC_OMISION" wizardCaption="DEDUC OMISION" wizardSortingType="SimpleDir" wizardControl="DEDUC_OMISION" wizardAddNbsp="False" PathID="pnlSLAsCAPCmc_c_ServContractual_mc_cSorter_DEDUC_OMISION">
 							<Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
 						</Sorter>
-						<Sorter id="215" visible="True" name="Sorter_DEDUC_OMISION" column="DEDUC_OMISION" wizardCaption="DEDUC OMISION" wizardSortingType="SimpleDir" wizardControl="DEDUC_OMISION" wizardAddNbsp="False" PathID="pnlSLAsCAPCgrdSLAsCAPCSorter_DEDUC_OMISION">
+						<Sorter id="19" visible="True" name="Sorter_RETR_ENTREGABLE" column="RETR_ENTREGABLE" wizardCaption="RETR ENTREGABLE" wizardSortingType="SimpleDir" wizardControl="RETR_ENTREGABLE" wizardAddNbsp="False" PathID="pnlSLAsCAPCmc_c_ServContractual_mc_cSorter_RETR_ENTREGABLE">
 							<Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
 						</Sorter>
-						<Sorter id="9" visible="True" name="Sorter_UnidadesActuales" column="UnidadesActuales" wizardCaption="Unidades Actuales" wizardSortingType="SimpleDir" wizardControl="UnidadesActuales" wizardAddNbsp="False" PathID="pnlSLAsCAPCgrdSLAsCAPCSorter_UnidadesActuales">
+						<Sorter id="327" visible="True" name="Sorter_Observaciones" column="Observaciones" wizardCaption="Observaciones" wizardSortingType="SimpleDir" wizardControl="Observaciones" wizardAddNbsp="False" PathID="pnlSLAsCAPCmc_c_ServContractual_mc_cSorter_Observaciones">
 							<Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
 						</Sorter>
-						<Sorter id="216" visible="True" name="Sorter_UnidadesAnteriores" column="UnidadesAnteriores" wizardCaption="Unidades Anteriores" wizardSortingType="SimpleDir" wizardControl="UnidadesAnteriores" wizardAddNbsp="False" PathID="pnlSLAsCAPCgrdSLAsCAPCSorter_UnidadesAnteriores">
-							<Components/>
+						<Label id="328" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="mc_c_ServContractual_Descripcion" fieldSource="mc_c_ServContractual_Descripcion" wizardCaption="Mc C Serv Contractual Descripcion" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="pnlSLAsCAPCmc_c_ServContractual_mc_cmc_c_ServContractual_Descripcion" visible="Yes" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCAPCDetalle.ccp" linkProperties="{'textSource':'','textSourceDB':'mc_c_ServContractual_Descripcion','hrefSource':'SLAsCAPCDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'length':1,'objectType':'linkParameters'}}"><Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
-						</Sorter>
-						<Sorter id="11" visible="True" name="Sorter_EFIC_PRESUP" column="EFIC_PRESUP" wizardCaption="EFIC PRESUP" wizardSortingType="SimpleDir" wizardControl="EFIC_PRESUP" wizardAddNbsp="False" PathID="pnlSLAsCAPCgrdSLAsCAPCSorter_EFIC_PRESUP">
-							<Components/>
+							<LinkParameters>
+								<LinkParameter id="329" sourceType="DataField" name="id" source="id"/>
+							</LinkParameters>
+						</Label>
+						<Link id="25" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Agrupador" fieldSource="Agrupador" wizardCaption="Agrupador" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="pnlSLAsCAPCmc_c_ServContractual_mc_cAgrupador" visible="Yes" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCAPCDetalle.ccp" linkProperties="{'textSource':'','textSourceDB':'Agrupador','hrefSource':'SLAsCAPCDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'length':1,'objectType':'linkParameters'}}"><Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
-						</Sorter>
-						<Sorter id="217" visible="True" name="Sorter_DiasPlaneados" column="DiasPlaneados" wizardCaption="Dias Planeados" wizardSortingType="SimpleDir" wizardControl="DiasPlaneados" wizardAddNbsp="False" PathID="pnlSLAsCAPCgrdSLAsCAPCSorter_DiasPlaneados">
-							<Components/>
+							<LinkParameters>
+								<LinkParameter id="57" sourceType="DataField" name="id" source="id"/>
+							</LinkParameters>
+						</Link>
+						<Label id="331" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="CALIDAD_PROD_TERM" fieldSource="CALIDAD_PROD_TERM" wizardCaption="CALIDAD PROD TERM" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="pnlSLAsCAPCmc_c_ServContractual_mc_cCALIDAD_PROD_TERM" visible="Yes" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCAPCCalidadDetalle.ccp" linkProperties="{'textSource':'','textSourceDB':'CALIDAD_PROD_TERM','hrefSource':'SLAsCAPCCalidadDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'length':1,'objectType':'linkParameters'}}"><Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
-						</Sorter>
-						<Sorter id="13" visible="True" name="Sorter_DiasReales" column="DiasReales" wizardCaption="Dias Reales" wizardSortingType="SimpleDir" wizardControl="DiasReales" wizardAddNbsp="False" PathID="pnlSLAsCAPCgrdSLAsCAPCSorter_DiasReales">
-							<Components/>
-							<Events/>
-							<Attributes/>
-							<Features/>
-						</Sorter>
-						<Sorter id="218" visible="True" name="Sorter_RETR_ENTREGABLE" column="RETR_ENTREGABLE" wizardCaption="RETR ENTREGABLE" wizardSortingType="SimpleDir" wizardControl="RETR_ENTREGABLE" wizardAddNbsp="False" PathID="pnlSLAsCAPCgrdSLAsCAPCSorter_RETR_ENTREGABLE">
-							<Components/>
-							<Events/>
-							<Attributes/>
-							<Features/>
-						</Sorter>
-						<Sorter id="219" visible="True" name="Sorter_pctcalidad" column="pctcalidad" wizardCaption="Pctcalidad" wizardSortingType="SimpleDir" wizardControl="pctcalidad" wizardAddNbsp="False" PathID="pnlSLAsCAPCgrdSLAsCAPCSorter_pctcalidad">
-							<Components/>
-							<Events/>
-							<Attributes/>
-							<Features/>
-						</Sorter>
-						<Label id="21" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Descripcion" fieldSource="Descripcion" wizardCaption="Descripcion" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="pnlSLAsCAPCgrdSLAsCAPCDescripcion">
+							<LinkParameters>
+								<LinkParameter id="332" sourceType="DataField" name="id" source="id"/>
+							</LinkParameters>
+						</Label>
+						<Label id="27" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="DEDUC_OMISION" fieldSource="DEDUC_OMISION" wizardCaption="DEDUC OMISION" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="pnlSLAsCAPCmc_c_ServContractual_mc_cDEDUC_OMISION">
 							<Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
 						</Label>
-						<Label id="221" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="ReportesCompletos" fieldSource="ReportesCompletos" wizardCaption="Reportes Completos" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAlign="right" wizardAddNbsp="True" PathID="pnlSLAsCAPCgrdSLAsCAPCReportesCompletos">
+						<Label id="29" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="RETR_ENTREGABLE" fieldSource="RETR_ENTREGABLE" wizardCaption="RETR ENTREGABLE" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="pnlSLAsCAPCmc_c_ServContractual_mc_cRETR_ENTREGABLE">
 							<Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
 						</Label>
-						<Label id="25" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="SLAsNoReportados" fieldSource="SLAsNoReportados" wizardCaption="SLAs No Reportados" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAlign="right" wizardAddNbsp="True" PathID="pnlSLAsCAPCgrdSLAsCAPCSLAsNoReportados">
+						<Label id="333" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Observaciones" fieldSource="Observaciones" wizardCaption="Observaciones" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="pnlSLAsCAPCmc_c_ServContractual_mc_cObservaciones">
 							<Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
 						</Label>
-						<Label id="222" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="DEDUC_OMISION" fieldSource="DEDUC_OMISION" wizardCaption="DEDUC OMISION" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="pnlSLAsCAPCgrdSLAsCAPCDEDUC_OMISION">
-							<Components/>
-							<Events/>
-							<Attributes/>
-							<Features/>
-						</Label>
-						<Label id="27" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="UnidadesActuales" fieldSource="UnidadesActuales" wizardCaption="Unidades Actuales" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="pnlSLAsCAPCgrdSLAsCAPCUnidadesActuales">
-							<Components/>
-							<Events/>
-							<Attributes/>
-							<Features/>
-						</Label>
-						<Label id="223" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="UnidadesAnteriores" fieldSource="UnidadesAnteriores" wizardCaption="Unidades Anteriores" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="pnlSLAsCAPCgrdSLAsCAPCUnidadesAnteriores">
-							<Components/>
-							<Events/>
-							<Attributes/>
-							<Features/>
-						</Label>
-						<Label id="224" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="DiasPlaneados" fieldSource="DiasPlaneados" wizardCaption="Dias Planeados" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="pnlSLAsCAPCgrdSLAsCAPCDiasPlaneados">
-							<Components/>
-							<Events/>
-							<Attributes/>
-							<Features/>
-						</Label>
-						<Label id="225" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="DiasReales" fieldSource="DiasReales" wizardCaption="Dias Reales" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="pnlSLAsCAPCgrdSLAsCAPCDiasReales">
-							<Components/>
-							<Events/>
-							<Attributes/>
-							<Features/>
-						</Label>
-						<Label id="226" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="RETR_ENTREGABLE" fieldSource="RETR_ENTREGABLE" wizardCaption="RETR ENTREGABLE" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="pnlSLAsCAPCgrdSLAsCAPCRETR_ENTREGABLE">
-							<Components/>
-							<Events/>
-							<Attributes/>
-							<Features/>
-						</Label>
-						<Label id="227" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="pctcalidad" fieldSource="pctcalidad" wizardCaption="Pctcalidad" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="pnlSLAsCAPCgrdSLAsCAPCpctcalidad">
-							<Components/>
-							<Events/>
-							<Attributes/>
-							<Features/>
-						</Label>
-						<Navigator id="228" size="10" type="Simple" pageSizes="1;5;10;25;50" name="Navigator" wizardPagingType="Simple" wizardFirst="True" wizardFirstText="Inicio" wizardPrev="True" wizardPrevText="Anterior" wizardNext="True" wizardNextText="Siguiente" wizardLast="True" wizardLastText="Final" wizardImages="Images" wizardPageNumbers="Simple" wizardSize="10" wizardTotalPages="True" wizardHideDisabled="False" wizardOfText="de" wizardPageSize="True" wizardImagesScheme="{ccs_style}">
-							<Components/>
-							<Events/>
-							<Attributes/>
-							<Features/>
-						</Navigator>
-						<Image id="230" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="imgCALIDAD_PROD_TERM" PathID="pnlSLAsCAPCgrdSLAsCAPCimgCALIDAD_PROD_TERM">
+						<Image id="335" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Img_CALIDAD_PROD_TERM" PathID="pnlSLAsCAPCmc_c_ServContractual_mc_cImg_CALIDAD_PROD_TERM">
 							<Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
 						</Image>
-						<Image id="231" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="imgDEDUC_OMISION" PathID="pnlSLAsCAPCgrdSLAsCAPCimgDEDUC_OMISION">
+						<Image id="336" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Img_DEDUC_OMISION" PathID="pnlSLAsCAPCmc_c_ServContractual_mc_cImg_DEDUC_OMISION">
 							<Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
 						</Image>
-						<Label id="232" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Label2" PathID="pnlSLAsCAPCgrdSLAsCAPCLabel2">
+						<Image id="337" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Img_RETR_ENTREGABLE" PathID="pnlSLAsCAPCmc_c_ServContractual_mc_cImg_RETR_ENTREGABLE">
+							<Components/>
+							<Events/>
+							<Attributes/>
+							<Features/>
+						</Image>
+						<Link id="338" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link2" PathID="pnlSLAsCAPCmc_c_ServContractual_mc_cLink2" hrefSource="SLAsCapcApbDetalle.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Agregar Medición de Apertura','textSourceDB':'','hrefSource':'SLAsCapcApbDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
+							<Events/>
+							<LinkParameters/>
+							<Attributes/>
+							<Features/>
+						</Link>
+						<Link id="58" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link1" PathID="pnlSLAsCAPCmc_c_ServContractual_mc_cLink1" hrefSource="SLAsCAPCDetalle.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Agregar Medición','textSourceDB':'','hrefSource':'SLAsCAPCDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
+							<Events/>
+							<LinkParameters/>
+							<Attributes/>
+							<Features/>
+						</Link>
+						<Label id="339" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="HERR_EST_COST" PathID="pnlSLAsCAPCmc_c_ServContractual_mc_cHERR_EST_COST" fieldSource="HERR_EST_COST" visible="Yes" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCapcApbDetalle.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'','textSourceDB':'HERR_EST_COST','hrefSource':'SLAsCapcApbDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'numero','parameterName':'numero'},'1':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'2':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'3':{'sourceType':'DataField','parameterSource':'id','parameterName':'sID'},'length':4,'objectType':'linkParameters'}}"><Components/>
+							<Events/>
+							<Attributes/>
+							<Features/>
+							<LinkParameters>
+								<LinkParameter id="94" sourceType="DataField" name="s_numero" source="numero"/>
+								<LinkParameter id="95" sourceType="DataField" name="sID" source="id"/>
+							</LinkParameters>
+						</Label>
+						<Label id="340" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="REQ_SERV" PathID="pnlSLAsCAPCmc_c_ServContractual_mc_cREQ_SERV" fieldSource="REQ_SERV">
 							<Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
 						</Label>
-						<Image id="233" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="imgEFIC_PRESUP" PathID="pnlSLAsCAPCgrdSLAsCAPCimgEFIC_PRESUP">
-							<Components/>
-							<Events/>
-							<Attributes/>
-							<Features/>
-						</Image>
-						<Image id="234" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="imgRETR_ENTREGABLE" PathID="pnlSLAsCAPCgrdSLAsCAPCimgRETR_ENTREGABLE">
-							<Components/>
-							<Events/>
-							<Attributes/>
-							<Features/>
-						</Image>
-						<Label id="284" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="agrupador" PathID="pnlSLAsCAPCgrdSLAsCAPCagrupador" fieldSource="agrupador">
+						<Label id="341" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="CUMPL_REQ_FUN" PathID="pnlSLAsCAPCmc_c_ServContractual_mc_cCUMPL_REQ_FUN" fieldSource="CUMPL_REQ_FUN">
 							<Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
 						</Label>
+						<Image id="342" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Img_HERR_EST_COST" PathID="pnlSLAsCAPCmc_c_ServContractual_mc_cImg_HERR_EST_COST" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCapcApbDetalle.ccp" linkProperties="{'textSource':'','textSourceDB':'','hrefSource':'SLAsCapcApbDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'numero','parameterName':'numero'},'1':{'sourceType':'DataField','parameterSource':'numero','parameterName':'numero'},'2':{'sourceType':'DataField','parameterSource':'id','parameterName':'sID'},'3':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'4':{'sourceType':'DataField','parameterSource':'id','parameterName':'sID'},'length':5,'objectType':'linkParameters'}}"><Components/>
+							<Events/>
+							<Attributes/>
+							<Features/>
+							<LinkParameters>
+								<LinkParameter id="93" sourceType="DataField" name="s_numero" source="numero"/>
+								<LinkParameter id="96" sourceType="DataField" name="sID" source="id"/>
+							</LinkParameters>
+						</Image>
+						<Image id="343" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Img_REQ_SERV" PathID="pnlSLAsCAPCmc_c_ServContractual_mc_cImg_REQ_SERV">
+							<Components/>
+							<Events/>
+							<Attributes/>
+							<Features/>
+						</Image>
+						<Image id="88" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Img_CUMPL_REQ_FUN" PathID="pnlSLAsCAPCmc_c_ServContractual_mc_cImg_CUMPL_REQ_FUN">
+							<Components/>
+							<Events/>
+							<Attributes/>
+							<Features/>
+						</Image>
 					</Components>
 					<Events>
 						<Event name="BeforeShowRow" type="Server">
 							<Actions>
-								<Action actionName="Custom Code" actionCategory="General" id="235"/>
-							</Actions>
-						</Event>
-						<Event name="BeforeShow" type="Server">
-							<Actions>
-								<Action actionName="Custom Code" actionCategory="General" id="238"/>
+								<Action actionName="Custom Code" actionCategory="General" id="344"/>
 							</Actions>
 						</Event>
 					</Events>
-					<TableParameters/>
-					<JoinTables/>
-					<JoinLinks/>
-					<Fields/>
+					<TableParameters>
+					</TableParameters>
+					<JoinTables>
+					</JoinTables>
+					<JoinLinks>
+					</JoinLinks>
+					<Fields>
+					</Fields>
 					<PKFields/>
 					<SPParameters/>
 					<SQLParameters>
-						<SQLParameter id="307" dataType="Integer" defaultValue="0" designDefaultValue="8" old_temp_id="236" parameterSource="s_MesReporte" parameterType="URL" variable="sMes"/>
-						<SQLParameter id="308" dataType="Integer" defaultValue="0" designDefaultValue="2014" old_temp_id="237" parameterSource="s_AnioReporte" parameterType="URL" variable="sAnio"/>
+						<SQLParameter id="345" dataType="Text" parameterSource="s_numero" parameterType="URL" variable="s_numero"/>
+						<SQLParameter id="90" dataType="Integer" defaultValue="date(&quot;m&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="0" parameterSource="s_mes" parameterType="URL" variable="s_mes"/>
+						<SQLParameter id="91" dataType="Integer" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="2014" parameterSource="s_anio" parameterType="URL" variable="s_anio"/>
+						<SQLParameter id="92" dataType="Integer" defaultValue="0" designDefaultValue="0" parameterSource="s_id_serviciocont" parameterType="URL" variable="s_id_serviciocont"/>
 					</SQLParameters>
 					<SecurityGroups/>
 					<Attributes/>

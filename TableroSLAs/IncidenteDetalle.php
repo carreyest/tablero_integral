@@ -2485,7 +2485,7 @@ class clsmc_info_incidentes2DataSource extends clsDBcnDisenio {  //mc_info_incid
     }
 //End Prepare Method
 
-//Open Method @56-241805FB
+//Open Method @56-831EB7F5
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -2493,7 +2493,7 @@ class clsmc_info_incidentes2DataSource extends clsDBcnDisenio {  //mc_info_incid
         "	(select top 1 FechaInicioMov from mc_detalle_incidente_avl \n" .
         "	        where (Id_Incidente=mi.Id_incidente or Id_Incidente = mi.IncPadre ) \n" .
         "	        order by FechaInicioMov   ) as RegistroAVL ,\n" .
-        "datediff(s,FechaEnCurso,(select top 1 FechaInicioMov from mc_detalle_incidente_avl \n" .
+        "dbo.ufDiffFechasMCSec(FechaEnCurso,(select top 1 FechaInicioMov from mc_detalle_incidente_avl \n" .
         "                                           where (Id_Incidente=mi.Id_incidente or Id_Incidente = mi.IncPadre ) \n" .
         "                                          order by FechaInicioMov   ) ) \n" .
         "as HorasInvertidas\n" .

@@ -149,12 +149,12 @@
 					<Features/>
 				</ListBox>
 				<TextArea id="21" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="txtEntregableCalidad" PathID="mc_calificacion_capctxtEntregableCalidad" fieldSource="EntregableCalidad">
-<Components/>
+					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextArea>
-<TextBox id="22" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Hallazgos" PathID="mc_calificacion_capcHallazgos" fieldSource="Hallazgos">
+				<TextBox id="22" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Hallazgos" PathID="mc_calificacion_capcHallazgos" fieldSource="Hallazgos">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -307,7 +307,7 @@
 			<SQLParameters/>
 			<JoinTables>
 				<JoinTable id="69" tableName="mc_calificacion_capc"/>
-			</JoinTables>
+</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="63" fieldName="*"/>

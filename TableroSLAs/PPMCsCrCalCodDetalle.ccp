@@ -60,7 +60,7 @@
 			<Attributes/>
 			<Features/>
 		</Link>
-		<Record id="27" sourceType="Table" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="mc_info_rs_CC" connection="cnDisenio" dataSource="mc_info_rs_CC" errorSummator="Error" allowCancel="False" recordDeleteConfirmation="False" buttonsType="button" wizardRecordKey="Id" encryptPasswordField="False" wizardUseInterVariables="False" pkIsAutoincrement="False" wizardCaption="Calificar Calidad de Código" wizardThemeApplyTo="Page" wizardFormMethod="post" wizardType="Record" changedCaptionRecord="True" recordDirection="Vertical" recordAddTemplatePanel="False" PathID="mc_info_rs_CC" activeCollection="UFormElements" activeTableType="mc_info_rs_CC" customInsertType="Table" customInsert="mc_info_rs_CC" customUpdateType="Table" customUpdate="mc_info_rs_CC">
+		<Record id="27" sourceType="Table" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="mc_info_rs_CC" connection="cnDisenio" dataSource="mc_info_rs_CC" errorSummator="Error" allowCancel="False" recordDeleteConfirmation="False" buttonsType="button" wizardRecordKey="Id" encryptPasswordField="False" wizardUseInterVariables="False" pkIsAutoincrement="False" wizardCaption="Calificar Calidad de Código" wizardThemeApplyTo="Page" wizardFormMethod="post" wizardType="Record" changedCaptionRecord="True" recordDirection="Vertical" recordAddTemplatePanel="False" PathID="mc_info_rs_CC" activeCollection="UConditions" activeTableType="customUpdate" customInsertType="Table" customInsert="mc_info_rs_CC" customUpdateType="Table" customUpdate="mc_info_rs_CC">
 			<Components>
 				<Button id="29" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Agregar" PathID="mc_info_rs_CCButton_Insert">
 					<Components/>
@@ -209,20 +209,20 @@
 				</Event>
 			</Events>
 			<TableParameters>
-				<TableParameter id="41" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Id" logicOperator="And" orderNumber="1" parameterSource="Id" parameterType="URL" searchConditionType="Equal"/>
-			</TableParameters>
+				<TableParameter id="207" conditionType="Parameter" useIsNull="False" dataType="Integer" field="IdUniverso" logicOperator="And" orderNumber="1" parameterSource="Id" parameterType="URL" searchConditionType="Equal"/>
+</TableParameters>
 			<SPParameters/>
 			<SQLParameters/>
 			<JoinTables>
-				<JoinTable id="40" posHeight="180" posLeft="10" posTop="10" posWidth="143" tableName="mc_info_rs_CC"/>
-			</JoinTables>
+				<JoinTable id="206" posHeight="180" posLeft="10" posTop="10" posWidth="143" tableName="mc_info_rs_CC"/>
+</JoinTables>
 			<JoinLinks/>
 			<Fields>
-				<Field id="42" fieldName="*"/>
-			</Fields>
+				<Field id="208" fieldName="*"/>
+</Fields>
 			<PKFields>
-				<PKField id="43" dataType="Integer" fieldName="Id" tableName="mc_info_rs_CC"/>
-			</PKFields>
+				<PKField id="209" dataType="Integer" fieldName="Id" tableName="mc_info_rs_CC"/>
+</PKFields>
 			<ISPParameters/>
 			<ISQLParameters/>
 			<IFormElements>
@@ -234,13 +234,13 @@
 				<CustomParameter id="162" field="PctMetricas" dataType="Float" parameterType="Control" parameterSource="PctMetricas" format="#.##" omitIfEmpty="True"/>
 				<CustomParameter id="163" field="Id_PPMC" dataType="Integer" parameterType="Control" omitIfEmpty="True" parameterSource="Id_PPMC_HID"/>
 				<CustomParameter id="164" field="ID_Estimacion" dataType="Integer" parameterType="Control" omitIfEmpty="True" parameterSource="ID_Estimacion_HID"/>
-			</IFormElements>
+				<CustomParameter id="204" field="IdUniverso" dataType="Integer" parameterType="URL" omitIfEmpty="True" parameterSource="IdUniverso"/>
+</IFormElements>
 			<USPParameters/>
 			<USQLParameters/>
 			<UConditions>
-				<TableParameter id="185" conditionType="Parameter" useIsNull="False" field="Id_PPMC" dataType="Integer" searchConditionType="Equal" parameterType="Control" logicOperator="And" parameterSource="Id_PPMC_HID"/>
-				<TableParameter id="186" conditionType="Parameter" useIsNull="False" field="ID_Estimacion" dataType="Integer" searchConditionType="Equal" parameterType="Control" logicOperator="And" parameterSource="ID_Estimacion_HID"/>
-			</UConditions>
+				<TableParameter id="205" conditionType="Parameter" useIsNull="False" field="IdUniverso" dataType="Integer" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="Id"/>
+</UConditions>
 			<UFormElements>
 				<CustomParameter id="183" field="PctReglas" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="PctReglas"/>
 				<CustomParameter id="187" field="Id_PPMC" dataType="Integer" parameterType="Control" omitIfEmpty="True" parameterSource="Id_PPMC_HID"/>
@@ -375,7 +375,6 @@
 			<Components>
 				<Sorter id="125" visible="True" name="Sorter_PPMC" column="PPMC" wizardCaption="PPMC" wizardTheme="Austere4" wizardSortingType="SimpleDir" wizardControl="PPMC" wizardAddNbsp="False" PathID="CalidadCodigoReglasSorter_PPMC" wizardThemeVersion="3.0">
 					<Components/>
-
 					<Events/>
 					<Attributes/>
 					<Features/>

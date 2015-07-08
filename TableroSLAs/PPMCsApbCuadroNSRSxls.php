@@ -295,7 +295,7 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
     }
 //End Prepare Method
 
-//Open Method @3-F795C74D
+//Open Method @3-7D796F23
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -310,7 +310,7 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
         "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
         "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
         "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
-        "	and id_ppmc  in (select numero from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
+        "	and IdUniverso  in (select id from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
         "	and IdUniverso not in (select id from mc_universo_cds where revision=2  )\n" .
         "	group by id_proveedor  \n" .
         ") c\n" .
@@ -326,7 +326,7 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
         "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
         "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
         "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
-        "	and id_ppmc  in (select numero from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
+        "	and IdUniverso  in (select id from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
         "	and IdUniverso not in (select id from mc_universo_cds where revision=2  )\n" .
         "	group by id_proveedor  \n" .
         ") c\n" .
@@ -342,7 +342,7 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
         "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
         "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
         "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
-        "	and id_ppmc  in (select numero from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
+        "	and IdUniverso  in (select id from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
         "	and IdUniverso not in (select id from mc_universo_cds where revision=2  )\n" .
         "	group by id_proveedor  \n" .
         ") c\n" .
@@ -358,7 +358,7 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
         "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
         "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
         "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
-        "	and id_ppmc  in (select numero from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
+        "	and IdUniverso  in (select id from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
         "	and IdUniverso not in (select id from mc_universo_cds where revision=2  )\n" .
         "	group by id_proveedor  \n" .
         ") c\n" .
@@ -374,7 +374,7 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
         "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
         "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
         "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
-        "	and id_ppmc  in (select numero from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
+        "	and IdUniverso  in (select id from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
         "	and IdUniverso not in (select id from mc_universo_cds where revision=2  )\n" .
         "	group by id_proveedor  \n" .
         ") c\n" .
@@ -390,7 +390,7 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
         "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
         "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
         "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
-        "	and id_ppmc  in (select numero from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
+        "	and IdUniverso  in (select id from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
         "	and IdUniverso not in (select id from mc_universo_cds where revision=2  )\n" .
         "	group by id_proveedor  \n" .
         ") c\n" .
@@ -406,7 +406,7 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
         "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
         "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
         "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
-        "	and id_ppmc  in (select numero from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
+        "	and IdUniverso  in (select id from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
         "	and IdUniverso not in (select id from mc_universo_cds where revision=2  )\n" .
         "	group by id_proveedor  \n" .
         ") c\n" .
@@ -422,7 +422,7 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
         "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
         "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
         "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
-        "	and id_ppmc  in (select numero from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
+        "	and IdUniverso  in (select id from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
         "	and IdUniverso not in (select id from mc_universo_cds where revision=2  )\n" .
         "	group by id_proveedor  \n" .
         ") c\n" .
@@ -457,7 +457,7 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
         "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
         "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
         "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
-        "	and id_ppmc  in (select numero from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
+        "	and IdUniverso  in (select id from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
         "	and IdUniverso not in (select id from mc_universo_cds where revision=2  )\n" .
         "	group by id_proveedor  \n" .
         ") c\n" .
@@ -477,7 +477,7 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
         "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
         "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
         "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
-        "	and id_ppmc  in (select numero from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
+        "	and IdUniverso  in (select id from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
         "	and IdUniverso not in (select id from mc_universo_cds where revision=2  )\n" .
         "	group by id_proveedor  \n" .
         ") c\n" .
@@ -493,7 +493,7 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
         "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
         "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
         "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
-        "	and id_ppmc  in (select numero from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
+        "	and IdUniverso  in (select id from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
         "	and IdUniverso not in (select id from mc_universo_cds where revision=2  )\n" .
         "	group by id_proveedor  \n" .
         ") c\n" .
@@ -509,7 +509,7 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
         "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
         "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
         "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
-        "	and id_ppmc  in (select numero from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
+        "	and IdUniverso  in (select id from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
         "	and IdUniverso not in (select id from mc_universo_cds where revision=2  )\n" .
         "	group by id_proveedor  \n" .
         ") c\n" .
@@ -525,7 +525,7 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
         "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
         "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
         "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
-        "	and id_ppmc  in (select numero from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
+        "	and IdUniverso  in (select id from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
         "	and IdUniverso not in (select id from mc_universo_cds where revision=2  )\n" .
         "	group by id_proveedor  \n" .
         ") c\n" .
@@ -541,7 +541,7 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
         "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
         "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
         "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
-        "	and id_ppmc  in (select numero from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
+        "	and IdUniverso  in (select id from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
         "	and IdUniverso not in (select id from mc_universo_cds where revision=2  )\n" .
         "	group by id_proveedor  \n" .
         ") c\n" .
@@ -557,7 +557,7 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
         "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
         "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
         "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
-        "	and id_ppmc  in (select numero from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
+        "	and IdUniverso  in (select id from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
         "	and IdUniverso not in (select id from mc_universo_cds where revision=2  )\n" .
         "	group by id_proveedor  \n" .
         ") c\n" .
@@ -573,7 +573,7 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
         "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
         "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
         "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
-        "	and id_ppmc  in (select numero from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
+        "	and IdUniverso  in (select id from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
         "	and IdUniverso not in (select id from mc_universo_cds where revision=2  )\n" .
         "	group by id_proveedor  \n" .
         ") c\n" .
@@ -589,7 +589,7 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
         "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
         "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
         "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
-        "	and id_ppmc  in (select numero from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
+        "	and IdUniverso  in (select id from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
         "	and IdUniverso not in (select id from mc_universo_cds where revision=2  )\n" .
         "	group by id_proveedor  \n" .
         ") c\n" .
@@ -624,7 +624,7 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
         "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
         "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
         "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
-        "	and id_ppmc  in (select numero from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
+        "	and IdUniverso  in (select id from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
         "	and IdUniverso not in (select id from mc_universo_cds where revision=2  )\n" .
         "	group by id_proveedor  \n" .
         ") c\n" .
@@ -1153,10 +1153,147 @@ class clsGrid2DataSource extends clsDBcnDisenio {  //Grid2DataSource Class @52-C
     }
 //End Prepare Method
 
-//Open Method @52-B0A4321B
+//Open Method @52-D5E1880D
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
+        $this->CountSQL = "SELECT COUNT(*) FROM (select mc_c_metrica.nombre, c.SumaApb,  c.HERR_EST_COST,  mc_c_metrica.Meta,  mc_c_metrica.pena   \n" .
+        "from mc_c_metrica \n" .
+        "CROSS JOIN \n" .
+        "(select id_proveedor,\n" .
+        "	COUNT(HERR_EST_COST) SumaApb,\n" .
+        "	sum(cast(~HERR_EST_COST as int)) HERR_EST_COST\n" .
+        "	from mc_calificacion_rs_sat\n" .
+        "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
+        "	and id_ppmc  not in (select numero from mc_universo_cds where SLO=1 and revision =1 )\n" .
+        "	group by id_proveedor  \n" .
+        ") c\n" .
+        "where acronimo ='HERR_EST_COST'\n" .
+        "union all\n" .
+        "select mc_c_metrica.nombre, c.SumaApb,  c.REQ_SERV ,  mc_c_metrica.Meta, mc_c_metrica.pena   \n" .
+        "from mc_c_metrica \n" .
+        "CROSS JOIN \n" .
+        "(select id_proveedor,\n" .
+        "	COUNT(REQ_SERV) SumaApb,\n" .
+        "	sum(cast(~REQ_SERV as int)) REQ_SERV\n" .
+        "	from mc_calificacion_rs_sat\n" .
+        "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
+        "	and id_ppmc  not in (select numero from mc_universo_cds where SLO=1 and revision =1 )\n" .
+        "	group by id_proveedor  \n" .
+        ") c\n" .
+        "where acronimo ='REQ_SERV'\n" .
+        "union all\n" .
+        "select mc_c_metrica.nombre, c.SumaApb,  c.REQ_SERV ,  mc_c_metrica.Meta, mc_c_metrica.pena   \n" .
+        "from mc_c_metrica \n" .
+        "CROSS JOIN \n" .
+        "(select id_proveedor,\n" .
+        "	COUNT(CUMPL_REQ_FUNC) SumaApb,\n" .
+        "	sum(cast(~CUMPL_REQ_FUNC as int)) REQ_SERV\n" .
+        "	from mc_calificacion_rs_sat\n" .
+        "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
+        "	and id_ppmc  not in (select numero from mc_universo_cds where SLO=1 and revision =1)\n" .
+        "	group by id_proveedor  \n" .
+        ") c\n" .
+        "where acronimo ='CUMPL_REQ_FUNC'\n" .
+        "union all\n" .
+        "select mc_c_metrica.nombre, c.SumaApb,  c.REQ_SERV ,  mc_c_metrica.Meta, mc_c_metrica.pena   \n" .
+        "from mc_c_metrica \n" .
+        "CROSS JOIN \n" .
+        "(select id_proveedor,\n" .
+        "	COUNT(CALIDAD_PROD_TERM) SumaApb,\n" .
+        "	sum(cast(~CALIDAD_PROD_TERM as int)) REQ_SERV\n" .
+        "	from mc_calificacion_rs_sat\n" .
+        "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
+        "	and id_ppmc  not in (select numero from mc_universo_cds where SLO=1 and revision =1)\n" .
+        "	group by id_proveedor  \n" .
+        ") c\n" .
+        "where acronimo ='CALIDAD_PROD_TERM'\n" .
+        "union all\n" .
+        "select mc_c_metrica.nombre, c.SumaApb,  c.REQ_SERV ,  mc_c_metrica.Meta, mc_c_metrica.pena   \n" .
+        "from mc_c_metrica \n" .
+        "CROSS JOIN \n" .
+        "(select id_proveedor,\n" .
+        "	COUNT(RETR_ENTREGABLE) SumaApb,\n" .
+        "	sum(cast(~RETR_ENTREGABLE as int)) REQ_SERV\n" .
+        "	from mc_calificacion_rs_sat\n" .
+        "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
+        "	and id_ppmc  not in (select numero from mc_universo_cds where SLO=1 and revision =1)\n" .
+        "	group by id_proveedor  \n" .
+        ") c\n" .
+        "where acronimo ='RETR_ENTREGABLE'\n" .
+        "union all\n" .
+        "select mc_c_metrica.nombre, c.SumaApb,  c.REQ_SERV ,  mc_c_metrica.Meta, mc_c_metrica.pena   \n" .
+        "from mc_c_metrica \n" .
+        "CROSS JOIN \n" .
+        "(select id_proveedor,\n" .
+        "	COUNT(COMPL_RUTA_CRITICA) SumaApb,\n" .
+        "	sum(cast(~COMPL_RUTA_CRITICA as int)) REQ_SERV\n" .
+        "	from mc_calificacion_rs_sat\n" .
+        "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
+        "	and id_ppmc  not in (select numero from mc_universo_cds where SLO=1 and revision =1)\n" .
+        "	group by id_proveedor  \n" .
+        ") c\n" .
+        "where acronimo ='COMPL_RUTA_CRITICA'\n" .
+        "union all\n" .
+        "select mc_c_metrica.nombre, c.SumaApb,  c.REQ_SERV ,  mc_c_metrica.Meta, mc_c_metrica.pena   \n" .
+        "from mc_c_metrica \n" .
+        "CROSS JOIN \n" .
+        "(select id_proveedor,\n" .
+        "	COUNT(EST_PROY) SumaApb,\n" .
+        "	sum(cast(~EST_PROY as int)) REQ_SERV\n" .
+        "	from mc_calificacion_rs_sat\n" .
+        "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
+        "	and id_ppmc  not in (select numero from mc_universo_cds where SLO=1 and revision =1)\n" .
+        "	group by id_proveedor  \n" .
+        ") c\n" .
+        "where acronimo ='EST_PROY'\n" .
+        "union all\n" .
+        "select mc_c_metrica.nombre, c.SumaApb,  c.REQ_SERV ,  mc_c_metrica.Meta, mc_c_metrica.pena   \n" .
+        "from mc_c_metrica \n" .
+        "CROSS JOIN \n" .
+        "(select id_proveedor,\n" .
+        "	COUNT(DEF_FUG_AMB_PROD) SumaApb,\n" .
+        "	sum(cast(~DEF_FUG_AMB_PROD as int)) REQ_SERV\n" .
+        "	from mc_calificacion_rs_sat\n" .
+        "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
+        "	and id_ppmc  not in (select numero from mc_universo_cds where SLO=1 and revision =1)\n" .
+        "	group by id_proveedor  \n" .
+        ") c\n" .
+        "where acronimo ='DEF_FUG_AMB_PROD'\n" .
+        "union all\n" .
+        "select mc_c_metrica.nombre, c.SumaApb,  c.CUMPLE_SLA  ,  mc_c_metrica.Meta, mc_c_metrica.pena   \n" .
+        "from mc_c_metrica \n" .
+        "CROSS JOIN \n" .
+        "(select id_proveedor,\n" .
+        "	COUNT(CUMPLESLA) SumaApb,\n" .
+        "	sum(cast(~cast(CUMPLESLA as bit) as int)) CUMPLE_SLA\n" .
+        "	from mc_eficiencia_presupuestal \n" .
+        "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
+        "	and CumpleSLA in (0,1)\n" .
+        "	--and ((id_proveedor <>4 and GrupoAplicativos not like '%Todos%') or (Id_Proveedor =4))\n" .
+        "	and (([GrupoAplicativos] not like 'Todos%' and (4<>4 or (MesReporte>2 and anioreporte >2013)) ) \n" .
+        "					or (4=4 and MesReporte<=2 and anioreporte <2014 ) or 0=4)\n" .
+        "	group by id_proveedor  \n" .
+        ") c\n" .
+        "where acronimo ='EFIC_PRESUP') cnt";
         $this->SQL = "select mc_c_metrica.nombre, c.SumaApb,  c.HERR_EST_COST,  mc_c_metrica.Meta,  mc_c_metrica.pena   \n" .
         "from mc_c_metrica \n" .
         "CROSS JOIN \n" .

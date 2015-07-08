@@ -142,7 +142,7 @@ class clsGridGrid1 { //Grid1 class @3-E857A572
     }
 //End Initialize Method
 
-//Show Method @3-72D05308
+//Show Method @3-3C6E73EA
     function Show()
     {
         $Tpl = CCGetTemplate($this);
@@ -156,6 +156,7 @@ class clsGridGrid1 { //Grid1 class @3-E857A572
         $this->DataSource->Parameters["urls_id_proveedor"] = CCGetFromGet("s_id_proveedor", NULL);
         $this->DataSource->Parameters["urlsAnalista"] = CCGetFromGet("sAnalista", NULL);
         $this->DataSource->Parameters["urls_numero"] = CCGetFromGet("s_numero", NULL);
+        $this->DataSource->Parameters["urlsSLO"] = CCGetFromGet("sSLO", NULL);
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
@@ -440,7 +441,7 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
     }
 //End SetOrder Method
 
-//Prepare Method @3-E9EBA6A7
+//Prepare Method @3-1FA0DC53
     function Prepare()
     {
         global $CCSLocales;
@@ -451,10 +452,11 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
         $this->wp->AddParameter("3", "urls_id_proveedor", ccsInteger, "", "", $this->Parameters["urls_id_proveedor"], CCGetSession("CDSPreferido"), false);
         $this->wp->AddParameter("4", "urlsAnalista", ccsText, "", "", $this->Parameters["urlsAnalista"], "", false);
         $this->wp->AddParameter("5", "urls_numero", ccsText, "", "", $this->Parameters["urls_numero"], "", false);
+        $this->wp->AddParameter("6", "urlsSLO", ccsInteger, "", "", $this->Parameters["urlsSLO"], 0, false);
     }
 //End Prepare Method
 
-//Open Method @3-586CDC06
+//Open Method @3-B83794DC
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -488,6 +490,7 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
         "where  isnull(descartar_manual,0)=0 and tipo='PC'\n" .
         "	and (mes = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " or 0=" . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . ")\n" .
         "	and anio = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "	and (u.SLO= " . $this->SQLValue($this->wp->GetDBValue("6"), ccsInteger) . ")\n" .
         "	AND (u.id_proveedor =" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " OR 0=" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . ")\n" .
         "	AND (u.numero ='" . $this->SQLValue($this->wp->GetDBValue("5"), ccsText) . "' OR ''='" . $this->SQLValue($this->wp->GetDBValue("5"), ccsText) . "')\n" .
         "	and (u.analista like '%" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "%' or u.analista  is null)) cnt";
@@ -521,6 +524,7 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
         "where  isnull(descartar_manual,0)=0 and tipo='PC'\n" .
         "	and (mes = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " or 0=" . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . ")\n" .
         "	and anio = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "	and (u.SLO= " . $this->SQLValue($this->wp->GetDBValue("6"), ccsInteger) . ")\n" .
         "	AND (u.id_proveedor =" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " OR 0=" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . ")\n" .
         "	AND (u.numero ='" . $this->SQLValue($this->wp->GetDBValue("5"), ccsText) . "' OR ''='" . $this->SQLValue($this->wp->GetDBValue("5"), ccsText) . "')\n" .
         "	and (u.analista like '%" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "%' or u.analista  is null)";
@@ -595,7 +599,7 @@ class clsRecordGrid2 { //Grid2 Class @21-542C3E47
     // Class variables
 //End Variables
 
-//Class_Initialize Event @21-C5590512
+//Class_Initialize Event @21-38A65744
     function clsRecordGrid2($RelativePath, & $Parent)
     {
 
@@ -663,12 +667,20 @@ class clsRecordGrid2 { //Grid2 Class @21-542C3E47
             $this->sAnalista->DataSource->Order = "Usuario";
             list($this->sAnalista->BoundColumn, $this->sAnalista->TextColumn, $this->sAnalista->DBFormat) = array("Usuario", "Usuario", "");
             $this->sAnalista->DataSource->Parameters["urlNivel"] = CCGetFromGet("Nivel", NULL);
+            $this->sAnalista->DataSource->Parameters["expr216"] = 'CAPC';
             $this->sAnalista->DataSource->wp = new clsSQLParameters();
             $this->sAnalista->DataSource->wp->AddParameter("1", "urlNivel", ccsInteger, "", "", $this->sAnalista->DataSource->Parameters["urlNivel"], 3, false);
+            $this->sAnalista->DataSource->wp->AddParameter("2", "expr216", ccsText, "", "", $this->sAnalista->DataSource->Parameters["expr216"], "", false);
             $this->sAnalista->DataSource->wp->Criterion[1] = $this->sAnalista->DataSource->wp->Operation(opEqual, "[Nivel]", $this->sAnalista->DataSource->wp->GetDBValue("1"), $this->sAnalista->DataSource->ToSQL($this->sAnalista->DataSource->wp->GetDBValue("1"), ccsInteger),false);
-            $this->sAnalista->DataSource->Where = 
-                 $this->sAnalista->DataSource->wp->Criterion[1];
+            $this->sAnalista->DataSource->wp->Criterion[2] = $this->sAnalista->DataSource->wp->Operation(opEqual, "[Grupo]", $this->sAnalista->DataSource->wp->GetDBValue("2"), $this->sAnalista->DataSource->ToSQL($this->sAnalista->DataSource->wp->GetDBValue("2"), ccsText),false);
+            $this->sAnalista->DataSource->Where = $this->sAnalista->DataSource->wp->opAND(
+                 false, 
+                 $this->sAnalista->DataSource->wp->Criterion[1], 
+                 $this->sAnalista->DataSource->wp->Criterion[2]);
             $this->sAnalista->DataSource->Order = "Usuario";
+            $this->sSLO = new clsControl(ccsCheckBox, "sSLO", "sSLO", ccsBoolean, $CCSLocales->GetFormatInfo("BooleanFormat"), CCGetRequestParam("sSLO", $Method, NULL), $this);
+            $this->sSLO->CheckedValue = true;
+            $this->sSLO->UncheckedValue = false;
             if(!$this->FormSubmitted) {
                 if(!is_array($this->s_id_proveedor->Value) && !strlen($this->s_id_proveedor->Value) && $this->s_id_proveedor->Value !== false)
                     $this->s_id_proveedor->SetText(CCGetSession("CDSPreferido",""));
@@ -676,12 +688,14 @@ class clsRecordGrid2 { //Grid2 Class @21-542C3E47
                     $this->s_mesparam->SetText(date("m",mktime(0,0,0,date("m"),date("d")-45,date("Y"))));
                 if(!is_array($this->s_anioparam->Value) && !strlen($this->s_anioparam->Value) && $this->s_anioparam->Value !== false)
                     $this->s_anioparam->SetText(2014);
+                if(!is_array($this->sSLO->Value) && !strlen($this->sSLO->Value) && $this->sSLO->Value !== false)
+                    $this->sSLO->SetValue(false);
             }
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @21-2416AA6E
+//Validate Method @21-18F6CD14
     function Validate()
     {
         global $CCSLocales;
@@ -692,17 +706,19 @@ class clsRecordGrid2 { //Grid2 Class @21-542C3E47
         $Validation = ($this->s_mesparam->Validate() && $Validation);
         $Validation = ($this->s_anioparam->Validate() && $Validation);
         $Validation = ($this->sAnalista->Validate() && $Validation);
+        $Validation = ($this->sSLO->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->s_id_proveedor->Errors->Count() == 0);
         $Validation =  $Validation && ($this->s_numero->Errors->Count() == 0);
         $Validation =  $Validation && ($this->s_mesparam->Errors->Count() == 0);
         $Validation =  $Validation && ($this->s_anioparam->Errors->Count() == 0);
         $Validation =  $Validation && ($this->sAnalista->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->sSLO->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @21-CB296157
+//CheckErrors Method @21-D489604E
     function CheckErrors()
     {
         $errors = false;
@@ -711,6 +727,7 @@ class clsRecordGrid2 { //Grid2 Class @21-542C3E47
         $errors = ($errors || $this->s_mesparam->Errors->Count());
         $errors = ($errors || $this->s_anioparam->Errors->Count());
         $errors = ($errors || $this->sAnalista->Errors->Count());
+        $errors = ($errors || $this->sSLO->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -749,7 +766,7 @@ class clsRecordGrid2 { //Grid2 Class @21-542C3E47
     }
 //End Operation Method
 
-//Show Method @21-37D806B5
+//Show Method @21-18485925
     function Show()
     {
         global $CCSUseAmp;
@@ -782,6 +799,7 @@ class clsRecordGrid2 { //Grid2 Class @21-542C3E47
             $Error = ComposeStrings($Error, $this->s_mesparam->Errors->ToString());
             $Error = ComposeStrings($Error, $this->s_anioparam->Errors->ToString());
             $Error = ComposeStrings($Error, $this->sAnalista->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->sSLO->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -805,6 +823,7 @@ class clsRecordGrid2 { //Grid2 Class @21-542C3E47
         $this->s_mesparam->Show();
         $this->s_anioparam->Show();
         $this->sAnalista->Show();
+        $this->sSLO->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }

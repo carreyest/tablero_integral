@@ -516,7 +516,7 @@ class clsRecordgrsBusca { //grsBusca Class @21-B7E4B908
     // Class variables
 //End Variables
 
-//Class_Initialize Event @21-AB636922
+//Class_Initialize Event @21-5DD3BE2B
     function clsRecordgrsBusca($RelativePath, & $Parent)
     {
 
@@ -584,11 +584,16 @@ class clsRecordgrsBusca { //grsBusca Class @21-B7E4B908
             $this->sAnalista->DataSource->Order = "Usuario";
             list($this->sAnalista->BoundColumn, $this->sAnalista->TextColumn, $this->sAnalista->DBFormat) = array("Usuario", "Usuario", "");
             $this->sAnalista->DataSource->Parameters["urlNivel"] = CCGetFromGet("Nivel", NULL);
+            $this->sAnalista->DataSource->Parameters["expr143"] = 'CAPC';
             $this->sAnalista->DataSource->wp = new clsSQLParameters();
             $this->sAnalista->DataSource->wp->AddParameter("1", "urlNivel", ccsInteger, "", "", $this->sAnalista->DataSource->Parameters["urlNivel"], 3, false);
+            $this->sAnalista->DataSource->wp->AddParameter("2", "expr143", ccsText, "", "", $this->sAnalista->DataSource->Parameters["expr143"], "", false);
             $this->sAnalista->DataSource->wp->Criterion[1] = $this->sAnalista->DataSource->wp->Operation(opEqual, "[Nivel]", $this->sAnalista->DataSource->wp->GetDBValue("1"), $this->sAnalista->DataSource->ToSQL($this->sAnalista->DataSource->wp->GetDBValue("1"), ccsInteger),false);
-            $this->sAnalista->DataSource->Where = 
-                 $this->sAnalista->DataSource->wp->Criterion[1];
+            $this->sAnalista->DataSource->wp->Criterion[2] = $this->sAnalista->DataSource->wp->Operation(opEqual, "[Grupo]", $this->sAnalista->DataSource->wp->GetDBValue("2"), $this->sAnalista->DataSource->ToSQL($this->sAnalista->DataSource->wp->GetDBValue("2"), ccsText),false);
+            $this->sAnalista->DataSource->Where = $this->sAnalista->DataSource->wp->opAND(
+                 false, 
+                 $this->sAnalista->DataSource->wp->Criterion[1], 
+                 $this->sAnalista->DataSource->wp->Criterion[2]);
             $this->sAnalista->DataSource->Order = "Usuario";
             $this->sSLO = new clsControl(ccsCheckBox, "sSLO", "sSLO", ccsInteger, "", CCGetRequestParam("sSLO", $Method, NULL), $this);
             $this->sSLO->CheckedValue = $this->sSLO->GetParsedValue(1);

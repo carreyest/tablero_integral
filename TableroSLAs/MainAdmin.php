@@ -44,11 +44,15 @@ $Charset = $Charset ? $Charset : "windows-1252";
 CCSecurityRedirect("3;4", "");
 //End Authenticate User
 
+//Include events file @1-CDBA14F9
+include_once("./MainAdmin_events.php");
+//End Include events file
+
 //Before Initialize @1-E870CEBC
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-88E21346
+//Initialize Objects @1-3657652C
 $Attributes = new clsAttributes("page:");
 $Attributes->SetValue("pathToRoot", $PathToRoot);
 $MainPage->Attributes = & $Attributes;
@@ -99,6 +103,8 @@ foreach ($SList as $Script) {
     if ($Script != "") $ScriptIncludes = $ScriptIncludes . "<script src=\"" . $PathToRoot . $Script . "\" type=\"text/javascript\"></script>\n";
 }
 $Attributes->SetValue("scriptIncludes", $ScriptIncludes);
+
+BindEvents();
 
 $CCSEventResult = CCGetEvent($CCSEvents, "AfterInitialize", $MainPage);
 

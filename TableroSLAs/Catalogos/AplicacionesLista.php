@@ -965,6 +965,10 @@ class clsmc_c_aplicacionDataSource extends clsDBcnDisenio {  //mc_c_aplicacionDa
 
 } //End mc_c_aplicacionDataSource Class @12-FCB6E20C
 
+//Include Page implementation @54-3DD2EFDC
+include_once(RelativePath . "/Header.php");
+//End Include Page implementation
+
 
 
 //Initialize Page @1-5A2DF02E
@@ -1001,7 +1005,7 @@ include_once("./AplicacionesLista_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-2B93D9CC
+//Initialize Objects @1-0766882C
 $DBcnDisenio = new clsDBcnDisenio();
 $MainPage->Connections["cnDisenio"] = & $DBcnDisenio;
 $Attributes = new clsAttributes("page:");
@@ -1012,9 +1016,12 @@ $MainPage->Attributes = & $Attributes;
 $mc_c_aplicacionSearch = new clsRecordmc_c_aplicacionSearch("", $MainPage);
 $mc_c_aplicacion1 = new clsRecordmc_c_aplicacion1("", $MainPage);
 $mc_c_aplicacion = new clsGridmc_c_aplicacion("", $MainPage);
+$Header = new clsHeader("../", "Header", $MainPage);
+$Header->Initialize();
 $MainPage->mc_c_aplicacionSearch = & $mc_c_aplicacionSearch;
 $MainPage->mc_c_aplicacion1 = & $mc_c_aplicacion1;
 $MainPage->mc_c_aplicacion = & $mc_c_aplicacion;
+$MainPage->Header = & $Header;
 $mc_c_aplicacion1->Initialize();
 $mc_c_aplicacion->Initialize();
 $ScriptIncludes = "";
@@ -1050,12 +1057,13 @@ $Attributes->SetValue("pathToRoot", "../");
 $Attributes->Show();
 //End Initialize HTML Template
 
-//Execute Components @1-2E754592
+//Execute Components @1-1C930791
+$Header->Operations();
 $mc_c_aplicacion1->Operation();
 $mc_c_aplicacionSearch->Operation();
 //End Execute Components
 
-//Go to destination page @1-5A69D9DD
+//Go to destination page @1-70C99D1E
 if($Redirect)
 {
     $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
@@ -1064,15 +1072,18 @@ if($Redirect)
     unset($mc_c_aplicacionSearch);
     unset($mc_c_aplicacion1);
     unset($mc_c_aplicacion);
+    $Header->Class_Terminate();
+    unset($Header);
     unset($Tpl);
     exit;
 }
 //End Go to destination page
 
-//Show Page @1-384A8636
+//Show Page @1-5797B492
 $mc_c_aplicacionSearch->Show();
 $mc_c_aplicacion1->Show();
 $mc_c_aplicacion->Show();
+$Header->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);
@@ -1080,12 +1091,14 @@ $CCSEventResult = CCGetEvent($CCSEvents, "BeforeOutput", $MainPage);
 if ($CCSEventResult) echo $main_block;
 //End Show Page
 
-//Unload Page @1-7DD49C50
+//Unload Page @1-41A43E21
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
 $DBcnDisenio->close();
 unset($mc_c_aplicacionSearch);
 unset($mc_c_aplicacion1);
 unset($mc_c_aplicacion);
+$Header->Class_Terminate();
+unset($Header);
 unset($Tpl);
 //End Unload Page
 

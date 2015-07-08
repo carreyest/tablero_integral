@@ -790,7 +790,7 @@ class clsgrdTableroSLAsDataSource extends clsDBcnDisenio {  //grdTableroSLAsData
     }
 //End Prepare Method
 
-//Open Method @3-6AE331C6
+//Open Method @3-BC73AAE0
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -822,13 +822,15 @@ class clsgrdTableroSLAsDataSource extends clsDBcnDisenio {  //grdTableroSLAsData
         "	AVG(Cumple_EF) Cumple_EF, AVG(total_ef) Total_ef, avg(cast(Cumple_EF as float))/avg(total_ef)*100  EFIC_PRESUP,\n" .
         "	 (Select Meta from mc_c_metrica where acronimo='EFIC_PRESUP') as Meta_EFIC_PRESUP,\n" .
         "	 sc.Id   id_servicio_cont \n" .
-        "from mc_c_ServContractual sc left join mc_calificacion_rs_MC m on sc.Id = m.id_servicio_cont  \n" .
-        "and m.id_ppmc  in (select numero from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
+        "from mc_c_ServContractual sc \n" .
+        "left join mc_calificacion_rs_MC m on sc.Id = m.id_servicio_cont  \n" .
+        "and m.IdUniverso in (select id from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
         "and m.IdUniverso not in (select id from mc_universo_cds where revision=2  )\n" .
         "	 left join	(select Cumple_DISP_SOPORTE, Cumple_Inc_TiempoAsignacion, Cumple_Inc_TiempoSolucion, MesReporte , AnioReporte ,  \n" .
         "				id_proveedor, 5 IdServicioCont \n" .
         "				from mc_calificacion_incidentes_MC\n" .
-        "				where (id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " or 0=" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . ")  and MesReporte=" . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " and AnioReporte =" . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "				where (id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " or 0=" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . ")  and MesReporte=" . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " and AnioReporte =" . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . " \n" .
+        "				and Id_incidente in (select numero from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo = 'IN') \n" .
         "				)  mi on  mi.IdServicioCont= sc.Id \n" .
         "left join  (select SUM(CumpleSLA) Cumple_EF, COUNT(CumpleSLA) Total_EF, Id_Proveedor, MesReporte , anioreporte , 2 IdServicioCont  \n" .
         "			from mc_eficiencia_presupuestal  where CumpleSLA in (1,0)  \n" .
@@ -871,13 +873,15 @@ class clsgrdTableroSLAsDataSource extends clsDBcnDisenio {  //grdTableroSLAsData
         "	AVG(Cumple_EF) Cumple_EF, AVG(total_ef) Total_ef, avg(cast(Cumple_EF as float))/avg(total_ef)*100  EFIC_PRESUP,\n" .
         "	 (Select Meta from mc_c_metrica where acronimo='EFIC_PRESUP') as Meta_EFIC_PRESUP,\n" .
         "	 sc.Id   id_servicio_cont \n" .
-        "from mc_c_ServContractual sc left join mc_calificacion_rs_MC m on sc.Id = m.id_servicio_cont  \n" .
-        "and m.id_ppmc  in (select numero from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
+        "from mc_c_ServContractual sc \n" .
+        "left join mc_calificacion_rs_MC m on sc.Id = m.id_servicio_cont  \n" .
+        "and m.IdUniverso in (select id from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo <> 'IN')\n" .
         "and m.IdUniverso not in (select id from mc_universo_cds where revision=2  )\n" .
         "	 left join	(select Cumple_DISP_SOPORTE, Cumple_Inc_TiempoAsignacion, Cumple_Inc_TiempoSolucion, MesReporte , AnioReporte ,  \n" .
         "				id_proveedor, 5 IdServicioCont \n" .
         "				from mc_calificacion_incidentes_MC\n" .
-        "				where (id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " or 0=" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . ")  and MesReporte=" . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " and AnioReporte =" . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "				where (id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " or 0=" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . ")  and MesReporte=" . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " and AnioReporte =" . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . " \n" .
+        "				and Id_incidente in (select numero from mc_universo_cds where SLO=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and tipo = 'IN') \n" .
         "				)  mi on  mi.IdServicioCont= sc.Id \n" .
         "left join  (select SUM(CumpleSLA) Cumple_EF, COUNT(CumpleSLA) Total_EF, Id_Proveedor, MesReporte , anioreporte , 2 IdServicioCont  \n" .
         "			from mc_eficiencia_presupuestal  where CumpleSLA in (1,0)  \n" .
@@ -946,11 +950,9 @@ class clsgrdTableroSLAsDataSource extends clsDBcnDisenio {  //grdTableroSLAsData
 include_once(RelativePath . "/MenuTablero.php");
 //End Include Page implementation
 
+class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @323-584A250C
 
-
-class clsGridgrdSLAsCAPC { //grdSLAsCAPC class @213-E36FD0EE
-
-//Variables @213-EE844A86
+//Variables @323-BBE06B15
 
     // Public variables
     public $ComponentType = "Grid";
@@ -979,34 +981,28 @@ class clsGridgrdSLAsCAPC { //grdSLAsCAPC class @213-E36FD0EE
     // Grid Controls
     public $StaticControls;
     public $RowControls;
-    public $Sorter_Descripcion;
+    public $Sorter_mc_c_ServContractual_Descripcion;
+    public $Sorter_Agrupador;
     public $Sorter_CALIDAD_PROD_TERM;
-    public $Sorter_ReportesCompletos;
-    public $Sorter_SLAsNoReportados;
     public $Sorter_DEDUC_OMISION;
-    public $Sorter_UnidadesActuales;
-    public $Sorter_UnidadesAnteriores;
-    public $Sorter_EFIC_PRESUP;
-    public $Sorter_DiasPlaneados;
-    public $Sorter_DiasReales;
     public $Sorter_RETR_ENTREGABLE;
-    public $Sorter_pctcalidad;
+    public $Sorter_Observaciones;
 //End Variables
 
-//Class_Initialize Event @213-0D5D74A6
-    function clsGridgrdSLAsCAPC($RelativePath, & $Parent)
+//Class_Initialize Event @323-CC96A2A1
+    function clsGridmc_c_ServContractual_mc_c($RelativePath, & $Parent)
     {
         global $FileName;
         global $CCSLocales;
         global $DefaultDateFormat;
-        $this->ComponentName = "grdSLAsCAPC";
+        $this->ComponentName = "mc_c_ServContractual_mc_c";
         $this->Visible = True;
         $this->Parent = & $Parent;
         $this->RelativePath = $RelativePath;
         $this->Errors = new clsErrors();
-        $this->ErrorBlock = "Grid grdSLAsCAPC";
+        $this->ErrorBlock = "Grid mc_c_ServContractual_mc_c";
         $this->Attributes = new clsAttributes($this->ComponentName . ":");
-        $this->DataSource = new clsgrdSLAsCAPCDataSource($this);
+        $this->DataSource = new clsmc_c_ServContractual_mc_cDataSource($this);
         $this->ds = & $this->DataSource;
         $this->PageSize = CCGetParam($this->ComponentName . "PageSize", "");
         if(!is_numeric($this->PageSize) || !strlen($this->PageSize))
@@ -1019,43 +1015,47 @@ class clsGridgrdSLAsCAPC { //grdSLAsCAPC class @213-E36FD0EE
             $this->Errors->addError("<p>Form: Grid " . $this->ComponentName . "<BR>Error: (CCS06) Invalid page size.</p>");
         $this->PageNumber = intval(CCGetParam($this->ComponentName . "Page", 1));
         if ($this->PageNumber <= 0) $this->PageNumber = 1;
-        $this->SorterName = CCGetParam("grdSLAsCAPCOrder", "");
-        $this->SorterDirection = CCGetParam("grdSLAsCAPCDir", "");
+        $this->SorterName = CCGetParam("mc_c_ServContractual_mc_cOrder", "");
+        $this->SorterDirection = CCGetParam("mc_c_ServContractual_mc_cDir", "");
 
-        $this->Descripcion = new clsControl(ccsLabel, "Descripcion", "Descripcion", ccsText, "", CCGetRequestParam("Descripcion", ccsGet, NULL), $this);
-        $this->ReportesCompletos = new clsControl(ccsLabel, "ReportesCompletos", "ReportesCompletos", ccsText, "", CCGetRequestParam("ReportesCompletos", ccsGet, NULL), $this);
-        $this->SLAsNoReportados = new clsControl(ccsLabel, "SLAsNoReportados", "SLAsNoReportados", ccsText, "", CCGetRequestParam("SLAsNoReportados", ccsGet, NULL), $this);
+        $this->mc_c_ServContractual_Descripcion = new clsControl(ccsLabel, "mc_c_ServContractual_Descripcion", "mc_c_ServContractual_Descripcion", ccsText, "", CCGetRequestParam("mc_c_ServContractual_Descripcion", ccsGet, NULL), $this);
+        $this->Agrupador = new clsControl(ccsLink, "Agrupador", "Agrupador", ccsText, "", CCGetRequestParam("Agrupador", ccsGet, NULL), $this);
+        $this->Agrupador->Page = "SLAsCAPCDetalle.php";
+        $this->CALIDAD_PROD_TERM = new clsControl(ccsLabel, "CALIDAD_PROD_TERM", "CALIDAD_PROD_TERM", ccsText, "", CCGetRequestParam("CALIDAD_PROD_TERM", ccsGet, NULL), $this);
+        $this->CALIDAD_PROD_TERM->HTML = true;
         $this->DEDUC_OMISION = new clsControl(ccsLabel, "DEDUC_OMISION", "DEDUC_OMISION", ccsText, "", CCGetRequestParam("DEDUC_OMISION", ccsGet, NULL), $this);
-        $this->UnidadesActuales = new clsControl(ccsLabel, "UnidadesActuales", "UnidadesActuales", ccsText, "", CCGetRequestParam("UnidadesActuales", ccsGet, NULL), $this);
-        $this->UnidadesAnteriores = new clsControl(ccsLabel, "UnidadesAnteriores", "UnidadesAnteriores", ccsText, "", CCGetRequestParam("UnidadesAnteriores", ccsGet, NULL), $this);
-        $this->DiasPlaneados = new clsControl(ccsLabel, "DiasPlaneados", "DiasPlaneados", ccsText, "", CCGetRequestParam("DiasPlaneados", ccsGet, NULL), $this);
-        $this->DiasReales = new clsControl(ccsLabel, "DiasReales", "DiasReales", ccsText, "", CCGetRequestParam("DiasReales", ccsGet, NULL), $this);
+        $this->DEDUC_OMISION->HTML = true;
         $this->RETR_ENTREGABLE = new clsControl(ccsLabel, "RETR_ENTREGABLE", "RETR_ENTREGABLE", ccsText, "", CCGetRequestParam("RETR_ENTREGABLE", ccsGet, NULL), $this);
-        $this->pctcalidad = new clsControl(ccsLabel, "pctcalidad", "pctcalidad", ccsText, "", CCGetRequestParam("pctcalidad", ccsGet, NULL), $this);
-        $this->imgCALIDAD_PROD_TERM = new clsControl(ccsImage, "imgCALIDAD_PROD_TERM", "imgCALIDAD_PROD_TERM", ccsText, "", CCGetRequestParam("imgCALIDAD_PROD_TERM", ccsGet, NULL), $this);
-        $this->imgDEDUC_OMISION = new clsControl(ccsImage, "imgDEDUC_OMISION", "imgDEDUC_OMISION", ccsText, "", CCGetRequestParam("imgDEDUC_OMISION", ccsGet, NULL), $this);
-        $this->Label2 = new clsControl(ccsLabel, "Label2", "Label2", ccsText, "", CCGetRequestParam("Label2", ccsGet, NULL), $this);
-        $this->imgEFIC_PRESUP = new clsControl(ccsImage, "imgEFIC_PRESUP", "imgEFIC_PRESUP", ccsText, "", CCGetRequestParam("imgEFIC_PRESUP", ccsGet, NULL), $this);
-        $this->imgRETR_ENTREGABLE = new clsControl(ccsImage, "imgRETR_ENTREGABLE", "imgRETR_ENTREGABLE", ccsText, "", CCGetRequestParam("imgRETR_ENTREGABLE", ccsGet, NULL), $this);
-        $this->agrupador = new clsControl(ccsLabel, "agrupador", "agrupador", ccsText, "", CCGetRequestParam("agrupador", ccsGet, NULL), $this);
-        $this->Sorter_Descripcion = new clsSorter($this->ComponentName, "Sorter_Descripcion", $FileName, $this);
+        $this->RETR_ENTREGABLE->HTML = true;
+        $this->Observaciones = new clsControl(ccsLabel, "Observaciones", "Observaciones", ccsText, "", CCGetRequestParam("Observaciones", ccsGet, NULL), $this);
+        $this->Img_CALIDAD_PROD_TERM = new clsControl(ccsImage, "Img_CALIDAD_PROD_TERM", "Img_CALIDAD_PROD_TERM", ccsText, "", CCGetRequestParam("Img_CALIDAD_PROD_TERM", ccsGet, NULL), $this);
+        $this->Img_DEDUC_OMISION = new clsControl(ccsImage, "Img_DEDUC_OMISION", "Img_DEDUC_OMISION", ccsText, "", CCGetRequestParam("Img_DEDUC_OMISION", ccsGet, NULL), $this);
+        $this->Img_RETR_ENTREGABLE = new clsControl(ccsImage, "Img_RETR_ENTREGABLE", "Img_RETR_ENTREGABLE", ccsText, "", CCGetRequestParam("Img_RETR_ENTREGABLE", ccsGet, NULL), $this);
+        $this->HERR_EST_COST = new clsControl(ccsLabel, "HERR_EST_COST", "HERR_EST_COST", ccsText, "", CCGetRequestParam("HERR_EST_COST", ccsGet, NULL), $this);
+        $this->HERR_EST_COST->HTML = true;
+        $this->REQ_SERV = new clsControl(ccsLabel, "REQ_SERV", "REQ_SERV", ccsText, "", CCGetRequestParam("REQ_SERV", ccsGet, NULL), $this);
+        $this->REQ_SERV->HTML = true;
+        $this->CUMPL_REQ_FUN = new clsControl(ccsLabel, "CUMPL_REQ_FUN", "CUMPL_REQ_FUN", ccsText, "", CCGetRequestParam("CUMPL_REQ_FUN", ccsGet, NULL), $this);
+        $this->CUMPL_REQ_FUN->HTML = true;
+        $this->Img_HERR_EST_COST = new clsControl(ccsImage, "Img_HERR_EST_COST", "Img_HERR_EST_COST", ccsText, "", CCGetRequestParam("Img_HERR_EST_COST", ccsGet, NULL), $this);
+        $this->Img_REQ_SERV = new clsControl(ccsImage, "Img_REQ_SERV", "Img_REQ_SERV", ccsText, "", CCGetRequestParam("Img_REQ_SERV", ccsGet, NULL), $this);
+        $this->Img_CUMPL_REQ_FUN = new clsControl(ccsImage, "Img_CUMPL_REQ_FUN", "Img_CUMPL_REQ_FUN", ccsText, "", CCGetRequestParam("Img_CUMPL_REQ_FUN", ccsGet, NULL), $this);
+        $this->Sorter_mc_c_ServContractual_Descripcion = new clsSorter($this->ComponentName, "Sorter_mc_c_ServContractual_Descripcion", $FileName, $this);
+        $this->Sorter_Agrupador = new clsSorter($this->ComponentName, "Sorter_Agrupador", $FileName, $this);
         $this->Sorter_CALIDAD_PROD_TERM = new clsSorter($this->ComponentName, "Sorter_CALIDAD_PROD_TERM", $FileName, $this);
-        $this->Sorter_ReportesCompletos = new clsSorter($this->ComponentName, "Sorter_ReportesCompletos", $FileName, $this);
-        $this->Sorter_SLAsNoReportados = new clsSorter($this->ComponentName, "Sorter_SLAsNoReportados", $FileName, $this);
         $this->Sorter_DEDUC_OMISION = new clsSorter($this->ComponentName, "Sorter_DEDUC_OMISION", $FileName, $this);
-        $this->Sorter_UnidadesActuales = new clsSorter($this->ComponentName, "Sorter_UnidadesActuales", $FileName, $this);
-        $this->Sorter_UnidadesAnteriores = new clsSorter($this->ComponentName, "Sorter_UnidadesAnteriores", $FileName, $this);
-        $this->Sorter_EFIC_PRESUP = new clsSorter($this->ComponentName, "Sorter_EFIC_PRESUP", $FileName, $this);
-        $this->Sorter_DiasPlaneados = new clsSorter($this->ComponentName, "Sorter_DiasPlaneados", $FileName, $this);
-        $this->Sorter_DiasReales = new clsSorter($this->ComponentName, "Sorter_DiasReales", $FileName, $this);
         $this->Sorter_RETR_ENTREGABLE = new clsSorter($this->ComponentName, "Sorter_RETR_ENTREGABLE", $FileName, $this);
-        $this->Sorter_pctcalidad = new clsSorter($this->ComponentName, "Sorter_pctcalidad", $FileName, $this);
-        $this->Navigator = new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpSimple, $this);
-        $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
+        $this->Sorter_Observaciones = new clsSorter($this->ComponentName, "Sorter_Observaciones", $FileName, $this);
+        $this->Link2 = new clsControl(ccsLink, "Link2", "Link2", ccsText, "", CCGetRequestParam("Link2", ccsGet, NULL), $this);
+        $this->Link2->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
+        $this->Link2->Page = "SLAsCapcApbDetalle.php";
+        $this->Link1 = new clsControl(ccsLink, "Link1", "Link1", ccsText, "", CCGetRequestParam("Link1", ccsGet, NULL), $this);
+        $this->Link1->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
+        $this->Link1->Page = "SLAsCAPCDetalle.php";
     }
 //End Class_Initialize Event
 
-//Initialize Method @213-90E704C5
+//Initialize Method @323-90E704C5
     function Initialize()
     {
         if(!$this->Visible) return;
@@ -1066,7 +1066,7 @@ class clsGridgrdSLAsCAPC { //grdSLAsCAPC class @213-E36FD0EE
     }
 //End Initialize Method
 
-//Show Method @213-72360520
+//Show Method @323-5F039F87
     function Show()
     {
         $Tpl = CCGetTemplate($this);
@@ -1075,8 +1075,10 @@ class clsGridgrdSLAsCAPC { //grdSLAsCAPC class @213-E36FD0EE
 
         $this->RowNumber = 0;
 
-        $this->DataSource->Parameters["urls_MesReporte"] = CCGetFromGet("s_MesReporte", NULL);
-        $this->DataSource->Parameters["urls_AnioReporte"] = CCGetFromGet("s_AnioReporte", NULL);
+        $this->DataSource->Parameters["urls_numero"] = CCGetFromGet("s_numero", NULL);
+        $this->DataSource->Parameters["urls_mes"] = CCGetFromGet("s_mes", NULL);
+        $this->DataSource->Parameters["urls_anio"] = CCGetFromGet("s_anio", NULL);
+        $this->DataSource->Parameters["urls_id_serviciocont"] = CCGetFromGet("s_id_serviciocont", NULL);
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
@@ -1096,22 +1098,21 @@ class clsGridgrdSLAsCAPC { //grdSLAsCAPC class @213-E36FD0EE
 
 
         if (!$this->IsEmpty) {
-            $this->ControlsVisible["Descripcion"] = $this->Descripcion->Visible;
-            $this->ControlsVisible["ReportesCompletos"] = $this->ReportesCompletos->Visible;
-            $this->ControlsVisible["SLAsNoReportados"] = $this->SLAsNoReportados->Visible;
+            $this->ControlsVisible["mc_c_ServContractual_Descripcion"] = $this->mc_c_ServContractual_Descripcion->Visible;
+            $this->ControlsVisible["Agrupador"] = $this->Agrupador->Visible;
+            $this->ControlsVisible["CALIDAD_PROD_TERM"] = $this->CALIDAD_PROD_TERM->Visible;
             $this->ControlsVisible["DEDUC_OMISION"] = $this->DEDUC_OMISION->Visible;
-            $this->ControlsVisible["UnidadesActuales"] = $this->UnidadesActuales->Visible;
-            $this->ControlsVisible["UnidadesAnteriores"] = $this->UnidadesAnteriores->Visible;
-            $this->ControlsVisible["DiasPlaneados"] = $this->DiasPlaneados->Visible;
-            $this->ControlsVisible["DiasReales"] = $this->DiasReales->Visible;
             $this->ControlsVisible["RETR_ENTREGABLE"] = $this->RETR_ENTREGABLE->Visible;
-            $this->ControlsVisible["pctcalidad"] = $this->pctcalidad->Visible;
-            $this->ControlsVisible["imgCALIDAD_PROD_TERM"] = $this->imgCALIDAD_PROD_TERM->Visible;
-            $this->ControlsVisible["imgDEDUC_OMISION"] = $this->imgDEDUC_OMISION->Visible;
-            $this->ControlsVisible["Label2"] = $this->Label2->Visible;
-            $this->ControlsVisible["imgEFIC_PRESUP"] = $this->imgEFIC_PRESUP->Visible;
-            $this->ControlsVisible["imgRETR_ENTREGABLE"] = $this->imgRETR_ENTREGABLE->Visible;
-            $this->ControlsVisible["agrupador"] = $this->agrupador->Visible;
+            $this->ControlsVisible["Observaciones"] = $this->Observaciones->Visible;
+            $this->ControlsVisible["Img_CALIDAD_PROD_TERM"] = $this->Img_CALIDAD_PROD_TERM->Visible;
+            $this->ControlsVisible["Img_DEDUC_OMISION"] = $this->Img_DEDUC_OMISION->Visible;
+            $this->ControlsVisible["Img_RETR_ENTREGABLE"] = $this->Img_RETR_ENTREGABLE->Visible;
+            $this->ControlsVisible["HERR_EST_COST"] = $this->HERR_EST_COST->Visible;
+            $this->ControlsVisible["REQ_SERV"] = $this->REQ_SERV->Visible;
+            $this->ControlsVisible["CUMPL_REQ_FUN"] = $this->CUMPL_REQ_FUN->Visible;
+            $this->ControlsVisible["Img_HERR_EST_COST"] = $this->Img_HERR_EST_COST->Visible;
+            $this->ControlsVisible["Img_REQ_SERV"] = $this->Img_REQ_SERV->Visible;
+            $this->ControlsVisible["Img_CUMPL_REQ_FUN"] = $this->Img_CUMPL_REQ_FUN->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -1119,36 +1120,35 @@ class clsGridgrdSLAsCAPC { //grdSLAsCAPC class @213-E36FD0EE
                     $this->DataSource->SetValues();
                 }
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock . "/Row";
-                $this->Descripcion->SetValue($this->DataSource->Descripcion->GetValue());
-                $this->ReportesCompletos->SetValue($this->DataSource->ReportesCompletos->GetValue());
-                $this->SLAsNoReportados->SetValue($this->DataSource->SLAsNoReportados->GetValue());
+                $this->mc_c_ServContractual_Descripcion->SetValue($this->DataSource->mc_c_ServContractual_Descripcion->GetValue());
+                $this->Agrupador->SetValue($this->DataSource->Agrupador->GetValue());
+                $this->Agrupador->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
+                $this->Agrupador->Parameters = CCAddParam($this->Agrupador->Parameters, "id", $this->DataSource->f("id"));
+                $this->CALIDAD_PROD_TERM->SetValue($this->DataSource->CALIDAD_PROD_TERM->GetValue());
                 $this->DEDUC_OMISION->SetValue($this->DataSource->DEDUC_OMISION->GetValue());
-                $this->UnidadesActuales->SetValue($this->DataSource->UnidadesActuales->GetValue());
-                $this->UnidadesAnteriores->SetValue($this->DataSource->UnidadesAnteriores->GetValue());
-                $this->DiasPlaneados->SetValue($this->DataSource->DiasPlaneados->GetValue());
-                $this->DiasReales->SetValue($this->DataSource->DiasReales->GetValue());
                 $this->RETR_ENTREGABLE->SetValue($this->DataSource->RETR_ENTREGABLE->GetValue());
-                $this->pctcalidad->SetValue($this->DataSource->pctcalidad->GetValue());
-                $this->agrupador->SetValue($this->DataSource->agrupador->GetValue());
+                $this->Observaciones->SetValue($this->DataSource->Observaciones->GetValue());
+                $this->HERR_EST_COST->SetValue($this->DataSource->HERR_EST_COST->GetValue());
+                $this->REQ_SERV->SetValue($this->DataSource->REQ_SERV->GetValue());
+                $this->CUMPL_REQ_FUN->SetValue($this->DataSource->CUMPL_REQ_FUN->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
-                $this->Descripcion->Show();
-                $this->ReportesCompletos->Show();
-                $this->SLAsNoReportados->Show();
+                $this->mc_c_ServContractual_Descripcion->Show();
+                $this->Agrupador->Show();
+                $this->CALIDAD_PROD_TERM->Show();
                 $this->DEDUC_OMISION->Show();
-                $this->UnidadesActuales->Show();
-                $this->UnidadesAnteriores->Show();
-                $this->DiasPlaneados->Show();
-                $this->DiasReales->Show();
                 $this->RETR_ENTREGABLE->Show();
-                $this->pctcalidad->Show();
-                $this->imgCALIDAD_PROD_TERM->Show();
-                $this->imgDEDUC_OMISION->Show();
-                $this->Label2->Show();
-                $this->imgEFIC_PRESUP->Show();
-                $this->imgRETR_ENTREGABLE->Show();
-                $this->agrupador->Show();
+                $this->Observaciones->Show();
+                $this->Img_CALIDAD_PROD_TERM->Show();
+                $this->Img_DEDUC_OMISION->Show();
+                $this->Img_RETR_ENTREGABLE->Show();
+                $this->HERR_EST_COST->Show();
+                $this->REQ_SERV->Show();
+                $this->CUMPL_REQ_FUN->Show();
+                $this->Img_HERR_EST_COST->Show();
+                $this->Img_REQ_SERV->Show();
+                $this->Img_CUMPL_REQ_FUN->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -1165,65 +1165,50 @@ class clsGridgrdSLAsCAPC { //grdSLAsCAPC class @213-E36FD0EE
             $Tpl->block_path = $ParentPath;
             return;
         }
-        $this->Navigator->PageNumber = $this->DataSource->AbsolutePage;
-        $this->Navigator->PageSize = $this->PageSize;
-        if ($this->DataSource->RecordsCount == "CCS not counted")
-            $this->Navigator->TotalPages = $this->DataSource->AbsolutePage + ($this->DataSource->next_record() ? 1 : 0);
-        else
-            $this->Navigator->TotalPages = $this->DataSource->PageCount();
-        if (($this->Navigator->TotalPages <= 1 && $this->Navigator->PageNumber == 1) || $this->Navigator->PageSize == "") {
-            $this->Navigator->Visible = false;
-        }
-        $this->Sorter_Descripcion->Show();
+        $this->Sorter_mc_c_ServContractual_Descripcion->Show();
+        $this->Sorter_Agrupador->Show();
         $this->Sorter_CALIDAD_PROD_TERM->Show();
-        $this->Sorter_ReportesCompletos->Show();
-        $this->Sorter_SLAsNoReportados->Show();
         $this->Sorter_DEDUC_OMISION->Show();
-        $this->Sorter_UnidadesActuales->Show();
-        $this->Sorter_UnidadesAnteriores->Show();
-        $this->Sorter_EFIC_PRESUP->Show();
-        $this->Sorter_DiasPlaneados->Show();
-        $this->Sorter_DiasReales->Show();
         $this->Sorter_RETR_ENTREGABLE->Show();
-        $this->Sorter_pctcalidad->Show();
-        $this->Navigator->Show();
+        $this->Sorter_Observaciones->Show();
+        $this->Link2->Show();
+        $this->Link1->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
     }
 //End Show Method
 
-//GetErrors Method @213-C422ED3E
+//GetErrors Method @323-4A2E721E
     function GetErrors()
     {
         $errors = "";
-        $errors = ComposeStrings($errors, $this->Descripcion->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->ReportesCompletos->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->SLAsNoReportados->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->mc_c_ServContractual_Descripcion->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->Agrupador->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->CALIDAD_PROD_TERM->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DEDUC_OMISION->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->UnidadesActuales->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->UnidadesAnteriores->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->DiasPlaneados->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->DiasReales->Errors->ToString());
         $errors = ComposeStrings($errors, $this->RETR_ENTREGABLE->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->pctcalidad->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->imgCALIDAD_PROD_TERM->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->imgDEDUC_OMISION->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->Label2->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->imgEFIC_PRESUP->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->imgRETR_ENTREGABLE->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->agrupador->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->Observaciones->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->Img_CALIDAD_PROD_TERM->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->Img_DEDUC_OMISION->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->Img_RETR_ENTREGABLE->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->HERR_EST_COST->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->REQ_SERV->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->CUMPL_REQ_FUN->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->Img_HERR_EST_COST->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->Img_REQ_SERV->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->Img_CUMPL_REQ_FUN->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
     }
 //End GetErrors Method
 
-} //End grdSLAsCAPC Class @213-FCB6E20C
+} //End mc_c_ServContractual_mc_c Class @323-FCB6E20C
 
-class clsgrdSLAsCAPCDataSource extends clsDBcnDisenio {  //grdSLAsCAPCDataSource Class @213-65A90E3B
+class clsmc_c_ServContractual_mc_cDataSource extends clsDBcnDisenio {  //mc_c_ServContractual_mc_cDataSource Class @323-51953D32
 
-//DataSource Variables @213-DC55EEB5
+//DataSource Variables @323-C532333C
     public $Parent = "";
     public $CCSEvents = "";
     public $CCSEventResult;
@@ -1235,134 +1220,88 @@ class clsgrdSLAsCAPCDataSource extends clsDBcnDisenio {  //grdSLAsCAPCDataSource
 
 
     // Datasource fields
-    public $Descripcion;
-    public $ReportesCompletos;
-    public $SLAsNoReportados;
+    public $mc_c_ServContractual_Descripcion;
+    public $Agrupador;
+    public $CALIDAD_PROD_TERM;
     public $DEDUC_OMISION;
-    public $UnidadesActuales;
-    public $UnidadesAnteriores;
-    public $DiasPlaneados;
-    public $DiasReales;
     public $RETR_ENTREGABLE;
-    public $pctcalidad;
-    public $agrupador;
+    public $Observaciones;
+    public $HERR_EST_COST;
+    public $REQ_SERV;
+    public $CUMPL_REQ_FUN;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @213-6ADF2B11
-    function clsgrdSLAsCAPCDataSource(& $Parent)
+//DataSourceClass_Initialize Event @323-192378A3
+    function clsmc_c_ServContractual_mc_cDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
-        $this->ErrorBlock = "Grid grdSLAsCAPC";
+        $this->ErrorBlock = "Grid mc_c_ServContractual_mc_c";
         $this->Initialize();
-        $this->Descripcion = new clsField("Descripcion", ccsText, "");
+        $this->mc_c_ServContractual_Descripcion = new clsField("mc_c_ServContractual_Descripcion", ccsText, "");
         
-        $this->ReportesCompletos = new clsField("ReportesCompletos", ccsText, "");
+        $this->Agrupador = new clsField("Agrupador", ccsText, "");
         
-        $this->SLAsNoReportados = new clsField("SLAsNoReportados", ccsText, "");
+        $this->CALIDAD_PROD_TERM = new clsField("CALIDAD_PROD_TERM", ccsText, "");
         
         $this->DEDUC_OMISION = new clsField("DEDUC_OMISION", ccsText, "");
         
-        $this->UnidadesActuales = new clsField("UnidadesActuales", ccsText, "");
-        
-        $this->UnidadesAnteriores = new clsField("UnidadesAnteriores", ccsText, "");
-        
-        $this->DiasPlaneados = new clsField("DiasPlaneados", ccsText, "");
-        
-        $this->DiasReales = new clsField("DiasReales", ccsText, "");
-        
         $this->RETR_ENTREGABLE = new clsField("RETR_ENTREGABLE", ccsText, "");
         
-        $this->pctcalidad = new clsField("pctcalidad", ccsText, "");
+        $this->Observaciones = new clsField("Observaciones", ccsText, "");
         
-        $this->agrupador = new clsField("agrupador", ccsText, "");
+        $this->HERR_EST_COST = new clsField("HERR_EST_COST", ccsText, "");
+        
+        $this->REQ_SERV = new clsField("REQ_SERV", ccsText, "");
+        
+        $this->CUMPL_REQ_FUN = new clsField("CUMPL_REQ_FUN", ccsText, "");
         
 
     }
 //End DataSourceClass_Initialize Event
 
-//SetOrder Method @213-B609F886
+//SetOrder Method @323-1FF653C8
     function SetOrder($SorterName, $SorterDirection)
     {
         $this->Order = "";
         $this->Order = CCGetOrder($this->Order, $SorterName, $SorterDirection, 
-            array("Sorter_Descripcion" => array("Descripcion", ""), 
+            array("Sorter_mc_c_ServContractual_Descripcion" => array("mc_c_ServContractual_Descripcion", ""), 
+            "Sorter_Agrupador" => array("Agrupador", ""), 
             "Sorter_CALIDAD_PROD_TERM" => array("CALIDAD_PROD_TERM", ""), 
-            "Sorter_ReportesCompletos" => array("ReportesCompletos", ""), 
-            "Sorter_SLAsNoReportados" => array("SLAsNoReportados", ""), 
             "Sorter_DEDUC_OMISION" => array("DEDUC_OMISION", ""), 
-            "Sorter_UnidadesActuales" => array("UnidadesActuales", ""), 
-            "Sorter_UnidadesAnteriores" => array("UnidadesAnteriores", ""), 
-            "Sorter_EFIC_PRESUP" => array("EFIC_PRESUP", ""), 
-            "Sorter_DiasPlaneados" => array("DiasPlaneados", ""), 
-            "Sorter_DiasReales" => array("DiasReales", ""), 
             "Sorter_RETR_ENTREGABLE" => array("RETR_ENTREGABLE", ""), 
-            "Sorter_pctcalidad" => array("pctcalidad", "")));
+            "Sorter_Observaciones" => array("Observaciones", "")));
     }
 //End SetOrder Method
 
-//Prepare Method @213-D189120C
+//Prepare Method @323-71BC61B1
     function Prepare()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->wp = new clsSQLParameters($this->ErrorBlock);
-        $this->wp->AddParameter("1", "urls_MesReporte", ccsInteger, "", "", $this->Parameters["urls_MesReporte"], 0, false);
-        $this->wp->AddParameter("2", "urls_AnioReporte", ccsInteger, "", "", $this->Parameters["urls_AnioReporte"], 0, false);
+        $this->wp->AddParameter("1", "urls_numero", ccsText, "", "", $this->Parameters["urls_numero"], "", false);
+        $this->wp->AddParameter("2", "urls_mes", ccsInteger, "", "", $this->Parameters["urls_mes"], date("m",mktime(0,0,0,date("m"),date("d")-45,date("Y"))), false);
+        $this->wp->AddParameter("3", "urls_anio", ccsInteger, "", "", $this->Parameters["urls_anio"], date("Y",mktime(0,0,0,date("m"),date("d")-45,date("Y"))), false);
+        $this->wp->AddParameter("4", "urls_id_serviciocont", ccsInteger, "", "", $this->Parameters["urls_id_serviciocont"], 0, false);
     }
 //End Prepare Method
 
-//Open Method @213-76BAEB41
+//Open Method @323-6A900E1A
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (select \n" .
-        "	c.agrupador ,\n" .
-        "	v.Descripcion , \n" .
-        "	max(c.Deductiva) Deductiva,\n" .
-        "	max(cast(c.CALIDAD_PROD_TERM as int)) CALIDAD_PROD_TERM ,\n" .
-        "	sum(c.ReportesCompletos) ReportesCompletos,\n" .
-        "	sum(c.SLAsNoReportados) SLAsNoReportados,\n" .
-        "	max(cast(c.DEDUC_OMISION as int)) DEDUC_OMISION,\n" .
-        "	sum(cast(c.UnidadesActuales as float)) UnidadesActuales,\n" .
-        "	sum(cast(c.UnidadesAnteriores as float)) UnidadesAnteriores,  \n" .
-        "	max(cast(c.EFIC_PRESUP as int)) EFIC_PRESUP,\n" .
-        "	AVG(cast(c.DiasPlaneados as int)) DiasPlaneados,\n" .
-        "	AVG(cast(c.DiasReales as int)) DiasReales,\n" .
-        "	max(cast(c.RETR_ENTREGABLE as int)) RETR_ENTREGABLE,\n" .
-        "	v.id IdServCont\n" .
-        "	, avg(c.pctcalidad) pctcalidad\n" .
-        "from dbo.mc_c_ServContractual v \n" .
-        "     left join mc_calificacion_CAPC c \n" .
-        "	on v.id = c.id_serviciocont and mes=" . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " and anio = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
-        "where v.Aplica ='CAPC'\n" .
-        "group by 	\n" .
-        "	v.Descripcion ,\n" .
-        "	v.id ,\n" .
-        "c.agrupador) cnt";
-        $this->SQL = "select \n" .
-        "	c.agrupador ,\n" .
-        "	v.Descripcion , \n" .
-        "	max(c.Deductiva) Deductiva,\n" .
-        "	max(cast(c.CALIDAD_PROD_TERM as int)) CALIDAD_PROD_TERM ,\n" .
-        "	sum(c.ReportesCompletos) ReportesCompletos,\n" .
-        "	sum(c.SLAsNoReportados) SLAsNoReportados,\n" .
-        "	max(cast(c.DEDUC_OMISION as int)) DEDUC_OMISION,\n" .
-        "	sum(cast(c.UnidadesActuales as float)) UnidadesActuales,\n" .
-        "	sum(cast(c.UnidadesAnteriores as float)) UnidadesAnteriores,  \n" .
-        "	max(cast(c.EFIC_PRESUP as int)) EFIC_PRESUP,\n" .
-        "	AVG(cast(c.DiasPlaneados as int)) DiasPlaneados,\n" .
-        "	AVG(cast(c.DiasReales as int)) DiasReales,\n" .
-        "	max(cast(c.RETR_ENTREGABLE as int)) RETR_ENTREGABLE,\n" .
-        "	v.id IdServCont\n" .
-        "	, avg(c.pctcalidad) pctcalidad\n" .
-        "from dbo.mc_c_ServContractual v \n" .
-        "     left join mc_calificacion_CAPC c \n" .
-        "	on v.id = c.id_serviciocont and mes=" . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " and anio = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
-        "where v.Aplica ='CAPC'\n" .
-        "group by 	\n" .
-        "	v.Descripcion ,\n" .
-        "	v.id ,\n" .
-        "c.agrupador";
+        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT mc_calificacion_capc.*, mc_c_ServContractual.Descripcion AS mc_c_ServContractual_Descripcion \n" .
+        "FROM mc_calificacion_capc left  JOIN mc_c_ServContractual ON mc_calificacion_capc.id_serviciocont = mc_c_ServContractual.Id\n" .
+        "WHERE numero LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
+        "AND (mes = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . " or  " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "=0)\n" .
+        "AND (anio = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " or " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "=0)\n" .
+        "AND (id_serviciocont = " . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . "  or 0=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " )) cnt";
+        $this->SQL = "SELECT mc_calificacion_capc.*, mc_c_ServContractual.Descripcion AS mc_c_ServContractual_Descripcion \n" .
+        "FROM mc_calificacion_capc left  JOIN mc_c_ServContractual ON mc_calificacion_capc.id_serviciocont = mc_c_ServContractual.Id\n" .
+        "WHERE numero LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
+        "AND (mes = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . " or  " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "=0)\n" .
+        "AND (anio = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " or " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "=0)\n" .
+        "AND (id_serviciocont = " . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . "  or 0=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " )";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
@@ -1374,24 +1313,26 @@ class clsgrdSLAsCAPCDataSource extends clsDBcnDisenio {  //grdSLAsCAPCDataSource
     }
 //End Open Method
 
-//SetValues Method @213-2DD178AE
+//SetValues Method @323-9EE290B3
     function SetValues()
     {
-        $this->Descripcion->SetDBValue($this->f("Descripcion"));
-        $this->ReportesCompletos->SetDBValue($this->f("ReportesCompletos"));
-        $this->SLAsNoReportados->SetDBValue($this->f("SLAsNoReportados"));
+        $this->mc_c_ServContractual_Descripcion->SetDBValue($this->f("mc_c_ServContractual_Descripcion"));
+        $this->Agrupador->SetDBValue($this->f("Agrupador"));
+        $this->CALIDAD_PROD_TERM->SetDBValue($this->f("CALIDAD_PROD_TERM"));
         $this->DEDUC_OMISION->SetDBValue($this->f("DEDUC_OMISION"));
-        $this->UnidadesActuales->SetDBValue($this->f("UnidadesActuales"));
-        $this->UnidadesAnteriores->SetDBValue($this->f("UnidadesAnteriores"));
-        $this->DiasPlaneados->SetDBValue($this->f("DiasPlaneados"));
-        $this->DiasReales->SetDBValue($this->f("DiasReales"));
         $this->RETR_ENTREGABLE->SetDBValue($this->f("RETR_ENTREGABLE"));
-        $this->pctcalidad->SetDBValue($this->f("pctcalidad"));
-        $this->agrupador->SetDBValue($this->f("agrupador"));
+        $this->Observaciones->SetDBValue($this->f("Observaciones"));
+        $this->HERR_EST_COST->SetDBValue($this->f("HERR_EST_COST"));
+        $this->REQ_SERV->SetDBValue($this->f("REQ_SERV"));
+        $this->CUMPL_REQ_FUN->SetDBValue($this->f("CUMPL_REQ_FUN"));
     }
 //End SetValues Method
 
-} //End grdSLAsCAPCDataSource Class @213-FCB6E20C
+} //End mc_c_ServContractual_mc_cDataSource Class @323-FCB6E20C
+
+
+
+
 
 
 
@@ -1436,7 +1377,7 @@ include_once("./TableroSLAs_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-9AB1A9D5
+//Initialize Objects @1-EAFC1F2A
 $DBcnDisenio = new clsDBcnDisenio();
 $MainPage->Connections["cnDisenio"] = & $DBcnDisenio;
 $Attributes = new clsAttributes("page:");
@@ -1454,17 +1395,17 @@ $UrlCDS = new clsControl(ccsLink, "UrlCDS", "UrlCDS", ccsText, "", CCGetRequestP
 $UrlCDS->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
 $UrlCDS->Page = "";
 $pnlSLAsCAPC = new clsPanel("pnlSLAsCAPC", $MainPage);
-$grdSLAsCAPC = new clsGridgrdSLAsCAPC("", $MainPage);
+$mc_c_ServContractual_mc_c = new clsGridmc_c_ServContractual_mc_c("", $MainPage);
 $MainPage->Header = & $Header;
 $MainPage->Grid2 = & $Grid2;
 $MainPage->grdTableroSLAs = & $grdTableroSLAs;
 $MainPage->MenuTablero = & $MenuTablero;
 $MainPage->UrlCDS = & $UrlCDS;
 $MainPage->pnlSLAsCAPC = & $pnlSLAsCAPC;
-$MainPage->grdSLAsCAPC = & $grdSLAsCAPC;
-$pnlSLAsCAPC->AddComponent("grdSLAsCAPC", $grdSLAsCAPC);
+$MainPage->mc_c_ServContractual_mc_c = & $mc_c_ServContractual_mc_c;
+$pnlSLAsCAPC->AddComponent("mc_c_ServContractual_mc_c", $mc_c_ServContractual_mc_c);
 $grdTableroSLAs->Initialize();
-$grdSLAsCAPC->Initialize();
+$mc_c_ServContractual_mc_c->Initialize();
 $ScriptIncludes = "";
 $SList = explode("|", $Scripts);
 foreach ($SList as $Script) {
@@ -1504,7 +1445,7 @@ $Grid2->Operation();
 $Header->Operations();
 //End Execute Components
 
-//Go to destination page @1-50937D31
+//Go to destination page @1-525AA69C
 if($Redirect)
 {
     $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
@@ -1516,7 +1457,7 @@ if($Redirect)
     unset($grdTableroSLAs);
     $MenuTablero->Class_Terminate();
     unset($MenuTablero);
-    unset($grdSLAsCAPC);
+    unset($mc_c_ServContractual_mc_c);
     unset($Tpl);
     exit;
 }
@@ -1536,7 +1477,7 @@ $CCSEventResult = CCGetEvent($CCSEvents, "BeforeOutput", $MainPage);
 if ($CCSEventResult) echo $main_block;
 //End Show Page
 
-//Unload Page @1-C118B8C7
+//Unload Page @1-AB7B4C93
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
 $DBcnDisenio->close();
 $Header->Class_Terminate();
@@ -1545,7 +1486,7 @@ unset($Grid2);
 unset($grdTableroSLAs);
 $MenuTablero->Class_Terminate();
 unset($MenuTablero);
-unset($grdSLAsCAPC);
+unset($mc_c_ServContractual_mc_c);
 unset($Tpl);
 //End Unload Page
 

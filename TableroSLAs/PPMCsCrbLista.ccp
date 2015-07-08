@@ -35,6 +35,7 @@ left join mc_c_servicio sn on sn.id_servicio = c.id_servicio_negocio
 where  isnull(descartar_manual,0)=0 and tipo='PC'
 	and (mes = {s_mesparam} or 0={s_mesparam})
 	and anio = {s_anioparam}
+	and (u.SLO= {sSLO})
 	AND (u.id_proveedor ={s_id_proveedor} OR 0={s_id_proveedor})
 	AND (u.numero ='{s_numero}' OR ''='{s_numero}')
 	and (u.analista like '%{sAnalista}%' or u.analista  is null)" pageSizeLimit="100" pageSize="True" wizardCaption="Requerimientos de Apertura" wizardThemeApplyTo="Page" wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No hay registros" wizardGridPagingType="Simple" wizardUseSearch="False" wizardAddNbsp="True" gridTotalRecords="False" wizardAddPanels="False" wizardType="Grid" wizardUseInterVariables="False" addTemplatePanel="False" changedCaptionGrid="True" gridExtendedHTML="False" PathID="Grid1" wizardAllowSorting="True">
@@ -287,11 +288,12 @@ where  isnull(descartar_manual,0)=0 and tipo='PC'
 			<PKFields/>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="202" dataType="Integer" defaultValue="date(&quot;m&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="11" parameterSource="s_mesparam" parameterType="URL" variable="s_mesparam"/>
-<SQLParameter id="203" dataType="Integer" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;)-1,date(&quot;d&quot;),date(&quot;Y&quot;)))" designDefaultValue="2013" parameterSource="s_anioparam" parameterType="URL" variable="s_anioparam"/>
-<SQLParameter id="204" dataType="Integer" defaultValue="CCGetSession(&quot;CDSPreferido&quot;)" designDefaultValue="0" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
-<SQLParameter id="205" dataType="Text" designDefaultValue="eminero" parameterSource="sAnalista" parameterType="URL" variable="sAnalista"/>
-<SQLParameter id="206" dataType="Text" designDefaultValue="0" parameterSource="s_numero" parameterType="URL" variable="s_numero"/>
+				<SQLParameter id="208" dataType="Integer" defaultValue="date(&quot;m&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="11" parameterSource="s_mesparam" parameterType="URL" variable="s_mesparam"/>
+<SQLParameter id="209" dataType="Integer" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;)-1,date(&quot;d&quot;),date(&quot;Y&quot;)))" designDefaultValue="2013" parameterSource="s_anioparam" parameterType="URL" variable="s_anioparam"/>
+<SQLParameter id="210" dataType="Integer" defaultValue="CCGetSession(&quot;CDSPreferido&quot;)" designDefaultValue="0" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
+<SQLParameter id="211" dataType="Text" designDefaultValue="eminero" parameterSource="sAnalista" parameterType="URL" variable="sAnalista"/>
+<SQLParameter id="212" dataType="Text" designDefaultValue="0" parameterSource="s_numero" parameterType="URL" variable="s_numero"/>
+<SQLParameter id="213" dataType="Integer" defaultValue="0" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
 </SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
@@ -382,24 +384,31 @@ where  isnull(descartar_manual,0)=0 and tipo='PC'
 					<Components/>
 					<Events/>
 					<TableParameters>
-						<TableParameter id="65" conditionType="Parameter" useIsNull="False" dataType="Integer" defaultValue="3" field="Nivel" logicOperator="And" parameterSource="Nivel" parameterType="URL" searchConditionType="Equal"/>
-					</TableParameters>
+						<TableParameter id="215" conditionType="Parameter" useIsNull="False" dataType="Integer" defaultValue="3" field="Nivel" logicOperator="And" parameterSource="Nivel" parameterType="URL" searchConditionType="Equal"/>
+<TableParameter id="216" conditionType="Parameter" useIsNull="False" dataType="Text" field="Grupo" logicOperator="And" parameterSource="'CAPC'" parameterType="Expression" searchConditionType="Equal"/>
+</TableParameters>
 					<SPParameters/>
 					<SQLParameters/>
 					<JoinTables>
-						<JoinTable id="64" posHeight="180" posLeft="10" posTop="10" posWidth="118" tableName="mc_c_usuarios"/>
-					</JoinTables>
+						<JoinTable id="214" posHeight="180" posLeft="10" posTop="10" posWidth="118" tableName="mc_c_usuarios"/>
+</JoinTables>
 					<JoinLinks/>
 					<Fields>
-						<Field id="66" fieldName="*"/>
-					</Fields>
+						<Field id="217" fieldName="*"/>
+</Fields>
 					<PKFields>
-						<PKField id="67" dataType="Integer" fieldName="Id" tableName="mc_c_usuarios"/>
-					</PKFields>
+						<PKField id="218" dataType="Integer" fieldName="Id" tableName="mc_c_usuarios"/>
+</PKFields>
 					<Attributes/>
 					<Features/>
 				</ListBox>
-			</Components>
+				<CheckBox id="207" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="sSLO" PathID="Grid2sSLO" checkedValue="1" uncheckedValue="0">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</CheckBox>
+</Components>
 			<Events>
 				<Event name="OnValidate" type="Server">
 					<Actions>

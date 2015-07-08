@@ -240,32 +240,27 @@ function GeneraReporte(){
 		$PASWD = CCDLookUp("valor","mc_parametros","parametro='PwdSSRS'",$db);
 		$SERVICE_URL = CCDLookUp("valor","mc_parametros","parametro='SSRSURL'",$db);
 		
-		
-		$ReporteSLA="SLA";
-			
+		/*	
 		if(CCGetParam("SAT",0)==0){
 			$REPORT= "http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCompleto.rdl";
 		} else {
 			$REPORT= "http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCompleto_SLO.rdl";
 		}
+		*/
 		
+		$REPORT="http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCompleto.rdl";
 		$TipoReporte="NS";
-		/*
-		if(CCGetParam("DyP",0)==0){
-			$REPORT="http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCompleto_new.rdl";
-			$TipoReporte="NS";
-		} else {
+		$ReporteSLA="SLA";
+		
+		if(CCGetParam("DyP",0)==1){
 			$REPORT="http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteDP.rdl";
 			$TipoReporte="DyP";
 		}
-		*/
-			if(CCGetParam("sSLO",0)==0){
-				$REPORT="http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCompleto.rdl";
-			} else {
-				$REPORT="http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCompleto_SLO.rdl";
-				$ReporteSLA="SLO";
-			}
 		
+		if(CCGetParam("s_SLO",0)==1){
+			$REPORT="http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCompleto_SLO.rdl";
+			$ReporteSLA="SLO";
+		}
 		
 		$sCDS=0;
 		$sCDS= CCGetParam("s_id_proveedor");
@@ -276,7 +271,6 @@ function GeneraReporte(){
 		} else {
 			$FILENAME = "Reporte" . $TipoReporte . "_CDS" . $sCDS . "_". $ReporteSLA ."_" . CCGetParam("s_AnioReporte")  . CCGetParam("s_MesReporte") . date("t") .  ".xls";
 		}
-
 		
 		try {
 			$ssrs_report = new SSRSReport(new Credentials($UID, $PASWD),$SERVICE_URL);

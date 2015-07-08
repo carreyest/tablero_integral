@@ -16,7 +16,7 @@ CROSS JOIN
 	where id_proveedor= {s_id_proveedor}
 	and mesreporte= {s_MesReporte}
 	and AnioReporte = {s_AnioReporte}
-	and id_ppmc  in (select numero from mc_universo_cds where SLO={sSLO} and tipo &lt;&gt; 'IN')
+	and IdUniverso  in (select id from mc_universo_cds where SLO={sSLO} and tipo &lt;&gt; 'IN')
 	and IdUniverso not in (select id from mc_universo_cds where revision=2  )
 	group by id_proveedor  
 ) c
@@ -32,7 +32,7 @@ CROSS JOIN
 	where id_proveedor= {s_id_proveedor}
 	and mesreporte= {s_MesReporte}
 	and AnioReporte = {s_AnioReporte}
-	and id_ppmc  in (select numero from mc_universo_cds where SLO={sSLO} and tipo &lt;&gt; 'IN')
+	and IdUniverso  in (select id from mc_universo_cds where SLO={sSLO} and tipo &lt;&gt; 'IN')
 	and IdUniverso not in (select id from mc_universo_cds where revision=2  )
 	group by id_proveedor  
 ) c
@@ -48,7 +48,7 @@ CROSS JOIN
 	where id_proveedor= {s_id_proveedor}
 	and mesreporte= {s_MesReporte}
 	and AnioReporte = {s_AnioReporte}
-	and id_ppmc  in (select numero from mc_universo_cds where SLO={sSLO} and tipo &lt;&gt; 'IN')
+	and IdUniverso  in (select id from mc_universo_cds where SLO={sSLO} and tipo &lt;&gt; 'IN')
 	and IdUniverso not in (select id from mc_universo_cds where revision=2  )
 	group by id_proveedor  
 ) c
@@ -64,7 +64,7 @@ CROSS JOIN
 	where id_proveedor= {s_id_proveedor}
 	and mesreporte= {s_MesReporte}
 	and AnioReporte = {s_AnioReporte}
-	and id_ppmc  in (select numero from mc_universo_cds where SLO={sSLO} and tipo &lt;&gt; 'IN')
+	and IdUniverso  in (select id from mc_universo_cds where SLO={sSLO} and tipo &lt;&gt; 'IN')
 	and IdUniverso not in (select id from mc_universo_cds where revision=2  )
 	group by id_proveedor  
 ) c
@@ -80,7 +80,7 @@ CROSS JOIN
 	where id_proveedor= {s_id_proveedor}
 	and mesreporte= {s_MesReporte}
 	and AnioReporte = {s_AnioReporte}
-	and id_ppmc  in (select numero from mc_universo_cds where SLO={sSLO} and tipo &lt;&gt; 'IN')
+	and IdUniverso  in (select id from mc_universo_cds where SLO={sSLO} and tipo &lt;&gt; 'IN')
 	and IdUniverso not in (select id from mc_universo_cds where revision=2  )
 	group by id_proveedor  
 ) c
@@ -96,7 +96,7 @@ CROSS JOIN
 	where id_proveedor= {s_id_proveedor}
 	and mesreporte= {s_MesReporte}
 	and AnioReporte = {s_AnioReporte}
-	and id_ppmc  in (select numero from mc_universo_cds where SLO={sSLO} and tipo &lt;&gt; 'IN')
+	and IdUniverso  in (select id from mc_universo_cds where SLO={sSLO} and tipo &lt;&gt; 'IN')
 	and IdUniverso not in (select id from mc_universo_cds where revision=2  )
 	group by id_proveedor  
 ) c
@@ -112,7 +112,7 @@ CROSS JOIN
 	where id_proveedor= {s_id_proveedor}
 	and mesreporte= {s_MesReporte}
 	and AnioReporte = {s_AnioReporte}
-	and id_ppmc  in (select numero from mc_universo_cds where SLO={sSLO} and tipo &lt;&gt; 'IN')
+	and IdUniverso  in (select id from mc_universo_cds where SLO={sSLO} and tipo &lt;&gt; 'IN')
 	and IdUniverso not in (select id from mc_universo_cds where revision=2  )
 	group by id_proveedor  
 ) c
@@ -128,7 +128,7 @@ CROSS JOIN
 	where id_proveedor= {s_id_proveedor}
 	and mesreporte= {s_MesReporte}
 	and AnioReporte = {s_AnioReporte}
-	and id_ppmc  in (select numero from mc_universo_cds where SLO={sSLO} and tipo &lt;&gt; 'IN')
+	and IdUniverso  in (select id from mc_universo_cds where SLO={sSLO} and tipo &lt;&gt; 'IN')
 	and IdUniverso not in (select id from mc_universo_cds where revision=2  )
 	group by id_proveedor  
 ) c
@@ -163,7 +163,7 @@ CROSS JOIN
 	where id_proveedor= {s_id_proveedor}
 	and mesreporte= {s_MesReporte}
 	and AnioReporte = {s_AnioReporte}
-	and id_ppmc  in (select numero from mc_universo_cds where SLO={sSLO} and tipo &lt;&gt; 'IN')
+	and IdUniverso  in (select id from mc_universo_cds where SLO={sSLO} and tipo &lt;&gt; 'IN')
 	and IdUniverso not in (select id from mc_universo_cds where revision=2  )
 	group by id_proveedor  
 ) c

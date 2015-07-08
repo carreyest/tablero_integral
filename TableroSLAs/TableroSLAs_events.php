@@ -1,16 +1,15 @@
 <?php
-//BindEvents Method @1-25036293
+//BindEvents Method @1-A291D2AE
 function BindEvents()
 {
     global $Grid2;
     global $grdTableroSLAs;
-    global $grdSLAsCAPC;
+    global $mc_c_ServContractual_mc_c;
     global $CCSEvents;
     $Grid2->CCSEvents["BeforeShow"] = "Grid2_BeforeShow";
     $grdTableroSLAs->CCSEvents["BeforeShowRow"] = "grdTableroSLAs_BeforeShowRow";
     $grdTableroSLAs->CCSEvents["BeforeShow"] = "grdTableroSLAs_BeforeShow";
-    $grdSLAsCAPC->CCSEvents["BeforeShowRow"] = "grdSLAsCAPC_BeforeShowRow";
-    $grdSLAsCAPC->CCSEvents["BeforeShow"] = "grdSLAsCAPC_BeforeShow";
+    $mc_c_ServContractual_mc_c->CCSEvents["BeforeShowRow"] = "mc_c_ServContractual_mc_c_BeforeShowRow";
     $CCSEvents["BeforeShow"] = "Page_BeforeShow";
     $CCSEvents["OnInitializeView"] = "Page_OnInitializeView";
     $CCSEvents["AfterInitialize"] = "Page_AfterInitialize";
@@ -150,7 +149,128 @@ function grdTableroSLAs_BeforeShow(& $sender)
 }
 //End Close grdTableroSLAs_BeforeShow
 
-//DEL  	global $db;
+//mc_c_ServContractual_mc_c_BeforeShowRow @323-0196D746
+function mc_c_ServContractual_mc_c_BeforeShowRow(& $sender)
+{
+    $mc_c_ServContractual_mc_c_BeforeShowRow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $mc_c_ServContractual_mc_c; //Compatibility
+//End mc_c_ServContractual_mc_c_BeforeShowRow
+
+//Custom Code @344-2A29BDB7
+// -------------------------
+    if($mc_c_ServContractual_mc_c->CALIDAD_PROD_TERM->GetValue()!=""){
+		$mc_c_ServContractual_mc_c->Img_CALIDAD_PROD_TERM->Visible=true;
+		$mc_c_ServContractual_mc_c->CALIDAD_PROD_TERM->Visible=false;	
+		if($mc_c_ServContractual_mc_c->CALIDAD_PROD_TERM->GetValue()==1){
+			$mc_c_ServContractual_mc_c->Img_CALIDAD_PROD_TERM->SetValue("images/Cumple.png");
+		} else {
+			$mc_c_ServContractual_mc_c->Img_CALIDAD_PROD_TERM->SetValue("images/NoCumple.png");
+		}
+	} else {
+		$mc_c_ServContractual_mc_c->Img_CALIDAD_PROD_TERM->Visible=false;
+		$mc_c_ServContractual_mc_c->CALIDAD_PROD_TERM->Visible=true;
+		$mc_c_ServContractual_mc_c->CALIDAD_PROD_TERM->SetValue("No&nbsp;Aplica");
+    }
+    
+    if($mc_c_ServContractual_mc_c->DEDUC_OMISION->GetValue()!=""){
+		$mc_c_ServContractual_mc_c->Img_DEDUC_OMISION->Visible=true;
+		$mc_c_ServContractual_mc_c->DEDUC_OMISION->Visible=false;	
+		if($mc_c_ServContractual_mc_c->DEDUC_OMISION->GetValue()==1){
+			$mc_c_ServContractual_mc_c->Img_DEDUC_OMISION->SetValue("images/Cumple.png");
+		} else {
+			$mc_c_ServContractual_mc_c->Img_DEDUC_OMISION->SetValue("images/NoCumple.png");
+		}
+	} else {
+		$mc_c_ServContractual_mc_c->Img_DEDUC_OMISION->Visible=false;
+		$mc_c_ServContractual_mc_c->DEDUC_OMISION->Visible=true;
+		$mc_c_ServContractual_mc_c->DEDUC_OMISION->SetValue("No&nbsp;Aplica");
+	}
+	
+	/*
+    if($mc_c_ServContractual_mc_c->EFIC_PRESUP->GetValue()!=""){
+		$mc_c_ServContractual_mc_c->Img_EFIC_PRESUP->Visible=true;
+		$mc_c_ServContractual_mc_c->EFIC_PRESUP->Visible=false;	
+		if($mc_c_ServContractual_mc_c->EFIC_PRESUP->GetValue()==1){
+			$mc_c_ServContractual_mc_c->Img_EFIC_PRESUP->SetValue("images/Cumple.png");
+		} else {
+			$mc_c_ServContractual_mc_c->Img_EFIC_PRESUP->SetValue("images/NoCumple.png");
+		}
+	} else {
+		$mc_c_ServContractual_mc_c->Img_EFIC_PRESUP->Visible=false;
+		$mc_c_ServContractual_mc_c->EFIC_PRESUP->Visible=true;
+		$mc_c_ServContractual_mc_c->EFIC_PRESUP->SetValue("No&nbsp;Aplica");
+	}
+	*/
+
+    if($mc_c_ServContractual_mc_c->RETR_ENTREGABLE->GetValue()!=""){
+		$mc_c_ServContractual_mc_c->Img_RETR_ENTREGABLE->Visible=true;
+		$mc_c_ServContractual_mc_c->RETR_ENTREGABLE->Visible=false;	
+		if($mc_c_ServContractual_mc_c->RETR_ENTREGABLE->GetValue()==1){
+			$mc_c_ServContractual_mc_c->Img_RETR_ENTREGABLE->SetValue("images/Cumple.png");
+		} else {
+			$mc_c_ServContractual_mc_c->Img_RETR_ENTREGABLE->SetValue("images/NoCumple.png");
+		}
+	} else {
+		$mc_c_ServContractual_mc_c->Img_RETR_ENTREGABLE->Visible=false;
+		$mc_c_ServContractual_mc_c->RETR_ENTREGABLE->Visible=true;
+		$mc_c_ServContractual_mc_c->RETR_ENTREGABLE->SetValue("No&nbsp;Aplica");
+	}
+	
+	//nuevos para el SDMA4
+	if($mc_c_ServContractual_mc_c->HERR_EST_COST->GetValue()!=""){
+		$mc_c_ServContractual_mc_c->Img_HERR_EST_COST->Visible=true;
+		$mc_c_ServContractual_mc_c->HERR_EST_COST->Visible=false;	
+		if($mc_c_ServContractual_mc_c->HERR_EST_COST->GetValue()==1){
+			$mc_c_ServContractual_mc_c->Img_HERR_EST_COST->SetValue("images/Cumple.png");
+		} else {
+			$mc_c_ServContractual_mc_c->Img_HERR_EST_COST->SetValue("images/NoCumple.png");
+		}
+	} else {
+		$mc_c_ServContractual_mc_c->Img_HERR_EST_COST->Visible=false;
+		$mc_c_ServContractual_mc_c->HERR_EST_COST->Visible=true;
+		$mc_c_ServContractual_mc_c->HERR_EST_COST->SetValue("No&nbsp;Aplica");
+	}
+	
+	if($mc_c_ServContractual_mc_c->REQ_SERV->GetValue()!=""){
+		$mc_c_ServContractual_mc_c->Img_REQ_SERV->Visible=true;
+		$mc_c_ServContractual_mc_c->REQ_SERV->Visible=false;	
+		if($mc_c_ServContractual_mc_c->REQ_SERV->GetValue()==1){
+			$mc_c_ServContractual_mc_c->Img_REQ_SERV->SetValue("images/Cumple.png");
+		} else {
+			$mc_c_ServContractual_mc_c->Img_REQ_SERV->SetValue("images/NoCumple.png");
+		}
+	} else {
+		$mc_c_ServContractual_mc_c->Img_REQ_SERV->Visible=false;
+		$mc_c_ServContractual_mc_c->REQ_SERV->Visible=true;
+		$mc_c_ServContractual_mc_c->REQ_SERV->SetValue("No&nbsp;Aplica");
+	}
+	
+	if($mc_c_ServContractual_mc_c->CUMPL_REQ_FUN->GetValue()!=""){
+		$mc_c_ServContractual_mc_c->Img_CUMPL_REQ_FUN->Visible=true;
+		$mc_c_ServContractual_mc_c->CUMPL_REQ_FUN->Visible=false;	
+		if($mc_c_ServContractual_mc_c->CUMPL_REQ_FUN->GetValue()==1){
+			$mc_c_ServContractual_mc_c->Img_CUMPL_REQ_FUN->SetValue("images/Cumple.png");
+		} else {
+			$mc_c_ServContractual_mc_c->Img_CUMPL_REQ_FUN->SetValue("images/NoCumple.png");
+		}
+	} else {
+		$mc_c_ServContractual_mc_c->Img_CUMPL_REQ_FUN->Visible=false;
+		$mc_c_ServContractual_mc_c->CUMPL_REQ_FUN->Visible=true;
+		$mc_c_ServContractual_mc_c->CUMPL_REQ_FUN->SetValue("No&nbsp;Aplica");
+	}
+	
+// -------------------------
+//End Custom Code
+
+//Close mc_c_ServContractual_mc_c_BeforeShowRow @323-A587CB49
+    return $mc_c_ServContractual_mc_c_BeforeShowRow;
+}
+//End Close mc_c_ServContractual_mc_c_BeforeShowRow
+
+//DEL  // -------------------------
+//DEL      global $db;
 //DEL  	global $lColorCelda;
 //DEL  	$db= new clsDBcnDisenio();
 //DEL  	/*
@@ -158,7 +278,7 @@ function grdTableroSLAs_BeforeShow(& $sender)
 //DEL  	un prefijo seguido del acronimo del SLA 
 //DEL  	*/
 //DEL  	$db->query("SELECT att.Activo , m.Acronimo  FROM mc_c_metrica m LEFT JOIN mc_metrica_atributo att " .
-//DEL   				" ON att.id_ver_metrica = m.id_ver_metrica  AND att.nombre = 'Aplica_Servicio' AND valor=" . $grdTableroSLAs_SAT->DataSource->f("IdOld") .
+//DEL   				" ON att.id_ver_metrica = m.id_ver_metrica  AND att.nombre = 'Aplica_Servicio' AND valor=" . $grdTableroSLAs->DataSource->f("IdOld") .
 //DEL   				" where  Acronimo is not null");
 //DEL  	while($db->next_record()){
 //DEL  		$sAcronimo= $db->f(1);
@@ -166,289 +286,30 @@ function grdTableroSLAs_BeforeShow(& $sender)
 //DEL  		$sCumplen = "Cumplen" . $sAcronimo;
 //DEL  		$sTotal = "Tot"  . $sAcronimo;
 //DEL  		$sMeta = "Meta_" . $sAcronimo;
-//DEL  		$grdTableroSLAs_SAT->$sCumplen->Visible=false;
-//DEL  		$grdTableroSLAs_SAT->$sTotal->Visible=false;
+//DEL  		$grdTableroSLAs->$sCumplen->Visible=false;
+//DEL  		$grdTableroSLAs->$sTotal->Visible=false;
 //DEL  		if($db->f(0)==1){//si el campo activo del SLA para el servicio es 1, se pintan los semáforos, de lo contrario no aplica el SLA para el servicio
-//DEL  			$grdTableroSLAs_SAT->$sImg->SetValue("images/blank_SLA.png");
-//DEL  			if (isset($grdTableroSLAs_SAT->$sImg)){
-//DEL  				if($grdTableroSLAs_SAT->DataSource->f($db->f(1)) != ""){
-//DEL  					$grdTableroSLAs_SAT->$sAcronimo->SetValue($grdTableroSLAs_SAT->$sCumplen->GetValue() . "/" . $grdTableroSLAs_SAT->$sTotal->GetValue() . " = " . $grdTableroSLAs_SAT->$sAcronimo->GetValue() . "%");
-//DEL  					if($grdTableroSLAs_SAT->DataSource->f($db->f(1))<$grdTableroSLAs_SAT->DataSource->f($sMeta)){
-//DEL  						$grdTableroSLAs_SAT->$sImg->SetValue("images/down.png");
+//DEL  			$grdTableroSLAs->$sImg->SetValue("images/blank_SLA.png");
+//DEL  			if (isset($grdTableroSLAs->$sImg)){
+//DEL  				if($grdTableroSLAs->DataSource->f($db->f(1)) != ""){
+//DEL  					$grdTableroSLAs->$sAcronimo->SetValue($grdTableroSLAs->$sCumplen->GetValue() . "/" . $grdTableroSLAs->$sTotal->GetValue() . " = " . $grdTableroSLAs->$sAcronimo->GetValue() . "%");
+//DEL  					if($grdTableroSLAs->DataSource->f($db->f(1))<$grdTableroSLAs->DataSource->f($sMeta)){
+//DEL  						$grdTableroSLAs->$sImg->SetValue("images/down.png");
 //DEL  					} else {
-//DEL  						$grdTableroSLAs_SAT->$sImg->SetValue("images/up.png");
+//DEL  						$grdTableroSLAs->$sImg->SetValue("images/up.png");
 //DEL  					}
 //DEL  				} else {
-//DEL  					$grdTableroSLAs_SAT->$sImg->SetValue("images/left.png");
-//DEL  					$grdTableroSLAs_SAT->$sAcronimo->SetValue("Sin Datos<br>para Medir");
+//DEL  					$grdTableroSLAs->$sImg->SetValue("images/left.png");
+//DEL  					$grdTableroSLAs->$sAcronimo->SetValue("Sin Datos<br>para Medir");
 //DEL  				}
 //DEL  			}
 //DEL  		} else {
 //DEL  			//$grdTableroSLAs->$sAcronimo->SetValue("No Aplica para<br>este servicio");
-//DEL  			$grdTableroSLAs_SAT->$sAcronimo->SetValue("");
-//DEL  			$grdTableroSLAs_SAT->$sImg->SetValue("images/blank_SLA.png");
+//DEL  			$grdTableroSLAs->$sAcronimo->SetValue("");
+//DEL  			$grdTableroSLAs->$sImg->SetValue("images/blank_SLA.png");
 //DEL  		}
 //DEL  	}
 //DEL  	$db->close();
-//DEL  // -------------------------
-
-//DEL  // -------------------------
-//DEL      //si no es SAT, no puede ver el cuadro del SAT
-//DEL      if(CCGetSession("GrupoValoracion","")=='SAT' || CCGetGroupID()> 3){
-//DEL      	$grdTableroSLAs_SAT->Visible =true;
-//DEL      } else {
-//DEL      	$grdTableroSLAs_SAT->Visible =false;
-//DEL      }
-//DEL      
-//DEL  	//dependiendo del proveedor se muestra o no el tablero del capc
-//DEL  	$grdTableroSLAs_SAT->Visible = (CCGetParam("s_id_proveedor",0)!=1);    
-//DEL  // -------------------------
-
-//grdSLAsCAPC_BeforeShowRow @213-1E7B3DC7
-function grdSLAsCAPC_BeforeShowRow(& $sender)
-{
-    $grdSLAsCAPC_BeforeShowRow = true;
-    $Component = & $sender;
-    $Container = & CCGetParentContainer($sender);
-    global $grdSLAsCAPC; //Compatibility
-//End grdSLAsCAPC_BeforeShowRow
-
-//Custom Code @235-2A29BDB7
-// -------------------------
-    //se ponen las leyendas del SLA de Calidad
-    if($grdSLAsCAPC->DataSource->f("IdServCont") ==7){
-    	//$grdSLAsCAPC->Deductiva->SetValue("No Aplica Para Este Servicio");
-    	$grdSLAsCAPC->pctcalidad->SetValue("No Aplica Para Este Servicio");
-    } else {
-    	//if(!is_numeric($grdSLAsCAPC->DataSource->f("Deductiva->GetValue())){
-    		//$grdSLAsCAPC->Deductiva->SetValue(0);
-    	//}
-    	if(is_numeric($grdSLAsCAPC->pctcalidad->GetValue())){
-			$grdSLAsCAPC->pctcalidad->SetValue(number_format($grdSLAsCAPC->pctcalidad->GetValue(),2,'.','') . " %");
-    	} else {
-    		$grdSLAsCAPC->pctcalidad->SetValue("Sin Datos Para Medir");
-    	}
-    }
-    //se ponen las leyendas del SLA de Deductivas
-    if($grdSLAsCAPC->DataSource->f("IdServCont") !=6){ 
-    		$grdSLAsCAPC->ReportesCompletos->SetValue("No Aplica Para Este Servicio");
-    		$grdSLAsCAPC->SLAsNoReportados->SetValue("No Aplica Para Este Servicio");
-    		$grdSLAsCAPC->DEDUC_OMISION->SetValue("No Aplica Para Este Servicio");
-    } else {
-    	if($grdSLAsCAPC->DataSource->f("DEDUC_OMISION")==""){
-    		$grdSLAsCAPC->ReportesCompletos->SetValue("No Aplica Para Este Servicio");
-    		$grdSLAsCAPC->SLAsNoReportados->SetValue("No Aplica Para Este Servicio");
-    		$grdSLAsCAPC->DEDUC_OMISION->SetValue("No Aplica Para Este Servicio");
-    	} else {
-    		$grdSLAsCAPC->ReportesCompletos->SetValue(1);
-    		$grdSLAsCAPC->SLAsNoReportados->SetValue(0);
-    		$grdSLAsCAPC->DEDUC_OMISION->SetValue("100%");
-    	}
-    }
-    //se ponen las leyendas del SLA de Eficiencia Presupuestal
-    if($grdSLAsCAPC->DataSource->f("IdServCont") <8){ 
-    	$grdSLAsCAPC->UnidadesActuales->SetValue("No Aplica Para Este Servicio");
-    	$grdSLAsCAPC->UnidadesAnteriores->SetValue("No Aplica Para Este Servicio");
-    	$grdSLAsCAPC->Label2->SetValue("No Aplica Para Este Servicio");
-    } else {
-    	if($grdSLAsCAPC->UnidadesActuales->GetValue()==""){
-    		$grdSLAsCAPC->UnidadesActuales->SetValue("Sin Datos Para Medir");
-    		$grdSLAsCAPC->UnidadesAnteriores->SetValue("Sin Datos Para Medir");
-    		$grdSLAsCAPC->Label2->SetValue("Sin Datos Para Medir");
-    	} else {
-    		$grdSLAsCAPC->Label2->SetValue((100*$grdSLAsCAPC->UnidadesActuales->GetValue()/$grdSLAsCAPC->UnidadesAnteriores->GetValue())-100);
-    	}
-    }
-    if($grdSLAsCAPC->DiasPlaneados->GetValue()==""){
-   		$grdSLAsCAPC->DiasPlaneados->SetValue("Sin Datos para Medir");
-    }
-    if($grdSLAsCAPC->DiasReales->GetValue()==""){
-   		$grdSLAsCAPC->DiasReales->SetValue("Sin Datos para Medir");
-   		$grdSLAsCAPC->RETR_ENTREGABLE->SetValue("Sin Datos para Medir");
-    } else {
-   		$grdSLAsCAPC->RETR_ENTREGABLE->SetValue(0);
-    }
-    
-    //dependiendo del resultado de los SLAs, se ponen las flechas
-    //Semáforo de calidad
-    if($grdSLAsCAPC->DataSource->f("CALIDAD_PROD_TERM")=="" || $grdSLAsCAPC->DataSource->f("IdServCont") ==7){
-    	if($grdSLAsCAPC->DataSource->f("IdServCont") ==7){
-    		$grdSLAsCAPC->imgCALIDAD_PROD_TERM->SetValue("images/noaplica.png");
-    	} else {
-    		$grdSLAsCAPC->imgCALIDAD_PROD_TERM->SetValue("images/left.png");
-    	}
-    } else {
-    	if($grdSLAsCAPC->DataSource->f("CALIDAD_PROD_TERM")!=0){
-    		$grdSLAsCAPC->imgCALIDAD_PROD_TERM->SetValue("images/up.png");
-    	} else {
-    		$grdSLAsCAPC->imgCALIDAD_PROD_TERM->SetValue("images/down.png");
-    	}
-    }
-    //Semáforo de deductiva por omisión
-    if($grdSLAsCAPC->DataSource->f("IdServCont") ==6){ 
-    	if($grdSLAsCAPC->DataSource->f("DEDUC_OMISION")==""){
-    		$grdSLAsCAPC->imgDEDUC_OMISION->SetValue("images/left.png");
-    	} else {
-    		if($grdSLAsCAPC->DataSource->f("DEDUC_OMISION")){
-    			$grdSLAsCAPC->imgDEDUC_OMISION->SetValue("images/up.png");
-    		} else {
-    			$grdSLAsCAPC->imgDEDUC_OMISION->SetValue("images/down.png");
-    		}
-    	}
-    } else {
-    	$grdSLAsCAPC->imgDEDUC_OMISION->SetValue("images/noaplica.png");
-    }
-    //Semáforo de eficiencia presupuestal
-    if($grdSLAsCAPC->DataSource->f("EFIC_PRESUP")==""){
-    	if($grdSLAsCAPC->DataSource->f("IdServCont") <8){ 
-    		$grdSLAsCAPC->imgEFIC_PRESUP->SetValue("images/noaplica.png");
-    	} else {
-    		$grdSLAsCAPC->imgEFIC_PRESUP->SetValue("images/left.png");
-    	}
-    } else {
-    	if($grdSLAsCAPC->DataSource->f("EFIC_PRESUP")){
-    		$grdSLAsCAPC->imgEFIC_PRESUP->SetValue("images/up.png");
-    	} else {
-    		$grdSLAsCAPC->imgEFIC_PRESUP->SetValue("images/down.png");
-    	}
-    }
-    //Semáforo de retraso en entregables
-    if($grdSLAsCAPC->DataSource->f("RETR_ENTREGABLE")==""){
-    	$grdSLAsCAPC->imgRETR_ENTREGABLE->SetValue("images/left.png");
-    } else {
-    	if($grdSLAsCAPC->DataSource->f("RETR_ENTREGABLE")){
-    		$grdSLAsCAPC->imgRETR_ENTREGABLE->SetValue("images/up.png");
-    	} else {
-    		$grdSLAsCAPC->imgRETR_ENTREGABLE->SetValue("images/down.png");
-    	}
-    }
-    
-// -------------------------
-//End Custom Code
-
-//Close grdSLAsCAPC_BeforeShowRow @213-DACAD852
-    return $grdSLAsCAPC_BeforeShowRow;
-}
-//End Close grdSLAsCAPC_BeforeShowRow
-
-//grdSLAsCAPC_BeforeShow @213-F626EBC4
-function grdSLAsCAPC_BeforeShow(& $sender)
-{
-    $grdSLAsCAPC_BeforeShow = true;
-    $Component = & $sender;
-    $Container = & CCGetParentContainer($sender);
-    global $grdSLAsCAPC; //Compatibility
-//End grdSLAsCAPC_BeforeShow
-
-//Custom Code @238-2A29BDB7
-// -------------------------
-    //dependiendo del proveedor se muestra o no el tablero del capc
-	$grdSLAsCAPC->Visible = (CCGetParam("s_id_proveedor",0)==1);
-// -------------------------
-//End Custom Code
-
-//Close grdSLAsCAPC_BeforeShow @213-653EDFBE
-    return $grdSLAsCAPC_BeforeShow;
-}
-//End Close grdSLAsCAPC_BeforeShow
-
-//DEL  // -------------------------
-//DEL      
-//DEL      if($grdSLAsCAPC->DataSource->f("IdServCont") ==7){
-//DEL      	$grdSLAsCAPC->Deductiva->SetValue("No Aplica Para Este Servicio");
-//DEL      	$grdSLAsCAPC->pctcalidad->SetValue("No Aplica Para Este Servicio");
-//DEL      } else {
-//DEL      	if(!is_numeric($grdSLAsCAPC->Deductiva->GetValue())){
-//DEL      		$grdSLAsCAPC->Deductiva->SetValue(0);
-//DEL      	}
-//DEL      	if(is_numeric($grdSLAsCAPC->pctcalidad->GetValue())){
-//DEL  			$grdSLAsCAPC->pctcalidad->SetValue(number_format($grdSLAsCAPC->pctcalidad->GetValue(),2,'.','') . " %");
-//DEL      	} else {
-//DEL      		$grdSLAsCAPC->pctcalidad->SetValue("Sin Datos Para Medir");
-//DEL      	}
-//DEL      }
-//DEL      if($grdSLAsCAPC->DataSource->f("IdServCont") !=6){ 
-//DEL      		$grdSLAsCAPC->ReportesCompletos->SetValue("No Aplica Para Este Servicio");
-//DEL      		$grdSLAsCAPC->SLAsNoReportados->SetValue("No Aplica Para Este Servicio");
-//DEL      		$grdSLAsCAPC->DEDUC_OMISION->SetValue("No Aplica Para Este Servicio");
-//DEL      } else {
-//DEL      	if($grdSLAsCAPC->DataSource->f("DEDUC_OMISION")==""){
-//DEL      		$grdSLAsCAPC->ReportesCompletos->SetValue("No Aplica");
-//DEL      		$grdSLAsCAPC->SLAsNoReportados->SetValue("No Aplica");
-//DEL      		$grdSLAsCAPC->DEDUC_OMISION->SetValue("No Aplica");
-//DEL      	} else {
-//DEL      		$grdSLAsCAPC->ReportesCompletos->SetValue(1);
-//DEL      		$grdSLAsCAPC->SLAsNoReportados->SetValue(0);
-//DEL      		$grdSLAsCAPC->DEDUC_OMISION->SetValue("100%");
-//DEL      	}
-//DEL      }
-//DEL      if($grdSLAsCAPC->DataSource->f("IdServCont") <8){ 
-//DEL      	$grdSLAsCAPC->UnidadesActuales->SetValue("No Aplica Para Este Servicio");
-//DEL      	$grdSLAsCAPC->UnidadesAnteriores->SetValue("No Aplica Para Este Servicio");
-//DEL      	$grdSLAsCAPC->Label2->SetValue("No Aplica Para Este Servicio");
-//DEL      } else {
-//DEL      	if($grdSLAsCAPC->UnidadesActuales->GetValue()==""){
-//DEL      		$grdSLAsCAPC->UnidadesActuales->SetValue("Sin Datos Para Medir");
-//DEL      		$grdSLAsCAPC->UnidadesAnteriores->SetValue("Sin Datos Para Medir");
-//DEL      		$grdSLAsCAPC->Label2->SetValue("Sin Datos Para Medir");
-//DEL      	} else {
-//DEL      		$grdSLAsCAPC->Label2->SetValue((100*$grdSLAsCAPC->UnidadesActuales->GetValue()/$grdSLAsCAPC->UnidadesAnteriores->GetValue())-100);
-//DEL      	}
-//DEL      }
-//DEL      if($grdSLAsCAPC->DiasPlaneados->GetValue()==""){
-//DEL     		$grdSLAsCAPC->DiasPlaneados->SetValue("Sin Datos para Medir");
-//DEL      }
-//DEL      if($grdSLAsCAPC->DiasReales->GetValue()==""){
-//DEL     		$grdSLAsCAPC->DiasReales->SetValue("Sin Datos para Medir");
-//DEL     		$grdSLAsCAPC->RETR_ENTREGABLE->SetValue("Sin Datos para Medir");
-//DEL      } else {
-//DEL     		$grdSLAsCAPC->RETR_ENTREGABLE->SetValue(0);
-//DEL      }
-//DEL      
-//DEL      //dependiendo del resultado de los SLAs, se ponen las flechas
-//DEL      //Semáforo de calidad
-//DEL      if($grdSLAsCAPC->DataSource->f("CALIDAD_PROD_TERM")=="" || $grdSLAsCAPC->DataSource->f("IdServCont") ==7){
-//DEL      	$grdSLAsCAPC->imgCALIDAD_PROD_TERM->SetValue("images/left.png");
-//DEL      } else {
-//DEL      	if($grdSLAsCAPC->DataSource->f("CALIDAD_PROD_TERM")!=0){
-//DEL      		$grdSLAsCAPC->imgCALIDAD_PROD_TERM->SetValue("images/up.png");
-//DEL      	} else {
-//DEL      		$grdSLAsCAPC->imgCALIDAD_PROD_TERM->SetValue("images/down.png");
-//DEL      	}
-//DEL      }
-//DEL      //Semáforo de deductiva por omisión
-//DEL      if($grdSLAsCAPC->DataSource->f("IdServCont") ==6){ 
-//DEL      	if($grdSLAsCAPC->DataSource->f("DEDUC_OMISION")==""){
-//DEL      		$grdSLAsCAPC->imgDEDUC_OMISION->SetValue("images/left.png");
-//DEL      	} else {
-//DEL      		if($grdSLAsCAPC->DataSource->f("DEDUC_OMISION")){
-//DEL      			$grdSLAsCAPC->imgDEDUC_OMISION->SetValue("images/up.png");
-//DEL      		} else {
-//DEL      			$grdSLAsCAPC->imgDEDUC_OMISION->SetValue("images/down.png");
-//DEL      		}
-//DEL      	}
-//DEL      }
-//DEL      //Semáforo de eficiencia presupuestal
-//DEL      if($grdSLAsCAPC->DataSource->f("EFIC_PRESUP")==""){
-//DEL      	$grdSLAsCAPC->imgEFIC_PRESUP->SetValue("images/left.png");
-//DEL      } else {
-//DEL      	if($grdSLAsCAPC->DataSource->f("EFIC_PRESUP")){
-//DEL      		$grdSLAsCAPC->imgEFIC_PRESUP->SetValue("images/up.png");
-//DEL      	} else {
-//DEL      		$grdSLAsCAPC->imgEFIC_PRESUP->SetValue("images/down.png");
-//DEL      	}
-//DEL      }
-//DEL      //Semáforo de retraso en entregables
-//DEL      if($grdSLAsCAPC->DataSource->f("RETR_ENTREGABLE")==""){
-//DEL      	$grdSLAsCAPC->imgRETR_ENTREGABLE->SetValue("images/left.png");
-//DEL      } else {
-//DEL      	if($grdSLAsCAPC->DataSource->f("RETR_ENTREGABLE")){
-//DEL      		$grdSLAsCAPC->imgRETR_ENTREGABLE->SetValue("images/up.png");
-//DEL      	} else {
-//DEL      		$grdSLAsCAPC->imgRETR_ENTREGABLE->SetValue("images/down.png");
-//DEL      	}
-//DEL      }
-//DEL      
 //DEL  // -------------------------
 
 //Page_BeforeShow @1-021F8B50

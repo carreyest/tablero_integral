@@ -288,7 +288,7 @@ class clsRecordmc_reporte_ns { //mc_reporte_ns Class @5-B06C9AE8
     // Class variables
 //End Variables
 
-//Class_Initialize Event @5-4A25C8D4
+//Class_Initialize Event @5-A44CDB1E
     function clsRecordmc_reporte_ns($RelativePath, & $Parent)
     {
 
@@ -354,6 +354,17 @@ class clsRecordmc_reporte_ns { //mc_reporte_ns Class @5-B06C9AE8
             $this->Responsable->DataSource->SQL = "SELECT * \n" .
 "FROM mc_c_usuarios {SQL_Where} {SQL_OrderBy}";
             list($this->Responsable->BoundColumn, $this->Responsable->TextColumn, $this->Responsable->DBFormat) = array("Usuario", "Nombre", "");
+            $this->Responsable->DataSource->Parameters["expr186"] = 1;
+            $this->Responsable->DataSource->Parameters["expr187"] = 'CAPC';
+            $this->Responsable->DataSource->wp = new clsSQLParameters();
+            $this->Responsable->DataSource->wp->AddParameter("1", "expr186", ccsInteger, "", "", $this->Responsable->DataSource->Parameters["expr186"], "", false);
+            $this->Responsable->DataSource->wp->AddParameter("2", "expr187", ccsText, "", "", $this->Responsable->DataSource->Parameters["expr187"], "", false);
+            $this->Responsable->DataSource->wp->Criterion[1] = $this->Responsable->DataSource->wp->Operation(opEqual, "[Activo]", $this->Responsable->DataSource->wp->GetDBValue("1"), $this->Responsable->DataSource->ToSQL($this->Responsable->DataSource->wp->GetDBValue("1"), ccsInteger),false);
+            $this->Responsable->DataSource->wp->Criterion[2] = $this->Responsable->DataSource->wp->Operation(opEqual, "[Grupo]", $this->Responsable->DataSource->wp->GetDBValue("2"), $this->Responsable->DataSource->ToSQL($this->Responsable->DataSource->wp->GetDBValue("2"), ccsText),false);
+            $this->Responsable->DataSource->Where = $this->Responsable->DataSource->wp->opAND(
+                 false, 
+                 $this->Responsable->DataSource->wp->Criterion[1], 
+                 $this->Responsable->DataSource->wp->Criterion[2]);
             $this->Responsable->Required = true;
             $this->Fecha = new clsControl(ccsTextBox, "Fecha", "Fecha", ccsDate, array("dd", "/", "mm", "/", "yyyy", " ", "H", ":", "nn"), CCGetRequestParam("Fecha", $Method, NULL), $this);
             $this->Fecha->Required = true;

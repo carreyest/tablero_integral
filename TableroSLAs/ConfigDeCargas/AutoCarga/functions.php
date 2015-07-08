@@ -13,6 +13,34 @@
 
  date_default_timezone_set( 'America/Mexico_City' );
 
+
+function GestorDeErrores($errno, $errstr, $errfile, $errline)
+{
+	global $messages;
+    switch ($errno) {
+    case E_USER_ERROR:
+    	$messages[]="ERROR: [$errno] $errstr en la línea $errline en el archivo $errfile\n";
+        break;
+
+    case E_USER_WARNING:
+        $messages[]="WARNING: [$errno] $errstr\n";
+        break;
+
+    case E_USER_NOTICE:
+        $messages[]="NOTICE: [$errno] $errstr\n";
+        break;
+
+    default:
+        $messages[]="ERROR: [$errno] $errstr en la línea $errline en el archivo $errfile\n";
+        break;
+    }
+
+    /* No ejecutar el gestor de errores interno de PHP */
+    return true;
+}
+
+
+
 function echo_cond($cadena,$salida="lineaComando")
 {
   $pstyle ="style='background-color:#f4f4f4;color:#000000;font-family:Arial; font-size:11px'";

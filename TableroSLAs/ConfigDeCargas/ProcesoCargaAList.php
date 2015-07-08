@@ -182,7 +182,7 @@ class clsRecordproceso_carga_archivosSearch { //proceso_carga_archivosSearch Cla
 
 class clsGridproceso_carga_archivos { //proceso_carga_archivos class @6-EC79DA30
 
-//Variables @6-B90DED6B
+//Variables @6-131A2F0B
 
     // Public variables
     public $ComponentType = "Grid";
@@ -223,9 +223,10 @@ class clsGridproceso_carga_archivos { //proceso_carga_archivos class @6-EC79DA30
     public $Sorter_campo_fecha_cierre;
     public $Sorter_campo_indice;
     public $Sorter_periodicidad;
+    public $Grupo;
 //End Variables
 
-//Class_Initialize Event @6-685270D5
+//Class_Initialize Event @6-7A92E54D
     function clsGridproceso_carga_archivos($RelativePath, & $Parent)
     {
         global $FileName;
@@ -267,6 +268,7 @@ class clsGridproceso_carga_archivos { //proceso_carga_archivos class @6-EC79DA30
         $this->campo_fecha_cierre = new clsControl(ccsLabel, "campo_fecha_cierre", "campo_fecha_cierre", ccsText, "", CCGetRequestParam("campo_fecha_cierre", ccsGet, NULL), $this);
         $this->campo_indice = new clsControl(ccsLabel, "campo_indice", "campo_indice", ccsText, "", CCGetRequestParam("campo_indice", ccsGet, NULL), $this);
         $this->periodicidad = new clsControl(ccsLabel, "periodicidad", "periodicidad", ccsText, "", CCGetRequestParam("periodicidad", ccsGet, NULL), $this);
+        $this->campo_grupo = new clsControl(ccsLabel, "campo_grupo", "campo_grupo", ccsText, "", CCGetRequestParam("campo_grupo", ccsGet, NULL), $this);
         $this->proceso_carga_archivos_Insert = new clsControl(ccsLink, "proceso_carga_archivos_Insert", "proceso_carga_archivos_Insert", ccsText, "", CCGetRequestParam("proceso_carga_archivos_Insert", ccsGet, NULL), $this);
         $this->proceso_carga_archivos_Insert->Parameters = CCGetQueryString("QueryString", array("cve_carga", "ccsForm"));
         $this->proceso_carga_archivos_Insert->Page = "ProcesoCargaAMaint.php";
@@ -284,6 +286,7 @@ class clsGridproceso_carga_archivos { //proceso_carga_archivos class @6-EC79DA30
         $this->Sorter_periodicidad = new clsSorter($this->ComponentName, "Sorter_periodicidad", $FileName, $this);
         $this->Navigator = new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpSimple, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
+        $this->Grupo = new clsSorter($this->ComponentName, "Grupo", $FileName, $this);
     }
 //End Class_Initialize Event
 
@@ -298,7 +301,7 @@ class clsGridproceso_carga_archivos { //proceso_carga_archivos class @6-EC79DA30
     }
 //End Initialize Method
 
-//Show Method @6-8A087474
+//Show Method @6-29D572F4
     function Show()
     {
         $Tpl = CCGetTemplate($this);
@@ -339,6 +342,7 @@ class clsGridproceso_carga_archivos { //proceso_carga_archivos class @6-EC79DA30
             $this->ControlsVisible["campo_fecha_cierre"] = $this->campo_fecha_cierre->Visible;
             $this->ControlsVisible["campo_indice"] = $this->campo_indice->Visible;
             $this->ControlsVisible["periodicidad"] = $this->periodicidad->Visible;
+            $this->ControlsVisible["campo_grupo"] = $this->campo_grupo->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -360,6 +364,7 @@ class clsGridproceso_carga_archivos { //proceso_carga_archivos class @6-EC79DA30
                 $this->campo_fecha_cierre->SetValue($this->DataSource->campo_fecha_cierre->GetValue());
                 $this->campo_indice->SetValue($this->DataSource->campo_indice->GetValue());
                 $this->periodicidad->SetValue($this->DataSource->periodicidad->GetValue());
+                $this->campo_grupo->SetValue($this->DataSource->campo_grupo->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -375,6 +380,7 @@ class clsGridproceso_carga_archivos { //proceso_carga_archivos class @6-EC79DA30
                 $this->campo_fecha_cierre->Show();
                 $this->campo_indice->Show();
                 $this->periodicidad->Show();
+                $this->campo_grupo->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -414,13 +420,14 @@ class clsGridproceso_carga_archivos { //proceso_carga_archivos class @6-EC79DA30
         $this->Sorter_campo_indice->Show();
         $this->Sorter_periodicidad->Show();
         $this->Navigator->Show();
+        $this->Grupo->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
     }
 //End Show Method
 
-//GetErrors Method @6-7E76832C
+//GetErrors Method @6-77E1E2A9
     function GetErrors()
     {
         $errors = "";
@@ -436,6 +443,7 @@ class clsGridproceso_carga_archivos { //proceso_carga_archivos class @6-EC79DA30
         $errors = ComposeStrings($errors, $this->campo_fecha_cierre->Errors->ToString());
         $errors = ComposeStrings($errors, $this->campo_indice->Errors->ToString());
         $errors = ComposeStrings($errors, $this->periodicidad->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->campo_grupo->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -446,7 +454,7 @@ class clsGridproceso_carga_archivos { //proceso_carga_archivos class @6-EC79DA30
 
 class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_carga_archivosDataSource Class @6-C2127757
 
-//DataSource Variables @6-914ADA45
+//DataSource Variables @6-2AA4F17C
     public $Parent = "";
     public $CCSEvents = "";
     public $CCSEventResult;
@@ -470,9 +478,10 @@ class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_ca
     public $campo_fecha_cierre;
     public $campo_indice;
     public $periodicidad;
+    public $campo_grupo;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @6-EEA41850
+//DataSourceClass_Initialize Event @6-BB0DEDF4
     function clsproceso_carga_archivosDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -502,11 +511,13 @@ class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_ca
         
         $this->periodicidad = new clsField("periodicidad", ccsText, "");
         
+        $this->campo_grupo = new clsField("campo_grupo", ccsText, "");
+        
 
     }
 //End DataSourceClass_Initialize Event
 
-//SetOrder Method @6-BBBD2719
+//SetOrder Method @6-8ACA22EA
     function SetOrder($SorterName, $SorterDirection)
     {
         $this->Order = "";
@@ -522,11 +533,12 @@ class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_ca
             "Sorter_filas_sin_datos_excel" => array("filas_sin_datos_excel", ""), 
             "Sorter_campo_fecha_cierre" => array("campo_fecha_cierre", ""), 
             "Sorter_campo_indice" => array("campo_indice", ""), 
-            "Sorter_periodicidad" => array("periodicidad", "")));
+            "Sorter_periodicidad" => array("periodicidad", ""), 
+            "Grupo" => array("grupo", "")));
     }
 //End SetOrder Method
 
-//Prepare Method @6-18DAD5F1
+//Prepare Method @6-13BF4473
     function Prepare()
     {
         global $CCSLocales;
@@ -544,53 +556,31 @@ class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_ca
         $this->wp->AddParameter("10", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
         $this->wp->AddParameter("11", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
         $this->wp->AddParameter("12", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
-        $this->wp->Criterion[1] = $this->wp->Operation(opContains, "cve_carga", $this->wp->GetDBValue("1"), $this->ToSQL($this->wp->GetDBValue("1"), ccsText),false);
-        $this->wp->Criterion[2] = $this->wp->Operation(opContains, "descripcion", $this->wp->GetDBValue("2"), $this->ToSQL($this->wp->GetDBValue("2"), ccsText),false);
-        $this->wp->Criterion[3] = $this->wp->Operation(opContains, "mascara_archivo", $this->wp->GetDBValue("3"), $this->ToSQL($this->wp->GetDBValue("3"), ccsText),false);
-        $this->wp->Criterion[4] = $this->wp->Operation(opContains, "formato_archivo", $this->wp->GetDBValue("4"), $this->ToSQL($this->wp->GetDBValue("4"), ccsText),false);
-        $this->wp->Criterion[5] = $this->wp->Operation(opContains, "repositorio", $this->wp->GetDBValue("5"), $this->ToSQL($this->wp->GetDBValue("5"), ccsText),false);
-        $this->wp->Criterion[6] = $this->wp->Operation(opContains, "mails_responsables", $this->wp->GetDBValue("6"), $this->ToSQL($this->wp->GetDBValue("6"), ccsText),false);
-        $this->wp->Criterion[7] = $this->wp->Operation(opContains, "db_destino", $this->wp->GetDBValue("7"), $this->ToSQL($this->wp->GetDBValue("7"), ccsText),false);
-        $this->wp->Criterion[8] = $this->wp->Operation(opContains, "tabla_destino", $this->wp->GetDBValue("8"), $this->ToSQL($this->wp->GetDBValue("8"), ccsText),false);
-        $this->wp->Criterion[9] = $this->wp->Operation(opContains, "procedimiento_extra", $this->wp->GetDBValue("9"), $this->ToSQL($this->wp->GetDBValue("9"), ccsText),false);
-        $this->wp->Criterion[10] = $this->wp->Operation(opContains, "campo_fecha_cierre", $this->wp->GetDBValue("10"), $this->ToSQL($this->wp->GetDBValue("10"), ccsText),false);
-        $this->wp->Criterion[11] = $this->wp->Operation(opContains, "campo_indice", $this->wp->GetDBValue("11"), $this->ToSQL($this->wp->GetDBValue("11"), ccsText),false);
-        $this->wp->Criterion[12] = $this->wp->Operation(opContains, "periodicidad", $this->wp->GetDBValue("12"), $this->ToSQL($this->wp->GetDBValue("12"), ccsText),false);
-        $this->Where = $this->wp->opOR(
-             true, $this->wp->opOR(
-             false, $this->wp->opOR(
-             false, $this->wp->opOR(
-             false, $this->wp->opOR(
-             false, $this->wp->opOR(
-             false, $this->wp->opOR(
-             false, $this->wp->opOR(
-             false, $this->wp->opOR(
-             false, $this->wp->opOR(
-             false, $this->wp->opOR(
-             false, 
-             $this->wp->Criterion[1], 
-             $this->wp->Criterion[2]), 
-             $this->wp->Criterion[3]), 
-             $this->wp->Criterion[4]), 
-             $this->wp->Criterion[5]), 
-             $this->wp->Criterion[6]), 
-             $this->wp->Criterion[7]), 
-             $this->wp->Criterion[8]), 
-             $this->wp->Criterion[9]), 
-             $this->wp->Criterion[10]), 
-             $this->wp->Criterion[11]), 
-             $this->wp->Criterion[12]);
+        $this->wp->Criterion[1] = $this->wp->Operation(opContains, "periodicidad", $this->wp->GetDBValue("1"), $this->ToSQL($this->wp->GetDBValue("1"), ccsText),false);
+        $this->wp->Criterion[2] = $this->wp->Operation(opContains, "campo_indice", $this->wp->GetDBValue("2"), $this->ToSQL($this->wp->GetDBValue("2"), ccsText),false);
+        $this->wp->Criterion[3] = $this->wp->Operation(opContains, "campo_fecha_cierre", $this->wp->GetDBValue("3"), $this->ToSQL($this->wp->GetDBValue("3"), ccsText),false);
+        $this->wp->Criterion[4] = $this->wp->Operation(opContains, "procedimiento_extra", $this->wp->GetDBValue("4"), $this->ToSQL($this->wp->GetDBValue("4"), ccsText),false);
+        $this->wp->Criterion[5] = $this->wp->Operation(opContains, "tabla_destino", $this->wp->GetDBValue("5"), $this->ToSQL($this->wp->GetDBValue("5"), ccsText),false);
+        $this->wp->Criterion[6] = $this->wp->Operation(opContains, "db_destino", $this->wp->GetDBValue("6"), $this->ToSQL($this->wp->GetDBValue("6"), ccsText),false);
+        $this->wp->Criterion[7] = $this->wp->Operation(opContains, "mails_responsables", $this->wp->GetDBValue("7"), $this->ToSQL($this->wp->GetDBValue("7"), ccsText),false);
+        $this->wp->Criterion[8] = $this->wp->Operation(opContains, "repositorio", $this->wp->GetDBValue("8"), $this->ToSQL($this->wp->GetDBValue("8"), ccsText),false);
+        $this->wp->Criterion[9] = $this->wp->Operation(opContains, "formato_archivo", $this->wp->GetDBValue("9"), $this->ToSQL($this->wp->GetDBValue("9"), ccsText),false);
+        $this->wp->Criterion[10] = $this->wp->Operation(opContains, "mascara_archivo", $this->wp->GetDBValue("10"), $this->ToSQL($this->wp->GetDBValue("10"), ccsText),false);
+        $this->wp->Criterion[11] = $this->wp->Operation(opContains, "descripcion", $this->wp->GetDBValue("11"), $this->ToSQL($this->wp->GetDBValue("11"), ccsText),false);
+        $this->wp->Criterion[12] = $this->wp->Operation(opContains, "cve_carga", $this->wp->GetDBValue("12"), $this->ToSQL($this->wp->GetDBValue("12"), ccsText),false);
+        $this->Where = 
+             $this->wp->Criterion[12];
     }
 //End Prepare Method
 
-//Open Method @6-3DDF1EBA
+//Open Method @6-35E0347B
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->CountSQL = "SELECT COUNT(*)\n\n" .
         "FROM proceso_carga_archivos";
-        $this->SQL = "SELECT TOP {SqlParam_endRecord} cve_carga, descripcion, mascara_archivo, formato_archivo, repositorio, db_destino, tabla_destino, numero_hoja_excel, filas_sin_datos_excel,\n\n" .
-        "campo_fecha_cierre, campo_indice, periodicidad \n\n" .
+        $this->SQL = "SELECT TOP {SqlParam_endRecord} periodicidad, campo_indice, campo_fecha_cierre, filas_sin_datos_excel, numero_hoja_excel, tabla_destino, db_destino, repositorio,\n\n" .
+        "formato_archivo, mascara_archivo, descripcion, cve_carga, grupo \n\n" .
         "FROM proceso_carga_archivos {SQL_Where} {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
@@ -603,7 +593,7 @@ class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_ca
     }
 //End Open Method
 
-//SetValues Method @6-57B80508
+//SetValues Method @6-41CEF252
     function SetValues()
     {
         $this->cve_carga->SetDBValue($this->f("cve_carga"));
@@ -618,6 +608,7 @@ class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_ca
         $this->campo_fecha_cierre->SetDBValue($this->f("campo_fecha_cierre"));
         $this->campo_indice->SetDBValue($this->f("campo_indice"));
         $this->periodicidad->SetDBValue($this->f("periodicidad"));
+        $this->campo_grupo->SetDBValue($this->f("grupo"));
     }
 //End SetValues Method
 

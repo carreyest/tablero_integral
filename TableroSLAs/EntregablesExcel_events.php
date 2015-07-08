@@ -59,12 +59,12 @@ $sSQL='SELECT nombre FROM mc_c_proveedor  WHERE id_proveedor = ' . $vProveedor;
 
 
 
-
-if( $vMes < 10 ){
-	define("FILENAME", "Entregables_" . $vNomProveedor . "_" .  $vAnio . "0" . $vMes .  date("t",mktime(0,0,0,$vMes,1,$vAnio)) . ".xls");
-} else {
-	define("FILENAME", "Entregables_"  . $vNomProveedor . "-" . $vAnio . $vMes . date("t",mktime(0,0,0,$vMes,1,$vAnio)) .  ".xls");
-}
+$StrMes = ( $vMes < 10) ? "0".$vMes: $vMes;
+switch($vNomProveedor){
+	case 'SOFTTEK':  define("FILENAME", "LVMyControlProv_CDS1y3". "_" .  $vAnio . $StrMes .  date("t",mktime(0,0,0,$vMes,1,$vAnio)) . ".xls"); break;
+	case 'HP':  define("FILENAME", "LVMyControlProv_CDS2" . "_" .  $vAnio . $StrMes .  date("t",mktime(0,0,0,$vMes,1,$vAnio)) . ".xls"); break;
+	case 'ITERA':  define("FILENAME", "LVMyControlProv_CAPC" . "_" .  $vAnio . $StrMes .  date("t",mktime(0,0,0,$vMes,1,$vAnio)) . ".xls"); break;
+	}
 
 try
 {

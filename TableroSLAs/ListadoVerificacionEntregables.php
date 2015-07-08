@@ -286,7 +286,7 @@ class clsEditableGridGridEntregables { //GridEntregables Class @93-85CA138F
     public $Sorter_entregable;
 //End Variables
 
-//Class_Initialize Event @93-16D0827E
+//Class_Initialize Event @93-8E772675
     function clsEditableGridGridEntregables($RelativePath, & $Parent)
     {
 
@@ -344,7 +344,7 @@ class clsEditableGridGridEntregables { //GridEntregables Class @93-85CA138F
         $this->proveedor = new clsControl(ccsLabel, "proveedor", "proveedor", ccsText, "", NULL, $this);
         $this->entregado = new clsControl(ccsListBox, "entregado", "Entregado", ccsInteger, "", NULL, $this);
         $this->entregado->DSType = dsListOfValues;
-        $this->entregado->Values = array(array("0", "No"), array("1", "Indef"), array("2", "Si"));
+        $this->entregado->Values = array(array("0", "No"), array("1", "NoAplica"), array("2", "Si"));
         $this->entregado->Required = true;
         $this->comentarios = new clsControl(ccsTextArea, "comentarios", "Comentarios", ccsMemo, "", NULL, $this);
         $this->mes = new clsControl(ccsLabel, "mes", "mes", ccsText, "", NULL, $this);
@@ -1337,7 +1337,7 @@ include_once("./ListadoVerificacionEntregables_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-3DEF468B
+//Initialize Objects @1-3B05BAFC
 $DBcnDisenio = new clsDBcnDisenio();
 $MainPage->Connections["cnDisenio"] = & $DBcnDisenio;
 $Attributes = new clsAttributes("page:");
@@ -1349,15 +1349,15 @@ $Header = new clsHeader("", "Header", $MainPage);
 $Header->Initialize();
 $Buscar = new clsRecordBuscar("", $MainPage);
 $GridEntregables = new clsEditableGridGridEntregables("", $MainPage);
-$GenList = new clsRecordGenList("", $MainPage);
 $lnkexcellista = new clsControl(ccsLink, "lnkexcellista", "lnkexcellista", ccsText, "", CCGetRequestParam("lnkexcellista", ccsGet, NULL), $MainPage);
 $lnkexcellista->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
 $lnkexcellista->Page = "EntregablesExcel.php";
+$GenList = new clsRecordGenList("", $MainPage);
 $MainPage->Header = & $Header;
 $MainPage->Buscar = & $Buscar;
 $MainPage->GridEntregables = & $GridEntregables;
-$MainPage->GenList = & $GenList;
 $MainPage->lnkexcellista = & $lnkexcellista;
+$MainPage->GenList = & $GenList;
 $GridEntregables->Initialize();
 $GenList->Initialize();
 $ScriptIncludes = "";

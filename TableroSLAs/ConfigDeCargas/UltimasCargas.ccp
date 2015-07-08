@@ -27,10 +27,9 @@
 			<Attributes/>
 			<MenuItems>
 				<MenuItem id="33" name="MenuItem2" caption="Procesos de carga" url="ProcesoCargaAList.ccp" target="_self"/>
-				<MenuItem id="34" name="MenuItem3" caption="Layouts de procesos de carga" url="DetalleLayoutList.ccp" target="_self"/>
-				<MenuItem id="35" name="MenuItem1" caption="Log ultimas cargas" url="UltimasCargas.ccp" target="_self"/>
-				<MenuItem id="36" name="MenuItem4" caption="Ejecutar Carga" url="ExecCarga.ccp" target="_self"/>
-			</MenuItems>
+<MenuItem id="34" name="MenuItem3" caption="Layouts de procesos de carga" url="DetalleLayoutList.ccp" target="_self"/>
+<MenuItem id="35" name="MenuItem1" caption="Log ultimas cargas" url="UltimasCargas.ccp" target="_self"/>
+</MenuItems>
 			<Features/>
 		</Menu>
 		<Grid id="18" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="10" name="Grid1" connection="ConnCarga" dataSource="select b.nombreCarga,b.fecha_ejecucion,b.status,b.archivo_cargado, b.registros_en_archivo Registros, P.tabla_destino, b.mensajes
@@ -80,7 +79,6 @@ order by 2 desc" pageSizeLimit="100" pageSize="True" wizardCaption="Ultimas carg
 					<Events/>
 					<Attributes/>
 					<Features/>
-
 				</Label>
 				<Label id="26" fieldSourceType="DBColumn" dataType="Date" html="False" generateSpan="False" name="fecha_ejecucion" fieldSource="fecha_ejecucion" wizardCaption="Fecha Ejecucion" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="Grid1fecha_ejecucion" wizardTheme="{CCS_Style}" wizardThemeVersion="3.0" DBFormat="yyyy-mm-dd HH:nn:ss.S" format="GeneralDate">
 					<Components/>

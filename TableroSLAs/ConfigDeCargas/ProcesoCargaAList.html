@@ -168,6 +168,11 @@ jQuery(function ($) {
           <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_campo_indice --></th>
  
           <th scope="col">
+          <!-- BEGIN Sorter Grupo --><span class="Sorter"><a href="{Sort_URL}" id="proceso_carga_archivosGrupo">Grupo</a> 
+          <!-- BEGIN Asc_On --><img alt="Ascendente" src="../Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img alt="Descendente" src="../Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Grupo -->&nbsp;</th>
+ 
+          <th colspan="4" scope="col">
           <!-- BEGIN Sorter Sorter_periodicidad --><span class="Sorter"><a href="{Sort_URL}" id="proceso_carga_archivosSorter_periodicidad">Periodicidad</a> 
           <!-- BEGIN Asc_On --><img alt="Ascending" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
           <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_periodicidad --></th>
@@ -186,16 +191,17 @@ jQuery(function ($) {
           <td style="TEXT-ALIGN: right">{filas_sin_datos_excel}&nbsp;</td> 
           <td>{campo_fecha_cierre}&nbsp;</td> 
           <td>{campo_indice}&nbsp;</td> 
-          <td>{periodicidad}&nbsp;</td>
+          <td>{campo_grupo}</td> 
+          <td colspan="4">{periodicidad}&nbsp;</td>
         </tr>
  <!-- END Row -->
         <!-- BEGIN NoRecords -->
         <tr class="NoRecords">
-          <td colspan="15">No records</td>
+          <td colspan="16">No records</td>
         </tr>
         <!-- END NoRecords -->
         <tr class="Footer">
-          <td colspan="15"><a href="{proceso_carga_archivos_Insert_Src}" id="proceso_carga_archivosproceso_carga_archivos_Insert">Agregar proceso</a>&nbsp; 
+          <td colspan="16"><a href="{proceso_carga_archivos_Insert_Src}" id="proceso_carga_archivosproceso_carga_archivos_Insert">Agregar proceso</a>&nbsp; 
             <!-- BEGIN Navigator Navigator --><span class="Navigator">Records per page 
             <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
               <option selected value="">-</option>

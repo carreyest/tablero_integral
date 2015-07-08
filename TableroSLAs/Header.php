@@ -65,7 +65,7 @@ class clsHeader { //Header class @1-CC982CB1
     }
 //End Operations Method
 
-//Initialize Method @1-A39F8947
+//Initialize Method @1-E7965F0F
     function Initialize($Path = "")
     {
         global $FileName;
@@ -112,6 +112,8 @@ class clsHeader { //Header class @1-CC982CB1
         $this->Link1 = new clsControl(ccsLink, "Link1", "Link1", ccsText, "", CCGetRequestParam("Link1", ccsGet, NULL), $this);
         $this->Link1->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
         $this->Link1->Page = $this->RelativePath . "Logout.php";
+        $this->img_abre_pantalla = new clsControl(ccsImageLink, "img_abre_pantalla", "img_abre_pantalla", ccsText, "", CCGetRequestParam("img_abre_pantalla", ccsGet, NULL), $this);
+        $this->img_abre_pantalla->Page = $this->RelativePath . "MuestraReporte.php";
         $this->Panel2 = new clsPanel("Panel2", $this);
         $this->Link4 = new clsControl(ccsLink, "Link4", "Link4", ccsText, "", CCGetRequestParam("Link4", ccsGet, NULL), $this);
         $this->Link4->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
@@ -129,12 +131,15 @@ class clsHeader { //Header class @1-CC982CB1
         $this->pnlMenuAdmin->AddComponent("lkAdmin", $this->lkAdmin);
         $this->Panel1->AddComponent("lSesion", $this->lSesion);
         $this->Panel1->AddComponent("Link1", $this->Link1);
+        $this->Panel1->AddComponent("img_abre_pantalla", $this->img_abre_pantalla);
         $this->Panel2->AddComponent("Link4", $this->Link4);
         $this->Panel2->AddComponent("Link5", $this->Link5);
         $this->BindEvents();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnInitializeView", $this);
         $this->lkIncidentes->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
         $this->lkIncidentes->Parameters = CCAddParam($this->lkIncidentes->Parameters, "s_mes_param", CCGetParam("s_MesReporte"));
+        $this->img_abre_pantalla->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
+        $this->img_abre_pantalla->Parameters = CCAddParam($this->img_abre_pantalla->Parameters, "fullscreen", 1);
     }
 //End Initialize Method
 

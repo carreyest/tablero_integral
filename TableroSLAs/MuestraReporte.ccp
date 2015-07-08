@@ -46,15 +46,33 @@ ORDER BY Nombre" pageSizeLimit="100" wizardCaption="Reportes" changedCaptionRepo
 					<Components>
 						<Link id="18" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" preserveParameters="GET" name="Nombre" fieldSource="Nombre" fieldTableSource="ReportesMyM" wizardCaption="Nombre" wizardIsPassword="False" linkProperties="{'textSource':'','textSourceDB':'Nombre','hrefSource':'','hrefSourceDB':'Nombre','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'IdReporte','parameterName':'IdReporte'},'length':1,'objectType':'linkParameters'}}" PathID="ReportesMyMDetailNombre" urlType="Relative" wizardUseTemplateBlock="False">
 							<Components/>
-							<Events/>
+							<Events>
+								<Event name="BeforeShow" type="Server">
+									<Actions>
+										<Action actionName="Custom Code" actionCategory="General" id="25"/>
+									</Actions>
+								</Event>
+							</Events>
 							<LinkParameters>
 								<LinkParameter id="19" sourceType="DataField" name="IdReporte" source="IdReporte"/>
 							</LinkParameters>
 							<Attributes/>
 							<Features/>
 						</Link>
+						<Hidden id="26" fieldSourceType="DBColumn" dataType="Integer" name="Hidden1" PathID="ReportesMyMDetailHidden1" fieldSource="IdReporte">
+							<Components/>
+							<Events/>
+							<Attributes/>
+							<Features/>
+						</Hidden>
 					</Components>
-					<Events/>
+					<Events>
+						<Event name="BeforeShow" type="Server">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="24"/>
+							</Actions>
+						</Event>
+					</Events>
 					<Attributes/>
 					<Features/>
 				</Section>
@@ -91,7 +109,13 @@ ORDER BY Nombre" pageSizeLimit="100" wizardCaption="Reportes" changedCaptionRepo
 					<Features/>
 				</Section>
 			</Components>
-			<Events/>
+			<Events>
+				<Event name="BeforeShow" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="21"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters/>
 			<JoinTables>
 			</JoinTables>
@@ -111,6 +135,14 @@ ORDER BY Nombre" pageSizeLimit="100" wizardCaption="Reportes" changedCaptionRepo
 			<Attributes/>
 			<Features/>
 		</Report>
+		<ImageLink id="28" visible="Yes" fieldSourceType="DBColumn" dataType="Text" hrefType="Page" urlType="Relative" preserveParameters="GET" name="ImageLink2" PathID="ImageLink2" hrefSource="MuestraReporte.ccp" linkProperties="{'textSource':'images/cierra_verde.jpg','textSourceDB':'','hrefSource':'MuestraReporte.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':3,'objectType':'linkParameters','0':{'sourceType':'URL','parameterSource':'1','parameterName':'fullscreen'},'1':{'sourceType':'URL','parameterSource':'0','parameterName':'fullscreen'},'2':{'sourceType':'Expression','parameterSource':'0','parameterName':'fullscreen'}}}"><Components/>
+			<Events/>
+			<LinkParameters>
+				<LinkParameter id="29" sourceType="Expression" format="yyyy-mm-dd" name="fullscreen" source="0"/>
+			</LinkParameters>
+			<Attributes/>
+			<Features/>
+		</ImageLink>
 	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="MuestraReporte_events.php" forShow="False" comment="//" codePage="windows-1252"/>

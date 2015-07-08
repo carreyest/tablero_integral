@@ -13,12 +13,13 @@ include_once(RelativePath . "/Navigator.php");
 include_once(RelativePath . "/Header.php");
 //End Include Page implementation
 
-//ReportesMyM ReportGroup class @5-9169214C
+//ReportesMyM ReportGroup class @5-E436748F
 class clsReportGroupReportesMyM {
     public $GroupType;
     public $mode; //1 - open, 2 - close
     public $grupo, $_grupoAttributes;
     public $Nombre, $_NombrePage, $_NombreParameters, $_NombreAttributes;
+    public $Hidden1, $_Hidden1Attributes;
     public $Attributes;
     public $ReportTotalIndex = 0;
     public $PageTotalIndex;
@@ -34,6 +35,7 @@ class clsReportGroupReportesMyM {
     function SetControls($PrevGroup = "") {
         $this->grupo = $this->Parent->grupo->Value;
         $this->Nombre = $this->Parent->Nombre->Value;
+        $this->Hidden1 = $this->Parent->Hidden1->Value;
     }
 
     function SetTotalControls($mode = "", $PrevGroup = "") {
@@ -41,6 +43,7 @@ class clsReportGroupReportesMyM {
         $this->_NombreParameters = $this->Parent->Nombre->Parameters;
         $this->_grupoAttributes = $this->Parent->grupo->Attributes->GetAsArray();
         $this->_NombreAttributes = $this->Parent->Nombre->Attributes->GetAsArray();
+        $this->_Hidden1Attributes = $this->Parent->Hidden1->Attributes->GetAsArray();
         $this->_NavigatorAttributes = $this->Parent->Navigator->Attributes->GetAsArray();
     }
     function SyncWithHeader(& $Header) {
@@ -54,13 +57,17 @@ class clsReportGroupReportesMyM {
         $Header->_NombreAttributes = $this->_NombreAttributes;
         $this->Parent->Nombre->Value = $Header->Nombre;
         $this->Parent->Nombre->Attributes->RestoreFromArray($Header->_NombreAttributes);
+        $this->Hidden1 = $Header->Hidden1;
+        $Header->_Hidden1Attributes = $this->_Hidden1Attributes;
+        $this->Parent->Hidden1->Value = $Header->Hidden1;
+        $this->Parent->Hidden1->Attributes->RestoreFromArray($Header->_Hidden1Attributes);
     }
     function ChangeTotalControls() {
     }
 }
 //End ReportesMyM ReportGroup class
 
-//ReportesMyM GroupsCollection class @5-AFD838C8
+//ReportesMyM GroupsCollection class @5-B117C0ED
 class clsGroupsCollectionReportesMyM {
     public $Groups;
     public $mPageCurrentHeaderIndex;
@@ -94,6 +101,7 @@ class clsGroupsCollectionReportesMyM {
     function RestoreValues() {
         $this->Parent->grupo->Value = $this->Parent->grupo->initialValue;
         $this->Parent->Nombre->Value = $this->Parent->Nombre->initialValue;
+        $this->Parent->Hidden1->Value = $this->Parent->Hidden1->initialValue;
     }
 
     function OpenPage() {
@@ -283,7 +291,7 @@ class clsReportReportesMyM { //ReportesMyM Class @5-846FA4A6
     public $grupo_HeaderControls, $grupo_FooterControls;
 //End ReportesMyM Variables
 
-//Class_Initialize Event @5-6793B17B
+//Class_Initialize Event @5-57885CAD
     function clsReportReportesMyM($RelativePath = "", & $Parent)
     {
         global $FileName;
@@ -334,6 +342,7 @@ class clsReportReportesMyM { //ReportesMyM Class @5-846FA4A6
         $this->grupo = new clsControl(ccsReportLabel, "grupo", "grupo", ccsText, "", "", $this);
         $this->Nombre = new clsControl(ccsLink, "Nombre", "Nombre", ccsText, "", CCGetRequestParam("Nombre", ccsGet, NULL), $this);
         $this->Nombre->Page = "";
+        $this->Hidden1 = new clsControl(ccsHidden, "Hidden1", "Hidden1", ccsInteger, "", CCGetRequestParam("Hidden1", ccsGet, NULL), $this);
         $this->NoRecords = new clsPanel("NoRecords", $this);
         $this->Navigator = new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
@@ -351,31 +360,33 @@ class clsReportReportesMyM { //ReportesMyM Class @5-846FA4A6
     }
 //End Initialize Method
 
-//CheckErrors Method @5-53372D80
+//CheckErrors Method @5-4D64EE79
     function CheckErrors()
     {
         $errors = false;
         $errors = ($errors || $this->grupo->Errors->Count());
         $errors = ($errors || $this->Nombre->Errors->Count());
+        $errors = ($errors || $this->Hidden1->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
     }
 //End CheckErrors Method
 
-//GetErrors Method @5-D75F7157
+//GetErrors Method @5-7619AE1D
     function GetErrors()
     {
         $errors = "";
         $errors = ComposeStrings($errors, $this->grupo->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Nombre->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->Hidden1->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
     }
 //End GetErrors Method
 
-//Show Method @5-F21C6949
+//Show Method @5-42947B35
     function Show()
     {
         $Tpl = CCGetTemplate($this);
@@ -402,6 +413,7 @@ class clsReportReportesMyM { //ReportesMyM Class @5-846FA4A6
             $this->DataSource->SetValues();
             $this->grupo->SetValue($this->DataSource->grupo->GetValue());
             $this->Nombre->SetValue($this->DataSource->Nombre->GetValue());
+            $this->Hidden1->SetValue($this->DataSource->Hidden1->GetValue());
             $this->Nombre->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
             $this->Nombre->Parameters = CCAddParam($this->Nombre->Parameters, "IdReporte", $this->DataSource->f("IdReporte"));
             if (count($Groups->Groups) == 0) $Groups->OpenGroup("Report");
@@ -440,6 +452,7 @@ class clsReportReportesMyM { //ReportesMyM Class @5-846FA4A6
             $i = $Groups->Pages[min($this->PageNumber, $Groups->TotalPages) - 1];
             $this->ControlsVisible["grupo"] = $this->grupo->Visible;
             $this->ControlsVisible["Nombre"] = $this->Nombre->Visible;
+            $this->ControlsVisible["Hidden1"] = $this->Hidden1->Visible;
             do {
                 $this->Attributes->RestoreFromArray($items[$i]->Attributes);
                 $this->RowNumber = $items[$i]->RowNumber;
@@ -450,9 +463,12 @@ class clsReportReportesMyM { //ReportesMyM Class @5-846FA4A6
                         $this->Nombre->Page = $items[$i]->_NombrePage;
                         $this->Nombre->Parameters = $items[$i]->_NombreParameters;
                         $this->Nombre->Attributes->RestoreFromArray($items[$i]->_NombreAttributes);
+                        $this->Hidden1->SetValue($items[$i]->Hidden1);
+                        $this->Hidden1->Attributes->RestoreFromArray($items[$i]->_Hidden1Attributes);
                         $this->Detail->CCSEventResult = CCGetEvent($this->Detail->CCSEvents, "BeforeShow", $this->Detail);
                         $this->Attributes->Show();
                         $this->Nombre->Show();
+                        $this->Hidden1->Show();
                         $Tpl->block_path = $ParentPath . "/" . $ReportBlock;
                         if ($this->Detail->Visible)
                             $Tpl->parseto("Section Detail", true, "Section Detail");
@@ -540,7 +556,7 @@ class clsReportReportesMyM { //ReportesMyM Class @5-846FA4A6
 
 class clsReportesMyMDataSource extends clsDBcnDisenio {  //ReportesMyMDataSource Class @5-E64C1439
 
-//DataSource Variables @5-A2DE0246
+//DataSource Variables @5-DE2292CF
     public $Parent = "";
     public $CCSEvents = "";
     public $CCSEventResult;
@@ -553,9 +569,10 @@ class clsReportesMyMDataSource extends clsDBcnDisenio {  //ReportesMyMDataSource
     // Datasource fields
     public $grupo;
     public $Nombre;
+    public $Hidden1;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @5-7F7ABC8A
+//DataSourceClass_Initialize Event @5-5BCE2512
     function clsReportesMyMDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -564,6 +581,8 @@ class clsReportesMyMDataSource extends clsDBcnDisenio {  //ReportesMyMDataSource
         $this->grupo = new clsField("grupo", ccsText, "");
         
         $this->Nombre = new clsField("Nombre", ccsText, "");
+        
+        $this->Hidden1 = new clsField("Hidden1", ccsInteger, "");
         
 
     }
@@ -602,11 +621,12 @@ class clsReportesMyMDataSource extends clsDBcnDisenio {  //ReportesMyMDataSource
     }
 //End Open Method
 
-//SetValues Method @5-EB615676
+//SetValues Method @5-11937448
     function SetValues()
     {
         $this->grupo->SetDBValue($this->f("Grupo"));
         $this->Nombre->SetDBValue($this->f("Nombre"));
+        $this->Hidden1->SetDBValue(trim($this->f("IdReporte")));
     }
 //End SetValues Method
 
@@ -651,7 +671,7 @@ include_once("./MuestraReporte_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-4E521F87
+//Initialize Objects @1-2834C2F8
 $DBcnDisenio = new clsDBcnDisenio();
 $MainPage->Connections["cnDisenio"] = & $DBcnDisenio;
 $Attributes = new clsAttributes("page:");
@@ -664,9 +684,14 @@ $Header->Initialize();
 $lReportContent = new clsControl(ccsLabel, "lReportContent", "lReportContent", ccsText, "", CCGetRequestParam("lReportContent", ccsGet, NULL), $MainPage);
 $lReportContent->HTML = true;
 $ReportesMyM = new clsReportReportesMyM("", $MainPage);
+$ImageLink2 = new clsControl(ccsImageLink, "ImageLink2", "ImageLink2", ccsText, "", CCGetRequestParam("ImageLink2", ccsGet, NULL), $MainPage);
+$ImageLink2->Page = "MuestraReporte.php";
 $MainPage->Header = & $Header;
 $MainPage->lReportContent = & $lReportContent;
 $MainPage->ReportesMyM = & $ReportesMyM;
+$MainPage->ImageLink2 = & $ImageLink2;
+$ImageLink2->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
+$ImageLink2->Parameters = CCAddParam($ImageLink2->Parameters, "fullscreen", 0);
 $ReportesMyM->Initialize();
 $ScriptIncludes = "";
 $SList = explode("|", $Scripts);
@@ -719,10 +744,11 @@ if($Redirect)
 }
 //End Go to destination page
 
-//Show Page @1-D4E43754
+//Show Page @1-E06F5EF8
 $Header->Show();
 $ReportesMyM->Show();
 $lReportContent->Show();
+$ImageLink2->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);

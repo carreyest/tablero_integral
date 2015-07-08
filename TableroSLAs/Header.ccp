@@ -1,7 +1,7 @@
 <Page id="1" templateExtension="html" relativePath="." fullRelativePath="." secured="False" urlType="Relative" isIncluded="True" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="{CCS_Style}" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions" PathID="Header">
 	<Components>
 		<ImageLink id="11" visible="Yes" fieldSourceType="DBColumn" dataType="Text" hrefType="Page" urlType="Relative" preserveParameters="GET" name="ImageLink1" PathID="HeaderImageLink1" linkProperties="{&quot;textSource&quot;:&quot;x&quot;,&quot;textSourceDB&quot;:&quot;&quot;,&quot;hrefSource&quot;:&quot;&quot;,&quot;hrefSourceDB&quot;:&quot;&quot;,&quot;title&quot;:&quot;&quot;,&quot;target&quot;:&quot;&quot;,&quot;name&quot;:&quot;&quot;,&quot;linkParameters&quot;:{&quot;length&quot;:0,&quot;objectType&quot;:&quot;linkParameters&quot;}}">
-<Components/>
+			<Components/>
 			<Events/>
 			<LinkParameters/>
 			<Attributes/>
@@ -109,7 +109,16 @@
 					<Attributes/>
 					<Features/>
 				</Link>
-			</Components>
+				<ImageLink id="25" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" hrefType="Page" urlType="Relative" preserveParameters="GET" name="img_abre_pantalla" PathID="HeaderPanel1img_abre_pantalla" linkProperties="{'textSource':'images/abre_verde.jpg','textSourceDB':'','hrefSource':'MuestraReporte.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':2,'objectType':'linkParameters','0':{'sourceType':'Expression','parameterSource':'fullscreen','parameterName':'fullscreen'},'1':{'sourceType':'Expression','parameterSource':'1','parameterName':'fullscreen'}}}" hrefSource="MuestraReporte.ccp">
+<Components/>
+<Events/>
+<LinkParameters>
+<LinkParameter id="26" sourceType="Expression" name="fullscreen" source="1"/>
+</LinkParameters>
+<Attributes/>
+<Features/>
+</ImageLink>
+</Components>
 			<Events/>
 			<Attributes/>
 			<Features/>

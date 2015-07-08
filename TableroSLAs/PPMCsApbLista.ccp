@@ -25,7 +25,8 @@ SELECT DISTINCT REQ_CAMBIO_ID, DESC_BREVE, SERVICIO_NEGOCIO, TIPO_Solicitud, C.F
 UNION ALL
 SELECT DISTINCT ID_CC, NOMBRE_RO, SERVICIO_NEGOCIO, MOTIVO_CAMBIO, C.FECHA_CARGA, ID_RO, c.slo
 	FROM PPMC_CAMBIOS_RO C inner join PPMC_RO_AS  on PPMC_RO_AS.REQUEST_ID  = C.ID_RO  
- ) as DatosPPMC on DatosPPMC.ID_PPMC = numero 	and u.mes = month(FECHA_CARGA) and u.anio = YEAR(FECHA_CARGA) and isnull(DatosPPMC.slo,0) = u.slo
+ ) as DatosPPMC on DatosPPMC.ID_PPMC = numero 	and u.mes = month(FECHA_CARGA) and u.anio = YEAR(FECHA_CARGA) 
+ and (isnull(DatosPPMC.slo,0) = u.slo or DatosPPMC.fecha_carga &gt; '2015-06-01') -- a partir de este corte ya no hay dos cargas
 inner join mc_c_proveedor p on p.id_proveedor = u.id_proveedor 
 left join mc_calificacion_rs_MC c on c.id_ppmc = numero and c.MesReporte = u.mes and u.anio = c.AnioReporte and c.iduniverso= u.id  
 left join mc_info_rs_ap_ec i on i.id = u.id
@@ -37,7 +38,7 @@ where (mes = {s_mesparam} or {s_mesparam}=0)
 	AND (u.numero ='{s_numero}' OR 0='{s_numero}')
 	and (tipo='PA' or tipo='AC')
 	and (u.analista like '%{sAnalista}%' or u.analista  is null)
-	and u.slo= {sSLO} " pageSizeLimit="100" pageSize="True" wizardCaption="Requerimientos de Apertura" wizardThemeApplyTo="Page" wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No hay registros" wizardGridPagingType="Simple" wizardUseSearch="False" wizardAddNbsp="True" gridTotalRecords="False" wizardAddPanels="False" wizardType="Grid" wizardUseInterVariables="False" addTemplatePanel="False" changedCaptionGrid="True" gridExtendedHTML="False" PathID="grdReqsApertura" wizardAllowSorting="True">
+	and u.slo= {sSLO}" pageSizeLimit="100" pageSize="True" wizardCaption="Requerimientos de Apertura" wizardThemeApplyTo="Page" wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No hay registros" wizardGridPagingType="Simple" wizardUseSearch="False" wizardAddNbsp="True" gridTotalRecords="False" wizardAddPanels="False" wizardType="Grid" wizardUseInterVariables="False" addTemplatePanel="False" changedCaptionGrid="True" gridExtendedHTML="False" PathID="grdReqsApertura" wizardAllowSorting="True">
 			<Components>
 				<Sorter id="6" visible="True" name="Sorter_ID_PPMC" column="ID_PPMC" wizardCaption="ID PPMC" wizardSortingType="SimpleDir" wizardControl="ID_PPMC" wizardAddNbsp="False" PathID="grdReqsAperturaSorter_ID_PPMC">
 					<Components/>
@@ -295,20 +296,20 @@ where (mes = {s_mesparam} or {s_mesparam}=0)
 					<Events/>
 					<TableParameters>
 						<TableParameter id="142" conditionType="Parameter" useIsNull="False" dataType="Integer" defaultValue="3" field="Nivel" logicOperator="And" parameterSource="Nivel" parameterType="URL" searchConditionType="Equal"/>
-<TableParameter id="143" conditionType="Parameter" useIsNull="False" dataType="Text" field="Grupo" logicOperator="And" parameterSource="'CAPC'" parameterType="Expression" searchConditionType="Equal"/>
-</TableParameters>
+						<TableParameter id="143" conditionType="Parameter" useIsNull="False" dataType="Text" field="Grupo" logicOperator="And" parameterSource="'CAPC'" parameterType="Expression" searchConditionType="Equal"/>
+					</TableParameters>
 					<SPParameters/>
 					<SQLParameters/>
 					<JoinTables>
 						<JoinTable id="141" posHeight="180" posLeft="10" posTop="10" posWidth="118" tableName="mc_c_usuarios"/>
-</JoinTables>
+					</JoinTables>
 					<JoinLinks/>
 					<Fields>
 						<Field id="144" fieldName="*"/>
-</Fields>
+					</Fields>
 					<PKFields>
 						<PKField id="145" dataType="Integer" fieldName="Id" tableName="mc_c_usuarios"/>
-</PKFields>
+					</PKFields>
 					<Attributes/>
 					<Features/>
 				</ListBox>

@@ -378,7 +378,7 @@ class clsgrdReqsAperturaDataSource extends clsDBcnDisenio {  //grdReqsAperturaDa
     }
 //End Prepare Method
 
-//Open Method @3-D1FECD72
+//Open Method @3-BD7F1B3A
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -402,7 +402,8 @@ class clsgrdReqsAperturaDataSource extends clsDBcnDisenio {  //grdReqsAperturaDa
         "UNION ALL\n" .
         "SELECT DISTINCT ID_CC, NOMBRE_RO, SERVICIO_NEGOCIO, MOTIVO_CAMBIO, C.FECHA_CARGA, ID_RO, c.slo\n" .
         "	FROM PPMC_CAMBIOS_RO C inner join PPMC_RO_AS  on PPMC_RO_AS.REQUEST_ID  = C.ID_RO  \n" .
-        " ) as DatosPPMC on DatosPPMC.ID_PPMC = numero 	and u.mes = month(FECHA_CARGA) and u.anio = YEAR(FECHA_CARGA) and isnull(DatosPPMC.slo,0) = u.slo\n" .
+        " ) as DatosPPMC on DatosPPMC.ID_PPMC = numero 	and u.mes = month(FECHA_CARGA) and u.anio = YEAR(FECHA_CARGA) \n" .
+        " and (isnull(DatosPPMC.slo,0) = u.slo or DatosPPMC.fecha_carga > '2015-06-01') -- a partir de este corte ya no hay dos cargas\n" .
         "inner join mc_c_proveedor p on p.id_proveedor = u.id_proveedor \n" .
         "left join mc_calificacion_rs_MC c on c.id_ppmc = numero and c.MesReporte = u.mes and u.anio = c.AnioReporte and c.iduniverso= u.id  \n" .
         "left join mc_info_rs_ap_ec i on i.id = u.id\n" .
@@ -414,7 +415,7 @@ class clsgrdReqsAperturaDataSource extends clsDBcnDisenio {  //grdReqsAperturaDa
         "	AND (u.numero ='" . $this->SQLValue($this->wp->GetDBValue("5"), ccsInteger) . "' OR 0='" . $this->SQLValue($this->wp->GetDBValue("5"), ccsInteger) . "')\n" .
         "	and (tipo='PA' or tipo='AC')\n" .
         "	and (u.analista like '%" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "%' or u.analista  is null)\n" .
-        "	and u.slo= " . $this->SQLValue($this->wp->GetDBValue("6"), ccsInteger) . " ) cnt";
+        "	and u.slo= " . $this->SQLValue($this->wp->GetDBValue("6"), ccsInteger) . ") cnt";
         $this->SQL = "select cast(u.numero as integer) ID_PPMC, DatosPPMC.NAME, \n" .
         "	isnull(sn.nombre,  DatosPPMC.SERVICIO_NEGOCIO ) SERVICIO_NEGOCIO , \n" .
         "	isnull(t.Descripcion,DatosPPMC.TIPO_REQUERIMIENTO) TIPO_REQUERIMIENTO,\n" .
@@ -435,7 +436,8 @@ class clsgrdReqsAperturaDataSource extends clsDBcnDisenio {  //grdReqsAperturaDa
         "UNION ALL\n" .
         "SELECT DISTINCT ID_CC, NOMBRE_RO, SERVICIO_NEGOCIO, MOTIVO_CAMBIO, C.FECHA_CARGA, ID_RO, c.slo\n" .
         "	FROM PPMC_CAMBIOS_RO C inner join PPMC_RO_AS  on PPMC_RO_AS.REQUEST_ID  = C.ID_RO  \n" .
-        " ) as DatosPPMC on DatosPPMC.ID_PPMC = numero 	and u.mes = month(FECHA_CARGA) and u.anio = YEAR(FECHA_CARGA) and isnull(DatosPPMC.slo,0) = u.slo\n" .
+        " ) as DatosPPMC on DatosPPMC.ID_PPMC = numero 	and u.mes = month(FECHA_CARGA) and u.anio = YEAR(FECHA_CARGA) \n" .
+        " and (isnull(DatosPPMC.slo,0) = u.slo or DatosPPMC.fecha_carga > '2015-06-01') -- a partir de este corte ya no hay dos cargas\n" .
         "inner join mc_c_proveedor p on p.id_proveedor = u.id_proveedor \n" .
         "left join mc_calificacion_rs_MC c on c.id_ppmc = numero and c.MesReporte = u.mes and u.anio = c.AnioReporte and c.iduniverso= u.id  \n" .
         "left join mc_info_rs_ap_ec i on i.id = u.id\n" .
@@ -447,7 +449,7 @@ class clsgrdReqsAperturaDataSource extends clsDBcnDisenio {  //grdReqsAperturaDa
         "	AND (u.numero ='" . $this->SQLValue($this->wp->GetDBValue("5"), ccsInteger) . "' OR 0='" . $this->SQLValue($this->wp->GetDBValue("5"), ccsInteger) . "')\n" .
         "	and (tipo='PA' or tipo='AC')\n" .
         "	and (u.analista like '%" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "%' or u.analista  is null)\n" .
-        "	and u.slo= " . $this->SQLValue($this->wp->GetDBValue("6"), ccsInteger) . " ";
+        "	and u.slo= " . $this->SQLValue($this->wp->GetDBValue("6"), ccsInteger) . "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);

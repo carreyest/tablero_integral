@@ -60,11 +60,26 @@ function Header_BeforeShow(& $sender)
     	}
     }
     if(CCGetGroupID()<5){
+<<<<<<< HEAD
+    	$Component->pnlMenuAdmin->Visible=false;
+    }
+    global $id_repo;
+    $id_repo=CCGetParam("IdReporte",0) ; 
+   if($id_repo<1)
+    	$Component->img_abre_pantalla->Visible=false;
+    	
+    global $FileName;
+    //echo  $FileName."hola";
+    if ($FileName!="MuestraReporte.php"){
+    	$Component->img_abre_pantalla->Visible=false;
+   }
+=======
     	if(CCGetSession("GrupoValoracion")!="CAPC"){
     		$Component->pnlMenuAdmin->Visible=false;
     	}
     }
     
+>>>>>>> origin/master
 // -------------------------
 //End Custom Code
 

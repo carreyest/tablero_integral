@@ -133,14 +133,14 @@ class clsRecordmc_info_rs_cr_RF { //mc_info_rs_cr_RF Class @3-697396CF
     }
 //End Class_Initialize Event
 
-//Initialize Method @3-4F76030F
+//Initialize Method @3-8CCBE5AE
     function Initialize()
     {
 
         if(!$this->Visible)
             return;
 
-        $this->DataSource->Parameters["urlId"] = CCGetFromGet("Id", NULL);
+        $this->DataSource->Parameters["urlsID"] = CCGetFromGet("sID", NULL);
     }
 //End Initialize Method
 
@@ -596,13 +596,13 @@ class clsmc_info_rs_cr_RFDataSource extends clsDBcnDisenio {  //mc_info_rs_cr_RF
     }
 //End DataSourceClass_Initialize Event
 
-//Prepare Method @3-D6C1B08E
+//Prepare Method @3-F4F588D0
     function Prepare()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->wp = new clsSQLParameters($this->ErrorBlock);
-        $this->wp->AddParameter("1", "urlId", ccsInteger, "", "", $this->Parameters["urlId"], "", false);
+        $this->wp->AddParameter("1", "urlsID", ccsInteger, "", "", $this->Parameters["urlsID"], "", false);
         $this->AllParametersSet = $this->wp->AllParamsSet();
         $this->wp->Criterion[1] = $this->wp->Operation(opEqual, "[Id]", $this->wp->GetDBValue("1"), $this->ToSQL($this->wp->GetDBValue("1"), ccsInteger),false);
         $this->Where = 

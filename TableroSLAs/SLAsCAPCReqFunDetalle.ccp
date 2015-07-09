@@ -248,19 +248,19 @@
 				</Event>
 			</Events>
 			<TableParameters>
-				<TableParameter id="80" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Id" logicOperator="And" orderNumber="1" parameterSource="Id" parameterType="URL" searchConditionType="Equal"/>
+				<TableParameter id="84" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Id" logicOperator="And" orderNumber="1" parameterSource="sID" parameterType="URL" searchConditionType="Equal"/>
 </TableParameters>
 			<SPParameters/>
 			<SQLParameters/>
 			<JoinTables>
-				<JoinTable id="79" posHeight="180" posLeft="10" posTop="10" posWidth="137" tableName="mc_info_capc_cr_RF"/>
+				<JoinTable id="87" tableName="mc_info_capc_cr_RF"/>
 </JoinTables>
 			<JoinLinks/>
 			<Fields>
-				<Field id="81" fieldName="*"/>
+				<Field id="85" fieldName="*"/>
 </Fields>
 			<PKFields>
-				<PKField id="82" dataType="Integer" fieldName="Id" tableName="mc_info_capc_cr_RF"/>
+				<PKField id="86" dataType="Integer" fieldName="Id" tableName="mc_info_capc_cr_RF"/>
 </PKFields>
 			<ISPParameters/>
 			<ISQLParameters/>

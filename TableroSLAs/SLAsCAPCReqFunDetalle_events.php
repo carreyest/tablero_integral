@@ -57,9 +57,9 @@ function mc_info_rs_cr_RF_BeforeShow(& $sender)
     $db= new clsDBcnDisenio;
     $sql="SELECT u.id, u.IdEstimacion, ID_PPMC, ESTIMACION_ID,  requerimiento_relacionado,  RESULTADO_ESTIMACION,  " .
 			" UNIDADES_RESULTANTES, TIPO_UNIDAD, ESFUERZO, PROVEEDOR, ESTADO_REQ_ESTIM,   u.mes, u.anio, m.Mes NomMes  " .
-			" from mc_universo_cds u  inner join mc_c_mes m on m.IdMes = u.mes  LEFT JOIN PPMC_ESTIMACION on " . 
+			" from mc_calificacion_capc  u  inner join mc_c_mes m on m.IdMes = u.mes  LEFT JOIN PPMC_ESTIMACION on " . 
 			" PPMC_ESTIMACION.ID_PPMC = u.numero  where month(fecha_carga)=u.mes and YEAR(FECHA_CARGA) = u.anio " .
-			" AND u.id = " . CCGetParam("Id");
+			" AND u.id = " . CCGetParam("sID");
     $db->query($sql);
     if($db->next_record()){ // si tiene registro de estimacion
     		$sPPMC = $db->f("ID_PPMC");
@@ -120,9 +120,10 @@ function mc_info_rs_cr_RF_BeforeShow(& $sender)
 		}
     } else {// si no tiene registro de estimación 
     	$sql="SELECT ID_PPMC, NAME, SERVICIO_NEGOCIO, TIPO_REQUERIMIENTO, FECHA_CARGA,  u.mes, u.anio  " .
-			" from mc_universo_cds u  LEFT JOIN vw_PPMC_Proy_RO_CC on " . 
+			" from mc_calificacion_capc u  LEFT JOIN vw_PPMC_Proy_RO_CC on " . 
 			" vw_PPMC_Proy_RO_CC.ID_PPMC = u.numero  where month(fecha_carga)=u.mes and YEAR(FECHA_CARGA) = u.anio " .
-			" AND u.id = " . CCGetParam("Id");
+			" AND u.id = " . CCGetParam("sID");
+
     	$db->query($sql);
     	if($db->next_record()){
     		$sPPMC = $db->f("ID_PPMC");
@@ -139,11 +140,11 @@ function mc_info_rs_cr_RF_BeforeShow(& $sender)
     	}
     }
     //se trae la información general del requerimiento
-    $sql = 'SELECT id_servicio_cont, id_servicio_negocio, id_tipo, idestimacion, mc.descripción NombreProyecto, ' .
+    $sql = 'SELECT id_serviciocont, id_servicio_negoico, id_tipo, idestimacion, mc.descripcion NombreProyecto,  ' .
     	' sc.Descripcion  ServContractual, sn.nombre ServNegocio, t.Descripcion TipoPPMC ' .
-		' FROM mc_calificacion_CAPC mc  inner join mc_c_servcontractual sc on sc.id = mc.id_servicio_cont ' .
-		' 		inner join mc_c_servicio   sn on sn.id_servicio   = mc.id_servicio_negocio and sn.id_tipo_servicio =2 ' .
-		' 		inner join mc_c_TipoPPMC t on t.Id = mc.id_tipo WHERE idUniverso= ' . CCGetParam("Id") ;
+		' FROM mc_calificacion_CAPC mc  inner join mc_c_servcontractual sc on sc.id = mc.id_serviciocont  ' .
+		' 		inner join mc_c_servicio   sn on sn.id_servicio   = mc.id_servicio_negoico and sn.id_tipo_servicio =2  ' .
+		' 		inner join mc_c_TipoPPMC t on t.Id = mc.id_tipo  WHERE mc.id = ' . CCGetParam("sID") ;
     $db->query($sql);
 	if($db->next_record()){
 		$mc_info_rs_cr_RF->lTipoRequerimiento->SetValue($db->f("TipoPPMC"));
@@ -156,7 +157,7 @@ function mc_info_rs_cr_RF_BeforeShow(& $sender)
     	$mc_info_rs_cr_RF->Button_Update->Visible = false;	
 	}
 	
-	$flgCerrado=CCDLookUp("Medido","mc_universo_cds","Id=" .CCGetParam("Id",""), $db);
+	$flgCerrado=CCDLookUp("Medido","mc_universo_cds","Id=" .CCGetParam("sID",""), $db);
     if($flgCerrado==1){
     	$mc_info_rs_cr_RF->Button_Insert->Visible= false;
     	$mc_info_rs_cr_RF->Button_Update->Visible = false;
@@ -221,7 +222,7 @@ function mc_info_rs_cr_RF_ds_BeforeExecuteInsert(& $sender)
 // -------------------------
     global $db;
     $db= new clsDBcnDisenio;
-    $sSQL = "SELECT Id_Proveedor, Numero, Mes, Anio FROM mc_universo_cds WHERE Id=" . CCGetParam("Id") ;
+    $sSQL = "SELECT Id_Proveedor, Numero, Mes, Anio FROM mc_calificacion_CAPC WHERE Id=" . CCGetParam("sID") ;
     $db->query($sSQL);
     if($db->next_record()){
     	$sIdProveedor = $db->f(0);
@@ -234,16 +235,16 @@ function mc_info_rs_cr_RF_ds_BeforeExecuteInsert(& $sender)
 			$sCumpleReqFun="NULL";
 	}
     // verifica si existe el PPMC en la tabla de calificación
-    $sSQL="select count(*) from mc_calificacion_CAPC  where Id= " . CCGetParam("Id");
+    $sSQL="select count(*) from mc_calificacion_CAPC  where Id= " . CCGetParam("sID");
     $db->query($sSQL);
     if($db->next_record()){ 
     	if($db->f(0)==0){ // si no existe se inserta
     		$sSQL='INSERT INTO mc_calificacion_CAPC (id_ppmc, id_proveedor,id_servicio_cont , id_servicio_negocio , CUMPL_REQ_FUNC, Id, MesReporte, AnioReporte ) ' .  
     			' VALUES (' . $sPPMC . ',' . $sIdProveedor . ',0,0,'.  $sCumpleReqFun . ',' .
-    			 CCGetparam("Id") . ',' . $sMes . ',' . $sAnio .')';
+    			 CCGetparam("sID") . ',' . $sMes . ',' . $sAnio .')';
     	} else { //si existe se actualiza
     		$sSQL = 'UPDATE  mc_calificacion_CAPC SET CUMPL_REQ_FUNC = ' . $sCumpleReqFun .
-    			' WHERE Id =' . CCGetParam("Id");
+    			' WHERE Id =' . CCGetParam("sID");
     	}
     	$db->query($sSQL);
     }
@@ -270,7 +271,7 @@ function mc_info_rs_cr_RF_ds_BeforeExecuteUpdate(& $sender)
 // -------------------------
     global $db;
     $db= new clsDBcnDisenio;
-    $sSQL = "SELECT Id_Proveedor, Numero, Mes, Anio FROM mc_universo_cds WHERE Id=" . CCGetParam("Id") ;
+    $sSQL = "SELECT Id_Proveedor, Numero, Mes, Anio FROM mc_calificacion_CAPC WHERE Id=" . CCGetParam("sID") ;
     $db->query($sSQL);
     if($db->next_record()){
     	$sIdProveedor = $db->f(0);
@@ -283,7 +284,7 @@ function mc_info_rs_cr_RF_ds_BeforeExecuteUpdate(& $sender)
 			$sCumpleReqFun ="NULL";
 	}
 	$sSQL = 'UPDATE  mc_calificacion_CAPC SET CUMPL_REQ_FUNC = ' .  $sCumpleReqFun .
-    		' WHERE Id =' . CCGetParam("Id");
+    		' WHERE Id =' . CCGetParam("sID");
     $db->query($sSQL);
     $db->close();
     

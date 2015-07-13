@@ -298,23 +298,48 @@
 					<Attributes/>
 					<Features/>
 				</TextArea>
-			</Components>
+				<TextBox id="70" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="IdEstimacion" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="mc_calificacion_capcIdEstimacion" fieldSource="IdEstimacion">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</TextBox>
+<ListBox id="75" visible="Yes" fieldSourceType="DBColumn" sourceType="Table" dataType="Text" returnValueType="Number" name="id_tipo" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Seleccionar Valor" PathID="mc_calificacion_capcid_tipo" connection="cnDisenio" dataSource="mc_c_TipoPPMC" boundColumn="Id" textColumn="Descripcion" fieldSource="id_tipo">
+<Components/>
+<Events/>
+<TableParameters/>
+<SPParameters/>
+<SQLParameters/>
+<JoinTables/>
+<JoinLinks/>
+<Fields/>
+<PKFields/>
+<Attributes/>
+<Features/>
+</ListBox>
+<CheckBox id="76" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" defaultValue="Unchecked" name="SLO" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="mc_calificacion_capcSLO" checkedValue="1" uncheckedValue="0" fieldSource="SLO">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</CheckBox>
+</Components>
 			<Events/>
 			<TableParameters>
-				<TableParameter id="62" conditionType="Parameter" useIsNull="False" dataType="Integer" field="id" logicOperator="And" orderNumber="1" parameterSource="id" parameterType="URL" searchConditionType="Equal"/>
-			</TableParameters>
+				<TableParameter id="72" conditionType="Parameter" useIsNull="False" dataType="Integer" field="id" logicOperator="And" orderNumber="1" parameterSource="id" parameterType="URL" searchConditionType="Equal"/>
+</TableParameters>
 			<SPParameters/>
 			<SQLParameters/>
 			<JoinTables>
-				<JoinTable id="69" tableName="mc_calificacion_capc"/>
+				<JoinTable id="71" posHeight="253" posLeft="10" posTop="10" posWidth="160" tableName="mc_calificacion_capc"/>
 </JoinTables>
 			<JoinLinks/>
 			<Fields>
-				<Field id="63" fieldName="*"/>
-			</Fields>
+				<Field id="73" fieldName="*"/>
+</Fields>
 			<PKFields>
-				<PKField id="64" dataType="Integer" fieldName="id" tableName="mc_calificacion_capc"/>
-			</PKFields>
+				<PKField id="74" dataType="Integer" fieldName="id" tableName="mc_calificacion_capc"/>
+</PKFields>
 			<ISPParameters/>
 			<ISQLParameters/>
 			<IFormElements/>

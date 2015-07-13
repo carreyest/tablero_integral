@@ -430,15 +430,15 @@ function mc_info_rs_ap_EC_ds_BeforeBuildInsert(& $sender)
     $DBcnDisenio->query($sSQL);
     if($DBcnDisenio->next_record()){ 
     	if($DBcnDisenio->f(0)==0){ // si no existe se inserta
-			$sInsert = "insert into mc_calificacion_capc  (id_ppmc, id_proveedor, id_servicio_negoico, id_serviciocont, [descripción], mesreporte, anioreporte, HERR_EST_COST, REQ_SERV,  obs_manuales, id) " .
+			$sInsert = "insert into mc_calificacion_capc  (id_ppmc, id_proveedor, id_servicio_negoico, id_serviciocont, [descripción], mesreporte, anioreporte, HERR_EST_COST, REQ_SERV,  obs_manuales, id, id_tipo) " .
 				" values (" . $vIdPPMC . ", " . $vIdProveedor . ", " . $mc_info_rs_ap_EC->sServicioNegocio->GetValue() . ", " . $mc_info_rs_ap_EC->lstServContractual->GetValue() . ", " . 
-				$mc_info_rs_ap_EC->sTipoRequerimiento->GetValue() . " , '" . $mc_info_rs_ap_EC->hdNombreProyecto->GetValue() . "'," . $vMesReporte . "," . $vAnioReporte . "," .
-				$sCumpleHE . "," . $sCumpleRS . ",'" . str_replace("'","''",$mc_info_rs_ap_EC->Observaciones->GetValue()) . "'," . CCGetParam("sID") . ")";    	
+				$mc_info_rs_ap_EC->lstServContractual->GetValue() . " , '" . $mc_info_rs_ap_EC->hdNombreProyecto->GetValue() . "'," . $vMesReporte . "," . $vAnioReporte . "," .
+				$sCumpleHE . "," . $sCumpleRS . ",'" . str_replace("'","''",$mc_info_rs_ap_EC->Observaciones->GetValue()) . "'," . CCGetParam("sID") . "," . $mc_info_rs_ap_EC->sTipoRequerimiento->GetValue() . ")";    	
     	} else {
     		$sInsert = "update mc_calificacion_capc  " .
 				"set id_servicio_negoico = " . $mc_info_rs_ap_EC->sServicioNegocio->GetValue() .", " .
 				" id_serviciocont=" . $mc_info_rs_ap_EC->lstServContractual->GetValue() .", " .
-				//" id_tipo=" .  $mc_info_rs_ap_EC->sTipoRequerimiento->GetValue() . ", ". 
+				" id_tipo=" .  $mc_info_rs_ap_EC->sTipoRequerimiento->GetValue() . ", ". 
 				" REQ_SERV=" . $sCumpleRS . ", HERR_EST_COST = " . $sCumpleHE .  " " .
 				//" obs_manuales = '" . str_replace("'","''",$mc_info_rs_ap_EC->Observaciones->GetValue())  ."' " .
 				" Where Id =" . CCGetParam("sID");
@@ -532,15 +532,15 @@ function mc_info_rs_ap_EC_BeforeUpdate(& $sender)
     $db->query($sSQL);
     if($db->next_record()){ 
     	if($db->f(0)==0){ // si no existe se inserta
-			$sUpdate="insert into mc_calificacion_capc  (id_ppmc, id_proveedor, id_servicio_negoico, id_serviciocont, [descripción], mesreporte, anioreporte, HERR_EST_COST, REQ_SERV,  obs_manuales, id) " .
+			$sUpdate="insert into mc_calificacion_capc  (id_ppmc, id_proveedor, id_servicio_negoico, id_serviciocont, [descripción], mesreporte, anioreporte, HERR_EST_COST, REQ_SERV,  obs_manuales, id, id_tipo) " .
 				" values (" . $vIdPPMC . ", " . $vIdProveedor . ", " . $mc_info_rs_ap_EC->sServicioNegocio->GetValue() . ", " . $mc_info_rs_ap_EC->lstServContractual->GetValue() . ", " . 
 				"'" . str_replace('\'','',$mc_info_rs_ap_EC->hdNombreProyecto->GetValue()) . "'," . $vMesReporte . "," . $vAnioReporte . "," .
-				$sCumpleHE . "," . $sCumpleRS . ",'" . str_replace("'","''",$mc_info_rs_ap_EC->Observaciones->GetValue()) . "'," . CCGetParam("sID") . ")";    	
+				$sCumpleHE . "," . $sCumpleRS . ",'" . str_replace("'","''",$mc_info_rs_ap_EC->Observaciones->GetValue()) . "'," . CCGetParam("sID") . "," . $mc_info_rs_ap_EC->sTipoRequerimiento->GetValue() . ")";    	
     	} else {
     		$sUpdate="update mc_calificacion_capc  " .
 			"set id_servicio_negoico = " . $mc_info_rs_ap_EC->sServicioNegocio->GetValue() .", " .
 			" id_serviciocont=" . $mc_info_rs_ap_EC->lstServContractual->GetValue() .", " .
-			//" id_tipo=" .  $mc_info_rs_ap_EC->sTipoRequerimiento->GetValue() . ", ". 
+			" id_tipo=" .  $mc_info_rs_ap_EC->sTipoRequerimiento->GetValue() . ", ". 
 			" REQ_SERV=" . $sCumpleRS . ", HERR_EST_COST = " . $sCumpleHE .  " " .
 			//" obs_manuales = '" . str_replace("'","''",$mc_info_rs_ap_EC->Observaciones->GetValue())  ."' " .
 			" Where Id =" . CCGetParam("sID");

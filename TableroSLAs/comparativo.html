@@ -1,0 +1,437 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>historico_cargas_rs</title>
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_Components_doctype.css">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-2504AB44
+</script>
+<script src="ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-FA240378
+</script>
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/ccs-jquery-ui-calendar.css">
+{page:scriptIncludes}
+<script type="text/javascript">
+//End Include User Scripts
+
+//DEL          // -------------------------
+//DEL          // Write your own code here.
+//DEL          window.print();
+//DEL  
+//DEL          // -------------------------
+
+
+//End CCS script
+</script>
+<script type="text/javascript">
+
+/* Optional: Temporarily hide the "tabber" class so it does not "flash"
+   on the page as plain HTML. After tabber runs, the class is changed
+   to "tabberlive" and it will appear. */
+
+document.write('<style type="text/css">.tabber{display:none;}<\/style>');
+
+/*==================================================
+  Set the tabber options (must do this before including tabber.js)
+  ==================================================*/
+var tabberOptions = {
+
+  'cookie':"tabber", /* Name to use for the cookie */
+
+  'onLoad': function(argsObj)
+  {
+    var t = argsObj.tabber;
+    var i;
+
+    /* Optional: Add the id of the tabber to the cookie name to allow
+       for multiple tabber interfaces on the site.  If you have
+       multiple tabber interfaces (even on different pages) I suggest
+       setting a unique id on each one, to avoid having the cookie set
+       the wrong tab.
+    */
+    if (t.id) {
+      t.cookie = t.id + t.cookie;
+    }
+
+    /* If a cookie was previously set, restore the active tab */
+    i = parseInt(getCookie(t.cookie));
+    if (isNaN(i)) { return; }
+    t.tabShow(i);
+   // alert('getCookie(' + t.cookie + ') = ' + i);
+  },
+
+  'onClick':function(argsObj)
+  {
+    var c = argsObj.tabber.cookie;
+    var i = argsObj.index;
+    //alert('setCookie(' + c + ',' + i + ')');
+    setCookie(c, i);
+  }
+};
+
+/*==================================================
+  Cookie functions
+  ==================================================*/
+function setCookie(name, value, expires, path, domain, secure) {
+    document.cookie= name + "=" + escape(value) +
+        ((expires) ? "; expires=" + expires.toGMTString() : "") +
+        ((path) ? "; path=" + path : "") +
+        ((domain) ? "; domain=" + domain : "") +
+        ((secure) ? "; secure" : "");
+}
+
+function getCookie(name) {
+    var dc = document.cookie;
+    var prefix = name + "=";
+    var begin = dc.indexOf("; " + prefix);
+    if (begin == -1) {
+        begin = dc.indexOf(prefix);
+        if (begin != 0) return null;
+    } else {
+        begin += 2;
+    }
+    var end = document.cookie.indexOf(";", begin);
+    if (end == -1) {
+        end = dc.length;
+    }
+    return unescape(dc.substring(begin + prefix.length, end));
+}
+function deleteCookie(name, path, domain) {
+    if (getCookie(name)) {
+        document.cookie = name + "=" +
+            ((path) ? "; path=" + path : "") +
+            ((domain) ? "; domain=" + domain : "") +
+            "; expires=Thu, 01-Jan-70 00:00:01 GMT";
+    }
+}
+
+</script>
+<link rel="stylesheet" type="text/css" href="Styles/Austere4/Style_Components_doctype.css">
+<script src="tabber.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="example.css" media="screen">
+<link rel="stylesheet" type="text/css" href="example-print.css" media="print">
+<link rel="stylesheet" type="text/css" href="Styles/Austere4/jquery-ui.css">
+</head>
+<body>
+{Header} <br>
+<!-- BEGIN Record l_calificacion_incidentes1 -->
+<form id="l_calificacion_incidentes1" method="post" name="{HTMLFormName}" action="{Action}">
+  <table border="0" cellspacing="0" cellpadding="0" align="center" whidth="800">
+    <tr>
+      <td whidth="800">
+        <h1>Comparativo de Métricas</h1>
+      </td>
+    </tr>
+  </table>
+  <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td valign="top">
+        <table class="HeaderAustere4" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeftAustere4"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td> 
+            <td class="thAustere4"><strong>Buscar</strong></td> 
+            <td class="HeaderRightAustere4"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="RecordAustere4" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr id="{@error-block}" class="thAustere4">
+            <td colspan="2">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="ControlsAustere4">
+            <td class="thAustere4" colspan="2">&nbsp;Indique todos los parámetros de búsqueda&nbsp;</td>
+          </tr>
+ 
+          <tr class="ControlsAustere4">
+            <td class="thAustere4"><label for="l_calificacion_incidentes1s_id_proveedor">CDS</label></td> 
+            <td>
+              <select id="l_calificacion_incidentes1s_id_proveedor" name="{s_id_proveedor_Name}">
+                <option selected value="">Seleccionar Valor</option>
+                {s_id_proveedor_Options}
+              </select>
+ {Label1} </td>
+          </tr>
+ 
+          <tr class="BottomAustere4">
+            <td style="TEXT-ALIGN: left"><label for="l_calificacion_incidentes1s_id_periodo" style="display: inline;">Periodo de Cargas</label> </td> 
+            <td style="TEXT-ALIGN: left">
+              <select id="l_calificacion_incidentes1s_id_periodo" name="{s_id_periodo_Name}">
+                <option selected value="">Seleccionar Valor</option>
+                {s_id_periodo_Options}
+              </select>
+ &nbsp;</td>
+          </tr>
+ 
+          <tr class="BottomAustere4">
+            <td style="TEXT-ALIGN: right">Tipo de Nivel de Servicio&nbsp;</td> 
+            <td style="TEXT-ALIGN: left">
+              <select id="l_calificacion_incidentes1s_opt_slas" name="{s_opt_slas_Name}">
+                <option selected value="">Seleccionar Valor</option>
+                {s_opt_slas_Options}
+              </select>
+ &nbsp;</td>
+          </tr>
+ 
+          <tr class="BottomAustere4">
+            <td style="TEXT-ALIGN: right" colspan="2">
+              <!-- BEGIN Button Button_DoSearch --><input type="submit" id="l_calificacion_incidentes1Button_DoSearch" class="ButtonAustere4" value="Buscar" alt="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+ 
+    <tr>
+      <td>{lb_periodo_fecha_carga2} {lb_nom_periodo}</td>
+    </tr>
+  </table>
+</form>
+<!-- END Record l_calificacion_incidentes1 --><br>
+<div>
+  <table>
+    <tr>
+      <td style="TEXT-ALIGN: center">{lb_periodo_fecha_carga} </td>
+    </tr>
+  </table>
+</div>
+<div class="tabber">
+  <table>
+    <tr>
+      <td style="VERTICAL-ALIGN: top"><br>
+        &nbsp;<br>
+        <br>
+        <br>
+      </td> 
+      <td>
+        <!-- BEGIN Grid Grid1 -->
+        <table id="Grid1" class="MainTable" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Resumen de Niveles de Servicio </strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption" valign="top">
+                  <th scope="col">&nbsp;</th>
+ 
+                  <th valign="top" colspan="2" scope="col" align="middle">Uso de una<br>
+                  Herramienta<br>
+                  para Estimación<br>
+                  de Costo y Tiempos</th>
+ 
+                  <th valign="bottom" colspan="2" scope="col" align="middle">&nbsp;Requisitos<br>
+                  de Servicio </th>
+ 
+                  <th valign="bottom" colspan="2" scope="col">Cumplimiento en<br>
+                  Requisitos<br>
+                  Funcionales </th>
+ 
+                  <th colspan="2" scope="col">Calidad de<br>
+                  Productos<br>
+                  Terminados </th>
+ 
+                  <th colspan="2" scope="col">
+                  <p>Retraso en<br>
+                  Entregables </p>
+                  &nbsp;</th>
+ 
+                  <th colspan="2" scope="col">&nbsp;Calidad<br>
+                  de Código </th>
+ 
+                  <th colspan="2" scope="col">Defectos Fugados<br>
+                  al Ambiente<br>
+                  Productivo</th>
+ 
+                  <th colspan="2" scope="col">Manejo de<br>
+                  Incidentes<br>
+                  Tiempo de<br>
+                  Atención</th>
+ 
+                  <th colspan="2" scope="col">Manejo de<br>
+                  Incidentes<br>
+                  Tiempo de<br>
+                  Solución</th>
+ 
+                  <th colspan="2" scope="col">Eficiencia<br>
+                  Presupuestal</th>
+                </tr>
+ 
+                <tr class="Caption" valign="baseline">
+                  <th scope="col">Servicio </th>
+ 
+                  <th scope="col">
+                  <p align="center">CDS</p>
+                  </th>
+ 
+                  <th scope="col">
+                  <p align="center">CAPC</p>
+                  </th>
+ 
+                  <th valign="bottom" scope="col" align="middle">
+                  <p align="center">CDS</p>
+                  </th>
+ 
+                  <th scope="col">
+                  <p align="center">CAPC</p>
+                  </th>
+ 
+                  <th valign="bottom" scope="col">
+                  <p align="center">CDS</p>
+                  </th>
+ 
+                  <th scope="col">
+                  <p align="center">CAPC</p>
+                  </th>
+ 
+                  <th scope="col">
+                  <p align="center">CDS</p>
+                  </th>
+ 
+                  <th scope="col">
+                  <p align="center">CAPC</p>
+                  </th>
+ 
+                  <th scope="col">
+                  <p align="center">CDS</p>
+                  </th>
+ 
+                  <th scope="col">
+                  <p align="center">CAPC</p>
+                  </th>
+ 
+                  <th scope="col">
+                  <p align="center">CDS</p>
+                  </th>
+ 
+                  <th scope="col">
+                  <p align="center">CAPC</p>
+                  </th>
+ 
+                  <th scope="col">
+                  <p align="center">CDS</p>
+                  </th>
+ 
+                  <th scope="col">
+                  <p align="center">CAPC</p>
+                  </th>
+ 
+                  <th scope="col">
+                  <p align="center">CDS</p>
+                  </th>
+ 
+                  <th scope="col">
+                  <p align="center">CAPC</p>
+                  </th>
+ 
+                  <th scope="col">
+                  <p align="center">CDS</p>
+                  </th>
+ 
+                  <th scope="col">
+                  <p align="center">CAPC</p>
+                  </th>
+ 
+                  <th scope="col">
+                  <p align="center">CDS</p>
+                  </th>
+ 
+                  <th scope="col">
+                  <p align="center">CAPC</p>
+                  </th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr class="Row">
+                  <td>{descripcion}&nbsp;</td> 
+                  <td style="BACKGROUND-COLOR: #ebf2c6"><img id="Grid1imgherr_est_cost_{Grid1:rowNumber}" alt="" src="{imgherr_est_cost}"><br>
+                    {cumplenherr_est_cost}&nbsp;{totherr_est_cost}&nbsp;{herr_est_cost}<input type="hidden" id="Grid1meta_herr_est_cost_{Grid1:rowNumber}" value="{meta_herr_est_cost}" name="{meta_herr_est_cost_Name}"></td> 
+                  <td style="TEXT-ALIGN: center; BACKGROUND-COLOR: #ebf2c6"><img id="Grid1imgherr_est_cost1" alt="" src="{imgherr_est_cost1}"><br>
+                    {cumplenherr_est_cost1}&nbsp;{totherr_est_cost1}&nbsp;{herr_est_cost1}<input type="hidden" id="Grid1meta_herr_est_cost1_{Grid1:rowNumber}" value="{meta_herr_est_cost1}" name="{meta_herr_est_cost1_Name}"></td> 
+                  <td style="TEXT-ALIGN: center"><img id="Grid1imgreq_serv_{Grid1:rowNumber}" alt="" src="{imgreq_serv}"><br>
+                    {cumplenreq_serv}&nbsp;{totreq_serv}&nbsp;{req_serv}<input type="hidden" id="Grid1meta_req_serv_{Grid1:rowNumber}" value="{meta_req_serv}" name="{meta_req_serv_Name}"></td> 
+                  <td style="TEXT-ALIGN: center"><img id="Grid1imgreq_serv1_{Grid1:rowNumber}" alt="" src="{imgreq_serv1}"><br>
+                    {cumplenreq_serv1}&nbsp;{totreq_serv1}&nbsp;{req_serv1}<input type="hidden" id="Grid1meta_req_serv1_{Grid1:rowNumber}" value="{meta_req_serv1}" name="{meta_req_serv1_Name}"></td> 
+                  <td style="TEXT-ALIGN: center; BACKGROUND-COLOR: #ebf2c6"><img id="Grid1imgcumpl_req_func_{Grid1:rowNumber}" alt="" src="{imgcumpl_req_func}"><br>
+                    {cumplencumpl_req_func}&nbsp;{totcumpl_req_func}&nbsp;{cumpl_req_func}<input type="hidden" id="Grid1meta_cumpl_req_func_{Grid1:rowNumber}" value="{meta_cumpl_req_func}" name="{meta_cumpl_req_func_Name}"></td> 
+                  <td style="TEXT-ALIGN: center; BACKGROUND-COLOR: #ebf2c6"><img id="Grid1imgcumpl_req_func1_{Grid1:rowNumber}" alt="" src="{imgcumpl_req_func1}"><br>
+                    {cumplencumpl_req_func1}&nbsp;{totcumpl_req_func1}&nbsp;{cumpl_req_func1}<input type="hidden" id="Grid1meta_cumpl_req_func1_{Grid1:rowNumber}" value="{meta_cumpl_req_func1}" name="{meta_cumpl_req_func1_Name}"></td> 
+                  <td style="TEXT-ALIGN: center"><img id="Grid1imgcalidad_prod_term_{Grid1:rowNumber}" alt="" src="{imgcalidad_prod_term}"><br>
+                    {cumplencalidad_prod_term}&nbsp;{totcalidad_prod_term}&nbsp;{calidad_prod_term}<input type="hidden" id="Grid1meta_calidad_prod_term_{Grid1:rowNumber}" value="{meta_calidad_prod_term}" name="{meta_calidad_prod_term_Name}"></td> 
+                  <td style="TEXT-ALIGN: center"><img id="Grid1imgcalidad_prod_term1_{Grid1:rowNumber}" alt="" src="{imgcalidad_prod_term1}"><br>
+                    {cumplencalidad_prod_term1}&nbsp;{totcalidad_prod_term1}&nbsp;{calidad_prod_term1}<input type="hidden" id="Grid1meta_calidad_prod_term1_{Grid1:rowNumber}" value="{meta_calidad_prod_term1}" name="{meta_calidad_prod_term1_Name}"></td> 
+                  <td style="TEXT-ALIGN: center; BACKGROUND-COLOR: #ebf2c6"><img id="Grid1imgretr_entregable_{Grid1:rowNumber}" alt="" src="{imgretr_entregable}"><br>
+                    {cumplenretr_entregable}&nbsp;{totretr_entregable}&nbsp;{retr_entregable}<input type="hidden" id="Grid1meta_retr_entregable_{Grid1:rowNumber}" value="{meta_retr_entregable}" name="{meta_retr_entregable_Name}"></td> 
+                  <td style="TEXT-ALIGN: center; BACKGROUND-COLOR: #ebf2c6"><img id="Grid1imgretr_entregable1_{Grid1:rowNumber}" alt="" src="{imgretr_entregable1}"><br>
+                    {cumplenretr_entregable1}&nbsp;{totretr_entregable1}&nbsp;{retr_entregable1}<input type="hidden" id="Grid1meta_retr_entregable1_{Grid1:rowNumber}" value="{meta_retr_entregable1}" name="{meta_retr_entregable1_Name}"></td> 
+                  <td style="TEXT-ALIGN: center"><img id="Grid1imgcal_cod_{Grid1:rowNumber}" alt="" src="{imgcal_cod}"><br>
+                    {cumplencal_cod}&nbsp;{totcal_cod}&nbsp;{cal_cod}<input type="hidden" id="Grid1meta_cal_cod_{Grid1:rowNumber}" value="{meta_cal_cod}" name="{meta_cal_cod_Name}"></td> 
+                  <td style="TEXT-ALIGN: center"><img id="Grid1imgcal_cod1_{Grid1:rowNumber}" alt="" src="{imgcal_cod1}"><br>
+                    {cumplencal_cod1}&nbsp;{totcal_cod1}&nbsp;{cal_cod1}<input type="hidden" id="Grid1meta_cal_cod1_{Grid1:rowNumber}" value="{meta_cal_cod1}" name="{meta_cal_cod1_Name}"></td> 
+                  <td style="TEXT-ALIGN: center; BACKGROUND-COLOR: #ebf2c6"><img id="Grid1imgdef_fug_amb_prod_{Grid1:rowNumber}" alt="" src="{imgdef_fug_amb_prod}"><br>
+                    {cumplendef_fug_amb_prod}&nbsp;{totdef_fug_amb_prod}&nbsp;{def_fug_amb_prod}<input type="hidden" id="Grid1meta_def_fug_amb_prod_{Grid1:rowNumber}" value="{meta_def_fug_amb_prod}" name="{meta_def_fug_amb_prod_Name}"></td> 
+                  <td style="TEXT-ALIGN: center; BACKGROUND-COLOR: #ebf2c6"><img id="Grid1imgdef_fug_amb_prod1_{Grid1:rowNumber}" alt="" src="{imgdef_fug_amb_prod1}"><br>
+                    {cumplendef_fug_amb_prod1}&nbsp;{totdef_fug_amb_prod1}&nbsp;{def_fug_amb_prod1}<input type="hidden" id="Grid1meta_def_fug_amb_prod1_{Grid1:rowNumber}" value="{meta_def_fug_amb_prod1}" name="{meta_def_fug_amb_prod1_Name}"></td> 
+                  <td style="TEXT-ALIGN: center"><img id="Grid1imginc_tiempoasignacion_{Grid1:rowNumber}" alt="" src="{imginc_tiempoasignacion}"><br>
+                    {cumpleninc_tiempoasignacion}&nbsp;{totinc_tiempoasignacion}&nbsp;{inc_tiempoasignacion}&nbsp;<input type="hidden" id="Grid1meta_inc_tiempoasignacion_{Grid1:rowNumber}" value="{meta_inc_tiempoasignacion}" name="{meta_inc_tiempoasignacion_Name}"></td> 
+                  <td style="TEXT-ALIGN: center"><img id="Grid1imginc_tiempoasignacion1_{Grid1:rowNumber}" alt="" src="{imginc_tiempoasignacion1}"><br>
+                    {cumpleninc_tiempoasignacion1}&nbsp;{totinc_tiempoasignacion1}&nbsp;{inc_tiempoasignacion1}&nbsp;<input type="hidden" id="Grid1meta_inc_tiempoasignacion1_{Grid1:rowNumber}" value="{meta_inc_tiempoasignacion1}" name="{meta_inc_tiempoasignacion1_Name}"></td> 
+                  <td style="TEXT-ALIGN: center; BACKGROUND-COLOR: #ebf2c6"><img id="Grid1imginc_tiemposolucion_{Grid1:rowNumber}" alt="" src="{imginc_tiemposolucion}"><br>
+                    {cumpleninc_tiemposolucion}&nbsp;{totinc_tiemposolucion}&nbsp;{inc_tiemposolucion}&nbsp;<input type="hidden" id="Grid1meta_inc_tiemposolucion_{Grid1:rowNumber}" value="{meta_inc_tiemposolucion}" name="{meta_inc_tiemposolucion_Name}"></td> 
+                  <td style="TEXT-ALIGN: center; BACKGROUND-COLOR: #ebf2c6"><img id="Grid1imginc_tiemposolucion1_{Grid1:rowNumber}" alt="" src="{imginc_tiemposolucion1}"><br>
+                    {cumpleninc_tiemposolucion1}&nbsp;{totinc_tiemposolucion1}&nbsp;{inc_tiemposolucion1}&nbsp;<input type="hidden" id="Grid1meta_inc_tiemposolucion1_{Grid1:rowNumber}" value="{meta_inc_tiemposolucion1}" name="{meta_inc_tiemposolucion1_Name}"></td> 
+                  <td style="TEXT-ALIGN: center"><img id="Grid1imgefic_presup_{Grid1:rowNumber}" alt="" src="{imgefic_presup}"><br>
+                    {cumplenefic_presup}&nbsp;{totefic_presup}&nbsp;{efic_presup}&nbsp;<input type="hidden" id="Grid1meta_efic_presup_{Grid1:rowNumber}" value="{meta_efic_presup}" name="{meta_efic_presup_Name}"></td> 
+                  <td style="TEXT-ALIGN: center"><img id="Grid1imgefic_presup1_{Grid1:rowNumber}" alt="" src="{imgefic_presup1}"><br>
+                    {cumplenefic_presup1}&nbsp;{totefic_presup1}&nbsp;{efic_presup1}&nbsp;<input type="hidden" id="Grid1meta_efic_presup1_{Grid1:rowNumber}" value="{meta_efic_presup1}" name="{meta_efic_presup1_Name}"></td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="21">No hay registros</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td colspan="21">
+                    <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+                    <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+                      <option selected value="">-</option>
+ {PageSize_Options}
+                    </select>
+ 
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/FirstOff.gif"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/Prev.gif"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid Grid1 --></td>
+    </tr>
+  </table>
+  <br>
+</div>
+<div>
+</div>
+<br>
+<br>
+</body>
+</html>

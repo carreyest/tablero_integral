@@ -1589,7 +1589,7 @@ if($Redirect)
 }
 //End Go to destination page
 
-//Show Page @1-88D6C1F9
+//Show Page @1-E1E9D58C
 $Header->Show();
 $l_calificacion_incidentes1->Show();
 $Grid1->Show();
@@ -1597,7 +1597,6 @@ $lb_periodo_fecha_carga->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);
-$main_block = CCConvertEncoding($main_block, $FileEncoding, $TemplateEncoding);
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeOutput", $MainPage);
 if ($CCSEventResult) echo $main_block;
 //End Show Page

@@ -49,7 +49,7 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-B8647F99
+//Class_Initialize Event @3-FB9B8226
     function clsRecordmc_calificacion_capc($RelativePath, & $Parent)
     {
 
@@ -156,6 +156,14 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
             $this->DiasPlaneados = new clsControl(ccsTextBox, "DiasPlaneados", "DiasPlaneados", ccsInteger, "", CCGetRequestParam("DiasPlaneados", $Method, NULL), $this);
             $this->DiasReales = new clsControl(ccsTextBox, "DiasReales", "DiasReales", ccsInteger, "", CCGetRequestParam("DiasReales", $Method, NULL), $this);
             $this->Observaciones = new clsControl(ccsTextArea, "Observaciones", "Observaciones", ccsText, "", CCGetRequestParam("Observaciones", $Method, NULL), $this);
+            $this->IdEstimacion = new clsControl(ccsTextBox, "IdEstimacion", "IdEstimacion", ccsText, "", CCGetRequestParam("IdEstimacion", $Method, NULL), $this);
+            $this->id_tipo = new clsControl(ccsListBox, "id_tipo", "id_tipo", ccsText, "", CCGetRequestParam("id_tipo", $Method, NULL), $this);
+            $this->id_tipo->DSType = dsTable;
+            $this->id_tipo->DataSource = new clsDBcnDisenio();
+            $this->id_tipo->ds = & $this->id_tipo->DataSource;
+            $this->id_tipo->DataSource->SQL = "SELECT * \n" .
+"FROM mc_c_TipoPPMC {SQL_Where} {SQL_OrderBy}";
+            list($this->id_tipo->BoundColumn, $this->id_tipo->TextColumn, $this->id_tipo->DBFormat) = array("Id", "Descripcion", "");
             if(!$this->FormSubmitted) {
                 if(!is_array($this->id_proveedor->Value) && !strlen($this->id_proveedor->Value) && $this->id_proveedor->Value !== false)
                     $this->id_proveedor->SetText(1);
@@ -181,7 +189,7 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
     }
 //End Initialize Method
 
-//Validate Method @3-B21A5024
+//Validate Method @3-5190ED79
     function Validate()
     {
         global $CCSLocales;
@@ -221,6 +229,8 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
         $Validation = ($this->DiasPlaneados->Validate() && $Validation);
         $Validation = ($this->DiasReales->Validate() && $Validation);
         $Validation = ($this->Observaciones->Validate() && $Validation);
+        $Validation = ($this->IdEstimacion->Validate() && $Validation);
+        $Validation = ($this->id_tipo->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->id_proveedor->Errors->Count() == 0);
         $Validation =  $Validation && ($this->numero->Errors->Count() == 0);
@@ -256,11 +266,13 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
         $Validation =  $Validation && ($this->DiasPlaneados->Errors->Count() == 0);
         $Validation =  $Validation && ($this->DiasReales->Errors->Count() == 0);
         $Validation =  $Validation && ($this->Observaciones->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->IdEstimacion->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->id_tipo->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-4D7B80A3
+//CheckErrors Method @3-D01D4750
     function CheckErrors()
     {
         $errors = false;
@@ -298,6 +310,8 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
         $errors = ($errors || $this->DiasPlaneados->Errors->Count());
         $errors = ($errors || $this->DiasReales->Errors->Count());
         $errors = ($errors || $this->Observaciones->Errors->Count());
+        $errors = ($errors || $this->IdEstimacion->Errors->Count());
+        $errors = ($errors || $this->id_tipo->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -352,7 +366,7 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
     }
 //End Operation Method
 
-//InsertRow Method @3-EA88C2C2
+//InsertRow Method @3-DE0AEF08
     function InsertRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
@@ -391,13 +405,15 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
         $this->DataSource->DiasPlaneados->SetValue($this->DiasPlaneados->GetValue(true));
         $this->DataSource->DiasReales->SetValue($this->DiasReales->GetValue(true));
         $this->DataSource->Observaciones->SetValue($this->Observaciones->GetValue(true));
+        $this->DataSource->IdEstimacion->SetValue($this->IdEstimacion->GetValue(true));
+        $this->DataSource->id_tipo->SetValue($this->id_tipo->GetValue(true));
         $this->DataSource->Insert();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterInsert", $this);
         return (!$this->CheckErrors());
     }
 //End InsertRow Method
 
-//UpdateRow Method @3-565FFBA7
+//UpdateRow Method @3-71C0C63A
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
@@ -436,6 +452,8 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
         $this->DataSource->DiasPlaneados->SetValue($this->DiasPlaneados->GetValue(true));
         $this->DataSource->DiasReales->SetValue($this->DiasReales->GetValue(true));
         $this->DataSource->Observaciones->SetValue($this->Observaciones->GetValue(true));
+        $this->DataSource->IdEstimacion->SetValue($this->IdEstimacion->GetValue(true));
+        $this->DataSource->id_tipo->SetValue($this->id_tipo->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
         return (!$this->CheckErrors());
@@ -453,7 +471,7 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
     }
 //End DeleteRow Method
 
-//Show Method @3-56CCF7C1
+//Show Method @3-DA0A4F5D
     function Show()
     {
         global $CCSUseAmp;
@@ -474,6 +492,7 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
         $this->RETR_ENTREGABLE->Prepare();
         $this->id_serviciocont->Prepare();
         $this->CALIDAD_PROD_TERM->Prepare();
+        $this->id_tipo->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -522,6 +541,8 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
                     $this->DiasPlaneados->SetValue($this->DataSource->DiasPlaneados->GetValue());
                     $this->DiasReales->SetValue($this->DataSource->DiasReales->GetValue());
                     $this->Observaciones->SetValue($this->DataSource->Observaciones->GetValue());
+                    $this->IdEstimacion->SetValue($this->DataSource->IdEstimacion->GetValue());
+                    $this->id_tipo->SetValue($this->DataSource->id_tipo->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -564,6 +585,8 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
             $Error = ComposeStrings($Error, $this->DiasPlaneados->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DiasReales->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Observaciones->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->IdEstimacion->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->id_tipo->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -622,6 +645,8 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
         $this->DiasPlaneados->Show();
         $this->DiasReales->Show();
         $this->Observaciones->Show();
+        $this->IdEstimacion->Show();
+        $this->id_tipo->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -632,7 +657,7 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
 
 class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificacion_capcDataSource Class @3-68AE7315
 
-//DataSource Variables @3-99307178
+//DataSource Variables @3-76145340
     public $Parent = "";
     public $CCSEvents = "";
     public $CCSEventResult;
@@ -683,9 +708,11 @@ class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificac
     public $DiasPlaneados;
     public $DiasReales;
     public $Observaciones;
+    public $IdEstimacion;
+    public $id_tipo;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @3-74496DAF
+//DataSourceClass_Initialize Event @3-52A98162
     function clsmc_calificacion_capcDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -759,6 +786,10 @@ class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificac
         
         $this->Observaciones = new clsField("Observaciones", ccsText, "");
         
+        $this->IdEstimacion = new clsField("IdEstimacion", ccsText, "");
+        
+        $this->id_tipo = new clsField("id_tipo", ccsText, "");
+        
 
         $this->InsertFields["id_proveedor"] = array("Name" => "id_proveedor", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->InsertFields["numero"] = array("Name" => "numero", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
@@ -794,6 +825,8 @@ class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificac
         $this->InsertFields["DiasPlaneados"] = array("Name" => "[DiasPlaneados]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->InsertFields["DiasReales"] = array("Name" => "[DiasReales]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->InsertFields["Observaciones"] = array("Name" => "[Observaciones]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->InsertFields["IdEstimacion"] = array("Name" => "[IdEstimacion]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->InsertFields["id_tipo"] = array("Name" => "id_tipo", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["id_proveedor"] = array("Name" => "id_proveedor", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->UpdateFields["numero"] = array("Name" => "numero", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["Descripcion"] = array("Name" => "[Descripcion]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
@@ -828,6 +861,8 @@ class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificac
         $this->UpdateFields["DiasPlaneados"] = array("Name" => "[DiasPlaneados]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->UpdateFields["DiasReales"] = array("Name" => "[DiasReales]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->UpdateFields["Observaciones"] = array("Name" => "[Observaciones]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["IdEstimacion"] = array("Name" => "[IdEstimacion]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["id_tipo"] = array("Name" => "id_tipo", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
     }
 //End DataSourceClass_Initialize Event
 
@@ -857,7 +892,7 @@ class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificac
     }
 //End Open Method
 
-//SetValues Method @3-8A8C4807
+//SetValues Method @3-46AD77F7
     function SetValues()
     {
         $this->id_proveedor->SetDBValue(trim($this->f("id_proveedor")));
@@ -894,10 +929,12 @@ class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificac
         $this->DiasPlaneados->SetDBValue(trim($this->f("DiasPlaneados")));
         $this->DiasReales->SetDBValue(trim($this->f("DiasReales")));
         $this->Observaciones->SetDBValue($this->f("Observaciones"));
+        $this->IdEstimacion->SetDBValue($this->f("IdEstimacion"));
+        $this->id_tipo->SetDBValue($this->f("id_tipo"));
     }
 //End SetValues Method
 
-//Insert Method @3-FF2A31E7
+//Insert Method @3-DFAAC320
     function Insert()
     {
         global $CCSLocales;
@@ -938,6 +975,8 @@ class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificac
         $this->InsertFields["DiasPlaneados"]["Value"] = $this->DiasPlaneados->GetDBValue(true);
         $this->InsertFields["DiasReales"]["Value"] = $this->DiasReales->GetDBValue(true);
         $this->InsertFields["Observaciones"]["Value"] = $this->Observaciones->GetDBValue(true);
+        $this->InsertFields["IdEstimacion"]["Value"] = $this->IdEstimacion->GetDBValue(true);
+        $this->InsertFields["id_tipo"]["Value"] = $this->id_tipo->GetDBValue(true);
         $this->SQL = CCBuildInsert("mc_calificacion_capc", $this->InsertFields, $this);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
@@ -947,7 +986,7 @@ class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificac
     }
 //End Insert Method
 
-//Update Method @3-EB9E1985
+//Update Method @3-667A7F64
     function Update()
     {
         global $CCSLocales;
@@ -989,6 +1028,8 @@ class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificac
         $this->UpdateFields["DiasPlaneados"]["Value"] = $this->DiasPlaneados->GetDBValue(true);
         $this->UpdateFields["DiasReales"]["Value"] = $this->DiasReales->GetDBValue(true);
         $this->UpdateFields["Observaciones"]["Value"] = $this->Observaciones->GetDBValue(true);
+        $this->UpdateFields["IdEstimacion"]["Value"] = $this->IdEstimacion->GetDBValue(true);
+        $this->UpdateFields["id_tipo"]["Value"] = $this->id_tipo->GetDBValue(true);
         $this->SQL = CCBuildUpdate("mc_calificacion_capc", $this->UpdateFields, $this);
         $this->SQL .= strlen($this->Where) ? " WHERE " . $this->Where : $this->Where;
         if (!strlen($this->Where) && $this->Errors->Count() == 0) 

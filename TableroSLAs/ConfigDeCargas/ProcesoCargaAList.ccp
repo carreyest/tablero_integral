@@ -37,7 +37,21 @@
 			<Attributes/>
 			<Features/>
 		</Record>
-		<Grid id="6" secured="False" sourceType="Table" returnValueType="Number" defaultPageSize="20" name="proceso_carga_archivos" connection="ConnCarga" pageSizeLimit="100" wizardCaption="List of Proceso Carga Archivos " wizardGridType="Tabular" wizardAllowSorting="True" wizardSortingType="SimpleDir" wizardUsePageScroller="True" wizardAllowInsert="True" wizardAltRecord="False" wizardRecordSeparator="False" wizardAltRecordType="Controls" wizardUseSearch="True" childId="2" dataSource="proceso_carga_archivos">
+		<Grid id="6" secured="False" sourceType="SQL" returnValueType="Number" name="proceso_carga_archivos" connection="ConnCarga" pageSizeLimit="100" wizardCaption="List of Proceso Carga Archivos " wizardGridType="Tabular" wizardAllowSorting="True" wizardSortingType="SimpleDir" wizardUsePageScroller="True" wizardAllowInsert="True" wizardAltRecord="False" wizardRecordSeparator="False" wizardAltRecordType="Controls" wizardUseSearch="True" childId="2" dataSource="SELECT periodicidad, campo_indice, campo_fecha_cierre, filas_sin_datos_excel, numero_hoja_excel, tabla_destino, db_destino, repositorio,
+formato_archivo, mascara_archivo, descripcion, cve_carga, grupo 
+FROM proceso_carga_archivos
+WHERE periodicidad LIKE '%{s_keyword}%' 
+OR campo_indice LIKE '%{s_keyword}%'
+OR campo_fecha_cierre LIKE '%{s_keyword}%'
+OR procedimiento_extra LIKE '%{s_keyword}%'
+OR tabla_destino LIKE '%{s_keyword}%'
+OR db_destino LIKE '%{s_keyword}%'
+OR mails_responsables LIKE '%{s_keyword}%'
+OR repositorio LIKE '%{s_keyword}%'
+OR formato_archivo LIKE '%{s_keyword}%'
+OR mascara_archivo LIKE '%{s_keyword}%'
+OR descripcion LIKE '%{s_keyword}%'
+OR  cve_carga LIKE '%{s_keyword}%' " defaultPageSize="20">
 			<Components>
 				<Link id="8" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="proceso_carga_archivos_Insert" hrefSource="ProcesoCargaAMaint.ccp" removeParameters="cve_carga" wizardThemeItem="NavigatorLink" wizardDefaultValue="Add New" PathID="proceso_carga_archivosproceso_carga_archivos_Insert">
 					<Components/>
@@ -206,57 +220,32 @@
 					<Features/>
 				</Navigator>
 				<Label id="293" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="campo_grupo" PathID="proceso_carga_archivoscampo_grupo" fieldSource="grupo">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-<Sorter id="294" visible="True" name="Grupo" wizardSortingType="SimpleDir" PathID="proceso_carga_archivosGrupo" wizardCaption="Sorter1" column="grupo">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Sorter>
-</Components>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Sorter id="294" visible="True" name="Grupo" wizardSortingType="SimpleDir" PathID="proceso_carga_archivosGrupo" wizardCaption="Sorter1" column="grupo">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+			</Components>
 			<Events/>
 			<TableParameters>
-				<TableParameter id="267" conditionType="Parameter" useIsNull="False" dataType="Text" field="periodicidad" logicOperator="Or" orderNumber="12" parameterSource="s_keyword" parameterType="URL" rightBrackets="1" searchConditionType="Contains"/>
-<TableParameter id="268" conditionType="Parameter" useIsNull="False" dataType="Text" field="campo_indice" logicOperator="Or" orderNumber="11" parameterSource="s_keyword" parameterType="URL" searchConditionType="Contains"/>
-<TableParameter id="269" conditionType="Parameter" useIsNull="False" dataType="Text" field="campo_fecha_cierre" logicOperator="Or" orderNumber="10" parameterSource="s_keyword" parameterType="URL" searchConditionType="Contains"/>
-<TableParameter id="270" conditionType="Parameter" useIsNull="False" dataType="Text" field="procedimiento_extra" logicOperator="Or" orderNumber="9" parameterSource="s_keyword" parameterType="URL" searchConditionType="Contains"/>
-<TableParameter id="271" conditionType="Parameter" useIsNull="False" dataType="Text" field="tabla_destino" logicOperator="Or" orderNumber="8" parameterSource="s_keyword" parameterType="URL" searchConditionType="Contains"/>
-<TableParameter id="272" conditionType="Parameter" useIsNull="False" dataType="Text" field="db_destino" logicOperator="Or" orderNumber="7" parameterSource="s_keyword" parameterType="URL" searchConditionType="Contains"/>
-<TableParameter id="273" conditionType="Parameter" useIsNull="False" dataType="Text" field="mails_responsables" logicOperator="Or" orderNumber="6" parameterSource="s_keyword" parameterType="URL" searchConditionType="Contains"/>
-<TableParameter id="274" conditionType="Parameter" useIsNull="False" dataType="Text" field="repositorio" logicOperator="Or" orderNumber="5" parameterSource="s_keyword" parameterType="URL" searchConditionType="Contains"/>
-<TableParameter id="275" conditionType="Parameter" useIsNull="False" dataType="Text" field="formato_archivo" logicOperator="Or" orderNumber="4" parameterSource="s_keyword" parameterType="URL" searchConditionType="Contains"/>
-<TableParameter id="276" conditionType="Parameter" useIsNull="False" dataType="Text" field="mascara_archivo" logicOperator="Or" orderNumber="3" parameterSource="s_keyword" parameterType="URL" searchConditionType="Contains"/>
-<TableParameter id="277" conditionType="Parameter" useIsNull="False" dataType="Text" field="descripcion" logicOperator="Or" orderNumber="2" parameterSource="s_keyword" parameterType="URL" searchConditionType="Contains"/>
-<TableParameter id="278" conditionType="Parameter" useIsNull="False" dataType="Text" field="cve_carga" leftBrackets="1" logicOperator="Or" orderNumber="1" parameterSource="s_keyword" parameterType="URL" searchConditionType="Contains"/>
-</TableParameters>
+			</TableParameters>
 			<JoinTables>
-				<JoinTable id="266" posHeight="180" posLeft="10" posTop="10" posWidth="160" tableName="proceso_carga_archivos"/>
-</JoinTables>
+			</JoinTables>
 			<JoinLinks/>
 			<Fields>
-				<Field id="279" fieldName="periodicidad" tableName="proceso_carga_archivos"/>
-<Field id="280" fieldName="campo_indice" tableName="proceso_carga_archivos"/>
-<Field id="281" fieldName="campo_fecha_cierre" tableName="proceso_carga_archivos"/>
-<Field id="282" fieldName="filas_sin_datos_excel" tableName="proceso_carga_archivos"/>
-<Field id="283" fieldName="numero_hoja_excel" tableName="proceso_carga_archivos"/>
-<Field id="284" fieldName="tabla_destino" tableName="proceso_carga_archivos"/>
-<Field id="285" fieldName="db_destino" tableName="proceso_carga_archivos"/>
-<Field id="286" fieldName="repositorio" tableName="proceso_carga_archivos"/>
-<Field id="287" fieldName="formato_archivo" tableName="proceso_carga_archivos"/>
-<Field id="288" fieldName="mascara_archivo" tableName="proceso_carga_archivos"/>
-<Field id="289" fieldName="descripcion" tableName="proceso_carga_archivos"/>
-<Field id="290" fieldName="cve_carga" tableName="proceso_carga_archivos"/>
-<Field id="291" fieldName="grupo" tableName="proceso_carga_archivos"/>
-</Fields>
+			</Fields>
 			<PKFields>
-				<PKField id="292" dataType="Text" fieldName="cve_carga" tableName="proceso_carga_archivos"/>
-</PKFields>
+			</PKFields>
 			<SPParameters/>
-			<SQLParameters/>
+			<SQLParameters>
+<SQLParameter id="298" dataType="Text" designDefaultValue="semanal" parameterSource="s_keyword" parameterType="URL" variable="s_keyword"/>
+</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -288,9 +277,9 @@
 			<Attributes/>
 			<MenuItems>
 				<MenuItem id="295" name="MenuItem2" caption="Procesos de carga" url="ProcesoCargaAList.ccp" target="_self"/>
-<MenuItem id="296" name="MenuItem3" caption="Layouts de procesos de carga" url="DetalleLayoutList.ccp" target="_self"/>
-<MenuItem id="297" name="MenuItem1" caption="Log ultimas cargas" url="UltimasCargas.ccp" target="_self"/>
-</MenuItems>
+				<MenuItem id="296" name="MenuItem3" caption="Layouts de procesos de carga" url="DetalleLayoutList.ccp" target="_self"/>
+				<MenuItem id="297" name="MenuItem1" caption="Log ultimas cargas" url="UltimasCargas.ccp" target="_self"/>
+			</MenuItems>
 			<Features/>
 		</Menu>
 	</Components>

@@ -541,7 +541,7 @@ class clsRecordmc_c_usuarios1 { //mc_c_usuarios1 Class @28-F7AA8C5C
     // Class variables
 //End Variables
 
-//Class_Initialize Event @28-3D721DD0
+//Class_Initialize Event @28-E6CAE36D
     function clsRecordmc_c_usuarios1($RelativePath, & $Parent)
     {
 
@@ -581,7 +581,7 @@ class clsRecordmc_c_usuarios1 { //mc_c_usuarios1 Class @28-F7AA8C5C
             $this->Nivel->Values = array(array("1", "Visitante"), array("2", "Capturista"), array("3", "Analista"), array("4", "Supervisor"), array("5", "Administrador"));
             $this->Grupo = new clsControl(ccsListBox, "Grupo", "Grupo", ccsText, "", CCGetRequestParam("Grupo", $Method, NULL), $this);
             $this->Grupo->DSType = dsListOfValues;
-            $this->Grupo->Values = array(array("SLAs", "SLAs"), array("CAPC", "CAPC"), array("CDS", "CDS"), array("MyM", "MyM"));
+            $this->Grupo->Values = array(array("SLAs", "SLAs"), array("CAPC", "CAPC"), array("CDS", "CDS"), array("MyM", "MyM"), array("SAT", "SAT"));
             $this->Clave_Shadow = new clsControl(ccsHidden, "Clave_Shadow", "Clave_Shadow", ccsText, "", CCGetRequestParam("Clave_Shadow", $Method, NULL), $this);
             $this->UsrSharepoint = new clsControl(ccsTextBox, "UsrSharepoint", "UsrSharepoint", ccsText, "", CCGetRequestParam("UsrSharepoint", $Method, NULL), $this);
             $this->PwdSharePoint = new clsControl(ccsTextBox, "PwdSharePoint", "PwdSharePoint", ccsText, "", CCGetRequestParam("PwdSharePoint", $Method, NULL), $this);

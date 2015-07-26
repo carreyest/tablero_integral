@@ -344,19 +344,6 @@
 							<Fields/>
 							<PKFields/>
 						</ListBox>
-						<ListBox id="18" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" name="COMPL_RUTA_CRITICA" fieldSource="COMPL_RUTA_CRITICA" required="False" caption="COMPL RUTA CRITICA" wizardCaption="COMPL RUTA CRITICA" wizardSize="1" wizardMaxLength="1" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="calificacion_rs_AUTpnlCierreCOMPL_RUTA_CRITICA" sourceType="ListOfValues" dataSource="0;No Cumple;1;Cumple">
-							<Components/>
-							<Events/>
-							<Attributes/>
-							<Features/>
-							<TableParameters/>
-							<SPParameters/>
-							<SQLParameters/>
-							<JoinTables/>
-							<JoinLinks/>
-							<Fields/>
-							<PKFields/>
-						</ListBox>
 						<Label id="107" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="OBS_COMPL_RUTA_CRITICA" PathID="calificacion_rs_AUTpnlCierreOBS_COMPL_RUTA_CRITICA" fieldSource="OBS_COMPL_RUTA_CRITICA">
 							<Components/>
 							<Events/>

@@ -1,15 +1,15 @@
 <?php
-//BindEvents Method @1-A291D2AE
+//BindEvents Method @1-E0B856D6
 function BindEvents()
 {
     global $Grid2;
-    global $grdTableroSLAs;
     global $mc_c_ServContractual_mc_c;
+    global $grdTableroSLAs;
     global $CCSEvents;
     $Grid2->CCSEvents["BeforeShow"] = "Grid2_BeforeShow";
+    $mc_c_ServContractual_mc_c->CCSEvents["BeforeShowRow"] = "mc_c_ServContractual_mc_c_BeforeShowRow";
     $grdTableroSLAs->CCSEvents["BeforeShowRow"] = "grdTableroSLAs_BeforeShowRow";
     $grdTableroSLAs->CCSEvents["BeforeShow"] = "grdTableroSLAs_BeforeShow";
-    $mc_c_ServContractual_mc_c->CCSEvents["BeforeShowRow"] = "mc_c_ServContractual_mc_c_BeforeShowRow";
     $CCSEvents["BeforeShow"] = "Page_BeforeShow";
     $CCSEvents["OnInitializeView"] = "Page_OnInitializeView";
     $CCSEvents["AfterInitialize"] = "Page_AfterInitialize";
@@ -49,105 +49,6 @@ function Grid2_BeforeShow(& $sender)
     return $Grid2_BeforeShow;
 }
 //End Close Grid2_BeforeShow
-
-//grdTableroSLAs_BeforeShowRow @3-D4B17258
-function grdTableroSLAs_BeforeShowRow(& $sender)
-{
-    $grdTableroSLAs_BeforeShowRow = true;
-    $Component = & $sender;
-    $Container = & CCGetParentContainer($sender);
-    global $grdTableroSLAs; //Compatibility
-//End grdTableroSLAs_BeforeShowRow
-
-
-//Custom Code @89-2A29BDB7
-	global $db;
-	global $lColorCelda;
-	$db= new clsDBcnDisenio();
-	/*
-	para que este código funcione es necesario que el nombre de los controles cumpla con lo esperado en el código
-	un prefijo seguido del acronimo del SLA 
-	*/
-	$db->query("SELECT att.Activo , m.Acronimo  FROM mc_c_metrica m LEFT JOIN mc_metrica_atributo att " .
- 				" ON att.id_ver_metrica = m.id_ver_metrica  AND att.nombre = 'Aplica_Servicio' AND valor=" . $grdTableroSLAs->DataSource->f("IdOld") .
- 				" where  Acronimo is not null");
-	while($db->next_record()){
-		$sAcronimo= $db->f(1);
-		$sImg= "Img_" . $db->f(1); //se asocia la imagen al acronimo
-		$sCumplen = "Cumplen" . $sAcronimo;
-		$sTotal = "Tot"  . $sAcronimo;
-		$sMeta = "Meta_" . $sAcronimo;
-		$grdTableroSLAs->$sCumplen->Visible=false;
-		$grdTableroSLAs->$sTotal->Visible=false;
-		if($db->f(0)==1){//si el campo activo del SLA para el servicio es 1, se pintan los semáforos, de lo contrario no aplica el SLA para el servicio
-			$grdTableroSLAs->$sImg->SetValue("images/blank_SLA.png");
-			if (isset($grdTableroSLAs->$sImg)){
-				if($grdTableroSLAs->DataSource->f($db->f(1)) != ""){
-					$grdTableroSLAs->$sAcronimo->SetValue($grdTableroSLAs->$sCumplen->GetValue() . "/" . $grdTableroSLAs->$sTotal->GetValue() . " = " . $grdTableroSLAs->$sAcronimo->GetValue() . "%");
-					if($grdTableroSLAs->DataSource->f($db->f(1))<$grdTableroSLAs->DataSource->f($sMeta)){
-						$grdTableroSLAs->$sImg->SetValue("images/down.png");
-					} else {
-						$grdTableroSLAs->$sImg->SetValue("images/up.png");
-					}
-				} else {
-					$grdTableroSLAs->$sImg->SetValue("images/left.png");
-					$grdTableroSLAs->$sAcronimo->SetValue("Sin Datos<br>para Medir");
-				}
-			}
-		} else {
-			//$grdTableroSLAs->$sAcronimo->SetValue("No Aplica para<br>este servicio");
-			$grdTableroSLAs->$sAcronimo->SetValue("");
-			$grdTableroSLAs->$sImg->SetValue("images/blank_SLA.png");
-		}
-	}
-	$db->close();
-// -------------------------
-//End Custom Code
-
-//Close grdTableroSLAs_BeforeShowRow @3-59DC762D
-    return $grdTableroSLAs_BeforeShowRow;
-}
-//End Close grdTableroSLAs_BeforeShowRow
-
-//grdTableroSLAs_BeforeShow @3-FDAE1039
-function grdTableroSLAs_BeforeShow(& $sender)
-{
-    $grdTableroSLAs_BeforeShow = true;
-    $Component = & $sender;
-    $Container = & CCGetParentContainer($sender);
-    global $grdTableroSLAs; //Compatibility
-//End grdTableroSLAs_BeforeShow
-
-//Custom Code @208-2A29BDB7
-// -------------------------
-    //si no esta cerrado el mes de medición y no es CAPC no puede ver el cuadro CAPC    
-    global $db;
-    $db= new clsDBcnDisenio();
-    $db->query("select  COUNT(*) from mc_universo_cds  where mes= " .CCGetParam("s_MesReporte",date('m')) . "  and anio = " .  CCGetParam("s_AnioReporte",date('Y')) . "and (Medido <>1 or Medido is null)");
-	if($db->next_record()){
-		if($db->f(0)> 0 && CCGetSession("GrupoValoracion","")!='CAPC' ){
-	    	$grdTableroSLAs->Visible =false;
-	    } else {
-	    	$grdTableroSLAs->Visible =true;
-		}
-	}
-	$db->close();
-	
-	//dependiendo del proveedor se muestra o no el tablero del capc
-	$grdTableroSLAs->Visible = (CCGetParam("s_id_proveedor",0)!=1);
-	global $Tpl;
-  	if(CCGetParam("s_id_proveedor",0)==1){
-  		$Tpl->SetVar("iTableroCDS",'none');
-  	} else {
-  		$Tpl->SetVar("iTableroCDS",'inline');
-  	}
-// -------------------------
-//End Custom Code
-
-//Close grdTableroSLAs_BeforeShow @3-82FBF0F0
-    return $grdTableroSLAs_BeforeShow;
-}
-//End Close grdTableroSLAs_BeforeShow
 
 //mc_c_ServContractual_mc_c_BeforeShowRow @323-0196D746
 function mc_c_ServContractual_mc_c_BeforeShowRow(& $sender)
@@ -269,48 +170,96 @@ function mc_c_ServContractual_mc_c_BeforeShowRow(& $sender)
 }
 //End Close mc_c_ServContractual_mc_c_BeforeShowRow
 
-//DEL  // -------------------------
-//DEL      global $db;
-//DEL  	global $lColorCelda;
-//DEL  	$db= new clsDBcnDisenio();
-//DEL  	/*
-//DEL  	para que este código funcione es necesario que el nombre de los controles cumpla con lo esperado en el código
-//DEL  	un prefijo seguido del acronimo del SLA 
-//DEL  	*/
-//DEL  	$db->query("SELECT att.Activo , m.Acronimo  FROM mc_c_metrica m LEFT JOIN mc_metrica_atributo att " .
-//DEL   				" ON att.id_ver_metrica = m.id_ver_metrica  AND att.nombre = 'Aplica_Servicio' AND valor=" . $grdTableroSLAs->DataSource->f("IdOld") .
-//DEL   				" where  Acronimo is not null");
-//DEL  	while($db->next_record()){
-//DEL  		$sAcronimo= $db->f(1);
-//DEL  		$sImg= "Img_" . $db->f(1); //se asocia la imagen al acronimo
-//DEL  		$sCumplen = "Cumplen" . $sAcronimo;
-//DEL  		$sTotal = "Tot"  . $sAcronimo;
-//DEL  		$sMeta = "Meta_" . $sAcronimo;
-//DEL  		$grdTableroSLAs->$sCumplen->Visible=false;
-//DEL  		$grdTableroSLAs->$sTotal->Visible=false;
-//DEL  		if($db->f(0)==1){//si el campo activo del SLA para el servicio es 1, se pintan los semáforos, de lo contrario no aplica el SLA para el servicio
-//DEL  			$grdTableroSLAs->$sImg->SetValue("images/blank_SLA.png");
-//DEL  			if (isset($grdTableroSLAs->$sImg)){
-//DEL  				if($grdTableroSLAs->DataSource->f($db->f(1)) != ""){
-//DEL  					$grdTableroSLAs->$sAcronimo->SetValue($grdTableroSLAs->$sCumplen->GetValue() . "/" . $grdTableroSLAs->$sTotal->GetValue() . " = " . $grdTableroSLAs->$sAcronimo->GetValue() . "%");
-//DEL  					if($grdTableroSLAs->DataSource->f($db->f(1))<$grdTableroSLAs->DataSource->f($sMeta)){
-//DEL  						$grdTableroSLAs->$sImg->SetValue("images/down.png");
-//DEL  					} else {
-//DEL  						$grdTableroSLAs->$sImg->SetValue("images/up.png");
-//DEL  					}
-//DEL  				} else {
-//DEL  					$grdTableroSLAs->$sImg->SetValue("images/left.png");
-//DEL  					$grdTableroSLAs->$sAcronimo->SetValue("Sin Datos<br>para Medir");
-//DEL  				}
-//DEL  			}
-//DEL  		} else {
-//DEL  			//$grdTableroSLAs->$sAcronimo->SetValue("No Aplica para<br>este servicio");
-//DEL  			$grdTableroSLAs->$sAcronimo->SetValue("");
-//DEL  			$grdTableroSLAs->$sImg->SetValue("images/blank_SLA.png");
-//DEL  		}
-//DEL  	}
-//DEL  	$db->close();
-//DEL  // -------------------------
+//grdTableroSLAs_BeforeShowRow @3-D4B17258
+function grdTableroSLAs_BeforeShowRow(& $sender)
+{
+    $grdTableroSLAs_BeforeShowRow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $grdTableroSLAs; //Compatibility
+//End grdTableroSLAs_BeforeShowRow
+
+
+//Custom Code @89-2A29BDB7
+	global $db;
+	global $lColorCelda;
+	$db= new clsDBcnDisenio();
+	/*
+	para que este código funcione es necesario que el nombre de los controles cumpla con lo esperado en el código
+	un prefijo seguido del acronimo del SLA 
+	*/
+	$db->query("SELECT att.Activo , m.Acronimo  FROM mc_c_metrica m LEFT JOIN mc_metrica_atributo att " .
+ 				" ON att.id_ver_metrica = m.id_ver_metrica  AND att.nombre = 'Aplica_Servicio' AND valor=" . $grdTableroSLAs->DataSource->f("IdOld") .
+ 				" where  Acronimo is not null");
+	while($db->next_record()){
+		$sAcronimo= $db->f(1);
+		$sImg= "Img_" . $db->f(1); //se asocia la imagen al acronimo
+		$sCumplen = "Cumplen" . $sAcronimo;
+		$sTotal = "Tot"  . $sAcronimo;
+		$sMeta = "Meta_" . $sAcronimo;
+		$grdTableroSLAs->$sCumplen->Visible=false;
+		$grdTableroSLAs->$sTotal->Visible=false;
+		if($db->f(0)==1){//si el campo activo del SLA para el servicio es 1, se pintan los semáforos, de lo contrario no aplica el SLA para el servicio
+			$grdTableroSLAs->$sImg->SetValue("images/blank_SLA.png");
+			if (isset($grdTableroSLAs->$sImg)){
+				if($grdTableroSLAs->DataSource->f($db->f(1)) != ""){
+					$grdTableroSLAs->$sAcronimo->SetValue($grdTableroSLAs->$sCumplen->GetValue() . "/" . $grdTableroSLAs->$sTotal->GetValue() . " = " . $grdTableroSLAs->$sAcronimo->GetValue() . "%");
+					if($grdTableroSLAs->DataSource->f($db->f(1))<$grdTableroSLAs->DataSource->f($sMeta)){
+						$grdTableroSLAs->$sImg->SetValue("images/down.png");
+					} else {
+						$grdTableroSLAs->$sImg->SetValue("images/up.png");
+					}
+				} else {
+					$grdTableroSLAs->$sImg->SetValue("images/left.png");
+					$grdTableroSLAs->$sAcronimo->SetValue("Sin Datos<br>para Medir");
+				}
+			}
+		} else {
+			//$grdTableroSLAs->$sAcronimo->SetValue("No Aplica para<br>este servicio");
+			$grdTableroSLAs->$sAcronimo->SetValue("");
+			$grdTableroSLAs->$sImg->SetValue("images/blank_SLA.png");
+		}
+	}
+	$db->close();
+// -------------------------
+//End Custom Code
+
+//Close grdTableroSLAs_BeforeShowRow @3-59DC762D
+    return $grdTableroSLAs_BeforeShowRow;
+}
+//End Close grdTableroSLAs_BeforeShowRow
+
+//grdTableroSLAs_BeforeShow @3-FDAE1039
+function grdTableroSLAs_BeforeShow(& $sender)
+{
+    $grdTableroSLAs_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $grdTableroSLAs; //Compatibility
+//End grdTableroSLAs_BeforeShow
+
+//Custom Code @208-2A29BDB7
+// -------------------------
+	
+	//dependiendo del proveedor se muestra o no el tablero del capc
+	//$grdTableroSLAs->Visible = (CCGetParam("s_id_proveedor",0)!=1);
+	
+	global $Tpl;
+  	if(CCGetParam("s_id_proveedor",0)==1){
+  		$Tpl->SetVar("iTableroCDS",'none');
+  		$Tpl->SetVar("iTableroCAPC",'inline');
+  	} else {
+  		$Tpl->SetVar("iTableroCDS",'inline');
+  		$Tpl->SetVar("iTableroCAPC",'none');
+  	}
+  	
+// -------------------------
+//End Custom Code
+
+//Close grdTableroSLAs_BeforeShow @3-82FBF0F0
+    return $grdTableroSLAs_BeforeShow;
+}
+//End Close grdTableroSLAs_BeforeShow
 
 //Page_BeforeShow @1-021F8B50
 function Page_BeforeShow(& $sender)
@@ -339,7 +288,21 @@ function Page_BeforeShow(& $sender)
 		}
 	}
 	$db->close();
-
+	
+	$db->query("select  COUNT(*) from mc_universo_cds  where mes= " .CCGetParam("s_MesReporte",date('m')) . "  and anio = " .  CCGetParam("s_AnioReporte",date('Y')) . "and (Medido <>1 or Medido is null)");
+	global $Tpl;
+	if($db->next_record()){
+		if($db->f(0)> 0 && CCGetSession("GrupoValoracion","")!='CAPC' ){
+	    	$pnlSLAsCAPC->Visible=false;
+	    	$Tpl->SetVar("iTableroSLAsCAPC",'none');
+	    	$Tpl->SetVar("iTableroCAPC",'none');
+	    } else {
+	    	$pnlSLAsCAPC->Visible =true;
+	    	$Tpl->SetVar("iTableroSLAsCAPC",'inline');
+	    	$Tpl->SetVar("iTableroCAPC",'inline');
+		}
+	}
+	$db->close();	
 // -------------------------
 //End Custom Code
 
@@ -359,7 +322,8 @@ function Page_OnInitializeView(& $sender)
 
 //Custom Code @205-2A29BDB7
 // -------------------------
-	
+//si no esta cerrado el mes de medición y no es CAPC no puede ver el cuadro CAPC    
+    
 // -------------------------
 //End Custom Code
 

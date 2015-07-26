@@ -152,7 +152,7 @@
 					<Attributes/>
 					<Features/>
 				</CheckBox>
-				<Hidden id="35" fieldSourceType="DBColumn" dataType="Text" name="Id" PathID="mc_info_rs_cr_RFId" fieldSource="Id" defaultValue="CCGetParam(&quot;Id&quot;)">
+				<Hidden id="35" fieldSourceType="DBColumn" dataType="Text" name="Id" PathID="mc_info_rs_cr_RFId" fieldSource="Id" defaultValue="CCGetParam(&quot;sID&quot;)">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -249,7 +249,7 @@
 			</Events>
 			<TableParameters>
 				<TableParameter id="84" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Id" logicOperator="And" orderNumber="1" parameterSource="sID" parameterType="URL" searchConditionType="Equal"/>
-</TableParameters>
+			</TableParameters>
 			<SPParameters/>
 			<SQLParameters/>
 			<JoinTables>
@@ -258,10 +258,10 @@
 			<JoinLinks/>
 			<Fields>
 				<Field id="85" fieldName="*"/>
-</Fields>
+			</Fields>
 			<PKFields>
 				<PKField id="86" dataType="Integer" fieldName="Id" tableName="mc_info_capc_cr_RF"/>
-</PKFields>
+			</PKFields>
 			<ISPParameters/>
 			<ISQLParameters/>
 			<IFormElements/>

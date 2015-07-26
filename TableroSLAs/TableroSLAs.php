@@ -237,6 +237,390 @@ class clsRecordGrid2 { //Grid2 Class @55-542C3E47
 
 } //End Grid2 Class @55-FCB6E20C
 
+//Include Page implementation @121-1C97D460
+include_once(RelativePath . "/MenuTablero.php");
+//End Include Page implementation
+
+class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @323-584A250C
+
+//Variables @323-BBE06B15
+
+    // Public variables
+    public $ComponentType = "Grid";
+    public $ComponentName;
+    public $Visible;
+    public $Errors;
+    public $ErrorBlock;
+    public $ds;
+    public $DataSource;
+    public $PageSize;
+    public $IsEmpty;
+    public $ForceIteration = false;
+    public $HasRecord = false;
+    public $SorterName = "";
+    public $SorterDirection = "";
+    public $PageNumber;
+    public $RowNumber;
+    public $ControlsVisible = array();
+
+    public $CCSEvents = "";
+    public $CCSEventResult;
+
+    public $RelativePath = "";
+    public $Attributes;
+
+    // Grid Controls
+    public $StaticControls;
+    public $RowControls;
+    public $Sorter_mc_c_ServContractual_Descripcion;
+    public $Sorter_Agrupador;
+    public $Sorter_CALIDAD_PROD_TERM;
+    public $Sorter_DEDUC_OMISION;
+    public $Sorter_RETR_ENTREGABLE;
+    public $Sorter_Observaciones;
+//End Variables
+
+//Class_Initialize Event @323-CC96A2A1
+    function clsGridmc_c_ServContractual_mc_c($RelativePath, & $Parent)
+    {
+        global $FileName;
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->ComponentName = "mc_c_ServContractual_mc_c";
+        $this->Visible = True;
+        $this->Parent = & $Parent;
+        $this->RelativePath = $RelativePath;
+        $this->Errors = new clsErrors();
+        $this->ErrorBlock = "Grid mc_c_ServContractual_mc_c";
+        $this->Attributes = new clsAttributes($this->ComponentName . ":");
+        $this->DataSource = new clsmc_c_ServContractual_mc_cDataSource($this);
+        $this->ds = & $this->DataSource;
+        $this->PageSize = CCGetParam($this->ComponentName . "PageSize", "");
+        if(!is_numeric($this->PageSize) || !strlen($this->PageSize))
+            $this->PageSize = 20;
+        else
+            $this->PageSize = intval($this->PageSize);
+        if ($this->PageSize > 100)
+            $this->PageSize = 100;
+        if($this->PageSize == 0)
+            $this->Errors->addError("<p>Form: Grid " . $this->ComponentName . "<BR>Error: (CCS06) Invalid page size.</p>");
+        $this->PageNumber = intval(CCGetParam($this->ComponentName . "Page", 1));
+        if ($this->PageNumber <= 0) $this->PageNumber = 1;
+        $this->SorterName = CCGetParam("mc_c_ServContractual_mc_cOrder", "");
+        $this->SorterDirection = CCGetParam("mc_c_ServContractual_mc_cDir", "");
+
+        $this->mc_c_ServContractual_Descripcion = new clsControl(ccsLabel, "mc_c_ServContractual_Descripcion", "mc_c_ServContractual_Descripcion", ccsText, "", CCGetRequestParam("mc_c_ServContractual_Descripcion", ccsGet, NULL), $this);
+        $this->Agrupador = new clsControl(ccsLink, "Agrupador", "Agrupador", ccsText, "", CCGetRequestParam("Agrupador", ccsGet, NULL), $this);
+        $this->Agrupador->Page = "SLAsCAPCDetalle.php";
+        $this->CALIDAD_PROD_TERM = new clsControl(ccsLabel, "CALIDAD_PROD_TERM", "CALIDAD_PROD_TERM", ccsText, "", CCGetRequestParam("CALIDAD_PROD_TERM", ccsGet, NULL), $this);
+        $this->CALIDAD_PROD_TERM->HTML = true;
+        $this->DEDUC_OMISION = new clsControl(ccsLabel, "DEDUC_OMISION", "DEDUC_OMISION", ccsText, "", CCGetRequestParam("DEDUC_OMISION", ccsGet, NULL), $this);
+        $this->DEDUC_OMISION->HTML = true;
+        $this->RETR_ENTREGABLE = new clsControl(ccsLabel, "RETR_ENTREGABLE", "RETR_ENTREGABLE", ccsText, "", CCGetRequestParam("RETR_ENTREGABLE", ccsGet, NULL), $this);
+        $this->RETR_ENTREGABLE->HTML = true;
+        $this->Observaciones = new clsControl(ccsLabel, "Observaciones", "Observaciones", ccsText, "", CCGetRequestParam("Observaciones", ccsGet, NULL), $this);
+        $this->Img_CALIDAD_PROD_TERM = new clsControl(ccsImage, "Img_CALIDAD_PROD_TERM", "Img_CALIDAD_PROD_TERM", ccsText, "", CCGetRequestParam("Img_CALIDAD_PROD_TERM", ccsGet, NULL), $this);
+        $this->Img_DEDUC_OMISION = new clsControl(ccsImage, "Img_DEDUC_OMISION", "Img_DEDUC_OMISION", ccsText, "", CCGetRequestParam("Img_DEDUC_OMISION", ccsGet, NULL), $this);
+        $this->Img_RETR_ENTREGABLE = new clsControl(ccsImage, "Img_RETR_ENTREGABLE", "Img_RETR_ENTREGABLE", ccsText, "", CCGetRequestParam("Img_RETR_ENTREGABLE", ccsGet, NULL), $this);
+        $this->HERR_EST_COST = new clsControl(ccsLabel, "HERR_EST_COST", "HERR_EST_COST", ccsText, "", CCGetRequestParam("HERR_EST_COST", ccsGet, NULL), $this);
+        $this->HERR_EST_COST->HTML = true;
+        $this->REQ_SERV = new clsControl(ccsLabel, "REQ_SERV", "REQ_SERV", ccsText, "", CCGetRequestParam("REQ_SERV", ccsGet, NULL), $this);
+        $this->REQ_SERV->HTML = true;
+        $this->CUMPL_REQ_FUN = new clsControl(ccsLabel, "CUMPL_REQ_FUN", "CUMPL_REQ_FUN", ccsText, "", CCGetRequestParam("CUMPL_REQ_FUN", ccsGet, NULL), $this);
+        $this->CUMPL_REQ_FUN->HTML = true;
+        $this->Img_HERR_EST_COST = new clsControl(ccsImage, "Img_HERR_EST_COST", "Img_HERR_EST_COST", ccsText, "", CCGetRequestParam("Img_HERR_EST_COST", ccsGet, NULL), $this);
+        $this->Img_REQ_SERV = new clsControl(ccsImage, "Img_REQ_SERV", "Img_REQ_SERV", ccsText, "", CCGetRequestParam("Img_REQ_SERV", ccsGet, NULL), $this);
+        $this->Img_CUMPL_REQ_FUN = new clsControl(ccsImage, "Img_CUMPL_REQ_FUN", "Img_CUMPL_REQ_FUN", ccsText, "", CCGetRequestParam("Img_CUMPL_REQ_FUN", ccsGet, NULL), $this);
+        $this->Sorter_mc_c_ServContractual_Descripcion = new clsSorter($this->ComponentName, "Sorter_mc_c_ServContractual_Descripcion", $FileName, $this);
+        $this->Sorter_Agrupador = new clsSorter($this->ComponentName, "Sorter_Agrupador", $FileName, $this);
+        $this->Sorter_CALIDAD_PROD_TERM = new clsSorter($this->ComponentName, "Sorter_CALIDAD_PROD_TERM", $FileName, $this);
+        $this->Sorter_DEDUC_OMISION = new clsSorter($this->ComponentName, "Sorter_DEDUC_OMISION", $FileName, $this);
+        $this->Sorter_RETR_ENTREGABLE = new clsSorter($this->ComponentName, "Sorter_RETR_ENTREGABLE", $FileName, $this);
+        $this->Sorter_Observaciones = new clsSorter($this->ComponentName, "Sorter_Observaciones", $FileName, $this);
+        $this->Link2 = new clsControl(ccsLink, "Link2", "Link2", ccsText, "", CCGetRequestParam("Link2", ccsGet, NULL), $this);
+        $this->Link2->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
+        $this->Link2->Page = "SLAsCapcApbDetalle.php";
+        $this->Link1 = new clsControl(ccsLink, "Link1", "Link1", ccsText, "", CCGetRequestParam("Link1", ccsGet, NULL), $this);
+        $this->Link1->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
+        $this->Link1->Page = "SLAsCAPCDetalle.php";
+    }
+//End Class_Initialize Event
+
+//Initialize Method @323-90E704C5
+    function Initialize()
+    {
+        if(!$this->Visible) return;
+
+        $this->DataSource->PageSize = & $this->PageSize;
+        $this->DataSource->AbsolutePage = & $this->PageNumber;
+        $this->DataSource->SetOrder($this->SorterName, $this->SorterDirection);
+    }
+//End Initialize Method
+
+//Show Method @323-5F039F87
+    function Show()
+    {
+        $Tpl = CCGetTemplate($this);
+        global $CCSLocales;
+        if(!$this->Visible) return;
+
+        $this->RowNumber = 0;
+
+        $this->DataSource->Parameters["urls_numero"] = CCGetFromGet("s_numero", NULL);
+        $this->DataSource->Parameters["urls_mes"] = CCGetFromGet("s_mes", NULL);
+        $this->DataSource->Parameters["urls_anio"] = CCGetFromGet("s_anio", NULL);
+        $this->DataSource->Parameters["urls_id_serviciocont"] = CCGetFromGet("s_id_serviciocont", NULL);
+
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
+
+
+        $this->DataSource->Prepare();
+        $this->DataSource->Open();
+        $this->HasRecord = $this->DataSource->has_next_record();
+        $this->IsEmpty = ! $this->HasRecord;
+        $this->Attributes->Show();
+
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShow", $this);
+        if(!$this->Visible) return;
+
+        $GridBlock = "Grid " . $this->ComponentName;
+        $ParentPath = $Tpl->block_path;
+        $Tpl->block_path = $ParentPath . "/" . $GridBlock;
+
+
+        if (!$this->IsEmpty) {
+            $this->ControlsVisible["mc_c_ServContractual_Descripcion"] = $this->mc_c_ServContractual_Descripcion->Visible;
+            $this->ControlsVisible["Agrupador"] = $this->Agrupador->Visible;
+            $this->ControlsVisible["CALIDAD_PROD_TERM"] = $this->CALIDAD_PROD_TERM->Visible;
+            $this->ControlsVisible["DEDUC_OMISION"] = $this->DEDUC_OMISION->Visible;
+            $this->ControlsVisible["RETR_ENTREGABLE"] = $this->RETR_ENTREGABLE->Visible;
+            $this->ControlsVisible["Observaciones"] = $this->Observaciones->Visible;
+            $this->ControlsVisible["Img_CALIDAD_PROD_TERM"] = $this->Img_CALIDAD_PROD_TERM->Visible;
+            $this->ControlsVisible["Img_DEDUC_OMISION"] = $this->Img_DEDUC_OMISION->Visible;
+            $this->ControlsVisible["Img_RETR_ENTREGABLE"] = $this->Img_RETR_ENTREGABLE->Visible;
+            $this->ControlsVisible["HERR_EST_COST"] = $this->HERR_EST_COST->Visible;
+            $this->ControlsVisible["REQ_SERV"] = $this->REQ_SERV->Visible;
+            $this->ControlsVisible["CUMPL_REQ_FUN"] = $this->CUMPL_REQ_FUN->Visible;
+            $this->ControlsVisible["Img_HERR_EST_COST"] = $this->Img_HERR_EST_COST->Visible;
+            $this->ControlsVisible["Img_REQ_SERV"] = $this->Img_REQ_SERV->Visible;
+            $this->ControlsVisible["Img_CUMPL_REQ_FUN"] = $this->Img_CUMPL_REQ_FUN->Visible;
+            while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
+                $this->RowNumber++;
+                if ($this->HasRecord) {
+                    $this->DataSource->next_record();
+                    $this->DataSource->SetValues();
+                }
+                $Tpl->block_path = $ParentPath . "/" . $GridBlock . "/Row";
+                $this->mc_c_ServContractual_Descripcion->SetValue($this->DataSource->mc_c_ServContractual_Descripcion->GetValue());
+                $this->Agrupador->SetValue($this->DataSource->Agrupador->GetValue());
+                $this->Agrupador->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
+                $this->Agrupador->Parameters = CCAddParam($this->Agrupador->Parameters, "id", $this->DataSource->f("id"));
+                $this->CALIDAD_PROD_TERM->SetValue($this->DataSource->CALIDAD_PROD_TERM->GetValue());
+                $this->DEDUC_OMISION->SetValue($this->DataSource->DEDUC_OMISION->GetValue());
+                $this->RETR_ENTREGABLE->SetValue($this->DataSource->RETR_ENTREGABLE->GetValue());
+                $this->Observaciones->SetValue($this->DataSource->Observaciones->GetValue());
+                $this->HERR_EST_COST->SetValue($this->DataSource->HERR_EST_COST->GetValue());
+                $this->REQ_SERV->SetValue($this->DataSource->REQ_SERV->GetValue());
+                $this->CUMPL_REQ_FUN->SetValue($this->DataSource->CUMPL_REQ_FUN->GetValue());
+                $this->Attributes->SetValue("rowNumber", $this->RowNumber);
+                $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
+                $this->Attributes->Show();
+                $this->mc_c_ServContractual_Descripcion->Show();
+                $this->Agrupador->Show();
+                $this->CALIDAD_PROD_TERM->Show();
+                $this->DEDUC_OMISION->Show();
+                $this->RETR_ENTREGABLE->Show();
+                $this->Observaciones->Show();
+                $this->Img_CALIDAD_PROD_TERM->Show();
+                $this->Img_DEDUC_OMISION->Show();
+                $this->Img_RETR_ENTREGABLE->Show();
+                $this->HERR_EST_COST->Show();
+                $this->REQ_SERV->Show();
+                $this->CUMPL_REQ_FUN->Show();
+                $this->Img_HERR_EST_COST->Show();
+                $this->Img_REQ_SERV->Show();
+                $this->Img_CUMPL_REQ_FUN->Show();
+                $Tpl->block_path = $ParentPath . "/" . $GridBlock;
+                $Tpl->parse("Row", true);
+            }
+        }
+        else { // Show NoRecords block if no records are found
+            $this->Attributes->Show();
+            $Tpl->parse("NoRecords", false);
+        }
+
+        $errors = $this->GetErrors();
+        if(strlen($errors))
+        {
+            $Tpl->replaceblock("", $errors);
+            $Tpl->block_path = $ParentPath;
+            return;
+        }
+        $this->Sorter_mc_c_ServContractual_Descripcion->Show();
+        $this->Sorter_Agrupador->Show();
+        $this->Sorter_CALIDAD_PROD_TERM->Show();
+        $this->Sorter_DEDUC_OMISION->Show();
+        $this->Sorter_RETR_ENTREGABLE->Show();
+        $this->Sorter_Observaciones->Show();
+        $this->Link2->Show();
+        $this->Link1->Show();
+        $Tpl->parse();
+        $Tpl->block_path = $ParentPath;
+        $this->DataSource->close();
+    }
+//End Show Method
+
+//GetErrors Method @323-4A2E721E
+    function GetErrors()
+    {
+        $errors = "";
+        $errors = ComposeStrings($errors, $this->mc_c_ServContractual_Descripcion->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->Agrupador->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->CALIDAD_PROD_TERM->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->DEDUC_OMISION->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->RETR_ENTREGABLE->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->Observaciones->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->Img_CALIDAD_PROD_TERM->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->Img_DEDUC_OMISION->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->Img_RETR_ENTREGABLE->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->HERR_EST_COST->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->REQ_SERV->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->CUMPL_REQ_FUN->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->Img_HERR_EST_COST->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->Img_REQ_SERV->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->Img_CUMPL_REQ_FUN->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
+        return $errors;
+    }
+//End GetErrors Method
+
+} //End mc_c_ServContractual_mc_c Class @323-FCB6E20C
+
+class clsmc_c_ServContractual_mc_cDataSource extends clsDBcnDisenio {  //mc_c_ServContractual_mc_cDataSource Class @323-51953D32
+
+//DataSource Variables @323-C532333C
+    public $Parent = "";
+    public $CCSEvents = "";
+    public $CCSEventResult;
+    public $ErrorBlock;
+    public $CmdExecution;
+
+    public $CountSQL;
+    public $wp;
+
+
+    // Datasource fields
+    public $mc_c_ServContractual_Descripcion;
+    public $Agrupador;
+    public $CALIDAD_PROD_TERM;
+    public $DEDUC_OMISION;
+    public $RETR_ENTREGABLE;
+    public $Observaciones;
+    public $HERR_EST_COST;
+    public $REQ_SERV;
+    public $CUMPL_REQ_FUN;
+//End DataSource Variables
+
+//DataSourceClass_Initialize Event @323-192378A3
+    function clsmc_c_ServContractual_mc_cDataSource(& $Parent)
+    {
+        $this->Parent = & $Parent;
+        $this->ErrorBlock = "Grid mc_c_ServContractual_mc_c";
+        $this->Initialize();
+        $this->mc_c_ServContractual_Descripcion = new clsField("mc_c_ServContractual_Descripcion", ccsText, "");
+        
+        $this->Agrupador = new clsField("Agrupador", ccsText, "");
+        
+        $this->CALIDAD_PROD_TERM = new clsField("CALIDAD_PROD_TERM", ccsText, "");
+        
+        $this->DEDUC_OMISION = new clsField("DEDUC_OMISION", ccsText, "");
+        
+        $this->RETR_ENTREGABLE = new clsField("RETR_ENTREGABLE", ccsText, "");
+        
+        $this->Observaciones = new clsField("Observaciones", ccsText, "");
+        
+        $this->HERR_EST_COST = new clsField("HERR_EST_COST", ccsText, "");
+        
+        $this->REQ_SERV = new clsField("REQ_SERV", ccsText, "");
+        
+        $this->CUMPL_REQ_FUN = new clsField("CUMPL_REQ_FUN", ccsText, "");
+        
+
+    }
+//End DataSourceClass_Initialize Event
+
+//SetOrder Method @323-1FF653C8
+    function SetOrder($SorterName, $SorterDirection)
+    {
+        $this->Order = "";
+        $this->Order = CCGetOrder($this->Order, $SorterName, $SorterDirection, 
+            array("Sorter_mc_c_ServContractual_Descripcion" => array("mc_c_ServContractual_Descripcion", ""), 
+            "Sorter_Agrupador" => array("Agrupador", ""), 
+            "Sorter_CALIDAD_PROD_TERM" => array("CALIDAD_PROD_TERM", ""), 
+            "Sorter_DEDUC_OMISION" => array("DEDUC_OMISION", ""), 
+            "Sorter_RETR_ENTREGABLE" => array("RETR_ENTREGABLE", ""), 
+            "Sorter_Observaciones" => array("Observaciones", "")));
+    }
+//End SetOrder Method
+
+//Prepare Method @323-71BC61B1
+    function Prepare()
+    {
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->wp = new clsSQLParameters($this->ErrorBlock);
+        $this->wp->AddParameter("1", "urls_numero", ccsText, "", "", $this->Parameters["urls_numero"], "", false);
+        $this->wp->AddParameter("2", "urls_mes", ccsInteger, "", "", $this->Parameters["urls_mes"], date("m",mktime(0,0,0,date("m"),date("d")-45,date("Y"))), false);
+        $this->wp->AddParameter("3", "urls_anio", ccsInteger, "", "", $this->Parameters["urls_anio"], date("Y",mktime(0,0,0,date("m"),date("d")-45,date("Y"))), false);
+        $this->wp->AddParameter("4", "urls_id_serviciocont", ccsInteger, "", "", $this->Parameters["urls_id_serviciocont"], 0, false);
+    }
+//End Prepare Method
+
+//Open Method @323-6A900E1A
+    function Open()
+    {
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
+        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT mc_calificacion_capc.*, mc_c_ServContractual.Descripcion AS mc_c_ServContractual_Descripcion \n" .
+        "FROM mc_calificacion_capc left  JOIN mc_c_ServContractual ON mc_calificacion_capc.id_serviciocont = mc_c_ServContractual.Id\n" .
+        "WHERE numero LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
+        "AND (mes = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . " or  " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "=0)\n" .
+        "AND (anio = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " or " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "=0)\n" .
+        "AND (id_serviciocont = " . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . "  or 0=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " )) cnt";
+        $this->SQL = "SELECT mc_calificacion_capc.*, mc_c_ServContractual.Descripcion AS mc_c_ServContractual_Descripcion \n" .
+        "FROM mc_calificacion_capc left  JOIN mc_c_ServContractual ON mc_calificacion_capc.id_serviciocont = mc_c_ServContractual.Id\n" .
+        "WHERE numero LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
+        "AND (mes = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . " or  " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "=0)\n" .
+        "AND (anio = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " or " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "=0)\n" .
+        "AND (id_serviciocont = " . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . "  or 0=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " )";
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
+        if ($this->CountSQL) 
+            $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
+        else
+            $this->RecordsCount = "CCS not counted";
+        $this->query($this->OptimizeSQL(CCBuildSQL($this->SQL, $this->Where, $this->Order)));
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteSelect", $this->Parent);
+        $this->MoveToPage($this->AbsolutePage);
+    }
+//End Open Method
+
+//SetValues Method @323-9EE290B3
+    function SetValues()
+    {
+        $this->mc_c_ServContractual_Descripcion->SetDBValue($this->f("mc_c_ServContractual_Descripcion"));
+        $this->Agrupador->SetDBValue($this->f("Agrupador"));
+        $this->CALIDAD_PROD_TERM->SetDBValue($this->f("CALIDAD_PROD_TERM"));
+        $this->DEDUC_OMISION->SetDBValue($this->f("DEDUC_OMISION"));
+        $this->RETR_ENTREGABLE->SetDBValue($this->f("RETR_ENTREGABLE"));
+        $this->Observaciones->SetDBValue($this->f("Observaciones"));
+        $this->HERR_EST_COST->SetDBValue($this->f("HERR_EST_COST"));
+        $this->REQ_SERV->SetDBValue($this->f("REQ_SERV"));
+        $this->CUMPL_REQ_FUN->SetDBValue($this->f("CUMPL_REQ_FUN"));
+    }
+//End SetValues Method
+
+} //End mc_c_ServContractual_mc_cDataSource Class @323-FCB6E20C
+
 class clsGridgrdTableroSLAs { //grdTableroSLAs class @3-02B4D02B
 
 //Variables @3-B1711D24
@@ -946,389 +1330,7 @@ class clsgrdTableroSLAsDataSource extends clsDBcnDisenio {  //grdTableroSLAsData
 
 } //End grdTableroSLAsDataSource Class @3-FCB6E20C
 
-//Include Page implementation @121-1C97D460
-include_once(RelativePath . "/MenuTablero.php");
-//End Include Page implementation
 
-class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @323-584A250C
-
-//Variables @323-BBE06B15
-
-    // Public variables
-    public $ComponentType = "Grid";
-    public $ComponentName;
-    public $Visible;
-    public $Errors;
-    public $ErrorBlock;
-    public $ds;
-    public $DataSource;
-    public $PageSize;
-    public $IsEmpty;
-    public $ForceIteration = false;
-    public $HasRecord = false;
-    public $SorterName = "";
-    public $SorterDirection = "";
-    public $PageNumber;
-    public $RowNumber;
-    public $ControlsVisible = array();
-
-    public $CCSEvents = "";
-    public $CCSEventResult;
-
-    public $RelativePath = "";
-    public $Attributes;
-
-    // Grid Controls
-    public $StaticControls;
-    public $RowControls;
-    public $Sorter_mc_c_ServContractual_Descripcion;
-    public $Sorter_Agrupador;
-    public $Sorter_CALIDAD_PROD_TERM;
-    public $Sorter_DEDUC_OMISION;
-    public $Sorter_RETR_ENTREGABLE;
-    public $Sorter_Observaciones;
-//End Variables
-
-//Class_Initialize Event @323-CC96A2A1
-    function clsGridmc_c_ServContractual_mc_c($RelativePath, & $Parent)
-    {
-        global $FileName;
-        global $CCSLocales;
-        global $DefaultDateFormat;
-        $this->ComponentName = "mc_c_ServContractual_mc_c";
-        $this->Visible = True;
-        $this->Parent = & $Parent;
-        $this->RelativePath = $RelativePath;
-        $this->Errors = new clsErrors();
-        $this->ErrorBlock = "Grid mc_c_ServContractual_mc_c";
-        $this->Attributes = new clsAttributes($this->ComponentName . ":");
-        $this->DataSource = new clsmc_c_ServContractual_mc_cDataSource($this);
-        $this->ds = & $this->DataSource;
-        $this->PageSize = CCGetParam($this->ComponentName . "PageSize", "");
-        if(!is_numeric($this->PageSize) || !strlen($this->PageSize))
-            $this->PageSize = 20;
-        else
-            $this->PageSize = intval($this->PageSize);
-        if ($this->PageSize > 100)
-            $this->PageSize = 100;
-        if($this->PageSize == 0)
-            $this->Errors->addError("<p>Form: Grid " . $this->ComponentName . "<BR>Error: (CCS06) Invalid page size.</p>");
-        $this->PageNumber = intval(CCGetParam($this->ComponentName . "Page", 1));
-        if ($this->PageNumber <= 0) $this->PageNumber = 1;
-        $this->SorterName = CCGetParam("mc_c_ServContractual_mc_cOrder", "");
-        $this->SorterDirection = CCGetParam("mc_c_ServContractual_mc_cDir", "");
-
-        $this->mc_c_ServContractual_Descripcion = new clsControl(ccsLabel, "mc_c_ServContractual_Descripcion", "mc_c_ServContractual_Descripcion", ccsText, "", CCGetRequestParam("mc_c_ServContractual_Descripcion", ccsGet, NULL), $this);
-        $this->Agrupador = new clsControl(ccsLink, "Agrupador", "Agrupador", ccsText, "", CCGetRequestParam("Agrupador", ccsGet, NULL), $this);
-        $this->Agrupador->Page = "SLAsCAPCDetalle.php";
-        $this->CALIDAD_PROD_TERM = new clsControl(ccsLabel, "CALIDAD_PROD_TERM", "CALIDAD_PROD_TERM", ccsText, "", CCGetRequestParam("CALIDAD_PROD_TERM", ccsGet, NULL), $this);
-        $this->CALIDAD_PROD_TERM->HTML = true;
-        $this->DEDUC_OMISION = new clsControl(ccsLabel, "DEDUC_OMISION", "DEDUC_OMISION", ccsText, "", CCGetRequestParam("DEDUC_OMISION", ccsGet, NULL), $this);
-        $this->DEDUC_OMISION->HTML = true;
-        $this->RETR_ENTREGABLE = new clsControl(ccsLabel, "RETR_ENTREGABLE", "RETR_ENTREGABLE", ccsText, "", CCGetRequestParam("RETR_ENTREGABLE", ccsGet, NULL), $this);
-        $this->RETR_ENTREGABLE->HTML = true;
-        $this->Observaciones = new clsControl(ccsLabel, "Observaciones", "Observaciones", ccsText, "", CCGetRequestParam("Observaciones", ccsGet, NULL), $this);
-        $this->Img_CALIDAD_PROD_TERM = new clsControl(ccsImage, "Img_CALIDAD_PROD_TERM", "Img_CALIDAD_PROD_TERM", ccsText, "", CCGetRequestParam("Img_CALIDAD_PROD_TERM", ccsGet, NULL), $this);
-        $this->Img_DEDUC_OMISION = new clsControl(ccsImage, "Img_DEDUC_OMISION", "Img_DEDUC_OMISION", ccsText, "", CCGetRequestParam("Img_DEDUC_OMISION", ccsGet, NULL), $this);
-        $this->Img_RETR_ENTREGABLE = new clsControl(ccsImage, "Img_RETR_ENTREGABLE", "Img_RETR_ENTREGABLE", ccsText, "", CCGetRequestParam("Img_RETR_ENTREGABLE", ccsGet, NULL), $this);
-        $this->HERR_EST_COST = new clsControl(ccsLabel, "HERR_EST_COST", "HERR_EST_COST", ccsText, "", CCGetRequestParam("HERR_EST_COST", ccsGet, NULL), $this);
-        $this->HERR_EST_COST->HTML = true;
-        $this->REQ_SERV = new clsControl(ccsLabel, "REQ_SERV", "REQ_SERV", ccsText, "", CCGetRequestParam("REQ_SERV", ccsGet, NULL), $this);
-        $this->REQ_SERV->HTML = true;
-        $this->CUMPL_REQ_FUN = new clsControl(ccsLabel, "CUMPL_REQ_FUN", "CUMPL_REQ_FUN", ccsText, "", CCGetRequestParam("CUMPL_REQ_FUN", ccsGet, NULL), $this);
-        $this->CUMPL_REQ_FUN->HTML = true;
-        $this->Img_HERR_EST_COST = new clsControl(ccsImage, "Img_HERR_EST_COST", "Img_HERR_EST_COST", ccsText, "", CCGetRequestParam("Img_HERR_EST_COST", ccsGet, NULL), $this);
-        $this->Img_REQ_SERV = new clsControl(ccsImage, "Img_REQ_SERV", "Img_REQ_SERV", ccsText, "", CCGetRequestParam("Img_REQ_SERV", ccsGet, NULL), $this);
-        $this->Img_CUMPL_REQ_FUN = new clsControl(ccsImage, "Img_CUMPL_REQ_FUN", "Img_CUMPL_REQ_FUN", ccsText, "", CCGetRequestParam("Img_CUMPL_REQ_FUN", ccsGet, NULL), $this);
-        $this->Sorter_mc_c_ServContractual_Descripcion = new clsSorter($this->ComponentName, "Sorter_mc_c_ServContractual_Descripcion", $FileName, $this);
-        $this->Sorter_Agrupador = new clsSorter($this->ComponentName, "Sorter_Agrupador", $FileName, $this);
-        $this->Sorter_CALIDAD_PROD_TERM = new clsSorter($this->ComponentName, "Sorter_CALIDAD_PROD_TERM", $FileName, $this);
-        $this->Sorter_DEDUC_OMISION = new clsSorter($this->ComponentName, "Sorter_DEDUC_OMISION", $FileName, $this);
-        $this->Sorter_RETR_ENTREGABLE = new clsSorter($this->ComponentName, "Sorter_RETR_ENTREGABLE", $FileName, $this);
-        $this->Sorter_Observaciones = new clsSorter($this->ComponentName, "Sorter_Observaciones", $FileName, $this);
-        $this->Link2 = new clsControl(ccsLink, "Link2", "Link2", ccsText, "", CCGetRequestParam("Link2", ccsGet, NULL), $this);
-        $this->Link2->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
-        $this->Link2->Page = "SLAsCapcApbDetalle.php";
-        $this->Link1 = new clsControl(ccsLink, "Link1", "Link1", ccsText, "", CCGetRequestParam("Link1", ccsGet, NULL), $this);
-        $this->Link1->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
-        $this->Link1->Page = "SLAsCAPCDetalle.php";
-    }
-//End Class_Initialize Event
-
-//Initialize Method @323-90E704C5
-    function Initialize()
-    {
-        if(!$this->Visible) return;
-
-        $this->DataSource->PageSize = & $this->PageSize;
-        $this->DataSource->AbsolutePage = & $this->PageNumber;
-        $this->DataSource->SetOrder($this->SorterName, $this->SorterDirection);
-    }
-//End Initialize Method
-
-//Show Method @323-5F039F87
-    function Show()
-    {
-        $Tpl = CCGetTemplate($this);
-        global $CCSLocales;
-        if(!$this->Visible) return;
-
-        $this->RowNumber = 0;
-
-        $this->DataSource->Parameters["urls_numero"] = CCGetFromGet("s_numero", NULL);
-        $this->DataSource->Parameters["urls_mes"] = CCGetFromGet("s_mes", NULL);
-        $this->DataSource->Parameters["urls_anio"] = CCGetFromGet("s_anio", NULL);
-        $this->DataSource->Parameters["urls_id_serviciocont"] = CCGetFromGet("s_id_serviciocont", NULL);
-
-        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
-
-
-        $this->DataSource->Prepare();
-        $this->DataSource->Open();
-        $this->HasRecord = $this->DataSource->has_next_record();
-        $this->IsEmpty = ! $this->HasRecord;
-        $this->Attributes->Show();
-
-        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShow", $this);
-        if(!$this->Visible) return;
-
-        $GridBlock = "Grid " . $this->ComponentName;
-        $ParentPath = $Tpl->block_path;
-        $Tpl->block_path = $ParentPath . "/" . $GridBlock;
-
-
-        if (!$this->IsEmpty) {
-            $this->ControlsVisible["mc_c_ServContractual_Descripcion"] = $this->mc_c_ServContractual_Descripcion->Visible;
-            $this->ControlsVisible["Agrupador"] = $this->Agrupador->Visible;
-            $this->ControlsVisible["CALIDAD_PROD_TERM"] = $this->CALIDAD_PROD_TERM->Visible;
-            $this->ControlsVisible["DEDUC_OMISION"] = $this->DEDUC_OMISION->Visible;
-            $this->ControlsVisible["RETR_ENTREGABLE"] = $this->RETR_ENTREGABLE->Visible;
-            $this->ControlsVisible["Observaciones"] = $this->Observaciones->Visible;
-            $this->ControlsVisible["Img_CALIDAD_PROD_TERM"] = $this->Img_CALIDAD_PROD_TERM->Visible;
-            $this->ControlsVisible["Img_DEDUC_OMISION"] = $this->Img_DEDUC_OMISION->Visible;
-            $this->ControlsVisible["Img_RETR_ENTREGABLE"] = $this->Img_RETR_ENTREGABLE->Visible;
-            $this->ControlsVisible["HERR_EST_COST"] = $this->HERR_EST_COST->Visible;
-            $this->ControlsVisible["REQ_SERV"] = $this->REQ_SERV->Visible;
-            $this->ControlsVisible["CUMPL_REQ_FUN"] = $this->CUMPL_REQ_FUN->Visible;
-            $this->ControlsVisible["Img_HERR_EST_COST"] = $this->Img_HERR_EST_COST->Visible;
-            $this->ControlsVisible["Img_REQ_SERV"] = $this->Img_REQ_SERV->Visible;
-            $this->ControlsVisible["Img_CUMPL_REQ_FUN"] = $this->Img_CUMPL_REQ_FUN->Visible;
-            while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
-                $this->RowNumber++;
-                if ($this->HasRecord) {
-                    $this->DataSource->next_record();
-                    $this->DataSource->SetValues();
-                }
-                $Tpl->block_path = $ParentPath . "/" . $GridBlock . "/Row";
-                $this->mc_c_ServContractual_Descripcion->SetValue($this->DataSource->mc_c_ServContractual_Descripcion->GetValue());
-                $this->Agrupador->SetValue($this->DataSource->Agrupador->GetValue());
-                $this->Agrupador->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
-                $this->Agrupador->Parameters = CCAddParam($this->Agrupador->Parameters, "id", $this->DataSource->f("id"));
-                $this->CALIDAD_PROD_TERM->SetValue($this->DataSource->CALIDAD_PROD_TERM->GetValue());
-                $this->DEDUC_OMISION->SetValue($this->DataSource->DEDUC_OMISION->GetValue());
-                $this->RETR_ENTREGABLE->SetValue($this->DataSource->RETR_ENTREGABLE->GetValue());
-                $this->Observaciones->SetValue($this->DataSource->Observaciones->GetValue());
-                $this->HERR_EST_COST->SetValue($this->DataSource->HERR_EST_COST->GetValue());
-                $this->REQ_SERV->SetValue($this->DataSource->REQ_SERV->GetValue());
-                $this->CUMPL_REQ_FUN->SetValue($this->DataSource->CUMPL_REQ_FUN->GetValue());
-                $this->Attributes->SetValue("rowNumber", $this->RowNumber);
-                $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
-                $this->Attributes->Show();
-                $this->mc_c_ServContractual_Descripcion->Show();
-                $this->Agrupador->Show();
-                $this->CALIDAD_PROD_TERM->Show();
-                $this->DEDUC_OMISION->Show();
-                $this->RETR_ENTREGABLE->Show();
-                $this->Observaciones->Show();
-                $this->Img_CALIDAD_PROD_TERM->Show();
-                $this->Img_DEDUC_OMISION->Show();
-                $this->Img_RETR_ENTREGABLE->Show();
-                $this->HERR_EST_COST->Show();
-                $this->REQ_SERV->Show();
-                $this->CUMPL_REQ_FUN->Show();
-                $this->Img_HERR_EST_COST->Show();
-                $this->Img_REQ_SERV->Show();
-                $this->Img_CUMPL_REQ_FUN->Show();
-                $Tpl->block_path = $ParentPath . "/" . $GridBlock;
-                $Tpl->parse("Row", true);
-            }
-        }
-        else { // Show NoRecords block if no records are found
-            $this->Attributes->Show();
-            $Tpl->parse("NoRecords", false);
-        }
-
-        $errors = $this->GetErrors();
-        if(strlen($errors))
-        {
-            $Tpl->replaceblock("", $errors);
-            $Tpl->block_path = $ParentPath;
-            return;
-        }
-        $this->Sorter_mc_c_ServContractual_Descripcion->Show();
-        $this->Sorter_Agrupador->Show();
-        $this->Sorter_CALIDAD_PROD_TERM->Show();
-        $this->Sorter_DEDUC_OMISION->Show();
-        $this->Sorter_RETR_ENTREGABLE->Show();
-        $this->Sorter_Observaciones->Show();
-        $this->Link2->Show();
-        $this->Link1->Show();
-        $Tpl->parse();
-        $Tpl->block_path = $ParentPath;
-        $this->DataSource->close();
-    }
-//End Show Method
-
-//GetErrors Method @323-4A2E721E
-    function GetErrors()
-    {
-        $errors = "";
-        $errors = ComposeStrings($errors, $this->mc_c_ServContractual_Descripcion->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->Agrupador->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->CALIDAD_PROD_TERM->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->DEDUC_OMISION->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->RETR_ENTREGABLE->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->Observaciones->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->Img_CALIDAD_PROD_TERM->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->Img_DEDUC_OMISION->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->Img_RETR_ENTREGABLE->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->HERR_EST_COST->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->REQ_SERV->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->CUMPL_REQ_FUN->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->Img_HERR_EST_COST->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->Img_REQ_SERV->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->Img_CUMPL_REQ_FUN->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
-        return $errors;
-    }
-//End GetErrors Method
-
-} //End mc_c_ServContractual_mc_c Class @323-FCB6E20C
-
-class clsmc_c_ServContractual_mc_cDataSource extends clsDBcnDisenio {  //mc_c_ServContractual_mc_cDataSource Class @323-51953D32
-
-//DataSource Variables @323-C532333C
-    public $Parent = "";
-    public $CCSEvents = "";
-    public $CCSEventResult;
-    public $ErrorBlock;
-    public $CmdExecution;
-
-    public $CountSQL;
-    public $wp;
-
-
-    // Datasource fields
-    public $mc_c_ServContractual_Descripcion;
-    public $Agrupador;
-    public $CALIDAD_PROD_TERM;
-    public $DEDUC_OMISION;
-    public $RETR_ENTREGABLE;
-    public $Observaciones;
-    public $HERR_EST_COST;
-    public $REQ_SERV;
-    public $CUMPL_REQ_FUN;
-//End DataSource Variables
-
-//DataSourceClass_Initialize Event @323-192378A3
-    function clsmc_c_ServContractual_mc_cDataSource(& $Parent)
-    {
-        $this->Parent = & $Parent;
-        $this->ErrorBlock = "Grid mc_c_ServContractual_mc_c";
-        $this->Initialize();
-        $this->mc_c_ServContractual_Descripcion = new clsField("mc_c_ServContractual_Descripcion", ccsText, "");
-        
-        $this->Agrupador = new clsField("Agrupador", ccsText, "");
-        
-        $this->CALIDAD_PROD_TERM = new clsField("CALIDAD_PROD_TERM", ccsText, "");
-        
-        $this->DEDUC_OMISION = new clsField("DEDUC_OMISION", ccsText, "");
-        
-        $this->RETR_ENTREGABLE = new clsField("RETR_ENTREGABLE", ccsText, "");
-        
-        $this->Observaciones = new clsField("Observaciones", ccsText, "");
-        
-        $this->HERR_EST_COST = new clsField("HERR_EST_COST", ccsText, "");
-        
-        $this->REQ_SERV = new clsField("REQ_SERV", ccsText, "");
-        
-        $this->CUMPL_REQ_FUN = new clsField("CUMPL_REQ_FUN", ccsText, "");
-        
-
-    }
-//End DataSourceClass_Initialize Event
-
-//SetOrder Method @323-1FF653C8
-    function SetOrder($SorterName, $SorterDirection)
-    {
-        $this->Order = "";
-        $this->Order = CCGetOrder($this->Order, $SorterName, $SorterDirection, 
-            array("Sorter_mc_c_ServContractual_Descripcion" => array("mc_c_ServContractual_Descripcion", ""), 
-            "Sorter_Agrupador" => array("Agrupador", ""), 
-            "Sorter_CALIDAD_PROD_TERM" => array("CALIDAD_PROD_TERM", ""), 
-            "Sorter_DEDUC_OMISION" => array("DEDUC_OMISION", ""), 
-            "Sorter_RETR_ENTREGABLE" => array("RETR_ENTREGABLE", ""), 
-            "Sorter_Observaciones" => array("Observaciones", "")));
-    }
-//End SetOrder Method
-
-//Prepare Method @323-71BC61B1
-    function Prepare()
-    {
-        global $CCSLocales;
-        global $DefaultDateFormat;
-        $this->wp = new clsSQLParameters($this->ErrorBlock);
-        $this->wp->AddParameter("1", "urls_numero", ccsText, "", "", $this->Parameters["urls_numero"], "", false);
-        $this->wp->AddParameter("2", "urls_mes", ccsInteger, "", "", $this->Parameters["urls_mes"], date("m",mktime(0,0,0,date("m"),date("d")-45,date("Y"))), false);
-        $this->wp->AddParameter("3", "urls_anio", ccsInteger, "", "", $this->Parameters["urls_anio"], date("Y",mktime(0,0,0,date("m"),date("d")-45,date("Y"))), false);
-        $this->wp->AddParameter("4", "urls_id_serviciocont", ccsInteger, "", "", $this->Parameters["urls_id_serviciocont"], 0, false);
-    }
-//End Prepare Method
-
-//Open Method @323-6A900E1A
-    function Open()
-    {
-        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT mc_calificacion_capc.*, mc_c_ServContractual.Descripcion AS mc_c_ServContractual_Descripcion \n" .
-        "FROM mc_calificacion_capc left  JOIN mc_c_ServContractual ON mc_calificacion_capc.id_serviciocont = mc_c_ServContractual.Id\n" .
-        "WHERE numero LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
-        "AND (mes = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . " or  " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "=0)\n" .
-        "AND (anio = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " or " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "=0)\n" .
-        "AND (id_serviciocont = " . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . "  or 0=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " )) cnt";
-        $this->SQL = "SELECT mc_calificacion_capc.*, mc_c_ServContractual.Descripcion AS mc_c_ServContractual_Descripcion \n" .
-        "FROM mc_calificacion_capc left  JOIN mc_c_ServContractual ON mc_calificacion_capc.id_serviciocont = mc_c_ServContractual.Id\n" .
-        "WHERE numero LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
-        "AND (mes = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . " or  " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "=0)\n" .
-        "AND (anio = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " or " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "=0)\n" .
-        "AND (id_serviciocont = " . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . "  or 0=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " )";
-        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
-        if ($this->CountSQL) 
-            $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
-        else
-            $this->RecordsCount = "CCS not counted";
-        $this->query($this->OptimizeSQL(CCBuildSQL($this->SQL, $this->Where, $this->Order)));
-        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteSelect", $this->Parent);
-        $this->MoveToPage($this->AbsolutePage);
-    }
-//End Open Method
-
-//SetValues Method @323-9EE290B3
-    function SetValues()
-    {
-        $this->mc_c_ServContractual_Descripcion->SetDBValue($this->f("mc_c_ServContractual_Descripcion"));
-        $this->Agrupador->SetDBValue($this->f("Agrupador"));
-        $this->CALIDAD_PROD_TERM->SetDBValue($this->f("CALIDAD_PROD_TERM"));
-        $this->DEDUC_OMISION->SetDBValue($this->f("DEDUC_OMISION"));
-        $this->RETR_ENTREGABLE->SetDBValue($this->f("RETR_ENTREGABLE"));
-        $this->Observaciones->SetDBValue($this->f("Observaciones"));
-        $this->HERR_EST_COST->SetDBValue($this->f("HERR_EST_COST"));
-        $this->REQ_SERV->SetDBValue($this->f("REQ_SERV"));
-        $this->CUMPL_REQ_FUN->SetDBValue($this->f("CUMPL_REQ_FUN"));
-    }
-//End SetValues Method
-
-} //End mc_c_ServContractual_mc_cDataSource Class @323-FCB6E20C
 
 
 
@@ -1377,7 +1379,7 @@ include_once("./TableroSLAs_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-EAFC1F2A
+//Initialize Objects @1-E3080321
 $DBcnDisenio = new clsDBcnDisenio();
 $MainPage->Connections["cnDisenio"] = & $DBcnDisenio;
 $Attributes = new clsAttributes("page:");
@@ -1388,7 +1390,6 @@ $MainPage->Attributes = & $Attributes;
 $Header = new clsHeader("", "Header", $MainPage);
 $Header->Initialize();
 $Grid2 = new clsRecordGrid2("", $MainPage);
-$grdTableroSLAs = new clsGridgrdTableroSLAs("", $MainPage);
 $MenuTablero = new clsMenuTablero("", "MenuTablero", $MainPage);
 $MenuTablero->Initialize();
 $UrlCDS = new clsControl(ccsLink, "UrlCDS", "UrlCDS", ccsText, "", CCGetRequestParam("UrlCDS", ccsGet, NULL), $MainPage);
@@ -1396,16 +1397,20 @@ $UrlCDS->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
 $UrlCDS->Page = "";
 $pnlSLAsCAPC = new clsPanel("pnlSLAsCAPC", $MainPage);
 $mc_c_ServContractual_mc_c = new clsGridmc_c_ServContractual_mc_c("", $MainPage);
+$pnlTableroSLAs = new clsPanel("pnlTableroSLAs", $MainPage);
+$grdTableroSLAs = new clsGridgrdTableroSLAs("", $MainPage);
 $MainPage->Header = & $Header;
 $MainPage->Grid2 = & $Grid2;
-$MainPage->grdTableroSLAs = & $grdTableroSLAs;
 $MainPage->MenuTablero = & $MenuTablero;
 $MainPage->UrlCDS = & $UrlCDS;
 $MainPage->pnlSLAsCAPC = & $pnlSLAsCAPC;
 $MainPage->mc_c_ServContractual_mc_c = & $mc_c_ServContractual_mc_c;
+$MainPage->pnlTableroSLAs = & $pnlTableroSLAs;
+$MainPage->grdTableroSLAs = & $grdTableroSLAs;
 $pnlSLAsCAPC->AddComponent("mc_c_ServContractual_mc_c", $mc_c_ServContractual_mc_c);
-$grdTableroSLAs->Initialize();
+$pnlTableroSLAs->AddComponent("grdTableroSLAs", $grdTableroSLAs);
 $mc_c_ServContractual_mc_c->Initialize();
+$grdTableroSLAs->Initialize();
 $ScriptIncludes = "";
 $SList = explode("|", $Scripts);
 foreach ($SList as $Script) {
@@ -1445,7 +1450,7 @@ $Grid2->Operation();
 $Header->Operations();
 //End Execute Components
 
-//Go to destination page @1-525AA69C
+//Go to destination page @1-965CB575
 if($Redirect)
 {
     $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
@@ -1454,22 +1459,22 @@ if($Redirect)
     $Header->Class_Terminate();
     unset($Header);
     unset($Grid2);
-    unset($grdTableroSLAs);
     $MenuTablero->Class_Terminate();
     unset($MenuTablero);
     unset($mc_c_ServContractual_mc_c);
+    unset($grdTableroSLAs);
     unset($Tpl);
     exit;
 }
 //End Go to destination page
 
-//Show Page @1-2CAD3F10
+//Show Page @1-15E0F0FF
 $Header->Show();
 $Grid2->Show();
-$grdTableroSLAs->Show();
 $MenuTablero->Show();
 $UrlCDS->Show();
 $pnlSLAsCAPC->Show();
+$pnlTableroSLAs->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);
@@ -1477,16 +1482,16 @@ $CCSEventResult = CCGetEvent($CCSEvents, "BeforeOutput", $MainPage);
 if ($CCSEventResult) echo $main_block;
 //End Show Page
 
-//Unload Page @1-AB7B4C93
+//Unload Page @1-AB9B2138
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
 $DBcnDisenio->close();
 $Header->Class_Terminate();
 unset($Header);
 unset($Grid2);
-unset($grdTableroSLAs);
 $MenuTablero->Class_Terminate();
 unset($MenuTablero);
 unset($mc_c_ServContractual_mc_c);
+unset($grdTableroSLAs);
 unset($Tpl);
 //End Unload Page
 

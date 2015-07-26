@@ -717,8 +717,8 @@ WHERE Id_incidente = '{Id_incidente}' " errorSummator="Error" allowCancel="False
 					<Attributes/>
 					<Features/>
 				</Button>
-				<ListBox id="110" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Integer" returnValueType="Number" name="Cumple_DISP_SOPORTE" fieldSource="Cumple_DISP_SOPORTE" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Cumple DISP SOPORTE" caption="Disponibilidad del Personal de Soporte" required="False" unique="False" wizardEmptyCaption="Seleccionar Valor" PathID="mc_calificacion_incidenteCumple_DISP_SOPORTE" dataSource="0;No Cumple;1;Cumple">
-					<Components/>
+				<Hidden id="110" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Integer" returnValueType="Number" name="Cumple_DISP_SOPORTE" fieldSource="Cumple_DISP_SOPORTE" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Cumple DISP SOPORTE" caption="Disponibilidad del Personal de Soporte" required="False" unique="False" wizardEmptyCaption="Seleccionar Valor" PathID="mc_calificacion_incidenteCumple_DISP_SOPORTE" dataSource="0;No Cumple;1;Cumple">
+<Components/>
 					<Events/>
 					<TableParameters/>
 					<SPParameters/>
@@ -729,8 +729,8 @@ WHERE Id_incidente = '{Id_incidente}' " errorSummator="Error" allowCancel="False
 					<PKFields/>
 					<Attributes/>
 					<Features/>
-				</ListBox>
-				<ListBox id="111" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Integer" returnValueType="Number" name="Cumple_Inc_TiempoSolucion" fieldSource="Cumple_Inc_TiempoSolucion" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Cumple Inc Tiempo Solucion" caption="Tiempo Solucion" required="False" unique="False" wizardEmptyCaption="Seleccionar Valor" PathID="mc_calificacion_incidenteCumple_Inc_TiempoSolucion" dataSource="0;No Cumple;1;Cumple">
+				</Hidden>
+<ListBox id="111" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Integer" returnValueType="Number" name="Cumple_Inc_TiempoSolucion" fieldSource="Cumple_Inc_TiempoSolucion" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Cumple Inc Tiempo Solucion" caption="Tiempo Solucion" required="False" unique="False" wizardEmptyCaption="Seleccionar Valor" PathID="mc_calificacion_incidenteCumple_Inc_TiempoSolucion" dataSource="0;No Cumple;1;Cumple">
 					<Components/>
 					<Events/>
 					<TableParameters/>

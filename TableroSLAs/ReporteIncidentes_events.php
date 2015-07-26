@@ -23,7 +23,7 @@ function Page_OnInitializeView(& $sender)
 define("UID", "capcmc\usrReportsMC");
 define("PASWD", "itera.140401");
 define("SERVICE_URL", "http://webiterasrv2/ReportServer");
-define("REPORT", "http://webiterasrv2/AnalyticsReports/TMC_V3.0_v2/ListadoIncidentes.rdl");
+define("REPORT", "http://webiterasrv2/AnalyticsReports/SLASSDMA4/ListadoIncidentes.rdl");
 	$sCDS=0;
 
 	$sCDS= CCGetParam("s_cds_param");

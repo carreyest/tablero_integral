@@ -276,7 +276,7 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
     public $Sorter_Observaciones;
 //End Variables
 
-//Class_Initialize Event @3-6AD9132F
+//Class_Initialize Event @3-778EABFE
     function clsGridmc_c_ServContractual_mc_c($RelativePath, & $Parent)
     {
         global $FileName;
@@ -311,8 +311,9 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
         $this->Descripcion = new clsControl(ccsLabel, "Descripcion", "Descripcion", ccsText, "", CCGetRequestParam("Descripcion", ccsGet, NULL), $this);
         $this->Agrupador = new clsControl(ccsLink, "Agrupador", "Agrupador", ccsText, "", CCGetRequestParam("Agrupador", ccsGet, NULL), $this);
         $this->Agrupador->Page = "SLAsCAPCDetalle.php";
-        $this->CALIDAD_PROD_TERM = new clsControl(ccsLabel, "CALIDAD_PROD_TERM", "CALIDAD_PROD_TERM", ccsText, "", CCGetRequestParam("CALIDAD_PROD_TERM", ccsGet, NULL), $this);
+        $this->CALIDAD_PROD_TERM = new clsControl(ccsLink, "CALIDAD_PROD_TERM", "CALIDAD_PROD_TERM", ccsText, "", CCGetRequestParam("CALIDAD_PROD_TERM", ccsGet, NULL), $this);
         $this->CALIDAD_PROD_TERM->HTML = true;
+        $this->CALIDAD_PROD_TERM->Page = "SLAsCAPCCalidadDetalle.php";
         $this->DEDUC_OMISION = new clsControl(ccsLabel, "DEDUC_OMISION", "DEDUC_OMISION", ccsText, "", CCGetRequestParam("DEDUC_OMISION", ccsGet, NULL), $this);
         $this->DEDUC_OMISION->HTML = true;
         $this->RETR_ENTREGABLE = new clsControl(ccsLabel, "RETR_ENTREGABLE", "RETR_ENTREGABLE", ccsText, "", CCGetRequestParam("RETR_ENTREGABLE", ccsGet, NULL), $this);
@@ -328,14 +329,15 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
         $this->HERR_EST_COST->HTML = true;
         $this->REQ_SERV = new clsControl(ccsLabel, "REQ_SERV", "REQ_SERV", ccsText, "", CCGetRequestParam("REQ_SERV", ccsGet, NULL), $this);
         $this->REQ_SERV->HTML = true;
-        $this->CUMPL_REQ_FUN = new clsControl(ccsLabel, "CUMPL_REQ_FUN", "CUMPL_REQ_FUN", ccsText, "", CCGetRequestParam("CUMPL_REQ_FUN", ccsGet, NULL), $this);
+        $this->CUMPL_REQ_FUN = new clsControl(ccsLink, "CUMPL_REQ_FUN", "CUMPL_REQ_FUN", ccsText, "", CCGetRequestParam("CUMPL_REQ_FUN", ccsGet, NULL), $this);
         $this->CUMPL_REQ_FUN->HTML = true;
+        $this->CUMPL_REQ_FUN->Page = "SLAsCAPCReqFunDetalle.php";
         $this->Img_HERR_EST_COST = new clsControl(ccsImageLink, "Img_HERR_EST_COST", "Img_HERR_EST_COST", ccsText, "", CCGetRequestParam("Img_HERR_EST_COST", ccsGet, NULL), $this);
         $this->Img_HERR_EST_COST->Page = "SLAsCapcApbDetalle.php";
         $this->Img_REQ_SERV = new clsControl(ccsImageLink, "Img_REQ_SERV", "Img_REQ_SERV", ccsText, "", CCGetRequestParam("Img_REQ_SERV", ccsGet, NULL), $this);
         $this->Img_REQ_SERV->Page = "SLAsCapcApbDetalle.php";
         $this->Img_CUMPL_REQ_FUN = new clsControl(ccsImageLink, "Img_CUMPL_REQ_FUN", "Img_CUMPL_REQ_FUN", ccsText, "", CCGetRequestParam("Img_CUMPL_REQ_FUN", ccsGet, NULL), $this);
-        $this->Img_CUMPL_REQ_FUN->Page = "SLAsCAPCDetalle.php";
+        $this->Img_CUMPL_REQ_FUN->Page = "SLAsCAPCReqFunDetalle.php";
         $this->DetalleCalidad = new clsControl(ccsLabel, "DetalleCalidad", "DetalleCalidad", ccsText, "", CCGetRequestParam("DetalleCalidad", ccsGet, NULL), $this);
         $this->Obs_AP = new clsControl(ccsLabel, "Obs_AP", "Obs_AP", ccsText, "", CCGetRequestParam("Obs_AP", ccsGet, NULL), $this);
         $this->Sorter_mc_c_ServContractual_Descripcion = new clsSorter($this->ComponentName, "Sorter_mc_c_ServContractual_Descripcion", $FileName, $this);
@@ -365,7 +367,7 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
     }
 //End Initialize Method
 
-//Show Method @3-957E938A
+//Show Method @3-570C9996
     function Show()
     {
         $Tpl = CCGetTemplate($this);
@@ -433,6 +435,8 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
                 $this->Agrupador->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
                 $this->Agrupador->Parameters = CCAddParam($this->Agrupador->Parameters, "id", $this->DataSource->f("id"));
                 $this->CALIDAD_PROD_TERM->SetValue($this->DataSource->CALIDAD_PROD_TERM->GetValue());
+                $this->CALIDAD_PROD_TERM->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
+                $this->CALIDAD_PROD_TERM->Parameters = CCAddParam($this->CALIDAD_PROD_TERM->Parameters, "id", $this->DataSource->f("id"));
                 $this->DEDUC_OMISION->SetValue($this->DataSource->DEDUC_OMISION->GetValue());
                 $this->RETR_ENTREGABLE->SetValue($this->DataSource->RETR_ENTREGABLE->GetValue());
                 $this->Observaciones->SetValue($this->DataSource->Observaciones->GetValue());
@@ -448,6 +452,8 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
                 $this->HERR_EST_COST->SetValue($this->DataSource->HERR_EST_COST->GetValue());
                 $this->REQ_SERV->SetValue($this->DataSource->REQ_SERV->GetValue());
                 $this->CUMPL_REQ_FUN->SetValue($this->DataSource->CUMPL_REQ_FUN->GetValue());
+                $this->CUMPL_REQ_FUN->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
+                $this->CUMPL_REQ_FUN->Parameters = CCAddParam($this->CUMPL_REQ_FUN->Parameters, "sID", $this->DataSource->f("id"));
                 $this->Img_HERR_EST_COST->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
                 $this->Img_HERR_EST_COST->Parameters = CCAddParam($this->Img_HERR_EST_COST->Parameters, "s_numero", $this->DataSource->f("numero"));
                 $this->Img_HERR_EST_COST->Parameters = CCAddParam($this->Img_HERR_EST_COST->Parameters, "sID", $this->DataSource->f("id"));
@@ -455,7 +461,7 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
                 $this->Img_REQ_SERV->Parameters = CCAddParam($this->Img_REQ_SERV->Parameters, "s_numero", $this->DataSource->f("numero"));
                 $this->Img_REQ_SERV->Parameters = CCAddParam($this->Img_REQ_SERV->Parameters, "sID", $this->DataSource->f("id"));
                 $this->Img_CUMPL_REQ_FUN->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
-                $this->Img_CUMPL_REQ_FUN->Parameters = CCAddParam($this->Img_CUMPL_REQ_FUN->Parameters, "id", $this->DataSource->f("id"));
+                $this->Img_CUMPL_REQ_FUN->Parameters = CCAddParam($this->Img_CUMPL_REQ_FUN->Parameters, "sID", $this->DataSource->f("id"));
                 $this->Img_CUMPL_REQ_FUN->Parameters = CCAddParam($this->Img_CUMPL_REQ_FUN->Parameters, "s_numero", $this->DataSource->f("numero"));
                 $this->DetalleCalidad->SetValue($this->DataSource->DetalleCalidad->GetValue());
                 $this->Obs_AP->SetValue($this->DataSource->Obs_AP->GetValue());

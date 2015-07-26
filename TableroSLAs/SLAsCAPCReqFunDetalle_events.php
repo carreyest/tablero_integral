@@ -143,7 +143,7 @@ function mc_info_rs_cr_RF_BeforeShow(& $sender)
     $sql = 'SELECT id_serviciocont, id_servicio_negoico, id_tipo, idestimacion, mc.descripcion NombreProyecto,  ' .
     	' sc.Descripcion  ServContractual, sn.nombre ServNegocio, t.Descripcion TipoPPMC ' .
 		' FROM mc_calificacion_CAPC mc  inner join mc_c_servcontractual sc on sc.id = mc.id_serviciocont  ' .
-		' 		inner join mc_c_servicio   sn on sn.id_servicio   = mc.id_servicio_negoico and sn.id_tipo_servicio =2  ' .
+		' 		left  join mc_c_servicio   sn on sn.id_servicio   = mc.id_servicio_negoico and sn.id_tipo_servicio =2  ' .
 		' 		inner join mc_c_TipoPPMC t on t.Id = mc.id_tipo  WHERE mc.id = ' . CCGetParam("sID") ;
     $db->query($sql);
 	if($db->next_record()){
@@ -156,17 +156,6 @@ function mc_info_rs_cr_RF_BeforeShow(& $sender)
 		$mc_info_rs_cr_RF->Button_Insert->Visible= false;
     	$mc_info_rs_cr_RF->Button_Update->Visible = false;	
 	}
-	
-	$flgCerrado=CCDLookUp("Medido","mc_universo_cds","Id=" .CCGetParam("sID",""), $db);
-    if($flgCerrado==1){
-    	$mc_info_rs_cr_RF->Button_Insert->Visible= false;
-    	$mc_info_rs_cr_RF->Button_Update->Visible = false;
-    } 
-    if($flgCerrado==0){
-    	//$mc_info_rs_cr_RF->Button_Insert->Visible= true;
-    	//$mc_info_rs_cr_RF->Button_Update->Visible = true;
-    }
-	
     $db->Close();
 // -------------------------
 //End Custom Code
@@ -239,14 +228,15 @@ function mc_info_rs_cr_RF_ds_BeforeExecuteInsert(& $sender)
     $db->query($sSQL);
     if($db->next_record()){ 
     	if($db->f(0)==0){ // si no existe se inserta
-    		$sSQL='INSERT INTO mc_calificacion_CAPC (id_ppmc, id_proveedor,id_servicio_cont , id_servicio_negocio , CUMPL_REQ_FUNC, Id, MesReporte, AnioReporte ) ' .  
+    		$sSQL='INSERT INTO mc_calificacion_CAPC (id_ppmc, id_proveedor,id_servicio_cont , id_servicio_negocio , CUMPL_REQ_FUN, Id, MesReporte, AnioReporte ) ' .  
     			' VALUES (' . $sPPMC . ',' . $sIdProveedor . ',0,0,'.  $sCumpleReqFun . ',' .
     			 CCGetparam("sID") . ',' . $sMes . ',' . $sAnio .')';
     	} else { //si existe se actualiza
-    		$sSQL = 'UPDATE  mc_calificacion_CAPC SET CUMPL_REQ_FUNC = ' . $sCumpleReqFun .
+    		$sSQL = 'UPDATE  mc_calificacion_CAPC SET CUMPL_REQ_FUN = ' . $sCumpleReqFun .
     			' WHERE Id =' . CCGetParam("sID");
     	}
     	$db->query($sSQL);
+    	
     }
     $db->close();
 
@@ -283,7 +273,7 @@ function mc_info_rs_cr_RF_ds_BeforeExecuteUpdate(& $sender)
 	if($sCumpleReqFun === ""){
 			$sCumpleReqFun ="NULL";
 	}
-	$sSQL = 'UPDATE  mc_calificacion_CAPC SET CUMPL_REQ_FUNC = ' .  $sCumpleReqFun .
+	$sSQL = 'UPDATE  mc_calificacion_CAPC SET CUMPL_REQ_FUN= ' .  $sCumpleReqFun .
     		' WHERE Id =' . CCGetParam("sID");
     $db->query($sSQL);
     $db->close();

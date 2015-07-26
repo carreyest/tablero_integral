@@ -49,7 +49,7 @@ class clsRecordmc_info_rs_cr_RF { //mc_info_rs_cr_RF Class @3-697396CF
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-5BFC6B8A
+//Class_Initialize Event @3-8781B3BF
     function clsRecordmc_info_rs_cr_RF($RelativePath, & $Parent)
     {
 
@@ -125,7 +125,7 @@ class clsRecordmc_info_rs_cr_RF { //mc_info_rs_cr_RF Class @3-697396CF
                 if(!is_array($this->ListaenPDF->Value) && !strlen($this->ListaenPDF->Value) && $this->ListaenPDF->Value !== false)
                     $this->ListaenPDF->SetValue(false);
                 if(!is_array($this->Id->Value) && !strlen($this->Id->Value) && $this->Id->Value !== false)
-                    $this->Id->SetText(CCGetParam("Id"));
+                    $this->Id->SetText(CCGetParam("sID"));
                 if(!is_array($this->ListaenCAES->Value) && !strlen($this->ListaenCAES->Value) && $this->ListaenCAES->Value !== false)
                     $this->ListaenCAES->SetValue(false);
             }

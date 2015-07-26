@@ -143,22 +143,22 @@
 			<Events/>
 			<TableParameters>
 				<TableParameter id="88" conditionType="Parameter" useIsNull="False" dataType="Text" field="Usuario" logicOperator="And" orderNumber="1" parameterSource="s_Usuario" parameterType="URL" searchConditionType="Contains" searchFormParameter="True"/>
-<TableParameter id="89" conditionType="Parameter" useIsNull="False" dataType="Text" field="Grupo" logicOperator="And" orderNumber="2" parameterSource="s_Grupo" parameterType="URL" searchConditionType="Contains" searchFormParameter="True"/>
-</TableParameters>
+				<TableParameter id="89" conditionType="Parameter" useIsNull="False" dataType="Text" field="Grupo" logicOperator="And" orderNumber="2" parameterSource="s_Grupo" parameterType="URL" searchConditionType="Contains" searchFormParameter="True"/>
+			</TableParameters>
 			<JoinTables>
 				<JoinTable id="87" posHeight="180" posLeft="10" posTop="10" posWidth="118" tableName="mc_c_usuarios"/>
-</JoinTables>
+			</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="90" fieldName="Id" tableName="mc_c_usuarios"/>
-<Field id="91" fieldName="Usuario" tableName="mc_c_usuarios"/>
-<Field id="92" fieldName="Nivel" tableName="mc_c_usuarios"/>
-<Field id="93" fieldName="Grupo" tableName="mc_c_usuarios"/>
-<Field id="94" fieldName="Nombre" tableName="mc_c_usuarios"/>
-</Fields>
+				<Field id="91" fieldName="Usuario" tableName="mc_c_usuarios"/>
+				<Field id="92" fieldName="Nivel" tableName="mc_c_usuarios"/>
+				<Field id="93" fieldName="Grupo" tableName="mc_c_usuarios"/>
+				<Field id="94" fieldName="Nombre" tableName="mc_c_usuarios"/>
+			</Fields>
 			<PKFields>
 				<PKField id="95" dataType="Integer" fieldName="Id" tableName="mc_c_usuarios"/>
-</PKFields>
+			</PKFields>
 			<SPParameters/>
 			<SQLParameters/>
 			<SecurityGroups/>
@@ -210,7 +210,7 @@
 					<Attributes/>
 					<Features/>
 				</ListBox>
-				<ListBox id="40" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="Grupo" fieldSource="Grupo" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Grupo" caption="Grupo" required="False" unique="False" connection="cnDisenio" wizardEmptyCaption="Seleccionar Valor" dataSource="SLAs;SLAs;CAPC;CAPC;CDS;CDS;MyM;MyM" PathID="mc_c_usuarios1Grupo">
+				<ListBox id="40" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="Grupo" fieldSource="Grupo" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Grupo" caption="Grupo" required="False" unique="False" connection="cnDisenio" wizardEmptyCaption="Seleccionar Valor" dataSource="SLAs;SLAs;CAPC;CAPC;CDS;CDS;MyM;MyM;SAT;SAT" PathID="mc_c_usuarios1Grupo">
 					<Components/>
 					<Events/>
 					<TableParameters/>

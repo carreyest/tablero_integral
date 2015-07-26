@@ -617,9 +617,9 @@ AND det.TipoRegistro  = '{Expr0}'
 			<SPParameters/>
 			<SQLParameters/>
 			<JoinTables>
-				<JoinTable id="303" posHeight="180" posLeft="10" posTop="10" posWidth="132" tableName="mc_info_detalle_defectos_calidad"/>
-				<JoinTable id="304" posHeight="180" posLeft="163" posTop="10" posWidth="158" tableName="mc_c_proveedor"/>
-			</JoinTables>
+				<JoinTable id="323" tableName="mc_info_detalle_defectos_calidad"/>
+<JoinTable id="324" tableName="mc_c_proveedor"/>
+</JoinTables>
 			<JoinLinks>
 				<JoinTable2 id="305" conditionType="Equal" fieldLeft="mc_info_detalle_defectos_calidad.id_ProveedorPaq" fieldRight="mc_c_proveedor.id_proveedor" joinType="left" tableLeft="mc_info_detalle_defectos_calidad" tableRight="mc_c_proveedor"/>
 			</JoinLinks>
@@ -791,7 +791,7 @@ order by det.ciclo, det.c_rdl, det.fechainiciomov, e.tipo
 			<Features/>
 		</Link>
 		<Link id="135" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkCalidadCod" PathID="lkCalidadCod" hrefSource="PPMCsCrCalCodDetalle.ccp" wizardUseTemplateBlock="False" linkProperties="{&quot;textSource&quot;:&quot;Calidad de Código&quot;,&quot;textSourceDB&quot;:&quot;&quot;,&quot;hrefSource&quot;:&quot;PPMCsCrCalCodDetalle.ccp&quot;,&quot;hrefSourceDB&quot;:&quot;&quot;,&quot;title&quot;:&quot;&quot;,&quot;target&quot;:&quot;&quot;,&quot;name&quot;:&quot;&quot;,&quot;linkParameters&quot;:{&quot;0&quot;:{&quot;sourceType&quot;:&quot;URL&quot;,&quot;parameterSource&quot;:&quot;Id&quot;,&quot;parameterName&quot;:&quot;Id&quot;},&quot;1&quot;:{&quot;sourceType&quot;:&quot;URL&quot;,&quot;parameterSource&quot;:&quot;Id&quot;,&quot;parameterName&quot;:&quot;Id&quot;},&quot;length&quot;:2,&quot;objectType&quot;:&quot;linkParameters&quot;}}">
-<Components/>
+			<Components/>
 			<Events/>
 			<LinkParameters>
 				<LinkParameter id="136" sourceType="URL" format="yyyy-mm-dd" name="Id" source="Id"/>

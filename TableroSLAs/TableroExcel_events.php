@@ -124,23 +124,6 @@ function Page_OnInitializeView(& $sender)
 	global $mc_reporte_ns;
 	
 	//si se envio la forma verifica si ya existe el registro y redirecciona a la información guardada
-	/*
-	if(count($_POST)>0 && array_key_exists("Button_Insert",$_POST)){
-		$db= new clsDBcnDisenio;
-		$db->query("select * from mc_reporte_ns where mesreporte = ". 
-					((CCGetFromPost("s_MesReporte",0)=="")?0:CCGetFromPost("s_MesReporte",0)) . 
-					" and anioreporte=" . ((CCGetFromPost("s_AnioReporte",0)=="")?0:CCGetFromPost("s_AnioReporte",0)) . 
-					" and id_proveedor=" . ((CCGetFromPost("s_id_proveedor",0)=="")?0:CCGetFromPost("s_id_proveedor",0)));
-		if($db->has_next_record()){
-			$mc_reporte_ns->InsertAllowed = false;
-			$Redirect= $PathToRoot .  "TableroExcel.php?" . CCAddParam(CCGetQueryString("QueryString",array("ccsForm","s_id_proveedor")),"s_id_proveedor",$_POST["s_id_proveedor"]) . "&" .
-					CCAddParam(CCGetQueryString("QueryString",array("ccsForm","s_MesReporte")),"s_MesReporte",$_POST["s_MesReporte"])  . "&" .
-					CCAddParam(CCGetQueryString("QueryString",array("ccsForm","s_AnioReporte")),"s_AnioReporte",$_POST["s_AnioReporte"]) ;	
-			header("Location: " . $Redirect );
-		}
-	}
-	*/
-	
 	
 	//se verifica si existe el registro para el mes que se está creando, si es así genera el reporte, si no pide los datos.
 	global $dbReporte;
@@ -171,7 +154,10 @@ function Page_OnInitializeView(& $sender)
 	{
 		echo "x.x";
 		$Panel1->Visible=false;
-		}
+	}
+	if(CCGetSession("GrupoValoracion")!="CAPC"){
+		GeneraReporte();
+	}
 
 // -------------------------
 //End Custom Code
@@ -257,7 +243,7 @@ function GeneraReporte(){
 			$TipoReporte="DyP";
 		}
 		
-		if(CCGetParam("s_SLO",0)==1){
+		if(CCGetParam("s_SLO",0)==1 || CCGetParam("sSLO",0)==1){
 			$REPORT="http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCompleto_SLO.rdl";
 			$ReporteSLA="SLO";
 		}

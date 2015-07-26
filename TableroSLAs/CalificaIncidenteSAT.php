@@ -2120,7 +2120,7 @@ class clsRecordmc_calificacion_incidente { //mc_calificacion_incidente Class @10
     // Class variables
 //End Variables
 
-//Class_Initialize Event @106-7EE8E3DC
+//Class_Initialize Event @106-474CD01A
     function clsRecordmc_calificacion_incidente($RelativePath, & $Parent)
     {
 
@@ -2149,9 +2149,7 @@ class clsRecordmc_calificacion_incidente { //mc_calificacion_incidente Class @10
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
             $this->Button_Update = new clsButton("Button_Update", $Method, $this);
-            $this->Cumple_DISP_SOPORTE = new clsControl(ccsListBox, "Cumple_DISP_SOPORTE", "Disponibilidad del Personal de Soporte", ccsInteger, "", CCGetRequestParam("Cumple_DISP_SOPORTE", $Method, NULL), $this);
-            $this->Cumple_DISP_SOPORTE->DSType = dsListOfValues;
-            $this->Cumple_DISP_SOPORTE->Values = array(array("0", "No Cumple"), array("1", "Cumple"));
+            $this->Cumple_DISP_SOPORTE = new clsControl(ccsHidden, "Cumple_DISP_SOPORTE", "Disponibilidad del Personal de Soporte", ccsInteger, "", CCGetRequestParam("Cumple_DISP_SOPORTE", $Method, NULL), $this);
             $this->Cumple_Inc_TiempoSolucion = new clsControl(ccsListBox, "Cumple_Inc_TiempoSolucion", "Tiempo Solucion", ccsInteger, "", CCGetRequestParam("Cumple_Inc_TiempoSolucion", $Method, NULL), $this);
             $this->Cumple_Inc_TiempoSolucion->DSType = dsListOfValues;
             $this->Cumple_Inc_TiempoSolucion->Values = array(array("0", "No Cumple"), array("1", "Cumple"));
@@ -2298,7 +2296,7 @@ class clsRecordmc_calificacion_incidente { //mc_calificacion_incidente Class @10
     }
 //End UpdateRow Method
 
-//Show Method @106-190C0130
+//Show Method @106-28087E3C
     function Show()
     {
         global $CCSUseAmp;
@@ -2312,7 +2310,6 @@ class clsRecordmc_calificacion_incidente { //mc_calificacion_incidente Class @10
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
-        $this->Cumple_DISP_SOPORTE->Prepare();
         $this->Cumple_Inc_TiempoSolucion->Prepare();
         $this->Cumple_Inc_TiempoAsignacion->Prepare();
 

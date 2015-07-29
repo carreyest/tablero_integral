@@ -113,6 +113,13 @@ function grdDetalleRS_BeforeShowRow(& $sender)
 	} else {
 		$grdDetalleRS->imgRETR_ENTREGABLE->SetValue("images/NoCumple.png");
 	}
+	if($grdDetalleRS->CAL_COD->GetValue()){
+		$grdDetalleRS->imgCAL_COD->SetValue("images/Cumple.png");
+	} else {
+		$grdDetalleRS->imgCAL_COD->SetValue("images/NoCumple.png");
+	}
+
+
 	/*
 	if($grdDetalleRS->COMPL_RUTA_CRITICA->GetValue()){
 		$grdDetalleRS->imgCOMPL_RUTA_CRITICA->SetValue("images/Cumple.png");
@@ -132,11 +139,20 @@ function grdDetalleRS_BeforeShowRow(& $sender)
 	}
 	
 	
-	if (CCGetParam("s_id_proveedor")==4){
-		$sProveedor ="3y4";
-	} else {
-		$sProveedor =CCGetParam("s_id_proveedor")-1;
+//	if (CCGetParam("s_id_proveedor")==4){
+//		$sProveedor ="3y4";
+//	} else {
+//		$sProveedor =CCGetParam("s_id_proveedor")-1;
+//	}
+	
+	
+	switch (CCGetParam("s_id_proveedor")){
+	case 1 : $sProveedor = 'Evidencia_CAPC';break;
+	case 2 : $sProveedor = 'Evidencias_CDS1y3';break;
+	case 3 : $sProveedor = 'Evidencias_CDS2';break;
+	default: $sProveedor = 'Evidencias_CAPC';break;		
 	}
+
 	if(CCGetParam("s_MesReporte")<10){
 		$sMes = "0" . CCGetParam("s_MesReporte");
 	} else {
@@ -144,10 +160,10 @@ function grdDetalleRS_BeforeShowRow(& $sender)
 	}
 	
 	if($grdDetalleRS->HERR_EST_COST->GetValue()!="" || $grdDetalleRS->REQ_SERV->GetValue()!="") {
-		$grdDetalleRS->lkEvidencia->SetLink("http://satportal.dssat.sat.gob.mx/agcti/CAPC_ITERA/SDMA3/AdmonContrato/CAPC/Entregables_C/" . CCGetParam("s_AnioReporte","") . $sMes .  "/MC/Evidencia_CDS" . $sProveedor  . "/"); 
+		$grdDetalleRS->lkEvidencia->SetLink("http://satportal.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos compartidos/Operación del Servicio/Itera/" . CCGetParam("s_AnioReporte","") . $sMes . "/EntregablesPeriódicos/NivelesServicio/". $sProveedor ."/");
 		// . $grdDetalleRS->id_ppmc->GetValue() . "_A.doc");
 	} else {
-		$grdDetalleRS->lkEvidencia->SetLink("http://satportal.dssat.sat.gob.mx/agcti/CAPC_ITERA/SDMA3/AdmonContrato/CAPC/Entregables_C/" . CCGetParam("s_AnioReporte","") . $sMes .  "/MC/Evidencia_CDS" . $sProveedor  . "/"); 
+		$grdDetalleRS->lkEvidencia->SetLink("http://satportal.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos compartidos/Operación del Servicio/Itera/" . CCGetParam("s_AnioReporte","") . $sMes . "/EntregablesPeriódicos/NivelesServicio/". $sProveedor ."/");		
 		//. $grdDetalleRS->id_ppmc->GetValue() . "_C.doc");
 	}
 	

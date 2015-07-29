@@ -319,7 +319,7 @@ where c.id_proveedor = {s_id_proveedor}
 							<Attributes/>
 							<Features/>
 						</Label>
-						<Link id="93" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="lkEvidencia" PathID="grdDetalleRSPanel1lkEvidencia" fieldSource="Ver Evidencia" wizardUseTemplateBlock="False" linkProperties="{'textSource':'','textSourceDB':'Ver Evidencia','hrefSource':'http://satportal.dssat.sat.gob.mx/agcti/CAPC_ITERA/SDMA3/AdmonContrato/CAPC/Entregables_C/201401/MC/Evidencia_CDS2/','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}" hrefSource="http://satportal.dssat.sat.gob.mx/agcti/CAPC_ITERA/SDMA3/AdmonContrato/CAPC/Entregables_C/201401/MC/Evidencia_CDS2/">
+						<Link id="93" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="lkEvidencia" PathID="grdDetalleRSPanel1lkEvidencia" fieldSource="Ver Evidencia" wizardUseTemplateBlock="False" linkProperties="{&quot;textSource&quot;:&quot;&quot;,&quot;textSourceDB&quot;:&quot;Ver Evidencia&quot;,&quot;hrefSource&quot;:&quot;satportal.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos compartidos/Operación del Servicio/Itera/201505/EntregablesPeriódicos/NivelesServicio/Evidencias_CDS2&quot;,&quot;hrefSourceDB&quot;:&quot;&quot;,&quot;title&quot;:&quot;&quot;,&quot;target&quot;:&quot;&quot;,&quot;name&quot;:&quot;&quot;,&quot;linkParameters&quot;:{&quot;length&quot;:0,&quot;objectType&quot;:&quot;linkParameters&quot;}}" hrefSource="satportal.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos compartidos/Operación del Servicio/Itera/201505/EntregablesPeriódicos/NivelesServicio/Evidencias_CDS2">
 							<Components/>
 							<Events/>
 							<LinkParameters/>
@@ -370,10 +370,10 @@ where c.id_proveedor = {s_id_proveedor}
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="122" dataType="Integer" defaultValue="0" designDefaultValue="3" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
-<SQLParameter id="123" dataType="Integer" defaultValue="0" designDefaultValue="4" parameterSource="s_MesReporte" parameterType="URL" variable="s_MesReporte"/>
-<SQLParameter id="124" dataType="Integer" defaultValue="0" designDefaultValue="2014" parameterSource="s_AnioReporte" parameterType="URL" variable="s_AnioReporte"/>
-<SQLParameter id="125" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
-</SQLParameters>
+				<SQLParameter id="123" dataType="Integer" defaultValue="0" designDefaultValue="4" parameterSource="s_MesReporte" parameterType="URL" variable="s_MesReporte"/>
+				<SQLParameter id="124" dataType="Integer" defaultValue="0" designDefaultValue="2014" parameterSource="s_AnioReporte" parameterType="URL" variable="s_AnioReporte"/>
+				<SQLParameter id="125" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -395,8 +395,8 @@ where c.id_proveedor = {s_id_proveedor}
 					<SPParameters/>
 					<SQLParameters/>
 					<JoinTables>
-						<JoinTable id="33" posHeight="180" posLeft="10" posTop="10" posWidth="115" tableName="mc_c_proveedor"/>
-					</JoinTables>
+						<JoinTable id="126" tableName="mc_c_proveedor"/>
+</JoinTables>
 					<JoinLinks/>
 					<Fields>
 						<Field id="35" fieldName="*"/>

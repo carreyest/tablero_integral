@@ -59,7 +59,7 @@ class clsGridgrdDetalleRS { //grdDetalleRS class @3-CC2FAA29
     public $Sorter_DEF_FUG_AMB_PROD;
 //End Variables
 
-//Class_Initialize Event @3-23B153CE
+//Class_Initialize Event @3-BF97F737
     function clsGridgrdDetalleRS($RelativePath, & $Parent)
     {
         global $FileName;
@@ -117,7 +117,7 @@ class clsGridgrdDetalleRS { //grdDetalleRS class @3-CC2FAA29
         $this->ObsDefFug = new clsControl(ccsLabel, "ObsDefFug", "ObsDefFug", ccsText, "", CCGetRequestParam("ObsDefFug", ccsGet, NULL), $this);
         $this->lkEvidencia = new clsControl(ccsLink, "lkEvidencia", "lkEvidencia", ccsText, "", CCGetRequestParam("lkEvidencia", ccsGet, NULL), $this);
         $this->lkEvidencia->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
-        $this->lkEvidencia->Page = "http://satportal.dssat.sat.gob.mx/agcti/CAPC_ITERA/SDMA3/AdmonContrato/CAPC/Entregables_C/201401/MC/Evidencia_CDS2/";
+        $this->lkEvidencia->Page = "satportal.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos compartidos/Operación del Servicio/Itera/201505/EntregablesPeriódicos/NivelesServicio/Evidencias_CDS2";
         $this->Obs_SAT = new clsControl(ccsLabel, "Obs_SAT", "Obs_SAT", ccsText, "", CCGetRequestParam("Obs_SAT", ccsGet, NULL), $this);
         $this->IdEstimacion = new clsControl(ccsLabel, "IdEstimacion", "IdEstimacion", ccsText, "", CCGetRequestParam("IdEstimacion", ccsGet, NULL), $this);
         $this->lkRT = new clsControl(ccsLink, "lkRT", "lkRT", ccsText, "", CCGetRequestParam("lkRT", ccsGet, NULL), $this);

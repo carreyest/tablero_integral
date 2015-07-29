@@ -369,11 +369,11 @@ where c.id_proveedor = {s_id_proveedor}
 			<PKFields/>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="122" dataType="Integer" defaultValue="0" designDefaultValue="3" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
-				<SQLParameter id="123" dataType="Integer" defaultValue="0" designDefaultValue="4" parameterSource="s_MesReporte" parameterType="URL" variable="s_MesReporte"/>
-				<SQLParameter id="124" dataType="Integer" defaultValue="0" designDefaultValue="2014" parameterSource="s_AnioReporte" parameterType="URL" variable="s_AnioReporte"/>
-				<SQLParameter id="125" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
-			</SQLParameters>
+				<SQLParameter id="127" dataType="Integer" defaultValue="0" designDefaultValue="3" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
+<SQLParameter id="128" dataType="Integer" defaultValue="0" designDefaultValue="4" parameterSource="s_MesReporte" parameterType="URL" variable="s_MesReporte"/>
+<SQLParameter id="129" dataType="Integer" defaultValue="0" designDefaultValue="2014" parameterSource="s_AnioReporte" parameterType="URL" variable="s_AnioReporte"/>
+<SQLParameter id="130" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
+</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -396,7 +396,7 @@ where c.id_proveedor = {s_id_proveedor}
 					<SQLParameters/>
 					<JoinTables>
 						<JoinTable id="126" tableName="mc_c_proveedor"/>
-</JoinTables>
+					</JoinTables>
 					<JoinLinks/>
 					<Fields>
 						<Field id="35" fieldName="*"/>

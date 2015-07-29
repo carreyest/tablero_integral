@@ -114,9 +114,14 @@ function grdDetalleRS_BeforeShowRow(& $sender)
 		$grdDetalleRS->imgRETR_ENTREGABLE->SetValue("images/NoCumple.png");
 	}
 	if($grdDetalleRS->CAL_COD->GetValue()){
-		$grdDetalleRS->imgCAL_COD->SetValue("images/Cumple.png");
+		switch($grdDetalleRS->CAL_COD->GetValue()){
+			case -1: $imagen_calcod="images/noaplica.png";
+			case  0: $imagen_calcod="images/NoCumple.png";
+			case  1: $imagen_calcod="images/Cumple.png";
+		}	
+		$grdDetalleRS->imgCAL_COD->SetValue($imagen_calcod);
 	} else {
-		$grdDetalleRS->imgCAL_COD->SetValue("images/NoCumple.png");
+		$grdDetalleRS->imgCAL_COD->SetValue("images/noaplica.png");
 	}
 
 

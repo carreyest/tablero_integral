@@ -79,45 +79,75 @@ function grdDetalleRS_BeforeShowRow(& $sender)
 	$grdDetalleRS->imgEST_PROY->Visible=true;
 	$grdDetalleRS->imgDEF_FUG_AMB_PROD->Visible=true;
 	*/
-	$grdDetalleRS->imgCumpleHE->Visible=($grdDetalleRS->HERR_EST_COST->GetValue()!="");
-	$grdDetalleRS->imgCumpleRS->Visible=($grdDetalleRS->REQ_SERV->GetValue()!="");
-	$grdDetalleRS->imgCUMPL_REQ_FUNC->Visible=($grdDetalleRS->CUMPL_REQ_FUNC->GetValue()!="");
-	$grdDetalleRS->imgCALIDAD_PROD_TERM->Visible=($grdDetalleRS->CALIDAD_PROD_TERM->GetValue()!="");
-	$grdDetalleRS->imgRETR_ENTREGABLE->Visible=($grdDetalleRS->RETR_ENTREGABLE->GetValue()!="");
+	//$grdDetalleRS->imgCumpleHE->Visible=($grdDetalleRS->HERR_EST_COST->GetValue()!="");
+	//$grdDetalleRS->imgCumpleRS->Visible=($grdDetalleRS->REQ_SERV->GetValue()!="");
+	//$grdDetalleRS->imgCUMPL_REQ_FUNC->Visible=($grdDetalleRS->CUMPL_REQ_FUNC->GetValue()!="");
+	//$grdDetalleRS->imgCALIDAD_PROD_TERM->Visible=($grdDetalleRS->CALIDAD_PROD_TERM->GetValue()!="");
+	//$grdDetalleRS->imgRETR_ENTREGABLE->Visible=($grdDetalleRS->RETR_ENTREGABLE->GetValue()!="");
 	//$grdDetalleRS->imgCOMPL_RUTA_CRITICA->Visible=($grdDetalleRS->COMPL_RUTA_CRITICA->GetValue()!="");
 	//$grdDetalleRS->imgEST_PROY->Visible=($grdDetalleRS->EST_PROY->GetValue()!="");
-	$grdDetalleRS->imgDEF_FUG_AMB_PROD->Visible=($grdDetalleRS->DEF_FUG_AMB_PROD->GetValue()!="");
+	//$grdDetalleRS->imgDEF_FUG_AMB_PROD->Visible=($grdDetalleRS->DEF_FUG_AMB_PROD->GetValue()!="");
 	
-	if($grdDetalleRS->HERR_EST_COST->GetValue()){
-		$grdDetalleRS->imgCumpleHE->SetValue("images/Cumple.png");
+	if($grdDetalleRS->HERR_EST_COST->GetValue()!=''){
+		switch($grdDetalleRS->HERR_EST_COST->GetValue()){
+			case  0: $imagen_hec="images/NoCumple.png"; break;
+			case  1: $imagen_hec="images/Cumple.png"; break;
+		}	
+		$grdDetalleRS->imgCumpleHE->SetValue($imagen_hec);	
 	} else {
-		$grdDetalleRS->imgCumpleHE->SetValue("images/NoCumple.png");
+		$grdDetalleRS->imgCumpleHE->SetValue("images/noaplica.png");
 	}
-	if($grdDetalleRS->REQ_SERV->GetValue()){
-		$grdDetalleRS->imgCumpleRS->SetValue("images/Cumple.png");
+
+	if($grdDetalleRS->REQ_SERV->GetValue()!=''){
+		switch($grdDetalleRS->REQ_SERV->GetValue()){
+			case  0: $imagen_rs="images/NoCumple.png"; break;
+			case  1: $imagen_rs="images/Cumple.png"; break;
+		}	
+		$grdDetalleRS->imgCumpleRS->SetValue($imagen_rs);
 	} else {
-		$grdDetalleRS->imgCumpleRS->SetValue("images/NoCumple.png");
+		$grdDetalleRS->imgCumpleRS->SetValue("images/noaplica.png");
 	}
-	if($grdDetalleRS->CUMPL_REQ_FUNC->GetValue()){
-		$grdDetalleRS->imgCUMPL_REQ_FUNC->SetValue("images/Cumple.png");
+
+	
+
+	if($grdDetalleRS->CUMPL_REQ_FUNC->GetValue()!=''){
+		switch($grdDetalleRS->CUMPL_REQ_FUNC->GetValue()){
+			case  0: $imagen_crf="images/NoCumple.png"; break;
+			case  1: $imagen_crf="images/Cumple.png"; break;
+		}			
+		$grdDetalleRS->imgCUMPL_REQ_FUNC->SetValue($imagen_crf);
 	} else {
-		$grdDetalleRS->imgCUMPL_REQ_FUNC->SetValue("images/NoCumple.png");
+		$grdDetalleRS->imgCUMPL_REQ_FUNC->SetValue("images/noaplica.png");
 	}
-	if($grdDetalleRS->CALIDAD_PROD_TERM->GetValue()){
-		$grdDetalleRS->imgCALIDAD_PROD_TERM->SetValue("images/Cumple.png");
+	
+	
+	if($grdDetalleRS->CALIDAD_PROD_TERM->GetValue()!=''){
+		switch($grdDetalleRS->CALIDAD_PROD_TERM->GetValue()){
+			case  0: $imagen_cpt="images/NoCumple.png"; break;
+			case  1: $imagen_cpt="images/Cumple.png"; break;
+		}			
+
+		$grdDetalleRS->imgCALIDAD_PROD_TERM->SetValue($imagen_cpt);
 	} else {
-		$grdDetalleRS->imgCALIDAD_PROD_TERM->SetValue("images/NoCumple.png");
+		$grdDetalleRS->imgCALIDAD_PROD_TERM->SetValue("images/noaplica.png");
 	}
-	if($grdDetalleRS->RETR_ENTREGABLE->GetValue()){
-		$grdDetalleRS->imgRETR_ENTREGABLE->SetValue("images/Cumple.png");
+
+	if($grdDetalleRS->RETR_ENTREGABLE->GetValue()!=''){
+		switch($grdDetalleRS->RETR_ENTREGABLE->GetValue()){
+			case  0: $imagen_re="images/NoCumple.png"; break;
+			case  1: $imagen_re="images/Cumple.png"; break;
+		}			
+
+		$grdDetalleRS->imgRETR_ENTREGABLE->SetValue($imagen_re);
 	} else {
-		$grdDetalleRS->imgRETR_ENTREGABLE->SetValue("images/NoCumple.png");
+		$grdDetalleRS->imgRETR_ENTREGABLE->SetValue("images/noaplica.png");
 	}
-	if($grdDetalleRS->CAL_COD->GetValue()){
+
+	if($grdDetalleRS->CAL_COD->GetValue()!=''){
 		switch($grdDetalleRS->CAL_COD->GetValue()){
-			case -1: $imagen_calcod="images/noaplica.png";
-			case  0: $imagen_calcod="images/NoCumple.png";
-			case  1: $imagen_calcod="images/Cumple.png";
+			case  -1: $imagen_calcod="images/noaplica.png"; break;
+			case  0: $imagen_calcod="images/NoCumple.png"; break;
+			case  1: $imagen_calcod="images/Cumple.png"; break;
 		}	
 		$grdDetalleRS->imgCAL_COD->SetValue($imagen_calcod);
 	} else {
@@ -137,10 +167,15 @@ function grdDetalleRS_BeforeShowRow(& $sender)
 		$grdDetalleRS->imgEST_PROY->SetValue("images/NoCumple.png");
 	}
 	*/
-	if($grdDetalleRS->DEF_FUG_AMB_PROD->GetValue()){
-		$grdDetalleRS->imgDEF_FUG_AMB_PROD->SetValue("images/Cumple.png");
+	if($grdDetalleRS->DEF_FUG_AMB_PROD->GetValue()!=''){
+		switch($grdDetalleRS->DEF_FUG_AMB_PROD->GetValue()){
+			case  0: $imagen_dfap="images/NoCumple.png"; break;
+			case  1: $imagen_dfap="images/Cumple.png"; break;
+		}	
+
+		$grdDetalleRS->imgDEF_FUG_AMB_PROD->SetValue($imagen_dfap);
 	} else {
-		$grdDetalleRS->imgDEF_FUG_AMB_PROD->SetValue("images/NoCumple.png");
+		$grdDetalleRS->imgDEF_FUG_AMB_PROD->SetValue("images/noaplica.png");
 	}
 	
 	

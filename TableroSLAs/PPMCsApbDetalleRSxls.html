@@ -22,6 +22,7 @@
 </script>
 <link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
 <link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
+
 </head>
 <body>
 <p>{Header}</p>
@@ -90,8 +91,9 @@
  
   <tr>
     <td colspan="2">&nbsp; 
+
       <!-- BEGIN Grid grdDetalleRS -->
-      <table id="grdDetalleRS" class="MainTable" border="0" cellspacing="0" cellpadding="0">
+      <table id="grdDetalleRS" class="MainTable" border="0" cellspacing="0" cellpadding="0" frame="vsides">
         <tr>
           <td valign="top">
             <table class="Header" border="0" cellspacing="0" cellpadding="0">
@@ -102,12 +104,13 @@
               </tr>
             </table>
  
-            <table class="Grid" cellspacing="0" cellpadding="0">
+            <table  id="demo2" class="Grid" cellspacing="0" cellpadding="0">
               <tr class="Row">
                 <td colspan="100">Total de Registros:&nbsp;{Grid1_TotalRecords}</td>
               </tr>
- 
-              <tr class="Caption">
+            </table>  
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <tr  class="Caption">
                 <th scope="col">
                 <!-- BEGIN Sorter Sorter_ServContractual --><span class="Sorter"><a href="{Sort_URL}" id="grdDetalleRSSorter_ServContractual">Servicio Contractual</a> 
                 <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->

@@ -124,15 +124,37 @@ function Page_OnInitializeView(& $sender)
 	global $mc_reporte_ns;
 	
 	//si se envio la forma verifica si ya existe el registro y redirecciona a la información guardada
+	/*
+	if(count($_POST)>0 && array_key_exists("Button_Insert",$_POST)){
+		$db= new clsDBcnDisenio;
+		$db->query("select * from mc_reporte_ns where mesreporte = ". 
+					((CCGetFromPost("s_MesReporte",0)=="")?0:CCGetFromPost("s_MesReporte",0)) . 
+					" and anioreporte=" . ((CCGetFromPost("s_AnioReporte",0)=="")?0:CCGetFromPost("s_AnioReporte",0)) . 
+					" and id_proveedor=" . ((CCGetFromPost("s_id_proveedor",0)=="")?0:CCGetFromPost("s_id_proveedor",0)));
+		if($db->has_next_record()){
+			$mc_reporte_ns->InsertAllowed = false;
+			$Redirect= $PathToRoot .  "TableroExcel.php?" . CCAddParam(CCGetQueryString("QueryString",array("ccsForm","s_id_proveedor")),"s_id_proveedor",$_POST["s_id_proveedor"]) . "&" .
+					CCAddParam(CCGetQueryString("QueryString",array("ccsForm","s_MesReporte")),"s_MesReporte",$_POST["s_MesReporte"])  . "&" .
+					CCAddParam(CCGetQueryString("QueryString",array("ccsForm","s_AnioReporte")),"s_AnioReporte",$_POST["s_AnioReporte"]) ;	
+			header("Location: " . $Redirect );
+		}
+	}
+	*/
+	
 	
 	//se verifica si existe el registro para el mes que se está creando, si es así genera el reporte, si no pide los datos.
 	global $dbReporte;
 	$dbReporte = new clsDBcnDisenio();
-	$dbReporte->query('select * from mc_reporte_ns where mesreporte= ' . ((CCGetFromPost("s_MesReporte",0)=="")?0:CCGetFromPost("s_MesReporte",0)) . 
-							' and anioreporte=' . ((CCGetFromPost("s_AnioReporte",0)=="")?0:CCGetFromPost("s_AnioReporte",0)) . 
-							' and id_proveedor=' . ((CCGetFromPost("s_id_proveedor",0)=="")?0:CCGetFromPost("s_id_proveedor",0)) .
-							' and Dyp=' . ((CCGetFromPost("DyP",0)=="")?0:CCGetFromPost("DyP",0)) . ' and SLO = ' . ((CCGetFromPost("s_SLO",0)=="")?0:CCGetFromPost("s_SLO",0)));
-		
+//	$dbReporte->query('select * from mc_reporte_ns where mesreporte= ' . ((CCGetFromPost("s_MesReporte",0)=="")?0:CCGetFromPost("s_MesReporte",0)) . 
+//							' and anioreporte=' . ((CCGetFromPost("s_AnioReporte",0)=="")?0:CCGetFromPost("s_AnioReporte",0)) . 
+//							' and id_proveedor=' . ((CCGetFromPost("s_id_proveedor",0)=="")?0:CCGetFromPost("s_id_proveedor",0)) .
+//							' and Dyp=' . ((CCGetFromPost("DyP",0)=="")?0:CCGetFromPost("DyP",0)) . ' and SLO = ' . ((CCGetFromPost("s_SLO",0)=="")?0:CCGetFromPost("s_SLO",0)));
+	$dbReporte->query('select * from mc_reporte_ns where mesreporte= ' . ((CCGetFromGet("s_MesReporte",0)=="")?0:CCGetFromGet("s_MesReporte",0)) . 
+							' and anioreporte=' . ((CCGetFromGet("s_AnioReporte",0)=="")?0:CCGetFromGet("s_AnioReporte",0)) . 
+							' and id_proveedor=' . ((CCGetFromGet("s_id_proveedor",0)=="")?0:CCGetFromGet("s_id_proveedor",0)) .
+							' and Dyp=' . ((CCGetFromGet("DyP",0)=="")?0:CCGetFromGet("DyP",0)) . ' and SLO = ' . ((CCGetFromGet("s_SLO",0)=="")?0:CCGetFromGet("s_SLO",0)));
+	
+	$tipo_sl = CCGetFromGet("s_SLO",0)==1? "SLOs":"SLAs";
 	if(!$dbReporte->has_next_record()){
 		global $mc_reporte_ns;
 		$dbReporte->query('Select Nombre_CDS from mc_c_proveedor where id_proveedor=' . CCGetParam("s_id_proveedor",0));
@@ -140,7 +162,7 @@ function Page_OnInitializeView(& $sender)
 			$mc_reporte_ns->Fuente->SetValue($dbReporte->f(0));
 				
 		$aMeses=array(1=>"enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre");
-		$mc_reporte_ns->Comentario->SetValue("Mediciones SLAs correspondientes a " . $aMeses[CCGetParam("s_MesReporte",1)] . " de " . CCGetParam("s_AnioReporte",0) . " para Niveles de Servicio");
+		$mc_reporte_ns->Comentario->SetValue("Mediciones ".$tipo_sl." correspondientes a " . $aMeses[CCGetParam("s_MesReporte",1)] . " de " . CCGetParam("s_AnioReporte",0) . " para Niveles de Servicio");
 		$mc_reporte_ns->Observaciones->SetValue("Para mayor detalle de la medición verificar los archivos de Evidencia, uno por cada requerimiento e incidente reportado.  En el caso de los requerimientos de servicio, las evidencia se generaron en Word, y para los incidentes se generaron en Excel.");
 		$mc_reporte_ns->Instrucciones->SetValue("La información requerida para llenar este formato, corresponde a las tablas del detalle de incidentes y requerimientos de servicio, misma que debe alimentarse en las tablas de las pestañas Detalle Incidentes NS y Detalle RSS, respectivamente. \n" . 
 						"El tablero de control (pestaña Tablero RSs) y los cuadros de incidentes y requerimientos (pestañas Cuadro NS Incidentes y Cuadro NS RSS) se llenan automáticamente conforme se alimenta la información de los detalles mencionados.");
@@ -152,12 +174,9 @@ function Page_OnInitializeView(& $sender)
 			global $Panel1;
 	if(CCGetParam("s_AnioReporte",0)==0 || CCGetParam("s_MesReporte",0)==0 ||  CCGetParam("s_id_proveedor",0)==0 )
 	{
-		echo "x.x";
+		//echo "x.x";
 		$Panel1->Visible=false;
-	}
-	if(CCGetSession("GrupoValoracion")!="CAPC"){
-		GeneraReporte();
-	}
+		}
 
 // -------------------------
 //End Custom Code
@@ -243,7 +262,7 @@ function GeneraReporte(){
 			$TipoReporte="DyP";
 		}
 		
-		if(CCGetParam("s_SLO",0)==1 || CCGetParam("sSLO",0)==1){
+		if(CCGetParam("s_SLO",0)==1){
 			$REPORT="http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCompleto_SLO.rdl";
 			$ReporteSLA="SLO";
 		}

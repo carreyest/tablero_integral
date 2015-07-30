@@ -288,7 +288,7 @@ class clsRecordmc_reporte_ns { //mc_reporte_ns Class @5-B06C9AE8
     // Class variables
 //End Variables
 
-//Class_Initialize Event @5-A44CDB1E
+//Class_Initialize Event @5-14C9206D
     function clsRecordmc_reporte_ns($RelativePath, & $Parent)
     {
 
@@ -393,7 +393,7 @@ class clsRecordmc_reporte_ns { //mc_reporte_ns Class @5-B06C9AE8
                 if(!is_array($this->Fuente->Value) && !strlen($this->Fuente->Value) && $this->Fuente->Value !== false)
                     $this->Fuente->SetText("CDS");
                 if(!is_array($this->hdSLO->Value) && !strlen($this->hdSLO->Value) && $this->hdSLO->Value !== false)
-                    $this->hdSLO->SetText(CCGetParam("sSLO",0));
+                    $this->hdSLO->SetText(CCGetParam("s_SLO",0));
                 if(!is_array($this->hdDyP->Value) && !strlen($this->hdDyP->Value) && $this->hdDyP->Value !== false)
                     $this->hdDyP->SetText(CCGetParam("DyP",0));
             }

@@ -81,7 +81,7 @@ function Page_AfterInitialize(& $sender)
  			$iErrores = $iErrores +1;
  		}
  		if( $iErrores  > 0){
- 			echo $lErrores . "--";
+ 			echo($lErrores->GetValue() . "--");
  		} else {
  			if (move_uploaded_file($_FILES['userfile']['tmp_name'], $PathToRoot . '/Uploads/'. $nombre_archivo)) { 
 	        	$row = 1;

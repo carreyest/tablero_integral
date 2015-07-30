@@ -1,35 +1,13 @@
 <?php
-//BindEvents Method @1-EB338965
+//BindEvents Method @1-78D67E39
 function BindEvents()
 {
-    global $l_calificacion_incidentes1;
     global $Grid1;
     global $CCSEvents;
-    $l_calificacion_incidentes1->s_id_periodo->ds->CCSEvents["BeforeExecuteSelect"] = "l_calificacion_incidentes1_s_id_periodo_ds_BeforeExecuteSelect";
     $Grid1->CCSEvents["BeforeShowRow"] = "Grid1_BeforeShowRow";
     $CCSEvents["BeforeShow"] = "Page_BeforeShow";
 }
 //End BindEvents Method
-
-//l_calificacion_incidentes1_s_id_periodo_ds_BeforeExecuteSelect @355-6E33379B
-function l_calificacion_incidentes1_s_id_periodo_ds_BeforeExecuteSelect(& $sender)
-{
-    $l_calificacion_incidentes1_s_id_periodo_ds_BeforeExecuteSelect = true;
-    $Component = & $sender;
-    $Container = & CCGetParentContainer($sender);
-    global $l_calificacion_incidentes1; //Compatibility
-//End l_calificacion_incidentes1_s_id_periodo_ds_BeforeExecuteSelect
-
-//Custom Code @520-2A29BDB7
-// -------------------------
-    // Write your own code here.
-// -------------------------
-//End Custom Code
-
-//Close l_calificacion_incidentes1_s_id_periodo_ds_BeforeExecuteSelect @355-88E61CAC
-    return $l_calificacion_incidentes1_s_id_periodo_ds_BeforeExecuteSelect;
-}
-//End Close l_calificacion_incidentes1_s_id_periodo_ds_BeforeExecuteSelect
 
 //Grid1_BeforeShowRow @2-FCC1FF76
 function Grid1_BeforeShowRow(& $sender)
@@ -162,6 +140,72 @@ left join (  select distinct m.*  FROM [TableroMyM_SDMA4].[dbo].[mc_calificacion
 			) group by id_proveedor ) ef on ef.IdServicioCont = sc.id
 where sc.Aplica ='CDS' and IdOld <>0 and sc.descripcion='".$Grid1->DataSource->f(0)."' 
 group by sc.Descripcion ";
+//sc.IdOld, sc.orden,
+//
+/*
+ COUNT(COMPL_RUTA_CRITICA) TotCOMPL_RUTA_CRITICA, SUM(cast(COMPL_RUTA_CRITICA as int)) CumplenCOMPL_RUTA_CRITICA, SUM(cast(COMPL_RUTA_CRITICA as float))/COUNT(COMPL_RUTA_CRITICA)*100 COMPL_RUTA_CRITICA,
+	 (Select Meta from [TableroMyM_SDMA4].[dbo].mc_c_metrica where acronimo='COMPL_RUTA_CRITICA') as Meta_COMPL_RUTA_CRITICA,
+ COUNT(Cumple_DISP_SOPORTE) TotCumple_DISP_SOPORTE, SUM(cast(Cumple_DISP_SOPORTE as int)) CumplenCumple_DISP_SOPORTE, SUM(cast(Cumple_DISP_SOPORTE as float))/COUNT(Cumple_DISP_SOPORTE)*100 DISP_SOPORTE,
+	(Select Meta from [TableroMyM_SDMA4].[dbo].mc_c_metrica where acronimo='DISP_SOPORTE') as Meta_DISP_SOPORTE,
+	
+*/
+//consulta nueva con base al tablero de SLAs de Oscar M
+$consTableroCAPC="select 	sc.descripcion, mc.*
+ from [TableroMyM_SDMA4].[dbo].mc_c_ServContractual sc left join (
+select  				
+	 COUNT(HERR_EST_COST) totherr_est_cost, SUM(cast(HERR_EST_COST as int)) cumplenherr_est_cost, SUM(cast(HERR_EST_COST as float))/COUNT(HERR_EST_COST)*100 herr_est_cost,
+	 (Select Meta from [TableroMyM_SDMA4].[dbo].mc_c_metrica where acronimo='HERR_EST_COST') as meta_herr_est_cost,
+	  COUNT(REQ_SERV) totreq_serv, SUM(cast(REQ_SERV as int)) cumplenreq_serv, SUM(cast(REQ_SERV as float))/COUNT(REQ_SERV)*100 req_serv,
+	 (Select Meta from [TableroMyM_SDMA4].[dbo].mc_c_metrica where acronimo='REQ_SERV') as meta_req_serv,
+	 COUNT(CUMPL_REQ_FUNC) totcumpl_req_func, SUM(cast(CUMPL_REQ_FUNC as int)) cumplencumpl_req_func, SUM(cast(CUMPL_REQ_FUNC as float))/COUNT(CUMPL_REQ_FUNC)*100 cumpl_req_func,
+	 (Select Meta from [TableroMyM_SDMA4].[dbo].mc_c_metrica where acronimo='CUMPL_REQ_FUNC') as meta_cumpl_req_func,
+	 COUNT(CALIDAD_PROD_TERM) totcalidad_prod_term, SUM(cast(CALIDAD_PROD_TERM as int)) cumplencalidad_prod_term, SUM(cast(CALIDAD_PROD_TERM as float))/COUNT(CALIDAD_PROD_TERM)*100 calidad_prod_term,
+	 (Select Meta from [TableroMyM_SDMA4].[dbo].mc_c_metrica where acronimo='CALIDAD_PROD_TERM') as meta_calidad_prod_term,
+	 
+	 COUNT(RETR_ENTREGABLE) totretr_entregable, SUM(cast(RETR_ENTREGABLE as int)) cumplenretr_entregable, SUM(cast(RETR_ENTREGABLE as float))/COUNT(RETR_ENTREGABLE)*100 retr_entregable,
+	 (Select Meta from [TableroMyM_SDMA4].[dbo].mc_c_metrica where acronimo='RETR_ENTREGABLE') as meta_retr_entregable,
+
+ 	COUNT(CAL_COD) totcal_cod, SUM(cast(CAL_COD as int)) cumplencal_cod, SUM(cast(CAL_COD as float))/COUNT(CAL_COD)*100 cal_cod,
+	 (Select Meta from [TableroMyM_SDMA4].[dbo].mc_c_metrica where acronimo='EST_PROY') as meta_cal_cod, -- Meta_EST_PROY,
+								
+	  COUNT(DEF_FUG_AMB_PROD) totdef_fug_amb_prod, SUM(cast(DEF_FUG_AMB_PROD as int)) cumplendef_fug_amb_prod, SUM(cast(DEF_FUG_AMB_PROD as float))/COUNT(DEF_FUG_AMB_PROD)*100  def_fug_amb_prod,
+	 (Select Meta from [TableroMyM_SDMA4].[dbo].mc_c_metrica where acronimo='DEF_FUG_AMB_PROD') as meta_def_fug_amb_prod,
+	 
+	 COUNT(Cumple_Inc_TiempoAsignacion) totinc_tiempoasignacion, SUM(cast(Cumple_Inc_TiempoAsignacion as int)) cumpleninc_tiempoasignacion, SUM(cast(Cumple_Inc_TiempoAsignacion as float))/COUNT(Cumple_Inc_TiempoAsignacion)*100 inc_tiempoasignacion,
+	 (Select Meta from [TableroMyM_SDMA4].[dbo].mc_c_metrica where acronimo='Inc_TiempoSolucion') as meta_inc_tiempoasignacion,
+	 	 
+	COUNT(Cumple_Inc_TiempoSolucion) totinc_tiemposolucion, SUM(cast(Cumple_Inc_TiempoSolucion as int)) cumpleninc_tiemposolucion, SUM(cast(Cumple_Inc_TiempoSolucion as float))/COUNT(Cumple_Inc_TiempoSolucion)*100 inc_tiemposolucion,
+	 (Select Meta from [TableroMyM_SDMA4].[dbo].mc_c_metrica where acronimo='Inc_TiempoAsignacion') as meta_inc_tiemposolucion,
+			
+	AVG(Cumple_EF) cumplen_efic_presup, AVG(total_ef) tot_efic_presup, avg(cast(Cumple_EF as float))/avg(total_ef)*100  efic_presup,
+	 (Select Meta from [TableroMyM_SDMA4].[dbo].mc_c_metrica where acronimo='EFIC_PRESUP') as meta_efic_presup,
+	 sc.Id   id_servicio_cont 
+from [TableroMyM_SDMA4].[dbo].mc_c_ServContractual sc 
+left join [TableroMyM_SDMA4].[dbo].mc_calificacion_rs_MC m on sc.Id = m.id_servicio_cont  
+and m.IdUniverso in (select id from [TableroMyM_SDMA4].[dbo].mc_universo_cds where SLO=$n_opt_slas and tipo <> 'IN')
+and m.IdUniverso not in (select id from [TableroMyM_SDMA4].[dbo].mc_universo_cds where revision=2  )
+	 left join	(select Cumple_DISP_SOPORTE, Cumple_Inc_TiempoAsignacion, Cumple_Inc_TiempoSolucion, MesReporte , AnioReporte ,  
+				id_proveedor, 5 IdServicioCont 
+				from [TableroMyM_SDMA4].[dbo].mc_calificacion_incidentes_MC
+				where (id_proveedor = $s_id_proveedor or 0=$s_id_proveedor)  and MesReporte=$mes_reporte and AnioReporte =$anio_reporte  
+				and Id_incidente in (select numero from [TableroMyM_SDMA4].[dbo].mc_universo_cds where SLO=$n_opt_slas and tipo = 'IN') 
+				)  mi on  mi.IdServicioCont= sc.Id 
+left join  (select SUM(CumpleSLA) Cumple_EF, COUNT(CumpleSLA) Total_EF, Id_Proveedor, MesReporte , anioreporte , 2 IdServicioCont  
+			from [TableroMyM_SDMA4].[dbo].mc_eficiencia_presupuestal  where CumpleSLA in (1,0)  
+			and (([GrupoAplicativos] not like 'Todos%' and (4<>4 or (MesReporte>2 and anioreporte >2013)) ) 
+					or (4=4 and MesReporte<=2 and anioreporte <2014 ) or 0=4)
+			group by Id_Proveedor, MesReporte , anioreporte  ) ef 
+			on ef.Id_Proveedor  = m.id_proveedor  and m.MesReporte  = ef.MesReporte and m.AnioReporte  = ef.anioreporte  
+				and ef.IdServicioCont= sc.Id 
+where (m.mesreporte = $mes_reporte or mi.MesReporte = $mes_reporte) 
+			and (m.anioreporte = $anio_reporte   or mi.AnioReporte = $anio_reporte ) 
+			and (m.id_proveedor = $s_id_proveedor or mi.id_proveedor =$s_id_proveedor or  $s_id_proveedor=0)
+group by sc.id
+) as mc on sc.id = mc.id_servicio_cont 
+where sc.Aplica ='CDS'
+ and sc.descripcion='".$Grid1->DataSource->f(0)."' 
+order by sc.orden";
+
 $db2->query($consTableroCAPC);
 //echo "<hr>".$consTableroCAPC;
 
@@ -198,7 +242,8 @@ else
 			$Grid1->$sImg1->SetValue("images/blank_SLA.png");
 			if (isset($Grid1->$sImg)){
 				if($Grid1->DataSource->f($sTotal) != "0" && $Grid1->DataSource->f($sTotal)!=""){
-					$Grid1->$sAcronimo->SetValue($Grid1->$sCumplen->GetValue() . "/" . $Grid1->$sTotal->GetValue() . " = " . round($Grid1->$sAcronimo->GetValue(),2) . "%");
+					//global $porcentajecalc=(($Grid1->$sCumplen->GetValue()*1 )/ ($Grid1->$sTotal->GetValue()*1))*100; // round($porcentajecalc,2) . "%");// 
+					$Grid1->$sAcronimo->SetValue($Grid1->$sCumplen->GetValue() . "/" . $Grid1->$sTotal->GetValue() . " = " .round($Grid1->$sAcronimo->GetValue(),2) . "%");
 					if($Grid1->DataSource->f($db->f(0))<$Grid1->DataSource->f($sMeta)){
 						$Grid1->$sImg->SetValue("images/down.png");
 					} else {

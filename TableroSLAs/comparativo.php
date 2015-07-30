@@ -17,241 +17,6 @@ include_once(RelativePath . "/Header.php");
 
 
 
-class clsRecordl_calificacion_incidentes1 { //l_calificacion_incidentes1 Class @352-2A0C9BE3
-
-//Variables @352-9E315808
-
-    // Public variables
-    public $ComponentType = "Record";
-    public $ComponentName;
-    public $Parent;
-    public $HTMLFormAction;
-    public $PressedButton;
-    public $Errors;
-    public $ErrorBlock;
-    public $FormSubmitted;
-    public $FormEnctype;
-    public $Visible;
-    public $IsEmpty;
-
-    public $CCSEvents = "";
-    public $CCSEventResult;
-
-    public $RelativePath = "";
-
-    public $InsertAllowed = false;
-    public $UpdateAllowed = false;
-    public $DeleteAllowed = false;
-    public $ReadAllowed   = false;
-    public $EditMode      = false;
-    public $ds;
-    public $DataSource;
-    public $ValidatingControls;
-    public $Controls;
-    public $Attributes;
-
-    // Class variables
-//End Variables
-
-//Class_Initialize Event @352-0CDD8802
-    function clsRecordl_calificacion_incidentes1($RelativePath, & $Parent)
-    {
-
-        global $FileName;
-        global $CCSLocales;
-        global $DefaultDateFormat;
-        $this->Visible = true;
-        $this->Parent = & $Parent;
-        $this->RelativePath = $RelativePath;
-        $this->Errors = new clsErrors();
-        $this->ErrorBlock = "Record l_calificacion_incidentes1/Error";
-        $this->ReadAllowed = true;
-        if($this->Visible)
-        {
-            $this->ComponentName = "l_calificacion_incidentes1";
-            $this->Attributes = new clsAttributes($this->ComponentName . ":");
-            $CCSForm = explode(":", CCGetFromGet("ccsForm", ""), 2);
-            if(sizeof($CCSForm) == 1)
-                $CCSForm[1] = "";
-            list($FormName, $FormMethod) = $CCSForm;
-            $this->FormEnctype = "application/x-www-form-urlencoded";
-            $this->FormSubmitted = ($FormName == $this->ComponentName);
-            $Method = $this->FormSubmitted ? ccsPost : ccsGet;
-            $this->Button_DoSearch = new clsButton("Button_DoSearch", $Method, $this);
-            $this->s_id_proveedor = new clsControl(ccsListBox, "s_id_proveedor", "CDS", ccsText, "", CCGetRequestParam("s_id_proveedor", $Method, NULL), $this);
-            $this->s_id_proveedor->DSType = dsSQL;
-            $this->s_id_proveedor->DataSource = new clsDBcon_xls();
-            $this->s_id_proveedor->ds = & $this->s_id_proveedor->DataSource;
-            list($this->s_id_proveedor->BoundColumn, $this->s_id_proveedor->TextColumn, $this->s_id_proveedor->DBFormat) = array("id_proveedor", "nom_proveedor", "");
-            $this->s_id_proveedor->DataSource->Parameters["sesid_proveedor"] = CCGetSession("id_proveedor", NULL);
-            $this->s_id_proveedor->DataSource->Parameters["sescapc_cds"] = CCGetSession("capc_cds", NULL);
-            $this->s_id_proveedor->DataSource->wp = new clsSQLParameters();
-            $this->s_id_proveedor->DataSource->wp->AddParameter("1", "sesid_proveedor", ccsInteger, "", "", $this->s_id_proveedor->DataSource->Parameters["sesid_proveedor"], 0, false);
-            $this->s_id_proveedor->DataSource->wp->AddParameter("2", "sescapc_cds", ccsText, "", "", $this->s_id_proveedor->DataSource->Parameters["sescapc_cds"], "", false);
-            $this->s_id_proveedor->DataSource->SQL = "SELECT distinct id_proveedor, nom_proveedor \n" .
-            "FROM usuario \n" .
-            "where id_proveedor<>0 and \n" .
-            "capc_cds='CDS'\n" .
-            "\n" .
-            "\n" .
-            "";
-            $this->s_id_proveedor->DataSource->Order = "";
-            $this->s_id_proveedor->Required = true;
-            $this->s_id_periodo = new clsControl(ccsListBox, "s_id_periodo", "s_id_periodo", ccsText, "", CCGetRequestParam("s_id_periodo", $Method, NULL), $this);
-            $this->s_id_periodo->DSType = dsSQL;
-            $this->s_id_periodo->DataSource = new clsDBcon_xls();
-            $this->s_id_periodo->ds = & $this->s_id_periodo->DataSource;
-            list($this->s_id_periodo->BoundColumn, $this->s_id_periodo->TextColumn, $this->s_id_periodo->DBFormat) = array("id_periodo", "periodo", "");
-            $this->s_id_periodo->DataSource->Parameters["sesid_proveedor"] = CCGetSession("id_proveedor", NULL);
-            $this->s_id_periodo->DataSource->wp = new clsSQLParameters();
-            $this->s_id_periodo->DataSource->wp->AddParameter("1", "sesid_proveedor", ccsInteger, "", "", $this->s_id_periodo->DataSource->Parameters["sesid_proveedor"], 0, false);
-            $this->s_id_periodo->DataSource->SQL = "select distinct id_periodo,  periodo+tipo_periodo as periodo\n" .
-            "from periodos_hist\n" .
-            "where (id_proveedor=0 or id_proveedor=" . $this->s_id_periodo->DataSource->SQLValue($this->s_id_periodo->DataSource->wp->GetDBValue("1"), ccsInteger) . " or " . $this->s_id_periodo->DataSource->SQLValue($this->s_id_periodo->DataSource->wp->GetDBValue("1"), ccsInteger) . " =1)";
-            $this->s_id_periodo->DataSource->Order = "";
-            $this->s_id_periodo->Required = true;
-            $this->lb_periodo_fecha_carga2 = new clsControl(ccsLabel, "lb_periodo_fecha_carga2", "lb_periodo_fecha_carga2", ccsDate, array("dd", "/", "mm", "/", "yyyy", " ", "hh", ":", "mm"), CCGetRequestParam("lb_periodo_fecha_carga2", $Method, NULL), $this);
-            $this->lb_periodo_fecha_carga2->HTML = true;
-            $this->lb_nom_periodo = new clsControl(ccsLabel, "lb_nom_periodo", "lb_nom_periodo", ccsText, "", CCGetRequestParam("lb_nom_periodo", $Method, NULL), $this);
-            $this->lb_nom_periodo->HTML = true;
-            $this->Label1 = new clsControl(ccsLabel, "Label1", "Label1", ccsText, "", CCGetRequestParam("Label1", $Method, NULL), $this);
-            $this->s_opt_slas = new clsControl(ccsListBox, "s_opt_slas", "s_opt_slas", ccsText, "", CCGetRequestParam("s_opt_slas", $Method, NULL), $this);
-            $this->s_opt_slas->DSType = dsListOfValues;
-            $this->s_opt_slas->Values = array(array("SLA", "SLA"), array("SLO", "SLO"));
-            $this->s_opt_slas->Required = true;
-        }
-    }
-//End Class_Initialize Event
-
-//Validate Method @352-B510F28A
-    function Validate()
-    {
-        global $CCSLocales;
-        $Validation = true;
-        $Where = "";
-        $Validation = ($this->s_id_proveedor->Validate() && $Validation);
-        $Validation = ($this->s_id_periodo->Validate() && $Validation);
-        $Validation = ($this->s_opt_slas->Validate() && $Validation);
-        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
-        $Validation =  $Validation && ($this->s_id_proveedor->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->s_id_periodo->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->s_opt_slas->Errors->Count() == 0);
-        return (($this->Errors->Count() == 0) && $Validation);
-    }
-//End Validate Method
-
-//CheckErrors Method @352-63111507
-    function CheckErrors()
-    {
-        $errors = false;
-        $errors = ($errors || $this->s_id_proveedor->Errors->Count());
-        $errors = ($errors || $this->s_id_periodo->Errors->Count());
-        $errors = ($errors || $this->lb_periodo_fecha_carga2->Errors->Count());
-        $errors = ($errors || $this->lb_nom_periodo->Errors->Count());
-        $errors = ($errors || $this->Label1->Errors->Count());
-        $errors = ($errors || $this->s_opt_slas->Errors->Count());
-        $errors = ($errors || $this->Errors->Count());
-        return $errors;
-    }
-//End CheckErrors Method
-
-//Operation Method @352-DD94EE4C
-    function Operation()
-    {
-        if(!$this->Visible)
-            return;
-
-        global $Redirect;
-        global $FileName;
-
-        if(!$this->FormSubmitted) {
-            return;
-        }
-
-        if($this->FormSubmitted) {
-            $this->PressedButton = "Button_DoSearch";
-            if($this->Button_DoSearch->Pressed) {
-                $this->PressedButton = "Button_DoSearch";
-            }
-        }
-        $Redirect = $FileName;
-        if($this->Validate()) {
-            if($this->PressedButton == "Button_DoSearch") {
-                $Redirect = $FileName . "?" . CCMergeQueryStrings(CCGetQueryString("Form", array("Button_DoSearch", "Button_DoSearch_x", "Button_DoSearch_y")));
-                if(!CCGetEvent($this->Button_DoSearch->CCSEvents, "OnClick", $this->Button_DoSearch)) {
-                    $Redirect = "";
-                }
-            }
-        } else {
-            $Redirect = "";
-        }
-    }
-//End Operation Method
-
-//Show Method @352-F688C745
-    function Show()
-    {
-        global $CCSUseAmp;
-        $Tpl = CCGetTemplate($this);
-        global $FileName;
-        global $CCSLocales;
-        $Error = "";
-
-        if(!$this->Visible)
-            return;
-
-        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
-
-        $this->s_id_proveedor->Prepare();
-        $this->s_id_periodo->Prepare();
-        $this->s_opt_slas->Prepare();
-
-        $RecordBlock = "Record " . $this->ComponentName;
-        $ParentPath = $Tpl->block_path;
-        $Tpl->block_path = $ParentPath . "/" . $RecordBlock;
-        $this->EditMode = $this->EditMode && $this->ReadAllowed;
-        if (!$this->FormSubmitted) {
-        }
-
-        if($this->FormSubmitted || $this->CheckErrors()) {
-            $Error = "";
-            $Error = ComposeStrings($Error, $this->s_id_proveedor->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->s_id_periodo->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->lb_periodo_fecha_carga2->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->lb_nom_periodo->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->Label1->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->s_opt_slas->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->Errors->ToString());
-            $Tpl->SetVar("Error", $Error);
-            $Tpl->Parse("Error", false);
-        }
-        $CCSForm = $this->EditMode ? $this->ComponentName . ":" . "Edit" : $this->ComponentName;
-        $this->HTMLFormAction = $FileName . "?" . CCAddParam(CCGetQueryString("QueryString", ""), "ccsForm", $CCSForm);
-        $Tpl->SetVar("Action", !$CCSUseAmp ? $this->HTMLFormAction : str_replace("&", "&amp;", $this->HTMLFormAction));
-        $Tpl->SetVar("HTMLFormName", $this->ComponentName);
-        $Tpl->SetVar("HTMLFormEnctype", $this->FormEnctype);
-
-        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShow", $this);
-        $this->Attributes->Show();
-        if(!$this->Visible) {
-            $Tpl->block_path = $ParentPath;
-            return;
-        }
-
-        $this->Button_DoSearch->Show();
-        $this->s_id_proveedor->Show();
-        $this->s_id_periodo->Show();
-        $this->lb_periodo_fecha_carga2->Show();
-        $this->lb_nom_periodo->Show();
-        $this->Label1->Show();
-        $this->s_opt_slas->Show();
-        $Tpl->parse();
-        $Tpl->block_path = $ParentPath;
-    }
-//End Show Method
-
-} //End l_calificacion_incidentes1 Class @352-FCB6E20C
-
 
 
 class clsGridGrid1 { //Grid1 class @2-E857A572
@@ -1210,173 +975,197 @@ class clsGrid1DataSource extends clsDBcon_xls {  //Grid1DataSource Class @2-4A4C
     }
 //End Prepare Method
 
-//Open Method @2-FF85A107
+//Open Method @2-97D86357
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->CountSQL = "SELECT COUNT(*) FROM (select  sc.descripcion,\n" .
         "	 sum(case when herr_est_cost='1' or herr_est_cost='0' then 1 else 0 end) totherr_est_cost, \n" .
         "		sum(case when isnumeric(herr_est_cost)=1 then cast(herr_est_cost as int) else 0 end) cumplenherr_est_cost, \n" .
-        "		case when count(herr_est_cost)>0 then \n" .
-        "			sum(case when isnumeric(herr_est_cost)=1 then cast(herr_est_cost as int) else 0 end)/cast(count(herr_est_cost) as float)*100 \n" .
-        "		else 0 end herr_est_cost,\n" .
+        "		case when sum(case when herr_est_cost='1' or herr_est_cost='0' then 1 else 0 end)>0 then \n" .
+        "			sum(case when isnumeric(herr_est_cost)=1 then cast(herr_est_cost as int) else 0 end)/cast((sum(case when herr_est_cost='1' or herr_est_cost='0' then 1 else 0 end)) as float)*100 \n" .
+        "		else 0 end herr_est_cost,	 \n" .
         "	 (select meta from [archivosxls].[dbo].mc_c_metrica where acronimo='herr_est_cost') as meta_herr_est_cost,\n" .
+        "	 \n" .
         "	 sum(case when req_serv='1' or req_serv='0' then 1 else 0 end) totreq_serv, \n" .
         "		sum(case when isnumeric(req_serv)=1 then cast(req_serv as int) else 0 end) cumplenreq_serv, \n" .
-        "		case when count(req_serv)>0 then \n" .
-        "			sum(case when isnumeric(req_serv)=1 then cast(req_serv as int) else 0 end)/cast(count(req_serv) as float)*100 \n" .
-        "		else 0 end req_serv,\n" .
+        "		case when sum(case when req_serv='1' or req_serv='0' then 1 else 0 end)>0 then \n" .
+        "			sum(case when isnumeric(req_serv)=1 then cast(req_serv as int) else 0 end)/cast((sum(case when req_serv='1' or req_serv='0' then 1 else 0 end)) as float)*100 \n" .
+        "		else 0 end req_serv,	 \n" .
         "	 (select meta from [archivosxls].[dbo].mc_c_metrica where acronimo='req_serv') as meta_req_serv,\n" .
+        "	 \n" .
         "	 sum(case when cumpl_req_func='1' or cumpl_req_func='0' then 1 else 0 end) totcumpl_req_func, \n" .
         "		sum(case when isnumeric(cumpl_req_func)=1 then cast(cumpl_req_func as int) else 0 end) cumplencumpl_req_func, \n" .
-        "		case when count(cumpl_req_func)>0 then \n" .
-        "			sum(case when isnumeric(cumpl_req_func)=1 then cast(cumpl_req_func as int) else 0 end)/cast(count(cumpl_req_func) as float)*100 \n" .
+        "		case when sum(case when cumpl_req_func='1' or cumpl_req_func='0' then 1 else 0 end)>0 then \n" .
+        "			sum(case when isnumeric(cumpl_req_func)=1 then cast(cumpl_req_func as int) else 0 end)/cast((sum(case when cumpl_req_func='1' or cumpl_req_func='0' then 1 else 0 end)) as float)*100 \n" .
         "		else 0 end cumpl_req_func ,\n" .
         "	 (select meta from [archivosxls].[dbo].mc_c_metrica where acronimo='cumpl_req_func') as meta_cumpl_req_func,\n" .
+        "	 \n" .
+        "	 \n" .
         "	 sum(case when calidad_prod_term='1' or calidad_prod_term='0' then 1 else 0 end) totcalidad_prod_term, \n" .
         "		sum(case when isnumeric(calidad_prod_term)=1 then cast(calidad_prod_term as int) else 0 end) cumplencalidad_prod_term, \n" .
-        "		case when count(calidad_prod_term)>0 then \n" .
-        "			sum(case when isnumeric(calidad_prod_term)=1 then cast(calidad_prod_term as int) else 0 end)/cast(count(calidad_prod_term) as float)*100 \n" .
+        "		case when sum(case when calidad_prod_term='1' or calidad_prod_term='0' then 1 else 0 end)>0 then \n" .
+        "			sum(case when isnumeric(calidad_prod_term)=1 then cast(calidad_prod_term as int) else 0 end)/\n" .
+        "		 cast(	(sum(case when calidad_prod_term='1' or calidad_prod_term='0' then 1 else 0 end))AS float)*100 \n" .
         "		else 0 end calidad_prod_term,\n" .
         "	 (select meta from [archivosxls].[dbo].mc_c_metrica where acronimo='calidad_prod_term') as meta_calidad_prod_term,\n" .
+        "	\n" .
+        "	\n" .
         "	 sum(case when retr_entregable='1' or retr_entregable='0' then 1 else 0 end) totretr_entregable, \n" .
         "		sum(case when isnumeric(retr_entregable)=1 then cast(retr_entregable as int) else 0 end) cumplenretr_entregable, \n" .
-        "		case when count(retr_entregable)>0 then \n" .
-        "			sum(case when isnumeric(retr_entregable)=1 then cast(retr_entregable as int) else 0 end)/cast(count(retr_entregable) as float)*100 \n" .
-        "		else 0 end retr_entregable,\n" .
+        "		case when sum(case when retr_entregable='1' or retr_entregable='0' then 1 else 0 end)>0 then \n" .
+        "			sum(case when isnumeric(retr_entregable)=1 then cast(retr_entregable as int) else 0 end)/cast((sum(case when retr_entregable='1' or retr_entregable='0' then 1 else 0 end)) as float)*100 \n" .
+        "		else 0 end retr_entregable,	 \n" .
         "	 (select meta from [archivosxls].[dbo].mc_c_metrica where acronimo='retr_entregable') as meta_retr_entregable,\n" .
+        "	 \n" .
         "	 sum(case when calidad_codigo='1' or calidad_codigo='0' then 1 else 0 end) totcal_cod, \n" .
         "		sum(case when isnumeric(calidad_codigo)=1 then cast(calidad_codigo  as int) else 0 end) cumplencal_cod, \n" .
-        "		case when count(calidad_codigo)>0 then \n" .
-        "			sum(case when isnumeric(calidad_codigo)=1 then cast(calidad_codigo  as int) else 0 end)/cast(count(calidad_codigo) as float)*100 \n" .
-        "		else 0 end cal_cod,\n" .
+        "		case when sum(case when calidad_codigo='1' or calidad_codigo='0' then 1 else 0 end)>0 then \n" .
+        "			sum(case when isnumeric(calidad_codigo)=1 then cast(calidad_codigo  as int) else 0 end)/cast((sum(case when calidad_codigo='1' or calidad_codigo='0' then 1 else 0 end)) as float)*100 \n" .
+        "		else 0 end cal_cod,	 \n" .
         "	 (select meta from [archivosxls].[dbo].mc_c_metrica where acronimo='cal_cod') as meta_cal_cod,\n" .
+        "	 \n" .
         "	 sum(case when def_fug_amb_prod='1' or def_fug_amb_prod='0' then 1 else 0 end) totdef_fug_amb_prod, \n" .
         "		sum(case when isnumeric(def_fug_amb_prod)=1 then cast(def_fug_amb_prod as int) else 0 end) cumplendef_fug_amb_prod, \n" .
-        "		case when count(def_fug_amb_prod)>0 then \n" .
-        "			sum(case when isnumeric(def_fug_amb_prod)=1 then cast(def_fug_amb_prod as int) else 0 end)/cast(count(def_fug_amb_prod) as float)*100  \n" .
-        "		else 0 end def_fug_amb_prod,\n" .
+        "		case when sum(case when def_fug_amb_prod='1' or def_fug_amb_prod='0' then 1 else 0 end)>0 then \n" .
+        "			sum(case when isnumeric(def_fug_amb_prod)=1 then cast(def_fug_amb_prod as int) else 0 end)/cast((sum(case when def_fug_amb_prod='1' or def_fug_amb_prod='0' then 1 else 0 end)) as float)*100  \n" .
+        "		else 0 end def_fug_amb_prod,	 \n" .
         "	 (select meta from [archivosxls].[dbo].mc_c_metrica where acronimo='def_fug_amb_prod') as meta_def_fug_amb_prod,\n" .
-        "count(cumple_inc_tiempoasignacion) totinc_tiempoasignacion, \n" .
+        "	 \n" .
+        "	 sum(case when cumple_inc_tiempoasignacion='1' or cumple_inc_tiempoasignacion='0' then 1 else 0 end)  totinc_tiempoasignacion, \n" .
         "		sum(case when isnumeric(cumple_inc_tiempoasignacion)=1 then cast(cumple_inc_tiempoasignacion as int) else 0 end) cumpleninc_tiempoasignacion, \n" .
-        "		case when count(cumple_inc_tiempoasignacion)>0 then \n" .
-        "			sum(case when isnumeric(cumple_inc_tiempoasignacion)=1 then cast(cumple_inc_tiempoasignacion as int) else 0 end)/cast(count(cumple_inc_tiempoasignacion) as float)*100 \n" .
+        "		case when sum(case when cumple_inc_tiempoasignacion='1' or cumple_inc_tiempoasignacion='0' then 1 else 0 end)>0 then \n" .
+        "			sum(case when isnumeric(cumple_inc_tiempoasignacion)=1 then cast(cumple_inc_tiempoasignacion as int) else 0 end)/cast((sum(case when cumple_inc_tiempoasignacion='1' or cumple_inc_tiempoasignacion='0' then 1 else 0 end)) as float)*100 \n" .
         "		else 0 end inc_tiempoasignacion,\n" .
         "	 (select meta from [archivosxls].[dbo].mc_c_metrica where acronimo='inc_tiempoasignacion') as meta_inc_tiempoasignacion,\n" .
-        "	 count(cumple_inc_tiemposolucion) totinc_tiemposolucion, \n" .
+        "	\n" .
+        "	 sum(case when cumple_inc_tiemposolucion='1' or cumple_inc_tiemposolucion='0' then 1 else 0 end) totinc_tiemposolucion, \n" .
         "		sum(case when isnumeric(cumple_inc_tiempoSolucion)=1 then cast(cumple_inc_tiempoSolucion as int) else 0 end) cumpleninc_tiemposolucion, \n" .
-        "		case when count(cumple_inc_tiemposolucion)>0 then \n" .
-        "			sum(case when isnumeric(cumple_inc_tiempoSolucion)=1 then cast(cumple_inc_tiempoSolucion as int) else 0 end)/cast(count(cumple_inc_tiemposolucion) as float)*100 \n" .
-        "		else 0 end inc_tiemposolucion,\n" .
+        "		case when sum(case when cumple_inc_tiemposolucion='1' or cumple_inc_tiemposolucion='0' then 1 else 0 end)>0 then \n" .
+        "			sum(case when isnumeric(cumple_inc_tiempoSolucion)=1 then cast(cumple_inc_tiempoSolucion as int) else 0 end)/cast((sum(case when cumple_inc_tiemposolucion='1' or cumple_inc_tiemposolucion='0' then 1 else 0 end)) as float)*100 \n" .
+        "		else 0 end inc_tiemposolucion,	 \n" .
         "	 (select meta from [archivosxls].[dbo].mc_c_metrica where acronimo='inc_tiemposolucion') as meta_inc_tiemposolucion,\n" .
+        "	 	\n" .
         "	 	 AVG(Cumple_EF) cumplen_efic_presup, AVG(total_ef) tot_efic_presup, avg(cast(Cumple_EF as float))/avg(total_ef)*100  efic_presup,\n" .
         "	 (Select Meta from [archivosxls].[dbo].mc_c_metrica where acronimo='EFIC_PRESUP') as meta_efic_presup\n" .
         "from [archivosxls].[dbo].mc_c_ServContractual sc \n" .
         "left join (select * from [archivosxls].[dbo].l_calificacion_rs_aut m\n" .
-        "	where m.id_periodo=" . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "   and m.id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " and m.tipo_nivel_servicio ='" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "' and m.estatus ='F' \n" .
+        "	where m.id_periodo= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "    and m.id_proveedor =" . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " and m.tipo_nivel_servicio ='" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "' and m.estatus ='F' \n" .
         "	and num_carga=(\n" .
         "       select max(b.num_carga)\n" .
         "       from [archivosxls].[dbo].l_calificacion_rs_aut  b\n" .
-        "       where b.id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
-        "       and b.id_periodo = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "       where b.id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " \n" .
+        "       and b.id_periodo =  " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . " \n" .
         "       and b.tipo_nivel_servicio = '" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "' \n" .
         "       and b.estatus='F'\n" .
         "       )) m on sc.Descripcion  = m.servicio_cont  \n" .
         "	 left join	(select cumple_inc_tiempoasignacion, cumple_inc_tiempoSolucion, \n" .
         "				id_proveedor, 'Servicio de Soporte de Aplicaciones'  servicio_cont\n" .
         "				from [archivosxls].[dbo].l_calificacion_incidentes_AUT\n" .
-        "				where (id_periodo=" . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "  and id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " and tipo_nivel_servicio ='" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "'   and estatus ='F'\n" .
+        "				where (id_periodo= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "   and id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "  and tipo_nivel_servicio ='" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "'   and estatus ='F'\n" .
         "				and num_carga=(select max(b.num_carga) from [archivosxls].[dbo].l_calificacion_incidentes_aut b \n" .
-        "				where b.id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " and b.id_periodo =  " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . " and b.tipo_nivel_servicio = '" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "'  and b.estatus='F' ) \n" .
+        "				where b.id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "  and b.id_periodo =   " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "  and b.tipo_nivel_servicio = '" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "'  and b.estatus='F' ) \n" .
         "				) )  mi on  mi.servicio_cont = sc.Descripcion \n" .
         "	left join (select SUM(case when efic_presupuestal='1' or efic_presupuestal='0' then 1 else 0 end) Cumple_EF, COUNT(efic_presupuestal) Total_EF, Id_Proveedor,  2 IdServicioCont  \n" .
         "			from [archivosxls].[dbo].l_detalle_eficiencia_presupuestal \n" .
-        "			where (id_periodo= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "  and id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " and tipo_nivel_servicio ='" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "'   and estatus ='F'\n" .
+        "			where (id_periodo=  " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "   and id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "  and tipo_nivel_servicio ='" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "'   and estatus ='F'\n" .
         "				and num_carga=(select max(b.num_carga) from [archivosxls].[dbo].l_calificacion_incidentes_aut b \n" .
-        "				where b.id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " and b.id_periodo = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . " and b.tipo_nivel_servicio = '" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "'  and b.estatus='F' ) \n" .
+        "				where b.id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "  and b.id_periodo = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "  and b.tipo_nivel_servicio = '" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "'  and b.estatus='F' ) \n" .
         "				) group by id_proveedor ) ef on ef.IdServicioCont = sc.id\n" .
         "where sc.Aplica ='CDS' and IdOld <>0\n" .
         "group by sc.Descripcion ) cnt";
         $this->SQL = "select  sc.descripcion,\n" .
         "	 sum(case when herr_est_cost='1' or herr_est_cost='0' then 1 else 0 end) totherr_est_cost, \n" .
         "		sum(case when isnumeric(herr_est_cost)=1 then cast(herr_est_cost as int) else 0 end) cumplenherr_est_cost, \n" .
-        "		case when count(herr_est_cost)>0 then \n" .
-        "			sum(case when isnumeric(herr_est_cost)=1 then cast(herr_est_cost as int) else 0 end)/cast(count(herr_est_cost) as float)*100 \n" .
-        "		else 0 end herr_est_cost,\n" .
+        "		case when sum(case when herr_est_cost='1' or herr_est_cost='0' then 1 else 0 end)>0 then \n" .
+        "			sum(case when isnumeric(herr_est_cost)=1 then cast(herr_est_cost as int) else 0 end)/cast((sum(case when herr_est_cost='1' or herr_est_cost='0' then 1 else 0 end)) as float)*100 \n" .
+        "		else 0 end herr_est_cost,	 \n" .
         "	 (select meta from [archivosxls].[dbo].mc_c_metrica where acronimo='herr_est_cost') as meta_herr_est_cost,\n" .
+        "	 \n" .
         "	 sum(case when req_serv='1' or req_serv='0' then 1 else 0 end) totreq_serv, \n" .
         "		sum(case when isnumeric(req_serv)=1 then cast(req_serv as int) else 0 end) cumplenreq_serv, \n" .
-        "		case when count(req_serv)>0 then \n" .
-        "			sum(case when isnumeric(req_serv)=1 then cast(req_serv as int) else 0 end)/cast(count(req_serv) as float)*100 \n" .
-        "		else 0 end req_serv,\n" .
+        "		case when sum(case when req_serv='1' or req_serv='0' then 1 else 0 end)>0 then \n" .
+        "			sum(case when isnumeric(req_serv)=1 then cast(req_serv as int) else 0 end)/cast((sum(case when req_serv='1' or req_serv='0' then 1 else 0 end)) as float)*100 \n" .
+        "		else 0 end req_serv,	 \n" .
         "	 (select meta from [archivosxls].[dbo].mc_c_metrica where acronimo='req_serv') as meta_req_serv,\n" .
+        "	 \n" .
         "	 sum(case when cumpl_req_func='1' or cumpl_req_func='0' then 1 else 0 end) totcumpl_req_func, \n" .
         "		sum(case when isnumeric(cumpl_req_func)=1 then cast(cumpl_req_func as int) else 0 end) cumplencumpl_req_func, \n" .
-        "		case when count(cumpl_req_func)>0 then \n" .
-        "			sum(case when isnumeric(cumpl_req_func)=1 then cast(cumpl_req_func as int) else 0 end)/cast(count(cumpl_req_func) as float)*100 \n" .
+        "		case when sum(case when cumpl_req_func='1' or cumpl_req_func='0' then 1 else 0 end)>0 then \n" .
+        "			sum(case when isnumeric(cumpl_req_func)=1 then cast(cumpl_req_func as int) else 0 end)/cast((sum(case when cumpl_req_func='1' or cumpl_req_func='0' then 1 else 0 end)) as float)*100 \n" .
         "		else 0 end cumpl_req_func ,\n" .
         "	 (select meta from [archivosxls].[dbo].mc_c_metrica where acronimo='cumpl_req_func') as meta_cumpl_req_func,\n" .
+        "	 \n" .
+        "	 \n" .
         "	 sum(case when calidad_prod_term='1' or calidad_prod_term='0' then 1 else 0 end) totcalidad_prod_term, \n" .
         "		sum(case when isnumeric(calidad_prod_term)=1 then cast(calidad_prod_term as int) else 0 end) cumplencalidad_prod_term, \n" .
-        "		case when count(calidad_prod_term)>0 then \n" .
-        "			sum(case when isnumeric(calidad_prod_term)=1 then cast(calidad_prod_term as int) else 0 end)/cast(count(calidad_prod_term) as float)*100 \n" .
+        "		case when sum(case when calidad_prod_term='1' or calidad_prod_term='0' then 1 else 0 end)>0 then \n" .
+        "			sum(case when isnumeric(calidad_prod_term)=1 then cast(calidad_prod_term as int) else 0 end)/\n" .
+        "		 cast(	(sum(case when calidad_prod_term='1' or calidad_prod_term='0' then 1 else 0 end))AS float)*100 \n" .
         "		else 0 end calidad_prod_term,\n" .
         "	 (select meta from [archivosxls].[dbo].mc_c_metrica where acronimo='calidad_prod_term') as meta_calidad_prod_term,\n" .
+        "	\n" .
+        "	\n" .
         "	 sum(case when retr_entregable='1' or retr_entregable='0' then 1 else 0 end) totretr_entregable, \n" .
         "		sum(case when isnumeric(retr_entregable)=1 then cast(retr_entregable as int) else 0 end) cumplenretr_entregable, \n" .
-        "		case when count(retr_entregable)>0 then \n" .
-        "			sum(case when isnumeric(retr_entregable)=1 then cast(retr_entregable as int) else 0 end)/cast(count(retr_entregable) as float)*100 \n" .
-        "		else 0 end retr_entregable,\n" .
+        "		case when sum(case when retr_entregable='1' or retr_entregable='0' then 1 else 0 end)>0 then \n" .
+        "			sum(case when isnumeric(retr_entregable)=1 then cast(retr_entregable as int) else 0 end)/cast((sum(case when retr_entregable='1' or retr_entregable='0' then 1 else 0 end)) as float)*100 \n" .
+        "		else 0 end retr_entregable,	 \n" .
         "	 (select meta from [archivosxls].[dbo].mc_c_metrica where acronimo='retr_entregable') as meta_retr_entregable,\n" .
+        "	 \n" .
         "	 sum(case when calidad_codigo='1' or calidad_codigo='0' then 1 else 0 end) totcal_cod, \n" .
         "		sum(case when isnumeric(calidad_codigo)=1 then cast(calidad_codigo  as int) else 0 end) cumplencal_cod, \n" .
-        "		case when count(calidad_codigo)>0 then \n" .
-        "			sum(case when isnumeric(calidad_codigo)=1 then cast(calidad_codigo  as int) else 0 end)/cast(count(calidad_codigo) as float)*100 \n" .
-        "		else 0 end cal_cod,\n" .
+        "		case when sum(case when calidad_codigo='1' or calidad_codigo='0' then 1 else 0 end)>0 then \n" .
+        "			sum(case when isnumeric(calidad_codigo)=1 then cast(calidad_codigo  as int) else 0 end)/cast((sum(case when calidad_codigo='1' or calidad_codigo='0' then 1 else 0 end)) as float)*100 \n" .
+        "		else 0 end cal_cod,	 \n" .
         "	 (select meta from [archivosxls].[dbo].mc_c_metrica where acronimo='cal_cod') as meta_cal_cod,\n" .
+        "	 \n" .
         "	 sum(case when def_fug_amb_prod='1' or def_fug_amb_prod='0' then 1 else 0 end) totdef_fug_amb_prod, \n" .
         "		sum(case when isnumeric(def_fug_amb_prod)=1 then cast(def_fug_amb_prod as int) else 0 end) cumplendef_fug_amb_prod, \n" .
-        "		case when count(def_fug_amb_prod)>0 then \n" .
-        "			sum(case when isnumeric(def_fug_amb_prod)=1 then cast(def_fug_amb_prod as int) else 0 end)/cast(count(def_fug_amb_prod) as float)*100  \n" .
-        "		else 0 end def_fug_amb_prod,\n" .
+        "		case when sum(case when def_fug_amb_prod='1' or def_fug_amb_prod='0' then 1 else 0 end)>0 then \n" .
+        "			sum(case when isnumeric(def_fug_amb_prod)=1 then cast(def_fug_amb_prod as int) else 0 end)/cast((sum(case when def_fug_amb_prod='1' or def_fug_amb_prod='0' then 1 else 0 end)) as float)*100  \n" .
+        "		else 0 end def_fug_amb_prod,	 \n" .
         "	 (select meta from [archivosxls].[dbo].mc_c_metrica where acronimo='def_fug_amb_prod') as meta_def_fug_amb_prod,\n" .
-        "count(cumple_inc_tiempoasignacion) totinc_tiempoasignacion, \n" .
+        "	 \n" .
+        "	 sum(case when cumple_inc_tiempoasignacion='1' or cumple_inc_tiempoasignacion='0' then 1 else 0 end)  totinc_tiempoasignacion, \n" .
         "		sum(case when isnumeric(cumple_inc_tiempoasignacion)=1 then cast(cumple_inc_tiempoasignacion as int) else 0 end) cumpleninc_tiempoasignacion, \n" .
-        "		case when count(cumple_inc_tiempoasignacion)>0 then \n" .
-        "			sum(case when isnumeric(cumple_inc_tiempoasignacion)=1 then cast(cumple_inc_tiempoasignacion as int) else 0 end)/cast(count(cumple_inc_tiempoasignacion) as float)*100 \n" .
+        "		case when sum(case when cumple_inc_tiempoasignacion='1' or cumple_inc_tiempoasignacion='0' then 1 else 0 end)>0 then \n" .
+        "			sum(case when isnumeric(cumple_inc_tiempoasignacion)=1 then cast(cumple_inc_tiempoasignacion as int) else 0 end)/cast((sum(case when cumple_inc_tiempoasignacion='1' or cumple_inc_tiempoasignacion='0' then 1 else 0 end)) as float)*100 \n" .
         "		else 0 end inc_tiempoasignacion,\n" .
         "	 (select meta from [archivosxls].[dbo].mc_c_metrica where acronimo='inc_tiempoasignacion') as meta_inc_tiempoasignacion,\n" .
-        "	 count(cumple_inc_tiemposolucion) totinc_tiemposolucion, \n" .
+        "	\n" .
+        "	 sum(case when cumple_inc_tiemposolucion='1' or cumple_inc_tiemposolucion='0' then 1 else 0 end) totinc_tiemposolucion, \n" .
         "		sum(case when isnumeric(cumple_inc_tiempoSolucion)=1 then cast(cumple_inc_tiempoSolucion as int) else 0 end) cumpleninc_tiemposolucion, \n" .
-        "		case when count(cumple_inc_tiemposolucion)>0 then \n" .
-        "			sum(case when isnumeric(cumple_inc_tiempoSolucion)=1 then cast(cumple_inc_tiempoSolucion as int) else 0 end)/cast(count(cumple_inc_tiemposolucion) as float)*100 \n" .
-        "		else 0 end inc_tiemposolucion,\n" .
+        "		case when sum(case when cumple_inc_tiemposolucion='1' or cumple_inc_tiemposolucion='0' then 1 else 0 end)>0 then \n" .
+        "			sum(case when isnumeric(cumple_inc_tiempoSolucion)=1 then cast(cumple_inc_tiempoSolucion as int) else 0 end)/cast((sum(case when cumple_inc_tiemposolucion='1' or cumple_inc_tiemposolucion='0' then 1 else 0 end)) as float)*100 \n" .
+        "		else 0 end inc_tiemposolucion,	 \n" .
         "	 (select meta from [archivosxls].[dbo].mc_c_metrica where acronimo='inc_tiemposolucion') as meta_inc_tiemposolucion,\n" .
+        "	 	\n" .
         "	 	 AVG(Cumple_EF) cumplen_efic_presup, AVG(total_ef) tot_efic_presup, avg(cast(Cumple_EF as float))/avg(total_ef)*100  efic_presup,\n" .
         "	 (Select Meta from [archivosxls].[dbo].mc_c_metrica where acronimo='EFIC_PRESUP') as meta_efic_presup\n" .
         "from [archivosxls].[dbo].mc_c_ServContractual sc \n" .
         "left join (select * from [archivosxls].[dbo].l_calificacion_rs_aut m\n" .
-        "	where m.id_periodo=" . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "   and m.id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " and m.tipo_nivel_servicio ='" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "' and m.estatus ='F' \n" .
+        "	where m.id_periodo= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "    and m.id_proveedor =" . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " and m.tipo_nivel_servicio ='" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "' and m.estatus ='F' \n" .
         "	and num_carga=(\n" .
         "       select max(b.num_carga)\n" .
         "       from [archivosxls].[dbo].l_calificacion_rs_aut  b\n" .
-        "       where b.id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
-        "       and b.id_periodo = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "       where b.id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " \n" .
+        "       and b.id_periodo =  " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . " \n" .
         "       and b.tipo_nivel_servicio = '" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "' \n" .
         "       and b.estatus='F'\n" .
         "       )) m on sc.Descripcion  = m.servicio_cont  \n" .
         "	 left join	(select cumple_inc_tiempoasignacion, cumple_inc_tiempoSolucion, \n" .
         "				id_proveedor, 'Servicio de Soporte de Aplicaciones'  servicio_cont\n" .
         "				from [archivosxls].[dbo].l_calificacion_incidentes_AUT\n" .
-        "				where (id_periodo=" . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "  and id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " and tipo_nivel_servicio ='" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "'   and estatus ='F'\n" .
+        "				where (id_periodo= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "   and id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "  and tipo_nivel_servicio ='" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "'   and estatus ='F'\n" .
         "				and num_carga=(select max(b.num_carga) from [archivosxls].[dbo].l_calificacion_incidentes_aut b \n" .
-        "				where b.id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " and b.id_periodo =  " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . " and b.tipo_nivel_servicio = '" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "'  and b.estatus='F' ) \n" .
+        "				where b.id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "  and b.id_periodo =   " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "  and b.tipo_nivel_servicio = '" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "'  and b.estatus='F' ) \n" .
         "				) )  mi on  mi.servicio_cont = sc.Descripcion \n" .
         "	left join (select SUM(case when efic_presupuestal='1' or efic_presupuestal='0' then 1 else 0 end) Cumple_EF, COUNT(efic_presupuestal) Total_EF, Id_Proveedor,  2 IdServicioCont  \n" .
         "			from [archivosxls].[dbo].l_detalle_eficiencia_presupuestal \n" .
-        "			where (id_periodo= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "  and id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " and tipo_nivel_servicio ='" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "'   and estatus ='F'\n" .
+        "			where (id_periodo=  " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "   and id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "  and tipo_nivel_servicio ='" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "'   and estatus ='F'\n" .
         "				and num_carga=(select max(b.num_carga) from [archivosxls].[dbo].l_calificacion_incidentes_aut b \n" .
-        "				where b.id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " and b.id_periodo = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . " and b.tipo_nivel_servicio = '" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "'  and b.estatus='F' ) \n" .
+        "				where b.id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "  and b.id_periodo = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "  and b.tipo_nivel_servicio = '" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "'  and b.estatus='F' ) \n" .
         "				) group by id_proveedor ) ef on ef.IdServicioCont = sc.id\n" .
         "where sc.Aplica ='CDS' and IdOld <>0\n" .
         "group by sc.Descripcion ";
@@ -1517,7 +1306,7 @@ include_once("./comparativo_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-E460F639
+//Initialize Objects @1-C0D1278D
 $DBcon_xls = new clsDBcon_xls();
 $MainPage->Connections["con_xls"] = & $DBcon_xls;
 $Attributes = new clsAttributes("page:");
@@ -1527,12 +1316,10 @@ $MainPage->Attributes = & $Attributes;
 // Controls
 $Header = new clsHeader("", "Header", $MainPage);
 $Header->Initialize();
-$l_calificacion_incidentes1 = new clsRecordl_calificacion_incidentes1("", $MainPage);
 $lb_periodo_fecha_carga = new clsControl(ccsLabel, "lb_periodo_fecha_carga", "lb_periodo_fecha_carga", ccsText, "", CCGetRequestParam("lb_periodo_fecha_carga", ccsGet, NULL), $MainPage);
 $lb_periodo_fecha_carga->HTML = true;
 $Grid1 = new clsGridGrid1("", $MainPage);
 $MainPage->Header = & $Header;
-$MainPage->l_calificacion_incidentes1 = & $l_calificacion_incidentes1;
 $MainPage->lb_periodo_fecha_carga = & $lb_periodo_fecha_carga;
 $MainPage->Grid1 = & $Grid1;
 $Grid1->Initialize();
@@ -1569,12 +1356,11 @@ $Attributes->SetValue("pathToRoot", "");
 $Attributes->Show();
 //End Initialize HTML Template
 
-//Execute Components @1-7D906631
-$l_calificacion_incidentes1->Operation();
+//Execute Components @1-47111282
 $Header->Operations();
 //End Execute Components
 
-//Go to destination page @1-3CDA54CF
+//Go to destination page @1-C54B6D62
 if($Redirect)
 {
     $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
@@ -1582,16 +1368,14 @@ if($Redirect)
     header("Location: " . $Redirect);
     $Header->Class_Terminate();
     unset($Header);
-    unset($l_calificacion_incidentes1);
     unset($Grid1);
     unset($Tpl);
     exit;
 }
 //End Go to destination page
 
-//Show Page @1-E1E9D58C
+//Show Page @1-081EF78B
 $Header->Show();
-$l_calificacion_incidentes1->Show();
 $Grid1->Show();
 $lb_periodo_fecha_carga->Show();
 $Tpl->block_path = "";
@@ -1601,12 +1385,11 @@ $CCSEventResult = CCGetEvent($CCSEvents, "BeforeOutput", $MainPage);
 if ($CCSEventResult) echo $main_block;
 //End Show Page
 
-//Unload Page @1-266F095E
+//Unload Page @1-895A198E
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
 $DBcon_xls->close();
 $Header->Class_Terminate();
 unset($Header);
-unset($l_calificacion_incidentes1);
 unset($Grid1);
 unset($Tpl);
 //End Unload Page

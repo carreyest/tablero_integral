@@ -205,12 +205,6 @@ where c.id_proveedor = {s_id_proveedor}
 							<Attributes/>
 							<Features/>
 						</Label>
-						<Image id="44" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" name="imgCumpleHE" PathID="grdDetalleRSPanel1imgCumpleHE">
-							<Components/>
-							<Events/>
-							<Attributes/>
-							<Features/>
-						</Image>
 						<Label id="21" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="REQ_SERV" fieldSource="REQ_SERV" wizardCaption="REQ SERV" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="grdDetalleRSPanel1REQ_SERV">
 							<Components/>
 							<Events/>
@@ -344,7 +338,13 @@ where c.id_proveedor = {s_id_proveedor}
 							<Features/>
 							<LinkParameters/>
 						</Link>
-					</Components>
+						<Image id="44" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" name="imgCumpleHE" PathID="grdDetalleRSPanel1imgCumpleHE">
+							<Components/>
+							<Events/>
+							<Attributes/>
+							<Features/>
+						</Image>
+</Components>
 					<Events/>
 					<Attributes/>
 					<Features/>

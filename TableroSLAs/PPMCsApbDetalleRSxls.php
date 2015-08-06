@@ -59,7 +59,7 @@ class clsGridgrdDetalleRS { //grdDetalleRS class @3-CC2FAA29
     public $Sorter_DEF_FUG_AMB_PROD;
 //End Variables
 
-//Class_Initialize Event @3-BF97F737
+//Class_Initialize Event @3-A358E529
     function clsGridgrdDetalleRS($RelativePath, & $Parent)
     {
         global $FileName;
@@ -96,7 +96,6 @@ class clsGridgrdDetalleRS { //grdDetalleRS class @3-CC2FAA29
         $this->Tipo = new clsControl(ccsLabel, "Tipo", "Tipo", ccsText, "", CCGetRequestParam("Tipo", ccsGet, NULL), $this);
         $this->descripci_n = new clsControl(ccsLabel, "descripci_n", "descripci_n", ccsText, "", CCGetRequestParam("descripci_n", ccsGet, NULL), $this);
         $this->HERR_EST_COST = new clsControl(ccsLabel, "HERR_EST_COST", "HERR_EST_COST", ccsText, "", CCGetRequestParam("HERR_EST_COST", ccsGet, NULL), $this);
-        $this->imgCumpleHE = new clsControl(ccsImage, "imgCumpleHE", "imgCumpleHE", ccsText, "", CCGetRequestParam("imgCumpleHE", ccsGet, NULL), $this);
         $this->REQ_SERV = new clsControl(ccsLabel, "REQ_SERV", "REQ_SERV", ccsText, "", CCGetRequestParam("REQ_SERV", ccsGet, NULL), $this);
         $this->imgCumpleRS = new clsControl(ccsImage, "imgCumpleRS", "imgCumpleRS", ccsText, "", CCGetRequestParam("imgCumpleRS", ccsGet, NULL), $this);
         $this->CUMPL_REQ_FUNC = new clsControl(ccsLabel, "CUMPL_REQ_FUNC", "CUMPL_REQ_FUNC", ccsText, "", CCGetRequestParam("CUMPL_REQ_FUNC", ccsGet, NULL), $this);
@@ -123,6 +122,7 @@ class clsGridgrdDetalleRS { //grdDetalleRS class @3-CC2FAA29
         $this->lkRT = new clsControl(ccsLink, "lkRT", "lkRT", ccsText, "", CCGetRequestParam("lkRT", ccsGet, NULL), $this);
         $this->lkRT->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
         $this->lkRT->Page = "ReqTecList.php";
+        $this->imgCumpleHE = new clsControl(ccsImage, "imgCumpleHE", "imgCumpleHE", ccsText, "", CCGetRequestParam("imgCumpleHE", ccsGet, NULL), $this);
         $this->Grid1_TotalRecords = new clsControl(ccsLabel, "Grid1_TotalRecords", "Grid1_TotalRecords", ccsText, "", CCGetRequestParam("Grid1_TotalRecords", ccsGet, NULL), $this);
         $this->Sorter_ServContractual = new clsSorter($this->ComponentName, "Sorter_ServContractual", $FileName, $this);
         $this->Sorter_ServNegocio = new clsSorter($this->ComponentName, "Sorter_ServNegocio", $FileName, $this);
@@ -145,7 +145,6 @@ class clsGridgrdDetalleRS { //grdDetalleRS class @3-CC2FAA29
         $this->Panel1->AddComponent("Tipo", $this->Tipo);
         $this->Panel1->AddComponent("descripci_n", $this->descripci_n);
         $this->Panel1->AddComponent("HERR_EST_COST", $this->HERR_EST_COST);
-        $this->Panel1->AddComponent("imgCumpleHE", $this->imgCumpleHE);
         $this->Panel1->AddComponent("REQ_SERV", $this->REQ_SERV);
         $this->Panel1->AddComponent("imgCumpleRS", $this->imgCumpleRS);
         $this->Panel1->AddComponent("CUMPL_REQ_FUNC", $this->CUMPL_REQ_FUNC);
@@ -168,6 +167,7 @@ class clsGridgrdDetalleRS { //grdDetalleRS class @3-CC2FAA29
         $this->Panel1->AddComponent("Obs_SAT", $this->Obs_SAT);
         $this->Panel1->AddComponent("IdEstimacion", $this->IdEstimacion);
         $this->Panel1->AddComponent("lkRT", $this->lkRT);
+        $this->Panel1->AddComponent("imgCumpleHE", $this->imgCumpleHE);
     }
 //End Class_Initialize Event
 
@@ -182,7 +182,7 @@ class clsGridgrdDetalleRS { //grdDetalleRS class @3-CC2FAA29
     }
 //End Initialize Method
 
-//Show Method @3-1D798858
+//Show Method @3-159E724F
     function Show()
     {
         $Tpl = CCGetTemplate($this);
@@ -221,7 +221,6 @@ class clsGridgrdDetalleRS { //grdDetalleRS class @3-CC2FAA29
             $this->ControlsVisible["Tipo"] = $this->Tipo->Visible;
             $this->ControlsVisible["descripci_n"] = $this->descripci_n->Visible;
             $this->ControlsVisible["HERR_EST_COST"] = $this->HERR_EST_COST->Visible;
-            $this->ControlsVisible["imgCumpleHE"] = $this->imgCumpleHE->Visible;
             $this->ControlsVisible["REQ_SERV"] = $this->REQ_SERV->Visible;
             $this->ControlsVisible["imgCumpleRS"] = $this->imgCumpleRS->Visible;
             $this->ControlsVisible["CUMPL_REQ_FUNC"] = $this->CUMPL_REQ_FUNC->Visible;
@@ -244,6 +243,7 @@ class clsGridgrdDetalleRS { //grdDetalleRS class @3-CC2FAA29
             $this->ControlsVisible["Obs_SAT"] = $this->Obs_SAT->Visible;
             $this->ControlsVisible["IdEstimacion"] = $this->IdEstimacion->Visible;
             $this->ControlsVisible["lkRT"] = $this->lkRT->Visible;
+            $this->ControlsVisible["imgCumpleHE"] = $this->imgCumpleHE->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -325,7 +325,7 @@ class clsGridgrdDetalleRS { //grdDetalleRS class @3-CC2FAA29
     }
 //End Show Method
 
-//GetErrors Method @3-B20A0946
+//GetErrors Method @3-9B6FD21E
     function GetErrors()
     {
         $errors = "";
@@ -335,7 +335,6 @@ class clsGridgrdDetalleRS { //grdDetalleRS class @3-CC2FAA29
         $errors = ComposeStrings($errors, $this->Tipo->Errors->ToString());
         $errors = ComposeStrings($errors, $this->descripci_n->Errors->ToString());
         $errors = ComposeStrings($errors, $this->HERR_EST_COST->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->imgCumpleHE->Errors->ToString());
         $errors = ComposeStrings($errors, $this->REQ_SERV->Errors->ToString());
         $errors = ComposeStrings($errors, $this->imgCumpleRS->Errors->ToString());
         $errors = ComposeStrings($errors, $this->CUMPL_REQ_FUNC->Errors->ToString());
@@ -358,6 +357,7 @@ class clsGridgrdDetalleRS { //grdDetalleRS class @3-CC2FAA29
         $errors = ComposeStrings($errors, $this->Obs_SAT->Errors->ToString());
         $errors = ComposeStrings($errors, $this->IdEstimacion->Errors->ToString());
         $errors = ComposeStrings($errors, $this->lkRT->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->imgCumpleHE->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;

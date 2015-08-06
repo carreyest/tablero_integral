@@ -60,13 +60,34 @@ function grdDetalleRS_BeforeShowRow(& $sender)
 
 //Custom Code @46-2A29BDB7
 // -------------------------
+
+	global $db;
+	$tipo_ppmc='';
+	$SLO_ppmc='';
+	$medido_en='';
+  	$db = new clsDBcnDisenio;
+	$sqlGetTipo="	SELECT mes,anio, SLO, tipo
+					FROM mc_universo_cds 
+					WHERE tipo = 'PC'
+					AND numero like '%". $grdDetalleRS->id_ppmc->GetValue() . "%'";
+    
+    $db->query($sqlGetTipo);
+    
+    if($db->next_record()){
+  		$tipo_ppmc = $db->f("tipo"); 
+  		$SLO_ppmc = $db->f("SLO");
+  		$medido_en = $db->f("mes")."/".$db->f("anio");
+    }
+
+
+
 	$grdDetalleRS->HERR_EST_COST->Visible=false;
 	$grdDetalleRS->REQ_SERV->Visible=false;
 	$grdDetalleRS->CUMPL_REQ_FUNC->Visible=false;
 	$grdDetalleRS->CALIDAD_PROD_TERM->Visible=false;
 	$grdDetalleRS->RETR_ENTREGABLE->Visible=false;
-	$grdDetalleRS->COMPL_RUTA_CRITICA->Visible=false;
-	$grdDetalleRS->EST_PROY->Visible=false;
+	//$grdDetalleRS->COMPL_RUTA_CRITICA->Visible=false;
+	//$grdDetalleRS->EST_PROY->Visible=false;
 	$grdDetalleRS->DEF_FUG_AMB_PROD->Visible=false;
 	
 	/*
@@ -88,7 +109,7 @@ function grdDetalleRS_BeforeShowRow(& $sender)
 	//$grdDetalleRS->imgEST_PROY->Visible=($grdDetalleRS->EST_PROY->GetValue()!="");
 	//$grdDetalleRS->imgDEF_FUG_AMB_PROD->Visible=($grdDetalleRS->DEF_FUG_AMB_PROD->GetValue()!="");
 	
-	if($grdDetalleRS->HERR_EST_COST->GetValue()!=''){
+	if($grdDetalleRS->HERR_EST_COST->GetValue()!=''){		
 		switch($grdDetalleRS->HERR_EST_COST->GetValue()){
 			case  0: $imagen_hec="images/NoCumple.png"; break;
 			case  1: $imagen_hec="images/Cumple.png"; break;
@@ -96,6 +117,11 @@ function grdDetalleRS_BeforeShowRow(& $sender)
 		$grdDetalleRS->imgCumpleHE->SetValue($imagen_hec);	
 	} else {
 		$grdDetalleRS->imgCumpleHE->SetValue("images/noaplica.png");
+		if ($tipo_ppmc=='PC') {
+			$grdDetalleRS->HERR_EST_COST->Visible=true;
+			$grdDetalleRS->HERR_EST_COST->SetValue("Medido en ".$medido_en. " ");
+	   }
+
 	}
 
 	if($grdDetalleRS->REQ_SERV->GetValue()!=''){

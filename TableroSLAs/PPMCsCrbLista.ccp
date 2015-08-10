@@ -289,12 +289,12 @@ where  isnull(descartar_manual,0)=0 and tipo='PC'
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="208" dataType="Integer" defaultValue="date(&quot;m&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="11" parameterSource="s_mesparam" parameterType="URL" variable="s_mesparam"/>
-<SQLParameter id="209" dataType="Integer" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;)-1,date(&quot;d&quot;),date(&quot;Y&quot;)))" designDefaultValue="2013" parameterSource="s_anioparam" parameterType="URL" variable="s_anioparam"/>
-<SQLParameter id="210" dataType="Integer" defaultValue="CCGetSession(&quot;CDSPreferido&quot;)" designDefaultValue="0" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
-<SQLParameter id="211" dataType="Text" designDefaultValue="eminero" parameterSource="sAnalista" parameterType="URL" variable="sAnalista"/>
-<SQLParameter id="212" dataType="Text" designDefaultValue="0" parameterSource="s_numero" parameterType="URL" variable="s_numero"/>
-<SQLParameter id="213" dataType="Integer" defaultValue="0" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
-</SQLParameters>
+				<SQLParameter id="209" dataType="Integer" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;)-1,date(&quot;d&quot;),date(&quot;Y&quot;)))" designDefaultValue="2013" parameterSource="s_anioparam" parameterType="URL" variable="s_anioparam"/>
+				<SQLParameter id="210" dataType="Integer" defaultValue="CCGetSession(&quot;CDSPreferido&quot;)" designDefaultValue="0" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
+				<SQLParameter id="211" dataType="Text" designDefaultValue="eminero" parameterSource="sAnalista" parameterType="URL" variable="sAnalista"/>
+				<SQLParameter id="212" dataType="Text" designDefaultValue="0" parameterSource="s_numero" parameterType="URL" variable="s_numero"/>
+				<SQLParameter id="213" dataType="Integer" defaultValue="0" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -384,31 +384,31 @@ where  isnull(descartar_manual,0)=0 and tipo='PC'
 					<Components/>
 					<Events/>
 					<TableParameters>
-						<TableParameter id="215" conditionType="Parameter" useIsNull="False" dataType="Integer" defaultValue="3" field="Nivel" logicOperator="And" parameterSource="Nivel" parameterType="URL" searchConditionType="Equal"/>
-<TableParameter id="216" conditionType="Parameter" useIsNull="False" dataType="Text" field="Grupo" logicOperator="And" parameterSource="'CAPC'" parameterType="Expression" searchConditionType="Equal"/>
+						<TableParameter id="220" conditionType="Parameter" useIsNull="False" dataType="Text" defaultValue="'CAPC'" field="Grupo" logicOperator="And" parameterSource="Grupo" parameterType="URL" searchConditionType="Equal"/>
+<TableParameter id="221" conditionType="Parameter" useIsNull="False" dataType="Text" field="Grupo" logicOperator="And" parameterSource="'CAPC'" parameterType="Expression" searchConditionType="Equal"/>
 </TableParameters>
 					<SPParameters/>
 					<SQLParameters/>
 					<JoinTables>
-						<JoinTable id="214" posHeight="180" posLeft="10" posTop="10" posWidth="118" tableName="mc_c_usuarios"/>
+						<JoinTable id="219" posHeight="180" posLeft="10" posTop="10" posWidth="118" tableName="mc_c_usuarios"/>
 </JoinTables>
 					<JoinLinks/>
 					<Fields>
-						<Field id="217" fieldName="*"/>
+						<Field id="222" fieldName="*"/>
 </Fields>
 					<PKFields>
-						<PKField id="218" dataType="Integer" fieldName="Id" tableName="mc_c_usuarios"/>
+						<PKField id="223" dataType="Integer" fieldName="Id" tableName="mc_c_usuarios"/>
 </PKFields>
 					<Attributes/>
 					<Features/>
 				</ListBox>
 				<CheckBox id="207" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="sSLO" PathID="Grid2sSLO" checkedValue="1" uncheckedValue="0">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</CheckBox>
-</Components>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</CheckBox>
+			</Components>
 			<Events>
 				<Event name="OnValidate" type="Server">
 					<Actions>

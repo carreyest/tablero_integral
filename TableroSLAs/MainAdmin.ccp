@@ -5,43 +5,43 @@
 			<Events/>
 			<Features/>
 		</IncludePage>
-		<Link id="4" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link1" PathID="Link1" hrefSource="Catalogos/AplicacionesLista.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Aplicaciones','textSourceDB':'','hrefSource':'Catalogos/AplicacionesLista.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
+		<Link id="4" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link1" PathID="Link1" hrefSource="Catalogos/AplicacionesLista.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Aplicaciones','textSourceDB':'','hrefSource':'Catalogos/AplicacionesLista.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
 			<Events/>
 			<LinkParameters/>
 			<Attributes/>
 			<Features/>
 		</Link>
-		<Link id="5" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link2" PathID="Link2" hrefSource="Catalogos/Dictamenes.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Dictamenes','textSourceDB':'','hrefSource':'Catalogos/Dictamenes.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
+		<Link id="5" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link2" PathID="Link2" hrefSource="Catalogos/Dictamenes.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Dictamenes','textSourceDB':'','hrefSource':'Catalogos/Dictamenes.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
 			<Events/>
 			<LinkParameters/>
 			<Attributes/>
 			<Features/>
 		</Link>
-		<Link id="6" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link3" PathID="Link3" hrefSource="Catalogos/ServiciosNegocio.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Servicios de Negocio','textSourceDB':'','hrefSource':'Catalogos/ServiciosNegocio.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
+		<Link id="6" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link3" PathID="Link3" hrefSource="Catalogos/ServiciosNegocio.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Servicios de Negocio','textSourceDB':'','hrefSource':'Catalogos/ServiciosNegocio.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
 			<Events/>
 			<LinkParameters/>
 			<Attributes/>
 			<Features/>
 		</Link>
-		<Link id="7" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link4" PathID="Link4" hrefSource="Catalogos/Usuarios.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Usuarios','textSourceDB':'','hrefSource':'Catalogos/Usuarios.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
+		<Link id="7" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link4" PathID="Link4" hrefSource="Catalogos/Usuarios.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Usuarios','textSourceDB':'','hrefSource':'Catalogos/Usuarios.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
 			<Events/>
 			<LinkParameters/>
 			<Attributes/>
 			<Features/>
 		</Link>
-		<Link id="8" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link5" PathID="Link5" hrefSource="EficienciaPresBase.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Costo Fijo Mensual','textSourceDB':'','hrefSource':'EficienciaPresBase.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
+		<Link id="8" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link5" PathID="Link5" hrefSource="EficienciaPresBase.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Costo Fijo Mensual','textSourceDB':'','hrefSource':'EficienciaPresBase.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
 			<Events/>
 			<LinkParameters/>
 			<Attributes/>
 			<Features/>
 		</Link>
-		<Link id="11" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link6" PathID="Link6" hrefSource="PPMCsNoMedibles.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'No Medibles','textSourceDB':'','hrefSource':'PPMCsNoMedibles.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
+		<Link id="11" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link6" PathID="Link6" hrefSource="PPMCsNoMedibles.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'No Medibles','textSourceDB':'','hrefSource':'PPMCsNoMedibles.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
 			<Events/>
 			<LinkParameters/>
 			<Attributes/>
 			<Features/>
 		</Link>
-		<Link id="12" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link7" PathID="Link7" hrefSource="Charts/Charts.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Gráficas','textSourceDB':'','hrefSource':'Charts/Charts.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
+		<Link id="12" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link7" PathID="Link7" hrefSource="Charts/Charts.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Gráficas','textSourceDB':'','hrefSource':'Charts/Charts.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
 			<Events/>
 			<LinkParameters/>
 			<Attributes/>
@@ -60,11 +60,17 @@
 			<Attributes/>
 			<Features/>
 		</Link>
-	</Components>
+		<Link id="16" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link10" PathID="Link10" hrefSource="Catalogos/EquivalenciasReportes.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Mapeo RAPEs','textSourceDB':'','hrefSource':'Catalogos/EquivalenciasReportes.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
+<Events/>
+<LinkParameters/>
+<Attributes/>
+<Features/>
+</Link>
+</Components>
 	<CodeFiles>
 		<CodeFile id="Code" language="PHPTemplates" name="MainAdmin.php" forShow="True" url="MainAdmin.php" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Events" language="PHPTemplates" name="MainAdmin_events.php" forShow="False" comment="//" codePage="windows-1252"/>
-</CodeFiles>
+	</CodeFiles>
 	<SecurityGroups>
 		<Group id="9" groupID="3"/>
 		<Group id="10" groupID="4"/>
@@ -73,10 +79,10 @@
 	<Attributes/>
 	<Features/>
 	<Events>
-<Event name="BeforeShow" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="15"/>
-</Actions>
-</Event>
-</Events>
+		<Event name="BeforeShow" type="Server">
+			<Actions>
+				<Action actionName="Custom Code" actionCategory="General" id="15"/>
+			</Actions>
+		</Event>
+	</Events>
 </Page>

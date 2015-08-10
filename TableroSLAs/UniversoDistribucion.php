@@ -49,7 +49,7 @@ class clsRecordmc_c_proveedor_mc_EfPresu { //mc_c_proveedor_mc_EfPresu Class @22
     // Class variables
 //End Variables
 
-//Class_Initialize Event @22-A9B1ACB9
+//Class_Initialize Event @22-420041F7
     function clsRecordmc_c_proveedor_mc_EfPresu($RelativePath, & $Parent)
     {
 
@@ -112,12 +112,12 @@ class clsRecordmc_c_proveedor_mc_EfPresu { //mc_c_proveedor_mc_EfPresu Class @22
             $this->s_analista->DataSource->SQL = "SELECT * \n" .
 "FROM mc_c_usuarios {SQL_Where} {SQL_OrderBy}";
             list($this->s_analista->BoundColumn, $this->s_analista->TextColumn, $this->s_analista->DBFormat) = array("Usuario", "Usuario", "");
-            $this->s_analista->DataSource->Parameters["urlNivel"] = CCGetFromGet("Nivel", NULL);
-            $this->s_analista->DataSource->Parameters["expr116"] = 1;
+            $this->s_analista->DataSource->Parameters["urlGrupo"] = CCGetFromGet("Grupo", NULL);
+            $this->s_analista->DataSource->Parameters["expr150"] = 1;
             $this->s_analista->DataSource->wp = new clsSQLParameters();
-            $this->s_analista->DataSource->wp->AddParameter("1", "urlNivel", ccsInteger, "", "", $this->s_analista->DataSource->Parameters["urlNivel"], 3, false);
-            $this->s_analista->DataSource->wp->AddParameter("2", "expr116", ccsInteger, "", "", $this->s_analista->DataSource->Parameters["expr116"], "", false);
-            $this->s_analista->DataSource->wp->Criterion[1] = $this->s_analista->DataSource->wp->Operation(opEqual, "[Nivel]", $this->s_analista->DataSource->wp->GetDBValue("1"), $this->s_analista->DataSource->ToSQL($this->s_analista->DataSource->wp->GetDBValue("1"), ccsInteger),false);
+            $this->s_analista->DataSource->wp->AddParameter("1", "urlGrupo", ccsText, "", "", $this->s_analista->DataSource->Parameters["urlGrupo"], 'CAPC', false);
+            $this->s_analista->DataSource->wp->AddParameter("2", "expr150", ccsInteger, "", "", $this->s_analista->DataSource->Parameters["expr150"], "", false);
+            $this->s_analista->DataSource->wp->Criterion[1] = $this->s_analista->DataSource->wp->Operation(opEqual, "[Grupo]", $this->s_analista->DataSource->wp->GetDBValue("1"), $this->s_analista->DataSource->ToSQL($this->s_analista->DataSource->wp->GetDBValue("1"), ccsText),false);
             $this->s_analista->DataSource->wp->Criterion[2] = $this->s_analista->DataSource->wp->Operation(opEqual, "[Activo]", $this->s_analista->DataSource->wp->GetDBValue("2"), $this->s_analista->DataSource->ToSQL($this->s_analista->DataSource->wp->GetDBValue("2"), ccsInteger),false);
             $this->s_analista->DataSource->Where = $this->s_analista->DataSource->wp->opAND(
                  false, 
@@ -324,7 +324,7 @@ class clsEditableGridmc_universo_cds { //mc_universo_cds Class @3-F263941D
     public $Sorter_analista;
 //End Variables
 
-//Class_Initialize Event @3-E5B915E0
+//Class_Initialize Event @3-4DE7723C
     function clsEditableGridmc_universo_cds($RelativePath, & $Parent)
     {
 
@@ -390,18 +390,18 @@ class clsEditableGridmc_universo_cds { //mc_universo_cds Class @3-F263941D
         $this->analista->DataSource = new clsDBcnDisenio();
         $this->analista->ds = & $this->analista->DataSource;
         list($this->analista->BoundColumn, $this->analista->TextColumn, $this->analista->DBFormat) = array("Usuario", "Usuario", "");
-        $this->analista->DataSource->Parameters["urlNivel"] = CCGetFromGet("Nivel", NULL);
-        $this->analista->DataSource->Parameters["expr130"] = 1;
+        $this->analista->DataSource->Parameters["urlGrupo"] = CCGetFromGet("Grupo", NULL);
+        $this->analista->DataSource->Parameters["expr145"] = 1;
         $this->analista->DataSource->Parameters["urls_mes"] = CCGetFromGet("s_mes", NULL);
         $this->analista->DataSource->Parameters["urls_anio"] = CCGetFromGet("s_anio", NULL);
         $this->analista->DataSource->wp = new clsSQLParameters();
-        $this->analista->DataSource->wp->AddParameter("1", "urlNivel", ccsInteger, "", "", $this->analista->DataSource->Parameters["urlNivel"], 3, false);
-        $this->analista->DataSource->wp->AddParameter("2", "expr130", ccsInteger, "", "", $this->analista->DataSource->Parameters["expr130"], 0, false);
+        $this->analista->DataSource->wp->AddParameter("1", "urlGrupo", ccsText, "", "", $this->analista->DataSource->Parameters["urlGrupo"], 'CAPC', false);
+        $this->analista->DataSource->wp->AddParameter("2", "expr145", ccsInteger, "", "", $this->analista->DataSource->Parameters["expr145"], 0, false);
         $this->analista->DataSource->wp->AddParameter("3", "urls_mes", ccsInteger, "", "", $this->analista->DataSource->Parameters["urls_mes"], 0, false);
         $this->analista->DataSource->wp->AddParameter("4", "urls_anio", ccsInteger, "", "", $this->analista->DataSource->Parameters["urls_anio"], 0, false);
         $this->analista->DataSource->SQL = "SELECT * \n" .
         "FROM mc_c_usuarios\n" .
-        "WHERE Nivel = " . $this->analista->DataSource->SQLValue($this->analista->DataSource->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        "WHERE Grupo = '" . $this->analista->DataSource->SQLValue($this->analista->DataSource->wp->GetDBValue("1"), ccsText) . "'\n" .
         "AND Activo = " . $this->analista->DataSource->SQLValue($this->analista->DataSource->wp->GetDBValue("2"), ccsInteger) . " \n" .
         "   OR usuario IN (\n" .
         "     SELECT DISTINCT analista \n" .
@@ -1096,7 +1096,7 @@ class clsEditableGridmc_universo_cds1 { //mc_universo_cds1 Class @57-7CB7EFFB
     public $Sorter_analista;
 //End Variables
 
-//Class_Initialize Event @57-D0B65813
+//Class_Initialize Event @57-D58ECE87
     function clsEditableGridmc_universo_cds1($RelativePath, & $Parent)
     {
 
@@ -1162,18 +1162,18 @@ class clsEditableGridmc_universo_cds1 { //mc_universo_cds1 Class @57-7CB7EFFB
         $this->analista->DataSource = new clsDBcnDisenio();
         $this->analista->ds = & $this->analista->DataSource;
         list($this->analista->BoundColumn, $this->analista->TextColumn, $this->analista->DBFormat) = array("Usuario", "Usuario", "");
-        $this->analista->DataSource->Parameters["urlNivel"] = CCGetFromGet("Nivel", NULL);
-        $this->analista->DataSource->Parameters["expr126"] = 1;
+        $this->analista->DataSource->Parameters["urlGrupo"] = CCGetFromGet("Grupo", NULL);
+        $this->analista->DataSource->Parameters["expr154"] = 1;
         $this->analista->DataSource->Parameters["urls_mes"] = CCGetFromGet("s_mes", NULL);
         $this->analista->DataSource->Parameters["urls_anio"] = CCGetFromGet("s_anio", NULL);
         $this->analista->DataSource->wp = new clsSQLParameters();
-        $this->analista->DataSource->wp->AddParameter("1", "urlNivel", ccsInteger, "", "", $this->analista->DataSource->Parameters["urlNivel"], 3, false);
-        $this->analista->DataSource->wp->AddParameter("2", "expr126", ccsInteger, "", "", $this->analista->DataSource->Parameters["expr126"], 0, false);
+        $this->analista->DataSource->wp->AddParameter("1", "urlGrupo", ccsText, "", "", $this->analista->DataSource->Parameters["urlGrupo"], 'CAPC', false);
+        $this->analista->DataSource->wp->AddParameter("2", "expr154", ccsInteger, "", "", $this->analista->DataSource->Parameters["expr154"], 0, false);
         $this->analista->DataSource->wp->AddParameter("3", "urls_mes", ccsInteger, "", "", $this->analista->DataSource->Parameters["urls_mes"], 0, false);
         $this->analista->DataSource->wp->AddParameter("4", "urls_anio", ccsInteger, "", "", $this->analista->DataSource->Parameters["urls_anio"], 0, false);
         $this->analista->DataSource->SQL = "SELECT * \n" .
         "FROM mc_c_usuarios\n" .
-        "WHERE Nivel = " . $this->analista->DataSource->SQLValue($this->analista->DataSource->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        "WHERE Grupo = '" . $this->analista->DataSource->SQLValue($this->analista->DataSource->wp->GetDBValue("1"), ccsText) . "'\n" .
         "AND Activo = " . $this->analista->DataSource->SQLValue($this->analista->DataSource->wp->GetDBValue("2"), ccsInteger) . " \n" .
         "	or usuario in (\n" .
         "select distinct  analista \n" .

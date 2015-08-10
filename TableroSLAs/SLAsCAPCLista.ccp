@@ -186,19 +186,21 @@ AND (id_serviciocont = {s_id_serviciocont}  or 0={s_id_serviciocont} )" pageSize
 						<LinkParameter id="45" sourceType="DataField" name="id" source="id"/>
 					</LinkParameters>
 				</Link>
-<Label id="27" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="DEDUC_OMISION" fieldSource="DEDUC_OMISION" wizardCaption="DEDUC OMISION" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_c_ServContractual_mc_cDEDUC_OMISION">
-					<Components/>
+				<Link id="27" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="DEDUC_OMISION" fieldSource="DEDUC_OMISION" wizardCaption="DEDUC OMISION" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_c_ServContractual_mc_cDEDUC_OMISION" visible="Yes" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCAPCDetalle.ccp">
+<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
-				</Label>
-				<Label id="29" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="RETR_ENTREGABLE" fieldSource="RETR_ENTREGABLE" wizardCaption="RETR ENTREGABLE" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_c_ServContractual_mc_cRETR_ENTREGABLE">
-					<Components/>
+					<LinkParameters/>
+</Link>
+<Link id="29" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="RETR_ENTREGABLE" fieldSource="RETR_ENTREGABLE" wizardCaption="RETR ENTREGABLE" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_c_ServContractual_mc_cRETR_ENTREGABLE" visible="Yes" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCAPCDetalle.ccp">
+<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
-				</Label>
-				<Label id="30" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Observaciones" fieldSource="Observaciones" wizardCaption="Observaciones" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_c_ServContractual_mc_cObservaciones">
+					<LinkParameters/>
+</Link>
+<Label id="30" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Observaciones" fieldSource="Observaciones" wizardCaption="Observaciones" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_c_ServContractual_mc_cObservaciones">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -263,10 +265,10 @@ AND (id_serviciocont = {s_id_serviciocont}  or 0={s_id_serviciocont} )" pageSize
 					<Attributes/>
 					<Features/>
 					<LinkParameters>
-<LinkParameter id="115" sourceType="DataField" name="sID" source="id"/>
-</LinkParameters>
-</Link>
-<ImageLink id="86" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" name="Img_HERR_EST_COST" PathID="mc_c_ServContractual_mc_cImg_HERR_EST_COST" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCapcApbDetalle.ccp" linkProperties="{'textSource':'','textSourceDB':'','hrefSource':'SLAsCapcApbDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'numero','parameterName':'numero'},'1':{'sourceType':'DataField','parameterSource':'numero','parameterName':'numero'},'2':{'sourceType':'DataField','parameterSource':'id','parameterName':'sID'},'3':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'4':{'sourceType':'DataField','parameterSource':'id','parameterName':'sID'},'length':5,'objectType':'linkParameters'}}"><Components/>
+						<LinkParameter id="115" sourceType="DataField" name="sID" source="id"/>
+					</LinkParameters>
+				</Link>
+				<ImageLink id="86" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" name="Img_HERR_EST_COST" PathID="mc_c_ServContractual_mc_cImg_HERR_EST_COST" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCapcApbDetalle.ccp" linkProperties="{'textSource':'','textSourceDB':'','hrefSource':'SLAsCapcApbDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'numero','parameterName':'numero'},'1':{'sourceType':'DataField','parameterSource':'numero','parameterName':'numero'},'2':{'sourceType':'DataField','parameterSource':'id','parameterName':'sID'},'3':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'4':{'sourceType':'DataField','parameterSource':'id','parameterName':'sID'},'length':5,'objectType':'linkParameters'}}"><Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
@@ -339,6 +341,11 @@ AND (id_serviciocont = {s_id_serviciocont}  or 0={s_id_serviciocont} )" pageSize
 			<Attributes/>
 			<Features/>
 		</Link>
+		<IncludePage id="116" name="SLAsCAPCMenu" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="SLAsCAPCMenu" page="SLAsCAPCMenu.ccp">
+			<Components/>
+			<Events/>
+			<Features/>
+		</IncludePage>
 	</Components>
 	<CodeFiles>
 		<CodeFile id="Code" language="PHPTemplates" name="SLAsCAPCLista.php" forShow="True" url="SLAsCAPCLista.php" comment="//" codePage="windows-1252"/>

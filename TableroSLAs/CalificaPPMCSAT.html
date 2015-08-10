@@ -22,44 +22,45 @@
                 <tr>
                   <td class="HeaderLeft"><img border="0" alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Dictaminar&nbsp;Requerimiento SAT</strong></td> 
-                  <td class="HeaderRight"><img border="0" alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                  <td class="HeaderRight"><img border="0" alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                 </tr>
+ 
               </table>
  
               <table class="Record" cellspacing="0" cellpadding="0">
                 <!-- BEGIN Error -->
                 <tr class="Error">
-                  <td colspan="2">{Error}</td>
+                  <td colspan="2">{Error}</td> 
                 </tr>
-                <!-- END Error -->
+ <!-- END Error -->
                 <tr class="Controls">
                   <td class="th"><label for="calificacion_rs_AUTid_ppmc">Id PPMC</label></td> 
-                  <td>{id_ppmc}</td>
+                  <td>{id_ppmc}</td> 
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="calificacion_rs_AUTid_proveedor">Proveedor</label></td> 
-                  <td>{id_proveedor} </td>
+                  <td>{id_proveedor} </td> 
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="calificacion_rs_AUTid_servicio_cont">Servicio Contractual</label></td> 
-                  <td>{mc_c_ServContractual_Desc}</td>
+                  <td>{mc_c_ServContractual_Desc}</td> 
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="calificacion_rs_AUTid_servicio_negocio">Servicio de Negocio</label></td> 
-                  <td>{id_servicio_negocio} </td>
+                  <td>{id_servicio_negocio} </td> 
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="calificacion_rs_AUTid_tipo">Tipo Requerimiento</label></td> 
-                  <td>{id_tipo} </td>
+                  <td>{id_tipo} </td> 
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="calificacion_rs_AUTdescripci_n">Descripción</label></td> 
-                  <td>{descripci_n}</td>
+                  <td>{descripci_n}</td> 
                 </tr>
  
                 <!-- BEGIN Panel pnlApertura -->
@@ -68,9 +69,9 @@
                   <td class="th1">
                     <select id="calificacion_rs_AUTpnlAperturaHERR_EST_COST" name="{HERR_EST_COST_Name}">
                       <option selected value="">No Aplica</option>
-                      {HERR_EST_COST_Options}
+ {HERR_EST_COST_Options} 
                     </select>
- </td>
+ </td> 
                 </tr>
  
                 <tr class="Controls">
@@ -78,13 +79,13 @@
                   <td class="th1">
                     <select id="calificacion_rs_AUTpnlAperturaREQ_SERV" name="{REQ_SERV_Name}">
                       <option selected value="">No Aplica</option>
-                      {REQ_SERV_Options}
+ {REQ_SERV_Options} 
                     </select>
- </td>
+ </td> 
                 </tr>
  
                 <tr class="Controls">
-                  <td colspan="2">{OBS_HERR_EST_COST}</td>
+                  <td colspan="2">{OBS_HERR_EST_COST}</td> 
                 </tr>
  <!-- END Panel pnlApertura -->
                 <!-- BEGIN Panel pnlCierre -->
@@ -93,9 +94,9 @@
                   <td class="th1">
                     <select id="calificacion_rs_AUTpnlCierreCUMPL_REQ_FUNC" name="{CUMPL_REQ_FUNC_Name}">
                       <option selected value="">No Aplica</option>
-                      {CUMPL_REQ_FUNC_Options}
+ {CUMPL_REQ_FUNC_Options} 
                     </select>
- </td>
+ </td> 
                 </tr>
  
                 <tr class="Controls">
@@ -103,7 +104,7 @@
                     <div style="FONT-FAMILY: Verdana; WIDTH: 680px">
                       {OBS_CUMPL_REQ_FUNC} 
                     </div>
-                  </td>
+ </td> 
                 </tr>
  
                 <tr class="Controls">
@@ -111,9 +112,9 @@
                   <td class="th1">
                     <select id="calificacion_rs_AUTpnlCierreCALIDAD_PROD_TERM" name="{CALIDAD_PROD_TERM_Name}">
                       <option selected value="">No Aplica</option>
-                      {CALIDAD_PROD_TERM_Options}
+ {CALIDAD_PROD_TERM_Options} 
                     </select>
- </td>
+ </td> 
                 </tr>
  
                 <tr class="Controls">
@@ -121,7 +122,7 @@
                     <div style="FONT-FAMILY: Verdana; WIDTH: 680px">
                       {OBS_CALIDAD_PROD_TERM} 
                     </div>
-                  </td>
+ </td> 
                 </tr>
  
                 <tr class="Controls">
@@ -129,14 +130,14 @@
                   <td class="th1">
                     <select id="calificacion_rs_AUTpnlCierreRETR_ENTREGABLE" name="{RETR_ENTREGABLE_Name}">
                       <option selected value="">No Aplica</option>
-                      {RETR_ENTREGABLE_Options}
+ {RETR_ENTREGABLE_Options} 
                     </select>
- </td>
+ </td> 
                 </tr>
  
                 <tr class="Controls">
                   <td class="th1"><label for="calificacion_rs_AUTpnlCierreCOMPL_RUTA_CRITICA">&nbsp;</label></td> 
-                  <td class="th1">&nbsp;</td>
+                  <td class="th1"><input type="hidden" name="{COMPL_RUTA_CRITICA_Name}" value="{COMPL_RUTA_CRITICA}" id="calificacion_rs_AUTpnlCierreCOMPL_RUTA_CRITICA"></td> 
                 </tr>
  
                 <tr class="Controls">
@@ -144,7 +145,7 @@
                     <div style="FONT-FAMILY: Verdana; WIDTH: 680px">
                       {OBS_COMPL_RUTA_CRITICA} 
                     </div>
-                  </td>
+ </td> 
                 </tr>
  
                 <tr class="Controls">
@@ -152,9 +153,9 @@
                   <td class="th1">
                     <select id="calificacion_rs_AUTpnlCierreEST_PROY" name="{EST_PROY_Name}">
                       <option selected value="">No Aplica</option>
-                      {EST_PROY_Options}
+ {EST_PROY_Options} 
                     </select>
- </td>
+ </td> 
                 </tr>
  
                 <tr class="Controls">
@@ -162,7 +163,7 @@
                     <div style="FONT-FAMILY: Verdana; WIDTH: 680px">
                       {OBS_EST_PROY} 
                     </div>
-                  </td>
+ </td> 
                 </tr>
  
                 <tr class="Controls">
@@ -170,9 +171,9 @@
                   <td class="th1">
                     <select id="calificacion_rs_AUTpnlCierreDEF_FUG_AMB_PROD" name="{DEF_FUG_AMB_PROD_Name}">
                       <option selected value="">No Aplica</option>
-                      {DEF_FUG_AMB_PROD_Options}
+ {DEF_FUG_AMB_PROD_Options} 
                     </select>
- </td>
+ </td> 
                 </tr>
  
                 <tr class="Controls">
@@ -180,18 +181,18 @@
                     <div style="FONT-FAMILY: Verdana; WIDTH: 680px">
                       {OBS_DEF_FUG_AMB_PROD} 
                     </div>
-                  </td>
+ </td> 
                 </tr>
  <!-- END Panel pnlCierre -->
                 <tr class="Controls">
                   <td class="th"><label for="calificacion_rs_AUTObs_manuales">Observaciones</label></td> 
                   <td><textarea id="calificacion_rs_AUTObs_manuales" rows="3" cols="50" name="{Obs_manuales_Name}">{Obs_manuales}</textarea><br>
-                    {Label1} </td>
+                    {Label1} </td> 
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">{MesReporte}&nbsp;{AnioReporte}</td> 
-                  <td></td>
+                  <td></td> 
                 </tr>
  
                 <tr class="Bottom">
@@ -199,20 +200,23 @@
                     <!-- BEGIN Button Button_Insert --><input type="submit" id="calificacion_rs_AUTButton_Insert" class="Button" alt="Guardar" value="Guardar" name="{Button_Name}"><!-- END Button Button_Insert -->
                     <!-- BEGIN Button Button_Update --><input type="submit" id="calificacion_rs_AUTButton_Update" class="Button" alt="Guardar" value="Guardar" name="{Button_Name}"><!-- END Button Button_Update -->
                     <!-- BEGIN Button Button_Delete --><input type="submit" id="calificacion_rs_AUTButton_Delete" class="Button" alt="Borrar" value="Borrar" name="{Button_Name}"><!-- END Button Button_Delete -->
-                    <!-- BEGIN Button Button_Cancel --><input type="submit" id="calificacion_rs_AUTButton_Cancel" class="Button" alt="Cancelar" value="Cancelar" name="{Button_Name}"><!-- END Button Button_Cancel --></td>
+                    <!-- BEGIN Button Button_Cancel --><input type="submit" id="calificacion_rs_AUTButton_Cancel" class="Button" alt="Cancelar" value="Cancelar" name="{Button_Name}"><!-- END Button Button_Cancel --></td> 
                 </tr>
+ 
               </table>
-            </td>
+ </td> 
           </tr>
+ 
         </table>
+ 
       </form>
-      <!-- END Record calificacion_rs_AUT --></td> 
-    <td></td>
+ <!-- END Record calificacion_rs_AUT --></td> 
+    <td></td> 
   </tr>
  
   <tr>
     <td></td> 
-    <td></td>
+    <td></td> 
   </tr>
 </table>
 <br>

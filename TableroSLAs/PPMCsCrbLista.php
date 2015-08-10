@@ -599,7 +599,7 @@ class clsRecordGrid2 { //Grid2 Class @21-542C3E47
     // Class variables
 //End Variables
 
-//Class_Initialize Event @21-38A65744
+//Class_Initialize Event @21-2488C6FE
     function clsRecordGrid2($RelativePath, & $Parent)
     {
 
@@ -666,12 +666,12 @@ class clsRecordGrid2 { //Grid2 Class @21-542C3E47
 "FROM mc_c_usuarios {SQL_Where} {SQL_OrderBy}";
             $this->sAnalista->DataSource->Order = "Usuario";
             list($this->sAnalista->BoundColumn, $this->sAnalista->TextColumn, $this->sAnalista->DBFormat) = array("Usuario", "Usuario", "");
-            $this->sAnalista->DataSource->Parameters["urlNivel"] = CCGetFromGet("Nivel", NULL);
-            $this->sAnalista->DataSource->Parameters["expr216"] = 'CAPC';
+            $this->sAnalista->DataSource->Parameters["urlGrupo"] = CCGetFromGet("Grupo", NULL);
+            $this->sAnalista->DataSource->Parameters["expr221"] = 'CAPC';
             $this->sAnalista->DataSource->wp = new clsSQLParameters();
-            $this->sAnalista->DataSource->wp->AddParameter("1", "urlNivel", ccsInteger, "", "", $this->sAnalista->DataSource->Parameters["urlNivel"], 3, false);
-            $this->sAnalista->DataSource->wp->AddParameter("2", "expr216", ccsText, "", "", $this->sAnalista->DataSource->Parameters["expr216"], "", false);
-            $this->sAnalista->DataSource->wp->Criterion[1] = $this->sAnalista->DataSource->wp->Operation(opEqual, "[Nivel]", $this->sAnalista->DataSource->wp->GetDBValue("1"), $this->sAnalista->DataSource->ToSQL($this->sAnalista->DataSource->wp->GetDBValue("1"), ccsInteger),false);
+            $this->sAnalista->DataSource->wp->AddParameter("1", "urlGrupo", ccsText, "", "", $this->sAnalista->DataSource->Parameters["urlGrupo"], 'CAPC', false);
+            $this->sAnalista->DataSource->wp->AddParameter("2", "expr221", ccsText, "", "", $this->sAnalista->DataSource->Parameters["expr221"], "", false);
+            $this->sAnalista->DataSource->wp->Criterion[1] = $this->sAnalista->DataSource->wp->Operation(opEqual, "[Grupo]", $this->sAnalista->DataSource->wp->GetDBValue("1"), $this->sAnalista->DataSource->ToSQL($this->sAnalista->DataSource->wp->GetDBValue("1"), ccsText),false);
             $this->sAnalista->DataSource->wp->Criterion[2] = $this->sAnalista->DataSource->wp->Operation(opEqual, "[Grupo]", $this->sAnalista->DataSource->wp->GetDBValue("2"), $this->sAnalista->DataSource->ToSQL($this->sAnalista->DataSource->wp->GetDBValue("2"), ccsText),false);
             $this->sAnalista->DataSource->Where = $this->sAnalista->DataSource->wp->opAND(
                  false, 

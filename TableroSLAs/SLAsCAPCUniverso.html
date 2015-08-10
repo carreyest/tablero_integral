@@ -1,0 +1,278 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>SLAsCAPCUniverso</title>
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-2504AB44
+</script>
+<script src="ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-A87AC9EE
+</script>
+{page:scriptIncludes}
+<script type="text/javascript">
+//End Include User Scripts
+
+//Common Script Start @1-8BFA436B
+jQuery(function ($) {
+    var features = { };
+    var actions = { };
+    var params = { };
+//End Common Script Start
+
+//Plugin Calls @1-EBA111F0
+    $('*:ccsControl(mc_calificacion_capc, Button_Delete)').ccsBind(function() {
+        this.bind("click", function(){ $("body").data("disableValidation", true); });
+    });
+//End Plugin Calls
+
+//Common Script End @1-562554DE
+});
+//End Common Script End
+
+//End CCS script
+</script>
+</head>
+<body>
+<p>{Header}</p>
+<p>&nbsp; 
+<table width="100%">
+  <tr>
+    <td>&nbsp;{SLAsCAPCMenu}</td> 
+    <td>&nbsp;</td> 
+  </tr>
+ 
+  <tr>
+    <td>&nbsp; 
+      <!-- BEGIN Record mc_c_mes_mc_calificacion1 -->
+      <form id="mc_c_mes_mc_calificacion1" method="post" name="{HTMLFormName}" action="{Action}">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Buscar</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                </tr>
+ 
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr id="{@error-block}" class="Error">
+                  <td colspan="7">{Error}</td> 
+                </tr>
+ <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"><label for="mc_c_mes_mc_calificacion1s_numero">Numero</label></td> 
+                  <td><input type="text" id="mc_c_mes_mc_calificacion1s_numero" maxlength="25" size="7" value="{s_numero}" name="{s_numero_Name}"></td> 
+                  <td>Mes&nbsp; 
+                    <select id="mc_c_mes_mc_calificacion1s_mc_calificacion_capc_mes" name="{s_mc_calificacion_capc_mes_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+ {s_mc_calificacion_capc_mes_Options} 
+                    </select>
+ </td> 
+                  <td>Año&nbsp;<input type="text" id="mc_c_mes_mc_calificacion1s_anio" maxlength="10" size="10" value="{s_anio}" name="{s_anio_Name}"></td> 
+                  <td>SLO&nbsp;<input type="checkbox" id="mc_c_mes_mc_calificacion1s_SLO" value="1" name="{s_SLO_Name}" {s_SLO}></td> 
+                  <td>&nbsp;</td> 
+                  <td>&nbsp;</td> 
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td style="TEXT-ALIGN: right" colspan="7">
+                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="mc_c_mes_mc_calificacion1Button_DoSearch" class="Button" alt="Buscar" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td> 
+                </tr>
+ 
+              </table>
+ </td> 
+          </tr>
+ 
+        </table>
+ 
+      </form>
+ <!-- END Record mc_c_mes_mc_calificacion1 --></td> 
+    <td>&nbsp;</td> 
+  </tr>
+ 
+  <tr>
+    <td style="VERTICAL-ALIGN: top"><br>
+      <!-- BEGIN Grid mc_c_mes_mc_calificacion -->
+      <table id="mc_c_mes_mc_calificacion" class="MainTable" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td valign="top">
+            <table class="Header" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                <td class="th"><strong>Universo CAPC </strong></td> 
+                <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+              </tr>
+ 
+            </table>
+ 
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <tr class="Caption">
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_numero --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_mes_mc_calificacionSorter_numero">Numero</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_numero --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_mc_c_mes_Mes --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_mes_mc_calificacionSorter_mc_c_mes_Mes">Mes</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_mc_c_mes_Mes --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_anio --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_mes_mc_calificacionSorter_anio">Año</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_anio --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_IdEstimacion --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_mes_mc_calificacionSorter_IdEstimacion">Id Estimación</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_IdEstimacion --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_SLO --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_mes_mc_calificacionSorter_SLO">SLO</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_SLO --></th>
+ 
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr class="Row">
+                <td><a href="{numero_Src}" id="mc_c_mes_mc_calificacionnumero_{mc_c_mes_mc_calificacion:rowNumber}">{numero}</a>&nbsp;</td> 
+                <td>{mc_c_mes_Mes}&nbsp;</td> 
+                <td style="TEXT-ALIGN: right">{anio}&nbsp;</td> 
+                <td style="TEXT-ALIGN: right">{IdEstimacion}&nbsp;</td> 
+                <td style="TEXT-ALIGN: right">{SLO}&nbsp;</td> 
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="5">No hay registros</td> 
+              </tr>
+ <!-- END NoRecords -->
+              <tr class="Footer">
+                <td colspan="5">
+                  <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+                  <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+                    <option selected value="">-</option>
+ {PageSize_Options} 
+                  </select>
+ 
+                  <!-- BEGIN First_On --><a href="{First_URL}">Inicio</a> <!-- END First_On -->
+                  <!-- BEGIN First_Off -->Inicio <!-- END First_Off -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}">Anterior</a> <!-- END Prev_On -->
+                  <!-- BEGIN Prev_Off -->Anterior <!-- END Prev_Off -->&nbsp; 
+                  <!-- BEGIN Pages -->
+                  <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                  <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de &nbsp;{Total_Pages}&nbsp; 
+                  <!-- BEGIN Next_On --><a href="{Next_URL}">Siguiente</a> <!-- END Next_On -->
+                  <!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}">Final</a> <!-- END Last_On -->
+                  <!-- BEGIN Last_Off -->Final <!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td> 
+              </tr>
+ 
+            </table>
+ </td> 
+        </tr>
+ 
+      </table>
+ <!-- END Grid mc_c_mes_mc_calificacion --><br>
+    </td> 
+    <td style="VERTICAL-ALIGN: top">&nbsp; 
+      <!-- BEGIN Record mc_calificacion_capc -->
+      <form id="mc_calificacion_capc" method="post" name="{HTMLFormName}" action="{Action}">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Agregar/Editar Universo CAPC</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                </tr>
+ 
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr id="ErrorBlock" class="Error">
+                  <td colspan="2">{Error}</td> 
+                </tr>
+ <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"><label for="mc_calificacion_capcnumero">Numero</label></td> 
+                  <td><input type="text" id="mc_calificacion_capcnumero" maxlength="25" size="25" value="{numero}" name="{numero_Name}"></td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_calificacion_capcmes">Mes</label></td> 
+                  <td>
+                    <select id="mc_calificacion_capcmes" name="{mes_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+ {mes_Options} 
+                    </select>
+ </td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_calificacion_capcanio">Año</label></td> 
+                  <td>
+                    <select id="mc_calificacion_capcanio" name="{anio_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+ {anio_Options} 
+                    </select>
+ </td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_calificacion_capcIdEstimacion">Id Estimacion</label></td> 
+                  <td><input type="text" id="mc_calificacion_capcIdEstimacion" maxlength="10" size="10" value="{IdEstimacion}" name="{IdEstimacion_Name}"></td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_calificacion_capcSLO">SLO</label></td> 
+                  <td><input type="checkbox" id="mc_calificacion_capcSLO" value="1" name="{SLO_Name}" {SLO}></td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_calificacion_capcid_tipo">Tipo</label></td> 
+                  <td>
+                    <select id="mc_calificacion_capcid_tipo" name="{id_tipo_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+ {id_tipo_Options} 
+                    </select>
+ </td> 
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td style="TEXT-ALIGN: right" colspan="2">
+                    <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_calificacion_capcButton_Insert" class="Button" alt="Agregar" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input type="submit" id="mc_calificacion_capcButton_Update" class="Button" alt="Enviar" value="Enviar" name="{Button_Name}"><!-- END Button Button_Update -->
+                    <!-- BEGIN Button Button_Delete --><input type="submit" id="mc_calificacion_capcButton_Delete" class="Button" alt="Borrar" value="Borrar" name="{Button_Name}"><!-- END Button Button_Delete --></td> 
+                </tr>
+ 
+              </table>
+ </td> 
+          </tr>
+ 
+        </table>
+ 
+      </form>
+ <!-- END Record mc_calificacion_capc --></td> 
+  </tr>
+</table>
+</p>
+<p><br>
+&nbsp;</p>
+</body>
+</html>

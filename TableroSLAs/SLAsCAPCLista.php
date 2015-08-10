@@ -276,7 +276,7 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
     public $Sorter_Observaciones;
 //End Variables
 
-//Class_Initialize Event @3-778EABFE
+//Class_Initialize Event @3-35339071
     function clsGridmc_c_ServContractual_mc_c($RelativePath, & $Parent)
     {
         global $FileName;
@@ -314,10 +314,14 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
         $this->CALIDAD_PROD_TERM = new clsControl(ccsLink, "CALIDAD_PROD_TERM", "CALIDAD_PROD_TERM", ccsText, "", CCGetRequestParam("CALIDAD_PROD_TERM", ccsGet, NULL), $this);
         $this->CALIDAD_PROD_TERM->HTML = true;
         $this->CALIDAD_PROD_TERM->Page = "SLAsCAPCCalidadDetalle.php";
-        $this->DEDUC_OMISION = new clsControl(ccsLabel, "DEDUC_OMISION", "DEDUC_OMISION", ccsText, "", CCGetRequestParam("DEDUC_OMISION", ccsGet, NULL), $this);
+        $this->DEDUC_OMISION = new clsControl(ccsLink, "DEDUC_OMISION", "DEDUC_OMISION", ccsText, "", CCGetRequestParam("DEDUC_OMISION", ccsGet, NULL), $this);
         $this->DEDUC_OMISION->HTML = true;
-        $this->RETR_ENTREGABLE = new clsControl(ccsLabel, "RETR_ENTREGABLE", "RETR_ENTREGABLE", ccsText, "", CCGetRequestParam("RETR_ENTREGABLE", ccsGet, NULL), $this);
+        $this->DEDUC_OMISION->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
+        $this->DEDUC_OMISION->Page = "SLAsCAPCDetalle.php";
+        $this->RETR_ENTREGABLE = new clsControl(ccsLink, "RETR_ENTREGABLE", "RETR_ENTREGABLE", ccsText, "", CCGetRequestParam("RETR_ENTREGABLE", ccsGet, NULL), $this);
         $this->RETR_ENTREGABLE->HTML = true;
+        $this->RETR_ENTREGABLE->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
+        $this->RETR_ENTREGABLE->Page = "SLAsCAPCDetalle.php";
         $this->Observaciones = new clsControl(ccsLabel, "Observaciones", "Observaciones", ccsText, "", CCGetRequestParam("Observaciones", ccsGet, NULL), $this);
         $this->Img_CALIDAD_PROD_TERM = new clsControl(ccsImageLink, "Img_CALIDAD_PROD_TERM", "Img_CALIDAD_PROD_TERM", ccsText, "", CCGetRequestParam("Img_CALIDAD_PROD_TERM", ccsGet, NULL), $this);
         $this->Img_CALIDAD_PROD_TERM->Page = "SLAsCAPCDetalle.php";
@@ -707,6 +711,10 @@ class clsmc_c_ServContractual_mc_cDataSource extends clsDBcnDisenio {  //mc_c_Se
 
 } //End mc_c_ServContractual_mc_cDataSource Class @3-FCB6E20C
 
+//Include Page implementation @116-97AA785B
+include_once(RelativePath . "/SLAsCAPCMenu.php");
+//End Include Page implementation
+
 
 
 //Initialize Page @1-78285DDA
@@ -748,7 +756,7 @@ include_once("./SLAsCAPCLista_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-F97DA8A8
+//Initialize Objects @1-0D013849
 $DBcnDisenio = new clsDBcnDisenio();
 $MainPage->Connections["cnDisenio"] = & $DBcnDisenio;
 $Attributes = new clsAttributes("page:");
@@ -763,10 +771,13 @@ $mc_c_ServContractual_mc_c = new clsGridmc_c_ServContractual_mc_c("", $MainPage)
 $lkTableroExcelCAPC = new clsControl(ccsLink, "lkTableroExcelCAPC", "lkTableroExcelCAPC", ccsText, "", CCGetRequestParam("lkTableroExcelCAPC", ccsGet, NULL), $MainPage);
 $lkTableroExcelCAPC->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
 $lkTableroExcelCAPC->Page = "TableroExcelCAPC.php";
+$SLAsCAPCMenu = new clsSLAsCAPCMenu("", "SLAsCAPCMenu", $MainPage);
+$SLAsCAPCMenu->Initialize();
 $MainPage->Header = & $Header;
 $MainPage->mc_calificacion_capc = & $mc_calificacion_capc;
 $MainPage->mc_c_ServContractual_mc_c = & $mc_c_ServContractual_mc_c;
 $MainPage->lkTableroExcelCAPC = & $lkTableroExcelCAPC;
+$MainPage->SLAsCAPCMenu = & $SLAsCAPCMenu;
 $mc_c_ServContractual_mc_c->Initialize();
 $ScriptIncludes = "";
 $SList = explode("|", $Scripts);
@@ -801,12 +812,13 @@ $Attributes->SetValue("pathToRoot", "");
 $Attributes->Show();
 //End Initialize HTML Template
 
-//Execute Components @1-773E28D8
+//Execute Components @1-9E446AD6
+$SLAsCAPCMenu->Operations();
 $mc_calificacion_capc->Operation();
 $Header->Operations();
 //End Execute Components
 
-//Go to destination page @1-162DECA7
+//Go to destination page @1-56ED647F
 if($Redirect)
 {
     $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
@@ -816,15 +828,18 @@ if($Redirect)
     unset($Header);
     unset($mc_calificacion_capc);
     unset($mc_c_ServContractual_mc_c);
+    $SLAsCAPCMenu->Class_Terminate();
+    unset($SLAsCAPCMenu);
     unset($Tpl);
     exit;
 }
 //End Go to destination page
 
-//Show Page @1-651FFBB5
+//Show Page @1-2801BA69
 $Header->Show();
 $mc_calificacion_capc->Show();
 $mc_c_ServContractual_mc_c->Show();
+$SLAsCAPCMenu->Show();
 $lkTableroExcelCAPC->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
@@ -833,13 +848,15 @@ $CCSEventResult = CCGetEvent($CCSEvents, "BeforeOutput", $MainPage);
 if ($CCSEventResult) echo $main_block;
 //End Show Page
 
-//Unload Page @1-4E3A13F8
+//Unload Page @1-C1449AD7
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
 $DBcnDisenio->close();
 $Header->Class_Terminate();
 unset($Header);
 unset($mc_calificacion_capc);
 unset($mc_c_ServContractual_mc_c);
+$SLAsCAPCMenu->Class_Terminate();
+unset($SLAsCAPCMenu);
 unset($Tpl);
 //End Unload Page
 

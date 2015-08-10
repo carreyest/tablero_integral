@@ -49,7 +49,7 @@ class clsRecordcalificacion_rs_AUT { //calificacion_rs_AUT Class @2-4CDBCDD2
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-4EC41C14
+//Class_Initialize Event @2-4EC712D1
     function clsRecordcalificacion_rs_AUT($RelativePath, & $Parent)
     {
 
@@ -120,6 +120,7 @@ class clsRecordcalificacion_rs_AUT { //calificacion_rs_AUT Class @2-4CDBCDD2
             $this->DEF_FUG_AMB_PROD->DSType = dsListOfValues;
             $this->DEF_FUG_AMB_PROD->Values = array(array("0", "No Cumple"), array("1", "Cumple"));
             $this->OBS_DEF_FUG_AMB_PROD = new clsControl(ccsLabel, "OBS_DEF_FUG_AMB_PROD", "OBS_DEF_FUG_AMB_PROD", ccsText, "", CCGetRequestParam("OBS_DEF_FUG_AMB_PROD", $Method, NULL), $this);
+            $this->COMPL_RUTA_CRITICA = new clsControl(ccsHidden, "COMPL_RUTA_CRITICA", "COMPL_RUTA_CRITICA", ccsText, "", CCGetRequestParam("COMPL_RUTA_CRITICA", $Method, NULL), $this);
             $this->pnlApertura->AddComponent("HERR_EST_COST", $this->HERR_EST_COST);
             $this->pnlApertura->AddComponent("REQ_SERV", $this->REQ_SERV);
             $this->pnlApertura->AddComponent("OBS_HERR_EST_COST", $this->OBS_HERR_EST_COST);
@@ -133,6 +134,7 @@ class clsRecordcalificacion_rs_AUT { //calificacion_rs_AUT Class @2-4CDBCDD2
             $this->pnlCierre->AddComponent("OBS_COMPL_RUTA_CRITICA", $this->OBS_COMPL_RUTA_CRITICA);
             $this->pnlCierre->AddComponent("OBS_EST_PROY", $this->OBS_EST_PROY);
             $this->pnlCierre->AddComponent("OBS_DEF_FUG_AMB_PROD", $this->OBS_DEF_FUG_AMB_PROD);
+            $this->pnlCierre->AddComponent("COMPL_RUTA_CRITICA", $this->COMPL_RUTA_CRITICA);
         }
     }
 //End Class_Initialize Event
@@ -148,7 +150,7 @@ class clsRecordcalificacion_rs_AUT { //calificacion_rs_AUT Class @2-4CDBCDD2
     }
 //End Initialize Method
 
-//Validate Method @2-931DDFC3
+//Validate Method @2-34995738
     function Validate()
     {
         global $CCSLocales;
@@ -162,6 +164,7 @@ class clsRecordcalificacion_rs_AUT { //calificacion_rs_AUT Class @2-4CDBCDD2
         $Validation = ($this->RETR_ENTREGABLE->Validate() && $Validation);
         $Validation = ($this->EST_PROY->Validate() && $Validation);
         $Validation = ($this->DEF_FUG_AMB_PROD->Validate() && $Validation);
+        $Validation = ($this->COMPL_RUTA_CRITICA->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->Obs_manuales->Errors->Count() == 0);
         $Validation =  $Validation && ($this->HERR_EST_COST->Errors->Count() == 0);
@@ -171,11 +174,12 @@ class clsRecordcalificacion_rs_AUT { //calificacion_rs_AUT Class @2-4CDBCDD2
         $Validation =  $Validation && ($this->RETR_ENTREGABLE->Errors->Count() == 0);
         $Validation =  $Validation && ($this->EST_PROY->Errors->Count() == 0);
         $Validation =  $Validation && ($this->DEF_FUG_AMB_PROD->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->COMPL_RUTA_CRITICA->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @2-513B45A6
+//CheckErrors Method @2-4EDD0693
     function CheckErrors()
     {
         $errors = false;
@@ -202,6 +206,7 @@ class clsRecordcalificacion_rs_AUT { //calificacion_rs_AUT Class @2-4CDBCDD2
         $errors = ($errors || $this->OBS_EST_PROY->Errors->Count());
         $errors = ($errors || $this->DEF_FUG_AMB_PROD->Errors->Count());
         $errors = ($errors || $this->OBS_DEF_FUG_AMB_PROD->Errors->Count());
+        $errors = ($errors || $this->COMPL_RUTA_CRITICA->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -282,7 +287,7 @@ class clsRecordcalificacion_rs_AUT { //calificacion_rs_AUT Class @2-4CDBCDD2
     }
 //End UpdateRow Method
 
-//Show Method @2-4D57943D
+//Show Method @2-BDC3B4D1
     function Show()
     {
         global $CCSUseAmp;
@@ -339,6 +344,7 @@ class clsRecordcalificacion_rs_AUT { //calificacion_rs_AUT Class @2-4CDBCDD2
                     $this->RETR_ENTREGABLE->SetValue($this->DataSource->RETR_ENTREGABLE->GetValue());
                     $this->EST_PROY->SetValue($this->DataSource->EST_PROY->GetValue());
                     $this->DEF_FUG_AMB_PROD->SetValue($this->DataSource->DEF_FUG_AMB_PROD->GetValue());
+                    $this->COMPL_RUTA_CRITICA->SetValue($this->DataSource->COMPL_RUTA_CRITICA->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -370,6 +376,7 @@ class clsRecordcalificacion_rs_AUT { //calificacion_rs_AUT Class @2-4CDBCDD2
             $Error = ComposeStrings($Error, $this->OBS_EST_PROY->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DEF_FUG_AMB_PROD->Errors->ToString());
             $Error = ComposeStrings($Error, $this->OBS_DEF_FUG_AMB_PROD->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->COMPL_RUTA_CRITICA->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -417,7 +424,7 @@ class clsRecordcalificacion_rs_AUT { //calificacion_rs_AUT Class @2-4CDBCDD2
 
 class clscalificacion_rs_AUTDataSource extends clsDBcnDisenio {  //calificacion_rs_AUTDataSource Class @2-E84E522E
 
-//DataSource Variables @2-0AAAE3A7
+//DataSource Variables @2-1EC6FFED
     public $Parent = "";
     public $CCSEvents = "";
     public $CCSEventResult;
@@ -454,9 +461,10 @@ class clscalificacion_rs_AUTDataSource extends clsDBcnDisenio {  //calificacion_
     public $OBS_EST_PROY;
     public $DEF_FUG_AMB_PROD;
     public $OBS_DEF_FUG_AMB_PROD;
+    public $COMPL_RUTA_CRITICA;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-FD43543E
+//DataSourceClass_Initialize Event @2-9C440086
     function clscalificacion_rs_AUTDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -508,6 +516,8 @@ class clscalificacion_rs_AUTDataSource extends clsDBcnDisenio {  //calificacion_
         
         $this->OBS_DEF_FUG_AMB_PROD = new clsField("OBS_DEF_FUG_AMB_PROD", ccsText, "");
         
+        $this->COMPL_RUTA_CRITICA = new clsField("COMPL_RUTA_CRITICA", ccsText, "");
+        
 
         $this->UpdateFields["HERR_EST_COST"] = array("Name" => "HERR_EST_COST", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->UpdateFields["REQ_SERV"] = array("Name" => "REQ_SERV", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
@@ -555,7 +565,7 @@ class clscalificacion_rs_AUTDataSource extends clsDBcnDisenio {  //calificacion_
     }
 //End Open Method
 
-//SetValues Method @2-AFD9CC78
+//SetValues Method @2-02E9E6A6
     function SetValues()
     {
         $this->id_ppmc->SetDBValue(trim($this->f("id_ppmc")));
@@ -580,6 +590,7 @@ class clscalificacion_rs_AUTDataSource extends clsDBcnDisenio {  //calificacion_
         $this->OBS_EST_PROY->SetDBValue($this->f("OBS_EST_PROY"));
         $this->DEF_FUG_AMB_PROD->SetDBValue(trim($this->f("DEF_FUG_AMB_PROD")));
         $this->OBS_DEF_FUG_AMB_PROD->SetDBValue($this->f("OBS_DEF_FUG_AMB_PROD"));
+        $this->COMPL_RUTA_CRITICA->SetDBValue($this->f("COMPL_RUTA_CRITICA"));
     }
 //End SetValues Method
 

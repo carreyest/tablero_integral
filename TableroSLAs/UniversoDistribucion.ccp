@@ -83,21 +83,21 @@
 					<Components/>
 					<Events/>
 					<TableParameters>
-						<TableParameter id="115" conditionType="Parameter" useIsNull="False" dataType="Integer" defaultValue="3" field="Nivel" logicOperator="And" parameterSource="Nivel" parameterType="URL" searchConditionType="Equal"/>
-						<TableParameter id="116" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Activo" logicOperator="And" parameterSource="1" parameterType="Expression" searchConditionType="Equal"/>
-					</TableParameters>
+						<TableParameter id="149" conditionType="Parameter" useIsNull="False" dataType="Text" defaultValue="'CAPC'" field="Grupo" logicOperator="And" parameterSource="Grupo" parameterType="URL" searchConditionType="Equal"/>
+<TableParameter id="150" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Activo" logicOperator="And" parameterSource="1" parameterType="Expression" searchConditionType="Equal"/>
+</TableParameters>
 					<SPParameters/>
 					<SQLParameters/>
 					<JoinTables>
-						<JoinTable id="114" posHeight="180" posLeft="10" posTop="10" posWidth="118" tableName="mc_c_usuarios"/>
-					</JoinTables>
+						<JoinTable id="148" posHeight="180" posLeft="10" posTop="10" posWidth="118" tableName="mc_c_usuarios"/>
+</JoinTables>
 					<JoinLinks/>
 					<Fields>
-						<Field id="117" fieldName="*"/>
-					</Fields>
+						<Field id="151" fieldName="*"/>
+</Fields>
 					<PKFields>
-						<PKField id="118" dataType="Integer" fieldName="Id" tableName="mc_c_usuarios"/>
-					</PKFields>
+						<PKField id="152" dataType="Integer" fieldName="Id" tableName="mc_c_usuarios"/>
+</PKFields>
 					<Attributes/>
 					<Features/>
 				</ListBox>
@@ -216,7 +216,7 @@ where (mc_universo_cds.id_proveedor={s_id_proveedor} or 0={s_id_proveedor})
 				</Label>
 				<ListBox id="19" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="analista" fieldSource="analista" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardEmptyCaption="Seleccionar Valor" wizardCaption="Analista" caption="Analista" required="False" unique="False" connection="cnDisenio" PathID="mc_universo_cdsanalista" dataSource="SELECT * 
 FROM mc_c_usuarios
-WHERE Nivel = {Nivel}
+WHERE Grupo = '{Grupo}'
 AND Activo = {Expr0} 
    OR usuario IN (
      SELECT DISTINCT analista 
@@ -229,11 +229,11 @@ AND Activo = {Expr0}
 					</TableParameters>
 					<SPParameters/>
 					<SQLParameters>
-						<SQLParameter id="129" dataType="Integer" defaultValue="3" designDefaultValue="3" parameterSource="Nivel" parameterType="URL" variable="Nivel"/>
-						<SQLParameter id="130" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="1" parameterType="Expression" variable="Expr0"/>
-						<SQLParameter id="131" dataType="Integer" defaultValue="0" designDefaultValue="5" parameterSource="s_mes" parameterType="URL" variable="sMes"/>
-						<SQLParameter id="132" dataType="Integer" defaultValue="0" designDefaultValue="2014" parameterSource="s_anio" parameterType="URL" variable="sAnio"/>
-					</SQLParameters>
+						<SQLParameter id="144" dataType="Text" defaultValue="'CAPC'" parameterSource="Grupo" parameterType="URL" variable="Grupo"/>
+<SQLParameter id="145" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="1" parameterType="Expression" variable="Expr0"/>
+<SQLParameter id="146" dataType="Integer" defaultValue="0" designDefaultValue="5" parameterSource="s_mes" parameterType="URL" variable="sMes"/>
+<SQLParameter id="147" dataType="Integer" defaultValue="0" designDefaultValue="2014" parameterSource="s_anio" parameterType="URL" variable="sAnio"/>
+</SQLParameters>
 					<JoinTables>
 					</JoinTables>
 					<JoinLinks/>
@@ -443,7 +443,7 @@ where (mc_universo_cds.id_proveedor={s_id_proveedor} or 0={s_id_proveedor})
 				</Label>
 				<ListBox id="71" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="analista" fieldSource="analista" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardEmptyCaption="Seleccionar Valor" wizardCaption="Analista" caption="Analista" required="False" unique="False" connection="cnDisenio" PathID="mc_universo_cds1analista" dataSource="SELECT * 
 FROM mc_c_usuarios
-WHERE Nivel = {Nivel}
+WHERE Grupo = '{Grupo}'
 AND Activo = {Expr0} 
 	or usuario in (
 select distinct  analista 
@@ -455,11 +455,11 @@ where mes = {sMes} and anio = {sAnio})" boundColumn="Usuario" textColumn="Usuari
 					</TableParameters>
 					<SPParameters/>
 					<SQLParameters>
-						<SQLParameter id="125" dataType="Integer" defaultValue="3" designDefaultValue="3" parameterSource="Nivel" parameterType="URL" variable="Nivel"/>
-						<SQLParameter id="126" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="1" parameterType="Expression" variable="Expr0"/>
-						<SQLParameter id="127" dataType="Integer" defaultValue="0" designDefaultValue="5" parameterSource="s_mes" parameterType="URL" variable="sMes"/>
-						<SQLParameter id="128" dataType="Integer" defaultValue="0" designDefaultValue="2014" parameterSource="s_anio" parameterType="URL" variable="sAnio"/>
-					</SQLParameters>
+						<SQLParameter id="153" dataType="Text" defaultValue="'CAPC'" parameterSource="Grupo" parameterType="URL" variable="Grupo"/>
+<SQLParameter id="154" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="1" parameterType="Expression" variable="Expr0"/>
+<SQLParameter id="155" dataType="Integer" defaultValue="0" designDefaultValue="5" parameterSource="s_mes" parameterType="URL" variable="sMes"/>
+<SQLParameter id="156" dataType="Integer" defaultValue="0" designDefaultValue="2014" parameterSource="s_anio" parameterType="URL" variable="sAnio"/>
+</SQLParameters>
 					<JoinTables>
 					</JoinTables>
 					<JoinLinks/>
@@ -584,7 +584,7 @@ where mes = {sMes} and anio = {sAnio})" boundColumn="Usuario" textColumn="Usuari
 	</CodeFiles>
 	<SecurityGroups>
 		<Group id="133" groupID="4"/>
-</SecurityGroups>
+	</SecurityGroups>
 	<CachingParameters/>
 	<Attributes/>
 	<Features/>

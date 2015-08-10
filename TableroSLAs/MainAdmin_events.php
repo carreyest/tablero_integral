@@ -22,6 +22,16 @@ function Page_BeforeShow(& $sender)
     	$Component->Link8->Visible=false;
     	$Component->Link9->Visible=false;
     }
+    if(CCGetSession("GrupoValoracion")=="MyM"){
+    	$Component->Link1->Visible=false;
+    	$Component->Link2->Visible=false;
+    	$Component->Link3->Visible=false;
+    	$Component->Link4->Visible=false;
+    	$Component->Link5->Visible=false;
+    	$Component->Link6->Visible=false;
+    	$Component->Link7->Visible=false;
+    }
+    
 // -------------------------
 //End Custom Code
 

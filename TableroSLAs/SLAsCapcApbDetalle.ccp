@@ -270,14 +270,14 @@ order by nombre
 					<SQLParameters/>
 					<JoinTables>
 						<JoinTable id="186" posHeight="136" posLeft="10" posTop="10" posWidth="95" tableName="mc_c_ServContractual"/>
-</JoinTables>
+					</JoinTables>
 					<JoinLinks/>
 					<Fields>
 						<Field id="187" fieldName="*"/>
-</Fields>
+					</Fields>
 					<PKFields>
 						<PKField id="188" dataType="Integer" fieldName="Id" tableName="mc_c_ServContractual"/>
-</PKFields>
+					</PKFields>
 					<Attributes/>
 					<Features/>
 				</ListBox>
@@ -470,7 +470,13 @@ order by nombre
 					<Attributes/>
 					<Features/>
 				</TextBox>
-			</Components>
+				<CheckBox id="198" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" defaultValue="Unchecked" name="SLO" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="mc_info_rs_ap_ECSLO" fieldSource="SLO" checkedValue="1" uncheckedValue="0">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</CheckBox>
+</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>
@@ -514,19 +520,20 @@ order by nombre
 				</Event>
 			</Events>
 			<TableParameters>
-				<TableParameter id="195" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Id" logicOperator="And" orderNumber="1" parameterSource="sID" parameterType="URL" searchConditionType="Equal"/>
+				<TableParameter id="200" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Id" logicOperator="And" orderNumber="1" parameterSource="sID" parameterType="URL" searchConditionType="Equal"/>
 </TableParameters>
 			<SPParameters/>
 			<SQLParameters/>
 			<JoinTables>
-				<JoinTable id="194" posHeight="180" posLeft="10" posTop="10" posWidth="160" tableName="mc_info_capc_ap"/>
+				<JoinTable id="199" posHeight="213" posLeft="10" posTop="10" posWidth="160" tableName="mc_info_capc_ap"/>
 </JoinTables>
 			<JoinLinks/>
 			<Fields>
-				<Field id="196" fieldName="*"/>
+				<Field id="201" fieldName="*"/>
 </Fields>
 			<PKFields>
-				<PKField id="197" dataType="Text" fieldName="ID_PPMC" tableName="mc_info_capc_ap"/>
+				<PKField id="202" dataType="Integer" fieldName="Id" tableName="mc_info_capc_ap"/>
+<PKField id="203" dataType="Text" fieldName="ID_PPMC" tableName="mc_info_capc_ap"/>
 </PKFields>
 			<ISPParameters/>
 			<ISQLParameters>

@@ -388,7 +388,13 @@
 							<Attributes/>
 							<Features/>
 						</Label>
-					</Components>
+						<Hidden id="258" fieldSourceType="DBColumn" dataType="Text" name="COMPL_RUTA_CRITICA" PathID="calificacion_rs_AUTpnlCierreCOMPL_RUTA_CRITICA" fieldSource="COMPL_RUTA_CRITICA">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Hidden>
+</Components>
 					<Events/>
 					<Attributes/>
 					<Features/>
@@ -412,33 +418,33 @@
 				</Event>
 			</Events>
 			<TableParameters>
-				<TableParameter id="233" conditionType="Parameter" useIsNull="False" dataType="Integer" field="IdUniverso" logicOperator="And" orderNumber="1" parameterSource="IdUniverso" parameterType="URL" searchConditionType="Equal"/>
-			</TableParameters>
+				<TableParameter id="251" conditionType="Parameter" useIsNull="False" dataType="Integer" field="IdUniverso" logicOperator="And" orderNumber="1" parameterSource="IdUniverso" parameterType="URL" searchConditionType="Equal"/>
+</TableParameters>
 			<SPParameters/>
 			<SQLParameters/>
 			<JoinTables>
-				<JoinTable id="240" tableName="mc_calificacion_rs_SAT"/>
-				<JoinTable id="241" tableName="mc_c_proveedor"/>
-				<JoinTable id="242" tableName="mc_c_ServContractual"/>
-				<JoinTable id="243" tableName="mc_c_servicio"/>
-				<JoinTable id="244" tableName="mc_c_mes"/>
-				<JoinTable id="245" tableName="mc_universo_cds"/>
-			</JoinTables>
+				<JoinTable id="240" posHeight="438" posLeft="10" posTop="10" posWidth="160" tableName="mc_calificacion_rs_SAT"/>
+<JoinTable id="241" posHeight="180" posLeft="191" posTop="10" posWidth="158" tableName="mc_c_proveedor"/>
+<JoinTable id="242" posHeight="136" posLeft="370" posTop="10" posWidth="95" tableName="mc_c_ServContractual"/>
+<JoinTable id="243" posHeight="152" posLeft="486" posTop="10" posWidth="137" tableName="mc_c_servicio"/>
+<JoinTable id="244" posHeight="104" posLeft="644" posTop="10" posWidth="95" tableName="mc_c_mes"/>
+<JoinTable id="245" posHeight="180" posLeft="760" posTop="10" posWidth="137" tableName="mc_universo_cds"/>
+</JoinTables>
 			<JoinLinks>
-				<JoinTable2 id="228" fieldLeft="mc_calificacion_rs_SAT.id_proveedor" fieldRight="mc_c_proveedor.id_proveedor" joinType="inner" tableLeft="mc_calificacion_rs_SAT" tableRight="mc_c_proveedor"/>
-				<JoinTable2 id="229" conditionType="Equal" fieldLeft="mc_calificacion_rs_SAT.id_servicio_cont" fieldRight="mc_c_ServContractual.Id" joinType="inner" tableLeft="mc_calificacion_rs_SAT" tableRight="mc_c_ServContractual"/>
-				<JoinTable2 id="230" conditionType="Equal" fieldLeft="mc_calificacion_rs_SAT.id_servicio_negocio" fieldRight="mc_c_servicio.id_servicio" joinType="inner" tableLeft="mc_calificacion_rs_SAT" tableRight="mc_c_servicio"/>
-				<JoinTable2 id="231" conditionType="Equal" fieldLeft="mc_calificacion_rs_SAT.MesReporte" fieldRight="mc_c_mes.IdMes" joinType="inner" tableLeft="mc_calificacion_rs_SAT" tableRight="mc_c_mes"/>
-				<JoinTable2 id="232" conditionType="Equal" fieldLeft="mc_calificacion_rs_SAT.IdUniverso" fieldRight="mc_universo_cds.id" joinType="inner" tableLeft="mc_calificacion_rs_SAT" tableRight="mc_universo_cds"/>
-			</JoinLinks>
+				<JoinTable2 id="246" fieldLeft="mc_calificacion_rs_SAT.id_proveedor" fieldRight="mc_c_proveedor.id_proveedor" joinType="inner" tableLeft="mc_calificacion_rs_SAT" tableRight="mc_c_proveedor"/>
+<JoinTable2 id="247" conditionType="Equal" fieldLeft="mc_calificacion_rs_SAT.id_servicio_cont" fieldRight="mc_c_ServContractual.Id" joinType="inner" tableLeft="mc_calificacion_rs_SAT" tableRight="mc_c_ServContractual"/>
+<JoinTable2 id="248" conditionType="Equal" fieldLeft="mc_calificacion_rs_SAT.id_servicio_negocio" fieldRight="mc_c_servicio.id_servicio" joinType="inner" tableLeft="mc_calificacion_rs_SAT" tableRight="mc_c_servicio"/>
+<JoinTable2 id="249" conditionType="Equal" fieldLeft="mc_calificacion_rs_SAT.MesReporte" fieldRight="mc_c_mes.IdMes" joinType="inner" tableLeft="mc_calificacion_rs_SAT" tableRight="mc_c_mes"/>
+<JoinTable2 id="250" conditionType="Equal" fieldLeft="mc_calificacion_rs_SAT.IdUniverso" fieldRight="mc_universo_cds.id" joinType="inner" tableLeft="mc_calificacion_rs_SAT" tableRight="mc_universo_cds"/>
+</JoinLinks>
 			<Fields>
-				<Field id="234" fieldName="RazonSocial" tableName="mc_c_proveedor"/>
-				<Field id="235" alias="mc_c_ServContractual_Desc" fieldName="mc_c_ServContractual.Descripcion" tableName="mc_c_ServContractual"/>
-				<Field id="236" alias="mc_c_servicio_nombre" fieldName="mc_c_servicio.nombre" tableName="mc_c_servicio"/>
-				<Field id="237" alias="mc_c_mes_Mes" fieldName="mc_c_mes.Mes" tableName="mc_c_mes"/>
-				<Field id="238" alias="TipoUniverso" fieldName="tipo" tableName="mc_universo_cds"/>
-				<Field id="239" fieldName="mc_calificacion_rs_SAT.*" tableName="mc_calificacion_rs_SAT"/>
-			</Fields>
+				<Field id="252" fieldName="RazonSocial" tableName="mc_c_proveedor"/>
+<Field id="253" alias="mc_c_ServContractual_Desc" fieldName="mc_c_ServContractual.Descripcion" tableName="mc_c_ServContractual"/>
+<Field id="254" alias="mc_c_servicio_nombre" fieldName="mc_c_servicio.nombre" tableName="mc_c_servicio"/>
+<Field id="255" alias="mc_c_mes_Mes" fieldName="mc_c_mes.Mes" tableName="mc_c_mes"/>
+<Field id="256" alias="TipoUniverso" fieldName="tipo" tableName="mc_universo_cds"/>
+<Field id="257" fieldName="mc_calificacion_rs_SAT.*" tableName="mc_calificacion_rs_SAT"/>
+</Fields>
 			<ISPParameters/>
 			<ISQLParameters/>
 			<IFormElements/>

@@ -295,21 +295,21 @@ where (mes = {s_mesparam} or {s_mesparam}=0)
 					<Components/>
 					<Events/>
 					<TableParameters>
-						<TableParameter id="142" conditionType="Parameter" useIsNull="False" dataType="Integer" defaultValue="3" field="Nivel" logicOperator="And" parameterSource="Nivel" parameterType="URL" searchConditionType="Equal"/>
-						<TableParameter id="143" conditionType="Parameter" useIsNull="False" dataType="Text" field="Grupo" logicOperator="And" parameterSource="'CAPC'" parameterType="Expression" searchConditionType="Equal"/>
-					</TableParameters>
+						<TableParameter id="147" conditionType="Parameter" useIsNull="False" dataType="Text" defaultValue="'CAPC'" field="Grupo" logicOperator="And" parameterSource="Grupo" parameterType="URL" searchConditionType="Equal"/>
+<TableParameter id="148" conditionType="Parameter" useIsNull="False" dataType="Text" field="Grupo" logicOperator="And" parameterSource="'CAPC'" parameterType="Expression" searchConditionType="Equal"/>
+</TableParameters>
 					<SPParameters/>
 					<SQLParameters/>
 					<JoinTables>
-						<JoinTable id="141" posHeight="180" posLeft="10" posTop="10" posWidth="118" tableName="mc_c_usuarios"/>
-					</JoinTables>
+						<JoinTable id="146" posHeight="180" posLeft="10" posTop="10" posWidth="118" tableName="mc_c_usuarios"/>
+</JoinTables>
 					<JoinLinks/>
 					<Fields>
-						<Field id="144" fieldName="*"/>
-					</Fields>
+						<Field id="149" fieldName="*"/>
+</Fields>
 					<PKFields>
-						<PKField id="145" dataType="Integer" fieldName="Id" tableName="mc_c_usuarios"/>
-					</PKFields>
+						<PKField id="150" dataType="Integer" fieldName="Id" tableName="mc_c_usuarios"/>
+</PKFields>
 					<Attributes/>
 					<Features/>
 				</ListBox>

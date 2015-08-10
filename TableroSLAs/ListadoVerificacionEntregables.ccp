@@ -248,12 +248,12 @@ WHERE e.mes_corte = {MesReporte} and e.anio_corte = {anioreporte} AND e.id_prove
 		</EditableGrid>
 		<Link id="133" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="lnkexcellista" PathID="lnkexcellista" hrefSource="EntregablesExcel.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'&lt;img style=\'BORDER-LEFT-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px; VERTICAL-ALIGN: middle; BORDER-BOTTOM-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; border-image: none\'  src=\'images/xls.jpg\' width=\'20\' height=\'20\'&gt;&amp;nbsp;Excel Lista de Entregables','textSourceDB':'','hrefSource':'EntregablesExcel.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
 			<Events>
-<Event name="BeforeShow" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="139"/>
-</Actions>
-</Event>
-</Events>
+				<Event name="BeforeShow" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="139"/>
+					</Actions>
+				</Event>
+			</Events>
 			<LinkParameters/>
 			<Attributes/>
 			<Features/>
@@ -263,8 +263,8 @@ SELECT e.entregado ,NULL, {AnioGenCorte}, {MesGenCorte}, c.id_entregable, {Genpr
 FROM mc_c_entregables_periodicos c 
 LEFT JOIN entregables_periodicos_smda4 e ON e.id_entregable = c.id_entregable
 LEFT JOIN mc_c_proveedor p ON p.id_proveedor = e.id_proveedor
-WHERE e.mes_corte=MONTH(DATEADD(mm, -1, '{AnioGenCorte}-{MesGenCorte}-1')) 
-AND e.anio_corte = YEAR(DATEADD(mm, -1, '{AnioGenCorte}-{MesGenCorte}-1'))
+WHERE e.mes_corte=(select MAX(mes_corte) from entregables_periodicos_smda4 where id_proveedor={Genproveedor}) 
+AND e.anio_corte =(select MAX(anio_corte) from entregables_periodicos_smda4 where id_proveedor={Genproveedor})
 AND e.id_proveedor = {Genproveedor}
 AND (c.proveedor = 'CDS Y CAPC'
 OR c.proveedor = p.descripcion)" PathID="GenList">

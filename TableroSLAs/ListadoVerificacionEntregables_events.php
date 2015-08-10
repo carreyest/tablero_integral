@@ -28,7 +28,7 @@ function Buscar_OnValidate(& $sender)
     $VMes=  $Buscar->MesReporte->GetValue();
     $VAnio=  $Buscar->anioreporte->GetValue() ;
     $VProveedor= $Buscar->busqproveedor->GetValue() ;
-    if($VMes == "" || $VAnio == "" || $VProveedor == ""  ){ //Ya existe el mes
+    if($VMes == "" || $VAnio == "" || $VProveedor == ""  ){ 
 			$Buscar->Errors->addError('Parametros incompletos');
 	}
 // -------------------------
@@ -124,31 +124,31 @@ function GenList_OnValidate(& $sender)
     global $GenList; //Compatibility
 //End GenList_OnValidate
 
-//DEL  // -------------------------
-//DEL      $VMes=  $GenList->MesGenCorte->GetValue();
-//DEL      $VAnio=  $GenList->AnioGenCorte->GetValue() ;
-//DEL      $VProveedor= $GenList->Genproveedor->GetValue() ;
-//DEL      if($VMes == "" || $VAnio == "" || $VProveedor == ""  ){ //Ya existe el mes
-//DEL  			$GenList->Errors->addError('Parametros incompletos');
-//DEL  	}
-//DEL      //Verificando la existencia del mes , año y proveedor 
-//DEL  	$sSQL='SELECT count(*) FROM entregables_periodicos_smda4  WHERE ' .
-//DEL  		' anio_corte = ' . $VAnio . 
-//DEL  		' and mes_corte = ' . $VMes .
-//DEL  		' and id_proveedor = ' . $VProveedor;
-//DEL  		
-//DEL  	$db = new clsDBCnDisenio;
-//DEL  	$db->query($sSQL);
-//DEL  	$db->next_record();
-//DEL  	if($db->f(0) > 0 ){ //Ya existe el mes
-//DEL  			$GenList->Errors->addError('Ya esta cargado el mes indicado');
-//DEL  	} 
-//DEL      // Write your own code here.
-//DEL  // -------------------------
-
 //Custom Code @137-2A29BDB7
 // -------------------------
     // Write your own code here.
+// -------------------------
+//End Custom Code
+
+  // -------------------------
+      $VMes=  $GenList->MesGenCorte->GetValue();
+      $VAnio=  $GenList->AnioGenCorte->GetValue() ;
+      $VProveedor= $GenList->Genproveedor->GetValue() ;
+      if($VMes == "" || $VAnio == "" || $VProveedor == ""  ){ 
+  			$GenList->Errors->addError('Parametros incompletos');
+  	}
+      //Verificando la existencia del mes , año y proveedor 
+  	$sSQL='SELECT count(*) FROM entregables_periodicos_smda4  WHERE ' .
+  		' anio_corte = ' . $VAnio . 
+  		' and mes_corte = ' . $VMes .
+  		' and id_proveedor = ' . $VProveedor;
+  		
+  	$db = new clsDBCnDisenio;
+  	$db->query($sSQL);
+  	$db->next_record();
+  	if($db->f(0) > 0 ){ //Ya existe el mes
+  			$GenList->Errors->addError('Ya esta cargado el mes indicado');
+  	} 
 // -------------------------
 //End Custom Code
 

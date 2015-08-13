@@ -36,6 +36,7 @@ where c.id_proveedor = {s_id_proveedor}
 	and c.MesReporte = {s_MesReporte}
 	and c.AnioReporte = {s_AnioReporte}
 	and (u.slo={sSLO} ) 
+	and (u.numero like '%{s_PPMC}%')
 	and (u.revision&lt;&gt;2 or revision is null) 
 	" pageSizeLimit="100" pageSize="True" wizardCaption="DetalleRS" wizardThemeApplyTo="Page" wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No hay registros" wizardGridPagingType="Simple" wizardUseSearch="False" wizardAddNbsp="True" gridTotalRecords="True" wizardAddPanels="False" wizardType="Grid" wizardUseInterVariables="False" addTemplatePanel="False" changedCaptionGrid="True" gridExtendedHTML="False" PathID="grdDetalleRS" wizardAllowSorting="True">
 			<Components>
@@ -344,7 +345,7 @@ where c.id_proveedor = {s_id_proveedor}
 							<Attributes/>
 							<Features/>
 						</Image>
-</Components>
+					</Components>
 					<Events/>
 					<Attributes/>
 					<Features/>
@@ -369,10 +370,11 @@ where c.id_proveedor = {s_id_proveedor}
 			<PKFields/>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="127" dataType="Integer" defaultValue="0" designDefaultValue="3" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
-<SQLParameter id="128" dataType="Integer" defaultValue="0" designDefaultValue="4" parameterSource="s_MesReporte" parameterType="URL" variable="s_MesReporte"/>
-<SQLParameter id="129" dataType="Integer" defaultValue="0" designDefaultValue="2014" parameterSource="s_AnioReporte" parameterType="URL" variable="s_AnioReporte"/>
-<SQLParameter id="130" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
+				<SQLParameter id="132" dataType="Integer" defaultValue="0" designDefaultValue="3" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
+<SQLParameter id="133" dataType="Integer" defaultValue="0" designDefaultValue="4" parameterSource="s_MesReporte" parameterType="URL" variable="s_MesReporte"/>
+<SQLParameter id="134" dataType="Integer" defaultValue="0" designDefaultValue="2014" parameterSource="s_AnioReporte" parameterType="URL" variable="s_AnioReporte"/>
+<SQLParameter id="135" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
+<SQLParameter id="136" dataType="Text" parameterSource="s_PPMC" parameterType="URL" variable="s_PPMC"/>
 </SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
@@ -436,7 +438,13 @@ order by ano" boundColumn="Ano" textColumn="Ano">
 					<Attributes/>
 					<Features/>
 				</ListBox>
-			</Components>
+				<TextBox id="131" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="s_PPMC" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="grdDetalleRS1s_PPMC">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</TextBox>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>

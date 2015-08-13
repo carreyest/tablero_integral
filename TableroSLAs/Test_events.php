@@ -19,7 +19,6 @@ function Page_AfterInitialize(& $sender)
 
 //Custom Code @2-2A29BDB7
 // -------------------------
-	phpinfo();
 	global $db;
 	$db = new clsDBcnDisenio;
 /*
@@ -35,7 +34,7 @@ function Page_AfterInitialize(& $sender)
 		echo $db->f(1);
  	$db->close();
  	*/
- 	
+ 	/*
  	$para      = 'omendoza@hotmail.com';
 $titulo    = 'El título';
 $mensaje   = 'Hola';
@@ -44,7 +43,7 @@ $cabeceras = 'From: webmaster@example.com' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
 
 //mail($para, $titulo, $mensaje, $cabeceras);
-
+*/
     $post_header='<soapenv:Header> ' .
     '  <urn:AuthenticationInfo> ' .
     '     <urn:userName>CONT_ITE02</urn:userName> ' .
@@ -66,7 +65,7 @@ $post_string='<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instanc
 	'       <GetListCollection xmlns="http://schemas.microsoft.com/sharepoint/soap/" />'.
 	'  </soap:Body></soap:Envelope> ';
     
-    $post_stringx='<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">'.
+    $post_string='<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">'.
 			  '<soap:Body>'.
  				 '<GetViewCollection xmlns="http://schemas.microsoft.com/sharepoint/soap/">'.
       			' <listName>9FD110DC-6505-40F5-88B8-6A67E53C2857</listName>'.
@@ -227,8 +226,8 @@ class NTLM_SoapClient extends SoapClient {
 }
 
 function CallSOAPCURL($post_string){
-$usr = 'rarp6837';
-$pwd = 'Mexico.0515';
+$usr = 'jutv77ce';
+$pwd = 'Mexico.0715';
 
 $url="http://satportal.dssat.sat.gob.mx/agcti/SDMA4/_vti_bin/Lists.asmx";
 //$url="http://satportal.dssat.sat.gob.mx/agcti/SDMA4/_vti_bin/SiteData.asmx";

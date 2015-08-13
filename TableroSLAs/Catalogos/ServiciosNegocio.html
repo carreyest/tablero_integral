@@ -2,9 +2,8 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=windows-1252">
-<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
 <title>ServiciosNegocio</title>
- 
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
 <link rel="stylesheet" type="text/css" href="../Styles/{CCS_Style}/Style_doctype.css">
 <link rel="stylesheet" type="text/css" href="../Styles/{CCS_Style}/jquery-ui.css">
 <script language="JavaScript" type="text/javascript">
@@ -17,7 +16,7 @@
 
 //Include User Scripts @1-A87AC9EE
 </script>
-{page:scriptIncludes} 
+{page:scriptIncludes}
 <script type="text/javascript">
 //End Include User Scripts
 
@@ -41,60 +40,63 @@ jQuery(function ($) {
 //End CCS script
 </script>
 </head>
- 
 <body>
 <p>{Header}</p>
 <p>
 <!-- BEGIN Record mc_c_servicioSearch --><br>
-<!-- END Record mc_c_servicioSearch --></p>
-<form name="{HTMLFormName}" id="mc_c_servicioSearch" action="{Action}" method="post">
-  <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+<form id="mc_c_servicioSearch" method="post" name="{HTMLFormName}" action="{Action}">
+  <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
     <tr>
       <td valign="top">
-        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
           <tr>
             <td class="HeaderLeft"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
             <td class="th"><strong>Buscar</strong></td> 
-            <td class="HeaderRight"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td>
+            <td class="HeaderRight"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
           </tr>
+ 
         </table>
  
         <table class="Record" cellspacing="0" cellpadding="0">
           <!-- BEGIN Error -->
-          <tr class="Error" id="{@error-block}">
-            <td colspan="2">{Error}</td>
+          <tr id="{@error-block}" class="Error">
+            <td colspan="2">{Error}</td> 
           </tr>
-          <!-- END Error -->
+ <!-- END Error -->
           <tr class="Controls">
             <td class="th"><label for="mc_c_servicioSearchs_nombre">Nombre</label></td> 
-            <td><input type="text" name="{s_nombre_Name}" id="mc_c_servicioSearchs_nombre" size="50" maxlength="250" value="{s_nombre}"></td>
+            <td><input type="text" id="mc_c_servicioSearchs_nombre" maxlength="250" size="50" value="{s_nombre}" name="{s_nombre_Name}"></td> 
           </tr>
  
           <tr class="Bottom">
-            <td style="text-align: right;" colspan="2">
-              <!-- BEGIN Button Button_DoSearch --><input type="submit" name="{Button_Name}" class="Button" id="mc_c_servicioSearchButton_DoSearch" alt="Buscar" value="Buscar"><!-- END Button Button_DoSearch --></td>
+            <td style="TEXT-ALIGN: right" colspan="2">
+              <!-- BEGIN Button Button_DoSearch --><input type="submit" id="mc_c_servicioSearchButton_DoSearch" class="Button" alt="Buscar" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td> 
           </tr>
+ 
         </table>
-      </td>
+ </td> 
     </tr>
+ 
   </table>
 </form>
+<!-- END Record mc_c_servicioSearch --></p>
 &nbsp;<br>
 <!-- BEGIN Grid mc_c_servicio -->
-<table class="MainTable" id="mc_c_servicio" border="0" cellspacing="0" cellpadding="0">
+<table id="mc_c_servicio" class="MainTable" cellspacing="0" cellpadding="0" border="0">
   <tr>
     <td valign="top">
-      <table class="Header" border="0" cellspacing="0" cellpadding="0">
+      <table class="Header" cellspacing="0" cellpadding="0" border="0">
         <tr>
           <td class="HeaderLeft"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
           <td class="th"><strong>Servicios de Negocio </strong></td> 
-          <td class="HeaderRight"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td>
+          <td class="HeaderRight"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
         </tr>
+ 
       </table>
  
       <table class="Grid" cellspacing="0" cellpadding="0">
         <tr class="Row">
-          <td colspan="2">Total de Registros:&nbsp;{mc_c_servicio_TotalRecords}</td>
+          <td colspan="2">Total de Registros:&nbsp;{mc_c_servicio_TotalRecords}</td> 
         </tr>
  
         <tr class="Caption">
@@ -107,25 +109,26 @@ jQuery(function ($) {
           <!-- BEGIN Sorter Sorter_nombre --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_servicioSorter_nombre">Nombre</a> 
           <!-- BEGIN Asc_On --><img alt="Ascendente" src="../Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
           <!-- BEGIN Desc_On --><img alt="Descendente" src="../Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_nombre --></th>
+ 
         </tr>
  
         <!-- BEGIN Row -->
         <tr class="Row">
-          <td style="text-align: right;"><a href="{id_servicio_Src}" id="mc_c_servicioid_servicio_{mc_c_servicio:rowNumber}">{id_servicio}</a>&nbsp;</td> 
-          <td>{nombre}&nbsp;</td>
+          <td style="TEXT-ALIGN: right"><a href="{id_servicio_Src}" id="mc_c_servicioid_servicio_{mc_c_servicio:rowNumber}">{id_servicio}</a>&nbsp;</td> 
+          <td>{nombre}&nbsp;</td> 
         </tr>
  <!-- END Row -->
         <!-- BEGIN NoRecords -->
         <tr class="NoRecords">
-          <td colspan="2">No hay registros</td>
+          <td colspan="2">No hay registros</td> 
         </tr>
-        <!-- END NoRecords -->
+ <!-- END NoRecords -->
         <tr class="Footer">
           <td colspan="2"><a href="{mc_c_servicio_Insert_Src}" id="mc_c_serviciomc_c_servicio_Insert">Agregar Nuevo</a>&nbsp; 
             <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
-            <select name="{FormName}PageSize" style="vertical-align: middle;" data-grid-size="{FormName}">
+            <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
               <option selected value="">-</option>
- {PageSize_Options}
+ {PageSize_Options} 
             </select>
  
             <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
@@ -135,46 +138,50 @@ jQuery(function ($) {
             <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/{CCS_Style}/Images/Next.gif"></a> <!-- END Next_On -->
             <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
             <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
-            <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td>
+            <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td> 
         </tr>
+ 
       </table>
-    </td>
+ </td> 
   </tr>
 </table>
 <!-- END Grid mc_c_servicio --><br>
 <!-- BEGIN Record mc_c_servicio1 -->
-<form name="{HTMLFormName}" id="mc_c_servicio1" action="{Action}" method="post">
-  <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+<form id="mc_c_servicio1" method="post" name="{HTMLFormName}" action="{Action}">
+  <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
     <tr>
       <td valign="top">
-        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
           <tr>
             <td class="HeaderLeft"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
             <td class="th"><strong>Agregar/Editar Servicio de Negocio</strong></td> 
-            <td class="HeaderRight"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td>
+            <td class="HeaderRight"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
           </tr>
+ 
         </table>
  
         <table class="Record" cellspacing="0" cellpadding="0">
           <!-- BEGIN Error -->
-          <tr class="Error" id="ErrorBlock">
-            <td colspan="2">{Error}</td>
+          <tr id="ErrorBlock" class="Error">
+            <td colspan="2">{Error}</td> 
           </tr>
-          <!-- END Error -->
+ <!-- END Error -->
           <tr class="Controls">
             <td class="th"><label for="mc_c_servicio1nombre">Nombre</label></td> 
-            <td><input type="text" name="{nombre_Name}" id="mc_c_servicio1nombre" size="50" maxlength="250" value="{nombre}"></td>
+            <td><input type="text" id="mc_c_servicio1nombre" maxlength="250" size="50" value="{nombre}" name="{nombre_Name}"><input type="hidden" name="{Hidden1_Name}" value="{Hidden1}" id="mc_c_servicio1Hidden1"></td> 
           </tr>
  
           <tr class="Bottom">
-            <td style="text-align: right;" colspan="2">
-              <!-- BEGIN Button Button_Insert --><input type="submit" name="{Button_Name}" class="Button" id="mc_c_servicio1Button_Insert" alt="Agregar" value="Agregar"><!-- END Button Button_Insert -->
-              <!-- BEGIN Button Button_Update --><input type="submit" name="{Button_Name}" class="Button" id="mc_c_servicio1Button_Update" alt="Enviar" value="Enviar"><!-- END Button Button_Update -->
-              <!-- BEGIN Button Button_Cancel --><input type="submit" name="{Button_Name}" class="Button" id="mc_c_servicio1Button_Cancel" alt="Cancelar" value="Cancelar"><!-- END Button Button_Cancel --><input type="hidden" name="{id_servicio_padre_Name}" id="mc_c_servicio1id_servicio_padre" value="{id_servicio_padre}"><input type="hidden" name="{descripcion_Name}" id="mc_c_servicio1descripcion" value="{descripcion}"><input type="hidden" name="{id_tipo_servicio_Name}" id="mc_c_servicio1id_tipo_servicio" value="{id_tipo_servicio}"></td>
+            <td style="TEXT-ALIGN: right" colspan="2">
+              <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_c_servicio1Button_Insert" class="Button" alt="Agregar" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+              <!-- BEGIN Button Button_Update --><input type="submit" id="mc_c_servicio1Button_Update" class="Button" alt="Enviar" value="Enviar" name="{Button_Name}"><!-- END Button Button_Update -->
+              <!-- BEGIN Button Button_Cancel --><input type="submit" id="mc_c_servicio1Button_Cancel" class="Button" alt="Cancelar" value="Cancelar" name="{Button_Name}"><!-- END Button Button_Cancel --><input type="hidden" id="mc_c_servicio1id_servicio_padre" value="{id_servicio_padre}" name="{id_servicio_padre_Name}"><input type="hidden" id="mc_c_servicio1descripcion" value="{descripcion}" name="{descripcion_Name}"><input type="hidden" id="mc_c_servicio1id_tipo_servicio" value="{id_tipo_servicio}" name="{id_tipo_servicio_Name}"></td> 
           </tr>
+ 
         </table>
-      </td>
+ </td> 
     </tr>
+ 
   </table>
 </form>
 <!-- END Record mc_c_servicio1 --><br>

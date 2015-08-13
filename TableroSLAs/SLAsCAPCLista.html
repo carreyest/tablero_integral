@@ -28,7 +28,7 @@
 <table width="100%">
   <tr>
     <td>&nbsp;{SLAsCAPCMenu}</td> 
-    <td>&nbsp;</td> 
+    <td>&nbsp;</td>
   </tr>
  
   <tr>
@@ -48,17 +48,16 @@
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Buscar</strong></td> 
-                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
                 </tr>
- 
               </table>
  
               <table class="Record" cellspacing="0" cellpadding="0">
                 <!-- BEGIN Error -->
                 <tr id="{@error-block}" class="Error">
-                  <td colspan="8">{Error}</td> 
+                  <td colspan="8">{Error}</td>
                 </tr>
- <!-- END Error -->
+                <!-- END Error -->
                 <tr class="Controls">
                   <td class="th"><label for="mc_calificacion_capcs_numero">PPMC</label></td> 
                   <td><input type="text" id="mc_calificacion_capcs_numero" maxlength="25" size="25" value="{s_numero}" name="{s_numero_Name}"></td> 
@@ -66,50 +65,47 @@
                   <td>
                     <select id="mc_calificacion_capcs_mes" name="{s_mes_Name}">
                       <option selected value="">Seleccionar Valor</option>
- {s_mes_Options} 
+                      {s_mes_Options}
                     </select>
  </td> 
                   <td class="th"><label for="mc_calificacion_capcs_anio">Año</label></td> 
                   <td>
                     <select id="mc_calificacion_capcs_anio" name="{s_anio_Name}">
                       <option selected value="">Seleccionar Valor</option>
- {s_anio_Options} 
+                      {s_anio_Options}
                     </select>
  </td> 
                   <td class="th"><label for="mc_calificacion_capcs_id_serviciocont">Servicio</label></td> 
                   <td>
                     <select id="mc_calificacion_capcs_id_serviciocont" name="{s_id_serviciocont_Name}">
                       <option selected value="">Seleccionar Valor</option>
- {s_id_serviciocont_Options} 
+                      {s_id_serviciocont_Options}
                     </select>
- </td> 
+ </td>
                 </tr>
  
                 <tr class="Bottom">
                   <td style="TEXT-ALIGN: right" colspan="8">
-                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="mc_calificacion_capcButton_DoSearch" class="Button" alt="Buscar" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td> 
+                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="mc_calificacion_capcButton_DoSearch" class="Button" alt="Buscar" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                 </tr>
- 
               </table>
- </td> 
+            </td>
           </tr>
- 
         </table>
  
         <p><br>
         </p>
- 
       </form>
  
       <p>&nbsp;</p>
- <!-- END Record mc_calificacion_capc -->
+      <!-- END Record mc_calificacion_capc -->
       <p></p>
- </td> 
+    </td> 
     <td>
       <div style="TEXT-ALIGN: center">
 <a href="{lkTableroExcelCAPC_Src}" id="lkTableroExcelCAPC"><img style="BORDER-LEFT-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px; VERTICAL-ALIGN: middle; BORDER-BOTTOM-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; border-image: none" alt="{lkReporteExcel}" src="images/xls.jpg" width="20" height="20">&nbsp;Tablero Excel CAPC</a> 
       </div>
- </td> 
+    </td>
   </tr>
  
   <tr>
@@ -122,9 +118,8 @@
               <tr>
                 <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                 <td class="th"><strong>Detalle SLAs CAPC </strong></td> 
-                <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
               </tr>
- 
             </table>
  
             <table class="Grid" cellspacing="0" cellpadding="0">
@@ -178,12 +173,6 @@
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_DEDUC_OMISION --></th>
  
                 <th scope="col">
-                <!-- BEGIN Sorter Sorter_EFIC_PRESUP --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_ServContractual_mc_cSorter_EFIC_PRESUP">Eficiencia<br>
-                Presupuestal</a> 
-                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
-                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_EFIC_PRESUP --></th>
- 
-                <th scope="col">
                 <!-- BEGIN Sorter Sorter_RETR_ENTREGABLE --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_ServContractual_mc_cSorter_RETR_ENTREGABLE">Retraso en<br>
                 entregables</a> 
                 <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
@@ -193,7 +182,6 @@
                 <!-- BEGIN Sorter Sorter_Observaciones --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_ServContractual_mc_cSorter_Observaciones">Observaciones</a> 
                 <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Observaciones --></th>
- 
               </tr>
  
               <!-- BEGIN Row -->
@@ -209,25 +197,24 @@
                 <td style="TEXT-ALIGN: center"><a href="{CUMPL_REQ_FUN_Src}" id="mc_c_ServContractual_mc_cCUMPL_REQ_FUN_{mc_c_ServContractual_mc_c:rowNumber}">{CUMPL_REQ_FUN}</a>&nbsp;<a href="{Img_CUMPL_REQ_FUN}" id="mc_c_ServContractual_mc_cImg_CUMPL_REQ_FUN_{mc_c_ServContractual_mc_c:rowNumber}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" alt="{Img_CUMPL_REQ_FUN}" src="{Img_CUMPL_REQ_FUN_Src}"></a></td> 
                 <td style="TEXT-ALIGN: center"><a href="{CALIDAD_PROD_TERM_Src}" id="mc_c_ServContractual_mc_cCALIDAD_PROD_TERM_{mc_c_ServContractual_mc_c:rowNumber}">{CALIDAD_PROD_TERM}</a>&nbsp;<a href="{Img_CALIDAD_PROD_TERM}" id="mc_c_ServContractual_mc_cImg_CALIDAD_PROD_TERM_{mc_c_ServContractual_mc_c:rowNumber}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" alt="{Img_CALIDAD_PROD_TERM}" src="{Img_CALIDAD_PROD_TERM_Src}"></a></td> 
                 <td style="TEXT-ALIGN: center"><a href="{DEDUC_OMISION_Src}" id="mc_c_ServContractual_mc_cDEDUC_OMISION_{mc_c_ServContractual_mc_c:rowNumber}">{DEDUC_OMISION}</a>&nbsp;<a href="{Img_DEDUC_OMISION}" id="mc_c_ServContractual_mc_cImg_DEDUC_OMISION_{mc_c_ServContractual_mc_c:rowNumber}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" alt="{Img_DEDUC_OMISION}" src="{Img_DEDUC_OMISION_Src}"></a></td> 
-                <td style="TEXT-ALIGN: center">{EFIC_PRESUP}&nbsp;<img id="mc_c_ServContractual_mc_cImg_EFIC_PRESUP_{mc_c_ServContractual_mc_c:rowNumber}" alt="" src="{Img_EFIC_PRESUP}"></td> 
                 <td style="TEXT-ALIGN: center"><a href="{RETR_ENTREGABLE_Src}" id="mc_c_ServContractual_mc_cRETR_ENTREGABLE_{mc_c_ServContractual_mc_c:rowNumber}">{RETR_ENTREGABLE}</a>&nbsp;<a href="{Img_RETR_ENTREGABLE}" id="mc_c_ServContractual_mc_cImg_RETR_ENTREGABLE_{mc_c_ServContractual_mc_c:rowNumber}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" alt="{Img_RETR_ENTREGABLE}" src="{Img_RETR_ENTREGABLE_Src}"></a></td> 
                 <td>{Obs_AP}<br>
                   {DetalleCalidad}<br>
-                  {Observaciones}&nbsp;</td> 
+                  {Observaciones}&nbsp;</td>
               </tr>
  <!-- END Row -->
               <!-- BEGIN NoRecords -->
               <tr class="NoRecords">
-                <td colspan="12">No hay registros</td> 
+                <td colspan="11">No hay registros</td>
               </tr>
- <!-- END NoRecords -->
+              <!-- END NoRecords -->
               <tr class="Footer">
                 <td>&nbsp;<a href="{Link1_Src}" id="mc_c_ServContractual_mc_cLink1_{mc_c_ServContractual_mc_c:rowNumber}">Agregar Medición</a></td> 
-                <td colspan="11">
+                <td colspan="10">
                   <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
                   <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
                     <option selected value="">-</option>
- {PageSize_Options} 
+ {PageSize_Options}
                   </select>
  
                   <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
@@ -237,20 +224,18 @@
                   <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/Next.gif"></a> <!-- END Next_On -->
                   <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
                   <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
-                  <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td> 
+                  <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td>
               </tr>
- 
             </table>
- </td> 
+          </td>
         </tr>
- 
       </table>
- <!-- END Grid mc_c_ServContractual_mc_c --></td> 
+      <!-- END Grid mc_c_ServContractual_mc_c --></td>
   </tr>
  
   <tr>
     <td>&nbsp;</td> 
-    <td>&nbsp;</td> 
+    <td>&nbsp;</td>
   </tr>
 </table>
 <p><br>

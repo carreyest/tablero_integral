@@ -56,12 +56,6 @@
 					<Attributes/>
 					<Features/>
 				</ListBox>
-				<TextBox id="61" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="s_Id_incidente_param" PathID="mc_info_incidentesSearchs_Id_incidente_param">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</TextBox>
 				<ListBox id="150" visible="Yes" fieldSourceType="DBColumn" sourceType="Table" dataType="Text" returnValueType="Number" name="s_MesReporte" wizardEmptyCaption="{res:CCS_SelectValue}" PathID="mc_info_incidentesSearchs_MesReporte" connection="cnDisenio" dataSource="mc_c_mes" boundColumn="IdMes" textColumn="Mes" defaultValue="date(&quot;m&quot;,mktime(0,0,0,date(&quot;m&quot;)-1,date(&quot;d&quot;),date(&quot;Y&quot;)))">
 					<Components/>
 					<Events/>
@@ -75,28 +69,13 @@
 					<Attributes/>
 					<Features/>
 				</ListBox>
-				<ListBox id="166" visible="Yes" fieldSourceType="DBColumn" sourceType="Table" dataType="Text" returnValueType="Number" name="s_analista_param" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Seleccionar Valor" PathID="mc_info_incidentesSearchs_analista_param" connection="cnDisenio" dataSource="mc_c_usuarios" boundColumn="Usuario" textColumn="Usuario">
-					<Components/>
-					<Events/>
-					<TableParameters>
-						<TableParameter id="191" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Nivel" logicOperator="And" parameterSource="&quot;3&quot;" parameterType="Expression" searchConditionType="Equal"/>
-					</TableParameters>
-					<SPParameters/>
-					<SQLParameters/>
-					<JoinTables>
-						<JoinTable id="190" posHeight="180" posLeft="10" posTop="10" posWidth="118" tableName="mc_c_usuarios"/>
-					</JoinTables>
-					<JoinLinks/>
-					<Fields>
-						<Field id="192" fieldName="*"/>
-					</Fields>
-					<PKFields>
-						<PKField id="193" dataType="Integer" fieldName="Id" tableName="mc_c_usuarios"/>
-					</PKFields>
-					<Attributes/>
-					<Features/>
-				</ListBox>
-			</Components>
+				<TextBox id="228" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="s_Id_incidente_param" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="mc_info_incidentesSearchs_Id_incidente_param">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</TextBox>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
@@ -159,7 +138,6 @@ and (mcu.slo is null or mcu.slo =0)" pageSizeLimit="100" pageSize="True" wizardC
 					<Events/>
 					<Attributes/>
 					<Features/>
-
 				</Navigator>
 				<Label id="85" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="lblRegistros" PathID="mc_info_incidenteslblRegistros">
 					<Components/>

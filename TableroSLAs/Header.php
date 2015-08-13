@@ -65,7 +65,7 @@ class clsHeader { //Header class @1-CC982CB1
     }
 //End Operations Method
 
-//Initialize Method @1-E7965F0F
+//Initialize Method @1-CFDD5D5D
     function Initialize($Path = "")
     {
         global $FileName;
@@ -88,6 +88,10 @@ class clsHeader { //Header class @1-CC982CB1
         $this->ImageLink1->Page = "";
         $this->hdLogoPath = new clsControl(ccsHidden, "hdLogoPath", "hdLogoPath", ccsText, "", CCGetRequestParam("hdLogoPath", ccsGet, NULL), $this);
         $this->pnlMenu = new clsPanel("pnlMenu", $this);
+        $this->pnlMenuAdmin = new clsPanel("pnlMenuAdmin", $this);
+        $this->lkAdmin = new clsControl(ccsLink, "lkAdmin", "lkAdmin", ccsText, "", CCGetRequestParam("lkAdmin", ccsGet, NULL), $this);
+        $this->lkAdmin->Page = $this->RelativePath . "MainAdmin.php";
+        $this->Panel3 = new clsPanel("Panel3", $this);
         $this->lkUniverso = new clsControl(ccsLink, "lkUniverso", "lkUniverso", ccsText, "", CCGetRequestParam("lkUniverso", ccsGet, NULL), $this);
         $this->lkUniverso->Page = $this->RelativePath . "UniversoLista.php";
         $this->lkIncidentes = new clsControl(ccsLink, "lkIncidentes", "lkIncidentes", ccsText, "", CCGetRequestParam("lkIncidentes", ccsGet, NULL), $this);
@@ -102,9 +106,6 @@ class clsHeader { //Header class @1-CC982CB1
         $this->Link2->Page = $this->RelativePath . "EficienciaPresLista.php";
         $this->Link3 = new clsControl(ccsLink, "Link3", "Link3", ccsText, "", CCGetRequestParam("Link3", ccsGet, NULL), $this);
         $this->Link3->Page = $this->RelativePath . "SLAsCAPCLista.php";
-        $this->pnlMenuAdmin = new clsPanel("pnlMenuAdmin", $this);
-        $this->lkAdmin = new clsControl(ccsLink, "lkAdmin", "lkAdmin", ccsText, "", CCGetRequestParam("lkAdmin", ccsGet, NULL), $this);
-        $this->lkAdmin->Page = $this->RelativePath . "MainAdmin.php";
         $this->Panel1 = new clsPanel("Panel1", $this);
         $this->lSesion = new clsControl(ccsLink, "lSesion", "lSesion", ccsText, "", CCGetRequestParam("lSesion", ccsGet, NULL), $this);
         $this->lSesion->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
@@ -121,14 +122,15 @@ class clsHeader { //Header class @1-CC982CB1
         $this->Link5 = new clsControl(ccsLink, "Link5", "Link5", ccsText, "", CCGetRequestParam("Link5", ccsGet, NULL), $this);
         $this->Link5->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
         $this->Link5->Page = $this->RelativePath . "MuestraReporte.php";
-        $this->pnlMenu->AddComponent("lkUniverso", $this->lkUniverso);
-        $this->pnlMenu->AddComponent("lkIncidentes", $this->lkIncidentes);
-        $this->pnlMenu->AddComponent("lkRequerimientos", $this->lkRequerimientos);
-        $this->pnlMenu->AddComponent("lkPPMCCierre", $this->lkPPMCCierre);
-        $this->pnlMenu->AddComponent("Link2", $this->Link2);
-        $this->pnlMenu->AddComponent("Link3", $this->Link3);
         $this->pnlMenu->AddComponent("pnlMenuAdmin", $this->pnlMenuAdmin);
+        $this->pnlMenu->AddComponent("Panel3", $this->Panel3);
         $this->pnlMenuAdmin->AddComponent("lkAdmin", $this->lkAdmin);
+        $this->Panel3->AddComponent("lkUniverso", $this->lkUniverso);
+        $this->Panel3->AddComponent("lkIncidentes", $this->lkIncidentes);
+        $this->Panel3->AddComponent("lkRequerimientos", $this->lkRequerimientos);
+        $this->Panel3->AddComponent("lkPPMCCierre", $this->lkPPMCCierre);
+        $this->Panel3->AddComponent("Link2", $this->Link2);
+        $this->Panel3->AddComponent("Link3", $this->Link3);
         $this->Panel1->AddComponent("lSesion", $this->lSesion);
         $this->Panel1->AddComponent("Link1", $this->Link1);
         $this->Panel1->AddComponent("img_abre_pantalla", $this->img_abre_pantalla);

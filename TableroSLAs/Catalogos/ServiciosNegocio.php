@@ -495,7 +495,7 @@ class clsRecordmc_c_servicio1 { //mc_c_servicio1 Class @21-9E248388
     // Class variables
 //End Variables
 
-//Class_Initialize Event @21-69B4B605
+//Class_Initialize Event @21-E8A50C51
     function clsRecordmc_c_servicio1($RelativePath, & $Parent)
     {
 
@@ -532,9 +532,12 @@ class clsRecordmc_c_servicio1 { //mc_c_servicio1 Class @21-9E248388
             $this->descripcion = new clsControl(ccsHidden, "descripcion", "Descripcion", ccsText, "", CCGetRequestParam("descripcion", $Method, NULL), $this);
             $this->id_tipo_servicio = new clsControl(ccsHidden, "id_tipo_servicio", "Id Tipo Servicio", ccsInteger, "", CCGetRequestParam("id_tipo_servicio", $Method, NULL), $this);
             $this->id_tipo_servicio->Required = true;
+            $this->Hidden1 = new clsControl(ccsHidden, "Hidden1", "Hidden1", ccsText, "", CCGetRequestParam("Hidden1", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->id_tipo_servicio->Value) && !strlen($this->id_tipo_servicio->Value) && $this->id_tipo_servicio->Value !== false)
                     $this->id_tipo_servicio->SetText(2);
+                if(!is_array($this->Hidden1->Value) && !strlen($this->Hidden1->Value) && $this->Hidden1->Value !== false)
+                    $this->Hidden1->SetText(0);
             }
         }
     }
@@ -551,7 +554,7 @@ class clsRecordmc_c_servicio1 { //mc_c_servicio1 Class @21-9E248388
     }
 //End Initialize Method
 
-//Validate Method @21-F13B8A7B
+//Validate Method @21-67A9CA4C
     function Validate()
     {
         global $CCSLocales;
@@ -561,16 +564,18 @@ class clsRecordmc_c_servicio1 { //mc_c_servicio1 Class @21-9E248388
         $Validation = ($this->nombre->Validate() && $Validation);
         $Validation = ($this->descripcion->Validate() && $Validation);
         $Validation = ($this->id_tipo_servicio->Validate() && $Validation);
+        $Validation = ($this->Hidden1->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->id_servicio_padre->Errors->Count() == 0);
         $Validation =  $Validation && ($this->nombre->Errors->Count() == 0);
         $Validation =  $Validation && ($this->descripcion->Errors->Count() == 0);
         $Validation =  $Validation && ($this->id_tipo_servicio->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->Hidden1->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @21-4AF05D55
+//CheckErrors Method @21-536DC8E5
     function CheckErrors()
     {
         $errors = false;
@@ -578,6 +583,7 @@ class clsRecordmc_c_servicio1 { //mc_c_servicio1 Class @21-9E248388
         $errors = ($errors || $this->nombre->Errors->Count());
         $errors = ($errors || $this->descripcion->Errors->Count());
         $errors = ($errors || $this->id_tipo_servicio->Errors->Count());
+        $errors = ($errors || $this->Hidden1->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -632,7 +638,7 @@ class clsRecordmc_c_servicio1 { //mc_c_servicio1 Class @21-9E248388
     }
 //End Operation Method
 
-//InsertRow Method @21-6FB65C5E
+//InsertRow Method @21-2D2B10C5
     function InsertRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
@@ -641,13 +647,14 @@ class clsRecordmc_c_servicio1 { //mc_c_servicio1 Class @21-9E248388
         $this->DataSource->nombre->SetValue($this->nombre->GetValue(true));
         $this->DataSource->descripcion->SetValue($this->descripcion->GetValue(true));
         $this->DataSource->id_tipo_servicio->SetValue($this->id_tipo_servicio->GetValue(true));
+        $this->DataSource->Hidden1->SetValue($this->Hidden1->GetValue(true));
         $this->DataSource->Insert();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterInsert", $this);
         return (!$this->CheckErrors());
     }
 //End InsertRow Method
 
-//UpdateRow Method @21-FF002F32
+//UpdateRow Method @21-5B983227
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
@@ -656,13 +663,14 @@ class clsRecordmc_c_servicio1 { //mc_c_servicio1 Class @21-9E248388
         $this->DataSource->nombre->SetValue($this->nombre->GetValue(true));
         $this->DataSource->descripcion->SetValue($this->descripcion->GetValue(true));
         $this->DataSource->id_tipo_servicio->SetValue($this->id_tipo_servicio->GetValue(true));
+        $this->DataSource->Hidden1->SetValue($this->Hidden1->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
         return (!$this->CheckErrors());
     }
 //End UpdateRow Method
 
-//Show Method @21-0FDCB2CC
+//Show Method @21-ED49C615
     function Show()
     {
         global $CCSUseAmp;
@@ -694,6 +702,7 @@ class clsRecordmc_c_servicio1 { //mc_c_servicio1 Class @21-9E248388
                     $this->nombre->SetValue($this->DataSource->nombre->GetValue());
                     $this->descripcion->SetValue($this->DataSource->descripcion->GetValue());
                     $this->id_tipo_servicio->SetValue($this->DataSource->id_tipo_servicio->GetValue());
+                    $this->Hidden1->SetValue($this->DataSource->Hidden1->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -706,6 +715,7 @@ class clsRecordmc_c_servicio1 { //mc_c_servicio1 Class @21-9E248388
             $Error = ComposeStrings($Error, $this->nombre->Errors->ToString());
             $Error = ComposeStrings($Error, $this->descripcion->Errors->ToString());
             $Error = ComposeStrings($Error, $this->id_tipo_servicio->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->Hidden1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -733,6 +743,7 @@ class clsRecordmc_c_servicio1 { //mc_c_servicio1 Class @21-9E248388
         $this->nombre->Show();
         $this->descripcion->Show();
         $this->id_tipo_servicio->Show();
+        $this->Hidden1->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -743,7 +754,7 @@ class clsRecordmc_c_servicio1 { //mc_c_servicio1 Class @21-9E248388
 
 class clsmc_c_servicio1DataSource extends clsDBcnDisenio {  //mc_c_servicio1DataSource Class @21-6077B450
 
-//DataSource Variables @21-6963C89E
+//DataSource Variables @21-00415C11
     public $Parent = "";
     public $CCSEvents = "";
     public $CCSEventResult;
@@ -763,9 +774,10 @@ class clsmc_c_servicio1DataSource extends clsDBcnDisenio {  //mc_c_servicio1Data
     public $nombre;
     public $descripcion;
     public $id_tipo_servicio;
+    public $Hidden1;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @21-A0C4BB2B
+//DataSourceClass_Initialize Event @21-DA2637A2
     function clsmc_c_servicio1DataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -779,15 +791,19 @@ class clsmc_c_servicio1DataSource extends clsDBcnDisenio {  //mc_c_servicio1Data
         
         $this->id_tipo_servicio = new clsField("id_tipo_servicio", ccsInteger, "");
         
+        $this->Hidden1 = new clsField("Hidden1", ccsText, "");
+        
 
         $this->InsertFields["id_servicio_padre"] = array("Name" => "id_servicio_padre", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->InsertFields["nombre"] = array("Name" => "nombre", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["descripcion"] = array("Name" => "descripcion", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["id_tipo_servicio"] = array("Name" => "id_tipo_servicio", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
+        $this->InsertFields["id_servicio"] = array("Name" => "id_servicio", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["id_servicio_padre"] = array("Name" => "id_servicio_padre", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->UpdateFields["nombre"] = array("Name" => "nombre", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["descripcion"] = array("Name" => "descripcion", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["id_tipo_servicio"] = array("Name" => "id_tipo_servicio", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
+        $this->UpdateFields["id_servicio"] = array("Name" => "id_servicio", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
     }
 //End DataSourceClass_Initialize Event
 
@@ -817,17 +833,18 @@ class clsmc_c_servicio1DataSource extends clsDBcnDisenio {  //mc_c_servicio1Data
     }
 //End Open Method
 
-//SetValues Method @21-22C5BE6E
+//SetValues Method @21-D895CCE1
     function SetValues()
     {
         $this->id_servicio_padre->SetDBValue(trim($this->f("id_servicio_padre")));
         $this->nombre->SetDBValue($this->f("nombre"));
         $this->descripcion->SetDBValue($this->f("descripcion"));
         $this->id_tipo_servicio->SetDBValue(trim($this->f("id_tipo_servicio")));
+        $this->Hidden1->SetDBValue($this->f("id_servicio"));
     }
 //End SetValues Method
 
-//Insert Method @21-571754C5
+//Insert Method @21-D552B82B
     function Insert()
     {
         global $CCSLocales;
@@ -838,6 +855,7 @@ class clsmc_c_servicio1DataSource extends clsDBcnDisenio {  //mc_c_servicio1Data
         $this->InsertFields["nombre"]["Value"] = $this->nombre->GetDBValue(true);
         $this->InsertFields["descripcion"]["Value"] = $this->descripcion->GetDBValue(true);
         $this->InsertFields["id_tipo_servicio"]["Value"] = $this->id_tipo_servicio->GetDBValue(true);
+        $this->InsertFields["id_servicio"]["Value"] = $this->Hidden1->GetDBValue(true);
         $this->SQL = CCBuildInsert("mc_c_servicio", $this->InsertFields, $this);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
@@ -847,7 +865,7 @@ class clsmc_c_servicio1DataSource extends clsDBcnDisenio {  //mc_c_servicio1Data
     }
 //End Insert Method
 
-//Update Method @21-2F23F5AC
+//Update Method @21-4C4E870B
     function Update()
     {
         global $CCSLocales;
@@ -859,6 +877,7 @@ class clsmc_c_servicio1DataSource extends clsDBcnDisenio {  //mc_c_servicio1Data
         $this->UpdateFields["nombre"]["Value"] = $this->nombre->GetDBValue(true);
         $this->UpdateFields["descripcion"]["Value"] = $this->descripcion->GetDBValue(true);
         $this->UpdateFields["id_tipo_servicio"]["Value"] = $this->id_tipo_servicio->GetDBValue(true);
+        $this->UpdateFields["id_servicio"]["Value"] = $this->Hidden1->GetDBValue(true);
         $this->SQL = CCBuildUpdate("mc_c_servicio", $this->UpdateFields, $this);
         $this->SQL .= strlen($this->Where) ? " WHERE " . $this->Where : $this->Where;
         if (!strlen($this->Where) && $this->Errors->Count() == 0) 

@@ -46,7 +46,7 @@ jQuery(function ($) {
 <table width="100%">
   <tr>
     <td>&nbsp;{SLAsCAPCMenu}</td> 
-    <td>&nbsp;</td> 
+    <td>&nbsp;</td>
   </tr>
  
   <tr>
@@ -60,46 +60,42 @@ jQuery(function ($) {
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Buscar</strong></td> 
-                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
                 </tr>
- 
               </table>
  
               <table class="Record" cellspacing="0" cellpadding="0">
                 <!-- BEGIN Error -->
                 <tr id="{@error-block}" class="Error">
-                  <td colspan="7">{Error}</td> 
+                  <td colspan="7">{Error}</td>
                 </tr>
- <!-- END Error -->
+                <!-- END Error -->
                 <tr class="Controls">
                   <td class="th"><label for="mc_c_mes_mc_calificacion1s_numero">Numero</label></td> 
                   <td><input type="text" id="mc_c_mes_mc_calificacion1s_numero" maxlength="25" size="7" value="{s_numero}" name="{s_numero_Name}"></td> 
                   <td>Mes&nbsp; 
                     <select id="mc_c_mes_mc_calificacion1s_mc_calificacion_capc_mes" name="{s_mc_calificacion_capc_mes_Name}">
                       <option selected value="">Seleccionar Valor</option>
- {s_mc_calificacion_capc_mes_Options} 
+                      {s_mc_calificacion_capc_mes_Options}
                     </select>
  </td> 
                   <td>Año&nbsp;<input type="text" id="mc_c_mes_mc_calificacion1s_anio" maxlength="10" size="10" value="{s_anio}" name="{s_anio_Name}"></td> 
                   <td>SLO&nbsp;<input type="checkbox" id="mc_c_mes_mc_calificacion1s_SLO" value="1" name="{s_SLO_Name}" {s_SLO}></td> 
                   <td>&nbsp;</td> 
-                  <td>&nbsp;</td> 
+                  <td>&nbsp;</td>
                 </tr>
  
                 <tr class="Bottom">
                   <td style="TEXT-ALIGN: right" colspan="7">
-                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="mc_c_mes_mc_calificacion1Button_DoSearch" class="Button" alt="Buscar" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td> 
+                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="mc_c_mes_mc_calificacion1Button_DoSearch" class="Button" alt="Buscar" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                 </tr>
- 
               </table>
- </td> 
+            </td>
           </tr>
- 
         </table>
- 
       </form>
- <!-- END Record mc_c_mes_mc_calificacion1 --></td> 
-    <td>&nbsp;</td> 
+      <!-- END Record mc_c_mes_mc_calificacion1 --></td> 
+    <td>&nbsp;</td>
   </tr>
  
   <tr>
@@ -112,9 +108,8 @@ jQuery(function ($) {
               <tr>
                 <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                 <td class="th"><strong>Universo CAPC </strong></td> 
-                <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
               </tr>
- 
             </table>
  
             <table class="Grid" cellspacing="0" cellpadding="0">
@@ -143,7 +138,6 @@ jQuery(function ($) {
                 <!-- BEGIN Sorter Sorter_SLO --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_mes_mc_calificacionSorter_SLO">SLO</a> 
                 <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_SLO --></th>
- 
               </tr>
  
               <!-- BEGIN Row -->
@@ -152,20 +146,20 @@ jQuery(function ($) {
                 <td>{mc_c_mes_Mes}&nbsp;</td> 
                 <td style="TEXT-ALIGN: right">{anio}&nbsp;</td> 
                 <td style="TEXT-ALIGN: right">{IdEstimacion}&nbsp;</td> 
-                <td style="TEXT-ALIGN: right">{SLO}&nbsp;</td> 
+                <td style="TEXT-ALIGN: right">{SLO}&nbsp;</td>
               </tr>
  <!-- END Row -->
               <!-- BEGIN NoRecords -->
               <tr class="NoRecords">
-                <td colspan="5">No hay registros</td> 
+                <td colspan="5">No hay registros</td>
               </tr>
- <!-- END NoRecords -->
+              <!-- END NoRecords -->
               <tr class="Footer">
                 <td colspan="5">
                   <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
                   <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
                     <option selected value="">-</option>
- {PageSize_Options} 
+ {PageSize_Options}
                   </select>
  
                   <!-- BEGIN First_On --><a href="{First_URL}">Inicio</a> <!-- END First_On -->
@@ -178,15 +172,13 @@ jQuery(function ($) {
                   <!-- BEGIN Next_On --><a href="{Next_URL}">Siguiente</a> <!-- END Next_On -->
                   <!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
                   <!-- BEGIN Last_On --><a href="{Last_URL}">Final</a> <!-- END Last_On -->
-                  <!-- BEGIN Last_Off -->Final <!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td> 
+                  <!-- BEGIN Last_Off -->Final <!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td>
               </tr>
- 
             </table>
- </td> 
+          </td>
         </tr>
- 
       </table>
- <!-- END Grid mc_c_mes_mc_calificacion --><br>
+      <!-- END Grid mc_c_mes_mc_calificacion --><br>
     </td> 
     <td style="VERTICAL-ALIGN: top">&nbsp; 
       <!-- BEGIN Record mc_calificacion_capc -->
@@ -198,20 +190,19 @@ jQuery(function ($) {
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Agregar/Editar Universo CAPC</strong></td> 
-                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
                 </tr>
- 
               </table>
  
               <table class="Record" cellspacing="0" cellpadding="0">
                 <!-- BEGIN Error -->
                 <tr id="ErrorBlock" class="Error">
-                  <td colspan="2">{Error}</td> 
+                  <td colspan="2">{Error}</td>
                 </tr>
- <!-- END Error -->
+                <!-- END Error -->
                 <tr class="Controls">
                   <td class="th"><label for="mc_calificacion_capcnumero">Numero</label></td> 
-                  <td><input type="text" id="mc_calificacion_capcnumero" maxlength="25" size="25" value="{numero}" name="{numero_Name}"></td> 
+                  <td><input type="text" id="mc_calificacion_capcnumero" maxlength="25" size="25" value="{numero}" name="{numero_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
@@ -219,9 +210,9 @@ jQuery(function ($) {
                   <td>
                     <select id="mc_calificacion_capcmes" name="{mes_Name}">
                       <option selected value="">Seleccionar Valor</option>
- {mes_Options} 
+                      {mes_Options}
                     </select>
- </td> 
+ </td>
                 </tr>
  
                 <tr class="Controls">
@@ -229,19 +220,19 @@ jQuery(function ($) {
                   <td>
                     <select id="mc_calificacion_capcanio" name="{anio_Name}">
                       <option selected value="">Seleccionar Valor</option>
- {anio_Options} 
+                      {anio_Options}
                     </select>
- </td> 
+ </td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_calificacion_capcIdEstimacion">Id Estimacion</label></td> 
-                  <td><input type="text" id="mc_calificacion_capcIdEstimacion" maxlength="10" size="10" value="{IdEstimacion}" name="{IdEstimacion_Name}"></td> 
+                  <td><input type="text" id="mc_calificacion_capcIdEstimacion" maxlength="10" size="10" value="{IdEstimacion}" name="{IdEstimacion_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_calificacion_capcSLO">SLO</label></td> 
-                  <td><input type="checkbox" id="mc_calificacion_capcSLO" value="1" name="{SLO_Name}" {SLO}></td> 
+                  <td><input type="checkbox" id="mc_calificacion_capcSLO" value="1" name="{SLO_Name}" {SLO}></td>
                 </tr>
  
                 <tr class="Controls">
@@ -249,26 +240,33 @@ jQuery(function ($) {
                   <td>
                     <select id="mc_calificacion_capcid_tipo" name="{id_tipo_Name}">
                       <option selected value="">Seleccionar Valor</option>
- {id_tipo_Options} 
+                      {id_tipo_Options}
                     </select>
- </td> 
+ </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Analista</td> 
+                  <td><label for="mc_calificacion_capcanalista" style="display: none;">ListBox1</label> 
+                    <select id="mc_calificacion_capcanalista" name="{analista_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {analista_Options}
+                    </select>
+ &nbsp;</td>
                 </tr>
  
                 <tr class="Bottom">
                   <td style="TEXT-ALIGN: right" colspan="2">
                     <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_calificacion_capcButton_Insert" class="Button" alt="Agregar" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
                     <!-- BEGIN Button Button_Update --><input type="submit" id="mc_calificacion_capcButton_Update" class="Button" alt="Enviar" value="Enviar" name="{Button_Name}"><!-- END Button Button_Update -->
-                    <!-- BEGIN Button Button_Delete --><input type="submit" id="mc_calificacion_capcButton_Delete" class="Button" alt="Borrar" value="Borrar" name="{Button_Name}"><!-- END Button Button_Delete --></td> 
+                    <!-- BEGIN Button Button_Delete --><input type="submit" id="mc_calificacion_capcButton_Delete" class="Button" alt="Borrar" value="Borrar" name="{Button_Name}"><!-- END Button Button_Delete --></td>
                 </tr>
- 
               </table>
- </td> 
+            </td>
           </tr>
- 
         </table>
- 
       </form>
- <!-- END Record mc_calificacion_capc --></td> 
+      <!-- END Record mc_calificacion_capc --></td>
   </tr>
 </table>
 </p>

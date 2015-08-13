@@ -1,0 +1,544 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>SLAsCAPCDetalle</title>
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
+<script>
+        function HabilitaDefectos(){
+            var chkRevision = document.getElementById("mc_calificacion_capcRevisionPares");
+            if (chkRevision.checked){
+                        document.getElementById("trRevColegas1").style.display='inline';
+                        document.getElementById("trRevColegas2").style.display='inline';
+            } else {
+                        document.getElementById("trRevColegas1").style.display='none';
+                        document.getElementById("trRevColegas2").style.display='none';
+                }
+        }
+
+        function OcultaSLAs(){
+        //dependiendo el servicio contractual se muestran los SLAs que aplican
+                var idSC = document.getElementById("mc_calificacion_capcid_serviciocont").selectedIndex;
+                var dvEficiencia = document.getElementById("divEficiencia");
+                var dvCalidad = document.getElementById("divCalidad");
+                var dvDeductiva = document.getElementById("divDeductiva");
+                var dvRetrasoE = document.getElementById("divRetrasoE");
+                // si es el servicio de Administración y Monitoreo de Proyectos no aplica eficiencia presupuestal
+                if(idSC==0){
+                        dvEficiencia.style.display = "none";
+                        document.getElementById("mc_calificacion_capcEFIC_PRESUP").selectedIndex=0;
+                        dvCalidad.style.display = "inline";
+                        dvDeductiva.style.display = "inline";
+                        dvRetrasoE.style.display = "inline";
+                }
+                // si es el Servicio de Aseguramiento de la Calidad de Procesos y Productos      
+                if(idSC==1){
+                        dvEficiencia.style.display = "none";
+                        document.getElementById("mc_calificacion_capcEFIC_PRESUP").selectedIndex=0;
+                        dvCalidad.style.display = "inline";
+                        dvDeductiva.style.display = "none";
+                        document.getElementById("mc_calificacion_capcDEDUC_OMISION").selectedIndex=0;
+                        dvRetrasoE.style.display = "inline";
+                }
+                // si es el Arquitectura o      Capacitación no aplcia  Deductiva por Omision
+                if(idSC==2 || idSC==3){
+                        dvEficiencia.style.display = "inline";
+                        dvCalidad.style.display = "inline";
+                        dvDeductiva.style.display = "none";
+                        document.getElementById("mc_calificacion_capcDEDUC_OMISION").selectedIndex=0;
+                        dvRetrasoE.style.display = "inline";
+                }
+                var vHallSinSev = 0;
+                var vHallBaja = 0;
+                var vHallAlta = 0;
+                var vHallMedia = 0;
+                
+                vHallSinSev = document.getElementById("mc_calificacion_capcHallazgosSinSev").value.valueOf();
+                vHallBaja = document.getElementById("mc_calificacion_capcHallazgos").value.valueOf();
+                vHallAlta = document.getElementById("mc_calificacion_capcHallazgosAlta").value.valueOf();
+                vHallMedia = document.getElementById("mc_calificacion_capcHallazgosMedia").value.valueOf();
+                vTotHallazgos = document.getElementById("divTotHallazgos");     
+                divTotHallazgos.innerHTML= (Number(vHallSinSev) + Number(vHallBaja) + Number(vHallAlta) + Number(vHallMedia));
+        }
+
+        function CalculaDefectos(){
+                var vHallSinSev = 0;
+                var vHallBaja = 0;
+                var vHallAlta = 0;
+                var vHallMedia = 0;
+        
+                        vHallSinSev = document.getElementById("mc_calificacion_capcHallazgosSinSev").value.valueOf();
+                vHallBaja = document.getElementById("mc_calificacion_capcHallazgos").value.valueOf();
+                vHallAlta = document.getElementById("mc_calificacion_capcHallazgosAlta").value.valueOf();
+                vTotHallazgos = document.getElementById("divTotHallazgos");     
+                        vHallMedia = document.getElementById("mc_calificacion_capcHallazgosMedia").value.valueOf();
+        
+                        var vDefectos = document.getElementById("mc_calificacion_capcDefectos");
+                var vDeductiva = document.getElementById("mc_calificacion_capcDeductiva");
+                var iDefectos=0;
+                        var iSuma = 0;
+                        var vTotHallazgos = document.getElementById("divTotHallazgos");
+        
+                        iSuma= (Number(vHallSinSev) + Number(vHallBaja) + Number(vHallAlta) + Number(vHallMedia));
+                        divTotHallazgos.innerHTML= iSuma;
+        
+                        var vDeductiva = document.getElementById("mc_calificacion_capcDeductiva");
+                vDefectos.value=0;
+                
+                if(vHallAlta>0 && vHallAlta<6){
+                        iDefectos=iDefectos + 1;
+                }
+                if(vHallAlta>5 && vHallAlta<10){
+                        iDefectos=iDefectos + 2;
+                }
+                if(vHallAlta>10){
+                        iDefectos=iDefectos + 3;
+                }
+                //
+                if(vHallMedia>0 && vHallMedia<6){
+                        iDefectos=iDefectos + 1;
+                }
+                if(vHallMedia>5 && vHallMedia<10){
+                        iDefectos=iDefectos + 2;
+                }
+                if(vHallMedia>10){
+                        iDefectos=iDefectos + 3;
+                }
+                //
+                if(vHallBaja>0 ){
+                        iDefectos=iDefectos + 1;
+                }
+        vDefectos.value = iDefectos;
+                if(iDefectos>0 && iDefectos<6){
+                        vDeductiva.value  = "Sin Deductiva";    
+                        }
+                if(iDefectos>5 && iDefectos<10){
+                        vDeductiva.value  = "2%";       
+                        }
+                if(iDefectos>10){
+                        vDeductiva.value  = "5%";       
+                        }
+                
+        }
+        
+        function CalculaRetraso(){
+                var iDiasPlan = Number(document.getElementById("mc_calificacion_capcDiasPlaneados").value);
+                var iDiasReal= Number(document.getElementById("mc_calificacion_capcDiasReales").value);
+                var iDesviacion = document.getElementById("mc_calificacion_capcDiasRetrasoNaturales").value;
+                        
+                        if(iDiasReal > iDiasPlan){
+                                iDesviacion =(iDiasReal - iDiasPlan);
+                        } else {
+                                iDesviacion = 0;
+                        }        
+                        document.getElementById("mc_calificacion_capcDiasRetrasoNaturales").value= iDesviacion;
+                        //dependiendo del retraso se calcula la deductiva
+                        document.getElementById("mc_calificacion_capcPctMaximo").value=0;     
+                        if(iDesviacion >= 1 & iDesviacion <= 3){
+                                document.getElementById("mc_calificacion_capcPctMaximo").value=2     
+                        }
+                        if(iDesviacion >= 4 & iDesviacion <= 6){
+                                document.getElementById("mc_calificacion_capcPctMaximo").value=3
+                        }
+                        if(iDesviacion >= 7 & iDesviacion <= 10){
+                                document.getElementById("mc_calificacion_capcPctMaximo").value = 5
+                        }
+                        if (iDesviacion  > 10){
+                                if(iDesviacion   > 35){
+                                //dDeductiva = 30 + ((dNatDesviacion -35)*0.143); 
+                                document.getElementById("mc_calificacion_capcPctMaximo").value= 30 + iDesviacion   *0.143; 
+                                } else {
+                                    document.getElementById("mc_calificacion_capcPctMaximo").value= iDesviacion   * ((iDesviacion   - 5)/10);
+                                }
+                        }
+                }
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-2504AB44
+</script>
+<script src="ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-FA240378
+</script>
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/ccs-jquery-ui-calendar.css">
+{page:scriptIncludes}
+<script type="text/javascript">
+//End Include User Scripts
+
+//Common Script Start @1-8BFA436B
+jQuery(function ($) {
+    var features = { };
+    var actions = { };
+    var params = { };
+//End Common Script Start
+
+//Controls Selecting @1-A076341B
+    $('body').ccsBind(function() {
+        features["mc_calificacion_capcFechaFirmaCAESInlineDatePicker1"] = $('*:ccsControl(mc_calificacion_capc, FechaFirmaCAES)');
+    });
+//End Controls Selecting
+
+//Feature Parameters @1-E27B703D
+    params["mc_calificacion_capcFechaFirmaCAESInlineDatePicker1"] = { 
+        dateFormat: "dd/MM/yyyy",
+        isWeekend: true
+    };
+//End Feature Parameters
+
+//Feature Init @1-64B65956
+    features["mc_calificacion_capcFechaFirmaCAESInlineDatePicker1"].ccsBind(function() {
+        this.ccsDateTimePicker(params["mc_calificacion_capcFechaFirmaCAESInlineDatePicker1"]);
+    });
+//End Feature Init
+
+//Plugin Calls @1-EBA111F0
+    $('*:ccsControl(mc_calificacion_capc, Button_Delete)').ccsBind(function() {
+        this.bind("click", function(){ $("body").data("disableValidation", true); });
+    });
+//End Plugin Calls
+
+//Common Script End @1-562554DE
+});
+//End Common Script End
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
+</head>
+<body onload="OcultaSLAs()">
+<p>{Header}</p>
+<p></p>
+<table width="100%">
+  <tr>
+    <td>&nbsp;</td> 
+    <td></td> 
+    <td>&nbsp;</td> 
+  </tr>
+ 
+  <tr>
+    <td>&nbsp;</td> 
+    <td>
+      <!-- BEGIN Record mc_calificacion_capc -->
+      <form id="mc_calificacion_capc" method="post" name="{HTMLFormName}" action="{Action}">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Detalle SLAs del CAPC</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                </tr>
+ 
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr id="ErrorBlock" class="Error">
+                  <td colspan="3">{Error}</td> 
+                </tr>
+ <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"><label for="mc_calificacion_capcnumero">Requerimiento</label></td> 
+                  <td><input type="text" id="mc_calificacion_capcnumero" maxlength="6" size="6" value="{numero}" name="{numero_Name}"></td> 
+                  <td><label for="mc_calificacion_capcSLO" style="display: inline;">SLO</label><input type="checkbox" id="mc_calificacion_capcSLO" value="1" name="{SLO_Name}" {SLO}></td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Id Estimación</td> 
+                  <td><input type="text" id="mc_calificacion_capcIdEstimacion" maxlength="6" size="6" value="{IdEstimacion}" name="{IdEstimacion_Name}"></td> 
+                  <td>&nbsp;</td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Rubro</td> 
+                  <td><input type="text" id="mc_calificacion_capcAgrupador" maxlength="75" size="50" value="{Agrupador}" name="{Agrupador_Name}"></td> 
+                  <td>&nbsp;</td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_calificacion_capcid_serviciocont">Servicio</label></td> 
+                  <td>
+                    <select onchange="OcultaSLAs()" id="mc_calificacion_capcid_serviciocont" name="{id_serviciocont_Name}">
+                      {id_serviciocont_Options} 
+                    </select>
+ </td> 
+                  <td>&nbsp;</td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Tipo de Requerimiento</td> 
+                  <td>
+                    <select id="mc_calificacion_capcid_tipo" name="{id_tipo_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+ {id_tipo_Options} 
+                    </select>
+ </td> 
+                  <td>&nbsp;</td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_calificacion_capcDescripcion">Descripción</label></td> 
+                  <td colspan="2"><input type="text" id="mc_calificacion_capcDescripcion" maxlength="350" size="75" value="{Descripcion}" name="{Descripcion_Name}"></td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_calificacion_capcmes">Mes</label></td> 
+                  <td>
+                    <select id="mc_calificacion_capcmes" name="{mes_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+ {mes_Options} 
+                    </select>
+ </td> 
+                  <td>&nbsp;</td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_calificacion_capcanio">Año</label></td> 
+                  <td>
+                    <select id="mc_calificacion_capcanio" name="{anio_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+ {anio_Options} 
+                    </select>
+ </td> 
+                  <td>&nbsp;</td> 
+                </tr>
+ 
+                <tr class="Controls">
+                  <td colspan="3">
+                    <div id="divRetrasoE">
+                      <table>
+                        <tr>
+                          <td class="th" style="BACKGROUND-COLOR: rgb(216,216,216)"><label for="mc_calificacion_capcRETR_ENTREGABLE">Retraso en entregables</label></td> 
+                          <td style="BACKGROUND-COLOR: rgb(216,216,216)">
+                            <select id="mc_calificacion_capcRETR_ENTREGABLE" name="{RETR_ENTREGABLE_Name}">
+                              <option selected value="">No Aplica</option>
+ {RETR_ENTREGABLE_Options} 
+                            </select>
+ </td> 
+                          <tr class="Controls">
+                            <td>
+                              <table id="tblRetEnt" style="BORDER-LEFT-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-COLLAPSE: collapse; BORDER-TOP-WIDTH: 0px; border-image: none" cellspacing="0" cellpadding="0" width="100%">
+                                <tr>
+                                  <td><label for="mc_calificacion_capcCAPFirmada" style="display: inline;">CAP Firmada</label><input type="checkbox" id="mc_calificacion_capcCAPFirmada" value="1" name="{CAPFirmada_Name}" {CAPFirmada}></td> 
+                                  <td colspan="2"><label for="mc_calificacion_capcFechaFirmaCAES" style="display: inline;">Fecha Firma CAES</label></td> 
+                                  <td colspan="3"><input type="text" id="mc_calificacion_capcFechaFirmaCAES" value="{FechaFirmaCAES}" name="{FechaFirmaCAES_Name}"></td> 
+                                </tr>
+ 
+                                <tr class="Controls">
+                                  <td><label for="mc_calificacion_capcDiasPlaneados" style="display: inline;">Días planeados</label></td> 
+                                  <td><input type="text" onchange="CalculaRetraso()" id="mc_calificacion_capcDiasPlaneados" maxlength="4" size="4" value="{DiasPlaneados}" name="{DiasPlaneados_Name}"></td> 
+                                  <td><label for="mc_calificacion_capcDiasReales" style="display: inline;">Dís reales</label></td> 
+                                  <td><input type="text" onchange="CalculaRetraso()" id="mc_calificacion_capcDiasReales" maxlength="4" size="4" value="{DiasReales}" name="{DiasReales_Name}"></td> 
+                                  <td><label for="mc_calificacion_capcDiasRetrasoHabiles" style="display: inline;">Retraso Días Habiles</label></td> 
+                                  <td><input type="text" onchange="CalculaRetraso()" id="mc_calificacion_capcDiasRetrasoHabiles" maxlength="5" size="5" value="{DiasRetrasoHabiles}" name="{DiasRetrasoHabiles_Name}"></td> 
+                                  <td><label for="mc_calificacion_capcDiasRetrasoNaturales" style="display: inline;">Retraso Días Naturales </label></td> 
+                                  <td><input type="text" onchange="CalculaRetraso()" id="mc_calificacion_capcDiasRetrasoNaturales" maxlength="5" size="5" value="{DiasRetrasoNaturales}" name="{DiasRetrasoNaturales_Name}"></td> 
+                                </tr>
+ 
+                                <tr class="Controls">
+                                  <td><label for="mc_calificacion_capcPctMaximo" style="display: inline;">% Deductiva&nbsp; </label></td> 
+                                  <td><input type="text" id="mc_calificacion_capcPctMaximo" maxlength="5" size="4" value="{PctMaximo}" name="{PctMaximo_Name}"></td> 
+                                  <td></td> 
+                                  <td></td> 
+                                  <td></td> 
+                                  <td></td> 
+                                </tr>
+ 
+                                <tr class="Controls">
+                                  <td></td> 
+                                  <td></td> 
+                                </tr>
+ 
+                                <tr class="Controls">
+                                  <td class="th">URL Entregables</td> 
+                                  <td colspan="7"><input type="text" id="mc_calificacion_capcURLEntregables" maxlength="725" size="83" value="{URLEntregables}" name="{URLEntregables_Name}"></td> 
+                                </tr>
+ 
+                                <tr class="Controls">
+                                  <td class="th"><label for="mc_calificacion_capcObservaciones">Observaciones</label></td> 
+                                  <td colspan="7"><textarea id="mc_calificacion_capcObservaciones" rows="3" cols="62" name="{Observaciones_Name}">{Observaciones}</textarea></td> 
+                                </tr>
+ 
+                              </table>
+ </td> 
+                          </tr>
+ 
+                        </table>
+ 
+                      </div>
+ </td> 
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td style="TEXT-ALIGN: right" colspan="3">
+                      <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_calificacion_capcButton_Insert" class="Button" alt="Agregar" value="Guardar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input type="submit" id="mc_calificacion_capcButton_Update" class="Button" alt="Enviar" value="Guardar" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input type="submit" id="mc_calificacion_capcButton_Delete" class="Button" alt="Borrar" value="Borrar" name="{Button_Name}"><!-- END Button Button_Delete --><input type="hidden" id="mc_calificacion_capcid_proveedor" value="{id_proveedor}" name="{id_proveedor_Name}"></td> 
+                  </tr>
+ 
+                </table>
+ </td> 
+            </tr>
+ 
+          </table>
+ 
+        </form>
+ <!-- END Record mc_calificacion_capc --></td> 
+      <td>&nbsp;</td> 
+    </tr>
+ 
+    <tr>
+      <td>&nbsp;</td> 
+      <td>
+        <!-- BEGIN Grid mc_info_capc_cr_RE_Artefa -->
+        <table id="mc_info_capc_cr_RE_Artefa" class="MainTable" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Lista de Artefactos </strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                </tr>
+ 
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_Id --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_Id">Id</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Id --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_Nombre --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_Nombre">Nombre</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Nombre --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_Descripcion --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_Descripcion">Descripcion</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Descripcion --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_Formato --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_Formato">Formato</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Formato --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_NombreConHerramienta --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_NombreConHerramienta">Nombre Con Herramienta</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_NombreConHerramienta --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_FechaEstFin --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_FechaEstFin">Fecha Est Fin</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_FechaEstFin --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_FechaEntrega --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_FechaEntrega">Fecha Entrega</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_FechaEntrega --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_DiasHabilesDesviacion --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_DiasHabilesDesviacion">Dias Habiles Desviacion</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_DiasHabilesDesviacion --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_DiasNaturalesDesviacion --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_DiasNaturalesDesviacion">Dias Naturales Desviacion</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_DiasNaturalesDesviacion --></th>
+ 
+                  <th scope="col">Comentarios</th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_DiasHabilesReales --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_DiasHabilesReales">Dias Habiles Reales</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_DiasHabilesReales --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_PctDeductiva --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_PctDeductiva">Pct Deductiva</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_PctDeductiva --></th>
+ 
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr class="Row">
+                  <td style="TEXT-ALIGN: right">{Id}&nbsp;</td> 
+                  <td>{Nombre}&nbsp;</td> 
+                  <td>{Descripcion}&nbsp;</td> 
+                  <td>{Formato}&nbsp;</td> 
+                  <td>{NombreConHerramienta}&nbsp;</td> 
+                  <td>{FechaEstFin}&nbsp;</td> 
+                  <td>{FechaEntrega}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right">{DiasHabilesDesviacion}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right">{DiasNaturalesDesviacion}&nbsp;</td> 
+                  <td>{Comentarios}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right">{DiasHabilesReales}&nbsp;</td> 
+                  <td>{PctDeductiva}&nbsp;</td> 
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="12">No hay registros</td> 
+                </tr>
+ <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td colspan="12">
+                    <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+                    <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+                      <option selected value="">-</option>
+ {PageSize_Options} 
+                    </select>
+ 
+                    <!-- BEGIN First_On --><a href="{First_URL}">Inicio</a> <!-- END First_On -->
+                    <!-- BEGIN First_Off -->Inicio <!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}">Anterior</a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off -->Anterior <!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de &nbsp;{Total_Pages}&nbsp; 
+                    <!-- BEGIN Next_On --><a href="{Next_URL}">Siguiente</a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}">Final</a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off -->Final <!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td> 
+                </tr>
+ 
+              </table>
+ </td> 
+          </tr>
+ 
+        </table>
+ <!-- END Grid mc_info_capc_cr_RE_Artefa --><br>
+      </td> 
+      <td>&nbsp;</td> 
+    </tr>
+ 
+    <tr>
+      <td>&nbsp;</td> 
+      <td>{lErrores} 
+        <!-- BEGIN Panel Panel1 -->
+        <form enctype="multipart/form-data" method="post" action="{ActionFileUpload}">
+          <input type="hidden" value="100000" name="MAX_FILE_SIZE"><br>
+          <br>
+          <b>Cargar Artefactos de rchivo: </b><br>
+          <input type="file" accept="text/csv" name="userfile">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Procesar">
+        </form>
+ <!-- END Panel Panel1 --></td> 
+      <td>&nbsp;</td> 
+    </tr>
+ 
+  </table>
+ 
+  <p></p>
+ 
+  </body>
+ 
+  </html>

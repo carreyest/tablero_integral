@@ -305,10 +305,56 @@ class clsgrdIncCuadroNSDataSource extends clsDBcnDisenio {  //grdIncCuadroNSData
     }
 //End Prepare Method
 
-//Open Method @3-AC8D2AFB
+//Open Method @3-278B05F3
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
+        $this->CountSQL = "SELECT COUNT(*) FROM (select mc_c_metrica.nombre,  ''  DescSev, 0 severidad, c.Suma,  c.Cumplen,  mc_c_metrica.Meta,  mc_c_metrica.pena   \n" .
+        "from mc_c_metrica \n" .
+        "CROSS JOIN \n" .
+        "(select id_proveedor,\n" .
+        "	COUNT(Cumple_DISP_SOPORTE) Suma,\n" .
+        "	sum(cast(~Cast(Cumple_DISP_SOPORTE as bit) as int)) Cumplen\n" .
+        "	from mc_calificacion_incidentes_MC mc\n" .
+        "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
+        "	and id_incidente not in (select numero from mc_universo_cds where SLO=1 and revision =1)\n" .
+        "	group by id_proveedor \n" .
+        ") c\n" .
+        "where acronimo ='DISP_SOPORTE'\n" .
+        "union all\n" .
+        "select mc_c_metrica.nombre, 'Severidad', c.severidad, c.Suma,  c.Cumplen,  mc_c_metrica.Meta, mc_c_metrica.pena   \n" .
+        "from mc_c_metrica \n" .
+        "CROSS JOIN \n" .
+        "(select sv.severidad, id_proveedor,\n" .
+        "	COUNT(Cumple_Inc_TiempoAsignacion) Suma,\n" .
+        "	sum(cast(~CAST(Cumple_Inc_TiempoAsignacion as bit) as int)) Cumplen\n" .
+        "	from (select distinct severidad  from mc_c_aplicacion) sv left join  mc_calificacion_incidentes_MC mc\n" .
+        "		on mc.severidad= sv.severidad\n" .
+        "	and id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
+        "	and id_incidente not in (select numero from mc_universo_cds where SLO=1 and revision =1)\n" .
+        "	group by id_proveedor, sv.severidad   \n" .
+        ") c\n" .
+        "where acronimo ='Inc_TiempoAsignacion'\n" .
+        "union all\n" .
+        "select mc_c_metrica.nombre, 'Severidad', c.severidad,  c.Suma,  c.Cumplen,  mc_c_metrica.Meta, mc_c_metrica.pena   \n" .
+        "from mc_c_metrica \n" .
+        "CROSS JOIN \n" .
+        "(select sv.severidad, id_proveedor,\n" .
+        "	COUNT(Cumple_Inc_TiempoSolucion) Suma,\n" .
+        "	sum(cast(~CAST(Cumple_Inc_TiempoSolucion as bit) as int)) Cumplen\n" .
+        "	from (select distinct severidad  from mc_c_aplicacion) sv left join  mc_calificacion_incidentes_MC mc\n" .
+        "		on mc.severidad= sv.severidad\n" .
+        "	and id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
+        "	and id_incidente not in (select numero from mc_universo_cds where SLO=1 and revision =1)\n" .
+        "	group by id_proveedor, sv.severidad   \n" .
+        ") c\n" .
+        "where acronimo ='Inc_TiempoSolucion') cnt";
         $this->SQL = "select mc_c_metrica.nombre,  ''  DescSev, 0 severidad, c.Suma,  c.Cumplen,  mc_c_metrica.Meta,  mc_c_metrica.pena   \n" .
         "from mc_c_metrica \n" .
         "CROSS JOIN \n" .

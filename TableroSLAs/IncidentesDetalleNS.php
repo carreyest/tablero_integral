@@ -45,7 +45,7 @@ class clsRecordmc_info_incidentesSearch { //mc_info_incidentesSearch Class @2-A8
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-F899F915
+//Class_Initialize Event @2-C2A1B609
     function clsRecordmc_info_incidentesSearch($RelativePath, & $Parent)
     {
 
@@ -96,7 +96,6 @@ class clsRecordmc_info_incidentesSearch { //mc_info_incidentesSearch Class @2-A8
             $this->s_AnioReporte->DataSource->wp->Criterion[1] = $this->s_AnioReporte->DataSource->wp->Operation(opGreaterThan, "[Ano]", $this->s_AnioReporte->DataSource->wp->GetDBValue("1"), $this->s_AnioReporte->DataSource->ToSQL($this->s_AnioReporte->DataSource->wp->GetDBValue("1"), ccsInteger),false);
             $this->s_AnioReporte->DataSource->Where = 
                  $this->s_AnioReporte->DataSource->wp->Criterion[1];
-            $this->s_Id_incidente_param = new clsControl(ccsTextBox, "s_Id_incidente_param", "s_Id_incidente_param", ccsText, "", CCGetRequestParam("s_Id_incidente_param", $Method, NULL), $this);
             $this->s_MesReporte = new clsControl(ccsListBox, "s_MesReporte", "s_MesReporte", ccsText, "", CCGetRequestParam("s_MesReporte", $Method, NULL), $this);
             $this->s_MesReporte->DSType = dsTable;
             $this->s_MesReporte->DataSource = new clsDBcnDisenio();
@@ -104,19 +103,7 @@ class clsRecordmc_info_incidentesSearch { //mc_info_incidentesSearch Class @2-A8
             $this->s_MesReporte->DataSource->SQL = "SELECT * \n" .
 "FROM mc_c_mes {SQL_Where} {SQL_OrderBy}";
             list($this->s_MesReporte->BoundColumn, $this->s_MesReporte->TextColumn, $this->s_MesReporte->DBFormat) = array("IdMes", "Mes", "");
-            $this->s_analista_param = new clsControl(ccsListBox, "s_analista_param", "s_analista_param", ccsText, "", CCGetRequestParam("s_analista_param", $Method, NULL), $this);
-            $this->s_analista_param->DSType = dsTable;
-            $this->s_analista_param->DataSource = new clsDBcnDisenio();
-            $this->s_analista_param->ds = & $this->s_analista_param->DataSource;
-            $this->s_analista_param->DataSource->SQL = "SELECT * \n" .
-"FROM mc_c_usuarios {SQL_Where} {SQL_OrderBy}";
-            list($this->s_analista_param->BoundColumn, $this->s_analista_param->TextColumn, $this->s_analista_param->DBFormat) = array("Usuario", "Usuario", "");
-            $this->s_analista_param->DataSource->Parameters["expr191"] = "3";
-            $this->s_analista_param->DataSource->wp = new clsSQLParameters();
-            $this->s_analista_param->DataSource->wp->AddParameter("1", "expr191", ccsInteger, "", "", $this->s_analista_param->DataSource->Parameters["expr191"], "", false);
-            $this->s_analista_param->DataSource->wp->Criterion[1] = $this->s_analista_param->DataSource->wp->Operation(opEqual, "[Nivel]", $this->s_analista_param->DataSource->wp->GetDBValue("1"), $this->s_analista_param->DataSource->ToSQL($this->s_analista_param->DataSource->wp->GetDBValue("1"), ccsInteger),false);
-            $this->s_analista_param->DataSource->Where = 
-                 $this->s_analista_param->DataSource->wp->Criterion[1];
+            $this->s_Id_incidente_param = new clsControl(ccsTextBox, "s_Id_incidente_param", "s_Id_incidente_param", ccsText, "", CCGetRequestParam("s_Id_incidente_param", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->s_AnioReporte->Value) && !strlen($this->s_AnioReporte->Value) && $this->s_AnioReporte->Value !== false)
                     $this->s_AnioReporte->SetText(date("Y",mktime(0,0,0,date("m")-1,date("d"),date("Y"))));
@@ -127,7 +114,7 @@ class clsRecordmc_info_incidentesSearch { //mc_info_incidentesSearch Class @2-A8
     }
 //End Class_Initialize Event
 
-//Validate Method @2-8EF72A83
+//Validate Method @2-05144C5F
     function Validate()
     {
         global $CCSLocales;
@@ -135,28 +122,25 @@ class clsRecordmc_info_incidentesSearch { //mc_info_incidentesSearch Class @2-A8
         $Where = "";
         $Validation = ($this->s_id_proveedor->Validate() && $Validation);
         $Validation = ($this->s_AnioReporte->Validate() && $Validation);
-        $Validation = ($this->s_Id_incidente_param->Validate() && $Validation);
         $Validation = ($this->s_MesReporte->Validate() && $Validation);
-        $Validation = ($this->s_analista_param->Validate() && $Validation);
+        $Validation = ($this->s_Id_incidente_param->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->s_id_proveedor->Errors->Count() == 0);
         $Validation =  $Validation && ($this->s_AnioReporte->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->s_Id_incidente_param->Errors->Count() == 0);
         $Validation =  $Validation && ($this->s_MesReporte->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->s_analista_param->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->s_Id_incidente_param->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @2-7CB60301
+//CheckErrors Method @2-D4566CEF
     function CheckErrors()
     {
         $errors = false;
         $errors = ($errors || $this->s_id_proveedor->Errors->Count());
         $errors = ($errors || $this->s_AnioReporte->Errors->Count());
-        $errors = ($errors || $this->s_Id_incidente_param->Errors->Count());
         $errors = ($errors || $this->s_MesReporte->Errors->Count());
-        $errors = ($errors || $this->s_analista_param->Errors->Count());
+        $errors = ($errors || $this->s_Id_incidente_param->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -195,7 +179,7 @@ class clsRecordmc_info_incidentesSearch { //mc_info_incidentesSearch Class @2-A8
     }
 //End Operation Method
 
-//Show Method @2-4FB84030
+//Show Method @2-680E0E75
     function Show()
     {
         global $CCSUseAmp;
@@ -212,7 +196,6 @@ class clsRecordmc_info_incidentesSearch { //mc_info_incidentesSearch Class @2-A8
         $this->s_id_proveedor->Prepare();
         $this->s_AnioReporte->Prepare();
         $this->s_MesReporte->Prepare();
-        $this->s_analista_param->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -225,9 +208,8 @@ class clsRecordmc_info_incidentesSearch { //mc_info_incidentesSearch Class @2-A8
             $Error = "";
             $Error = ComposeStrings($Error, $this->s_id_proveedor->Errors->ToString());
             $Error = ComposeStrings($Error, $this->s_AnioReporte->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->s_Id_incidente_param->Errors->ToString());
             $Error = ComposeStrings($Error, $this->s_MesReporte->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->s_analista_param->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->s_Id_incidente_param->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -248,9 +230,8 @@ class clsRecordmc_info_incidentesSearch { //mc_info_incidentesSearch Class @2-A8
         $this->Button_DoSearch->Show();
         $this->s_id_proveedor->Show();
         $this->s_AnioReporte->Show();
-        $this->s_Id_incidente_param->Show();
         $this->s_MesReporte->Show();
-        $this->s_analista_param->Show();
+        $this->s_Id_incidente_param->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }

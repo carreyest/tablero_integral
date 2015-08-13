@@ -182,7 +182,7 @@ class clsGridgrdDetalleRS { //grdDetalleRS class @3-CC2FAA29
     }
 //End Initialize Method
 
-//Show Method @3-159E724F
+//Show Method @3-015CED92
     function Show()
     {
         $Tpl = CCGetTemplate($this);
@@ -195,6 +195,7 @@ class clsGridgrdDetalleRS { //grdDetalleRS class @3-CC2FAA29
         $this->DataSource->Parameters["urls_MesReporte"] = CCGetFromGet("s_MesReporte", NULL);
         $this->DataSource->Parameters["urls_AnioReporte"] = CCGetFromGet("s_AnioReporte", NULL);
         $this->DataSource->Parameters["urlsSLO"] = CCGetFromGet("sSLO", NULL);
+        $this->DataSource->Parameters["urls_PPMC"] = CCGetFromGet("s_PPMC", NULL);
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
@@ -479,7 +480,7 @@ class clsgrdDetalleRSDataSource extends clsDBcnDisenio {  //grdDetalleRSDataSour
     }
 //End SetOrder Method
 
-//Prepare Method @3-7BB1D26F
+//Prepare Method @3-85C2E48D
     function Prepare()
     {
         global $CCSLocales;
@@ -489,10 +490,11 @@ class clsgrdDetalleRSDataSource extends clsDBcnDisenio {  //grdDetalleRSDataSour
         $this->wp->AddParameter("2", "urls_MesReporte", ccsInteger, "", "", $this->Parameters["urls_MesReporte"], 0, false);
         $this->wp->AddParameter("3", "urls_AnioReporte", ccsInteger, "", "", $this->Parameters["urls_AnioReporte"], 0, false);
         $this->wp->AddParameter("4", "urlsSLO", ccsInteger, "", "", $this->Parameters["urlsSLO"], 0, false);
+        $this->wp->AddParameter("5", "urls_PPMC", ccsText, "", "", $this->Parameters["urls_PPMC"], "", false);
     }
 //End Prepare Method
 
-//Open Method @3-AE89590A
+//Open Method @3-0ECE1179
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -527,6 +529,7 @@ class clsgrdDetalleRSDataSource extends clsDBcnDisenio {  //grdDetalleRSDataSour
         "	and c.MesReporte = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
         "	and c.AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
         "	and (u.slo=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " ) \n" .
+        "	and (u.numero like '%" . $this->SQLValue($this->wp->GetDBValue("5"), ccsText) . "%')\n" .
         "	and (u.revision<>2 or revision is null) \n" .
         "	) cnt";
         $this->SQL = "select sc.Descripcion ServContractual, sn.nombre  ServNegocio, c.id_ppmc, t.Descripcion Tipo, \n" .
@@ -560,6 +563,7 @@ class clsgrdDetalleRSDataSource extends clsDBcnDisenio {  //grdDetalleRSDataSour
         "	and c.MesReporte = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
         "	and c.AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
         "	and (u.slo=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " ) \n" .
+        "	and (u.numero like '%" . $this->SQLValue($this->wp->GetDBValue("5"), ccsText) . "%')\n" .
         "	and (u.revision<>2 or revision is null) \n" .
         "	";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
@@ -639,7 +643,7 @@ class clsRecordgrdDetalleRS1 { //grdDetalleRS1 Class @25-223A8BBB
     // Class variables
 //End Variables
 
-//Class_Initialize Event @25-3E4FD769
+//Class_Initialize Event @25-051B7EAB
     function clsRecordgrdDetalleRS1($RelativePath, & $Parent)
     {
 
@@ -693,11 +697,12 @@ class clsRecordgrdDetalleRS1 { //grdDetalleRS1 Class @25-223A8BBB
             "FROM mc_c_anio \n" .
             "where ano > 2013 {SQL_OrderBy}";
             $this->s_AnioReporte->DataSource->Order = "ano";
+            $this->s_PPMC = new clsControl(ccsTextBox, "s_PPMC", "s_PPMC", ccsText, "", CCGetRequestParam("s_PPMC", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @25-713777E7
+//Validate Method @25-A2FE6BA7
     function Validate()
     {
         global $CCSLocales;
@@ -706,21 +711,24 @@ class clsRecordgrdDetalleRS1 { //grdDetalleRS1 Class @25-223A8BBB
         $Validation = ($this->s_id_proveedor->Validate() && $Validation);
         $Validation = ($this->s_MesReporte->Validate() && $Validation);
         $Validation = ($this->s_AnioReporte->Validate() && $Validation);
+        $Validation = ($this->s_PPMC->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->s_id_proveedor->Errors->Count() == 0);
         $Validation =  $Validation && ($this->s_MesReporte->Errors->Count() == 0);
         $Validation =  $Validation && ($this->s_AnioReporte->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->s_PPMC->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @25-F92AA8F5
+//CheckErrors Method @25-70C1DDD9
     function CheckErrors()
     {
         $errors = false;
         $errors = ($errors || $this->s_id_proveedor->Errors->Count());
         $errors = ($errors || $this->s_MesReporte->Errors->Count());
         $errors = ($errors || $this->s_AnioReporte->Errors->Count());
+        $errors = ($errors || $this->s_PPMC->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -759,7 +767,7 @@ class clsRecordgrdDetalleRS1 { //grdDetalleRS1 Class @25-223A8BBB
     }
 //End Operation Method
 
-//Show Method @25-7342DCBE
+//Show Method @25-0D8C3ACE
     function Show()
     {
         global $CCSUseAmp;
@@ -781,12 +789,15 @@ class clsRecordgrdDetalleRS1 { //grdDetalleRS1 Class @25-223A8BBB
         $ParentPath = $Tpl->block_path;
         $Tpl->block_path = $ParentPath . "/" . $RecordBlock;
         $this->EditMode = $this->EditMode && $this->ReadAllowed;
+        if (!$this->FormSubmitted) {
+        }
 
         if($this->FormSubmitted || $this->CheckErrors()) {
             $Error = "";
             $Error = ComposeStrings($Error, $this->s_id_proveedor->Errors->ToString());
             $Error = ComposeStrings($Error, $this->s_MesReporte->Errors->ToString());
             $Error = ComposeStrings($Error, $this->s_AnioReporte->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->s_PPMC->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -808,6 +819,7 @@ class clsRecordgrdDetalleRS1 { //grdDetalleRS1 Class @25-223A8BBB
         $this->s_id_proveedor->Show();
         $this->s_MesReporte->Show();
         $this->s_AnioReporte->Show();
+        $this->s_PPMC->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }

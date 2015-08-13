@@ -175,7 +175,7 @@ function grdTableroSLAs_BeforeShowRow(& $sender)
 	*/
 	$db->query("SELECT att.Activo , m.Acronimo  FROM mc_c_metrica m LEFT JOIN mc_metrica_atributo att " .
  				" ON att.id_ver_metrica = m.id_ver_metrica  AND att.nombre = 'Aplica_Servicio' AND valor=" . $grdTableroSLAs->DataSource->f("IdOld") .
- 				" where  Acronimo is not null");
+ 				" where  Acronimo is not null and Acronimo <> 'DEDUC_OMISION'");
 	while($db->next_record()){
 		$sAcronimo= $db->f(1);
 		$sImg= "Img_" . $db->f(1); //se asocia la imagen al acronimo

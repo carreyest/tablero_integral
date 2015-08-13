@@ -282,7 +282,7 @@ function Page_BeforeShow(& $sender)
 //Custom Code @70-2A29BDB7
 // -------------------------
     global $mc_info_incidentesSearch;
-    $mc_info_incidentesSearch->Visible =(CCGetSession("GrupoValoración")=="CAPC");
+    $mc_info_incidentesSearch->Visible =(CCGetSession("GrupoValoracion")=="CAPC" || CCGetSession("GrupoValoracion")=="SAT");
 // -------------------------
 //End Custom Code
 

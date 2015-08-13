@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+<meta http-equiv="X-UA-Compatible" content="IE=10; IE=9; IE=8; IE=7; IE=EDGE">
 <meta http-equiv="content-type" content="text/html; charset=windows-1252">
 <title>PPMCsApbDetalleRSxls</title>
-<meta http-equiv="X-UA-Compatible" content="IE=10; IE=9; IE=8; IE=7; IE=EDGE">
 <meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
 <script language="JavaScript" type="text/javascript">
 //Begin CCS script
@@ -31,82 +31,90 @@
     <td>&nbsp; 
       <!-- BEGIN Record grdDetalleRS1 -->
       <form id="grdDetalleRS1" method="post" name="{HTMLFormName}" action="{Action}">
-        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
           <tr>
             <td valign="top">
-              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Buscar</strong></td> 
-                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                 </tr>
+ 
               </table>
  
               <table class="Record" cellspacing="0" cellpadding="0">
                 <!-- BEGIN Error -->
                 <tr id="{@error-block}" class="Error">
-                  <td colspan="6">{Error}</td>
+                  <td colspan="8">{Error}</td> 
                 </tr>
-                <!-- END Error -->
+ <!-- END Error -->
                 <tr class="Controls">
-                  <td class="th"><label for="grdDetalleRS1s_id_proveedor">CDS</label></td> 
+                  <td class="th">PPMC&nbsp;</td> 
+                  <td class="th"><label for="grdDetalleRS1s_PPMC" style="display: none;">TextBox1</label><input type="text" name="{s_PPMC_Name}" value="{s_PPMC}" id="grdDetalleRS1s_PPMC"></td> 
+                  <td class="th"><label for="grdDetalleRS1s_id_proveedor">Proveedor</label></td> 
                   <td>
                     <select id="grdDetalleRS1s_id_proveedor" name="{s_id_proveedor_Name}">
                       <option selected value="">Seleccionar Valor</option>
-                      {s_id_proveedor_Options}
+ {s_id_proveedor_Options} 
                     </select>
  </td> 
                   <td class="th"><label for="grdDetalleRS1s_MesReporte">Mes </label></td> 
                   <td>
                     <select id="grdDetalleRS1s_MesReporte" name="{s_MesReporte_Name}">
                       <option selected value="">Seleccionar Valor</option>
-                      {s_MesReporte_Options}
+ {s_MesReporte_Options} 
                     </select>
  </td> 
                   <td class="th"><label for="grdDetalleRS1s_AnioReporte">Año </label></td> 
                   <td>
                     <select id="grdDetalleRS1s_AnioReporte" name="{s_AnioReporte_Name}">
                       <option selected value="">Seleccionar Valor</option>
-                      {s_AnioReporte_Options}
+ {s_AnioReporte_Options} 
                     </select>
- </td>
+ </td> 
                 </tr>
  
                 <tr class="Bottom">
-                  <td style="TEXT-ALIGN: right" colspan="6">
-                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="grdDetalleRS1Button_DoSearch" class="Button" value="Buscar" alt="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                  <td style="TEXT-ALIGN: right" colspan="8">
+                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="grdDetalleRS1Button_DoSearch" class="Button" alt="Buscar" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td> 
                 </tr>
+ 
               </table>
-            </td>
+ </td> 
           </tr>
+ 
         </table>
+ 
       </form>
  
       <p></p>
-      <!-- END Record grdDetalleRS1 -->
+ <!-- END Record grdDetalleRS1 -->
       <p></p>
-    </td> 
-    <td>{MenuTablero} </td>
+ </td> 
+    <td>{MenuTablero} </td> 
   </tr>
  
   <tr>
     <td colspan="2">&nbsp; 
       <!-- BEGIN Grid grdDetalleRS -->
-      <table id="grdDetalleRS" class="MainTable" border="0" cellspacing="0" cellpadding="0" frame="vsides">
+      <table id="grdDetalleRS" class="MainTable" cellspacing="0" cellpadding="0" border="0" frame="vsides">
         <tr>
           <td valign="top">
-            <table class="Header" border="0" cellspacing="0" cellpadding="0">
+            <table class="Header" cellspacing="0" cellpadding="0" border="0">
               <tr>
                 <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                 <td class="th"><strong>DetalleRS </strong></td> 
-                <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
               </tr>
+ 
             </table>
  
             <table class="Grid" cellspacing="0" cellpadding="0">
               <tr class="Row">
-                <td colspan="100">Total de Registros:&nbsp;{Grid1_TotalRecords}</td>
+                <td colspan="100">Total de Registros:&nbsp;{Grid1_TotalRecords}</td> 
               </tr>
+ 
             </table>
  
             <table class="Grid" cellspacing="0" cellpadding="0">
@@ -194,6 +202,7 @@
                   <th colspan="85" scope="col">Liga Evidencia</th>
  
                   <th scope="col">Observaciones SAT</th>
+ 
                 </tr>
  
               </thead>
@@ -209,12 +218,10 @@
                 <td>{Tipo}</td> 
                 <td>{descripci_n}</td> 
                 <td style="TEXT-ALIGN: center">
-                  
-                  <!-- BEGIN Image imgCumpleHE --><img id="grdDetalleRSPanel1imgCumpleHE_{grdDetalleRS:rowNumber}" alt="" src="{imgCumpleHE}"><!-- END Image imgCumpleHE --></p>
- 
-                  <br>{HERR_EST_COST} 
- 
-                </td> 
+                  <!-- BEGIN Image imgCumpleHE --><img id="grdDetalleRSPanel1imgCumpleHE_{grdDetalleRS:rowNumber}" alt="" src="{imgCumpleHE}"><!-- END Image imgCumpleHE -->
+                  <p></p>
+ <br>
+                  {HERR_EST_COST} </td> 
                 <td style="TEXT-ALIGN: center">{REQ_SERV} 
                   <!-- BEGIN Image imgCumpleRS --><img id="grdDetalleRSPanel1imgCumpleRS_{grdDetalleRS:rowNumber}" alt="" src="{imgCumpleRS}"><!-- END Image imgCumpleRS --></td> 
                 <td style="TEXT-ALIGN: center">{CUMPL_REQ_FUNC} 
@@ -234,20 +241,20 @@
                   {ObsEstProy}<br>
                   {ObsDefFug}</td> 
                 <td style="TEXT-ALIGN: center" colspan="85"><a href="{lkEvidencia_Src}" id="grdDetalleRSPanel1lkEvidencia_{grdDetalleRS:rowNumber}">Ver Evidencia</a></td> 
-                <td style="TEXT-ALIGN: center">{Obs_SAT}</td>
+                <td style="TEXT-ALIGN: center">{Obs_SAT}</td> 
               </tr>
  <!-- END Panel Panel1 --><!-- END Row -->
               <!-- BEGIN NoRecords -->
               <tr class="NoRecords">
-                <td colspan="100">No hay registros</td>
+                <td colspan="100">No hay registros</td> 
               </tr>
-              <!-- END NoRecords -->
+ <!-- END NoRecords -->
               <tr class="Footer">
                 <td colspan="100">
                   <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
                   <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
                     <option selected value="">-</option>
- {PageSize_Options}
+ {PageSize_Options} 
                   </select>
  
                   <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
@@ -257,13 +264,15 @@
                   <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/Next.gif"></a> <!-- END Next_On -->
                   <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
                   <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
-                  <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td>
+                  <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td> 
               </tr>
+ 
             </table>
-          </td>
+ </td> 
         </tr>
+ 
       </table>
-      <!-- END Grid grdDetalleRS --></td>
+ <!-- END Grid grdDetalleRS --></td> 
   </tr>
 </table>
 <p></p>

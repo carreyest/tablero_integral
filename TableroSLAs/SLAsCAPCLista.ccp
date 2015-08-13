@@ -187,20 +187,22 @@ AND (id_serviciocont = {s_id_serviciocont}  or 0={s_id_serviciocont} )" pageSize
 					</LinkParameters>
 				</Link>
 				<Link id="27" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="DEDUC_OMISION" fieldSource="DEDUC_OMISION" wizardCaption="DEDUC OMISION" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_c_ServContractual_mc_cDEDUC_OMISION" visible="Yes" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCAPCDetalle.ccp">
-<Components/>
+					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 					<LinkParameters/>
-</Link>
-<Link id="29" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="RETR_ENTREGABLE" fieldSource="RETR_ENTREGABLE" wizardCaption="RETR ENTREGABLE" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_c_ServContractual_mc_cRETR_ENTREGABLE" visible="Yes" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCAPCDetalle.ccp">
-<Components/>
+				</Link>
+				<Link id="29" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="RETR_ENTREGABLE" fieldSource="RETR_ENTREGABLE" wizardCaption="RETR ENTREGABLE" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_c_ServContractual_mc_cRETR_ENTREGABLE" visible="Yes" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCAPCRetEnt.ccp" linkProperties="{'textSource':'','textSourceDB':'RETR_ENTREGABLE','hrefSource':'SLAsCAPCRetEnt.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'1':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'length':2,'objectType':'linkParameters'}}">
+					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
-					<LinkParameters/>
-</Link>
-<Label id="30" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Observaciones" fieldSource="Observaciones" wizardCaption="Observaciones" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_c_ServContractual_mc_cObservaciones">
+					<LinkParameters>
+						<LinkParameter id="117" sourceType="DataField" name="id" source="id"/>
+					</LinkParameters>
+				</Link>
+				<Label id="30" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Observaciones" fieldSource="Observaciones" wizardCaption="Observaciones" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_c_ServContractual_mc_cObservaciones">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -230,7 +232,7 @@ AND (id_serviciocont = {s_id_serviciocont}  or 0={s_id_serviciocont} )" pageSize
 						<LinkParameter id="104" sourceType="DataField" name="s_numero" source="numero"/>
 					</LinkParameters>
 				</ImageLink>
-				<ImageLink id="50" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Img_RETR_ENTREGABLE" PathID="mc_c_ServContractual_mc_cImg_RETR_ENTREGABLE" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCAPCDetalle.ccp" linkProperties="{'textSource':'','textSourceDB':'','hrefSource':'SLAsCAPCDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'1':{'sourceType':'DataField','parameterSource':'id','parameterName':'sID'},'2':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'3':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'length':4,'objectType':'linkParameters'}}"><Components/>
+				<ImageLink id="50" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Img_RETR_ENTREGABLE" PathID="mc_c_ServContractual_mc_cImg_RETR_ENTREGABLE" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCAPCRetEnt.ccp" linkProperties="{'textSource':'','textSourceDB':'','hrefSource':'SLAsCAPCRetEnt.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'1':{'sourceType':'DataField','parameterSource':'id','parameterName':'sID'},'2':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'3':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'4':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'5':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'length':6,'objectType':'linkParameters'}}"><Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>

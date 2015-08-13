@@ -210,19 +210,19 @@
 			</Events>
 			<TableParameters>
 				<TableParameter id="207" conditionType="Parameter" useIsNull="False" dataType="Integer" field="IdUniverso" logicOperator="And" orderNumber="1" parameterSource="Id" parameterType="URL" searchConditionType="Equal"/>
-</TableParameters>
+			</TableParameters>
 			<SPParameters/>
 			<SQLParameters/>
 			<JoinTables>
 				<JoinTable id="206" posHeight="180" posLeft="10" posTop="10" posWidth="143" tableName="mc_info_rs_CC"/>
-</JoinTables>
+			</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="208" fieldName="*"/>
-</Fields>
+			</Fields>
 			<PKFields>
 				<PKField id="209" dataType="Integer" fieldName="Id" tableName="mc_info_rs_CC"/>
-</PKFields>
+			</PKFields>
 			<ISPParameters/>
 			<ISQLParameters/>
 			<IFormElements>
@@ -235,12 +235,12 @@
 				<CustomParameter id="163" field="Id_PPMC" dataType="Integer" parameterType="Control" omitIfEmpty="True" parameterSource="Id_PPMC_HID"/>
 				<CustomParameter id="164" field="ID_Estimacion" dataType="Integer" parameterType="Control" omitIfEmpty="True" parameterSource="ID_Estimacion_HID"/>
 				<CustomParameter id="204" field="IdUniverso" dataType="Integer" parameterType="URL" omitIfEmpty="True" parameterSource="IdUniverso"/>
-</IFormElements>
+			</IFormElements>
 			<USPParameters/>
 			<USQLParameters/>
 			<UConditions>
 				<TableParameter id="205" conditionType="Parameter" useIsNull="False" field="IdUniverso" dataType="Integer" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="Id"/>
-</UConditions>
+			</UConditions>
 			<UFormElements>
 				<CustomParameter id="183" field="PctReglas" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="PctReglas"/>
 				<CustomParameter id="187" field="Id_PPMC" dataType="Integer" parameterType="Control" omitIfEmpty="True" parameterSource="Id_PPMC_HID"/>
@@ -258,7 +258,7 @@
 			<Attributes/>
 			<Features/>
 		</Record>
-		<Grid id="47" secured="False" sourceType="Table" returnValueType="Number" defaultPageSize="10" name="CalidadCodigoMetricas" connection="ConnCarga" dataSource="CalidadCodigoMetricas" pageSizeLimit="100" pageSize="True" wizardCaption=" Calidad Codigo Metricas" wizardTheme="Austere4" wizardThemeApplyTo="Component" wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No hay Registros" wizardGridPagingType="Simple" wizardUseSearch="False" wizardAddNbsp="True" gridTotalRecords="False" wizardAddPanels="False" wizardType="Grid" wizardUseInterVariables="False" addTemplatePanel="False" changedCaptionGrid="True" gridExtendedHTML="False" PathID="CalidadCodigoMetricas" wizardThemeVersion="3.0">
+		<Grid id="47" secured="False" sourceType="Table" returnValueType="Number" defaultPageSize="10" name="CalidadCodigoMetricas" connection="ReportesACDMA" dataSource="CalidadCodigoMetricas" pageSizeLimit="100" pageSize="True" wizardCaption=" Calidad Codigo Metricas" wizardTheme="Austere4" wizardThemeApplyTo="Component" wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No hay Registros" wizardGridPagingType="Simple" wizardUseSearch="False" wizardAddNbsp="True" gridTotalRecords="False" wizardAddPanels="False" wizardType="Grid" wizardUseInterVariables="False" addTemplatePanel="False" changedCaptionGrid="True" gridExtendedHTML="False" PathID="CalidadCodigoMetricas" wizardThemeVersion="3.0">
 			<Components>
 				<Sorter id="49" visible="True" name="Sorter_Paquete" column="Paquete" wizardCaption="Paquete" wizardTheme="Austere4" wizardSortingType="SimpleDir" wizardControl="Paquete" wizardAddNbsp="False" PathID="CalidadCodigoMetricasSorter_Paquete" wizardThemeVersion="3.0">
 					<Components/>
@@ -371,7 +371,7 @@
 			<Attributes/>
 			<Features/>
 		</Grid>
-		<Grid id="123" secured="False" sourceType="Table" returnValueType="Number" defaultPageSize="10" name="CalidadCodigoReglas" connection="ConnCarga" dataSource="CalidadCodigoReglas" pageSizeLimit="100" pageSize="True" wizardCaption="Reglas" wizardTheme="Austere4" wizardThemeApplyTo="Component" wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No hay Registros" wizardGridPagingType="Simple" wizardUseSearch="False" wizardAddNbsp="True" gridTotalRecords="False" wizardAddPanels="False" wizardType="Grid" wizardUseInterVariables="False" addTemplatePanel="False" changedCaptionGrid="True" gridExtendedHTML="False" PathID="CalidadCodigoReglas" wizardThemeVersion="3.0">
+		<Grid id="123" secured="False" sourceType="Table" returnValueType="Number" defaultPageSize="10" name="CalidadCodigoReglas" connection="ReportesACDMA" dataSource="CalidadCodigoReglas" pageSizeLimit="100" pageSize="True" wizardCaption="Reglas" wizardTheme="Austere4" wizardThemeApplyTo="Component" wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No hay Registros" wizardGridPagingType="Simple" wizardUseSearch="False" wizardAddNbsp="True" gridTotalRecords="False" wizardAddPanels="False" wizardType="Grid" wizardUseInterVariables="False" addTemplatePanel="False" changedCaptionGrid="True" gridExtendedHTML="False" PathID="CalidadCodigoReglas" wizardThemeVersion="3.0">
 			<Components>
 				<Sorter id="125" visible="True" name="Sorter_PPMC" column="PPMC" wizardCaption="PPMC" wizardTheme="Austere4" wizardSortingType="SimpleDir" wizardControl="PPMC" wizardAddNbsp="False" PathID="CalidadCodigoReglasSorter_PPMC" wizardThemeVersion="3.0">
 					<Components/>

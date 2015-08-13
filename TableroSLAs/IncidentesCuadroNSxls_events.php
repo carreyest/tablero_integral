@@ -259,7 +259,7 @@ function Page_BeforeShow(& $sender)
     $sSLA="";
     
     global $mc_calificacion_incidente;
-    $mc_calificacion_incidente->Visible=(CCGetSession("GrupoValoracion")=="CAPC");
+    $mc_calificacion_incidente->Visible=(CCGetSession("GrupoValoracion")=="CAPC" || CCGetSession("GrupoValoracion")=="SAT");
 // -------------------------
 //End Custom Code
 

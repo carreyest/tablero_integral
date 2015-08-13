@@ -34,56 +34,52 @@
           <tr>
             <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
             <td class="th"><strong>Filtro</strong></td> 
-            <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+            <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
           </tr>
+ 
         </table>
  
         <table class="Record" cellspacing="0" cellpadding="0">
           <!-- BEGIN Error -->
           <tr id="{@error-block}" class="Error">
-            <td colspan="10">{Error}</td>
+            <td colspan="8">{Error}</td> 
           </tr>
-          <!-- END Error -->
+ <!-- END Error -->
           <tr class="Controls">
-            <td class="th"><label for="mc_info_incidentesSearchs_Id_incidente_param">Id Incidente</label></td> 
-            <td><label for="mc_info_incidentesSearchs_Id_incidente_param" style="display: none;">TextBox1</label><input type="text" id="mc_info_incidentesSearchs_Id_incidente_param" value="{s_Id_incidente_param}" name="{s_Id_incidente_param_Name}"></td> 
-            <td>CDS</td> 
+            <td class="th">Incidente:</td> 
+            <td class="th"><label for="mc_info_incidentesSearchs_Id_incidente_param" style="display: none;">TextBox1</label><input type="text" name="{s_Id_incidente_param_Name}" value="{s_Id_incidente_param}" id="mc_info_incidentesSearchs_Id_incidente_param"></td> 
+            <td class="th"><label for="mc_info_incidentesSearchs_Id_incidente_param">Proveedor</label></td> 
             <td>&nbsp; 
               <select id="s_cds_param" name="{s_id_proveedor_Name}">
                 <option selected value="">Select Value</option>
-                {s_id_proveedor_Options}
+ {s_id_proveedor_Options} 
               </select>
  </td> 
-            <td>Mes Medición&nbsp;</td> 
+            <td>Mes </td> 
             <td>&nbsp; <label for="mc_info_incidentesSearchs_MesReporte" style="display: none;">ListBox1</label> 
               <select id="mc_info_incidentesSearchs_MesReporte" name="{s_MesReporte_Name}">
                 <option selected value="">{res:CCS_SelectValue}</option>
-                {s_MesReporte_Options}
+ {s_MesReporte_Options} 
               </select>
  </td> 
-            <td>Año Medición&nbsp;</td> 
+            <td>Año </td> 
             <td>
               <select id="mc_info_incidentesSearchs_AnioReporte" name="{s_AnioReporte_Name}">
                 <option selected value="">Select Value</option>
-                {s_AnioReporte_Options}
+ {s_AnioReporte_Options} 
               </select>
  </td> 
-            <td>Analista&nbsp;</td> 
-            <td><label for="mc_info_incidentesSearchs_analista_param" style="display: none;">ListBox2</label> 
-              <select id="mc_info_incidentesSearchs_analista_param" name="{s_analista_param_Name}">
-                <option selected value="">Seleccionar Valor</option>
-                {s_analista_param_Options}
-              </select>
- &nbsp; </td>
           </tr>
  
           <tr class="Bottom">
-            <td style="TEXT-ALIGN: right" colspan="10">
-              <!-- BEGIN Button Button_DoSearch --><input type="submit" id="mc_info_incidentesSearchButton_DoSearch" class="Button" alt="Search" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+            <td style="TEXT-ALIGN: right" colspan="8">
+              <!-- BEGIN Button Button_DoSearch --><input type="submit" id="mc_info_incidentesSearchButton_DoSearch" class="Button" alt="Search" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td> 
           </tr>
+ 
         </table>
-      </td>
+ </td> 
     </tr>
+ 
   </table>
 </form>
 <!-- END Record mc_info_incidentesSearch -->
@@ -95,10 +91,11 @@
         <tr>
           <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
           <td class="th"><strong>Lista de Incidentes Niveles de Servicio</strong></td> 
-          <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+          <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
         </tr>
+ 
       </table>
-      <strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong> 
+ <strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong> 
       <table class="Grid" cellspacing="0" cellpadding="0">
         <tr class="Caption">
           <th scope="col">
@@ -135,6 +132,7 @@
           <th scope="col">Liga Evidencia</th>
  
           <th scope="col">Observaciones SAT</th>
+ 
         </tr>
  
         <!-- BEGIN Row -->
@@ -145,47 +143,48 @@
             <div align="center">
               {ServicioNegocio} 
             </div>
-            &nbsp;</td> 
+ &nbsp;</td> 
           <td>
             <div align="center">
               {Aplicacion} 
             </div>
-            &nbsp;</td> 
+ &nbsp;</td> 
           <td>&nbsp; 
             <div align="center">
               {Severidad} 
             </div>
-          </td> 
+ </td> 
           <td align="center">&nbsp; 
             <p align="center"><img id="mc_info_incidentesPanel1Cumple_Inc_TiempoAsignacion_{mc_info_incidentes:rowNumber}" alt="" src="{Cumple_Inc_TiempoAsignacion}"></p>
-          </td> 
+ </td> 
           <td>&nbsp; 
             <p align="center"><img id="mc_info_incidentesPanel1Cumple_Inc_TiempoSolucion_{mc_info_incidentes:rowNumber}" alt="" src="{Cumple_Inc_TiempoSolucion}"></p>
-          </td> 
+ </td> 
           <td>&nbsp; 
             <div>
               {Obs_Manuales} 
             </div>
-          </td> 
+ </td> 
           <td><a href="{lkEvidencia_Src}" id="mc_info_incidentesPanel1lkEvidencia_{mc_info_incidentes:rowNumber}">Ver Evidencia</a></td> 
-          <td>{Obs_SAT}</td>
+          <td>{Obs_SAT}</td> 
         </tr>
  <!-- END Panel Panel1 --><!-- END Row -->
         <tr class="NoRecords">
           <td colspan="9"><strong>Número de Registros :</strong>&nbsp; {lblRegistros}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-            <!-- BEGIN ImageLink ImageLink1 --><a href="{ImageLink1}" id="mc_info_incidentesImageLink1_{mc_info_incidentes:rowNumber}"><img style="BORDER-LEFT-WIDTH: 0px; HEIGHT: 28px; BORDER-RIGHT-WIDTH: 0px; WIDTH: 33px; BORDER-BOTTOM-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; border-image: none" alt="{ImageLink1}" src="Images/xls.jpg" width="203" height="202"></a><!-- END ImageLink ImageLink1 --></td>
+            <!-- BEGIN ImageLink ImageLink1 --><a href="{ImageLink1}" id="mc_info_incidentesImageLink1_{mc_info_incidentes:rowNumber}"><img style="BORDER-LEFT-WIDTH: 0px; HEIGHT: 28px; BORDER-RIGHT-WIDTH: 0px; WIDTH: 33px; BORDER-BOTTOM-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; border-image: none" alt="{ImageLink1}" src="Images/xls.jpg" width="203" height="202"></a><!-- END ImageLink ImageLink1 --></td> 
         </tr>
+ 
         <!-- BEGIN NoRecords -->
         <tr class="NoRecords">
-          <td colspan="9">No records</td>
+          <td colspan="9">No records</td> 
         </tr>
-        <!-- END NoRecords -->
+ <!-- END NoRecords -->
         <tr class="Footer">
           <td colspan="9">
             <!-- BEGIN Navigator Navigator --><span class="Navigator">Records per page 
             <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
               <option selected value="">-</option>
- {PageSize_Options}
+ {PageSize_Options} 
             </select>
  
             <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
@@ -195,10 +194,11 @@
             <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/Next.gif"></a> <!-- END Next_On -->
             <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
             <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
-            <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td>
+            <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td> 
         </tr>
+ 
       </table>
-    </td>
+ </td> 
   </tr>
 </table>
 <!-- END Grid mc_info_incidentes --><br>

@@ -15,50 +15,6 @@
 		</Hidden>
 		<Panel id="14" visible="True" generateDiv="False" name="pnlMenu" PathID="HeaderpnlMenu">
 			<Components>
-				<Link id="2" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkUniverso" hrefSource="UniversoLista.ccp" PathID="HeaderpnlMenulkUniverso">
-					<Components/>
-					<Events/>
-					<LinkParameters/>
-					<Attributes/>
-					<Features/>
-				</Link>
-				<Link id="4" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="lkIncidentes" hrefSource="IncidentesLista.ccp" PathID="HeaderpnlMenulkIncidentes">
-					<Components/>
-					<Events/>
-					<LinkParameters>
-						<LinkParameter id="15" sourceType="Expression" format="yyyy-mm-dd" name="s_mes_param" source="CCGetParam(&quot;s_MesReporte&quot;)"/>
-					</LinkParameters>
-					<Attributes/>
-					<Features/>
-				</Link>
-				<Link id="6" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="lkRequerimientos" hrefSource="PPMCsApbLista.ccp" PathID="HeaderpnlMenulkRequerimientos">
-					<Components/>
-					<Events/>
-					<LinkParameters/>
-					<Attributes/>
-					<Features/>
-				</Link>
-				<Link id="16" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="lkPPMCCierre" hrefSource="PPMCsCrbLista.ccp" PathID="HeaderpnlMenulkPPMCCierre">
-					<Components/>
-					<Events/>
-					<LinkParameters/>
-					<Attributes/>
-					<Features/>
-				</Link>
-				<Link id="17" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="Link2" hrefSource="EficienciaPresLista.ccp" PathID="HeaderpnlMenuLink2">
-					<Components/>
-					<Events/>
-					<LinkParameters/>
-					<Attributes/>
-					<Features/>
-				</Link>
-				<Link id="18" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="Link3" hrefSource="SLAsCAPCLista.ccp" PathID="HeaderpnlMenuLink3">
-					<Components/>
-					<Events/>
-					<LinkParameters/>
-					<Attributes/>
-					<Features/>
-				</Link>
 				<Panel id="24" visible="True" generateDiv="False" name="pnlMenuAdmin" wizardInnerHTML="&lt;div style=&quot;FONT-SIZE: 12px; HEIGHT: 40px; WIDTH: 100px; VERTICAL-ALIGN: bottom; COLOR: #ffffff; TEXT-ALIGN: center; BACKGROUND-COLOR: #ffffff&quot;&gt;
               &lt;!-- BEGIN Link lkAdmin --&gt;&lt;a href=&quot;{lkAdmin_Src}&quot; id=&quot;HeaderMyMpnlMenulkAdmin&quot; style=&quot;POSITION: relative; TOP: 20%&quot;&gt;Admin&lt;/a&gt;&lt;!-- END Link lkAdmin --&gt;
             &lt;/div&gt;" PathID="HeaderpnlMenupnlMenuAdmin">
@@ -75,7 +31,89 @@
 					<Attributes/>
 					<Features/>
 				</Panel>
-			</Components>
+				<Panel id="27" visible="True" generateDiv="False" name="Panel3" wizardInnerHTML="&lt;td&gt;
+            &lt;div style=&quot;FONT-SIZE: 12px; HEIGHT: 40px; WIDTH: 100px; VERTICAL-ALIGN: bottom; COLOR: #ffffff; TEXT-ALIGN: center; BACKGROUND-COLOR: #ffffff&quot;&gt;
+              &lt;a href=&quot;{lkUniverso_Src}&quot; id=&quot;HeaderpnlMenulkUniverso&quot; style=&quot;POSITION: relative; TOP: 20%&quot;&gt;Universo de Medición&lt;/a&gt;
+            &lt;/div&gt;
+ &lt;/td&gt; 
+          &lt;td&gt;
+            &lt;div style=&quot;FONT-SIZE: 12px; HEIGHT: 40px; WIDTH: 100px; VERTICAL-ALIGN: bottom; COLOR: #ffffff; TEXT-ALIGN: center; BACKGROUND-COLOR: #ffffff&quot;&gt;
+&lt;a href=&quot;{lkIncidentes_Src}&quot; id=&quot;HeaderpnlMenulkIncidentes&quot; style=&quot;POSITION: relative; TOP: 20%&quot;&gt;Incidentes&lt;/a&gt; 
+            &lt;/div&gt;
+ &lt;/td&gt; 
+          &lt;td&gt;
+            &lt;div style=&quot;FONT-SIZE: 12px; HEIGHT: 40px; WIDTH: 100px; VERTICAL-ALIGN: bottom; COLOR: #ffffff; TEXT-ALIGN: center; BACKGROUND-COLOR: #ffffff&quot;&gt;
+&lt;a href=&quot;{lkRequerimientos_Src}&quot; id=&quot;HeaderpnlMenulkRequerimientos&quot; style=&quot;POSITION: relative; TOP: 20%&quot;&gt;SLAs de Apertura&lt;/a&gt; 
+            &lt;/div&gt;
+ &lt;/td&gt; 
+          &lt;td&gt;
+            &lt;div style=&quot;FONT-SIZE: 12px; HEIGHT: 40px; WIDTH: 100px; VERTICAL-ALIGN: bottom; COLOR: #ffffff; TEXT-ALIGN: center; BACKGROUND-COLOR: #ffffff&quot;&gt;
+&lt;a href=&quot;{lkPPMCCierre_Src}&quot; id=&quot;HeaderpnlMenulkPPMCCierre&quot; style=&quot;POSITION: relative; TOP: 20%&quot;&gt;SLAs de Cierre&lt;/a&gt; 
+            &lt;/div&gt;
+ &lt;/td&gt; 
+          &lt;td&gt;
+            &lt;div style=&quot;FONT-SIZE: 12px; HEIGHT: 40px; WIDTH: 100px; VERTICAL-ALIGN: bottom; COLOR: #ffffff; TEXT-ALIGN: center; BACKGROUND-COLOR: #ffffff&quot;&gt;
+&lt;a href=&quot;{Link2_Src}&quot; id=&quot;HeaderpnlMenuLink2&quot; style=&quot;POSITION: relative; TOP: 20%&quot;&gt;Eficiencia&lt;br&gt;
+              Presupuestal&lt;/a&gt; 
+            &lt;/div&gt;
+ &lt;/td&gt; 
+          &lt;td&gt;
+            &lt;div style=&quot;FONT-SIZE: 12px; HEIGHT: 40px; WIDTH: 100px; VERTICAL-ALIGN: bottom; COLOR: #ffffff; TEXT-ALIGN: center; BACKGROUND-COLOR: #ffffff&quot;&gt;
+              &lt;!-- BEGIN Link Link3 --&gt;&lt;a href=&quot;{Link3_Src}&quot; id=&quot;HeaderpnlMenuLink3&quot; style=&quot;POSITION: relative; TOP: 20%&quot;&gt;SLAs CAPC&lt;/a&gt;&lt;!-- END Link Link3 --&gt;
+            &lt;/div&gt;
+ &lt;/td&gt; " PathID="HeaderpnlMenuPanel3">
+<Components>
+<Link id="2" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkUniverso" hrefSource="UniversoLista.ccp" PathID="HeaderpnlMenuPanel3lkUniverso">
+							<Components/>
+							<Events/>
+							<LinkParameters/>
+							<Attributes/>
+							<Features/>
+
+						</Link>
+<Link id="4" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="lkIncidentes" hrefSource="IncidentesLista.ccp" PathID="HeaderpnlMenuPanel3lkIncidentes">
+							<Components/>
+							<Events/>
+							<LinkParameters>
+								<LinkParameter id="30" sourceType="Expression" format="yyyy-mm-dd" name="s_mes_param" source="CCGetParam(&quot;s_MesReporte&quot;)" old_temp_id="15"/>
+							</LinkParameters>
+							<Attributes/>
+							<Features/>
+						</Link>
+<Link id="6" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="lkRequerimientos" hrefSource="PPMCsApbLista.ccp" PathID="HeaderpnlMenuPanel3lkRequerimientos">
+							<Components/>
+							<Events/>
+							<LinkParameters/>
+							<Attributes/>
+							<Features/>
+						</Link>
+<Link id="16" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="lkPPMCCierre" hrefSource="PPMCsCrbLista.ccp" PathID="HeaderpnlMenuPanel3lkPPMCCierre">
+							<Components/>
+							<Events/>
+							<LinkParameters/>
+							<Attributes/>
+							<Features/>
+						</Link>
+<Link id="17" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="Link2" hrefSource="EficienciaPresLista.ccp" PathID="HeaderpnlMenuPanel3Link2">
+							<Components/>
+							<Events/>
+							<LinkParameters/>
+							<Attributes/>
+							<Features/>
+						</Link>
+<Link id="18" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="Link3" hrefSource="SLAsCAPCLista.ccp" PathID="HeaderpnlMenuPanel3Link3">
+							<Components/>
+							<Events/>
+							<LinkParameters/>
+							<Attributes/>
+							<Features/>
+						</Link>
+</Components>
+<Events/>
+<Attributes/>
+<Features/>
+</Panel>
+</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>
@@ -110,15 +148,15 @@
 					<Features/>
 				</Link>
 				<ImageLink id="25" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" hrefType="Page" urlType="Relative" preserveParameters="GET" name="img_abre_pantalla" PathID="HeaderPanel1img_abre_pantalla" linkProperties="{'textSource':'images/abre_verde.jpg','textSourceDB':'','hrefSource':'MuestraReporte.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':2,'objectType':'linkParameters','0':{'sourceType':'Expression','parameterSource':'fullscreen','parameterName':'fullscreen'},'1':{'sourceType':'Expression','parameterSource':'1','parameterName':'fullscreen'}}}" hrefSource="MuestraReporte.ccp">
-<Components/>
-<Events/>
-<LinkParameters>
-<LinkParameter id="26" sourceType="Expression" name="fullscreen" source="1"/>
-</LinkParameters>
-<Attributes/>
-<Features/>
-</ImageLink>
-</Components>
+					<Components/>
+					<Events/>
+					<LinkParameters>
+						<LinkParameter id="26" sourceType="Expression" name="fullscreen" source="1"/>
+					</LinkParameters>
+					<Attributes/>
+					<Features/>
+				</ImageLink>
+			</Components>
 			<Events/>
 			<Attributes/>
 			<Features/>

@@ -142,7 +142,7 @@ function Page_BeforeShow(& $sender)
 //Custom Code @83-2A29BDB7
 // -------------------------
     global $mc_calificacion_rs_MC;
-    $mc_calificacion_rs_MC->Visible = (CCGetSession("GrupoValoracion")=="CAPC");
+    $mc_calificacion_rs_MC->Visible = (CCGetSession("GrupoValoracion")=="CAPC" || CCGetSession("GrupoValoracion")=="SAT");
 // -------------------------
 //End Custom Code
 

@@ -283,6 +283,8 @@ function Page_BeforeShow(& $sender)
 // -------------------------
     global $mc_info_incidentesSearch;
     $mc_info_incidentesSearch->Visible =(CCGetSession("GrupoValoracion")=="CAPC" || CCGetSession("GrupoValoracion")=="SAT");
+
+
 // -------------------------
 //End Custom Code
 

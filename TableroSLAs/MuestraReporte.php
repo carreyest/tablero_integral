@@ -386,7 +386,7 @@ class clsReportReportesMyM { //ReportesMyM Class @5-846FA4A6
     }
 //End GetErrors Method
 
-//Show Method @5-42947B35
+//Show Method @5-D77D0A22
     function Show()
     {
         $Tpl = CCGetTemplate($this);
@@ -396,6 +396,7 @@ class clsReportReportesMyM { //ReportesMyM Class @5-846FA4A6
         $ShownRecords = 0;
 
         $this->DataSource->Parameters["sesGrupoValoracion"] = CCGetSession("GrupoValoracion", NULL);
+        $this->DataSource->Parameters["sesMyMUserID"] = CCGetSession("MyMUserID", NULL);
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
@@ -588,35 +589,39 @@ class clsReportesMyMDataSource extends clsDBcnDisenio {  //ReportesMyMDataSource
     }
 //End DataSourceClass_Initialize Event
 
-//SetOrder Method @5-A5AC057F
+//SetOrder Method @5-CD886194
     function SetOrder($SorterName, $SorterDirection)
     {
-        $this->Order = "Nombre";
+        $this->Order = "Rep.Nombre";
         $this->Order = CCGetOrder($this->Order, $SorterName, $SorterDirection, 
             "");
     }
 //End SetOrder Method
 
-//Prepare Method @5-7797F16C
+//Prepare Method @5-95E6289C
     function Prepare()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->wp = new clsSQLParameters($this->ErrorBlock);
         $this->wp->AddParameter("1", "sesGrupoValoracion", ccsText, "", "", $this->Parameters["sesGrupoValoracion"], "", false);
+        $this->wp->AddParameter("2", "sesMyMUserID", ccsInteger, "", "", $this->Parameters["sesMyMUserID"], 0, false);
     }
 //End Prepare Method
 
-//Open Method @5-FF51EB96
+//Open Method @5-B92CF654
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->SQL = "SELECT * \n" .
-        "FROM ReportesMyM \n" .
-        "where (grupo <> 'SLAs' or '" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "'  ='SLAs')\n" .
-        "	and activo=1 {SQL_OrderBy}";
+        "FROM ReportesMyM Rep\n" .
+        "left join usuario_reporteMyM  Perm on Perm.id_reporte=Rep.IdReporte\n" .
+        "where (Rep.Grupo <> 'SLAs' or '" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "'  ='SLAs')\n" .
+        "	and Rep.activo=1\n" .
+        "	and Perm.activo=1\n" .
+        "	and Perm.id_usuario=" . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . " {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
-        $this->query(CCBuildSQL($this->SQL, $this->Where, "ReportesMyM.Grupo asc" .  ($this->Order ? ", " . $this->Order: "")));
+        $this->query(CCBuildSQL($this->SQL, $this->Where, "Grupo asc" .  ($this->Order ? ", " . $this->Order: "")));
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteSelect", $this->Parent);
     }
 //End Open Method

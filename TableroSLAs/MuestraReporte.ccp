@@ -12,10 +12,14 @@
 			<Features/>
 		</Label>
 		<Report id="5" secured="False" enablePrint="False" showMode="Web" sourceType="SQL" returnValueType="Number" linesPerWebPage="50" linesPerPhysicalPage="10" name="ReportesMyM" connection="cnDisenio" dataSource="SELECT * 
-FROM ReportesMyM 
-where (grupo &lt;&gt; 'SLAs' or '{GrupoValoracion}'  ='SLAs')
-	and activo=1
-ORDER BY Nombre" pageSizeLimit="100" wizardCaption="Reportes" changedCaptionReport="True" wizardLayoutType="GroupAbove" wizardGridPaging="Centered" wizardHideDetail="False" wizardPercentForSums="False" wizardEnablePrintMode="False" wizardReportSeparator="False" wizardReportAddTotalRecords="False" wizardReportAddPageNumbers="False" wizardReportAddNbsp="False" wizardReportAddDateTime="False" wizardReportDateTimeAs="CurrentDate" wizardReportAddRowNumber="False" wizardReportRowNumberResetAt="Report" wizardUseSearch="False" wizardNoRecords="No hay registros" wizardUseInterVariables="False" wizardThemeApplyTo="Page" reportAddTemplatePanel="False" editableComponentTypeString="Report">
+FROM ReportesMyM Rep
+left join usuario_reporteMyM  Perm on Perm.id_reporte=Rep.IdReporte
+where (Rep.Grupo &lt;&gt; 'SLAs' or '{GrupoValoracion}'  ='SLAs')
+	and Rep.activo=1
+	and Perm.activo=1
+	and Perm.id_usuario={MyMUserID}
+ORDER BY Rep.Nombre
+" pageSizeLimit="100" wizardCaption="Reportes" changedCaptionReport="True" wizardLayoutType="GroupAbove" wizardGridPaging="Centered" wizardHideDetail="False" wizardPercentForSums="False" wizardEnablePrintMode="False" wizardReportSeparator="False" wizardReportAddTotalRecords="False" wizardReportAddPageNumbers="False" wizardReportAddNbsp="False" wizardReportAddDateTime="False" wizardReportDateTimeAs="CurrentDate" wizardReportAddRowNumber="False" wizardReportRowNumberResetAt="Report" wizardUseSearch="False" wizardNoRecords="No hay registros" wizardUseInterVariables="False" wizardThemeApplyTo="Page" reportAddTemplatePanel="False" editableComponentTypeString="Report">
 			<Components>
 				<Section id="7" visible="True" lines="0" name="Report_Header" wizardSectionType="ReportHeader">
 					<Components/>
@@ -126,8 +130,9 @@ ORDER BY Nombre" pageSizeLimit="100" wizardCaption="Reportes" changedCaptionRepo
 			</PKFields>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="20" dataType="Text" designDefaultValue="SLAs" parameterSource="GrupoValoracion" parameterType="Session" variable="GrupoValoracion"/>
-			</SQLParameters>
+				<SQLParameter id="30" dataType="Text" designDefaultValue="SLAs" parameterSource="GrupoValoracion" parameterType="Session" variable="GrupoValoracion"/>
+<SQLParameter id="31" dataType="Integer" defaultValue="0" designDefaultValue="2" parameterSource="MyMUserID" parameterType="Session" variable="MyMUserID"/>
+</SQLParameters>
 			<ReportGroups>
 				<ReportGroup id="9" name="grupo" field="Grupo" sqlField="ReportesMyM.Grupo" sortOrder="asc"/>
 			</ReportGroups>

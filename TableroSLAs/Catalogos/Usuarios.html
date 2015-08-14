@@ -4,8 +4,6 @@
 <meta http-equiv="content-type" content="text/html; charset=windows-1252">
 <title>Usuarios</title>
 <meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
-<link rel="stylesheet" type="text/css" href="../Styles/{CCS_Style}/Style_doctype.css">
-<link rel="stylesheet" type="text/css" href="../Styles/{CCS_Style}/jquery-ui.css">
 <script language="JavaScript" type="text/javascript">
 //Begin CCS script
 //Include Common JSFunctions @1-6ADB6CED
@@ -22,20 +20,22 @@
 
 //End CCS script
 </script>
+<link rel="stylesheet" type="text/css" href="../Styles/Austere4/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="../Styles/Austere4/jquery-ui.css">
 </head>
 <body>
 <p>{Header}</p>
 <p></p>
-<table width="60%">
+<table cellspacing="25" width="70%">
   <tr>
     <td>&nbsp;</td> 
     <td>&nbsp; 
       <!-- BEGIN Record mc_c_usuariosSearch -->
       <form id="mc_c_usuariosSearch" method="post" name="{HTMLFormName}" action="{Action}">
-        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="top">
-              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Buscar</strong></td> 
@@ -51,7 +51,7 @@
                 <!-- END Error -->
                 <tr class="Controls">
                   <td class="th"><label for="mc_c_usuariosSearchs_Usuario">Usuario</label></td> 
-                  <td><input type="text" id="mc_c_usuariosSearchs_Usuario" maxlength="15" size="15" value="{s_Usuario}" name="{s_Usuario_Name}"></td> 
+                  <td><input type="text" id="mc_c_usuariosSearchs_Usuario" value="{s_Usuario}" maxlength="15" size="15" name="{s_Usuario_Name}"></td> 
                   <td><label for="mc_c_usuariosSearchs_Grupo">Grupo</label>&nbsp;</td> 
                   <td>
                     <select id="mc_c_usuariosSearchs_Grupo" name="{s_Grupo_Name}">
@@ -63,7 +63,7 @@
  
                 <tr class="Bottom">
                   <td style="TEXT-ALIGN: right" colspan="4">
-                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="mc_c_usuariosSearchButton_DoSearch" class="Button" alt="Buscar" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="mc_c_usuariosSearchButton_DoSearch" class="Button" value="Buscar" alt="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                 </tr>
               </table>
             </td>
@@ -71,17 +71,19 @@
         </table>
       </form>
       <!-- END Record mc_c_usuariosSearch --></td> 
+    <td>&nbsp;</td> 
     <td>&nbsp;</td>
   </tr>
  
   <tr>
     <td>&nbsp;</td> 
-    <td style="VERTICAL-ALIGN: top">&nbsp; 
+    <td style="VERTICAL-ALIGN: top">
+      <!--&nbsp;-->
       <!-- BEGIN Grid mc_c_usuarios -->
-      <table id="mc_c_usuarios" class="MainTable" cellspacing="0" cellpadding="0" border="0">
+      <table id="mc_c_usuarios" class="MainTable" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td valign="top">
-            <table class="Header" cellspacing="0" cellpadding="0" border="0">
+            <table class="Header" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td class="HeaderLeft"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                 <td class="th"><strong>Lista de Usuarios </strong></td> 
@@ -154,13 +156,13 @@
         </tr>
       </table>
       <!-- END Grid mc_c_usuarios --></td> 
-    <td>
+    <td style="VERTICAL-ALIGN: top">
       <!-- BEGIN Record mc_c_usuarios1 -->
       <form id="mc_c_usuarios1" method="post" name="{HTMLFormName}" action="{Action}">
-        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="top">
-              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Editar Usuario</strong></td> 
@@ -181,12 +183,12 @@
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_c_usuarios1Usuario">Usuario</label></td> 
-                  <td><input type="text" id="mc_c_usuarios1Usuario" maxlength="15" size="15" value="{Usuario}" name="{Usuario_Name}"></td>
+                  <td><input type="text" id="mc_c_usuarios1Usuario" value="{Usuario}" maxlength="15" size="15" name="{Usuario_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_c_usuarios1Clave">Clave</label></td> 
-                  <td><input type="password" id="mc_c_usuarios1Clave" maxlength="15" size="15" value="{Clave}" name="{Clave_Name}"></td>
+                  <td><input type="password" id="mc_c_usuarios1Clave" value="{Clave}" maxlength="15" size="15" name="{Clave_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
@@ -236,21 +238,125 @@
  
                 <tr class="Bottom">
                   <td style="TEXT-ALIGN: right" colspan="2">
-                    <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_c_usuarios1Button_Insert" class="Button" alt="Agregar" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
-                    <!-- BEGIN Button Button_Update --><input type="submit" id="mc_c_usuarios1Button_Update" class="Button" alt="Enviar" value="Enviar" name="{Button_Name}"><!-- END Button Button_Update --><input type="hidden" id="mc_c_usuarios1Clave_Shadow" value="{Clave_Shadow}" name="{Clave_Shadow_Name}"></td>
+                    <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_c_usuarios1Button_Insert" class="Button" value="Agregar" alt="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input type="submit" id="mc_c_usuarios1Button_Update" class="Button" value="Enviar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Update --><input type="hidden" id="mc_c_usuarios1Clave_Shadow" value="{Clave_Shadow}" name="{Clave_Shadow_Name}"></td>
                 </tr>
               </table>
             </td>
           </tr>
         </table>
       </form>
-      <!-- END Record mc_c_usuarios1 -->&nbsp;</td>
+      <!-- END Record mc_c_usuarios1 -->&nbsp;</td> 
+    <td style="VERTICAL-ALIGN: top">
+      <!--<br>-->
+      <!-- BEGIN EditableGrid usuario_reporteMyM -->
+      <form id="usuario_reporteMyM" method="post" name="{HTMLFormName}" action="{Action}">
+        <input type="hidden" value="{FormState}" name="FormState">{FormScript} 
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/Austere4/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Permisos en reportes para: {Nombre}</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/Austere4/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table style="WIDTH: 100%" class="Grid" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="3">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Caption">
+                  <!--<th scope="col">-->
+                  <!-- BEGIN Sorter Sorter_id_registro -->
+                  <!--<span class="Sorter">Id -->
+                  <!-- BEGIN Asc_On -->
+                  <!--<img alt="Ascendente" src="../Styles/Austere4/Images/Asc.gif">-->
+                  <!-- END Asc_On -->
+                  <!-- BEGIN Asc_Off -->
+                  <!--<a href="{Asc_URL}" id="usuario_reporteMyMSorter_id_registro"><img alt="Ascendente" src="../Styles/Austere4/Images/AscOff.gif"></a>-->
+                  <!-- END Asc_Off -->
+                  <!-- BEGIN Desc_On -->
+                  <!--<img alt="Descendente" src="../Styles/Austere4/Images/Desc.gif">-->
+                  <!-- END Desc_On -->
+                  <!-- BEGIN Desc_Off -->
+                  <!--<a href="{Desc_URL}" id="usuario_reporteMyMSorter_id_registro"><img alt="Descendente" src="../Styles/Austere4/Images/DescOff.gif"></a>-->
+                  <!-- END Desc_Off -->
+                  <!--</span>-->
+                  <!-- END Sorter Sorter_id_registro -->
+                  <!--</th>-->
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_nombre_reporte --><span class="Sorter">Nombre Reporte 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="../Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Asc_Off --><a href="{Asc_URL}" id="usuario_reporteMyMSorter_nombre_reporte"><img alt="Ascendente" src="../Styles/Austere4/Images/AscOff.gif"></a><!-- END Asc_Off -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="../Styles/Austere4/Images/Desc.gif"><!-- END Desc_On -->
+                  <!-- BEGIN Desc_Off --><a href="{Desc_URL}" id="usuario_reporteMyMSorter_nombre_reporte"><img alt="Descendente" src="../Styles/Austere4/Images/DescOff.gif"></a><!-- END Desc_Off --></span><!-- END Sorter Sorter_nombre_reporte --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_activo --><span class="Sorter">Activo 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="../Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Asc_Off --><a href="{Asc_URL}" id="usuario_reporteMyMSorter_activo"><img alt="Ascendente" src="../Styles/Austere4/Images/AscOff.gif"></a><!-- END Asc_Off -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="../Styles/Austere4/Images/Desc.gif"><!-- END Desc_On -->
+                  <!-- BEGIN Desc_Off --><a href="{Desc_URL}" id="usuario_reporteMyMSorter_activo"><img alt="Descendente" src="../Styles/Austere4/Images/DescOff.gif"></a><!-- END Desc_Off --></span><!-- END Sorter Sorter_activo --></th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <!-- BEGIN RowError -->
+                <tr class="Error">
+                  <td colspan="3">{Error}</td>
+                </tr>
+                <!-- END RowError -->
+                <tr class="Row">
+                  <!--<td>{id_registro}</td>-->
+                  <td>{nombre_reporte}</td> 
+                  <td><label for="usuario_reporteMyMactivo_{usuario_reporteMyM:rowNumber}" style="display: none;">Activo</label><input type="checkbox" id="usuario_reporteMyMactivo_{usuario_reporteMyM:rowNumber}" value="1" name="{activo_Name}" {activo}></td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="3">No hay registros</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td style="TEXT-ALIGN: right" colspan="3">
+                    <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+                    <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+                      <option selected value="">-</option>
+ {PageSize_Options}
+                    </select>
+ 
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/Austere4/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/Austere4/Images/FirstOff.gif"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/Austere4/Images/Prev.gif"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/Austere4/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/Austere4/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/Austere4/Images/NextOff.gif"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/Austere4/Images/Last.gif"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/Austere4/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->
+                    <!-- BEGIN Button Button_Submit --><input type="submit" id="usuario_reporteMyMButton_Submit" class="Button" value="Enviar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Submit --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END EditableGrid usuario_reporteMyM --><br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </td>
   </tr>
  
   <tr>
     <td>&nbsp;</td> 
     <td>&nbsp;</td> 
-    <td>&nbsp;</td>
+    <td>&nbsp;</td> 
+    <td></td>
   </tr>
 </table>
 <p></p>

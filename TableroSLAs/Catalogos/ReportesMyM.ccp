@@ -136,71 +136,82 @@
 		</Record>
 		<Record id="26" sourceType="Table" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="ReportesMyM2" connection="cnDisenio" dataSource="ReportesMyM" errorSummator="Error" allowCancel="True" recordDeleteConfirmation="True" buttonsType="button" wizardRecordKey="IdReporte" encryptPasswordField="False" wizardUseInterVariables="False" pkIsAutoincrement="True" wizardCaption="Agregar/Editar Reporte" wizardThemeApplyTo="Page" wizardFormMethod="post" wizardType="GridRecord" changedCaptionRecord="True" recordDirection="Vertical" recordAddTemplatePanel="False" PathID="ReportesMyM2" composition="8">
 			<Components>
-				<Button id="28" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Agregar" PathID="ReportesMyM2Button_Insert">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Button>
-				<Button id="29" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Update" operation="Update" wizardCaption="Enviar" PathID="ReportesMyM2Button_Update">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Button>
-				<Button id="30" urlType="Relative" enableValidation="False" isDefault="False" name="Button_Cancel" operation="Cancel" wizardCaption="Cancelar" PathID="ReportesMyM2Button_Cancel">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Button>
 				<TextBox id="32" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Nombre" fieldSource="Nombre" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Nombre" caption="Nombre" required="False" unique="False" wizardSize="50" wizardMaxLength="75" PathID="ReportesMyM2Nombre">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="33" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Descripcion" fieldSource="Descripcion" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Descripcion" caption="Descripcion" required="False" unique="False" wizardSize="50" wizardMaxLength="250" PathID="ReportesMyM2Descripcion">
+<TextBox id="33" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Descripcion" fieldSource="Descripcion" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Descripcion" caption="Descripcion" required="False" unique="False" wizardSize="50" wizardMaxLength="250" PathID="ReportesMyM2Descripcion">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="34" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="NombreRDL" fieldSource="NombreRDL" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Nombre RDL" caption="Nombre RDL" required="False" unique="False" wizardSize="50" wizardMaxLength="125" PathID="ReportesMyM2NombreRDL">
+<TextBox id="37" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="grupo" PathID="ReportesMyM2grupo" fieldSource="Grupo">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="37" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="grupo" PathID="ReportesMyM2grupo" fieldSource="Grupo">
+<TextBox id="34" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="NombreRDL" fieldSource="NombreRDL" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Nombre RDL" caption="Nombre RDL" required="False" unique="False" wizardSize="50" wizardMaxLength="125" PathID="ReportesMyM2NombreRDL">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<CheckBox id="45" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" defaultValue="Checked" name="CheckBox1" PathID="ReportesMyM2CheckBox1" fieldSource="activo" checkedValue="1" uncheckedValue="0">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</CheckBox>
+<CheckBox id="45" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" defaultValue="Checked" name="CheckBox1" PathID="ReportesMyM2CheckBox1" fieldSource="activo" checkedValue="1" uncheckedValue="0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</CheckBox>
+<Button id="28" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Agregar" PathID="ReportesMyM2Button_Insert">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+<Button id="29" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Update" operation="Update" wizardCaption="Enviar" PathID="ReportesMyM2Button_Update">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+<Button id="30" urlType="Relative" enableValidation="False" isDefault="False" name="Button_Cancel" operation="Cancel" wizardCaption="Cancelar" PathID="ReportesMyM2Button_Cancel">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
 </Components>
-			<Events/>
+			<Events>
+				<Event name="AfterExecuteInsert" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="50"/>
+					</Actions>
+				</Event>
+				<Event name="AfterExecuteUpdate" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="51"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters>
 				<TableParameter id="47" conditionType="Parameter" useIsNull="False" dataType="Integer" field="IdReporte" logicOperator="And" orderNumber="1" parameterSource="IdReporte" parameterType="URL" searchConditionType="Equal"/>
-</TableParameters>
+			</TableParameters>
 			<SPParameters/>
 			<SQLParameters/>
 			<JoinTables>
 				<JoinTable id="46" posHeight="136" posLeft="10" posTop="10" posWidth="95" tableName="ReportesMyM"/>
-</JoinTables>
+			</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="48" fieldName="*"/>
-</Fields>
+			</Fields>
 			<PKFields>
 				<PKField id="49" dataType="Integer" fieldName="IdReporte" tableName="ReportesMyM"/>
-</PKFields>
+			</PKFields>
 			<ISPParameters/>
 			<ISQLParameters/>
 			<IFormElements/>

@@ -541,7 +541,7 @@ class clsRecordmc_c_usuarios1 { //mc_c_usuarios1 Class @28-F7AA8C5C
     // Class variables
 //End Variables
 
-//Class_Initialize Event @28-E6CAE36D
+//Class_Initialize Event @28-3D721DD0
     function clsRecordmc_c_usuarios1($RelativePath, & $Parent)
     {
 
@@ -581,7 +581,7 @@ class clsRecordmc_c_usuarios1 { //mc_c_usuarios1 Class @28-F7AA8C5C
             $this->Nivel->Values = array(array("1", "Visitante"), array("2", "Capturista"), array("3", "Analista"), array("4", "Supervisor"), array("5", "Administrador"));
             $this->Grupo = new clsControl(ccsListBox, "Grupo", "Grupo", ccsText, "", CCGetRequestParam("Grupo", $Method, NULL), $this);
             $this->Grupo->DSType = dsListOfValues;
-            $this->Grupo->Values = array(array("SLAs", "SLAs"), array("CAPC", "CAPC"), array("CDS", "CDS"), array("MyM", "MyM"), array("SAT", "SAT"));
+            $this->Grupo->Values = array(array("SLAs", "SLAs"), array("CAPC", "CAPC"), array("CDS", "CDS"), array("MyM", "MyM"));
             $this->Clave_Shadow = new clsControl(ccsHidden, "Clave_Shadow", "Clave_Shadow", ccsText, "", CCGetRequestParam("Clave_Shadow", $Method, NULL), $this);
             $this->UsrSharepoint = new clsControl(ccsTextBox, "UsrSharepoint", "UsrSharepoint", ccsText, "", CCGetRequestParam("UsrSharepoint", $Method, NULL), $this);
             $this->PwdSharePoint = new clsControl(ccsTextBox, "PwdSharePoint", "PwdSharePoint", ccsText, "", CCGetRequestParam("PwdSharePoint", $Method, NULL), $this);
@@ -1027,6 +1027,594 @@ class clsmc_c_usuarios1DataSource extends clsDBcnDisenio {  //mc_c_usuarios1Data
 
 } //End mc_c_usuarios1DataSource Class @28-FCB6E20C
 
+class clsEditableGridusuario_reporteMyM { //usuario_reporteMyM Class @96-01508201
+
+//Variables @96-B659A082
+
+    // Public variables
+    public $ComponentType = "EditableGrid";
+    public $ComponentName;
+    public $HTMLFormAction;
+    public $PressedButton;
+    public $Errors;
+    public $ErrorBlock;
+    public $FormSubmitted;
+    public $FormParameters;
+    public $FormState;
+    public $FormEnctype;
+    public $CachedColumns;
+    public $TotalRows;
+    public $UpdatedRows;
+    public $EmptyRows;
+    public $Visible;
+    public $RowsErrors;
+    public $ds;
+    public $DataSource;
+    public $PageSize;
+    public $IsEmpty;
+    public $SorterName = "";
+    public $SorterDirection = "";
+    public $PageNumber;
+    public $ControlsVisible = array();
+
+    public $CCSEvents = "";
+    public $CCSEventResult;
+
+    public $RelativePath = "";
+
+    public $InsertAllowed = false;
+    public $UpdateAllowed = false;
+    public $DeleteAllowed = false;
+    public $ReadAllowed   = false;
+    public $EditMode;
+    public $ValidatingControls;
+    public $Controls;
+    public $ControlsErrors;
+    public $RowNumber;
+    public $Attributes;
+
+    // Class variables
+    public $Sorter_id_registro;
+    public $Sorter_nombre_reporte;
+    public $Sorter_activo;
+//End Variables
+
+//Class_Initialize Event @96-6F7688CA
+    function clsEditableGridusuario_reporteMyM($RelativePath, & $Parent)
+    {
+
+        global $FileName;
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->Visible = true;
+        $this->Parent = & $Parent;
+        $this->RelativePath = $RelativePath;
+        $this->Errors = new clsErrors();
+        $this->ErrorBlock = "EditableGrid usuario_reporteMyM/Error";
+        $this->ControlsErrors = array();
+        $this->ComponentName = "usuario_reporteMyM";
+        $this->Attributes = new clsAttributes($this->ComponentName . ":");
+        $this->CachedColumns["id_registro"][0] = "id_registro";
+        $this->DataSource = new clsusuario_reporteMyMDataSource($this);
+        $this->ds = & $this->DataSource;
+        $this->PageSize = CCGetParam($this->ComponentName . "PageSize", "");
+        if(!is_numeric($this->PageSize) || !strlen($this->PageSize))
+            $this->PageSize = 40;
+        else
+            $this->PageSize = intval($this->PageSize);
+        if ($this->PageSize > 100)
+            $this->PageSize = 100;
+        if($this->PageSize == 0)
+            $this->Errors->addError("<p>Form: EditableGrid " . $this->ComponentName . "<BR>Error: (CCS06) Invalid page size.</p>");
+        $this->PageNumber = intval(CCGetParam($this->ComponentName . "Page", 1));
+        if ($this->PageNumber <= 0) $this->PageNumber = 1;
+
+        $this->EmptyRows = 0;
+        $this->UpdateAllowed = true;
+        $this->ReadAllowed = true;
+        if(!$this->Visible) return;
+
+        $CCSForm = CCGetFromGet("ccsForm", "");
+        $this->FormEnctype = "application/x-www-form-urlencoded";
+        $this->FormSubmitted = ($CCSForm == $this->ComponentName);
+        if($this->FormSubmitted) {
+            $this->FormState = CCGetFromPost("FormState", "");
+            $this->SetFormState($this->FormState);
+        } else {
+            $this->FormState = "";
+        }
+        $Method = $this->FormSubmitted ? ccsPost : ccsGet;
+
+        $this->SorterName = CCGetParam("usuario_reporteMyMOrder", "");
+        $this->SorterDirection = CCGetParam("usuario_reporteMyMDir", "");
+
+        $this->Sorter_id_registro = new clsSorter($this->ComponentName, "Sorter_id_registro", $FileName, $this);
+        $this->Sorter_nombre_reporte = new clsSorter($this->ComponentName, "Sorter_nombre_reporte", $FileName, $this);
+        $this->Sorter_activo = new clsSorter($this->ComponentName, "Sorter_activo", $FileName, $this);
+        $this->id_registro = new clsControl(ccsLabel, "id_registro", "id_registro", ccsInteger, "", NULL, $this);
+        $this->nombre_reporte = new clsControl(ccsLabel, "nombre_reporte", "nombre_reporte", ccsText, "", NULL, $this);
+        $this->activo = new clsControl(ccsCheckBox, "activo", "activo", ccsInteger, "", NULL, $this);
+        $this->activo->CheckedValue = $this->activo->GetParsedValue(1);
+        $this->activo->UncheckedValue = $this->activo->GetParsedValue(0);
+        $this->Navigator = new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpSimple, $this);
+        $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
+        $this->Button_Submit = new clsButton("Button_Submit", $Method, $this);
+    }
+//End Class_Initialize Event
+
+//Initialize Method @96-2FFAA5AD
+    function Initialize()
+    {
+        if(!$this->Visible) return;
+
+        $this->DataSource->PageSize = & $this->PageSize;
+        $this->DataSource->AbsolutePage = & $this->PageNumber;
+        $this->DataSource->SetOrder($this->SorterName, $this->SorterDirection);
+
+        $this->DataSource->Parameters["urlId"] = CCGetFromGet("Id", NULL);
+    }
+//End Initialize Method
+
+//GetFormParameters Method @96-88A2A893
+    function GetFormParameters()
+    {
+        for($RowNumber = 1; $RowNumber <= $this->TotalRows; $RowNumber++)
+        {
+            $this->FormParameters["activo"][$RowNumber] = CCGetFromPost("activo_" . $RowNumber, NULL);
+        }
+    }
+//End GetFormParameters Method
+
+//Validate Method @96-CAEDD373
+    function Validate()
+    {
+        $Validation = true;
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
+
+        for($this->RowNumber = 1; $this->RowNumber <= $this->TotalRows; $this->RowNumber++)
+        {
+            $this->DataSource->CachedColumns["id_registro"] = $this->CachedColumns["id_registro"][$this->RowNumber];
+            $this->DataSource->CurrentRow = $this->RowNumber;
+            $this->activo->SetText($this->FormParameters["activo"][$this->RowNumber], $this->RowNumber);
+            if ($this->UpdatedRows >= $this->RowNumber) {
+                $Validation = ($this->ValidateRow($this->RowNumber) && $Validation);
+            }
+            else if($this->CheckInsert())
+            {
+                $Validation = ($this->ValidateRow() && $Validation);
+            }
+        }
+        return (($this->Errors->Count() == 0) && $Validation);
+    }
+//End Validate Method
+
+//ValidateRow Method @96-D587E205
+    function ValidateRow()
+    {
+        global $CCSLocales;
+        $this->activo->Validate();
+        $this->RowErrors = new clsErrors();
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidateRow", $this);
+        $errors = "";
+        $errors = ComposeStrings($errors, $this->activo->Errors->ToString());
+        $this->activo->Errors->Clear();
+        $errors = ComposeStrings($errors, $this->RowErrors->ToString());
+        $this->RowsErrors[$this->RowNumber] = $errors;
+        return $errors != "" ? 0 : 1;
+    }
+//End ValidateRow Method
+
+//CheckInsert Method @96-610FBF7B
+    function CheckInsert()
+    {
+        $filed = false;
+        $filed = ($filed || (is_array($this->FormParameters["activo"][$this->RowNumber]) && count($this->FormParameters["activo"][$this->RowNumber])) || strlen($this->FormParameters["activo"][$this->RowNumber]));
+        return $filed;
+    }
+//End CheckInsert Method
+
+//CheckErrors Method @96-F5A3B433
+    function CheckErrors()
+    {
+        $errors = false;
+        $errors = ($errors || $this->Errors->Count());
+        $errors = ($errors || $this->DataSource->Errors->Count());
+        return $errors;
+    }
+//End CheckErrors Method
+
+//Operation Method @96-909F269B
+    function Operation()
+    {
+        if(!$this->Visible)
+            return;
+
+        global $Redirect;
+        global $FileName;
+
+        $this->DataSource->Prepare();
+        if(!$this->FormSubmitted)
+            return;
+
+        $this->GetFormParameters();
+        $this->PressedButton = "Button_Submit";
+        if($this->Button_Submit->Pressed) {
+            $this->PressedButton = "Button_Submit";
+        }
+
+        $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
+        if($this->PressedButton == "Button_Submit") {
+            if(!CCGetEvent($this->Button_Submit->CCSEvents, "OnClick", $this->Button_Submit) || !$this->UpdateGrid()) {
+                $Redirect = "";
+            }
+        } else {
+            $Redirect = "";
+        }
+        if ($Redirect)
+            $this->DataSource->close();
+    }
+//End Operation Method
+
+//UpdateGrid Method @96-C973670F
+    function UpdateGrid()
+    {
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSubmit", $this);
+        if(!$this->Validate()) return;
+        $Validation = true;
+        for($this->RowNumber = 1; $this->RowNumber <= $this->TotalRows; $this->RowNumber++)
+        {
+            $this->DataSource->CachedColumns["id_registro"] = $this->CachedColumns["id_registro"][$this->RowNumber];
+            $this->DataSource->CurrentRow = $this->RowNumber;
+            $this->activo->SetText($this->FormParameters["activo"][$this->RowNumber], $this->RowNumber);
+            if ($this->UpdatedRows >= $this->RowNumber) {
+                if($this->UpdateAllowed) { $Validation = ($this->UpdateRow() && $Validation); }
+            }
+            else if($this->CheckInsert() && $this->InsertAllowed)
+            {
+                $Validation = ($Validation && $this->InsertRow());
+            }
+        }
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterSubmit", $this);
+        if ($this->Errors->Count() == 0 && $Validation){
+            $this->DataSource->close();
+            return true;
+        }
+        return false;
+    }
+//End UpdateGrid Method
+
+//UpdateRow Method @96-CF30C61E
+    function UpdateRow()
+    {
+        if(!$this->UpdateAllowed) return false;
+        $this->DataSource->id_registro->SetValue($this->id_registro->GetValue(true));
+        $this->DataSource->nombre_reporte->SetValue($this->nombre_reporte->GetValue(true));
+        $this->DataSource->activo->SetValue($this->activo->GetValue(true));
+        $this->DataSource->Update();
+        $errors = "";
+        if($this->DataSource->Errors->Count() > 0) {
+            $errors = $this->DataSource->Errors->ToString();
+            $this->RowsErrors[$this->RowNumber] = $errors;
+            $this->DataSource->Errors->Clear();
+        }
+        return (($this->Errors->Count() == 0) && !strlen($errors));
+    }
+//End UpdateRow Method
+
+//FormScript Method @96-59800DB5
+    function FormScript($TotalRows)
+    {
+        $script = "";
+        return $script;
+    }
+//End FormScript Method
+
+//SetFormState Method @96-A1D2B0C1
+    function SetFormState($FormState)
+    {
+        if(strlen($FormState)) {
+            $FormState = str_replace("\\\\", "\\" . ord("\\"), $FormState);
+            $FormState = str_replace("\\;", "\\" . ord(";"), $FormState);
+            $pieces = explode(";", $FormState);
+            $this->UpdatedRows = $pieces[0];
+            $this->EmptyRows   = $pieces[1];
+            $this->TotalRows = $this->UpdatedRows + $this->EmptyRows;
+            $RowNumber = 0;
+            for($i = 2; $i < sizeof($pieces); $i = $i + 1)  {
+                $piece = $pieces[$i + 0];
+                $piece = str_replace("\\" . ord("\\"), "\\", $piece);
+                $piece = str_replace("\\" . ord(";"), ";", $piece);
+                $this->CachedColumns["id_registro"][$RowNumber] = $piece;
+                $RowNumber++;
+            }
+
+            if(!$RowNumber) { $RowNumber = 1; }
+            for($i = 1; $i <= $this->EmptyRows; $i++) {
+                $this->CachedColumns["id_registro"][$RowNumber] = "";
+                $RowNumber++;
+            }
+        }
+    }
+//End SetFormState Method
+
+//GetFormState Method @96-BADC76DD
+    function GetFormState($NonEmptyRows)
+    {
+        if(!$this->FormSubmitted) {
+            $this->FormState  = $NonEmptyRows . ";";
+            $this->FormState .= $this->InsertAllowed ? $this->EmptyRows : "0";
+            if($NonEmptyRows) {
+                for($i = 0; $i <= $NonEmptyRows; $i++) {
+                    $this->FormState .= ";" . str_replace(";", "\\;", str_replace("\\", "\\\\", $this->CachedColumns["id_registro"][$i]));
+                }
+            }
+        }
+        return $this->FormState;
+    }
+//End GetFormState Method
+
+//Show Method @96-3B267080
+    function Show()
+    {
+        $Tpl = CCGetTemplate($this);
+        global $FileName;
+        global $CCSLocales;
+        global $CCSUseAmp;
+        $Error = "";
+
+        if(!$this->Visible) { return; }
+
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
+
+
+        $this->DataSource->open();
+        $is_next_record = ($this->ReadAllowed && $this->DataSource->next_record());
+        $this->IsEmpty = ! $is_next_record;
+
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShow", $this);
+        if(!$this->Visible) { return; }
+
+        $this->Attributes->Show();
+        $this->Button_Submit->Visible = $this->Button_Submit->Visible && ($this->InsertAllowed || $this->UpdateAllowed || $this->DeleteAllowed);
+        $ParentPath = $Tpl->block_path;
+        $EditableGridPath = $ParentPath . "/EditableGrid " . $this->ComponentName;
+        $EditableGridRowPath = $ParentPath . "/EditableGrid " . $this->ComponentName . "/Row";
+        $Tpl->block_path = $EditableGridRowPath;
+        $this->RowNumber = 0;
+        $NonEmptyRows = 0;
+        $EmptyRowsLeft = $this->EmptyRows;
+        $this->ControlsVisible["id_registro"] = $this->id_registro->Visible;
+        $this->ControlsVisible["nombre_reporte"] = $this->nombre_reporte->Visible;
+        $this->ControlsVisible["activo"] = $this->activo->Visible;
+        if ($is_next_record || ($EmptyRowsLeft && $this->InsertAllowed)) {
+            do {
+                $this->RowNumber++;
+                if($is_next_record) {
+                    $NonEmptyRows++;
+                    $this->DataSource->SetValues();
+                }
+                if (!($this->FormSubmitted) && $is_next_record) {
+                    $this->CachedColumns["id_registro"][$this->RowNumber] = $this->DataSource->CachedColumns["id_registro"];
+                    $this->id_registro->SetValue($this->DataSource->id_registro->GetValue());
+                    $this->nombre_reporte->SetValue($this->DataSource->nombre_reporte->GetValue());
+                    $this->activo->SetValue($this->DataSource->activo->GetValue());
+                } elseif ($this->FormSubmitted && $is_next_record) {
+                    $this->id_registro->SetText("");
+                    $this->nombre_reporte->SetText("");
+                    $this->id_registro->SetValue($this->DataSource->id_registro->GetValue());
+                    $this->nombre_reporte->SetValue($this->DataSource->nombre_reporte->GetValue());
+                    $this->activo->SetText($this->FormParameters["activo"][$this->RowNumber], $this->RowNumber);
+                } elseif (!$this->FormSubmitted) {
+                    $this->CachedColumns["id_registro"][$this->RowNumber] = "";
+                    $this->id_registro->SetText("");
+                    $this->nombre_reporte->SetText("");
+                    $this->activo->SetValue(false);
+                } else {
+                    $this->id_registro->SetText("");
+                    $this->nombre_reporte->SetText("");
+                    $this->activo->SetText($this->FormParameters["activo"][$this->RowNumber], $this->RowNumber);
+                }
+                $this->Attributes->SetValue("rowNumber", $this->RowNumber);
+                $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
+                $this->Attributes->Show();
+                $this->id_registro->Show($this->RowNumber);
+                $this->nombre_reporte->Show($this->RowNumber);
+                $this->activo->Show($this->RowNumber);
+                if (isset($this->RowsErrors[$this->RowNumber]) && ($this->RowsErrors[$this->RowNumber] != "")) {
+                    $Tpl->setblockvar("RowError", "");
+                    $Tpl->setvar("Error", $this->RowsErrors[$this->RowNumber]);
+                    $this->Attributes->Show();
+                    $Tpl->parse("RowError", false);
+                } else {
+                    $Tpl->setblockvar("RowError", "");
+                }
+                $Tpl->setvar("FormScript", $this->FormScript($this->RowNumber));
+                $Tpl->parse();
+                if ($is_next_record) {
+                    if ($this->FormSubmitted) {
+                        $is_next_record = $this->RowNumber < $this->UpdatedRows;
+                        if (($this->DataSource->CachedColumns["id_registro"] == $this->CachedColumns["id_registro"][$this->RowNumber])) {
+                            if ($this->ReadAllowed) $this->DataSource->next_record();
+                        }
+                    }else{
+                        $is_next_record = ($this->RowNumber < $this->PageSize) &&  $this->ReadAllowed && $this->DataSource->next_record();
+                    }
+                } else { 
+                    $EmptyRowsLeft--;
+                }
+            } while($is_next_record || ($EmptyRowsLeft && $this->InsertAllowed));
+        } else {
+            $Tpl->block_path = $EditableGridPath;
+            $this->Attributes->Show();
+            $Tpl->parse("NoRecords", false);
+        }
+
+        $Tpl->block_path = $EditableGridPath;
+        $this->Navigator->PageNumber = $this->DataSource->AbsolutePage;
+        $this->Navigator->PageSize = $this->PageSize;
+        if ($this->DataSource->RecordsCount == "CCS not counted")
+            $this->Navigator->TotalPages = $this->DataSource->AbsolutePage + ($this->DataSource->next_record() ? 1 : 0);
+        else
+            $this->Navigator->TotalPages = $this->DataSource->PageCount();
+        if (($this->Navigator->TotalPages <= 1 && $this->Navigator->PageNumber == 1) || $this->Navigator->PageSize == "") {
+            $this->Navigator->Visible = false;
+        }
+        $this->Sorter_id_registro->Show();
+        $this->Sorter_nombre_reporte->Show();
+        $this->Sorter_activo->Show();
+        $this->Navigator->Show();
+        $this->Button_Submit->Show();
+
+        if($this->CheckErrors()) {
+            $Error = ComposeStrings($Error, $this->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
+            $Tpl->SetVar("Error", $Error);
+            $Tpl->Parse("Error", false);
+        }
+        $CCSForm = $this->ComponentName;
+        $this->HTMLFormAction = $FileName . "?" . CCAddParam(CCGetQueryString("QueryString", ""), "ccsForm", $CCSForm);
+        $Tpl->SetVar("Action", !$CCSUseAmp ? $this->HTMLFormAction : str_replace("&", "&amp;", $this->HTMLFormAction));
+        $Tpl->SetVar("HTMLFormName", $this->ComponentName);
+        $Tpl->SetVar("HTMLFormEnctype", $this->FormEnctype);
+        if (!$CCSUseAmp) {
+            $Tpl->SetVar("HTMLFormProperties", "method=\"POST\" action=\"" . $this->HTMLFormAction . "\" name=\"" . $this->ComponentName . "\"");
+        } else {
+            $Tpl->SetVar("HTMLFormProperties", "method=\"post\" action=\"" . str_replace("&", "&amp;", $this->HTMLFormAction) . "\" id=\"" . $this->ComponentName . "\"");
+        }
+        $Tpl->SetVar("FormState", CCToHTML($this->GetFormState($NonEmptyRows)));
+        $Tpl->parse();
+        $Tpl->block_path = $ParentPath;
+        $this->DataSource->close();
+    }
+//End Show Method
+
+} //End usuario_reporteMyM Class @96-FCB6E20C
+
+class clsusuario_reporteMyMDataSource extends clsDBcnDisenio {  //usuario_reporteMyMDataSource Class @96-D56C06C2
+
+//DataSource Variables @96-9AEC62B3
+    public $Parent = "";
+    public $CCSEvents = "";
+    public $CCSEventResult;
+    public $ErrorBlock;
+    public $CmdExecution;
+
+    public $UpdateParameters;
+    public $CountSQL;
+    public $wp;
+    public $AllParametersSet;
+
+    public $CachedColumns;
+    public $CurrentRow;
+    public $UpdateFields = array();
+
+    // Datasource fields
+    public $id_registro;
+    public $nombre_reporte;
+    public $activo;
+//End DataSource Variables
+
+//DataSourceClass_Initialize Event @96-2EC7EC8F
+    function clsusuario_reporteMyMDataSource(& $Parent)
+    {
+        $this->Parent = & $Parent;
+        $this->ErrorBlock = "EditableGrid usuario_reporteMyM/Error";
+        $this->Initialize();
+        $this->id_registro = new clsField("id_registro", ccsInteger, "");
+        
+        $this->nombre_reporte = new clsField("nombre_reporte", ccsText, "");
+        
+        $this->activo = new clsField("activo", ccsInteger, "");
+        
+
+        $this->UpdateFields["activo"] = array("Name" => "activo", "Value" => "", "DataType" => ccsInteger);
+    }
+//End DataSourceClass_Initialize Event
+
+//SetOrder Method @96-DF1B97B7
+    function SetOrder($SorterName, $SorterDirection)
+    {
+        $this->Order = "nombre_reporte";
+        $this->Order = CCGetOrder($this->Order, $SorterName, $SorterDirection, 
+            array("Sorter_id_registro" => array("id_registro", ""), 
+            "Sorter_nombre_reporte" => array("nombre_reporte", ""), 
+            "Sorter_activo" => array("activo", "")));
+    }
+//End SetOrder Method
+
+//Prepare Method @96-F8C23670
+    function Prepare()
+    {
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->wp = new clsSQLParameters($this->ErrorBlock);
+        $this->wp->AddParameter("1", "urlId", ccsInteger, "", "", $this->Parameters["urlId"], "", false);
+        $this->AllParametersSet = $this->wp->AllParamsSet();
+        $this->wp->Criterion[1] = $this->wp->Operation(opEqual, "id_usuario", $this->wp->GetDBValue("1"), $this->ToSQL($this->wp->GetDBValue("1"), ccsInteger),false);
+        $this->Where = 
+             $this->wp->Criterion[1];
+    }
+//End Prepare Method
+
+//Open Method @96-BE5F3A65
+    function Open()
+    {
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
+        $this->CountSQL = "SELECT COUNT(*)\n\n" .
+        "FROM usuario_reporteMyM";
+        $this->SQL = "SELECT TOP {SqlParam_endRecord} nombre_reporte, activo, id_registro \n\n" .
+        "FROM usuario_reporteMyM {SQL_Where} {SQL_OrderBy}";
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
+        if ($this->CountSQL) 
+            $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
+        else
+            $this->RecordsCount = "CCS not counted";
+        $this->query($this->OptimizeSQL(CCBuildSQL($this->SQL, $this->Where, $this->Order)));
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteSelect", $this->Parent);
+        $this->MoveToPage($this->AbsolutePage);
+    }
+//End Open Method
+
+//SetValues Method @96-8B50B2BB
+    function SetValues()
+    {
+        $this->CachedColumns["id_registro"] = $this->f("id_registro");
+        $this->id_registro->SetDBValue(trim($this->f("id_registro")));
+        $this->nombre_reporte->SetDBValue($this->f("nombre_reporte"));
+        $this->activo->SetDBValue(trim($this->f("activo")));
+    }
+//End SetValues Method
+
+//Update Method @96-BD38770F
+    function Update()
+    {
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->CmdExecution = true;
+        $Where = "";
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
+        $SelectWhere = $this->Where;
+        $this->Where = "id_registro=" . $this->ToSQL($this->CachedColumns["id_registro"], ccsInteger);
+        $this->UpdateFields["activo"]["Value"] = $this->activo->GetDBValue(true);
+        $this->SQL = CCBuildUpdate("usuario_reporteMyM", $this->UpdateFields, $this);
+        $this->SQL .= strlen($this->Where) ? " WHERE " . $this->Where : $this->Where;
+        if (!strlen($this->Where) && $this->Errors->Count() == 0) 
+            $this->Errors->addError($CCSLocales->GetText("CCS_CustomOperationError_MissingParameters"));
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
+        if($this->Errors->Count() == 0 && $this->CmdExecution) {
+            $this->query($this->SQL);
+            $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteUpdate", $this->Parent);
+        }
+        $this->Where = $SelectWhere;
+    }
+//End Update Method
+
+} //End usuario_reporteMyMDataSource Class @96-FCB6E20C
+
+
+
+
+
 
 
 //Initialize Page @1-94B66DF3
@@ -1068,7 +1656,7 @@ include_once("./Usuarios_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-88BA710E
+//Initialize Objects @1-F8196B98
 $DBcnDisenio = new clsDBcnDisenio();
 $MainPage->Connections["cnDisenio"] = & $DBcnDisenio;
 $Attributes = new clsAttributes("page:");
@@ -1081,12 +1669,15 @@ $Header->Initialize();
 $mc_c_usuariosSearch = new clsRecordmc_c_usuariosSearch("", $MainPage);
 $mc_c_usuarios = new clsGridmc_c_usuarios("", $MainPage);
 $mc_c_usuarios1 = new clsRecordmc_c_usuarios1("", $MainPage);
+$usuario_reporteMyM = new clsEditableGridusuario_reporteMyM("", $MainPage);
 $MainPage->Header = & $Header;
 $MainPage->mc_c_usuariosSearch = & $mc_c_usuariosSearch;
 $MainPage->mc_c_usuarios = & $mc_c_usuarios;
 $MainPage->mc_c_usuarios1 = & $mc_c_usuarios1;
+$MainPage->usuario_reporteMyM = & $usuario_reporteMyM;
 $mc_c_usuarios->Initialize();
 $mc_c_usuarios1->Initialize();
+$usuario_reporteMyM->Initialize();
 $ScriptIncludes = "";
 $SList = explode("|", $Scripts);
 foreach ($SList as $Script) {
@@ -1120,13 +1711,14 @@ $Attributes->SetValue("pathToRoot", "../");
 $Attributes->Show();
 //End Initialize HTML Template
 
-//Execute Components @1-E32E4C10
+//Execute Components @1-CCCD5824
+$usuario_reporteMyM->Operation();
 $mc_c_usuarios1->Operation();
 $mc_c_usuariosSearch->Operation();
 $Header->Operations();
 //End Execute Components
 
-//Go to destination page @1-C6D021F9
+//Go to destination page @1-5B065570
 if($Redirect)
 {
     $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
@@ -1137,16 +1729,18 @@ if($Redirect)
     unset($mc_c_usuariosSearch);
     unset($mc_c_usuarios);
     unset($mc_c_usuarios1);
+    unset($usuario_reporteMyM);
     unset($Tpl);
     exit;
 }
 //End Go to destination page
 
-//Show Page @1-7F054E16
+//Show Page @1-F2632A3C
 $Header->Show();
 $mc_c_usuariosSearch->Show();
 $mc_c_usuarios->Show();
 $mc_c_usuarios1->Show();
+$usuario_reporteMyM->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);
@@ -1154,7 +1748,7 @@ $CCSEventResult = CCGetEvent($CCSEvents, "BeforeOutput", $MainPage);
 if ($CCSEventResult) echo $main_block;
 //End Show Page
 
-//Unload Page @1-D7420E97
+//Unload Page @1-AAE4E7C7
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
 $DBcnDisenio->close();
 $Header->Class_Terminate();
@@ -1162,6 +1756,7 @@ unset($Header);
 unset($mc_c_usuariosSearch);
 unset($mc_c_usuarios);
 unset($mc_c_usuarios1);
+unset($usuario_reporteMyM);
 unset($Tpl);
 //End Unload Page
 

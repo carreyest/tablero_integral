@@ -513,7 +513,7 @@ class clsRecordReportesMyM2 { //ReportesMyM2 Class @26-29262499
     // Class variables
 //End Variables
 
-//Class_Initialize Event @26-E4824AFC
+//Class_Initialize Event @26-1EF3B439
     function clsRecordReportesMyM2($RelativePath, & $Parent)
     {
 
@@ -542,16 +542,16 @@ class clsRecordReportesMyM2 { //ReportesMyM2 Class @26-29262499
             $this->FormEnctype = "application/x-www-form-urlencoded";
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
-            $this->Button_Insert = new clsButton("Button_Insert", $Method, $this);
-            $this->Button_Update = new clsButton("Button_Update", $Method, $this);
-            $this->Button_Cancel = new clsButton("Button_Cancel", $Method, $this);
             $this->Nombre = new clsControl(ccsTextBox, "Nombre", "Nombre", ccsText, "", CCGetRequestParam("Nombre", $Method, NULL), $this);
             $this->Descripcion = new clsControl(ccsTextBox, "Descripcion", "Descripcion", ccsText, "", CCGetRequestParam("Descripcion", $Method, NULL), $this);
-            $this->NombreRDL = new clsControl(ccsTextBox, "NombreRDL", "Nombre RDL", ccsText, "", CCGetRequestParam("NombreRDL", $Method, NULL), $this);
             $this->grupo = new clsControl(ccsTextBox, "grupo", "grupo", ccsText, "", CCGetRequestParam("grupo", $Method, NULL), $this);
+            $this->NombreRDL = new clsControl(ccsTextBox, "NombreRDL", "Nombre RDL", ccsText, "", CCGetRequestParam("NombreRDL", $Method, NULL), $this);
             $this->CheckBox1 = new clsControl(ccsCheckBox, "CheckBox1", "CheckBox1", ccsInteger, "", CCGetRequestParam("CheckBox1", $Method, NULL), $this);
             $this->CheckBox1->CheckedValue = $this->CheckBox1->GetParsedValue(1);
             $this->CheckBox1->UncheckedValue = $this->CheckBox1->GetParsedValue(0);
+            $this->Button_Insert = new clsButton("Button_Insert", $Method, $this);
+            $this->Button_Update = new clsButton("Button_Update", $Method, $this);
+            $this->Button_Cancel = new clsButton("Button_Cancel", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->CheckBox1->Value) && !strlen($this->CheckBox1->Value) && $this->CheckBox1->Value !== false)
                     $this->CheckBox1->SetValue(true);
@@ -571,7 +571,7 @@ class clsRecordReportesMyM2 { //ReportesMyM2 Class @26-29262499
     }
 //End Initialize Method
 
-//Validate Method @26-E90132EC
+//Validate Method @26-1E57D48A
     function Validate()
     {
         global $CCSLocales;
@@ -579,27 +579,27 @@ class clsRecordReportesMyM2 { //ReportesMyM2 Class @26-29262499
         $Where = "";
         $Validation = ($this->Nombre->Validate() && $Validation);
         $Validation = ($this->Descripcion->Validate() && $Validation);
-        $Validation = ($this->NombreRDL->Validate() && $Validation);
         $Validation = ($this->grupo->Validate() && $Validation);
+        $Validation = ($this->NombreRDL->Validate() && $Validation);
         $Validation = ($this->CheckBox1->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->Nombre->Errors->Count() == 0);
         $Validation =  $Validation && ($this->Descripcion->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->NombreRDL->Errors->Count() == 0);
         $Validation =  $Validation && ($this->grupo->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->NombreRDL->Errors->Count() == 0);
         $Validation =  $Validation && ($this->CheckBox1->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @26-38B846FA
+//CheckErrors Method @26-F9B020AA
     function CheckErrors()
     {
         $errors = false;
         $errors = ($errors || $this->Nombre->Errors->Count());
         $errors = ($errors || $this->Descripcion->Errors->Count());
-        $errors = ($errors || $this->NombreRDL->Errors->Count());
         $errors = ($errors || $this->grupo->Errors->Count());
+        $errors = ($errors || $this->NombreRDL->Errors->Count());
         $errors = ($errors || $this->CheckBox1->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
@@ -655,15 +655,15 @@ class clsRecordReportesMyM2 { //ReportesMyM2 Class @26-29262499
     }
 //End Operation Method
 
-//InsertRow Method @26-2C1913AB
+//InsertRow Method @26-DEA3A523
     function InsertRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
         if(!$this->InsertAllowed) return false;
         $this->DataSource->Nombre->SetValue($this->Nombre->GetValue(true));
         $this->DataSource->Descripcion->SetValue($this->Descripcion->GetValue(true));
-        $this->DataSource->NombreRDL->SetValue($this->NombreRDL->GetValue(true));
         $this->DataSource->grupo->SetValue($this->grupo->GetValue(true));
+        $this->DataSource->NombreRDL->SetValue($this->NombreRDL->GetValue(true));
         $this->DataSource->CheckBox1->SetValue($this->CheckBox1->GetValue(true));
         $this->DataSource->Insert();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterInsert", $this);
@@ -671,15 +671,15 @@ class clsRecordReportesMyM2 { //ReportesMyM2 Class @26-29262499
     }
 //End InsertRow Method
 
-//UpdateRow Method @26-66CDE53E
+//UpdateRow Method @26-947753B6
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
         if(!$this->UpdateAllowed) return false;
         $this->DataSource->Nombre->SetValue($this->Nombre->GetValue(true));
         $this->DataSource->Descripcion->SetValue($this->Descripcion->GetValue(true));
-        $this->DataSource->NombreRDL->SetValue($this->NombreRDL->GetValue(true));
         $this->DataSource->grupo->SetValue($this->grupo->GetValue(true));
+        $this->DataSource->NombreRDL->SetValue($this->NombreRDL->GetValue(true));
         $this->DataSource->CheckBox1->SetValue($this->CheckBox1->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
@@ -687,7 +687,7 @@ class clsRecordReportesMyM2 { //ReportesMyM2 Class @26-29262499
     }
 //End UpdateRow Method
 
-//Show Method @26-FD2C5AAD
+//Show Method @26-15AF1A7D
     function Show()
     {
         global $CCSUseAmp;
@@ -717,8 +717,8 @@ class clsRecordReportesMyM2 { //ReportesMyM2 Class @26-29262499
                 if(!$this->FormSubmitted){
                     $this->Nombre->SetValue($this->DataSource->Nombre->GetValue());
                     $this->Descripcion->SetValue($this->DataSource->Descripcion->GetValue());
-                    $this->NombreRDL->SetValue($this->DataSource->NombreRDL->GetValue());
                     $this->grupo->SetValue($this->DataSource->grupo->GetValue());
+                    $this->NombreRDL->SetValue($this->DataSource->NombreRDL->GetValue());
                     $this->CheckBox1->SetValue($this->DataSource->CheckBox1->GetValue());
                 }
             } else {
@@ -730,8 +730,8 @@ class clsRecordReportesMyM2 { //ReportesMyM2 Class @26-29262499
             $Error = "";
             $Error = ComposeStrings($Error, $this->Nombre->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Descripcion->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->NombreRDL->Errors->ToString());
             $Error = ComposeStrings($Error, $this->grupo->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->NombreRDL->Errors->ToString());
             $Error = ComposeStrings($Error, $this->CheckBox1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
@@ -753,14 +753,14 @@ class clsRecordReportesMyM2 { //ReportesMyM2 Class @26-29262499
             return;
         }
 
+        $this->Nombre->Show();
+        $this->Descripcion->Show();
+        $this->grupo->Show();
+        $this->NombreRDL->Show();
+        $this->CheckBox1->Show();
         $this->Button_Insert->Show();
         $this->Button_Update->Show();
         $this->Button_Cancel->Show();
-        $this->Nombre->Show();
-        $this->Descripcion->Show();
-        $this->NombreRDL->Show();
-        $this->grupo->Show();
-        $this->CheckBox1->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -771,7 +771,7 @@ class clsRecordReportesMyM2 { //ReportesMyM2 Class @26-29262499
 
 class clsReportesMyM2DataSource extends clsDBcnDisenio {  //ReportesMyM2DataSource Class @26-44FE8C6E
 
-//DataSource Variables @26-90BD3A3A
+//DataSource Variables @26-18924E51
     public $Parent = "";
     public $CCSEvents = "";
     public $CCSEventResult;
@@ -789,12 +789,12 @@ class clsReportesMyM2DataSource extends clsDBcnDisenio {  //ReportesMyM2DataSour
     // Datasource fields
     public $Nombre;
     public $Descripcion;
-    public $NombreRDL;
     public $grupo;
+    public $NombreRDL;
     public $CheckBox1;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @26-BA155F98
+//DataSourceClass_Initialize Event @26-5FD4E7E7
     function clsReportesMyM2DataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -804,22 +804,22 @@ class clsReportesMyM2DataSource extends clsDBcnDisenio {  //ReportesMyM2DataSour
         
         $this->Descripcion = new clsField("Descripcion", ccsText, "");
         
-        $this->NombreRDL = new clsField("NombreRDL", ccsText, "");
-        
         $this->grupo = new clsField("grupo", ccsText, "");
+        
+        $this->NombreRDL = new clsField("NombreRDL", ccsText, "");
         
         $this->CheckBox1 = new clsField("CheckBox1", ccsInteger, "");
         
 
         $this->InsertFields["Nombre"] = array("Name" => "[Nombre]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["Descripcion"] = array("Name" => "[Descripcion]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->InsertFields["NombreRDL"] = array("Name" => "[NombreRDL]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["Grupo"] = array("Name" => "[Grupo]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->InsertFields["NombreRDL"] = array("Name" => "[NombreRDL]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["activo"] = array("Name" => "activo", "Value" => "", "DataType" => ccsInteger);
         $this->UpdateFields["Nombre"] = array("Name" => "[Nombre]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["Descripcion"] = array("Name" => "[Descripcion]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->UpdateFields["NombreRDL"] = array("Name" => "[NombreRDL]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["Grupo"] = array("Name" => "[Grupo]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["NombreRDL"] = array("Name" => "[NombreRDL]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["activo"] = array("Name" => "activo", "Value" => "", "DataType" => ccsInteger);
     }
 //End DataSourceClass_Initialize Event
@@ -850,18 +850,18 @@ class clsReportesMyM2DataSource extends clsDBcnDisenio {  //ReportesMyM2DataSour
     }
 //End Open Method
 
-//SetValues Method @26-D3C595FF
+//SetValues Method @26-4EC09A61
     function SetValues()
     {
         $this->Nombre->SetDBValue($this->f("Nombre"));
         $this->Descripcion->SetDBValue($this->f("Descripcion"));
-        $this->NombreRDL->SetDBValue($this->f("NombreRDL"));
         $this->grupo->SetDBValue($this->f("Grupo"));
+        $this->NombreRDL->SetDBValue($this->f("NombreRDL"));
         $this->CheckBox1->SetDBValue(trim($this->f("activo")));
     }
 //End SetValues Method
 
-//Insert Method @26-C1CE5D91
+//Insert Method @26-7B45169B
     function Insert()
     {
         global $CCSLocales;
@@ -870,8 +870,8 @@ class clsReportesMyM2DataSource extends clsDBcnDisenio {  //ReportesMyM2DataSour
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildInsert", $this->Parent);
         $this->InsertFields["Nombre"]["Value"] = $this->Nombre->GetDBValue(true);
         $this->InsertFields["Descripcion"]["Value"] = $this->Descripcion->GetDBValue(true);
-        $this->InsertFields["NombreRDL"]["Value"] = $this->NombreRDL->GetDBValue(true);
         $this->InsertFields["Grupo"]["Value"] = $this->grupo->GetDBValue(true);
+        $this->InsertFields["NombreRDL"]["Value"] = $this->NombreRDL->GetDBValue(true);
         $this->InsertFields["activo"]["Value"] = $this->CheckBox1->GetDBValue(true);
         $this->SQL = CCBuildInsert("ReportesMyM", $this->InsertFields, $this);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
@@ -882,7 +882,7 @@ class clsReportesMyM2DataSource extends clsDBcnDisenio {  //ReportesMyM2DataSour
     }
 //End Insert Method
 
-//Update Method @26-AF4EFE7A
+//Update Method @26-568EC826
     function Update()
     {
         global $CCSLocales;
@@ -892,8 +892,8 @@ class clsReportesMyM2DataSource extends clsDBcnDisenio {  //ReportesMyM2DataSour
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
         $this->UpdateFields["Nombre"]["Value"] = $this->Nombre->GetDBValue(true);
         $this->UpdateFields["Descripcion"]["Value"] = $this->Descripcion->GetDBValue(true);
-        $this->UpdateFields["NombreRDL"]["Value"] = $this->NombreRDL->GetDBValue(true);
         $this->UpdateFields["Grupo"]["Value"] = $this->grupo->GetDBValue(true);
+        $this->UpdateFields["NombreRDL"]["Value"] = $this->NombreRDL->GetDBValue(true);
         $this->UpdateFields["activo"]["Value"] = $this->CheckBox1->GetDBValue(true);
         $this->SQL = CCBuildUpdate("ReportesMyM", $this->UpdateFields, $this);
         $this->SQL .= strlen($this->Where) ? " WHERE " . $this->Where : $this->Where;

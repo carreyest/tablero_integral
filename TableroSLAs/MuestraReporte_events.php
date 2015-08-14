@@ -23,6 +23,7 @@ function ReportesMyM_Nombre_BeforeShow(& $sender)
 //Custom Code @25-2A29BDB7
 // -------------------------
     // Write your own code here.  	
+
     global $tipo_pantalla;
     $tipo_pantalla=    CCGetParam("fullscreen",0) ; 
     global $Tpl;

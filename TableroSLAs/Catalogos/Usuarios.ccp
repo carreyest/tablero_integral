@@ -1,4 +1,4 @@
-<Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\Catalogos" secured="True" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="{CCS_Style}" wizardThemeVersion="3.0" useDesign="False" needGeneration="0">
+<Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\Catalogos" secured="True" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="Austere4" wizardThemeVersion="3.0" useDesign="False" needGeneration="0">
 	<Components>
 		<IncludePage id="2" name="Header" PathID="Header" page="../Header.ccp">
 			<Components/>
@@ -210,7 +210,7 @@
 					<Attributes/>
 					<Features/>
 				</ListBox>
-				<ListBox id="40" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="Grupo" fieldSource="Grupo" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Grupo" caption="Grupo" required="False" unique="False" connection="cnDisenio" wizardEmptyCaption="Seleccionar Valor" dataSource="SLAs;SLAs;CAPC;CAPC;CDS;CDS;MyM;MyM;SAT;SAT" PathID="mc_c_usuarios1Grupo">
+				<ListBox id="40" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="Grupo" fieldSource="Grupo" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Grupo" caption="Grupo" required="False" unique="False" connection="cnDisenio" wizardEmptyCaption="Seleccionar Valor" dataSource="SLAs;SLAs;CAPC;CAPC;CDS;CDS;MyM;MyM" PathID="mc_c_usuarios1Grupo">
 					<Components/>
 					<Events/>
 					<TableParameters/>
@@ -284,6 +284,11 @@
 						<Action actionName="Encrypt Password" actionCategory="Security" id="34" passwordControlName="Clave" shadowControlName="Clave_Shadow" id_oncopy="34"/>
 					</Actions>
 				</Event>
+				<Event name="AfterExecuteInsert" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="112"/>
+					</Actions>
+				</Event>
 			</Events>
 			<TableParameters>
 				<TableParameter id="53" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Id" logicOperator="And" orderNumber="1" parameterSource="Id" parameterType="URL" searchConditionType="Equal"/>
@@ -314,6 +319,95 @@
 			<Attributes/>
 			<Features/>
 		</Record>
+		<EditableGrid id="96" urlType="Relative" secured="False" emptyRows="0" allowInsert="False" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" sourceType="Table" defaultPageSize="40" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="usuario_reporteMyM" connection="cnDisenio" dataSource="usuario_reporteMyM" pageSizeLimit="100" wizardGridPageSize="True" wizardUseSearch="False" allowCancel="False" wizardSubmitConfirmation="False" wizardCaption="Permisos en reportes" wizardGridType="Tabular" wizardSortingType="Extended" wizardAltRecord="False" wizardRecordSeparator="False" wizardNoRecords="No hay registros" wizardGridKey="id_registro" wizardGridPaging="Simple" wizardAddNbsp="False" wizardTotalRecords="False" wizardButtonsType="button" changedCaptionEditableGrid="True" wizardUseInterVariables="False" pkIsAutoincrement="True" wizardType="EditableGrid" wizardThemeApplyTo="Page" addTemplatePanel="False" PathID="usuario_reporteMyM" orderBy="nombre_reporte">
+			<Components>
+				<Sorter id="103" visible="True" name="Sorter_id_registro" column="id_registro" wizardCaption="Id Registro" wizardSortingType="Extended" wizardControl="id_registro" wizardAddNbsp="False" PathID="usuario_reporteMyMSorter_id_registro">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="104" visible="True" name="Sorter_nombre_reporte" column="nombre_reporte" wizardCaption="Nombre Reporte" wizardSortingType="Extended" wizardControl="nombre_reporte" wizardAddNbsp="False" PathID="usuario_reporteMyMSorter_nombre_reporte">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="105" visible="True" name="Sorter_activo" column="activo" wizardCaption="Activo" wizardSortingType="Extended" wizardControl="activo" wizardAddNbsp="False" PathID="usuario_reporteMyMSorter_activo">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Label id="106" fieldSourceType="DBColumn" dataType="Integer" html="False" generateSpan="False" name="id_registro" fieldSource="id_registro" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardCaption="Id Registro" PathID="usuario_reporteMyMid_registro">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="107" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="nombre_reporte" fieldSource="nombre_reporte" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardCaption="Nombre Reporte" PathID="usuario_reporteMyMnombre_reporte">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<CheckBox id="108" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" name="activo" fieldSource="activo" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardCaption="Activo" checkedValue="1" uncheckedValue="0" PathID="usuario_reporteMyMactivo" defaultValue="Unchecked">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</CheckBox>
+				<Navigator id="109" size="10" type="Simple" pageSizes="1;5;10;25;50" name="Navigator" wizardPagingType="Simple" wizardFirst="True" wizardFirstText="Inicio" wizardPrev="True" wizardPrevText="Anterior" wizardNext="True" wizardNextText="Siguiente" wizardLast="True" wizardLastText="Final" wizardImages="Images" wizardPageNumbers="Simple" wizardSize="10" wizardTotalPages="True" wizardHideDisabled="False" wizardPageSize="True" wizardImagesScheme="Austere4">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Navigator>
+				<Button id="110" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Submit" operation="Submit" wizardCaption="Enviar" PathID="usuario_reporteMyMButton_Submit">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+			</Components>
+			<Events>
+				<Event name="BeforeShow" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="111"/>
+					</Actions>
+				</Event>
+			</Events>
+			<TableParameters>
+				<TableParameter id="114" conditionType="Parameter" useIsNull="False" dataType="Integer" field="id_usuario" logicOperator="And" parameterSource="Id" parameterType="URL" searchConditionType="Equal"/>
+</TableParameters>
+			<SPParameters/>
+			<SQLParameters/>
+			<JoinTables>
+				<JoinTable id="113" posHeight="152" posLeft="10" posTop="10" posWidth="123" tableName="usuario_reporteMyM"/>
+</JoinTables>
+			<JoinLinks/>
+			<Fields>
+				<Field id="115" fieldName="nombre_reporte" tableName="usuario_reporteMyM"/>
+<Field id="116" fieldName="activo" tableName="usuario_reporteMyM"/>
+<Field id="117" fieldName="id_registro" tableName="usuario_reporteMyM"/>
+</Fields>
+			<PKFields>
+				<PKField id="118" dataType="Integer" fieldName="id_registro" tableName="usuario_reporteMyM"/>
+</PKFields>
+			<ISPParameters/>
+			<ISQLParameters/>
+			<IFormElements/>
+			<USPParameters/>
+			<USQLParameters/>
+			<UConditions/>
+			<UFormElements/>
+			<DSPParameters/>
+			<DSQLParameters/>
+			<DConditions/>
+			<SecurityGroups/>
+			<Attributes/>
+			<Features/>
+		</EditableGrid>
 	</Components>
 	<CodeFiles>
 		<CodeFile id="Code" language="PHPTemplates" name="Usuarios.php" forShow="True" url="Usuarios.php" comment="//" codePage="windows-1252"/>

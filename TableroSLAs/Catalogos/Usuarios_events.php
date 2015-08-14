@@ -1,15 +1,18 @@
 <?php
-//BindEvents Method @1-D84B0BD9
+//BindEvents Method @1-0FAE5CE7
 function BindEvents()
 {
     global $mc_c_usuarios;
     global $mc_c_usuarios1;
+    global $usuario_reporteMyM;
     global $CCSEvents;
     $mc_c_usuarios->mc_c_usuarios_TotalRecords->CCSEvents["BeforeShow"] = "mc_c_usuarios_mc_c_usuarios_TotalRecords_BeforeShow";
     $mc_c_usuarios1->Clave->CCSEvents["OnValidate"] = "mc_c_usuarios1_Clave_OnValidate";
     $mc_c_usuarios1->CCSEvents["BeforeShow"] = "mc_c_usuarios1_BeforeShow";
     $mc_c_usuarios1->ds->CCSEvents["BeforeBuildInsert"] = "mc_c_usuarios1_ds_BeforeBuildInsert";
     $mc_c_usuarios1->ds->CCSEvents["BeforeBuildUpdate"] = "mc_c_usuarios1_ds_BeforeBuildUpdate";
+    $mc_c_usuarios1->ds->CCSEvents["AfterExecuteInsert"] = "mc_c_usuarios1_ds_AfterExecuteInsert";
+    $usuario_reporteMyM->CCSEvents["BeforeShow"] = "usuario_reporteMyM_BeforeShow";
     $CCSEvents["BeforeShow"] = "Page_BeforeShow";
 }
 //End BindEvents Method
@@ -122,6 +125,60 @@ function mc_c_usuarios1_ds_BeforeBuildUpdate(& $sender)
     return $mc_c_usuarios1_ds_BeforeBuildUpdate;
 }
 //End Close mc_c_usuarios1_ds_BeforeBuildUpdate
+
+//mc_c_usuarios1_ds_AfterExecuteInsert @28-FF558EF0
+function mc_c_usuarios1_ds_AfterExecuteInsert(& $sender)
+{
+    $mc_c_usuarios1_ds_AfterExecuteInsert = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $mc_c_usuarios1; //Compatibility
+//End mc_c_usuarios1_ds_AfterExecuteInsert
+
+//Custom Code @112-2A29BDB7
+// -------------------------
+    // Write your own code here.
+    global $DBcnDisenio;
+
+	$DBcnDisenio->query("select id, Nombre from mc_c_usuarios where id = (select MAX(id) from mc_c_usuarios)" );
+	if($DBcnDisenio->next_record()){
+		$sInsert="insert into usuario_reporteMyM(id_usuario, id_reporte, activo, nombre_reporte,usuario) select ".$DBcnDisenio->f("id").", IdReporte, 1, nombre,'".$DBcnDisenio->f("Nombre")."' from ReportesMyM";	
+	}
+	$DBcnDisenio->query($sInsert);
+// -------------------------
+//End Custom Code
+
+//Close mc_c_usuarios1_ds_AfterExecuteInsert @28-6749DB7D
+    return $mc_c_usuarios1_ds_AfterExecuteInsert;
+}
+//End Close mc_c_usuarios1_ds_AfterExecuteInsert
+
+//usuario_reporteMyM_BeforeShow @96-C5D084F4
+function usuario_reporteMyM_BeforeShow(& $sender)
+{
+    $usuario_reporteMyM_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $usuario_reporteMyM; //Compatibility
+//End usuario_reporteMyM_BeforeShow
+
+//Custom Code @111-2A29BDB7
+// -------------------------
+    // Write your own code here.
+
+	if (CCGetParam("Id") == '')
+	{
+
+    	$usuario_reporteMyM->Visible = False;
+	}
+
+// -------------------------
+//End Custom Code
+
+//Close usuario_reporteMyM_BeforeShow @96-2EE33B48
+    return $usuario_reporteMyM_BeforeShow;
+}
+//End Close usuario_reporteMyM_BeforeShow
 
 //Page_BeforeShow @1-9731030E
 function Page_BeforeShow(& $sender)

@@ -44,10 +44,10 @@ jQuery(function ($) {
 <p>{Header}</p>
 <!-- BEGIN Record ReportesMyMSearch -->
 <form id="ReportesMyMSearch" method="post" name="{HTMLFormName}" action="{Action}">
-  <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+  <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td valign="top">
-        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td class="HeaderLeft"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
             <td class="th"><strong>Buscar</strong></td> 
@@ -63,14 +63,14 @@ jQuery(function ($) {
           <!-- END Error -->
           <tr class="Controls">
             <td class="th"><label for="ReportesMyMSearchs_Nombre">Nombre</label></td> 
-            <td><input type="text" id="ReportesMyMSearchs_Nombre" maxlength="75" size="50" value="{s_Nombre}" name="{s_Nombre_Name}"></td> 
+            <td><input type="text" id="ReportesMyMSearchs_Nombre" value="{s_Nombre}" maxlength="75" size="50" name="{s_Nombre_Name}"></td> 
             <td class="th"><label for="ReportesMyMSearchs_NombreRDL">Nombre RDL</label></td> 
-            <td><input type="text" id="ReportesMyMSearchs_NombreRDL" maxlength="125" size="50" value="{s_NombreRDL}" name="{s_NombreRDL_Name}"></td>
+            <td><input type="text" id="ReportesMyMSearchs_NombreRDL" value="{s_NombreRDL}" maxlength="125" size="50" name="{s_NombreRDL_Name}"></td>
           </tr>
  
           <tr class="Bottom">
             <td style="TEXT-ALIGN: right" colspan="4">
-              <!-- BEGIN Button Button_DoSearch --><input type="submit" id="ReportesMyMSearchButton_DoSearch" class="Button" alt="Buscar" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+              <!-- BEGIN Button Button_DoSearch --><input type="submit" id="ReportesMyMSearchButton_DoSearch" class="Button" value="Buscar" alt="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
           </tr>
         </table>
       </td>
@@ -79,10 +79,10 @@ jQuery(function ($) {
 </form>
 <!-- END Record ReportesMyMSearch --><br>
 <!-- BEGIN Grid ReportesMyM1 -->
-<table id="ReportesMyM1" class="MainTable" cellspacing="0" cellpadding="0" border="0">
+<table id="ReportesMyM1" class="MainTable" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td valign="top">
-      <table class="Header" cellspacing="0" cellpadding="0" border="0">
+      <table class="Header" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td class="HeaderLeft"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
           <td class="th"><strong>Lista de Reportes de Metricas y Mediciones </strong></td> 
@@ -148,10 +148,10 @@ jQuery(function ($) {
 <!-- END Grid ReportesMyM1 --><br>
 <!-- BEGIN Record ReportesMyM2 -->
 <form id="ReportesMyM2" method="post" name="{HTMLFormName}" action="{Action}">
-  <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+  <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td valign="top">
-        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td class="HeaderLeft"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
             <td class="th"><strong>Agregar/Editar Reporte</strong></td> 
@@ -167,22 +167,22 @@ jQuery(function ($) {
           <!-- END Error -->
           <tr class="Controls">
             <td class="th"><label for="ReportesMyM2Nombre">Nombre</label></td> 
-            <td><input type="text" id="ReportesMyM2Nombre" maxlength="75" size="50" value="{Nombre}" name="{Nombre_Name}"></td>
+            <td><input type="text" id="ReportesMyM2Nombre" value="{Nombre}" maxlength="75" size="50" name="{Nombre_Name}"></td>
           </tr>
  
           <tr class="Controls">
             <td class="th"><label for="ReportesMyM2Descripcion">Descripcion</label></td> 
-            <td><input type="text" id="ReportesMyM2Descripcion" maxlength="250" size="50" value="{Descripcion}" name="{Descripcion_Name}"></td>
+            <td><input type="text" id="ReportesMyM2Descripcion" value="{Descripcion}" maxlength="250" size="50" name="{Descripcion_Name}"></td>
           </tr>
  
           <tr class="Controls">
             <td class="th">Grupo</td> 
-            <td><input type="text" id="ReportesMyM2grupo" maxlength="70" size="50" value="{grupo}" name="{grupo_Name}"></td>
+            <td><input type="text" id="ReportesMyM2grupo" value="{grupo}" maxlength="70" size="50" name="{grupo_Name}"></td>
           </tr>
  
           <tr class="Controls">
             <td class="th"><label for="ReportesMyM2NombreRDL">Nombre RDL</label></td> 
-            <td><input type="text" id="ReportesMyM2NombreRDL" maxlength="170" size="50" value="{NombreRDL}" name="{NombreRDL_Name}"></td>
+            <td><input type="text" id="ReportesMyM2NombreRDL" value="{NombreRDL}" maxlength="170" size="50" name="{NombreRDL_Name}"></td>
           </tr>
  
           <tr class="Controls">
@@ -192,9 +192,9 @@ jQuery(function ($) {
  
           <tr class="Bottom">
             <td style="TEXT-ALIGN: right" colspan="2">
-              <!-- BEGIN Button Button_Insert --><input type="submit" id="ReportesMyM2Button_Insert" class="Button" alt="Agregar" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
-              <!-- BEGIN Button Button_Update --><input type="submit" id="ReportesMyM2Button_Update" class="Button" alt="Enviar" value="Enviar" name="{Button_Name}"><!-- END Button Button_Update -->
-              <!-- BEGIN Button Button_Cancel --><input type="submit" id="ReportesMyM2Button_Cancel" class="Button" alt="Cancelar" value="Cancelar" name="{Button_Name}"><!-- END Button Button_Cancel --></td>
+              <!-- BEGIN Button Button_Insert --><input type="submit" id="ReportesMyM2Button_Insert" class="Button" value="Agregar" alt="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+              <!-- BEGIN Button Button_Update --><input type="submit" id="ReportesMyM2Button_Update" class="Button" value="Enviar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Update -->
+              <!-- BEGIN Button Button_Cancel --><input type="submit" id="ReportesMyM2Button_Cancel" class="Button" value="Cancelar" alt="Cancelar" name="{Button_Name}"><!-- END Button Button_Cancel --></td>
           </tr>
         </table>
       </td>

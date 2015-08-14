@@ -62,16 +62,15 @@
               &lt;!-- BEGIN Link Link3 --&gt;&lt;a href=&quot;{Link3_Src}&quot; id=&quot;HeaderpnlMenuLink3&quot; style=&quot;POSITION: relative; TOP: 20%&quot;&gt;SLAs CAPC&lt;/a&gt;&lt;!-- END Link Link3 --&gt;
             &lt;/div&gt;
  &lt;/td&gt; " PathID="HeaderpnlMenuPanel3">
-<Components>
-<Link id="2" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkUniverso" hrefSource="UniversoLista.ccp" PathID="HeaderpnlMenuPanel3lkUniverso">
+					<Components>
+						<Link id="2" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkUniverso" hrefSource="UniversoLista.ccp" PathID="HeaderpnlMenuPanel3lkUniverso">
 							<Components/>
 							<Events/>
 							<LinkParameters/>
 							<Attributes/>
 							<Features/>
-
 						</Link>
-<Link id="4" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="lkIncidentes" hrefSource="IncidentesLista.ccp" PathID="HeaderpnlMenuPanel3lkIncidentes">
+						<Link id="4" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="lkIncidentes" hrefSource="IncidentesLista.ccp" PathID="HeaderpnlMenuPanel3lkIncidentes">
 							<Components/>
 							<Events/>
 							<LinkParameters>
@@ -80,40 +79,40 @@
 							<Attributes/>
 							<Features/>
 						</Link>
-<Link id="6" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="lkRequerimientos" hrefSource="PPMCsApbLista.ccp" PathID="HeaderpnlMenuPanel3lkRequerimientos">
+						<Link id="6" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="lkRequerimientos" hrefSource="PPMCsApbLista.ccp" PathID="HeaderpnlMenuPanel3lkRequerimientos">
 							<Components/>
 							<Events/>
 							<LinkParameters/>
 							<Attributes/>
 							<Features/>
 						</Link>
-<Link id="16" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="lkPPMCCierre" hrefSource="PPMCsCrbLista.ccp" PathID="HeaderpnlMenuPanel3lkPPMCCierre">
+						<Link id="16" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="lkPPMCCierre" hrefSource="PPMCsCrbLista.ccp" PathID="HeaderpnlMenuPanel3lkPPMCCierre">
 							<Components/>
 							<Events/>
 							<LinkParameters/>
 							<Attributes/>
 							<Features/>
 						</Link>
-<Link id="17" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="Link2" hrefSource="EficienciaPresLista.ccp" PathID="HeaderpnlMenuPanel3Link2">
+						<Link id="17" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="Link2" hrefSource="EficienciaPresLista.ccp" PathID="HeaderpnlMenuPanel3Link2">
 							<Components/>
 							<Events/>
 							<LinkParameters/>
 							<Attributes/>
 							<Features/>
 						</Link>
-<Link id="18" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="Link3" hrefSource="SLAsCAPCLista.ccp" PathID="HeaderpnlMenuPanel3Link3">
+						<Link id="18" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="Link3" hrefSource="SLAsCAPCLista.ccp" PathID="HeaderpnlMenuPanel3Link3">
 							<Components/>
 							<Events/>
 							<LinkParameters/>
 							<Attributes/>
 							<Features/>
 						</Link>
-</Components>
-<Events/>
-<Attributes/>
-<Features/>
-</Panel>
-</Components>
+					</Components>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Panel>
+			</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>
@@ -167,19 +166,25 @@
 		&lt;a href=&quot;{Link5_Src}&quot; id=&quot;HeaderMyMLink5&quot;&gt;Métricas y Mediciones&lt;/a&gt; 
     &lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" PathID="HeaderPanel2">
 			<Components>
-				<Link id="20" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link4" PathID="HeaderPanel2Link4" hrefSource="TableroSLAs.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Tablero SLAs','textSourceDB':'','hrefSource':'TableroSLAs.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
-					<Events/>
-					<LinkParameters/>
-					<Attributes/>
-					<Features/>
-				</Link>
-				<Link id="22" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link5" PathID="HeaderPanel2Link5" hrefSource="MuestraReporte.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Reportes Métricas y Mediciones','textSourceDB':'','hrefSource':'MuestraReporte.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
-					<Events/>
-					<LinkParameters/>
-					<Attributes/>
-					<Features/>
-				</Link>
-			</Components>
+				<Link id="31" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link4" PathID="HeaderPanel2Link4" hrefSource="TableroSLAs.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Tablero SLAs','textSourceDB':'','hrefSource':'TableroSLAs.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
+<Events/>
+<LinkParameters/>
+<Attributes/>
+<Features/>
+</Link>
+<Link id="32" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link5" PathID="HeaderPanel2Link5" hrefSource="MuestraReporte.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Métricas y Mediciones','textSourceDB':'','hrefSource':'MuestraReporte.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
+<Events/>
+<LinkParameters/>
+<Attributes/>
+<Features/>
+</Link>
+<Link id="33" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link6" PathID="HeaderPanel2Link6" hrefSource="http://webiterasrv2/sites/SDMA_Reporte/Pages/default.aspx" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Reportes Sitio SAT','textSourceDB':'','hrefSource':'http://webiterasrv2/sites/SDMA_Reporte/Pages/default.aspx','hrefSourceDB':'','title':'','target':'_blank','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
+<Events/>
+<LinkParameters/>
+<Attributes/>
+<Features/>
+</Link>
+</Components>
 			<Events/>
 			<Attributes/>
 			<Features/>

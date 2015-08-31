@@ -2,9 +2,8 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=windows-1252">
-<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
 <title>PPMCsApbCuadroNSRSxls</title>
- 
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
 <script language="JavaScript" type="text/javascript">
 //Begin CCS script
 //Include Common JSFunctions @1-2504AB44
@@ -15,16 +14,15 @@
 
 //Include User Scripts @1-A87AC9EE
 </script>
-{page:scriptIncludes} 
+{page:scriptIncludes}
 <script type="text/javascript">
 //End Include User Scripts
 
 //End CCS script
 </script>
-<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
-<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="Styles/Austere4/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="Styles/Austere4/jquery-ui.css">
 </head>
- 
 <body>
 <p>{Header}</p>
 <p>&nbsp;</p>
@@ -33,7 +31,7 @@
     <td>&nbsp;</td> 
     <td>
       <!-- BEGIN Record mc_calificacion_rs_MC -->
-      <form name="{HTMLFormName}" id="mc_calificacion_rs_MC" action="{Action}" method="post">
+      <form id="mc_calificacion_rs_MC" method="post" name="{HTMLFormName}" action="{Action}">
         <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="top">
@@ -47,44 +45,42 @@
  
               <table class="Record" cellspacing="0" cellpadding="0">
                 <!-- BEGIN Error -->
-                <tr class="Error" id="{@error-block}">
+                <tr id="{@error-block}" class="Error">
                   <td colspan="6">{Error}</td>
                 </tr>
                 <!-- END Error -->
                 <tr class="Controls">
                   <td class="th"><label for="mc_calificacion_rs_MCs_id_proveedor">CDS </label></td> 
                   <td>
-                    <select name="{s_id_proveedor_Name}" id="mc_calificacion_rs_MCs_id_proveedor">
-                      <option value="">Seleccionar Valor</option>
+                    <select id="mc_calificacion_rs_MCs_id_proveedor" name="{s_id_proveedor_Name}">
+                      <option selected value="">Seleccionar Valor</option>
                       {s_id_proveedor_Options}
                     </select>
  </td> 
                   <td class="th"><label for="mc_calificacion_rs_MCs_MesReporte">Mes </label></td> 
                   <td>
-                    <select name="{s_MesReporte_Name}" id="mc_calificacion_rs_MCs_MesReporte">
-                      <option value="">Seleccionar Valor</option>
+                    <select id="mc_calificacion_rs_MCs_MesReporte" name="{s_MesReporte_Name}">
                       {s_MesReporte_Options}
                     </select>
  </td> 
                   <td class="th"><label for="mc_calificacion_rs_MCs_AnioReporte">Año </label></td> 
                   <td>
-                    <select name="{s_AnioReporte_Name}" id="mc_calificacion_rs_MCs_AnioReporte">
-                      <option value="">Seleccionar Valor</option>
+                    <select id="mc_calificacion_rs_MCs_AnioReporte" name="{s_AnioReporte_Name}">
                       {s_AnioReporte_Options}
                     </select>
  </td>
                 </tr>
  
                 <tr class="Bottom">
-                  <td style="text-align: right;" colspan="6">
-                    <!-- BEGIN Button Button_DoSearch --><input type="submit" name="{Button_Name}" class="Button" id="mc_calificacion_rs_MCButton_DoSearch" alt="Buscar" value="Buscar"><!-- END Button Button_DoSearch --></td>
+                  <td style="TEXT-ALIGN: right" colspan="6">
+                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="mc_calificacion_rs_MCButton_DoSearch" class="Button" value="Buscar" alt="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                 </tr>
               </table>
             </td>
           </tr>
         </table>
       </form>
- <!-- END Record mc_calificacion_rs_MC --><br>
+      <!-- END Record mc_calificacion_rs_MC --><br>
     </td> 
     <td>{MenuTablero} </td>
   </tr>
@@ -93,7 +89,7 @@
     <td>&nbsp;</td> 
     <td colspan="2">
       <!-- BEGIN Grid Grid1 -->
-      <table class="MainTable" id="Grid1" border="0" cellspacing="0" cellpadding="0">
+      <table id="Grid1" class="MainTable" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td valign="top">
             <table class="Header" border="0" cellspacing="0" cellpadding="0">
@@ -111,21 +107,21 @@
                 <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_nombre --></th>
  
-                <th style="text-align: center;" scope="col">
+                <th style="TEXT-ALIGN: center" scope="col">
                 <!-- BEGIN Sorter Sorter_SumaApb --><span class="Sorter"><a href="{Sort_URL}" id="Grid1Sorter_SumaApb">Requerimientos<br>
                 con propuesta<br>
                 aprobada</a> 
                 <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_SumaApb --></th>
  
-                <th style="text-align: center;" scope="col">
+                <th style="TEXT-ALIGN: center" scope="col">
                 <!-- BEGIN Sorter Sorter_HERR_EST_COST --><span class="Sorter"><a href="{Sort_URL}" id="Grid1Sorter_HERR_EST_COST">Incumplimientos</a> 
                 <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_HERR_EST_COST --></th>
  
-                <th style="text-align: center;" scope="col">% cumplimiento</th>
+                <th style="TEXT-ALIGN: center" scope="col">% cumplimiento</th>
  
-                <th style="text-align: center;" scope="col">
+                <th style="TEXT-ALIGN: center" scope="col">
                 <!-- BEGIN Sorter Sorter_Meta --><span class="Sorter"><a href="{Sort_URL}" id="Grid1Sorter_Meta">Valor Objetivo</a> 
                 <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Meta --></th>
@@ -133,7 +129,7 @@
                 <th scope="col">Cumplimiento<br>
                 vs Objetivo</th>
  
-                <th style="text-align: center;" scope="col">
+                <th style="TEXT-ALIGN: center" scope="col">
                 <!-- BEGIN Sorter Sorter_pena --><span class="Sorter"><a href="{Sort_URL}" id="Grid1Sorter_pena">Penalizacion</a> 
                 <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_pena --></th>
@@ -142,24 +138,24 @@
               <!-- BEGIN Row -->
               <tr class="Row">
                 <td>{nombre}&nbsp;</td> 
-                <td style="text-align: center;">{SumaApb}</td> 
-                <td style="text-align: center;">{incumplimientos}</td> 
-                <td style="text-align: center;">{Cumplimiento}&nbsp;%</td> 
-                <td style="text-align: center;">{Meta}&nbsp;%</td> 
-                <td style="text-align: center;"><img id="Grid1Indicador_{Grid1:rowNumber}" alt="" src="{Indicador}"></td> 
-                <td style="text-align: center;">{pena}&nbsp;</td>
+                <td style="TEXT-ALIGN: center">{SumaApb}</td> 
+                <td style="TEXT-ALIGN: center">{incumplimientos}</td> 
+                <td style="TEXT-ALIGN: center">{Cumplimiento}&nbsp;%</td> 
+                <td style="TEXT-ALIGN: center">{Meta}&nbsp;%</td> 
+                <td style="TEXT-ALIGN: center"><img id="Grid1Indicador_{Grid1:rowNumber}" alt="" src="{Indicador}"></td> 
+                <td style="TEXT-ALIGN: center">{pena}&nbsp;</td>
               </tr>
  <!-- END Row -->
               <!-- BEGIN NoRecords -->
               <tr class="NoRecords">
-                <td rowspan="1" colspan="7">No hay registros</td>
+                <td colspan="7">No hay registros</td>
               </tr>
               <!-- END NoRecords -->
               <tr class="Footer">
-                <td rowspan="1" colspan="7">
+                <td colspan="7">
                   <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
-                  <select name="{FormName}PageSize" style="vertical-align: middle;" data-grid-size="{FormName}">
-                    <option value="">-</option>
+                  <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+                    <option selected value="">-</option>
  {PageSize_Options}
                   </select>
  
@@ -176,7 +172,100 @@
           </td>
         </tr>
       </table>
- <!-- END Grid Grid1 --><br>
+      <!-- END Grid Grid1 --><br>
+    </td>
+  </tr>
+ 
+  <tr>
+    <td>&nbsp;</td> 
+    <td colspan="2">&nbsp; 
+      <!-- BEGIN Grid Grid3 -->
+      <table id="Grid3" class="MainTable" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td valign="top">
+            <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="HeaderLeft"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td> 
+                <td class="th"><strong>Cuadro NS RSs del CAPC </strong></td> 
+                <td class="HeaderRight"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td>
+              </tr>
+            </table>
+ 
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <tr class="Caption">
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_SLA --><span class="Sorter"><a href="{Sort_URL}" id="Grid3Sorter_SLA">SLA</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_SLA --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_ReqAprob --><span class="Sorter"><a href="{Sort_URL}" id="Grid3Sorter_ReqAprob">Requerimientos<br>
+                con propuesta<br>
+                aprobada</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_ReqAprob --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Inclumpl --><span class="Sorter"><a href="{Sort_URL}" id="Grid3Sorter_Inclumpl">Inclumplimientos</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Inclumpl --></th>
+ 
+                <th scope="col">&nbsp;% cumplimiento</th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_ValorObj --><span class="Sorter"><a href="{Sort_URL}" id="Grid3Sorter_ValorObj">Valor Objetivo</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_ValorObj --></th>
+ 
+                <th scope="col">
+                <p>&nbsp;Cumplimiento<br>
+                vs Objetivo</p>
+                </th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Penalizacion --><span class="Sorter"><a href="{Sort_URL}" id="Grid3Sorter_Penalizacion">Penalizacion</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Penalizacion --></th>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr class="Row">
+                <td>{SLA}&nbsp;</td> 
+                <td style="TEXT-ALIGN: center">{ReqAprob}&nbsp;</td> 
+                <td style="TEXT-ALIGN: center">{Incumpl}&nbsp;</td> 
+                <td style="TEXT-ALIGN: center">&nbsp;{Cumplimiento}%</td> 
+                <td style="TEXT-ALIGN: center">{ValorObj}&nbsp;%</td> 
+                <td style="TEXT-ALIGN: center">&nbsp;<img id="Grid3Indicador_{Grid3:rowNumber}" alt="" src="{Indicador}"></td> 
+                <td style="TEXT-ALIGN: center">{Penalizacion}&nbsp;</td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="7">No hay registros</td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="Footer">
+                <td colspan="7">
+                  <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+                  <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+                    <option selected value="">-</option>
+ {PageSize_Options}
+                  </select>
+ 
+                  <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/Austere4/Images/First.gif"></a> <!-- END First_On -->
+                  <!-- BEGIN First_Off --><img alt="{First_URL}" src="Styles/Austere4/Images/FirstOff.gif"><!-- END First_Off -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="Styles/Austere4/Images/Prev.gif"></a> <!-- END Prev_On -->
+                  <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="Styles/Austere4/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+                  <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/Austere4/Images/Next.gif"></a> <!-- END Next_On -->
+                  <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/Austere4/Images/NextOff.gif"><!-- END Next_Off -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/Austere4/Images/Last.gif"></a> <!-- END Last_On -->
+                  <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/Austere4/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- END Grid Grid3 --><br>
     </td>
   </tr>
  
@@ -184,7 +273,7 @@
     <td>&nbsp;</td> 
     <td colspan="2">
       <!-- BEGIN Grid Grid2 -->
-      <table class="MainTable" id="Grid2" border="0" cellspacing="0" cellpadding="0">
+      <table id="Grid2" class="MainTable" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td valign="top">
             <table class="Header" border="0" cellspacing="0" cellpadding="0">
@@ -202,21 +291,21 @@
                 <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_nombre --></th>
  
-                <th style="text-align: center;" scope="col">
+                <th style="TEXT-ALIGN: center" scope="col">
                 <!-- BEGIN Sorter Sorter_SumaApb --><span class="Sorter"><a href="{Sort_URL}" id="Grid2Sorter_SumaApb">Requerimientos<br>
                 con propuesta<br>
                 aprobada</a> 
                 <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_SumaApb --></th>
  
-                <th style="text-align: center;" scope="col">
+                <th style="TEXT-ALIGN: center" scope="col">
                 <!-- BEGIN Sorter Sorter_HERR_EST_COST --><span class="Sorter"><a href="{Sort_URL}" id="Grid2Sorter_HERR_EST_COST">Incumplimientos</a> 
                 <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_HERR_EST_COST --></th>
  
-                <th style="text-align: center;" scope="col">% cumplimiento</th>
+                <th style="TEXT-ALIGN: center" scope="col">% cumplimiento</th>
  
-                <th style="text-align: center;" scope="col">
+                <th style="TEXT-ALIGN: center" scope="col">
                 <!-- BEGIN Sorter Sorter_Meta --><span class="Sorter"><a href="{Sort_URL}" id="Grid2Sorter_Meta">Valor Objetivo</a> 
                 <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Meta --></th>
@@ -224,7 +313,7 @@
                 <th scope="col">Cumplimiento<br>
                 vs Objetivo</th>
  
-                <th style="text-align: center;" scope="col">
+                <th style="TEXT-ALIGN: center" scope="col">
                 <!-- BEGIN Sorter Sorter_pena --><span class="Sorter"><a href="{Sort_URL}" id="Grid2Sorter_pena">Penalizacion</a> 
                 <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_pena --></th>
@@ -233,24 +322,24 @@
               <!-- BEGIN Row -->
               <tr class="Row">
                 <td>{nombre}&nbsp;</td> 
-                <td style="text-align: center;">{SumaApb}</td> 
-                <td style="text-align: center;">{incumplimientos}</td> 
-                <td style="text-align: center;">{Cumplimiento}&nbsp;%</td> 
-                <td style="text-align: center;">{Meta}&nbsp;%</td> 
-                <td style="text-align: center;"><img id="Grid2Indicador_{Grid2:rowNumber}" alt="" src="{Indicador}"></td> 
-                <td style="text-align: center;">{pena}&nbsp;</td>
+                <td style="TEXT-ALIGN: center">{SumaApb}</td> 
+                <td style="TEXT-ALIGN: center">{incumplimientos}</td> 
+                <td style="TEXT-ALIGN: center">{Cumplimiento}&nbsp;%</td> 
+                <td style="TEXT-ALIGN: center">{Meta}&nbsp;%</td> 
+                <td style="TEXT-ALIGN: center"><img id="Grid2Indicador_{Grid2:rowNumber}" alt="" src="{Indicador}"></td> 
+                <td style="TEXT-ALIGN: center">{pena}&nbsp;</td>
               </tr>
  <!-- END Row -->
               <!-- BEGIN NoRecords -->
               <tr class="NoRecords">
-                <td rowspan="1" colspan="7">No hay registros</td>
+                <td colspan="7">No hay registros</td>
               </tr>
               <!-- END NoRecords -->
               <tr class="Footer">
-                <td rowspan="1" colspan="7">
+                <td colspan="7">
                   <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
-                  <select name="{FormName}PageSize" style="vertical-align: middle;" data-grid-size="{FormName}">
-                    <option value="">-</option>
+                  <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+                    <option selected value="">-</option>
  {PageSize_Options}
                   </select>
  
@@ -267,7 +356,7 @@
           </td>
         </tr>
       </table>
- <!-- END Grid Grid2 --></td>
+      <!-- END Grid Grid2 --></td>
   </tr>
 </table>
 <p></p>

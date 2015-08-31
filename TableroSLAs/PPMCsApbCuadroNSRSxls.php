@@ -282,15 +282,15 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
     }
 //End SetOrder Method
 
-//Prepare Method @3-7BB1D26F
+//Prepare Method @3-272FEFBB
     function Prepare()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->wp = new clsSQLParameters($this->ErrorBlock);
         $this->wp->AddParameter("1", "urls_id_proveedor", ccsInteger, "", "", $this->Parameters["urls_id_proveedor"], 0, false);
-        $this->wp->AddParameter("2", "urls_MesReporte", ccsInteger, "", "", $this->Parameters["urls_MesReporte"], 0, false);
-        $this->wp->AddParameter("3", "urls_AnioReporte", ccsInteger, "", "", $this->Parameters["urls_AnioReporte"], 0, false);
+        $this->wp->AddParameter("2", "urls_MesReporte", ccsInteger, "", "", $this->Parameters["urls_MesReporte"], date('m')-2, false);
+        $this->wp->AddParameter("3", "urls_AnioReporte", ccsInteger, "", "", $this->Parameters["urls_AnioReporte"], date('Y'), false);
         $this->wp->AddParameter("4", "urlsSLO", ccsInteger, "", "", $this->Parameters["urlsSLO"], 0, false);
     }
 //End Prepare Method
@@ -693,7 +693,7 @@ class clsRecordmc_calificacion_rs_MC { //mc_calificacion_rs_MC Class @20-58DA90F
     // Class variables
 //End Variables
 
-//Class_Initialize Event @20-2D814B12
+//Class_Initialize Event @20-C3A2F918
     function clsRecordmc_calificacion_rs_MC($RelativePath, & $Parent)
     {
 
@@ -725,12 +725,6 @@ class clsRecordmc_calificacion_rs_MC { //mc_calificacion_rs_MC Class @20-58DA90F
             $this->s_id_proveedor->DataSource->SQL = "SELECT nombre, descripcion, id_proveedor \n" .
 "FROM mc_c_proveedor {SQL_Where} {SQL_OrderBy}";
             list($this->s_id_proveedor->BoundColumn, $this->s_id_proveedor->TextColumn, $this->s_id_proveedor->DBFormat) = array("id_proveedor", "nombre", "");
-            $this->s_id_proveedor->DataSource->Parameters["expr26"] = 'CDS';
-            $this->s_id_proveedor->DataSource->wp = new clsSQLParameters();
-            $this->s_id_proveedor->DataSource->wp->AddParameter("1", "expr26", ccsText, "", "", $this->s_id_proveedor->DataSource->Parameters["expr26"], "", false);
-            $this->s_id_proveedor->DataSource->wp->Criterion[1] = $this->s_id_proveedor->DataSource->wp->Operation(opEqual, "descripcion", $this->s_id_proveedor->DataSource->wp->GetDBValue("1"), $this->s_id_proveedor->DataSource->ToSQL($this->s_id_proveedor->DataSource->wp->GetDBValue("1"), ccsText),false);
-            $this->s_id_proveedor->DataSource->Where = 
-                 $this->s_id_proveedor->DataSource->wp->Criterion[1];
             $this->s_MesReporte = new clsControl(ccsListBox, "s_MesReporte", "Mes Reporte", ccsInteger, "", CCGetRequestParam("s_MesReporte", $Method, NULL), $this);
             $this->s_MesReporte->DSType = dsTable;
             $this->s_MesReporte->DataSource = new clsDBcnDisenio();
@@ -1153,10 +1147,147 @@ class clsGrid2DataSource extends clsDBcnDisenio {  //Grid2DataSource Class @52-C
     }
 //End Prepare Method
 
-//Open Method @52-B0A4321B
+//Open Method @52-D5E1880D
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
+        $this->CountSQL = "SELECT COUNT(*) FROM (select mc_c_metrica.nombre, c.SumaApb,  c.HERR_EST_COST,  mc_c_metrica.Meta,  mc_c_metrica.pena   \n" .
+        "from mc_c_metrica \n" .
+        "CROSS JOIN \n" .
+        "(select id_proveedor,\n" .
+        "	COUNT(HERR_EST_COST) SumaApb,\n" .
+        "	sum(cast(~HERR_EST_COST as int)) HERR_EST_COST\n" .
+        "	from mc_calificacion_rs_sat\n" .
+        "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
+        "	and id_ppmc  not in (select numero from mc_universo_cds where SLO=1 and revision =1 )\n" .
+        "	group by id_proveedor  \n" .
+        ") c\n" .
+        "where acronimo ='HERR_EST_COST'\n" .
+        "union all\n" .
+        "select mc_c_metrica.nombre, c.SumaApb,  c.REQ_SERV ,  mc_c_metrica.Meta, mc_c_metrica.pena   \n" .
+        "from mc_c_metrica \n" .
+        "CROSS JOIN \n" .
+        "(select id_proveedor,\n" .
+        "	COUNT(REQ_SERV) SumaApb,\n" .
+        "	sum(cast(~REQ_SERV as int)) REQ_SERV\n" .
+        "	from mc_calificacion_rs_sat\n" .
+        "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
+        "	and id_ppmc  not in (select numero from mc_universo_cds where SLO=1 and revision =1 )\n" .
+        "	group by id_proveedor  \n" .
+        ") c\n" .
+        "where acronimo ='REQ_SERV'\n" .
+        "union all\n" .
+        "select mc_c_metrica.nombre, c.SumaApb,  c.REQ_SERV ,  mc_c_metrica.Meta, mc_c_metrica.pena   \n" .
+        "from mc_c_metrica \n" .
+        "CROSS JOIN \n" .
+        "(select id_proveedor,\n" .
+        "	COUNT(CUMPL_REQ_FUNC) SumaApb,\n" .
+        "	sum(cast(~CUMPL_REQ_FUNC as int)) REQ_SERV\n" .
+        "	from mc_calificacion_rs_sat\n" .
+        "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
+        "	and id_ppmc  not in (select numero from mc_universo_cds where SLO=1 and revision =1)\n" .
+        "	group by id_proveedor  \n" .
+        ") c\n" .
+        "where acronimo ='CUMPL_REQ_FUNC'\n" .
+        "union all\n" .
+        "select mc_c_metrica.nombre, c.SumaApb,  c.REQ_SERV ,  mc_c_metrica.Meta, mc_c_metrica.pena   \n" .
+        "from mc_c_metrica \n" .
+        "CROSS JOIN \n" .
+        "(select id_proveedor,\n" .
+        "	COUNT(CALIDAD_PROD_TERM) SumaApb,\n" .
+        "	sum(cast(~CALIDAD_PROD_TERM as int)) REQ_SERV\n" .
+        "	from mc_calificacion_rs_sat\n" .
+        "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
+        "	and id_ppmc  not in (select numero from mc_universo_cds where SLO=1 and revision =1)\n" .
+        "	group by id_proveedor  \n" .
+        ") c\n" .
+        "where acronimo ='CALIDAD_PROD_TERM'\n" .
+        "union all\n" .
+        "select mc_c_metrica.nombre, c.SumaApb,  c.REQ_SERV ,  mc_c_metrica.Meta, mc_c_metrica.pena   \n" .
+        "from mc_c_metrica \n" .
+        "CROSS JOIN \n" .
+        "(select id_proveedor,\n" .
+        "	COUNT(RETR_ENTREGABLE) SumaApb,\n" .
+        "	sum(cast(~RETR_ENTREGABLE as int)) REQ_SERV\n" .
+        "	from mc_calificacion_rs_sat\n" .
+        "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
+        "	and id_ppmc  not in (select numero from mc_universo_cds where SLO=1 and revision =1)\n" .
+        "	group by id_proveedor  \n" .
+        ") c\n" .
+        "where acronimo ='RETR_ENTREGABLE'\n" .
+        "union all\n" .
+        "select mc_c_metrica.nombre, c.SumaApb,  c.REQ_SERV ,  mc_c_metrica.Meta, mc_c_metrica.pena   \n" .
+        "from mc_c_metrica \n" .
+        "CROSS JOIN \n" .
+        "(select id_proveedor,\n" .
+        "	COUNT(COMPL_RUTA_CRITICA) SumaApb,\n" .
+        "	sum(cast(~COMPL_RUTA_CRITICA as int)) REQ_SERV\n" .
+        "	from mc_calificacion_rs_sat\n" .
+        "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
+        "	and id_ppmc  not in (select numero from mc_universo_cds where SLO=1 and revision =1)\n" .
+        "	group by id_proveedor  \n" .
+        ") c\n" .
+        "where acronimo ='COMPL_RUTA_CRITICA'\n" .
+        "union all\n" .
+        "select mc_c_metrica.nombre, c.SumaApb,  c.REQ_SERV ,  mc_c_metrica.Meta, mc_c_metrica.pena   \n" .
+        "from mc_c_metrica \n" .
+        "CROSS JOIN \n" .
+        "(select id_proveedor,\n" .
+        "	COUNT(EST_PROY) SumaApb,\n" .
+        "	sum(cast(~EST_PROY as int)) REQ_SERV\n" .
+        "	from mc_calificacion_rs_sat\n" .
+        "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
+        "	and id_ppmc  not in (select numero from mc_universo_cds where SLO=1 and revision =1)\n" .
+        "	group by id_proveedor  \n" .
+        ") c\n" .
+        "where acronimo ='EST_PROY'\n" .
+        "union all\n" .
+        "select mc_c_metrica.nombre, c.SumaApb,  c.REQ_SERV ,  mc_c_metrica.Meta, mc_c_metrica.pena   \n" .
+        "from mc_c_metrica \n" .
+        "CROSS JOIN \n" .
+        "(select id_proveedor,\n" .
+        "	COUNT(DEF_FUG_AMB_PROD) SumaApb,\n" .
+        "	sum(cast(~DEF_FUG_AMB_PROD as int)) REQ_SERV\n" .
+        "	from mc_calificacion_rs_sat\n" .
+        "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
+        "	and id_ppmc  not in (select numero from mc_universo_cds where SLO=1 and revision =1)\n" .
+        "	group by id_proveedor  \n" .
+        ") c\n" .
+        "where acronimo ='DEF_FUG_AMB_PROD'\n" .
+        "union all\n" .
+        "select mc_c_metrica.nombre, c.SumaApb,  c.CUMPLE_SLA  ,  mc_c_metrica.Meta, mc_c_metrica.pena   \n" .
+        "from mc_c_metrica \n" .
+        "CROSS JOIN \n" .
+        "(select id_proveedor,\n" .
+        "	COUNT(CUMPLESLA) SumaApb,\n" .
+        "	sum(cast(~cast(CUMPLESLA as bit) as int)) CUMPLE_SLA\n" .
+        "	from mc_eficiencia_presupuestal \n" .
+        "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
+        "	and CumpleSLA in (0,1)\n" .
+        "	--and ((id_proveedor <>4 and GrupoAplicativos not like '%Todos%') or (Id_Proveedor =4))\n" .
+        "	and (([GrupoAplicativos] not like 'Todos%' and (4<>4 or (MesReporte>2 and anioreporte >2013)) ) \n" .
+        "					or (4=4 and MesReporte<=2 and anioreporte <2014 ) or 0=4)\n" .
+        "	group by id_proveedor  \n" .
+        ") c\n" .
+        "where acronimo ='EFIC_PRESUP') cnt";
         $this->SQL = "select mc_c_metrica.nombre, c.SumaApb,  c.HERR_EST_COST,  mc_c_metrica.Meta,  mc_c_metrica.pena   \n" .
         "from mc_c_metrica \n" .
         "CROSS JOIN \n" .
@@ -1318,6 +1449,512 @@ class clsGrid2DataSource extends clsDBcnDisenio {  //Grid2DataSource Class @52-C
 
 } //End Grid2DataSource Class @52-FCB6E20C
 
+class clsGridGrid3 { //Grid3 class @115-DA61C7F0
+
+//Variables @115-4D70EE43
+
+    // Public variables
+    public $ComponentType = "Grid";
+    public $ComponentName;
+    public $Visible;
+    public $Errors;
+    public $ErrorBlock;
+    public $ds;
+    public $DataSource;
+    public $PageSize;
+    public $IsEmpty;
+    public $ForceIteration = false;
+    public $HasRecord = false;
+    public $SorterName = "";
+    public $SorterDirection = "";
+    public $PageNumber;
+    public $RowNumber;
+    public $ControlsVisible = array();
+
+    public $CCSEvents = "";
+    public $CCSEventResult;
+
+    public $RelativePath = "";
+    public $Attributes;
+
+    // Grid Controls
+    public $StaticControls;
+    public $RowControls;
+    public $Sorter_SLA;
+    public $Sorter_ReqAprob;
+    public $Sorter_Inclumpl;
+    public $Sorter_ValorObj;
+    public $Sorter_Penalizacion;
+//End Variables
+
+//Class_Initialize Event @115-A9E66EF9
+    function clsGridGrid3($RelativePath, & $Parent)
+    {
+        global $FileName;
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->ComponentName = "Grid3";
+        $this->Visible = True;
+        $this->Parent = & $Parent;
+        $this->RelativePath = $RelativePath;
+        $this->Errors = new clsErrors();
+        $this->ErrorBlock = "Grid Grid3";
+        $this->Attributes = new clsAttributes($this->ComponentName . ":");
+        $this->DataSource = new clsGrid3DataSource($this);
+        $this->ds = & $this->DataSource;
+        $this->PageSize = CCGetParam($this->ComponentName . "PageSize", "");
+        if(!is_numeric($this->PageSize) || !strlen($this->PageSize))
+            $this->PageSize = 10;
+        else
+            $this->PageSize = intval($this->PageSize);
+        if ($this->PageSize > 100)
+            $this->PageSize = 100;
+        if($this->PageSize == 0)
+            $this->Errors->addError("<p>Form: Grid " . $this->ComponentName . "<BR>Error: (CCS06) Invalid page size.</p>");
+        $this->PageNumber = intval(CCGetParam($this->ComponentName . "Page", 1));
+        if ($this->PageNumber <= 0) $this->PageNumber = 1;
+        $this->SorterName = CCGetParam("Grid3Order", "");
+        $this->SorterDirection = CCGetParam("Grid3Dir", "");
+
+        $this->SLA = new clsControl(ccsLabel, "SLA", "SLA", ccsText, "", CCGetRequestParam("SLA", ccsGet, NULL), $this);
+        $this->ReqAprob = new clsControl(ccsLabel, "ReqAprob", "ReqAprob", ccsInteger, "", CCGetRequestParam("ReqAprob", ccsGet, NULL), $this);
+        $this->ReqAprob->HTML = true;
+        $this->Incumpl = new clsControl(ccsLabel, "Incumpl", "Incumpl", ccsInteger, "", CCGetRequestParam("Incumpl", ccsGet, NULL), $this);
+        $this->Incumpl->HTML = true;
+        $this->ValorObj = new clsControl(ccsLabel, "ValorObj", "ValorObj", ccsFloat, "", CCGetRequestParam("ValorObj", ccsGet, NULL), $this);
+        $this->ValorObj->HTML = true;
+        $this->Penalizacion = new clsControl(ccsLabel, "Penalizacion", "Penalizacion", ccsText, "", CCGetRequestParam("Penalizacion", ccsGet, NULL), $this);
+        $this->Penalizacion->HTML = true;
+        $this->Indicador = new clsControl(ccsImage, "Indicador", "Indicador", ccsText, "", CCGetRequestParam("Indicador", ccsGet, NULL), $this);
+        $this->Cumplimiento = new clsControl(ccsLabel, "Cumplimiento", "Cumplimiento", ccsText, "", CCGetRequestParam("Cumplimiento", ccsGet, NULL), $this);
+        $this->Cumplimiento->HTML = true;
+        $this->Sorter_SLA = new clsSorter($this->ComponentName, "Sorter_SLA", $FileName, $this);
+        $this->Sorter_ReqAprob = new clsSorter($this->ComponentName, "Sorter_ReqAprob", $FileName, $this);
+        $this->Sorter_Inclumpl = new clsSorter($this->ComponentName, "Sorter_Inclumpl", $FileName, $this);
+        $this->Sorter_ValorObj = new clsSorter($this->ComponentName, "Sorter_ValorObj", $FileName, $this);
+        $this->Sorter_Penalizacion = new clsSorter($this->ComponentName, "Sorter_Penalizacion", $FileName, $this);
+        $this->Navigator = new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpSimple, $this);
+        $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
+    }
+//End Class_Initialize Event
+
+//Initialize Method @115-90E704C5
+    function Initialize()
+    {
+        if(!$this->Visible) return;
+
+        $this->DataSource->PageSize = & $this->PageSize;
+        $this->DataSource->AbsolutePage = & $this->PageNumber;
+        $this->DataSource->SetOrder($this->SorterName, $this->SorterDirection);
+    }
+//End Initialize Method
+
+//Show Method @115-1D0D614B
+    function Show()
+    {
+        $Tpl = CCGetTemplate($this);
+        global $CCSLocales;
+        if(!$this->Visible) return;
+
+        $this->RowNumber = 0;
+
+        $this->DataSource->Parameters["urls_MesReporte"] = CCGetFromGet("s_MesReporte", NULL);
+        $this->DataSource->Parameters["urls_AnioReporte"] = CCGetFromGet("s_AnioReporte", NULL);
+        $this->DataSource->Parameters["urlsSLO"] = CCGetFromGet("sSLO", NULL);
+
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
+
+
+        $this->DataSource->Prepare();
+        $this->DataSource->Open();
+        $this->HasRecord = $this->DataSource->has_next_record();
+        $this->IsEmpty = ! $this->HasRecord;
+        $this->Attributes->Show();
+
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShow", $this);
+        if(!$this->Visible) return;
+
+        $GridBlock = "Grid " . $this->ComponentName;
+        $ParentPath = $Tpl->block_path;
+        $Tpl->block_path = $ParentPath . "/" . $GridBlock;
+
+
+        if (!$this->IsEmpty) {
+            $this->ControlsVisible["SLA"] = $this->SLA->Visible;
+            $this->ControlsVisible["ReqAprob"] = $this->ReqAprob->Visible;
+            $this->ControlsVisible["Incumpl"] = $this->Incumpl->Visible;
+            $this->ControlsVisible["ValorObj"] = $this->ValorObj->Visible;
+            $this->ControlsVisible["Penalizacion"] = $this->Penalizacion->Visible;
+            $this->ControlsVisible["Indicador"] = $this->Indicador->Visible;
+            $this->ControlsVisible["Cumplimiento"] = $this->Cumplimiento->Visible;
+            while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
+                $this->RowNumber++;
+                if ($this->HasRecord) {
+                    $this->DataSource->next_record();
+                    $this->DataSource->SetValues();
+                }
+                $Tpl->block_path = $ParentPath . "/" . $GridBlock . "/Row";
+                $this->SLA->SetValue($this->DataSource->SLA->GetValue());
+                $this->ReqAprob->SetValue($this->DataSource->ReqAprob->GetValue());
+                $this->Incumpl->SetValue($this->DataSource->Incumpl->GetValue());
+                $this->ValorObj->SetValue($this->DataSource->ValorObj->GetValue());
+                $this->Penalizacion->SetValue($this->DataSource->Penalizacion->GetValue());
+                $this->Attributes->SetValue("rowNumber", $this->RowNumber);
+                $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
+                $this->Attributes->Show();
+                $this->SLA->Show();
+                $this->ReqAprob->Show();
+                $this->Incumpl->Show();
+                $this->ValorObj->Show();
+                $this->Penalizacion->Show();
+                $this->Indicador->Show();
+                $this->Cumplimiento->Show();
+                $Tpl->block_path = $ParentPath . "/" . $GridBlock;
+                $Tpl->parse("Row", true);
+            }
+        }
+        else { // Show NoRecords block if no records are found
+            $this->Attributes->Show();
+            $Tpl->parse("NoRecords", false);
+        }
+
+        $errors = $this->GetErrors();
+        if(strlen($errors))
+        {
+            $Tpl->replaceblock("", $errors);
+            $Tpl->block_path = $ParentPath;
+            return;
+        }
+        $this->Navigator->PageNumber = $this->DataSource->AbsolutePage;
+        $this->Navigator->PageSize = $this->PageSize;
+        if ($this->DataSource->RecordsCount == "CCS not counted")
+            $this->Navigator->TotalPages = $this->DataSource->AbsolutePage + ($this->DataSource->next_record() ? 1 : 0);
+        else
+            $this->Navigator->TotalPages = $this->DataSource->PageCount();
+        if (($this->Navigator->TotalPages <= 1 && $this->Navigator->PageNumber == 1) || $this->Navigator->PageSize == "") {
+            $this->Navigator->Visible = false;
+        }
+        $this->Sorter_SLA->Show();
+        $this->Sorter_ReqAprob->Show();
+        $this->Sorter_Inclumpl->Show();
+        $this->Sorter_ValorObj->Show();
+        $this->Sorter_Penalizacion->Show();
+        $this->Navigator->Show();
+        $Tpl->parse();
+        $Tpl->block_path = $ParentPath;
+        $this->DataSource->close();
+    }
+//End Show Method
+
+//GetErrors Method @115-131042E8
+    function GetErrors()
+    {
+        $errors = "";
+        $errors = ComposeStrings($errors, $this->SLA->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->ReqAprob->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->Incumpl->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->ValorObj->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->Penalizacion->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->Indicador->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->Cumplimiento->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
+        return $errors;
+    }
+//End GetErrors Method
+
+} //End Grid3 Class @115-FCB6E20C
+
+class clsGrid3DataSource extends clsDBcnDisenio {  //Grid3DataSource Class @115-F6D65E68
+
+//DataSource Variables @115-B0B6B6E1
+    public $Parent = "";
+    public $CCSEvents = "";
+    public $CCSEventResult;
+    public $ErrorBlock;
+    public $CmdExecution;
+
+    public $CountSQL;
+    public $wp;
+
+
+    // Datasource fields
+    public $SLA;
+    public $ReqAprob;
+    public $Incumpl;
+    public $ValorObj;
+    public $Penalizacion;
+//End DataSource Variables
+
+//DataSourceClass_Initialize Event @115-39DCDEC1
+    function clsGrid3DataSource(& $Parent)
+    {
+        $this->Parent = & $Parent;
+        $this->ErrorBlock = "Grid Grid3";
+        $this->Initialize();
+        $this->SLA = new clsField("SLA", ccsText, "");
+        
+        $this->ReqAprob = new clsField("ReqAprob", ccsInteger, "");
+        
+        $this->Incumpl = new clsField("Incumpl", ccsInteger, "");
+        
+        $this->ValorObj = new clsField("ValorObj", ccsFloat, "");
+        
+        $this->Penalizacion = new clsField("Penalizacion", ccsText, "");
+        
+
+    }
+//End DataSourceClass_Initialize Event
+
+//SetOrder Method @115-C4E553C4
+    function SetOrder($SorterName, $SorterDirection)
+    {
+        $this->Order = "orden";
+        $this->Order = CCGetOrder($this->Order, $SorterName, $SorterDirection, 
+            array("Sorter_SLA" => array("SLA", ""), 
+            "Sorter_ReqAprob" => array("ReqAprob", ""), 
+            "Sorter_Inclumpl" => array("Inclumpl", ""), 
+            "Sorter_ValorObj" => array("ValorObj", ""), 
+            "Sorter_Penalizacion" => array("Penalizacion", "")));
+    }
+//End SetOrder Method
+
+//Prepare Method @115-12A219AE
+    function Prepare()
+    {
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->wp = new clsSQLParameters($this->ErrorBlock);
+        $this->wp->AddParameter("1", "urls_MesReporte", ccsInteger, "", "", $this->Parameters["urls_MesReporte"], date('m')-1, false);
+        $this->wp->AddParameter("2", "urls_AnioReporte", ccsInteger, "", "", $this->Parameters["urls_AnioReporte"], date('Y'), false);
+        $this->wp->AddParameter("3", "urlsSLO", ccsInteger, "", "", $this->Parameters["urlsSLO"], 0, false);
+    }
+//End Prepare Method
+
+//Open Method @115-5E268354
+    function Open()
+    {
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
+        $this->CountSQL = "SELECT COUNT(*) FROM (select mc_c_metrica.nombre SLA, cast(c.SumaApb as varchar) ReqAprob,  Valor Inclumpl, \n" .
+        "mc_c_metrica.Meta ValorObj,  mc_c_metrica.pena Penalizacion  , 0 orden\n" .
+        "from mc_c_metrica \n" .
+        "CROSS JOIN \n" .
+        "(select \n" .
+        " COUNT(HERR_EST_COST) SumaApb,\n" .
+        " sum(cast(~HERR_EST_COST as int)) valor\n" .
+        " from mc_calificacion_CAPC \n" .
+        " where mes= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        " and Anio  = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        " and numero not in (select numero from mc_universo_cds where SLO =" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . ")\n" .
+        " group by id_proveedor  \n" .
+        ") c\n" .
+        "where acronimo ='HERR_EST_COST'\n" .
+        "union all\n" .
+        "select mc_c_metrica.nombre, c.SumaApb,  c.REQ_SERV , \n" .
+        "mc_c_metrica.Meta, mc_c_metrica.pena, 0 orden\n" .
+        "from mc_c_metrica \n" .
+        "CROSS JOIN \n" .
+        "(select \n" .
+        " COUNT(REQ_SERV) SumaApb,\n" .
+        " sum(cast(~REQ_SERV as int)) REQ_SERV\n" .
+        " from mc_calificacion_CAPC \n" .
+        " where mes = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        " and Anio = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        " and numero not in (select numero from mc_universo_cds where SLO =" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " )\n" .
+        " group by id_proveedor  \n" .
+        ") c\n" .
+        "where acronimo ='REQ_SERV'\n" .
+        "\n" .
+        "\n" .
+        "UNION ALL\n" .
+        "\n" .
+        "\n" .
+        "select SLA, \n" .
+        "ReqAprob = CASE count(Valor) WHEN 0 THEN 0 ELSE CAST(COUNT(Valor) as varchar) END,\n" .
+        "sum(Valor) Incumpl,\n" .
+        "cast(Objetivo*100 as integer) ValorObj,\n" .
+        "pena Penalizacion ,\n" .
+        "orden\n" .
+        "FROM (\n" .
+        "SELECT \n" .
+        "	'Cumplimiento de requisitos funcionales' SLA\n" .
+        "	, v.Descripcion  servicio\n" .
+        "	, i.numero \n" .
+        "	, i.id_proveedor\n" .
+        "	, i.Id_servicio_negoico  \n" .
+        "	, i.id_serviciocont \n" .
+        "	, i.Mes\n" .
+        "	, i.Anio	\n" .
+        "	, cast(~ i.CUMPL_REQ_FUN  as int) as Valor\n" .
+        "	, .95 Objetivo\n" .
+        "	, 1 orden\n" .
+        "	, (select pena from mc_c_metrica where Acronimo ='CUMPL_REQ_FUNC') as Pena\n" .
+        "from mc_calificacion_CAPC i \n" .
+        "	inner  join mc_c_ServContractual  v on v.id = i.id_serviciocont   \n" .
+        "WHERE (i.Mes is NULL or i.Mes= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " )\n" .
+        "	and (i.Anio is NULL or i.Anio= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . ")\n" .
+        "	and numero not in (select id from mc_universo_cds where SLO =" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " )\n" .
+        "UNION\n" .
+        "select \n" .
+        "	'Calidad de productos terminados' SLA\n" .
+        "	, v.Descripcion  servicio\n" .
+        "	, i.numero \n" .
+        "	, i.id_proveedor\n" .
+        "	, i.Id_servicio_negoico  \n" .
+        "	, i.id_serviciocont  \n" .
+        "	, i.Mes\n" .
+        "	, i.Anio	\n" .
+        "	, cast(~ i.CALIDAD_PROD_TERM as int) as CALIDAD_PROD_TERM\n" .
+        "	, 1 Objetivo\n" .
+        "	, 2 Orden\n" .
+        ", (select pena from mc_c_metrica where Acronimo ='CALIDAD_PROD_TERM') as Pena\n" .
+        "from mc_calificacion_CAPC i \n" .
+        "	inner  join mc_c_ServContractual v on v.id = i.id_serviciocont   \n" .
+        "WHERE (i.Mes is NULL or i.Mes= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " )\n" .
+        "	and (i.Anio is NULL or i.Anio= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . ")\n" .
+        "	and numero not in (select id from mc_universo_cds where SLO = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " )\n" .
+        "UNION\n" .
+        "select \n" .
+        "	'Retraso en entregables' SLA\n" .
+        "	, v.Descripcion  servicio\n" .
+        "	, i.numero \n" .
+        "	, i.id_proveedor\n" .
+        "	, i.Id_servicio_negoico  \n" .
+        "	, i.id_serviciocont \n" .
+        "	, i.Mes\n" .
+        "	, i.Anio	\n" .
+        "	, cast(~ i.RETR_ENTREGABLE as int) as RETR_ENTREGABLE\n" .
+        "	, 1 Objetivo\n" .
+        "	, 4 Orden\n" .
+        ", (select pena from mc_c_metrica where Acronimo ='RETR_ENTREGABLE') as Pena\n" .
+        "from mc_calificacion_CAPC i \n" .
+        "	inner  join mc_c_ServContractual   v on v.id = i.id_serviciocont   \n" .
+        "WHERE (i.Mes is NULL or i.Mes= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " )\n" .
+        "	and (i.Anio is NULL or i.Anio= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . ")\n" .
+        "	and numero not in (select id from mc_universo_cds where SLO = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " )\n" .
+        ") as prueba group by SLA,Valor,pena,orden,Objetivo) cnt";
+        $this->SQL = "select mc_c_metrica.nombre SLA, cast(c.SumaApb as varchar) ReqAprob,  Valor Inclumpl, \n" .
+        "mc_c_metrica.Meta ValorObj,  mc_c_metrica.pena Penalizacion  , 0 orden\n" .
+        "from mc_c_metrica \n" .
+        "CROSS JOIN \n" .
+        "(select \n" .
+        " COUNT(HERR_EST_COST) SumaApb,\n" .
+        " sum(cast(~HERR_EST_COST as int)) valor\n" .
+        " from mc_calificacion_CAPC \n" .
+        " where mes= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        " and Anio  = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        " and numero not in (select numero from mc_universo_cds where SLO =" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . ")\n" .
+        " group by id_proveedor  \n" .
+        ") c\n" .
+        "where acronimo ='HERR_EST_COST'\n" .
+        "union all\n" .
+        "select mc_c_metrica.nombre, c.SumaApb,  c.REQ_SERV , \n" .
+        "mc_c_metrica.Meta, mc_c_metrica.pena, 0 orden\n" .
+        "from mc_c_metrica \n" .
+        "CROSS JOIN \n" .
+        "(select \n" .
+        " COUNT(REQ_SERV) SumaApb,\n" .
+        " sum(cast(~REQ_SERV as int)) REQ_SERV\n" .
+        " from mc_calificacion_CAPC \n" .
+        " where mes = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        " and Anio = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        " and numero not in (select numero from mc_universo_cds where SLO =" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " )\n" .
+        " group by id_proveedor  \n" .
+        ") c\n" .
+        "where acronimo ='REQ_SERV'\n" .
+        "\n" .
+        "\n" .
+        "UNION ALL\n" .
+        "\n" .
+        "\n" .
+        "select SLA, \n" .
+        "ReqAprob = CASE count(Valor) WHEN 0 THEN 0 ELSE CAST(COUNT(Valor) as varchar) END,\n" .
+        "sum(Valor) Incumpl,\n" .
+        "cast(Objetivo*100 as integer) ValorObj,\n" .
+        "pena Penalizacion ,\n" .
+        "orden\n" .
+        "FROM (\n" .
+        "SELECT \n" .
+        "	'Cumplimiento de requisitos funcionales' SLA\n" .
+        "	, v.Descripcion  servicio\n" .
+        "	, i.numero \n" .
+        "	, i.id_proveedor\n" .
+        "	, i.Id_servicio_negoico  \n" .
+        "	, i.id_serviciocont \n" .
+        "	, i.Mes\n" .
+        "	, i.Anio	\n" .
+        "	, cast(~ i.CUMPL_REQ_FUN  as int) as Valor\n" .
+        "	, .95 Objetivo\n" .
+        "	, 1 orden\n" .
+        "	, (select pena from mc_c_metrica where Acronimo ='CUMPL_REQ_FUNC') as Pena\n" .
+        "from mc_calificacion_CAPC i \n" .
+        "	inner  join mc_c_ServContractual  v on v.id = i.id_serviciocont   \n" .
+        "WHERE (i.Mes is NULL or i.Mes= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " )\n" .
+        "	and (i.Anio is NULL or i.Anio= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . ")\n" .
+        "	and numero not in (select id from mc_universo_cds where SLO =" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " )\n" .
+        "UNION\n" .
+        "select \n" .
+        "	'Calidad de productos terminados' SLA\n" .
+        "	, v.Descripcion  servicio\n" .
+        "	, i.numero \n" .
+        "	, i.id_proveedor\n" .
+        "	, i.Id_servicio_negoico  \n" .
+        "	, i.id_serviciocont  \n" .
+        "	, i.Mes\n" .
+        "	, i.Anio	\n" .
+        "	, cast(~ i.CALIDAD_PROD_TERM as int) as CALIDAD_PROD_TERM\n" .
+        "	, 1 Objetivo\n" .
+        "	, 2 Orden\n" .
+        ", (select pena from mc_c_metrica where Acronimo ='CALIDAD_PROD_TERM') as Pena\n" .
+        "from mc_calificacion_CAPC i \n" .
+        "	inner  join mc_c_ServContractual v on v.id = i.id_serviciocont   \n" .
+        "WHERE (i.Mes is NULL or i.Mes= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " )\n" .
+        "	and (i.Anio is NULL or i.Anio= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . ")\n" .
+        "	and numero not in (select id from mc_universo_cds where SLO = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " )\n" .
+        "UNION\n" .
+        "select \n" .
+        "	'Retraso en entregables' SLA\n" .
+        "	, v.Descripcion  servicio\n" .
+        "	, i.numero \n" .
+        "	, i.id_proveedor\n" .
+        "	, i.Id_servicio_negoico  \n" .
+        "	, i.id_serviciocont \n" .
+        "	, i.Mes\n" .
+        "	, i.Anio	\n" .
+        "	, cast(~ i.RETR_ENTREGABLE as int) as RETR_ENTREGABLE\n" .
+        "	, 1 Objetivo\n" .
+        "	, 4 Orden\n" .
+        ", (select pena from mc_c_metrica where Acronimo ='RETR_ENTREGABLE') as Pena\n" .
+        "from mc_calificacion_CAPC i \n" .
+        "	inner  join mc_c_ServContractual   v on v.id = i.id_serviciocont   \n" .
+        "WHERE (i.Mes is NULL or i.Mes= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " )\n" .
+        "	and (i.Anio is NULL or i.Anio= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . ")\n" .
+        "	and numero not in (select id from mc_universo_cds where SLO = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " )\n" .
+        ") as prueba group by SLA,Valor,pena,orden,Objetivo {SQL_OrderBy}";
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
+        if ($this->CountSQL) 
+            $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
+        else
+            $this->RecordsCount = "CCS not counted";
+        $this->query($this->OptimizeSQL(CCBuildSQL($this->SQL, $this->Where, $this->Order)));
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteSelect", $this->Parent);
+        $this->MoveToPage($this->AbsolutePage);
+    }
+//End Open Method
+
+//SetValues Method @115-45004971
+    function SetValues()
+    {
+        $this->SLA->SetDBValue($this->f("SLA"));
+        $this->ReqAprob->SetDBValue(trim($this->f("ReqAprob")));
+        $this->Incumpl->SetDBValue(trim($this->f("Inclumpl")));
+        $this->ValorObj->SetDBValue(trim($this->f("ValorObj")));
+        $this->Penalizacion->SetDBValue($this->f("Penalizacion"));
+    }
+//End SetValues Method
+
+} //End Grid3DataSource Class @115-FCB6E20C
+
 //Initialize Page @1-956369C2
 // Variables
 $FileName = "";
@@ -1357,7 +1994,7 @@ include_once("./PPMCsApbCuadroNSRSxls_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-68867E10
+//Initialize Objects @1-F01229D8
 $DBcnDisenio = new clsDBcnDisenio();
 $MainPage->Connections["cnDisenio"] = & $DBcnDisenio;
 $Attributes = new clsAttributes("page:");
@@ -1372,13 +2009,16 @@ $mc_calificacion_rs_MC = new clsRecordmc_calificacion_rs_MC("", $MainPage);
 $MenuTablero = new clsMenuTablero("", "MenuTablero", $MainPage);
 $MenuTablero->Initialize();
 $Grid2 = new clsGridGrid2("", $MainPage);
+$Grid3 = new clsGridGrid3("", $MainPage);
 $MainPage->Header = & $Header;
 $MainPage->Grid1 = & $Grid1;
 $MainPage->mc_calificacion_rs_MC = & $mc_calificacion_rs_MC;
 $MainPage->MenuTablero = & $MenuTablero;
 $MainPage->Grid2 = & $Grid2;
+$MainPage->Grid3 = & $Grid3;
 $Grid1->Initialize();
 $Grid2->Initialize();
+$Grid3->Initialize();
 $ScriptIncludes = "";
 $SList = explode("|", $Scripts);
 foreach ($SList as $Script) {
@@ -1418,7 +2058,7 @@ $mc_calificacion_rs_MC->Operation();
 $Header->Operations();
 //End Execute Components
 
-//Go to destination page @1-0C8205F9
+//Go to destination page @1-297773F9
 if($Redirect)
 {
     $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
@@ -1431,17 +2071,19 @@ if($Redirect)
     $MenuTablero->Class_Terminate();
     unset($MenuTablero);
     unset($Grid2);
+    unset($Grid3);
     unset($Tpl);
     exit;
 }
 //End Go to destination page
 
-//Show Page @1-369C077A
+//Show Page @1-0B961D54
 $Header->Show();
 $Grid1->Show();
 $mc_calificacion_rs_MC->Show();
 $MenuTablero->Show();
 $Grid2->Show();
+$Grid3->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);
@@ -1449,7 +2091,7 @@ $CCSEventResult = CCGetEvent($CCSEvents, "BeforeOutput", $MainPage);
 if ($CCSEventResult) echo $main_block;
 //End Show Page
 
-//Unload Page @1-2BC11BF5
+//Unload Page @1-C4BFCA03
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
 $DBcnDisenio->close();
 $Header->Class_Terminate();
@@ -1459,6 +2101,7 @@ unset($mc_calificacion_rs_MC);
 $MenuTablero->Class_Terminate();
 unset($MenuTablero);
 unset($Grid2);
+unset($Grid3);
 unset($Tpl);
 //End Unload Page
 

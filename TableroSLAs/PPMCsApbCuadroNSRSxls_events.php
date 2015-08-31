@@ -1,14 +1,19 @@
 <?php
-//BindEvents Method @1-C36BE970
+//BindEvents Method @1-D39D030F
 function BindEvents()
 {
     global $Grid1;
+    global $mc_calificacion_rs_MC;
     global $Grid2;
+    global $Grid3;
     global $CCSEvents;
     $Grid1->CCSEvents["BeforeShowRow"] = "Grid1_BeforeShowRow";
     $Grid1->CCSEvents["BeforeShow"] = "Grid1_BeforeShow";
+    $mc_calificacion_rs_MC->CCSEvents["BeforeShow"] = "mc_calificacion_rs_MC_BeforeShow";
     $Grid2->CCSEvents["BeforeShowRow"] = "Grid2_BeforeShowRow";
     $Grid2->CCSEvents["BeforeShow"] = "Grid2_BeforeShow";
+    $Grid3->CCSEvents["BeforeShowRow"] = "Grid3_BeforeShowRow";
+    $Grid3->CCSEvents["BeforeShow"] = "Grid3_BeforeShow";
     $CCSEvents["BeforeShow"] = "Page_BeforeShow";
 }
 //End BindEvents Method
@@ -53,6 +58,8 @@ function Grid1_BeforeShow(& $sender)
     $Component = & $sender;
     $Container = & CCGetParentContainer($sender);
     global $Grid1; //Compatibility
+    global $Grid2; //Compatibility
+
 //End Grid1_BeforeShow
 
 //Custom Code @51-2A29BDB7
@@ -63,10 +70,19 @@ function Grid1_BeforeShow(& $sender)
     $db= new clsDBcnDisenio;
     $db->query("select  COUNT(*) from mc_universo_cds  where mes= " .CCGetParam("s_MesReporte",date('m')) . "  and anio = " .  CCGetParam("s_AnioReporte",date('Y')) . " and (Medido <>1 or Medido is null)");
 	if($db->next_record()){
-		if($db->f(0)> 0 && CCGetSession("GrupoValoracion","")!='CAPC' ){
-	    	$Grid1->Visible =false;
-	    } else {
-	    	$Grid1->Visible =true;
+		if(($db->f(0)> 0 && CCGetSession("GrupoValoracion","")!='CAPC') ){
+				$Grid1->Visible =false;				
+				$Grid2->Visible =false;
+				
+		} else {
+		     if(CCGetParam("s_id_proveedor",0)!=1){
+				$Grid1->Visible =true;
+				$Grid2->Visible =true;
+		     } else {
+				$Grid1->Visible =false;
+				$Grid2->Visible =false;
+		     
+		     }
 		}
 	}
 // -------------------------
@@ -76,6 +92,41 @@ function Grid1_BeforeShow(& $sender)
     return $Grid1_BeforeShow;
 }
 //End Close Grid1_BeforeShow
+
+//mc_calificacion_rs_MC_BeforeShow @20-54D6F7CA
+function mc_calificacion_rs_MC_BeforeShow(& $sender)
+{
+    $mc_calificacion_rs_MC_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $mc_calificacion_rs_MC; //Compatibility
+//End mc_calificacion_rs_MC_BeforeShow
+
+//Custom Code @134-2A29BDB7
+// -------------------------
+    global $db;
+    $db= new clsDBcnDisenio();
+    $db->query("select month(cast(max(cast(anioreporte as varchar) + '-' + CAST(mesreporte as varchar) + '-01') as date)) " .
+    	 ", year(cast(max(cast(anioreporte as varchar) + '-' + CAST(mesreporte as varchar) + '-01') as date)) from mc_calificacion_rs_MC");
+    if($db->next_record()){
+    	if(CCGetParam("s_MesReporte","")==""){
+    		//$Grid2->s_MesReporte->SetValue($db->f(0));
+    		$mc_calificacion_rs_MC->s_MesReporte->SetValue(date("m")-2);
+    	}
+    	if(CCGetParam("s_AnioReporte","")==""){
+    		$mc_calificacion_rs_MC->s_AnioReporte->SetValue($db->f(1));
+    		$mc_calificacion_rs_MC->s_AnioReporte->SetValue(date("Y"));
+    	}
+    }
+    $db->close();
+
+// -------------------------
+//End Custom Code
+
+//Close mc_calificacion_rs_MC_BeforeShow @20-9453A30A
+    return $mc_calificacion_rs_MC_BeforeShow;
+}
+//End Close mc_calificacion_rs_MC_BeforeShow
 
 //Grid2_BeforeShowRow @52-3751ABF8
 function Grid2_BeforeShowRow(& $sender)
@@ -121,6 +172,11 @@ function Grid2_BeforeShow(& $sender)
 
 //Custom Code @67-2A29BDB7
 // -------------------------
+			if (CCGetParam("s_id_proveedor",0)==1){
+				$Grid2->Visible =false;
+			} else{
+				$Grid2->Visible =true;
+			}
     
 // -------------------------
 //End Custom Code
@@ -129,6 +185,76 @@ function Grid2_BeforeShow(& $sender)
     return $Grid2_BeforeShow;
 }
 //End Close Grid2_BeforeShow
+
+//Grid3_BeforeShowRow @115-71DE6782
+function Grid3_BeforeShowRow(& $sender)
+{
+    $Grid3_BeforeShowRow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $Grid3; //Compatibility
+//End Grid3_BeforeShowRow
+
+//Custom Code @131-2A29BDB7
+// -------------------------
+    if($Grid3->ReqAprob->GetValue()>0){
+    	$Grid3->Cumplimiento->SetValue(number_format((($Grid3->ReqAprob->GetValue()-$Grid3->Incumpl->GetValue())/$Grid3->ReqAprob->GetValue())*100 ),0)  ;
+    	if($Grid3->Cumplimiento->GetValue()<$Grid3->ValorObj->GetValue()){
+	    	$Grid3->Indicador->SetValue("images/NoCumple.png");
+	    } else {
+	    	$Grid3->Indicador->SetValue("images/Cumple.png");
+	    }
+    } else {
+    	$Grid3->ReqAprob->SetValue("Sin datos para<br>medir");
+    	$Grid3->Cumplimiento->SetValue("Sin datos para<br>medir");
+    	$Grid3->Incumpl->SetValue("Sin datos para<br>medir");
+    	$Grid3->Indicador->SetValue("images/left.png");
+    }
+
+// -------------------------
+//End Custom Code
+
+//Close Grid3_BeforeShowRow @115-F7D8EDE1
+    return $Grid3_BeforeShowRow;
+}
+//End Close Grid3_BeforeShowRow
+
+//Grid3_BeforeShow @115-8D3210BF
+function Grid3_BeforeShow(& $sender)
+{
+    $Grid3_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $Grid3; //Compatibility
+//End Grid3_BeforeShow
+
+//Custom Code @132-2A29BDB7
+// -------------------------
+    //si no esta cerrado el mes de medición y no es CAPC no puede ver el cuadro CAPC    
+    global $db;
+    $db= new clsDBcnDisenio;
+    $db->query("select  COUNT(*) from mc_universo_cds  where mes= " .CCGetParam("s_MesReporte",date('m')) . "  and anio = " .  CCGetParam("s_AnioReporte",date('Y')) . " and (Medido <>1 or Medido is null)");
+	if($db->next_record()){
+		echo("<script>console.log('".$db->f(0)."')</script>");
+		if($db->f(0)> 0 && CCGetSession("GrupoValoracion","")!='CAPC' ){
+				$Grid3->Visible=false;			
+	    } else {
+					if (CCGetParam("s_id_proveedor",0)==1){
+						$Grid3->Visible =true;
+					} else{
+						$Grid3->Visible =false;
+					}
+
+		}
+	}
+
+// -------------------------
+//End Custom Code
+
+//Close Grid3_BeforeShow @115-219B45BE
+    return $Grid3_BeforeShow;
+}
+//End Close Grid3_BeforeShow
 
 //Page_BeforeShow @1-201FFBD8
 function Page_BeforeShow(& $sender)
@@ -141,8 +267,6 @@ function Page_BeforeShow(& $sender)
 
 //Custom Code @83-2A29BDB7
 // -------------------------
-    global $mc_calificacion_rs_MC;
-    $mc_calificacion_rs_MC->Visible = (CCGetSession("GrupoValoracion")=="CAPC" || CCGetSession("GrupoValoracion")=="SAT");
 // -------------------------
 //End Custom Code
 

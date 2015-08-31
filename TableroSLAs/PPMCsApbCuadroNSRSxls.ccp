@@ -1,4 +1,4 @@
-<Page id="1" templateExtension="html" relativePath="." fullRelativePath="." secured="True" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="{CCS_Style}" wizardThemeVersion="3.0" useDesign="False" needGeneration="0">
+<Page id="1" templateExtension="html" relativePath="." fullRelativePath="." secured="True" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="Austere4" wizardThemeVersion="3.0" useDesign="False" needGeneration="0">
 	<Components>
 		<IncludePage id="2" name="Header" PathID="Header" page="Header.ccp">
 			<Components/>
@@ -271,10 +271,10 @@ where acronimo ='CAL_COD'
 			<PKFields/>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="90" dataType="Integer" defaultValue="0" designDefaultValue="2" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
-<SQLParameter id="91" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="s_MesReporte" parameterType="URL" variable="s_MesReporte"/>
-<SQLParameter id="92" dataType="Integer" defaultValue="0" designDefaultValue="2014" parameterSource="s_AnioReporte" parameterType="URL" variable="s_AnioReporte"/>
-<SQLParameter id="93" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
+				<SQLParameter id="138" dataType="Integer" defaultValue="0" designDefaultValue="2" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
+<SQLParameter id="139" dataType="Integer" defaultValue="date('m')-2" designDefaultValue="1" parameterSource="s_MesReporte" parameterType="URL" variable="s_MesReporte"/>
+<SQLParameter id="140" dataType="Integer" defaultValue="date('Y')" designDefaultValue="2014" parameterSource="s_AnioReporte" parameterType="URL" variable="s_AnioReporte"/>
+<SQLParameter id="141" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
 </SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
@@ -292,21 +292,20 @@ where acronimo ='CAL_COD'
 					<Components/>
 					<Events/>
 					<TableParameters>
-						<TableParameter id="26" conditionType="Parameter" useIsNull="False" dataType="Text" field="descripcion" logicOperator="And" parameterSource="'CDS'" parameterType="Expression" searchConditionType="Equal"/>
 					</TableParameters>
 					<SPParameters/>
 					<SQLParameters/>
 					<JoinTables>
-						<JoinTable id="31" tableName="mc_c_proveedor"/>
+						<JoinTable id="106" posHeight="180" posLeft="10" posTop="10" posWidth="158" tableName="mc_c_proveedor"/>
 					</JoinTables>
 					<JoinLinks/>
 					<Fields>
-						<Field id="27" fieldName="nombre" tableName="mc_c_proveedor"/>
-						<Field id="28" fieldName="descripcion" tableName="mc_c_proveedor"/>
-						<Field id="29" fieldName="id_proveedor" tableName="mc_c_proveedor"/>
+						<Field id="107" fieldName="nombre" tableName="mc_c_proveedor"/>
+						<Field id="108" fieldName="descripcion" tableName="mc_c_proveedor"/>
+						<Field id="109" fieldName="id_proveedor" tableName="mc_c_proveedor"/>
 					</Fields>
 					<PKFields>
-						<PKField id="30" dataType="Integer" fieldName="id_proveedor" tableName="mc_c_proveedor"/>
+						<PKField id="110" dataType="Integer" fieldName="id_proveedor" tableName="mc_c_proveedor"/>
 					</PKFields>
 					<Attributes/>
 					<Features/>
@@ -341,7 +340,13 @@ order by ano" boundColumn="Ano" textColumn="Ano">
 					<Features/>
 				</ListBox>
 			</Components>
-			<Events/>
+			<Events>
+				<Event name="BeforeShow" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="134"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters/>
 			<SPParameters/>
 			<SQLParameters/>
@@ -608,6 +613,215 @@ where acronimo ='EFIC_PRESUP'" pageSizeLimit="100" pageSize="True" wizardCaption
 				<SQLParameter id="88" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="s_MesReporte" parameterType="URL" variable="s_MesReporte"/>
 				<SQLParameter id="89" dataType="Integer" defaultValue="0" designDefaultValue="2014" parameterSource="s_AnioReporte" parameterType="URL" variable="s_AnioReporte"/>
 			</SQLParameters>
+			<SecurityGroups/>
+			<Attributes/>
+			<Features/>
+		</Grid>
+		<Grid id="115" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="10" name="Grid3" connection="cnDisenio" dataSource="select mc_c_metrica.nombre SLA, cast(c.SumaApb as varchar) ReqAprob,  Valor Inclumpl, 
+mc_c_metrica.Meta ValorObj,  mc_c_metrica.pena Penalizacion  , 0 orden
+from mc_c_metrica 
+CROSS JOIN 
+(select 
+ COUNT(HERR_EST_COST) SumaApb,
+ sum(cast(~HERR_EST_COST as int)) valor
+ from mc_calificacion_CAPC 
+ where mes= {s_MesReporte}
+ and Anio  = {s_AnioReporte}
+ and numero not in (select numero from mc_universo_cds where SLO ={sSLO})
+ group by id_proveedor  
+) c
+where acronimo ='HERR_EST_COST'
+union all
+select mc_c_metrica.nombre, c.SumaApb,  c.REQ_SERV , 
+mc_c_metrica.Meta, mc_c_metrica.pena, 0 orden
+from mc_c_metrica 
+CROSS JOIN 
+(select 
+ COUNT(REQ_SERV) SumaApb,
+ sum(cast(~REQ_SERV as int)) REQ_SERV
+ from mc_calificacion_CAPC 
+ where mes = {s_MesReporte}
+ and Anio = {s_AnioReporte}
+ and numero not in (select numero from mc_universo_cds where SLO ={sSLO} )
+ group by id_proveedor  
+) c
+where acronimo ='REQ_SERV'
+
+
+UNION ALL
+
+
+select SLA, 
+ReqAprob = CASE count(Valor) WHEN 0 THEN 0 ELSE CAST(COUNT(Valor) as varchar) END,
+sum(Valor) Incumpl,
+cast(Objetivo*100 as integer) ValorObj,
+pena Penalizacion ,
+orden
+FROM (
+SELECT 
+	'Cumplimiento de requisitos funcionales' SLA
+	, v.Descripcion  servicio
+	, i.numero 
+	, i.id_proveedor
+	, i.Id_servicio_negoico  
+	, i.id_serviciocont 
+	, i.Mes
+	, i.Anio	
+	, cast(~ i.CUMPL_REQ_FUN  as int) as Valor
+	, .95 Objetivo
+	, 1 orden
+	, (select pena from mc_c_metrica where Acronimo ='CUMPL_REQ_FUNC') as Pena
+from mc_calificacion_CAPC i 
+	inner  join mc_c_ServContractual  v on v.id = i.id_serviciocont   
+WHERE (i.Mes is NULL or i.Mes= {s_MesReporte} )
+	and (i.Anio is NULL or i.Anio= {s_AnioReporte})
+	and numero not in (select id from mc_universo_cds where SLO ={sSLO} )
+UNION
+select 
+	'Calidad de productos terminados' SLA
+	, v.Descripcion  servicio
+	, i.numero 
+	, i.id_proveedor
+	, i.Id_servicio_negoico  
+	, i.id_serviciocont  
+	, i.Mes
+	, i.Anio	
+	, cast(~ i.CALIDAD_PROD_TERM as int) as CALIDAD_PROD_TERM
+	, 1 Objetivo
+	, 2 Orden
+, (select pena from mc_c_metrica where Acronimo ='CALIDAD_PROD_TERM') as Pena
+from mc_calificacion_CAPC i 
+	inner  join mc_c_ServContractual v on v.id = i.id_serviciocont   
+WHERE (i.Mes is NULL or i.Mes= {s_MesReporte} )
+	and (i.Anio is NULL or i.Anio= {s_AnioReporte})
+	and numero not in (select id from mc_universo_cds where SLO = {sSLO} )
+UNION
+select 
+	'Retraso en entregables' SLA
+	, v.Descripcion  servicio
+	, i.numero 
+	, i.id_proveedor
+	, i.Id_servicio_negoico  
+	, i.id_serviciocont 
+	, i.Mes
+	, i.Anio	
+	, cast(~ i.RETR_ENTREGABLE as int) as RETR_ENTREGABLE
+	, 1 Objetivo
+	, 4 Orden
+, (select pena from mc_c_metrica where Acronimo ='RETR_ENTREGABLE') as Pena
+from mc_calificacion_CAPC i 
+	inner  join mc_c_ServContractual   v on v.id = i.id_serviciocont   
+WHERE (i.Mes is NULL or i.Mes= {s_MesReporte} )
+	and (i.Anio is NULL or i.Anio= {s_AnioReporte})
+	and numero not in (select id from mc_universo_cds where SLO = {sSLO} )
+) as prueba group by SLA,Valor,pena,orden,Objetivo order by orden
+
+
+
+" pageSizeLimit="100" pageSize="True" wizardCaption="Cuadro NS RSs del CAPC" wizardThemeApplyTo="Page" wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No hay registros" wizardGridPagingType="Simple" wizardUseSearch="False" wizardAddNbsp="True" gridTotalRecords="False" wizardAddPanels="False" wizardType="Grid" wizardUseInterVariables="False" addTemplatePanel="False" changedCaptionGrid="True" gridExtendedHTML="False" PathID="Grid3">
+			<Components>
+				<Sorter id="119" visible="True" name="Sorter_SLA" column="SLA" wizardCaption="SLA" wizardSortingType="SimpleDir" wizardControl="SLA" wizardAddNbsp="False" PathID="Grid3Sorter_SLA">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="120" visible="True" name="Sorter_ReqAprob" column="ReqAprob" wizardCaption="Req Aprob" wizardSortingType="SimpleDir" wizardControl="ReqAprob" wizardAddNbsp="False" PathID="Grid3Sorter_ReqAprob">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="121" visible="True" name="Sorter_Inclumpl" column="Inclumpl" wizardCaption="Inclumpl" wizardSortingType="SimpleDir" wizardControl="Inclumpl" wizardAddNbsp="False" PathID="Grid3Sorter_Inclumpl">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="122" visible="True" name="Sorter_ValorObj" column="ValorObj" wizardCaption="Valor Obj" wizardSortingType="SimpleDir" wizardControl="ValorObj" wizardAddNbsp="False" PathID="Grid3Sorter_ValorObj">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="123" visible="True" name="Sorter_Penalizacion" column="Penalizacion" wizardCaption="Penalizacion" wizardSortingType="SimpleDir" wizardControl="Penalizacion" wizardAddNbsp="False" PathID="Grid3Sorter_Penalizacion">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Label id="124" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="SLA" fieldSource="SLA" wizardCaption="SLA" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="Grid3SLA">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="125" fieldSourceType="DBColumn" dataType="Integer" html="True" generateSpan="False" name="ReqAprob" fieldSource="ReqAprob" wizardCaption="Req Aprob" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAlign="right" wizardAddNbsp="True" PathID="Grid3ReqAprob">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="126" fieldSourceType="DBColumn" dataType="Integer" html="True" generateSpan="False" name="Incumpl" fieldSource="Inclumpl" wizardCaption="Inclumpl" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAlign="right" wizardAddNbsp="True" PathID="Grid3Incumpl">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="127" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="ValorObj" fieldSource="ValorObj" wizardCaption="Valor Obj" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="Grid3ValorObj">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="128" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="Penalizacion" fieldSource="Penalizacion" wizardCaption="Penalizacion" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="Grid3Penalizacion">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Navigator id="129" size="10" type="Simple" pageSizes="1;5;10;25;50" name="Navigator" wizardPagingType="Simple" wizardFirst="True" wizardFirstText="Inicio" wizardPrev="True" wizardPrevText="Anterior" wizardNext="True" wizardNextText="Siguiente" wizardLast="True" wizardLastText="Final" wizardImages="Images" wizardPageNumbers="Simple" wizardSize="10" wizardTotalPages="True" wizardHideDisabled="False" wizardOfText="de" wizardPageSize="True" wizardImagesScheme="Austere4">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Navigator>
+				<Image id="130" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Indicador" PathID="Grid3Indicador">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Image>
+				<Label id="133" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="Cumplimiento" PathID="Grid3Cumplimiento">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+			</Components>
+			<Events>
+				<Event name="BeforeShowRow" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="131"/>
+					</Actions>
+				</Event>
+				<Event name="BeforeShow" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="132"/>
+					</Actions>
+				</Event>
+			</Events>
+			<TableParameters/>
+			<JoinTables/>
+			<JoinLinks/>
+			<Fields/>
+			<PKFields/>
+			<SPParameters/>
+			<SQLParameters>
+				<SQLParameter id="142" dataType="Integer" defaultValue="date('m')-1" designDefaultValue="1" parameterSource="s_MesReporte" parameterType="URL" variable="s_MesReporte"/>
+<SQLParameter id="143" dataType="Integer" defaultValue="date('Y')" designDefaultValue="2014" parameterSource="s_AnioReporte" parameterType="URL" variable="s_AnioReporte"/>
+<SQLParameter id="144" dataType="Integer" defaultValue="0" designDefaultValue="0" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
+</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>

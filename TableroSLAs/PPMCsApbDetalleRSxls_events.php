@@ -1,12 +1,19 @@
 <?php
-//BindEvents Method @1-5B0BA769
+//BindEvents Method @1-9E47F639
 function BindEvents()
 {
     global $grdDetalleRS;
+    global $grdDetalleRS1;
+    global $grid_capc;
     global $CCSEvents;
     $grdDetalleRS->Grid1_TotalRecords->CCSEvents["BeforeShow"] = "grdDetalleRS_Grid1_TotalRecords_BeforeShow";
     $grdDetalleRS->ds->CCSEvents["BeforeExecuteSelect"] = "grdDetalleRS_ds_BeforeExecuteSelect";
     $grdDetalleRS->CCSEvents["BeforeShowRow"] = "grdDetalleRS_BeforeShowRow";
+    $grdDetalleRS->CCSEvents["BeforeShow"] = "grdDetalleRS_BeforeShow";
+    $grdDetalleRS1->CCSEvents["BeforeShow"] = "grdDetalleRS1_BeforeShow";
+    $grid_capc->Grid2_TotalRecords->CCSEvents["BeforeShow"] = "grid_capc_Grid2_TotalRecords_BeforeShow";
+    $grid_capc->CCSEvents["BeforeShowRow"] = "grid_capc_BeforeShowRow";
+    $grid_capc->CCSEvents["BeforeShow"] = "grid_capc_BeforeShow";
     $CCSEvents["BeforeShow"] = "Page_BeforeShow";
 }
 //End BindEvents Method
@@ -21,7 +28,14 @@ function grdDetalleRS_Grid1_TotalRecords_BeforeShow(& $sender)
 //End grdDetalleRS_Grid1_TotalRecords_BeforeShow
 
 //Retrieve number of records @5-ABE656B4
-    $Component->SetValue($Container->DataSource->RecordsCount);
+   	$Component->SetValue($Container->DataSource->RecordsCount);    
+/*
+    if( CCGetSession("GrupoValoracion")=="CAPC" || CCGetParam("s_AnioReporte",0)<2014){
+   		$Component->SetValue($Container->DataSource->RecordsCount);
+    } else {
+        $Component->SetValue(0);
+	}
+*/	
 //End Retrieve number of records
 
 //Close grdDetalleRS_Grid1_TotalRecords_BeforeShow @4-4F1A7186
@@ -55,7 +69,7 @@ function grdDetalleRS_BeforeShowRow(& $sender)
     $grdDetalleRS_BeforeShowRow = true;
     $Component = & $sender;
     $Container = & CCGetParentContainer($sender);
-    global $grdDetalleRS; //Compatibility
+    global $grdDetalleRS; //Compatibility    
 //End grdDetalleRS_BeforeShowRow
 
 //Custom Code @46-2A29BDB7
@@ -64,7 +78,7 @@ function grdDetalleRS_BeforeShowRow(& $sender)
 	global $db;
 	$tipo_ppmc='';
 	$SLO_ppmc='';
-	$medido_en='';
+	$_en='';
   	$db = new clsDBcnDisenio;
 	$sqlGetTipo="	SELECT mes,anio, SLO, tipo
 					FROM mc_universo_cds 
@@ -238,7 +252,7 @@ function grdDetalleRS_BeforeShowRow(& $sender)
 	}
 	
 	if($grdDetalleRS->DataSource->f("medido")==1 || CCGetSession("GrupoValoracion")=="CAPC" || CCGetParam("s_AnioReporte",0)<2014){
-		$grdDetalleRS->Panel1->Visible=true;
+   		$grdDetalleRS->Panel1->Visible=true;
 	} else {
 		$grdDetalleRS->Panel1->Visible=false;
 	}
@@ -260,6 +274,219 @@ function grdDetalleRS_BeforeShowRow(& $sender)
     return $grdDetalleRS_BeforeShowRow;
 }
 //End Close grdDetalleRS_BeforeShowRow
+
+//grdDetalleRS_BeforeShow @3-60D59EFD
+function grdDetalleRS_BeforeShow(& $sender)
+{
+    $grdDetalleRS_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $grdDetalleRS; //Compatibility
+//End grdDetalleRS_BeforeShow
+
+//Custom Code @188-2A29BDB7
+// -------------------------
+
+    if(CCGetParam("s_id_proveedor","") == 1){
+    	$grdDetalleRS->Panel1->Visible=false;
+    	$grdDetalleRS->Visible=false;
+    } else {
+    	$grdDetalleRS->Panel1->Visible=true;
+    	$grdDetalleRS->Visible=true;
+    }
+
+// -------------------------
+//End Custom Code
+
+//Close grdDetalleRS_BeforeShow @3-C02F3321
+    return $grdDetalleRS_BeforeShow;
+}
+//End Close grdDetalleRS_BeforeShow
+
+//grdDetalleRS1_BeforeShow @25-E1258B76
+function grdDetalleRS1_BeforeShow(& $sender)
+{
+    $grdDetalleRS1_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $grdDetalleRS1; //Compatibility
+//End grdDetalleRS1_BeforeShow
+
+//Custom Code @138-2A29BDB7
+// -------------------------
+    global $db;
+    $db= new clsDBcnDisenio();
+    $db->query("select month(cast(max(cast(anioreporte as varchar) + '-' + CAST(mesreporte as varchar) + '-01') as date)) " .
+    	 ", year(cast(max(cast(anioreporte as varchar) + '-' + CAST(mesreporte as varchar) + '-01') as date)) from mc_calificacion_rs_MC");
+    if($db->next_record()){
+    	if(CCGetParam("s_MesReporte","")==""){
+    		//$Grid2->s_MesReporte->SetValue($db->f(0));
+    		$grdDetalleRS1->s_MesReporte->SetValue(date("m")-2);
+    	}
+    	if(CCGetParam("s_AnioReporte","")==""){
+    		$grdDetalleRS1->s_AnioReporte->SetValue($db->f(1));
+    		$grdDetalleRS1->s_AnioReporte->SetValue(date("Y"));
+    	}
+    }
+    $db->close();
+
+
+// -------------------------
+//End Custom Code
+
+//Close grdDetalleRS1_BeforeShow @25-7BFD7B85
+    return $grdDetalleRS1_BeforeShow;
+}
+//End Close grdDetalleRS1_BeforeShow
+
+//grid_capc_Grid2_TotalRecords_BeforeShow @172-65BC3C47
+function grid_capc_Grid2_TotalRecords_BeforeShow(& $sender)
+{
+    $grid_capc_Grid2_TotalRecords_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $grid_capc; //Compatibility
+//End grid_capc_Grid2_TotalRecords_BeforeShow
+
+//Retrieve number of records @173-ABE656B4
+    $Component->SetValue($Container->DataSource->RecordsCount);
+//End Retrieve number of records
+
+//Close grid_capc_Grid2_TotalRecords_BeforeShow @172-E628FE46
+    return $grid_capc_Grid2_TotalRecords_BeforeShow;
+}
+//End Close grid_capc_Grid2_TotalRecords_BeforeShow
+
+//grid_capc_BeforeShowRow @139-14D42E04
+function grid_capc_BeforeShowRow(& $sender)
+{
+    $grid_capc_BeforeShowRow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $grid_capc; //Compatibility
+//End grid_capc_BeforeShowRow
+
+//Custom Code @183-2A29BDB7
+// -------------------------
+    if($grid_capc->CALIDAD_PROD_TERM->GetValue()!=""){
+		$grid_capc->Img_CALIDAD_PROD_TERM->Visible=true;
+		$grid_capc->CALIDAD_PROD_TERM->Visible=false;	
+		if($grid_capc->CALIDAD_PROD_TERM->GetValue()==1){
+			$grid_capc->Img_CALIDAD_PROD_TERM->SetValue("images/Cumple.png");
+		} else {
+			$grid_capc->Img_CALIDAD_PROD_TERM->SetValue("images/NoCumple.png");
+		}
+    } else {
+		$grid_capc->Img_CALIDAD_PROD_TERM->Visible=false;
+		$grid_capc->CALIDAD_PROD_TERM->Visible=true;
+		$grid_capc->CALIDAD_PROD_TERM->SetValue("No&nbsp;Aplica");
+    }
+    
+    if($grid_capc->DEDUC_OMISION->GetValue()!=""){
+		$grid_capc->Img_DEDUC_OMISION->Visible=true;
+		$grid_capc->DEDUC_OMISION->Visible=false;	
+		if($grid_capc->DEDUC_OMISION->GetValue()==1){
+			$grid_capc->Img_DEDUC_OMISION->SetValue("images/Cumple.png");
+		} else {
+			$grid_capc->Img_DEDUC_OMISION->SetValue("images/NoCumple.png");
+		}
+	} else {
+		$grid_capc->Img_DEDUC_OMISION->Visible=false;
+		$grid_capc->DEDUC_OMISION->Visible=true;
+		$grid_capc->DEDUC_OMISION->SetValue("No&nbsp;Aplica");
+	}
+	
+    if($grid_capc->RETR_ENTREGABLE->GetValue()!=""){
+		$grid_capc->Img_RETR_ENTREGABLE->Visible=true;
+		$grid_capc->RETR_ENTREGABLE->Visible=false;	
+		if($grid_capc->RETR_ENTREGABLE->GetValue()==1){
+			$grid_capc->Img_RETR_ENTREGABLE->SetValue("images/Cumple.png");
+		} else {
+			$grid_capc->Img_RETR_ENTREGABLE->SetValue("images/NoCumple.png");
+		}
+	} else {
+		$grid_capc->Img_RETR_ENTREGABLE->Visible=false;
+		$grid_capc->RETR_ENTREGABLE->Visible=true;
+		$grid_capc->RETR_ENTREGABLE->SetValue("No&nbsp;Aplica");
+	}
+	
+	//nuevos para el SDMA4
+	if($grid_capc->HERR_EST_COST->GetValue()!=""){
+		$grid_capc->Img_HERR_EST_COST->Visible=true;
+		$grid_capc->HERR_EST_COST->Visible=false;	
+		if($grid_capc->HERR_EST_COST->GetValue()==1){
+			$grid_capc->Img_HERR_EST_COST->SetValue("images/Cumple.png");
+		} else {
+			$grid_capc->Img_HERR_EST_COST->SetValue("images/NoCumple.png");
+		}
+	} else {
+		$grid_capc->Img_HERR_EST_COST->Visible=false;
+		$grid_capc->HERR_EST_COST->Visible=true;
+		$grid_capc->HERR_EST_COST->SetValue("No&nbsp;Aplica");
+	}
+	
+	if($grid_capc->REQ_SERV->GetValue()!=""){
+		$grid_capc->Img_REQ_SERV->Visible=true;
+		$grid_capc->REQ_SERV->Visible=false;	
+		if($grid_capc->REQ_SERV->GetValue()==1){
+			$grid_capc->Img_REQ_SERV->SetValue("images/Cumple.png");
+		} else {
+			$grid_capc->Img_REQ_SERV->SetValue("images/NoCumple.png");
+		}
+	} else {
+		$grid_capc->Img_REQ_SERV->Visible=false;
+		$grid_capc->REQ_SERV->Visible=true;
+		$grid_capc->REQ_SERV->SetValue("No&nbsp;Aplica");
+	}
+	
+	if($grid_capc->CUMPL_REQ_FUN->GetValue()!=""){
+		$grid_capc->Img_CUMPL_REQ_FUN->Visible=true;
+		$grid_capc->CUMPL_REQ_FUN->Visible=false;	
+		if($grid_capc->CUMPL_REQ_FUN->GetValue()==1){
+			$grid_capc->Img_CUMPL_REQ_FUN->SetValue("images/Cumple.png");
+		} else {
+			$grid_capc->Img_CUMPL_REQ_FUN->SetValue("images/NoCumple.png");
+		}
+	} else {
+		$grid_capc->Img_CUMPL_REQ_FUN->Visible=false;
+		$grid_capc->CUMPL_REQ_FUN->Visible=true;
+		$grid_capc->CUMPL_REQ_FUN->SetValue("No&nbsp;Aplica");
+	}
+	
+
+// -------------------------
+//End Custom Code
+
+//Close grid_capc_BeforeShowRow @139-B59113B9
+    return $grid_capc_BeforeShowRow;
+}
+//End Close grid_capc_BeforeShowRow
+
+//grid_capc_BeforeShow @139-B8E8F08E
+function grid_capc_BeforeShow(& $sender)
+{
+    $grid_capc_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $grid_capc; //Compatibility
+//End grid_capc_BeforeShow
+
+//Custom Code @184-2A29BDB7
+// -------------------------
+    
+    if(CCGetParam("s_id_proveedor","")==1){
+    	$grid_capc->Visible=true;
+    } else {
+    	$grid_capc->Visible=false;
+    }
+    
+// -------------------------
+//End Custom Code
+
+//Close grid_capc_BeforeShow @139-E4DC3207
+    return $grid_capc_BeforeShow;
+}
+//End Close grid_capc_BeforeShow
 
 //Page_BeforeShow @1-498315D6
 function Page_BeforeShow(& $sender)

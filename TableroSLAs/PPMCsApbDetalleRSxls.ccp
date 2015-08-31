@@ -1,4 +1,4 @@
-<Page id="1" templateExtension="html" relativePath="." fullRelativePath="." secured="True" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="{CCS_Style}" wizardThemeVersion="3.0" useDesign="False" needGeneration="0">
+<Page id="1" templateExtension="html" relativePath="." fullRelativePath="." secured="True" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="Austere4" wizardThemeVersion="3.0" useDesign="False" needGeneration="0">
 	<Components>
 		<IncludePage id="2" name="Header" PathID="Header" page="Header.ccp">
 			<Components/>
@@ -362,7 +362,12 @@ where c.id_proveedor = {s_id_proveedor}
 						<Action actionName="Custom Code" actionCategory="General" id="46" eventType="Server"/>
 					</Actions>
 				</Event>
-			</Events>
+				<Event name="BeforeShow" type="Server">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="188"/>
+</Actions>
+</Event>
+</Events>
 			<TableParameters/>
 			<JoinTables/>
 			<JoinLinks/>
@@ -370,11 +375,11 @@ where c.id_proveedor = {s_id_proveedor}
 			<PKFields/>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="132" dataType="Integer" defaultValue="0" designDefaultValue="3" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
-<SQLParameter id="133" dataType="Integer" defaultValue="0" designDefaultValue="4" parameterSource="s_MesReporte" parameterType="URL" variable="s_MesReporte"/>
-<SQLParameter id="134" dataType="Integer" defaultValue="0" designDefaultValue="2014" parameterSource="s_AnioReporte" parameterType="URL" variable="s_AnioReporte"/>
-<SQLParameter id="135" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
-<SQLParameter id="136" dataType="Text" parameterSource="s_PPMC" parameterType="URL" variable="s_PPMC"/>
+				<SQLParameter id="189" dataType="Integer" defaultValue="0" designDefaultValue="3" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
+<SQLParameter id="190" dataType="Integer" defaultValue="0" designDefaultValue="4" parameterSource="s_MesReporte" parameterType="URL" variable="s_MesReporte"/>
+<SQLParameter id="191" dataType="Integer" defaultValue="0" designDefaultValue="2014" parameterSource="s_AnioReporte" parameterType="URL" variable="s_AnioReporte"/>
+<SQLParameter id="192" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
+<SQLParameter id="193" dataType="Text" parameterSource="s_PPMC" parameterType="URL" variable="s_PPMC"/>
 </SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
@@ -392,20 +397,19 @@ where c.id_proveedor = {s_id_proveedor}
 					<Components/>
 					<Events/>
 					<TableParameters>
-						<TableParameter id="34" conditionType="Parameter" useIsNull="False" dataType="Text" field="descripcion" logicOperator="And" parameterSource="'CDS'" parameterType="Expression" searchConditionType="Equal"/>
 					</TableParameters>
 					<SPParameters/>
 					<SQLParameters/>
 					<JoinTables>
-						<JoinTable id="126" tableName="mc_c_proveedor"/>
-					</JoinTables>
+						<JoinTable id="185" posHeight="180" posLeft="10" posTop="10" posWidth="158" tableName="mc_c_proveedor"/>
+</JoinTables>
 					<JoinLinks/>
 					<Fields>
-						<Field id="35" fieldName="*"/>
-					</Fields>
+						<Field id="186" fieldName="*"/>
+</Fields>
 					<PKFields>
-						<PKField id="36" dataType="Integer" fieldName="id_proveedor" tableName="mc_c_proveedor"/>
-					</PKFields>
+						<PKField id="187" dataType="Integer" fieldName="id_proveedor" tableName="mc_c_proveedor"/>
+</PKFields>
 					<Attributes/>
 					<Features/>
 				</ListBox>
@@ -439,13 +443,19 @@ order by ano" boundColumn="Ano" textColumn="Ano">
 					<Features/>
 				</ListBox>
 				<TextBox id="131" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="s_PPMC" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="grdDetalleRS1s_PPMC">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-</Components>
-			<Events/>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+			</Components>
+			<Events>
+				<Event name="BeforeShow" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="138"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters/>
 			<SPParameters/>
 			<SQLParameters/>
@@ -467,11 +477,268 @@ order by ano" boundColumn="Ano" textColumn="Ano">
 			<Attributes/>
 			<Features/>
 		</Record>
-		<IncludePage id="74" name="MenuTablero" PathID="MenuTablero" page="MenuTablero.ccp">
+		<IncludePage id="137" name="MenuTablero1" PathID="MenuTablero1" page="MenuTablero.ccp">
 			<Components/>
 			<Events/>
 			<Features/>
 		</IncludePage>
+		<Grid id="139" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="10" name="grid_capc" connection="cnDisenio" dataSource="SELECT mc_calificacion_capc.*, mc_c_ServContractual.Descripcion AS mc_c_ServContractual_Descripcion ,
+	a.Observaciones Obs_Ap
+FROM mc_calificacion_capc 
+	left  JOIN mc_c_ServContractual ON mc_calificacion_capc.id_serviciocont = mc_c_ServContractual.Id
+		left join mc_info_capc_ap a on a.id =  mc_calificacion_capc.id 
+WHERE numero LIKE '%{s_numero}%'
+AND (mes = {s_mes} or  {s_mes}=0)
+AND (anio = {s_anio} or {s_anio}=0)
+" pageSizeLimit="100" pageSize="True" wizardCaption="DetalleRS" wizardThemeApplyTo="Page" wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No hay registros" wizardGridPagingType="Simple" wizardUseSearch="False" wizardAddNbsp="True" gridTotalRecords="False" wizardAddPanels="False" wizardType="Grid" wizardUseInterVariables="False" addTemplatePanel="False" changedCaptionGrid="True" gridExtendedHTML="False" PathID="grid_capc">
+			<Components>
+				<Sorter id="144" visible="True" name="Sorter_mc_c_ServContractual_Descripcion" column="mc_c_ServContractual_Descripcion" wizardCaption="Mc C Serv Contractual Descripcion" wizardSortingType="SimpleDir" wizardControl="mc_c_ServContractual_Descripcion" wizardAddNbsp="False" PathID="grid_capcSorter_mc_c_ServContractual_Descripcion">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="145" visible="True" name="Sorter_numero" column="numero" wizardCaption="Numero" wizardSortingType="SimpleDir" wizardControl="numero" wizardAddNbsp="False" PathID="grid_capcSorter_numero">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="146" visible="True" name="Sorter_Descripcion" column="Descripcion" wizardCaption="Descripcion" wizardSortingType="SimpleDir" wizardControl="Descripcion" wizardAddNbsp="False" PathID="grid_capcSorter_Descripcion">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="147" visible="True" name="Sorter_Agrupador" column="Agrupador" wizardCaption="Agrupador" wizardSortingType="SimpleDir" wizardControl="Agrupador" wizardAddNbsp="False" PathID="grid_capcSorter_Agrupador">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="148" visible="True" name="Sorter_HERR_EST_COST" column="HERR_EST_COST" wizardCaption="HERR EST COST" wizardSortingType="SimpleDir" wizardControl="HERR_EST_COST" wizardAddNbsp="False" PathID="grid_capcSorter_HERR_EST_COST">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="149" visible="True" name="Sorter_REQ_SERV" column="REQ_SERV" wizardCaption="REQ SERV" wizardSortingType="SimpleDir" wizardControl="REQ_SERV" wizardAddNbsp="False" PathID="grid_capcSorter_REQ_SERV">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="150" visible="True" name="Sorter_CUMPL_REQ_FUN" column="CUMPL_REQ_FUN" wizardCaption="CUMPL REQ FUN" wizardSortingType="SimpleDir" wizardControl="CUMPL_REQ_FUN" wizardAddNbsp="False" PathID="grid_capcSorter_CUMPL_REQ_FUN">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="151" visible="True" name="Sorter_CALIDAD_PROD_TERM" column="CALIDAD_PROD_TERM" wizardCaption="CALIDAD PROD TERM" wizardSortingType="SimpleDir" wizardControl="CALIDAD_PROD_TERM" wizardAddNbsp="False" PathID="grid_capcSorter_CALIDAD_PROD_TERM">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="152" visible="True" name="Sorter_DEDUC_OMISION" column="DEDUC_OMISION" wizardCaption="DEDUC OMISION" wizardSortingType="SimpleDir" wizardControl="DEDUC_OMISION" wizardAddNbsp="False" PathID="grid_capcSorter_DEDUC_OMISION">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="153" visible="True" name="Sorter_RETR_ENTREGABLE" column="RETR_ENTREGABLE" wizardCaption="RETR ENTREGABLE" wizardSortingType="SimpleDir" wizardControl="RETR_ENTREGABLE" wizardAddNbsp="False" PathID="grid_capcSorter_RETR_ENTREGABLE">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="154" visible="True" name="Sorter_DetalleCalidad" column="DetalleCalidad" wizardCaption="Detalle Calidad" wizardSortingType="SimpleDir" wizardControl="DetalleCalidad" wizardAddNbsp="False" PathID="grid_capcSorter_DetalleCalidad">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="155" visible="True" name="Sorter_Observaciones" column="Observaciones" wizardCaption="Observaciones" wizardSortingType="SimpleDir" wizardControl="Observaciones" wizardAddNbsp="False" PathID="grid_capcSorter_Observaciones">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="156" visible="True" name="Sorter_id" column="id" wizardCaption="Id" wizardSortingType="SimpleDir" wizardControl="id" wizardAddNbsp="False" PathID="grid_capcSorter_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Label id="157" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="mc_c_ServContractual_Descripcion" fieldSource="mc_c_ServContractual_Descripcion" wizardCaption="Mc C Serv Contractual Descripcion" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="grid_capcmc_c_ServContractual_Descripcion">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="158" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Database" preserveParameters="GET" name="numero" fieldSource="numero" wizardCaption="Numero" wizardIsPassword="False" wizardUseTemplateBlock="False" hrefSource="numero" linkProperties="{'textSource':'','textSourceDB':'numero','hrefSource':'','hrefSourceDB':'numero','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}" wizardAddNbsp="True" PathID="grid_capcnumero">
+					<Components/>
+					<Events/>
+					<LinkParameters/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="159" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Descripcion" fieldSource="Descripcion" wizardCaption="Descripcion" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="grid_capcDescripcion">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="160" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Agrupador" fieldSource="Agrupador" wizardCaption="Agrupador" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="grid_capcAgrupador">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+					<LinkParameters/>
+				</Label>
+				<Label id="161" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="HERR_EST_COST" fieldSource="HERR_EST_COST" wizardCaption="HERR EST COST" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="grid_capcHERR_EST_COST">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="162" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="REQ_SERV" fieldSource="REQ_SERV" wizardCaption="REQ SERV" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="grid_capcREQ_SERV">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="163" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="CUMPL_REQ_FUN" fieldSource="CUMPL_REQ_FUN" wizardCaption="CUMPL REQ FUN" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="grid_capcCUMPL_REQ_FUN">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+					<LinkParameters/>
+				</Label>
+				<Label id="164" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="CALIDAD_PROD_TERM" fieldSource="CALIDAD_PROD_TERM" wizardCaption="CALIDAD PROD TERM" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="grid_capcCALIDAD_PROD_TERM">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="165" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="DEDUC_OMISION" fieldSource="DEDUC_OMISION" wizardCaption="DEDUC OMISION" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="grid_capcDEDUC_OMISION">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="166" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="RETR_ENTREGABLE" fieldSource="RETR_ENTREGABLE" wizardCaption="RETR ENTREGABLE" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="grid_capcRETR_ENTREGABLE">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="167" fieldSourceType="DBColumn" dataType="Memo" html="False" generateSpan="False" name="Obs_Ap" fieldSource="Obs_Ap" wizardCaption="Obs Ap" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="grid_capcObs_Ap">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="168" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="DetalleCalidad" fieldSource="DetalleCalidad" wizardCaption="Detalle Calidad" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="grid_capcDetalleCalidad">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="169" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Observaciones" fieldSource="Observaciones" wizardCaption="Observaciones" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="grid_capcObservaciones">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="170" fieldSourceType="DBColumn" dataType="Integer" html="False" generateSpan="False" name="id" fieldSource="id" wizardCaption="Id" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAlign="right" wizardAddNbsp="True" PathID="grid_capcid">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Navigator id="171" size="10" type="Simple" pageSizes="1;5;10;25;50" name="Navigator" wizardPagingType="Simple" wizardFirst="True" wizardFirstText="Inicio" wizardPrev="True" wizardPrevText="Anterior" wizardNext="True" wizardNextText="Siguiente" wizardLast="True" wizardLastText="Final" wizardImages="Images" wizardPageNumbers="Simple" wizardSize="10" wizardTotalPages="True" wizardHideDisabled="False" wizardOfText="de" wizardPageSize="True" wizardImagesScheme="Austere4">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Navigator>
+				<Label id="172" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Grid2_TotalRecords" PathID="grid_capcGrid2_TotalRecords">
+					<Components/>
+					<Events>
+						<Event name="BeforeShow" type="Server">
+							<Actions>
+								<Action actionName="Retrieve number of records" actionCategory="Database" id="173"/>
+							</Actions>
+						</Event>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Image id="177" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Img_HERR_EST_COST" PathID="grid_capcImg_HERR_EST_COST">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Image>
+				<Image id="178" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Img_REQ_SERV" PathID="grid_capcImg_REQ_SERV">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Image>
+				<Image id="179" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Img_CUMPL_REQ_FUN" PathID="grid_capcImg_CUMPL_REQ_FUN">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Image>
+				<Image id="180" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Img_CALIDAD_PROD_TERM" PathID="grid_capcImg_CALIDAD_PROD_TERM">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Image>
+				<Image id="181" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Img_DEDUC_OMISION" PathID="grid_capcImg_DEDUC_OMISION">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Image>
+				<Image id="182" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Img_RETR_ENTREGABLE" PathID="grid_capcImg_RETR_ENTREGABLE">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Image>
+			</Components>
+			<Events>
+				<Event name="BeforeShowRow" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="183"/>
+					</Actions>
+				</Event>
+				<Event name="BeforeShow" type="Server">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="184"/>
+</Actions>
+</Event>
+</Events>
+			<TableParameters/>
+			<JoinTables/>
+			<JoinLinks/>
+			<Fields/>
+			<PKFields/>
+			<SPParameters/>
+			<SQLParameters>
+				<SQLParameter id="174" dataType="Text" designDefaultValue="0" parameterSource="s_PPMC" parameterType="URL" variable="s_numero"/>
+				<SQLParameter id="175" dataType="Integer" defaultValue="date(&quot;m&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="6" parameterSource="s_MesReporte" parameterType="URL" variable="s_mes"/>
+				<SQLParameter id="176" dataType="Integer" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="2015" parameterSource="s_AnioReporte" parameterType="URL" variable="s_anio"/>
+			</SQLParameters>
+			<SecurityGroups/>
+			<Attributes/>
+			<Features/>
+		</Grid>
 	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="PPMCsApbDetalleRSxls_events.php" forShow="False" comment="//" codePage="windows-1252"/>

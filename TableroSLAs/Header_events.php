@@ -44,6 +44,7 @@ function Header_BeforeShow(& $sender)
     if(CCGetUserLogin()==""){
     	$Component->Panel1->Visible=false;
     	$Component->Panel2->Visible=false;
+    	$Component->Panel4->Visible=false;
     } else {
     	$Component->lSesion->SetValue(CCGetUserLogin());
     }

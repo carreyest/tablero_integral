@@ -65,7 +65,7 @@ class clsHeader { //Header class @1-CC982CB1
     }
 //End Operations Method
 
-//Initialize Method @1-A4A3D3A8
+//Initialize Method @1-50558C34
     function Initialize($Path = "")
     {
         global $FileName;
@@ -122,6 +122,7 @@ class clsHeader { //Header class @1-CC982CB1
         $this->Link5 = new clsControl(ccsLink, "Link5", "Link5", ccsText, "", CCGetRequestParam("Link5", ccsGet, NULL), $this);
         $this->Link5->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
         $this->Link5->Page = $this->RelativePath . "MuestraReporte.php";
+        $this->Panel4 = new clsPanel("Panel4", $this);
         $this->Link6 = new clsControl(ccsLink, "Link6", "Link6", ccsText, "", CCGetRequestParam("Link6", ccsGet, NULL), $this);
         $this->Link6->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
         $this->Link6->Page = "http://webiterasrv2/sites/SDMA_Reporte/Pages/default.aspx";
@@ -139,7 +140,7 @@ class clsHeader { //Header class @1-CC982CB1
         $this->Panel1->AddComponent("img_abre_pantalla", $this->img_abre_pantalla);
         $this->Panel2->AddComponent("Link4", $this->Link4);
         $this->Panel2->AddComponent("Link5", $this->Link5);
-        $this->Panel2->AddComponent("Link6", $this->Link6);
+        $this->Panel4->AddComponent("Link6", $this->Link6);
         $this->BindEvents();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnInitializeView", $this);
         $this->lkIncidentes->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
@@ -149,7 +150,7 @@ class clsHeader { //Header class @1-CC982CB1
     }
 //End Initialize Method
 
-//Show Method @1-A090FA54
+//Show Method @1-F869D785
     function Show()
     {
         global $Tpl;
@@ -173,6 +174,7 @@ class clsHeader { //Header class @1-CC982CB1
         $this->pnlMenu->Show();
         $this->Panel1->Show();
         $this->Panel2->Show();
+        $this->Panel4->Show();
         $Tpl->Parse();
         $Tpl->block_path = $block_path;
         $TplData = $Tpl->GetVar($this->ComponentName);

@@ -167,29 +167,36 @@
     &lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" PathID="HeaderPanel2">
 			<Components>
 				<Link id="31" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link4" PathID="HeaderPanel2Link4" hrefSource="TableroSLAs.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Tablero SLAs','textSourceDB':'','hrefSource':'TableroSLAs.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
-<Events/>
-<LinkParameters/>
-<Attributes/>
-<Features/>
-</Link>
-<Link id="32" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link5" PathID="HeaderPanel2Link5" hrefSource="MuestraReporte.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Métricas y Mediciones','textSourceDB':'','hrefSource':'MuestraReporte.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
-<Events/>
-<LinkParameters/>
-<Attributes/>
-<Features/>
-</Link>
-<Link id="33" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link6" PathID="HeaderPanel2Link6" hrefSource="http://webiterasrv2/sites/SDMA_Reporte/Pages/default.aspx" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Reportes Sitio SAT','textSourceDB':'','hrefSource':'http://webiterasrv2/sites/SDMA_Reporte/Pages/default.aspx','hrefSourceDB':'','title':'','target':'_blank','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
-<Events/>
-<LinkParameters/>
-<Attributes/>
-<Features/>
-</Link>
-</Components>
+					<Events/>
+					<LinkParameters/>
+					<Attributes/>
+					<Features/>
+				</Link>
+				<Link id="32" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link5" PathID="HeaderPanel2Link5" hrefSource="MuestraReporte.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Métricas y Mediciones','textSourceDB':'','hrefSource':'MuestraReporte.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
+					<Events/>
+					<LinkParameters/>
+					<Attributes/>
+					<Features/>
+				</Link>
+			</Components>
 			<Events/>
 			<Attributes/>
 			<Features/>
 		</Panel>
-	</Components>
+		<Panel id="34" visible="True" generateDiv="False" name="Panel4" PathID="HeaderPanel4">
+<Components>
+<Link id="33" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link6" PathID="HeaderPanel2Link6" hrefSource="http://webiterasrv2/sites/SDMA_Reporte/Pages/default.aspx" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Reportes Sitio SAT','textSourceDB':'','hrefSource':'http://webiterasrv2/sites/SDMA_Reporte/Pages/default.aspx','hrefSourceDB':'','title':'','target':'_blank','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
+					<Events/>
+					<LinkParameters/>
+					<Attributes/>
+					<Features/>
+				</Link>
+</Components>
+<Events/>
+<Attributes/>
+<Features/>
+</Panel>
+</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="Header_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="Header.php" forShow="True" url="Header.php" comment="//" codePage="windows-1252"/>

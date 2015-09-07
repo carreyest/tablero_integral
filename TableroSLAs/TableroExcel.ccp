@@ -53,20 +53,19 @@
 					<Components/>
 					<Events/>
 					<TableParameters>
-						<TableParameter id="107" conditionType="Parameter" useIsNull="False" dataType="Text" field="descripcion" logicOperator="And" parameterSource="'CDS'" parameterType="Expression" searchConditionType="Equal"/>
 					</TableParameters>
 					<SPParameters/>
 					<SQLParameters/>
 					<JoinTables>
-						<JoinTable id="106" posHeight="180" posLeft="10" posTop="10" posWidth="158" tableName="mc_c_proveedor"/>
-					</JoinTables>
+						<JoinTable id="206" posHeight="180" posLeft="10" posTop="10" posWidth="158" tableName="mc_c_proveedor"/>
+</JoinTables>
 					<JoinLinks/>
 					<Fields>
-						<Field id="108" fieldName="*"/>
-					</Fields>
+						<Field id="207" fieldName="*"/>
+</Fields>
 					<PKFields>
-						<PKField id="109" dataType="Integer" fieldName="id_proveedor" tableName="mc_c_proveedor"/>
-					</PKFields>
+						<PKField id="208" dataType="Integer" fieldName="id_proveedor" tableName="mc_c_proveedor"/>
+</PKFields>
 					<Attributes/>
 					<Features/>
 				</ListBox>
@@ -393,23 +392,23 @@ VALUES({Version}, {s_MesReporte}, '{Comentario}', {s_AnioReporte}, '{s_id_provee
 					</Events>
 					<TableParameters>
 						<TableParameter id="199" conditionType="Parameter" useIsNull="False" dataType="Integer" defaultValue="0" field="mesreporte" logicOperator="And" old_temp_id="92" parameterSource="s_MesReporte" parameterType="URL" searchConditionType="Equal"/>
-<TableParameter id="200" conditionType="Parameter" useIsNull="False" dataType="Integer" defaultValue="0" field="anioreporte" logicOperator="And" old_temp_id="93" parameterSource="s_AnioReporte" parameterType="URL" searchConditionType="Equal"/>
-<TableParameter id="201" conditionType="Parameter" useIsNull="False" dataType="Integer" defaultValue="0" field="id_proveedor" logicOperator="And" old_temp_id="94" parameterSource="s_id_proveedor" parameterType="URL" searchConditionType="Equal"/>
-<TableParameter id="202" conditionType="Parameter" useIsNull="False" dataType="Integer" defaultValue="0" field="SLO" logicOperator="And" old_temp_id="95" parameterSource="s_SLO" parameterType="URL" searchConditionType="Equal"/>
-<TableParameter id="203" conditionType="Parameter" useIsNull="False" dataType="Integer" defaultValue="0" field="DyP" logicOperator="And" old_temp_id="96" parameterSource="DyP" parameterType="URL" searchConditionType="Equal"/>
-</TableParameters>
+						<TableParameter id="200" conditionType="Parameter" useIsNull="False" dataType="Integer" defaultValue="0" field="anioreporte" logicOperator="And" old_temp_id="93" parameterSource="s_AnioReporte" parameterType="URL" searchConditionType="Equal"/>
+						<TableParameter id="201" conditionType="Parameter" useIsNull="False" dataType="Integer" defaultValue="0" field="id_proveedor" logicOperator="And" old_temp_id="94" parameterSource="s_id_proveedor" parameterType="URL" searchConditionType="Equal"/>
+						<TableParameter id="202" conditionType="Parameter" useIsNull="False" dataType="Integer" defaultValue="0" field="SLO" logicOperator="And" old_temp_id="95" parameterSource="s_SLO" parameterType="URL" searchConditionType="Equal"/>
+						<TableParameter id="203" conditionType="Parameter" useIsNull="False" dataType="Integer" defaultValue="0" field="DyP" logicOperator="And" old_temp_id="96" parameterSource="DyP" parameterType="URL" searchConditionType="Equal"/>
+					</TableParameters>
 					<SPParameters/>
 					<SQLParameters/>
 					<JoinTables>
 						<JoinTable id="198" posHeight="180" posLeft="10" posTop="10" posWidth="116" tableName="mc_reporte_ns"/>
-</JoinTables>
+					</JoinTables>
 					<JoinLinks/>
 					<Fields>
 						<Field id="204" fieldName="*" old_temp_id="97"/>
-</Fields>
+					</Fields>
 					<PKFields>
 						<PKField id="205" dataType="Integer" fieldName="id" tableName="mc_reporte_ns"/>
-</PKFields>
+					</PKFields>
 					<ISPParameters/>
 					<ISQLParameters>
 						<SQLParameter id="154" variable="Version" dataType="Integer" parameterType="Control" parameterSource="Version" old_temp_id="61"/>

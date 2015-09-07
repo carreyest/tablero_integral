@@ -434,7 +434,7 @@ order by nombre
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<Hidden id="145" fieldSourceType="DBColumn" dataType="Text" name="hdNombreProyecto" PathID="mc_info_rs_ap_EChdNombreProyecto">
+				<Hidden id="145" fieldSourceType="DBColumn" dataType="Text" name="hdNombreProyecto" PathID="mc_info_rs_ap_EChdNombreProyecto" fieldSource="Descripcion">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -471,12 +471,12 @@ order by nombre
 					<Features/>
 				</TextBox>
 				<CheckBox id="198" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" defaultValue="Unchecked" name="SLO" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="mc_info_rs_ap_ECSLO" fieldSource="SLO" checkedValue="1" uncheckedValue="0">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</CheckBox>
-</Components>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</CheckBox>
+			</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>
@@ -521,20 +521,20 @@ order by nombre
 			</Events>
 			<TableParameters>
 				<TableParameter id="200" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Id" logicOperator="And" orderNumber="1" parameterSource="sID" parameterType="URL" searchConditionType="Equal"/>
-</TableParameters>
+			</TableParameters>
 			<SPParameters/>
 			<SQLParameters/>
 			<JoinTables>
 				<JoinTable id="199" posHeight="213" posLeft="10" posTop="10" posWidth="160" tableName="mc_info_capc_ap"/>
-</JoinTables>
+			</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="201" fieldName="*"/>
-</Fields>
+			</Fields>
 			<PKFields>
 				<PKField id="202" dataType="Integer" fieldName="Id" tableName="mc_info_capc_ap"/>
-<PKField id="203" dataType="Text" fieldName="ID_PPMC" tableName="mc_info_capc_ap"/>
-</PKFields>
+				<PKField id="203" dataType="Text" fieldName="ID_PPMC" tableName="mc_info_capc_ap"/>
+			</PKFields>
 			<ISPParameters/>
 			<ISQLParameters>
 				<SQLParameter id="87" variable="URLReferencia" dataType="Memo" parameterType="Control" parameterSource="URLReferencia"/>

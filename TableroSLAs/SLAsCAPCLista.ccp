@@ -89,11 +89,24 @@
 			<Attributes/>
 			<Features/>
 		</Record>
-		<Grid id="3" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="20" name="mc_c_ServContractual_mc_c" connection="cnDisenio" dataSource="SELECT mc_calificacion_capc.*, mc_c_ServContractual.Descripcion AS mc_c_ServContractual_Descripcion ,
-	a.Observaciones Obs_Ap
+		<Grid id="3" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="20" name="mc_c_ServContractual_mc_c" connection="cnDisenio" dataSource="SELECT distinct mc_calificacion_capc.*, mc_c_ServContractual.Descripcion AS mc_c_ServContractual_Descripcion ,
+	a.Observaciones Obs_Ap, DatosPPMC.Name
 FROM mc_calificacion_capc 
 	left  JOIN mc_c_ServContractual ON mc_calificacion_capc.id_serviciocont = mc_c_ServContractual.Id
 		left join mc_info_capc_ap a on a.id =  mc_calificacion_capc.id 
+		left join (
+SELECT DISTINCT  REQUEST_ID ID_PPMC, NAME, SERVICIO_NEGOCIO, TIPO_REQUERIMIENTO, FECHA_CARGA, 0 PPMC_Relacionado, slo
+	FROM PPMC_RO_AS 
+UNION ALL
+SELECT DISTINCT  ID_PROYECTO, Nombre_Proyecto, SERVICIO_NEGOCIO, TIP_REQUERIMIENTO, FECHA_CARGA, 0 PPMC_Relacionado, slo
+	FROM PPMC_PROYECTOS_AS 
+UNION ALL
+SELECT DISTINCT REQ_CAMBIO_ID, DESC_BREVE, SERVICIO_NEGOCIO, TIPO_Solicitud, C.FECHA_CARGA, ID_PPMC, c.slo
+	FROM PPMC_CAMBIOS C inner join PPMC_Proyectos_AS on PPMC_PROYECTOS_AS.ID_PROYECTO = C.ID_PPMC 
+UNION ALL
+SELECT DISTINCT ID_CC, NOMBRE_RO, SERVICIO_NEGOCIO, MOTIVO_CAMBIO, C.FECHA_CARGA, ID_RO, c.slo
+	FROM PPMC_CAMBIOS_RO C inner join PPMC_RO_AS  on PPMC_RO_AS.REQUEST_ID  = C.ID_RO  
+ ) as DatosPPMC on DatosPPMC.ID_PPMC = numero 	and mc_calificacion_capc.mes = month(FECHA_CARGA) and mc_calificacion_capc.anio = YEAR(FECHA_CARGA) 
 WHERE numero LIKE '%{s_numero}%'
 AND (mes = {s_mes} or  {s_mes}=0)
 AND (anio = {s_anio} or {s_anio}=0)
@@ -155,13 +168,15 @@ AND (id_serviciocont = {s_id_serviciocont}  or 0={s_id_serviciocont} )" pageSize
 						<LinkParameter id="56" sourceType="DataField" name="id" source="id"/>
 					</LinkParameters>
 				</Label>
-				<Link id="23" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="numero" fieldSource="numero" wizardCaption="Numero" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_c_ServContractual_mc_cnumero" visible="Yes" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCapcApbDetalle.ccp" linkProperties="{'textSource':'','textSourceDB':'numero','hrefSource':'SLAsCapcApbDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'1':{'sourceType':'DataField','parameterSource':'id','parameterName':'sID'},'length':2,'objectType':'linkParameters'}}"><Components/>
+				<Link id="23" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="numero" fieldSource="numero" wizardCaption="Numero" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_c_ServContractual_mc_cnumero" visible="Yes" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCapcApbDetalle.ccp" linkProperties="{'textSource':'','textSourceDB':'numero','hrefSource':'SLAsCapcApbDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'1':{'sourceType':'DataField','parameterSource':'id','parameterName':'sID'},'2':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'3':{'sourceType':'DataField','parameterSource':'id','parameterName':'sID'},'4':{'sourceType':'DataField','parameterSource':'mes','parameterName':'s_mes'},'5':{'sourceType':'DataField','parameterSource':'anio','parameterName':'s_anio'},'length':6,'objectType':'linkParameters'}}"><Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 					<LinkParameters>
 						<LinkParameter id="97" sourceType="DataField" name="s_numero" source="numero"/>
 						<LinkParameter id="98" sourceType="DataField" name="sID" source="id"/>
+						<LinkParameter id="118" sourceType="DataField" name="s_mes" source="mes"/>
+						<LinkParameter id="119" sourceType="DataField" name="s_anio" source="anio"/>
 					</LinkParameters>
 				</Link>
 				<Label id="24" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Descripcion" fieldSource="Descripcion" wizardCaption="Descripcion" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_c_ServContractual_mc_cDescripcion">
@@ -178,7 +193,8 @@ AND (id_serviciocont = {s_id_serviciocont}  or 0={s_id_serviciocont} )" pageSize
 						<LinkParameter id="57" sourceType="DataField" name="id" source="id"/>
 					</LinkParameters>
 				</Link>
-				<Link id="26" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="CALIDAD_PROD_TERM" fieldSource="CALIDAD_PROD_TERM" wizardCaption="CALIDAD PROD TERM" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_c_ServContractual_mc_cCALIDAD_PROD_TERM" visible="Yes" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCAPCCalidadDetalle.ccp" linkProperties="{'textSource':'','textSourceDB':'CALIDAD_PROD_TERM','hrefSource':'SLAsCAPCCalidadDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'length':1,'objectType':'linkParameters'}}"><Components/>
+				<Link id="26" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="CALIDAD_PROD_TERM" fieldSource="CALIDAD_PROD_TERM" wizardCaption="CALIDAD PROD TERM" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_c_ServContractual_mc_cCALIDAD_PROD_TERM" visible="Yes" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCAPCDetalle.ccp" linkProperties="{&quot;textSource&quot;:&quot;&quot;,&quot;textSourceDB&quot;:&quot;CALIDAD_PROD_TERM&quot;,&quot;hrefSource&quot;:&quot;SLAsCAPCDetalle.ccp&quot;,&quot;hrefSourceDB&quot;:&quot;&quot;,&quot;title&quot;:&quot;&quot;,&quot;target&quot;:&quot;&quot;,&quot;name&quot;:&quot;&quot;,&quot;linkParameters&quot;:{&quot;0&quot;:{&quot;sourceType&quot;:&quot;DataField&quot;,&quot;parameterSource&quot;:&quot;id&quot;,&quot;parameterName&quot;:&quot;id&quot;},&quot;length&quot;:1,&quot;objectType&quot;:&quot;linkParameters&quot;}}">
+					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
@@ -214,7 +230,7 @@ AND (id_serviciocont = {s_id_serviciocont}  or 0={s_id_serviciocont} )" pageSize
 					<Attributes/>
 					<Features/>
 				</Navigator>
-				<ImageLink id="47" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Img_CALIDAD_PROD_TERM" PathID="mc_c_ServContractual_mc_cImg_CALIDAD_PROD_TERM" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCAPCDetalle.ccp" linkProperties="{'textSource':'','textSourceDB':'','hrefSource':'SLAsCAPCDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'1':{'sourceType':'DataField','parameterSource':'id','parameterName':'sID'},'2':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'3':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'length':4,'objectType':'linkParameters'}}"><Components/>
+				<ImageLink id="47" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" name="Img_CALIDAD_PROD_TERM" PathID="mc_c_ServContractual_mc_cImg_CALIDAD_PROD_TERM" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCAPCDetalle.ccp" linkProperties="{'textSource':'','textSourceDB':'','hrefSource':'SLAsCAPCDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'1':{'sourceType':'DataField','parameterSource':'id','parameterName':'sID'},'2':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'3':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'length':4,'objectType':'linkParameters'}}"><Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
@@ -223,7 +239,7 @@ AND (id_serviciocont = {s_id_serviciocont}  or 0={s_id_serviciocont} )" pageSize
 						<LinkParameter id="106" sourceType="DataField" name="id" source="id"/>
 					</LinkParameters>
 				</ImageLink>
-				<ImageLink id="48" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Img_DEDUC_OMISION" PathID="mc_c_ServContractual_mc_cImg_DEDUC_OMISION" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCAPCDetalle.ccp" linkProperties="{'textSource':'','textSourceDB':'','hrefSource':'SLAsCAPCDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'id','parameterName':'sID'},'1':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'2':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'3':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'4':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'5':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'length':6,'objectType':'linkParameters'}}"><Components/>
+				<ImageLink id="48" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" name="Img_DEDUC_OMISION" PathID="mc_c_ServContractual_mc_cImg_DEDUC_OMISION" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCAPCDetalle.ccp" linkProperties="{'textSource':'','textSourceDB':'','hrefSource':'SLAsCAPCDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'id','parameterName':'sID'},'1':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'2':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'3':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'4':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'5':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'length':6,'objectType':'linkParameters'}}"><Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
@@ -232,7 +248,7 @@ AND (id_serviciocont = {s_id_serviciocont}  or 0={s_id_serviciocont} )" pageSize
 						<LinkParameter id="104" sourceType="DataField" name="s_numero" source="numero"/>
 					</LinkParameters>
 				</ImageLink>
-				<ImageLink id="50" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Img_RETR_ENTREGABLE" PathID="mc_c_ServContractual_mc_cImg_RETR_ENTREGABLE" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCAPCRetEnt.ccp" linkProperties="{'textSource':'','textSourceDB':'','hrefSource':'SLAsCAPCRetEnt.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'1':{'sourceType':'DataField','parameterSource':'id','parameterName':'sID'},'2':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'3':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'4':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'5':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'length':6,'objectType':'linkParameters'}}"><Components/>
+				<ImageLink id="50" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" name="Img_RETR_ENTREGABLE" PathID="mc_c_ServContractual_mc_cImg_RETR_ENTREGABLE" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCAPCRetEnt.ccp" linkProperties="{'textSource':'','textSourceDB':'','hrefSource':'SLAsCAPCRetEnt.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'1':{'sourceType':'DataField','parameterSource':'id','parameterName':'sID'},'2':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'3':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'4':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'5':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'length':6,'objectType':'linkParameters'}}"><Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
@@ -288,7 +304,7 @@ AND (id_serviciocont = {s_id_serviciocont}  or 0={s_id_serviciocont} )" pageSize
 						<LinkParameter id="100" sourceType="DataField" name="sID" source="id"/>
 					</LinkParameters>
 				</ImageLink>
-				<ImageLink id="88" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Img_CUMPL_REQ_FUN" PathID="mc_c_ServContractual_mc_cImg_CUMPL_REQ_FUN" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCAPCReqFunDetalle.ccp" linkProperties="{'textSource':'','textSourceDB':'','hrefSource':'SLAsCAPCReqFunDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'id','parameterName':'sID'},'1':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'2':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'3':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'4':{'sourceType':'DataField','parameterSource':'id','parameterName':'sID'},'5':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'length':6,'objectType':'linkParameters'}}"><Components/>
+				<ImageLink id="88" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" name="Img_CUMPL_REQ_FUN" PathID="mc_c_ServContractual_mc_cImg_CUMPL_REQ_FUN" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCAPCReqFunDetalle.ccp" linkProperties="{'textSource':'','textSourceDB':'','hrefSource':'SLAsCAPCReqFunDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'id','parameterName':'sID'},'1':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'2':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'3':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'4':{'sourceType':'DataField','parameterSource':'id','parameterName':'sID'},'5':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'length':6,'objectType':'linkParameters'}}"><Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
@@ -328,18 +344,20 @@ AND (id_serviciocont = {s_id_serviciocont}  or 0={s_id_serviciocont} )" pageSize
 			<PKFields/>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="110" dataType="Text" designDefaultValue="0" parameterSource="s_numero" parameterType="URL" variable="s_numero"/>
-				<SQLParameter id="111" dataType="Integer" defaultValue="date(&quot;m&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="0" parameterSource="s_mes" parameterType="URL" variable="s_mes"/>
-				<SQLParameter id="112" dataType="Integer" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="2014" parameterSource="s_anio" parameterType="URL" variable="s_anio"/>
-				<SQLParameter id="113" dataType="Integer" defaultValue="0" designDefaultValue="0" parameterSource="s_id_serviciocont" parameterType="URL" variable="s_id_serviciocont"/>
+				<SQLParameter id="120" dataType="Text" designDefaultValue="0" parameterSource="s_numero" parameterType="URL" variable="s_numero"/>
+				<SQLParameter id="121" dataType="Integer" defaultValue="date(&quot;m&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="0" parameterSource="s_mes" parameterType="URL" variable="s_mes"/>
+				<SQLParameter id="122" dataType="Integer" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="2014" parameterSource="s_anio" parameterType="URL" variable="s_anio"/>
+				<SQLParameter id="123" dataType="Integer" defaultValue="0" designDefaultValue="0" parameterSource="s_id_serviciocont" parameterType="URL" variable="s_id_serviciocont"/>
 			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
 		</Grid>
-		<Link id="68" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="lkTableroExcelCAPC" PathID="lkTableroExcelCAPC" hrefSource="TableroExcelCAPC.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Tablero Excel CAPC','textSourceDB':'','hrefSource':'TableroExcelCAPC.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
+		<Link id="68" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="lkTableroExcelCAPC" PathID="lkTableroExcelCAPC" hrefSource="TableroExcel.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'&lt;img style=\'BORDER-LEFT-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px; VERTICAL-ALIGN: middle; BORDER-BOTTOM-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; border-image: none\' alt=\'{lkReporteExcel}\' src=\'images/xls.jpg\' width=\'20\' height=\'20\'&gt;&amp;nbsp;Tablero Excel CAPC','textSourceDB':'','hrefSource':'TableroExcel.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'Expression','parameterSource':'1','parameterName':'s_id_proveedor'},'length':1,'objectType':'linkParameters'}}"><Components/>
 			<Events/>
-			<LinkParameters/>
+			<LinkParameters>
+				<LinkParameter id="124" sourceType="Expression" name="s_id_proveedor" source="1"/>
+			</LinkParameters>
 			<Attributes/>
 			<Features/>
 		</Link>

@@ -20,6 +20,14 @@ function mc_c_ServContractual_mc_c_BeforeShowRow(& $sender)
 
 //Custom Code @46-2A29BDB7
 // -------------------------
+	if($mc_c_ServContractual_mc_c->Descripcion->GetValue()==""){
+		$mc_c_ServContractual_mc_c->Descripcion->SetValue($mc_c_ServContractual_mc_c->DataSource->f("Name"));
+	}
+	
+	if($mc_c_ServContractual_mc_c->DataSource->f("TipoMedicion")=="PC"){
+		$mc_c_ServContractual_mc_c->numero->SetLink('SLAsCapcDetalle.php?'. CCAddParam("","id",$mc_c_ServContractual_mc_c->DataSource->f("id")) );
+	} 
+	
     if($mc_c_ServContractual_mc_c->CALIDAD_PROD_TERM->GetValue()!=""){
 		$mc_c_ServContractual_mc_c->Img_CALIDAD_PROD_TERM->Visible=true;
 		$mc_c_ServContractual_mc_c->CALIDAD_PROD_TERM->Visible=false;	

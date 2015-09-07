@@ -207,6 +207,9 @@ function Page_BeforeInitialize(& $sender)
 //End Close Page_BeforeInitialize
 
 function GeneraReporte(){
+	error_reporting(E_ALL);
+
+
 	global $db;
 	global $Redirect;
 	global $PathToRoot;
@@ -232,8 +235,7 @@ function GeneraReporte(){
 	}
 	*/
 	
-	
-	//se verifica si existe el registro para el mes que se está creando, si es así genera el reporte, si no pide los datos.
+		//se verifica si existe el registro para el mes que se está creando, si es así genera el reporte, si no pide los datos.
 		global $REPORT;
 		global $FILENAME;
 		
@@ -245,25 +247,31 @@ function GeneraReporte(){
 		$PASWD = CCDLookUp("valor","mc_parametros","parametro='PwdSSRS'",$db);
 		$SERVICE_URL = CCDLookUp("valor","mc_parametros","parametro='SSRSURL'",$db);
 		
-		/*	
-		if(CCGetParam("SAT",0)==0){
-			$REPORT= "http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCompleto.rdl";
+			
+		if(CCGetParam("s_id_proveedor",0)==1){
+			$REPORT= "http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCAPC.rdl";
 		} else {
-			$REPORT= "http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCompleto_SLO.rdl";
+			$REPORT= "http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCompleto.rdl";
 		}
-		*/
-		
-		$REPORT="http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCompleto.rdl";
+			
 		$TipoReporte="NS";
 		$ReporteSLA="SLA";
 		
 		if(CCGetParam("DyP",0)==1){
-			$REPORT="http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteDP.rdl";
+			if(CCGetParam("s_id_proveedor",0)==1){
+				$REPORT="http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteDP_CAPC.rdl";
+			} else {
+				$REPORT="http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteDP.rdl";
+			}
 			$TipoReporte="DyP";
 		}
 		
 		if(CCGetParam("s_SLO",0)==1){
-			$REPORT="http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCompleto_SLO.rdl";
+			if(CCGetParam("s_id_proveedor",0)==1){
+				$REPORT="http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCAPC_SLO.rdl";
+			} else {
+				$REPORT="http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCompleto_SLO.rdl";
+			}
 			$ReporteSLA="SLO";
 		}
 		
@@ -271,11 +279,18 @@ function GeneraReporte(){
 		$sCDS= CCGetParam("s_id_proveedor");
 		$sCDS=$sCDS-1;
 	
-		if(CCGetParam("s_MesReporte")<10){
-			$FILENAME= "Reporte" . $TipoReporte . "_CDS" . $sCDS . "_". $ReporteSLA ."_" . CCGetParam("s_AnioReporte")  . "0" . CCGetParam("s_MesReporte") .  date("t") . ".xls";
-		} else {
-			$FILENAME = "Reporte" . $TipoReporte . "_CDS" . $sCDS . "_". $ReporteSLA ."_" . CCGetParam("s_AnioReporte")  . CCGetParam("s_MesReporte") . date("t") .  ".xls";
-		}
+		$sMes=  sprintf("%02d", CCGetParam("s_MesReporte"));
+		
+		//if(CCGetParam("s_MesReporte")<10){
+			if(CCGetParam("s_id_proveedor",0)>1){
+				$FILENAME= "Reporte" . $TipoReporte . "_CDS" . $sCDS . "_". $ReporteSLA ."_" . CCGetParam("s_AnioReporte")  .$sMes .  date("t") . ".xls";
+			} else {
+				$FILENAME= "Reporte" . $TipoReporte . "_CAPC"  . "_". $ReporteSLA ."_" . CCGetParam("s_AnioReporte")  . $sMes . date("t") . ".xls";
+			}
+		//} else {
+		//	$FILENAME = "Reporte" . $TipoReporte . "_CDS" . $sCDS . "_". $ReporteSLA ."_" . CCGetParam("s_AnioReporte")  . CCGetParam("s_MesReporte") . date("t") .  ".xls";
+		//}
+		
 		
 		try {
 			$ssrs_report = new SSRSReport(new Credentials($UID, $PASWD),$SERVICE_URL);
@@ -288,9 +303,12 @@ function GeneraReporte(){
 		    $parameters[1] = new ParameterValue();
 		    $parameters[1]->Name = "Anio";
 		    $parameters[1]->Value = CCGetParam("s_AnioReporte",date("Y"));
-		    $parameters[2] = new ParameterValue();
-		    $parameters[2]->Name = "Proveedor";
-		    $parameters[2]->Value = CCGetParam("s_id_proveedor",0);
+		    // el reporte del capc solo tiene dos parámetros
+		    if(CCGetParam("s_id_proveedor",0)>1){
+		    	$parameters[2] = new ParameterValue();
+		    	$parameters[2]->Name = "Proveedor";
+		    	$parameters[2]->Value = CCGetParam("s_id_proveedor",0);
+		    }
 		    $executionInfo = $ssrs_report->SetExecutionParameters2($parameters, "en-us");
 			
 		    $ssrs_report->LoadReport2($REPORT, NULL);
@@ -303,6 +321,7 @@ function GeneraReporte(){
 													 $Warnings,
 													 $StreamIds);
 		
+			
 			$handle = fopen($FILENAME, 'wb');
 			fwrite($handle, $result_EXCEL);
 			fclose($handle);
@@ -313,7 +332,8 @@ function GeneraReporte(){
 
 		}
 		catch(SSRSReportException $serviceExcprion){
-			echo $serviceExcprion->GetErrorMessage();
+			echo $serviceExcprion;
+			die();
 		}
 }
 

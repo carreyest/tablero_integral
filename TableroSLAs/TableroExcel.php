@@ -50,7 +50,7 @@ class clsRecordmc_reporte_ns1 { //mc_reporte_ns1 Class @99-B122E666
     // Class variables
 //End Variables
 
-//Class_Initialize Event @99-C65790DE
+//Class_Initialize Event @99-B59AC18E
     function clsRecordmc_reporte_ns1($RelativePath, & $Parent)
     {
 
@@ -102,12 +102,6 @@ class clsRecordmc_reporte_ns1 { //mc_reporte_ns1 Class @99-B122E666
             $this->s_id_proveedor->DataSource->SQL = "SELECT * \n" .
 "FROM mc_c_proveedor {SQL_Where} {SQL_OrderBy}";
             list($this->s_id_proveedor->BoundColumn, $this->s_id_proveedor->TextColumn, $this->s_id_proveedor->DBFormat) = array("id_proveedor", "nombre", "");
-            $this->s_id_proveedor->DataSource->Parameters["expr107"] = 'CDS';
-            $this->s_id_proveedor->DataSource->wp = new clsSQLParameters();
-            $this->s_id_proveedor->DataSource->wp->AddParameter("1", "expr107", ccsText, "", "", $this->s_id_proveedor->DataSource->Parameters["expr107"], "", false);
-            $this->s_id_proveedor->DataSource->wp->Criterion[1] = $this->s_id_proveedor->DataSource->wp->Operation(opEqual, "descripcion", $this->s_id_proveedor->DataSource->wp->GetDBValue("1"), $this->s_id_proveedor->DataSource->ToSQL($this->s_id_proveedor->DataSource->wp->GetDBValue("1"), ccsText),false);
-            $this->s_id_proveedor->DataSource->Where = 
-                 $this->s_id_proveedor->DataSource->wp->Criterion[1];
             $this->s_SLO = new clsControl(ccsCheckBox, "s_SLO", "SLO", ccsInteger, "", CCGetRequestParam("s_SLO", $Method, NULL), $this);
             $this->s_SLO->CheckedValue = $this->s_SLO->GetParsedValue(1);
             $this->s_SLO->UncheckedValue = $this->s_SLO->GetParsedValue(0);

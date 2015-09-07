@@ -83,43 +83,49 @@
 					<Features/>
 				</ListBox>
 				<ListBox id="87" visible="Yes" fieldSourceType="DBColumn" sourceType="Table" dataType="Text" returnValueType="Number" name="analista" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Seleccionar Valor" PathID="mc_calificacion_capcanalista" fieldSource="analista" connection="cnDisenio" dataSource="mc_c_usuarios" boundColumn="Usuario" textColumn="Usuario">
+					<Components/>
+					<Events/>
+					<TableParameters>
+						<TableParameter id="97" conditionType="Parameter" useIsNull="False" dataType="Text" field="Grupo" logicOperator="And" parameterSource="'CAPC'" parameterType="Expression" searchConditionType="Equal"/>
+					</TableParameters>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables>
+						<JoinTable id="96" posHeight="180" posLeft="10" posTop="10" posWidth="118" tableName="mc_c_usuarios"/>
+					</JoinTables>
+					<JoinLinks/>
+					<Fields>
+						<Field id="98" fieldName="*"/>
+					</Fields>
+					<PKFields>
+						<PKField id="99" dataType="Integer" fieldName="Id" tableName="mc_c_usuarios"/>
+					</PKFields>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+				<Hidden id="100" fieldSourceType="DBColumn" dataType="Integer" name="id_proveedor" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="mc_calificacion_capcid_proveedor" fieldSource="id_proveedor" defaultValue="1">
 <Components/>
 <Events/>
-<TableParameters>
-<TableParameter id="97" conditionType="Parameter" useIsNull="False" dataType="Text" field="Grupo" logicOperator="And" parameterSource="'CAPC'" parameterType="Expression" searchConditionType="Equal"/>
-</TableParameters>
-<SPParameters/>
-<SQLParameters/>
-<JoinTables>
-<JoinTable id="96" posHeight="180" posLeft="10" posTop="10" posWidth="118" tableName="mc_c_usuarios"/>
-</JoinTables>
-<JoinLinks/>
-<Fields>
-<Field id="98" fieldName="*"/>
-</Fields>
-<PKFields>
-<PKField id="99" dataType="Integer" fieldName="Id" tableName="mc_c_usuarios"/>
-</PKFields>
 <Attributes/>
 <Features/>
-</ListBox>
+</Hidden>
 </Components>
 			<Events/>
 			<TableParameters>
 				<TableParameter id="89" conditionType="Parameter" useIsNull="False" dataType="Integer" field="id" logicOperator="And" orderNumber="1" parameterSource="id" parameterType="URL" searchConditionType="Equal"/>
-</TableParameters>
+			</TableParameters>
 			<SPParameters/>
 			<SQLParameters/>
 			<JoinTables>
 				<JoinTable id="88" posHeight="180" posLeft="10" posTop="10" posWidth="160" tableName="mc_calificacion_capc"/>
-</JoinTables>
+			</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="90" fieldName="*"/>
-</Fields>
+			</Fields>
 			<PKFields>
 				<PKField id="91" dataType="Integer" fieldName="id" tableName="mc_calificacion_capc"/>
-</PKFields>
+			</PKFields>
 			<ISPParameters/>
 			<ISQLParameters/>
 			<IFormElements/>

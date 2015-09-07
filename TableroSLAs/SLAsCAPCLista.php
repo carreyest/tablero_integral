@@ -276,7 +276,7 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
     public $Sorter_Observaciones;
 //End Variables
 
-//Class_Initialize Event @3-15640918
+//Class_Initialize Event @3-3DF2AAF7
     function clsGridmc_c_ServContractual_mc_c($RelativePath, & $Parent)
     {
         global $FileName;
@@ -313,7 +313,7 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
         $this->Agrupador->Page = "SLAsCAPCDetalle.php";
         $this->CALIDAD_PROD_TERM = new clsControl(ccsLink, "CALIDAD_PROD_TERM", "CALIDAD_PROD_TERM", ccsText, "", CCGetRequestParam("CALIDAD_PROD_TERM", ccsGet, NULL), $this);
         $this->CALIDAD_PROD_TERM->HTML = true;
-        $this->CALIDAD_PROD_TERM->Page = "SLAsCAPCCalidadDetalle.php";
+        $this->CALIDAD_PROD_TERM->Page = "SLAsCAPCDetalle.php";
         $this->DEDUC_OMISION = new clsControl(ccsLink, "DEDUC_OMISION", "DEDUC_OMISION", ccsText, "", CCGetRequestParam("DEDUC_OMISION", ccsGet, NULL), $this);
         $this->DEDUC_OMISION->HTML = true;
         $this->DEDUC_OMISION->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
@@ -370,7 +370,7 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
     }
 //End Initialize Method
 
-//Show Method @3-72A79382
+//Show Method @3-E17542BB
     function Show()
     {
         $Tpl = CCGetTemplate($this);
@@ -433,6 +433,8 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
                 $this->numero->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
                 $this->numero->Parameters = CCAddParam($this->numero->Parameters, "s_numero", $this->DataSource->f("numero"));
                 $this->numero->Parameters = CCAddParam($this->numero->Parameters, "sID", $this->DataSource->f("id"));
+                $this->numero->Parameters = CCAddParam($this->numero->Parameters, "s_mes", $this->DataSource->f("mes"));
+                $this->numero->Parameters = CCAddParam($this->numero->Parameters, "s_anio", $this->DataSource->f("anio"));
                 $this->Descripcion->SetValue($this->DataSource->Descripcion->GetValue());
                 $this->Agrupador->SetValue($this->DataSource->Agrupador->GetValue());
                 $this->Agrupador->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
@@ -658,24 +660,50 @@ class clsmc_c_ServContractual_mc_cDataSource extends clsDBcnDisenio {  //mc_c_Se
     }
 //End Prepare Method
 
-//Open Method @3-A5A92BF3
+//Open Method @3-3FA2FF6C
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT mc_calificacion_capc.*, mc_c_ServContractual.Descripcion AS mc_c_ServContractual_Descripcion ,\n" .
-        "	a.Observaciones Obs_Ap\n" .
+        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT distinct mc_calificacion_capc.*, mc_c_ServContractual.Descripcion AS mc_c_ServContractual_Descripcion ,\n" .
+        "	a.Observaciones Obs_Ap, DatosPPMC.Name\n" .
         "FROM mc_calificacion_capc \n" .
         "	left  JOIN mc_c_ServContractual ON mc_calificacion_capc.id_serviciocont = mc_c_ServContractual.Id\n" .
         "		left join mc_info_capc_ap a on a.id =  mc_calificacion_capc.id \n" .
+        "		left join (\n" .
+        "SELECT DISTINCT  REQUEST_ID ID_PPMC, NAME, SERVICIO_NEGOCIO, TIPO_REQUERIMIENTO, FECHA_CARGA, 0 PPMC_Relacionado, slo\n" .
+        "	FROM PPMC_RO_AS \n" .
+        "UNION ALL\n" .
+        "SELECT DISTINCT  ID_PROYECTO, Nombre_Proyecto, SERVICIO_NEGOCIO, TIP_REQUERIMIENTO, FECHA_CARGA, 0 PPMC_Relacionado, slo\n" .
+        "	FROM PPMC_PROYECTOS_AS \n" .
+        "UNION ALL\n" .
+        "SELECT DISTINCT REQ_CAMBIO_ID, DESC_BREVE, SERVICIO_NEGOCIO, TIPO_Solicitud, C.FECHA_CARGA, ID_PPMC, c.slo\n" .
+        "	FROM PPMC_CAMBIOS C inner join PPMC_Proyectos_AS on PPMC_PROYECTOS_AS.ID_PROYECTO = C.ID_PPMC \n" .
+        "UNION ALL\n" .
+        "SELECT DISTINCT ID_CC, NOMBRE_RO, SERVICIO_NEGOCIO, MOTIVO_CAMBIO, C.FECHA_CARGA, ID_RO, c.slo\n" .
+        "	FROM PPMC_CAMBIOS_RO C inner join PPMC_RO_AS  on PPMC_RO_AS.REQUEST_ID  = C.ID_RO  \n" .
+        " ) as DatosPPMC on DatosPPMC.ID_PPMC = numero 	and mc_calificacion_capc.mes = month(FECHA_CARGA) and mc_calificacion_capc.anio = YEAR(FECHA_CARGA) \n" .
         "WHERE numero LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
         "AND (mes = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . " or  " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "=0)\n" .
         "AND (anio = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " or " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "=0)\n" .
         "AND (id_serviciocont = " . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . "  or 0=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " )) cnt";
-        $this->SQL = "SELECT mc_calificacion_capc.*, mc_c_ServContractual.Descripcion AS mc_c_ServContractual_Descripcion ,\n" .
-        "	a.Observaciones Obs_Ap\n" .
+        $this->SQL = "SELECT distinct mc_calificacion_capc.*, mc_c_ServContractual.Descripcion AS mc_c_ServContractual_Descripcion ,\n" .
+        "	a.Observaciones Obs_Ap, DatosPPMC.Name\n" .
         "FROM mc_calificacion_capc \n" .
         "	left  JOIN mc_c_ServContractual ON mc_calificacion_capc.id_serviciocont = mc_c_ServContractual.Id\n" .
         "		left join mc_info_capc_ap a on a.id =  mc_calificacion_capc.id \n" .
+        "		left join (\n" .
+        "SELECT DISTINCT  REQUEST_ID ID_PPMC, NAME, SERVICIO_NEGOCIO, TIPO_REQUERIMIENTO, FECHA_CARGA, 0 PPMC_Relacionado, slo\n" .
+        "	FROM PPMC_RO_AS \n" .
+        "UNION ALL\n" .
+        "SELECT DISTINCT  ID_PROYECTO, Nombre_Proyecto, SERVICIO_NEGOCIO, TIP_REQUERIMIENTO, FECHA_CARGA, 0 PPMC_Relacionado, slo\n" .
+        "	FROM PPMC_PROYECTOS_AS \n" .
+        "UNION ALL\n" .
+        "SELECT DISTINCT REQ_CAMBIO_ID, DESC_BREVE, SERVICIO_NEGOCIO, TIPO_Solicitud, C.FECHA_CARGA, ID_PPMC, c.slo\n" .
+        "	FROM PPMC_CAMBIOS C inner join PPMC_Proyectos_AS on PPMC_PROYECTOS_AS.ID_PROYECTO = C.ID_PPMC \n" .
+        "UNION ALL\n" .
+        "SELECT DISTINCT ID_CC, NOMBRE_RO, SERVICIO_NEGOCIO, MOTIVO_CAMBIO, C.FECHA_CARGA, ID_RO, c.slo\n" .
+        "	FROM PPMC_CAMBIOS_RO C inner join PPMC_RO_AS  on PPMC_RO_AS.REQUEST_ID  = C.ID_RO  \n" .
+        " ) as DatosPPMC on DatosPPMC.ID_PPMC = numero 	and mc_calificacion_capc.mes = month(FECHA_CARGA) and mc_calificacion_capc.anio = YEAR(FECHA_CARGA) \n" .
         "WHERE numero LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
         "AND (mes = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . " or  " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "=0)\n" .
         "AND (anio = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " or " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "=0)\n" .
@@ -757,7 +785,7 @@ include_once("./SLAsCAPCLista_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-0D013849
+//Initialize Objects @1-284536DD
 $DBcnDisenio = new clsDBcnDisenio();
 $MainPage->Connections["cnDisenio"] = & $DBcnDisenio;
 $Attributes = new clsAttributes("page:");
@@ -770,8 +798,7 @@ $Header->Initialize();
 $mc_calificacion_capc = new clsRecordmc_calificacion_capc("", $MainPage);
 $mc_c_ServContractual_mc_c = new clsGridmc_c_ServContractual_mc_c("", $MainPage);
 $lkTableroExcelCAPC = new clsControl(ccsLink, "lkTableroExcelCAPC", "lkTableroExcelCAPC", ccsText, "", CCGetRequestParam("lkTableroExcelCAPC", ccsGet, NULL), $MainPage);
-$lkTableroExcelCAPC->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
-$lkTableroExcelCAPC->Page = "TableroExcelCAPC.php";
+$lkTableroExcelCAPC->Page = "TableroExcel.php";
 $SLAsCAPCMenu = new clsSLAsCAPCMenu("", "SLAsCAPCMenu", $MainPage);
 $SLAsCAPCMenu->Initialize();
 $MainPage->Header = & $Header;
@@ -779,6 +806,8 @@ $MainPage->mc_calificacion_capc = & $mc_calificacion_capc;
 $MainPage->mc_c_ServContractual_mc_c = & $mc_c_ServContractual_mc_c;
 $MainPage->lkTableroExcelCAPC = & $lkTableroExcelCAPC;
 $MainPage->SLAsCAPCMenu = & $SLAsCAPCMenu;
+$lkTableroExcelCAPC->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
+$lkTableroExcelCAPC->Parameters = CCAddParam($lkTableroExcelCAPC->Parameters, "s_id_proveedor", 1);
 $mc_c_ServContractual_mc_c->Initialize();
 $ScriptIncludes = "";
 $SList = explode("|", $Scripts);

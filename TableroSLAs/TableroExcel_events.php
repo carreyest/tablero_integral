@@ -98,7 +98,9 @@ function mc_reporte_ns_ds_AfterExecuteUpdate(& $sender)
 
 //Custom Code @116-2A29BDB7
 // -------------------------
+
     GeneraReporte();
+
 // -------------------------
 //End Custom Code
 
@@ -122,6 +124,7 @@ function Page_OnInitializeView(& $sender)
 	global $Redirect;
 	global $PathToRoot;
 	global $mc_reporte_ns;
+	global $mc_reporte_ns1;
 	
 	//si se envio la forma verifica si ya existe el registro y redirecciona a la información guardada
 	/*
@@ -143,6 +146,9 @@ function Page_OnInitializeView(& $sender)
 	
 	
 	//se verifica si existe el registro para el mes que se está creando, si es así genera el reporte, si no pide los datos.
+if(CCGetParam("s_AnioReporte",0)!=0 & CCGetParam("s_MesReporte",0)!=0 &&  CCGetParam("s_id_proveedor",0)!=0 )
+{
+
 	global $dbReporte;
 	$dbReporte = new clsDBcnDisenio();
 //	$dbReporte->query('select * from mc_reporte_ns where mesreporte= ' . ((CCGetFromPost("s_MesReporte",0)=="")?0:CCGetFromPost("s_MesReporte",0)) . 
@@ -153,7 +159,7 @@ function Page_OnInitializeView(& $sender)
 							' and anioreporte=' . ((CCGetFromGet("s_AnioReporte",0)=="")?0:CCGetFromGet("s_AnioReporte",0)) . 
 							' and id_proveedor=' . ((CCGetFromGet("s_id_proveedor",0)=="")?0:CCGetFromGet("s_id_proveedor",0)) .
 							' and Dyp=' . ((CCGetFromGet("DyP",0)=="")?0:CCGetFromGet("DyP",0)) . ' and SLO = ' . ((CCGetFromGet("s_SLO",0)=="")?0:CCGetFromGet("s_SLO",0)));
-	
+							
 	$tipo_sl = CCGetFromGet("s_SLO",0)==1? "SLOs":"SLAs";
 	if(!$dbReporte->has_next_record()){
 		global $mc_reporte_ns;
@@ -171,13 +177,18 @@ function Page_OnInitializeView(& $sender)
 	$dbReporte->close();
 	
 		//si falta algun parámetro no muestra el record
-			global $Panel1;
-	if(CCGetParam("s_AnioReporte",0)==0 || CCGetParam("s_MesReporte",0)==0 ||  CCGetParam("s_id_proveedor",0)==0 )
-	{
-		//echo "x.x";
-		$Panel1->Visible=false;
-		}
 
+//	if(CCGetParam("s_AnioReporte",0)==0 || CCGetParam("s_MesReporte",0)==0 ||  CCGetParam("s_id_proveedor",0)==0 )
+//	{
+		//echo "x.x";
+
+}
+else
+{
+	global $Panel1;
+	$Panel1->Visible=false;
+	$mc_reporte_ns1->Errors->addError('Seleccione proveedor');
+}
 // -------------------------
 //End Custom Code
 
@@ -197,7 +208,7 @@ function Page_BeforeInitialize(& $sender)
 
 //Custom Code @74-2A29BDB7
 // -------------------------
-	
+
 // -------------------------
 //End Custom Code
 
@@ -207,14 +218,12 @@ function Page_BeforeInitialize(& $sender)
 //End Close Page_BeforeInitialize
 
 function GeneraReporte(){
-	error_reporting(E_ALL);
-
-
 	global $db;
 	global $Redirect;
 	global $PathToRoot;
 	global $mc_reporte_ns;
-	
+
+
 	
 	$db= new clsDBcnDisenio;
 	//si se envio la forma verifica si ya existe el registro y redirecciona a la información guardada
@@ -235,7 +244,8 @@ function GeneraReporte(){
 	}
 	*/
 	
-		//se verifica si existe el registro para el mes que se está creando, si es así genera el reporte, si no pide los datos.
+	
+	//se verifica si existe el registro para el mes que se está creando, si es así genera el reporte, si no pide los datos.
 		global $REPORT;
 		global $FILENAME;
 		
@@ -247,31 +257,33 @@ function GeneraReporte(){
 		$PASWD = CCDLookUp("valor","mc_parametros","parametro='PwdSSRS'",$db);
 		$SERVICE_URL = CCDLookUp("valor","mc_parametros","parametro='SSRSURL'",$db);
 		
-			
-		if(CCGetParam("s_id_proveedor",0)==1){
-			$REPORT= "http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCAPC.rdl";
-		} else {
+		/*	
+		if(CCGetParam("SAT",0)==0){
 			$REPORT= "http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCompleto.rdl";
+		} else {
+			$REPORT= "http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCompleto_SLO.rdl";
 		}
-			
+		*/
+		
+		$REPORT="http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCompleto.rdl";
 		$TipoReporte="NS";
 		$ReporteSLA="SLA";
-		
-		if(CCGetParam("DyP",0)==1){
-			if(CCGetParam("s_id_proveedor",0)==1){
-				$REPORT="http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteDP_CAPC.rdl";
-			} else {
-				$REPORT="http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteDP.rdl";
-			}
+
+		if( (CCGetParam("DyP",0)==1) AND (CCGetParam("s_SLO",0)==1) ){
+
+			$REPORT="http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteDP_SLO.rdl";
+			$TipoReporte="DyP";
+			$ReporteSLA="SLO";
+
+		}
+				
+		if( (CCGetParam("DyP",0)==1) AND (CCGetParam("s_SLO",0)==0) ){
+			$REPORT="http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteDP.rdl";
 			$TipoReporte="DyP";
 		}
 		
-		if(CCGetParam("s_SLO",0)==1){
-			if(CCGetParam("s_id_proveedor",0)==1){
-				$REPORT="http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCAPC_SLO.rdl";
-			} else {
-				$REPORT="http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCompleto_SLO.rdl";
-			}
+		if( (CCGetParam("s_SLO",0)==1)  AND (CCGetParam("DyP",0)==0) ){
+			$REPORT="http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCompleto_SLO.rdl";
 			$ReporteSLA="SLO";
 		}
 		
@@ -279,18 +291,11 @@ function GeneraReporte(){
 		$sCDS= CCGetParam("s_id_proveedor");
 		$sCDS=$sCDS-1;
 	
-		$sMes=  sprintf("%02d", CCGetParam("s_MesReporte"));
-		
-		//if(CCGetParam("s_MesReporte")<10){
-			if(CCGetParam("s_id_proveedor",0)>1){
-				$FILENAME= "Reporte" . $TipoReporte . "_CDS" . $sCDS . "_". $ReporteSLA ."_" . CCGetParam("s_AnioReporte")  .$sMes .  date("t") . ".xls";
-			} else {
-				$FILENAME= "Reporte" . $TipoReporte . "_CAPC"  . "_". $ReporteSLA ."_" . CCGetParam("s_AnioReporte")  . $sMes . date("t") . ".xls";
-			}
-		//} else {
-		//	$FILENAME = "Reporte" . $TipoReporte . "_CDS" . $sCDS . "_". $ReporteSLA ."_" . CCGetParam("s_AnioReporte")  . CCGetParam("s_MesReporte") . date("t") .  ".xls";
-		//}
-		
+		if(CCGetParam("s_MesReporte")<10){
+			$FILENAME= "Reporte" . $TipoReporte . "_CDS" . $sCDS . "_". $ReporteSLA ."_" . CCGetParam("s_AnioReporte")  . "0" . CCGetParam("s_MesReporte") .  date("t") . ".xls";
+		} else {
+			$FILENAME = "Reporte" . $TipoReporte . "_CDS" . $sCDS . "_". $ReporteSLA ."_" . CCGetParam("s_AnioReporte")  . CCGetParam("s_MesReporte") . date("t") .  ".xls";
+		}
 		
 		try {
 			$ssrs_report = new SSRSReport(new Credentials($UID, $PASWD),$SERVICE_URL);
@@ -303,12 +308,9 @@ function GeneraReporte(){
 		    $parameters[1] = new ParameterValue();
 		    $parameters[1]->Name = "Anio";
 		    $parameters[1]->Value = CCGetParam("s_AnioReporte",date("Y"));
-		    // el reporte del capc solo tiene dos parámetros
-		    if(CCGetParam("s_id_proveedor",0)>1){
-		    	$parameters[2] = new ParameterValue();
-		    	$parameters[2]->Name = "Proveedor";
-		    	$parameters[2]->Value = CCGetParam("s_id_proveedor",0);
-		    }
+		    $parameters[2] = new ParameterValue();
+		    $parameters[2]->Name = "Proveedor";
+		    $parameters[2]->Value = CCGetParam("s_id_proveedor",0);
 		    $executionInfo = $ssrs_report->SetExecutionParameters2($parameters, "en-us");
 			
 		    $ssrs_report->LoadReport2($REPORT, NULL);
@@ -321,7 +323,6 @@ function GeneraReporte(){
 													 $Warnings,
 													 $StreamIds);
 		
-			
 			$handle = fopen($FILENAME, 'wb');
 			fwrite($handle, $result_EXCEL);
 			fclose($handle);
@@ -332,8 +333,8 @@ function GeneraReporte(){
 
 		}
 		catch(SSRSReportException $serviceExcprion){
-			echo $serviceExcprion;
-			die();
+
+			echo $serviceExcprion->GetErrorMessage();
 		}
 }
 

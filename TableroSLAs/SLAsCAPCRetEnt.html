@@ -216,7 +216,7 @@ jQuery(function ($) {
   <tr>
     <td>&nbsp;</td> 
     <td></td> 
-    <td>&nbsp;</td> 
+    <td>&nbsp;</td>
   </tr>
  
   <tr>
@@ -224,50 +224,49 @@ jQuery(function ($) {
     <td>
       <!-- BEGIN Record mc_calificacion_capc -->
       <form id="mc_calificacion_capc" method="post" name="{HTMLFormName}" action="{Action}">
-        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="top">
-              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Detalle SLAs del CAPC</strong></td> 
-                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
                 </tr>
- 
               </table>
  
               <table class="Record" cellspacing="0" cellpadding="0">
                 <!-- BEGIN Error -->
                 <tr id="ErrorBlock" class="Error">
-                  <td colspan="3">{Error}</td> 
+                  <td colspan="3">{Error}</td>
                 </tr>
- <!-- END Error -->
+                <!-- END Error -->
                 <tr class="Controls">
                   <td class="th"><label for="mc_calificacion_capcnumero">Requerimiento</label></td> 
-                  <td><input type="text" id="mc_calificacion_capcnumero" maxlength="6" size="6" value="{numero}" name="{numero_Name}"></td> 
-                  <td><label for="mc_calificacion_capcSLO" style="display: inline;">SLO</label><input type="checkbox" id="mc_calificacion_capcSLO" value="1" name="{SLO_Name}" {SLO}></td> 
+                  <td><input type="text" id="mc_calificacion_capcnumero" value="{numero}" maxlength="6" size="6" name="{numero_Name}"></td> 
+                  <td><label for="mc_calificacion_capcSLO" style="display: inline;">SLO</label><input type="checkbox" id="mc_calificacion_capcSLO" value="1" name="{SLO_Name}" {SLO}></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">Id Estimación</td> 
-                  <td><input type="text" id="mc_calificacion_capcIdEstimacion" maxlength="6" size="6" value="{IdEstimacion}" name="{IdEstimacion_Name}"></td> 
-                  <td>&nbsp;</td> 
+                  <td><input type="text" id="mc_calificacion_capcIdEstimacion" value="{IdEstimacion}" maxlength="6" size="6" name="{IdEstimacion_Name}"></td> 
+                  <td>&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">Rubro</td> 
-                  <td><input type="text" id="mc_calificacion_capcAgrupador" maxlength="75" size="50" value="{Agrupador}" name="{Agrupador_Name}"></td> 
-                  <td>&nbsp;</td> 
+                  <td><input type="text" id="mc_calificacion_capcAgrupador" value="{Agrupador}" maxlength="75" size="50" name="{Agrupador_Name}"></td> 
+                  <td>&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_calificacion_capcid_serviciocont">Servicio</label></td> 
                   <td>
-                    <select onchange="OcultaSLAs()" id="mc_calificacion_capcid_serviciocont" name="{id_serviciocont_Name}">
-                      {id_serviciocont_Options} 
+                    <select id="mc_calificacion_capcid_serviciocont" onchange="OcultaSLAs()" name="{id_serviciocont_Name}">
+                      {id_serviciocont_Options}
                     </select>
  </td> 
-                  <td>&nbsp;</td> 
+                  <td>&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
@@ -275,15 +274,15 @@ jQuery(function ($) {
                   <td>
                     <select id="mc_calificacion_capcid_tipo" name="{id_tipo_Name}">
                       <option selected value="">Seleccionar Valor</option>
- {id_tipo_Options} 
+                      {id_tipo_Options}
                     </select>
  </td> 
-                  <td>&nbsp;</td> 
+                  <td>&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_calificacion_capcDescripcion">Descripción</label></td> 
-                  <td colspan="2"><input type="text" id="mc_calificacion_capcDescripcion" maxlength="350" size="75" value="{Descripcion}" name="{Descripcion_Name}"></td> 
+                  <td colspan="2"><input type="text" id="mc_calificacion_capcDescripcion" value="{Descripcion}" maxlength="350" size="75" name="{Descripcion_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
@@ -291,10 +290,10 @@ jQuery(function ($) {
                   <td>
                     <select id="mc_calificacion_capcmes" name="{mes_Name}">
                       <option selected value="">Seleccionar Valor</option>
- {mes_Options} 
+                      {mes_Options}
                     </select>
  </td> 
-                  <td>&nbsp;</td> 
+                  <td>&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
@@ -302,10 +301,10 @@ jQuery(function ($) {
                   <td>
                     <select id="mc_calificacion_capcanio" name="{anio_Name}">
                       <option selected value="">Seleccionar Valor</option>
- {anio_Options} 
+                      {anio_Options}
                     </select>
  </td> 
-                  <td>&nbsp;</td> 
+                  <td>&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
@@ -313,99 +312,107 @@ jQuery(function ($) {
                     <div id="divRetrasoE">
                       <table>
                         <tr>
-                          <td class="th" style="BACKGROUND-COLOR: rgb(216,216,216)"><label for="mc_calificacion_capcRETR_ENTREGABLE">Retraso en entregables</label></td> 
-                          <td style="BACKGROUND-COLOR: rgb(216,216,216)">
-                            <select id="mc_calificacion_capcRETR_ENTREGABLE" name="{RETR_ENTREGABLE_Name}">
-                              <option selected value="">No Aplica</option>
- {RETR_ENTREGABLE_Options} 
-                            </select>
- </td> 
+                          <td style="BACKGROUND-COLOR: rgb(216,216,216)" class="th">
+                            <!--<p align="center"><label for="mc_calificacion_capcRETR_ENTREGABLE"><font size="3">Calificar Retraso en Entregables</font></label></p>-->
+                            <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                              <tr>
+                                <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                                <td class="th"><strong><font color="#ffffff" size="3">Calificar Retraso en Entregables</font></strong></td> 
+                                <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                              </tr>
+                            </table>
+                          </td>
+                          <!--<td style="BACKGROUND-COLOR: rgb(216,216,216)">&nbsp;</td> -->
                           <tr class="Controls">
                             <td>
-                              <table id="tblRetEnt" style="BORDER-LEFT-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-COLLAPSE: collapse; BORDER-TOP-WIDTH: 0px; border-image: none" cellspacing="0" cellpadding="0" width="100%">
+                              <table style="BORDER-RIGHT-WIDTH: 0px; BORDER-COLLAPSE: collapse; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; border-image: none" id="tblRetEnt" cellspacing="0" cellpadding="0" width="100%">
                                 <tr>
                                   <td><label for="mc_calificacion_capcCAPFirmada" style="display: inline;">CAP Firmada</label><input type="checkbox" id="mc_calificacion_capcCAPFirmada" value="1" name="{CAPFirmada_Name}" {CAPFirmada}></td> 
                                   <td colspan="2"><label for="mc_calificacion_capcFechaFirmaCAES" style="display: inline;">Fecha Firma CAES</label></td> 
-                                  <td colspan="3"><input type="text" id="mc_calificacion_capcFechaFirmaCAES" value="{FechaFirmaCAES}" name="{FechaFirmaCAES_Name}"></td> 
+                                  <td colspan="2"><input type="text" id="mc_calificacion_capcFechaFirmaCAES" value="{FechaFirmaCAES}" name="{FechaFirmaCAES_Name}"></td> 
+                                  <td>
+                                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Todos los paquetes cerrados?<input type="checkbox" id="mc_calificacion_capcpaquetes_cerrados" value="1" name="{paquetes_cerrados_Name}" {paquetes_cerrados}></p>
+                                  </td> 
+                                  <td>Retraso en entregables : 
+                                    <select id="mc_calificacion_capcRETR_ENTREGABLE" name="{RETR_ENTREGABLE_Name}">
+                                      <option selected value="">No Aplica</option>
+                                      {RETR_ENTREGABLE_Options}
+                                    </select>
+ </td>
                                 </tr>
  
                                 <tr class="Controls">
-                                  <td><label for="mc_calificacion_capcDiasPlaneados" style="display: inline;">Días planeados</label></td> 
-                                  <td><input type="text" onchange="CalculaRetraso()" id="mc_calificacion_capcDiasPlaneados" maxlength="4" size="4" value="{DiasPlaneados}" name="{DiasPlaneados_Name}"></td> 
-                                  <td><label for="mc_calificacion_capcDiasReales" style="display: inline;">Dís reales</label></td> 
-                                  <td><input type="text" onchange="CalculaRetraso()" id="mc_calificacion_capcDiasReales" maxlength="4" size="4" value="{DiasReales}" name="{DiasReales_Name}"></td> 
-                                  <td><label for="mc_calificacion_capcDiasRetrasoHabiles" style="display: inline;">Retraso Días Habiles</label></td> 
-                                  <td><input type="text" onchange="CalculaRetraso()" id="mc_calificacion_capcDiasRetrasoHabiles" maxlength="5" size="5" value="{DiasRetrasoHabiles}" name="{DiasRetrasoHabiles_Name}"></td> 
-                                  <td><label for="mc_calificacion_capcDiasRetrasoNaturales" style="display: inline;">Retraso Días Naturales </label></td> 
-                                  <td><input type="text" onchange="CalculaRetraso()" id="mc_calificacion_capcDiasRetrasoNaturales" maxlength="5" size="5" value="{DiasRetrasoNaturales}" name="{DiasRetrasoNaturales_Name}"></td> 
+                                  <td><label for="mc_calificacion_capcDiasPlaneados" style="display: inline;">Días hábiles planeados</label></td> 
+                                  <td><input type="text" id="mc_calificacion_capcDiasPlaneados" onchange="CalculaRetraso()" value="{DiasPlaneados}" maxlength="4" size="4" name="{DiasPlaneados_Name}"></td> 
+                                  <td><label for="mc_calificacion_capcDiasReales" style="display: inline;">&nbsp;</label></td> 
+                                  <td>
+                                    <!-- BEGIN TextBox DiasReales --><input type="text" id="mc_calificacion_capcDiasReales" onchange="CalculaRetraso()" value="{DiasReales}" maxlength="4" size="4" name="{DiasReales_Name}"><!-- END TextBox DiasReales --></td> 
+                                  <td><label for="mc_calificacion_capcDiasRetrasoHabiles" style="display: inline;">Máximo&nbsp;Días de Retraso&nbsp;Hábiles</label></td> 
+                                  <td><input type="text" id="mc_calificacion_capcDiasRetrasoHabiles" onchange="CalculaRetraso()" value="{DiasRetrasoHabiles}" maxlength="5" size="5" name="{DiasRetrasoHabiles_Name}"></td> 
+                                  <td><label for="mc_calificacion_capcDiasRetrasoNaturales" style="display: inline;"><label for="mc_calificacion_capcDiasRetrasoHabiles" style="display: inline;">Máximo&nbsp;Días de Retraso&nbsp;Naturales</label></label></td> 
+                                  <td><input type="text" id="mc_calificacion_capcDiasRetrasoNaturales" onchange="CalculaRetraso()" value="{DiasRetrasoNaturales}" maxlength="5" size="5" name="{DiasRetrasoNaturales_Name}"></td>
                                 </tr>
  
                                 <tr class="Controls">
-                                  <td><label for="mc_calificacion_capcPctMaximo" style="display: inline;">% Deductiva&nbsp; </label></td> 
-                                  <td><input type="text" id="mc_calificacion_capcPctMaximo" maxlength="5" size="4" value="{PctMaximo}" name="{PctMaximo_Name}"></td> 
+                                  <td><label for="mc_calificacion_capcPctMaximo" style="display: inline;">%&nbsp;Máximo </label></td> 
+                                  <td><input type="text" id="mc_calificacion_capcPctMaximo" value="{PctMaximo}" maxlength="5" size="4" name="{PctMaximo_Name}"></td> 
                                   <td></td> 
                                   <td></td> 
                                   <td></td> 
-                                  <td></td> 
+                                  <td></td>
                                 </tr>
  
                                 <tr class="Controls">
                                   <td></td> 
-                                  <td></td> 
+                                  <td></td>
                                 </tr>
  
                                 <tr class="Controls">
-                                  <td class="th">URL Entregables</td> 
-                                  <td colspan="7"><input type="text" id="mc_calificacion_capcURLEntregables" maxlength="725" size="83" value="{URLEntregables}" name="{URLEntregables_Name}"></td> 
+                                  <td class="th">URL Referencia</td> 
+                                  <td colspan="7"><textarea id="mc_calificacion_capcURLEntregables" rows="3" cols="62" name="{URLEntregables_Name}">{URLEntregables}</textarea></td>
                                 </tr>
  
                                 <tr class="Controls">
                                   <td class="th"><label for="mc_calificacion_capcObservaciones">Observaciones</label></td> 
-                                  <td colspan="7"><textarea id="mc_calificacion_capcObservaciones" rows="3" cols="62" name="{Observaciones_Name}">{Observaciones}</textarea></td> 
+                                  <td colspan="7"><textarea id="mc_calificacion_capcObservaciones" rows="3" cols="62" name="{Observaciones_Name}">{Observaciones}</textarea></td>
                                 </tr>
- 
                               </table>
- </td> 
+                            </td>
                           </tr>
- 
                         </table>
- 
                       </div>
- </td> 
+                    </td>
                   </tr>
  
                   <tr class="Bottom">
                     <td style="TEXT-ALIGN: right" colspan="3">
-                      <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_calificacion_capcButton_Insert" class="Button" alt="Agregar" value="Guardar" name="{Button_Name}"><!-- END Button Button_Insert -->
-                      <!-- BEGIN Button Button_Update --><input type="submit" id="mc_calificacion_capcButton_Update" class="Button" alt="Enviar" value="Guardar" name="{Button_Name}"><!-- END Button Button_Update -->
-                      <!-- BEGIN Button Button_Delete --><input type="submit" id="mc_calificacion_capcButton_Delete" class="Button" alt="Borrar" value="Borrar" name="{Button_Name}"><!-- END Button Button_Delete --><input type="hidden" id="mc_calificacion_capcid_proveedor" value="{id_proveedor}" name="{id_proveedor_Name}"></td> 
+                      <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_calificacion_capcButton_Insert" class="Button" value="Guardar" alt="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input type="submit" id="mc_calificacion_capcButton_Update" class="Button" value="Enviar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button btnCalcular --><input type="submit" id="mc_calificacion_capcbtnCalcular" class="Button" value="Recalcular" alt="Button1" name="{Button_Name}"><!-- END Button btnCalcular -->
+                      <!-- BEGIN Button Button_Delete --><input type="submit" id="mc_calificacion_capcButton_Delete" class="Button" value="Borrar" alt="Borrar" name="{Button_Name}"><!-- END Button Button_Delete --><input type="hidden" id="mc_calificacion_capcid_proveedor" value="{id_proveedor}" name="{id_proveedor_Name}"></td>
                   </tr>
- 
                 </table>
- </td> 
+              </td>
             </tr>
- 
           </table>
- 
         </form>
- <!-- END Record mc_calificacion_capc --></td> 
-      <td>&nbsp;</td> 
+        <!-- END Record mc_calificacion_capc --></td> 
+      <td>&nbsp;</td>
     </tr>
  
     <tr>
       <td>&nbsp;</td> 
       <td>
         <!-- BEGIN Grid mc_info_capc_cr_RE_Artefa -->
-        <table id="mc_info_capc_cr_RE_Artefa" class="MainTable" cellspacing="0" cellpadding="0" border="0">
+        <table id="mc_info_capc_cr_RE_Artefa" class="MainTable" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="top">
-              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Lista de Artefactos </strong></td> 
-                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
                 </tr>
- 
               </table>
  
               <table class="Grid" cellspacing="0" cellpadding="0">
@@ -466,7 +473,6 @@ jQuery(function ($) {
                   <!-- BEGIN Sorter Sorter_PctDeductiva --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_PctDeductiva">Pct Deductiva</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_PctDeductiva --></th>
- 
                 </tr>
  
                 <!-- BEGIN Row -->
@@ -482,20 +488,20 @@ jQuery(function ($) {
                   <td style="TEXT-ALIGN: right">{DiasNaturalesDesviacion}&nbsp;</td> 
                   <td>{Comentarios}&nbsp;</td> 
                   <td style="TEXT-ALIGN: right">{DiasHabilesReales}&nbsp;</td> 
-                  <td>{PctDeductiva}&nbsp;</td> 
+                  <td>{PctDeductiva}&nbsp;</td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="12">No hay registros</td> 
+                  <td colspan="12">No hay registros</td>
                 </tr>
- <!-- END NoRecords -->
+                <!-- END NoRecords -->
                 <tr class="Footer">
                   <td colspan="12">
                     <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
                     <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
                       <option selected value="">-</option>
- {PageSize_Options} 
+ {PageSize_Options}
                     </select>
  
                     <!-- BEGIN First_On --><a href="{First_URL}">Inicio</a> <!-- END First_On -->
@@ -508,17 +514,15 @@ jQuery(function ($) {
                     <!-- BEGIN Next_On --><a href="{Next_URL}">Siguiente</a> <!-- END Next_On -->
                     <!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
                     <!-- BEGIN Last_On --><a href="{Last_URL}">Final</a> <!-- END Last_On -->
-                    <!-- BEGIN Last_Off -->Final <!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td> 
+                    <!-- BEGIN Last_Off -->Final <!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td>
                 </tr>
- 
               </table>
- </td> 
+            </td>
           </tr>
- 
         </table>
- <!-- END Grid mc_info_capc_cr_RE_Artefa --><br>
+        <!-- END Grid mc_info_capc_cr_RE_Artefa --><br>
       </td> 
-      <td>&nbsp;</td> 
+      <td>&nbsp;</td>
     </tr>
  
     <tr>
@@ -531,14 +535,10 @@ jQuery(function ($) {
           <b>Cargar Artefactos de rchivo: </b><br>
           <input type="file" accept="text/csv" name="userfile">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Procesar">
         </form>
- <!-- END Panel Panel1 --></td> 
-      <td>&nbsp;</td> 
+        <!-- END Panel Panel1 --></td> 
+      <td>&nbsp;</td>
     </tr>
- 
   </table>
- 
   <p></p>
- 
   </body>
- 
   </html>

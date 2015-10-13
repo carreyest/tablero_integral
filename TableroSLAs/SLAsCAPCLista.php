@@ -276,7 +276,7 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
     public $Sorter_Observaciones;
 //End Variables
 
-//Class_Initialize Event @3-3DF2AAF7
+//Class_Initialize Event @3-FFB02B3D
     function clsGridmc_c_ServContractual_mc_c($RelativePath, & $Parent)
     {
         global $FileName;
@@ -313,17 +313,16 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
         $this->Agrupador->Page = "SLAsCAPCDetalle.php";
         $this->CALIDAD_PROD_TERM = new clsControl(ccsLink, "CALIDAD_PROD_TERM", "CALIDAD_PROD_TERM", ccsText, "", CCGetRequestParam("CALIDAD_PROD_TERM", ccsGet, NULL), $this);
         $this->CALIDAD_PROD_TERM->HTML = true;
-        $this->CALIDAD_PROD_TERM->Page = "SLAsCAPCDetalle.php";
+        $this->CALIDAD_PROD_TERM->Page = "PPMCsCrbCalidadCAPC.php";
         $this->DEDUC_OMISION = new clsControl(ccsLink, "DEDUC_OMISION", "DEDUC_OMISION", ccsText, "", CCGetRequestParam("DEDUC_OMISION", ccsGet, NULL), $this);
         $this->DEDUC_OMISION->HTML = true;
-        $this->DEDUC_OMISION->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
         $this->DEDUC_OMISION->Page = "SLAsCAPCDetalle.php";
         $this->RETR_ENTREGABLE = new clsControl(ccsLink, "RETR_ENTREGABLE", "RETR_ENTREGABLE", ccsText, "", CCGetRequestParam("RETR_ENTREGABLE", ccsGet, NULL), $this);
         $this->RETR_ENTREGABLE->HTML = true;
         $this->RETR_ENTREGABLE->Page = "SLAsCAPCRetEnt.php";
         $this->Observaciones = new clsControl(ccsLabel, "Observaciones", "Observaciones", ccsText, "", CCGetRequestParam("Observaciones", ccsGet, NULL), $this);
         $this->Img_CALIDAD_PROD_TERM = new clsControl(ccsImageLink, "Img_CALIDAD_PROD_TERM", "Img_CALIDAD_PROD_TERM", ccsText, "", CCGetRequestParam("Img_CALIDAD_PROD_TERM", ccsGet, NULL), $this);
-        $this->Img_CALIDAD_PROD_TERM->Page = "SLAsCAPCDetalle.php";
+        $this->Img_CALIDAD_PROD_TERM->Page = "PPMCsCrbCalidadCAPC.php";
         $this->Img_DEDUC_OMISION = new clsControl(ccsImageLink, "Img_DEDUC_OMISION", "Img_DEDUC_OMISION", ccsText, "", CCGetRequestParam("Img_DEDUC_OMISION", ccsGet, NULL), $this);
         $this->Img_DEDUC_OMISION->Page = "SLAsCAPCDetalle.php";
         $this->Img_RETR_ENTREGABLE = new clsControl(ccsImageLink, "Img_RETR_ENTREGABLE", "Img_RETR_ENTREGABLE", ccsText, "", CCGetRequestParam("Img_RETR_ENTREGABLE", ccsGet, NULL), $this);
@@ -370,7 +369,7 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
     }
 //End Initialize Method
 
-//Show Method @3-E17542BB
+//Show Method @3-CCBBFD59
     function Show()
     {
         $Tpl = CCGetTemplate($this);
@@ -441,15 +440,18 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
                 $this->Agrupador->Parameters = CCAddParam($this->Agrupador->Parameters, "id", $this->DataSource->f("id"));
                 $this->CALIDAD_PROD_TERM->SetValue($this->DataSource->CALIDAD_PROD_TERM->GetValue());
                 $this->CALIDAD_PROD_TERM->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
-                $this->CALIDAD_PROD_TERM->Parameters = CCAddParam($this->CALIDAD_PROD_TERM->Parameters, "id", $this->DataSource->f("id"));
+                $this->CALIDAD_PROD_TERM->Parameters = CCAddParam($this->CALIDAD_PROD_TERM->Parameters, "Id", $this->DataSource->f("id"));
                 $this->DEDUC_OMISION->SetValue($this->DataSource->DEDUC_OMISION->GetValue());
+                $this->DEDUC_OMISION->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
+                $this->DEDUC_OMISION->Parameters = CCAddParam($this->DEDUC_OMISION->Parameters, "id", $this->DataSource->f("id"));
+                $this->DEDUC_OMISION->Parameters = CCAddParam($this->DEDUC_OMISION->Parameters, "s_numero", $this->DataSource->f("numero"));
                 $this->RETR_ENTREGABLE->SetValue($this->DataSource->RETR_ENTREGABLE->GetValue());
                 $this->RETR_ENTREGABLE->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
+                $this->RETR_ENTREGABLE->Parameters = CCAddParam($this->RETR_ENTREGABLE->Parameters, "s_numero", $this->DataSource->f("numero"));
                 $this->RETR_ENTREGABLE->Parameters = CCAddParam($this->RETR_ENTREGABLE->Parameters, "id", $this->DataSource->f("id"));
                 $this->Observaciones->SetValue($this->DataSource->Observaciones->GetValue());
                 $this->Img_CALIDAD_PROD_TERM->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
-                $this->Img_CALIDAD_PROD_TERM->Parameters = CCAddParam($this->Img_CALIDAD_PROD_TERM->Parameters, "s_numero", $this->DataSource->f("numero"));
-                $this->Img_CALIDAD_PROD_TERM->Parameters = CCAddParam($this->Img_CALIDAD_PROD_TERM->Parameters, "id", $this->DataSource->f("id"));
+                $this->Img_CALIDAD_PROD_TERM->Parameters = CCAddParam($this->Img_CALIDAD_PROD_TERM->Parameters, "Id", $this->DataSource->f("id"));
                 $this->Img_DEDUC_OMISION->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
                 $this->Img_DEDUC_OMISION->Parameters = CCAddParam($this->Img_DEDUC_OMISION->Parameters, "id", $this->DataSource->f("id"));
                 $this->Img_DEDUC_OMISION->Parameters = CCAddParam($this->Img_DEDUC_OMISION->Parameters, "s_numero", $this->DataSource->f("numero"));

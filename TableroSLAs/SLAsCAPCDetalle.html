@@ -225,10 +225,10 @@ jQuery(function ($) {
     <td>
       <!-- BEGIN Record mc_calificacion_capc -->
       <form id="mc_calificacion_capc" method="post" name="{HTMLFormName}" action="{Action}">
-        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="top">
-              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Detalle SLAs del CAPC</strong></td> 
@@ -244,40 +244,29 @@ jQuery(function ($) {
                 <!-- END Error -->
                 <tr class="Controls">
                   <td class="th"><label for="mc_calificacion_capcnumero">Requerimiento</label></td> 
-                  <td><input type="text" id="mc_calificacion_capcnumero" maxlength="6" size="6" value="{numero}" name="{numero_Name}"></td> 
+                  <td><input type="text" id="mc_calificacion_capcnumero" value="{numero}" maxlength="6" size="6" name="{numero_Name}"></td> 
                   <td><label for="mc_calificacion_capcSLO" style="display: inline;">SLO</label><input type="checkbox" id="mc_calificacion_capcSLO" value="1" name="{SLO_Name}" {SLO}></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">Id Estimación</td> 
-                  <td><input type="text" id="mc_calificacion_capcIdEstimacion" maxlength="6" size="6" value="{IdEstimacion}" name="{IdEstimacion_Name}"></td> 
+                  <td><input type="text" id="mc_calificacion_capcIdEstimacion" value="{IdEstimacion}" maxlength="6" size="6" name="{IdEstimacion_Name}"></td> 
                   <td>&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">Rubro</td> 
-                  <td><input type="text" id="mc_calificacion_capcAgrupador" maxlength="75" size="50" value="{Agrupador}" name="{Agrupador_Name}"></td> 
+                  <td><input type="text" id="mc_calificacion_capcAgrupador" value="{Agrupador}" maxlength="75" size="50" name="{Agrupador_Name}"></td> 
                   <td>&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th"><label for="mc_calificacion_capcid_serviciocont">Servicio Contractual</label></td> 
+                  <td class="th"><label for="mc_calificacion_capcid_serviciocont">Servicio</label></td> 
                   <td>
-                    <select onchange="OcultaSLAs()" id="mc_calificacion_capcid_serviciocont" name="{id_serviciocont_Name}">
+                    <select id="mc_calificacion_capcid_serviciocont" onchange="OcultaSLAs()" name="{id_serviciocont_Name}">
                       {id_serviciocont_Options}
                     </select>
  </td> 
-                  <td>&nbsp;</td>
-                </tr>
- 
-                <tr class="Controls">
-                  <td class="th">&nbsp;Servicio de Negocio</td> 
-                  <td>
-                    <select id="mc_calificacion_capcListBox1" name="{ListBox1_Name}">
-                      <option selected value="">Seleccionar Valor</option>
-                      {ListBox1_Options}
-                    </select>
- &nbsp;</td> 
                   <td>&nbsp;</td>
                 </tr>
  
@@ -294,7 +283,7 @@ jQuery(function ($) {
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_calificacion_capcDescripcion">Descripción</label></td> 
-                  <td colspan="2"><input type="text" id="mc_calificacion_capcDescripcion" maxlength="350" size="75" value="{Descripcion}" name="{Descripcion_Name}"></td>
+                  <td colspan="2"><input type="text" id="mc_calificacion_capcDescripcion" value="{Descripcion}" maxlength="350" size="75" name="{Descripcion_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
@@ -318,7 +307,7 @@ jQuery(function ($) {
  </td> 
                   <td>&nbsp;</td>
                 </tr>
- 
+                <!--
                 <tr class="Controls">
                   <td colspan="3">
                     <div id="divCalidad">
@@ -330,9 +319,9 @@ jQuery(function ($) {
                           <td style="BACKGROUND-COLOR: rgb(216,216,216)">
                             <select id="mc_calificacion_capcCALIDAD_PROD_TERM" name="{CALIDAD_PROD_TERM_Name}">
                               <option selected value="">No Aplica</option>
-                              {CALIDAD_PROD_TERM_Options}
+ {CALIDAD_PROD_TERM_Options} 
                             </select>
- </td>
+ </td> 
                         </tr>
  
                         <tr>
@@ -342,7 +331,7 @@ jQuery(function ($) {
                                 <td><label for="mc_calificacion_capctxtEntregableCalidad" style="display: inline;">Entregable:&nbsp;</label></td> 
                                 <td colspan="5"><textarea id="mc_calificacion_capctxtEntregableCalidad" rows="3" cols="50" name="{txtEntregableCalidad_Name}">{txtEntregableCalidad}</textarea></td> 
                                 <td>% Cumplimiento</td> 
-                                <td><input type="text" id="mc_calificacion_capcPctCalidad" size="5" value="{PctCalidad}" name="{PctCalidad_Name}"></td>
+                                <td><input type="text" id="mc_calificacion_capcPctCalidad" size="5" value="{PctCalidad}" name="{PctCalidad_Name}"></td> 
                               </tr>
  
                               <tr id="trRevColegas1">
@@ -353,7 +342,7 @@ jQuery(function ($) {
                                 <td>Severidad Media </td> 
                                 <td><input type="text" id="mc_calificacion_capcHallazgosMedia" maxlength="3" size="5" value="{HallazgosMedia}" name="{HallazgosMedia_Name}"></td> 
                                 <td>Severidad Alta</td> 
-                                <td><input type="text" onchange="CalculaDefectos()" id="mc_calificacion_capcHallazgosAlta" maxlength="3" size="5" value="{HallazgosAlta}" name="{HallazgosAlta_Name}"></td>
+                                <td><input type="text" onchange="CalculaDefectos()" id="mc_calificacion_capcHallazgosAlta" maxlength="3" size="5" value="{HallazgosAlta}" name="{HallazgosAlta_Name}"></td> 
                               </tr>
  
                               <tr id="trRevColegas2">
@@ -362,31 +351,34 @@ jQuery(function ($) {
                                   <div id="divTotHallazgos">
                                     xxx 
                                   </div>
-                                </td> 
+ </td> 
                                 <td>Defectos</td> 
                                 <td><input type="text" id="mc_calificacion_capcDefectos" maxlength="3" size="5" value="{Defectos}" name="{Defectos_Name}"></td> 
                                 <td>Deductiva</td> 
-                                <td><input type="text" id="mc_calificacion_capcDeductiva" maxlength="15" size="5" value="{Deductiva}" name="{Deductiva_Name}"></td>
+                                <td><input type="text" id="mc_calificacion_capcDeductiva" maxlength="15" size="5" value="{Deductiva}" name="{Deductiva_Name}"></td> 
                               </tr>
  
                               <tr>
                                 <td><label for="mc_calificacion_capcDetalleCalidad" style="display: inline;">Detalle Medición Calidad</label></td> 
-                                <td colspan="7"><textarea id="mc_calificacion_capcDetalleCalidad" rows="3" cols="62" name="{DetalleCalidad_Name}">{DetalleCalidad}</textarea></td>
+                                <td colspan="7"><textarea id="mc_calificacion_capcDetalleCalidad" rows="3" cols="62" name="{DetalleCalidad_Name}">{DetalleCalidad}</textarea></td> 
                               </tr>
-                            </table>
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
-                  </td>
-                </tr>
  
+                            </table>
+ </td> 
+                        </tr>
+ 
+                      </table>
+ 
+                    </div>
+ </td> 
+                </tr>
+               -->
                 <tr class="Controls">
                   <td colspan="3">
                     <div id="divDeductiva">
                       <table width="100%">
                         <tr>
-                          <td class="th" style="BACKGROUND-COLOR: rgb(216,216,216)"><label for="mc_calificacion_capcDEDUC_OMISION">Deductivas por Omisión</label></td> 
+                          <td style="BACKGROUND-COLOR: rgb(216,216,216)" class="th"><label for="mc_calificacion_capcDEDUC_OMISION">Deductivas por Omisión</label></td> 
                           <td style="BACKGROUND-COLOR: rgb(216,216,216)">
                             <select id="mc_calificacion_capcDEDUC_OMISION" name="{DEDUC_OMISION_Name}">
                               <option selected value="">No Aplica</option>
@@ -404,7 +396,7 @@ jQuery(function ($) {
                     <div id="divEficiencia">
                       <table>
                         <tr>
-                          <td class="th" style="BACKGROUND-COLOR: rgb(216,216,216)"><label for="mc_calificacion_capcEFIC_PRESUP">Eficiencia Presupuestal</label></td> 
+                          <td style="BACKGROUND-COLOR: rgb(216,216,216)" class="th"><label for="mc_calificacion_capcEFIC_PRESUP">Eficiencia Presupuestal</label></td> 
                           <td style="BACKGROUND-COLOR: rgb(216,216,216)">
                             <select id="mc_calificacion_capcEFIC_PRESUP" name="{EFIC_PRESUP_Name}">
                               <option selected value="">No Aplica</option>
@@ -419,10 +411,10 @@ jQuery(function ($) {
                               <tr>
                                 <td><label for="mc_calificacion_capcUnidadesActuales" style="display: inline;">Costo Actual y/o<br>
                                   Total de Unidades</label></td> 
-                                <td><input type="text" id="mc_calificacion_capcUnidadesActuales" maxlength="20" value="{UnidadesActuales}" name="{UnidadesActuales_Name}"></td> 
+                                <td><input type="text" id="mc_calificacion_capcUnidadesActuales" value="{UnidadesActuales}" maxlength="20" name="{UnidadesActuales_Name}"></td> 
                                 <td><label for="mc_calificacion_capcUnidadesAnteriores" style="display: inline;">Costo Estimado y/o Total de<br>
                                   Unidades Optimizadas</label></td> 
-                                <td><input type="text" id="mc_calificacion_capcUnidadesAnteriores" maxlength="20" value="{UnidadesAnteriores}" name="{UnidadesAnteriores_Name}"></td>
+                                <td><input type="text" id="mc_calificacion_capcUnidadesAnteriores" value="{UnidadesAnteriores}" maxlength="20" name="{UnidadesAnteriores_Name}"></td>
                               </tr>
  
                               <tr>
@@ -441,13 +433,13 @@ jQuery(function ($) {
                     </div>
                   </td>
                 </tr>
- 
+ <!--
                 <tr class="Controls">
                   <td colspan="3">
                     <div id="divRetrasoE">
                       <table>
                         <tr>
-                          <td class="th" style="BACKGROUND-COLOR: rgb(216,216,216)"><label for="mc_calificacion_capcRETR_ENTREGABLE">Retraso en entregables</label></td> 
+                          <td style="BACKGROUND-COLOR: rgb(216,216,216)" class="th"><label for="mc_calificacion_capcRETR_ENTREGABLE">Retraso en entregables</label></td> 
                           <td style="BACKGROUND-COLOR: rgb(216,216,216)">
                             <select id="mc_calificacion_capcRETR_ENTREGABLE" name="{RETR_ENTREGABLE_Name}">
                               <option selected value="">No Aplica</option>
@@ -456,7 +448,7 @@ jQuery(function ($) {
  </td> 
                           <tr class="Controls">
                             <td>
-                              <table id="tblRetEnt" style="BORDER-LEFT-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-COLLAPSE: collapse; BORDER-TOP-WIDTH: 0px; border-image: none" cellspacing="0" cellpadding="0" width="100%">
+                              <table style="BORDER-RIGHT-WIDTH: 0px; BORDER-COLLAPSE: collapse; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; border-image: none" id="tblRetEnt" cellspacing="0" cellpadding="0" width="100%">
                                 <tr>
                                   <td><label for="mc_calificacion_capcCAPFirmada" style="display: inline;">CAP Firmada</label><input type="checkbox" id="mc_calificacion_capcCAPFirmada" value="1" name="{CAPFirmada_Name}" {CAPFirmada}></td> 
                                   <td colspan="2"><label for="mc_calificacion_capcFechaFirmaCAES" style="display: inline;">Fecha Firma CAES</label></td> 
@@ -465,18 +457,18 @@ jQuery(function ($) {
  
                                 <tr class="Controls">
                                   <td><label for="mc_calificacion_capcDiasPlaneados" style="display: inline;">Días planeados</label></td> 
-                                  <td><input type="text" onchange="CalculaRetraso()" id="mc_calificacion_capcDiasPlaneados" maxlength="4" size="4" value="{DiasPlaneados}" name="{DiasPlaneados_Name}"></td> 
+                                  <td><input type="text" id="mc_calificacion_capcDiasPlaneados" onchange="CalculaRetraso()" value="{DiasPlaneados}" maxlength="4" size="4" name="{DiasPlaneados_Name}"></td> 
                                   <td><label for="mc_calificacion_capcDiasReales" style="display: inline;">Dís reales</label></td> 
-                                  <td><input type="text" onchange="CalculaRetraso()" id="mc_calificacion_capcDiasReales" maxlength="4" size="4" value="{DiasReales}" name="{DiasReales_Name}"></td> 
+                                  <td><input type="text" id="mc_calificacion_capcDiasReales" onchange="CalculaRetraso()" value="{DiasReales}" maxlength="4" size="4" name="{DiasReales_Name}"></td> 
                                   <td><label for="mc_calificacion_capcDiasRetrasoHabiles" style="display: inline;">Retraso Días Habiles</label></td> 
-                                  <td><input type="text" onchange="CalculaRetraso()" id="mc_calificacion_capcDiasRetrasoHabiles" maxlength="5" size="5" value="{DiasRetrasoHabiles}" name="{DiasRetrasoHabiles_Name}"></td> 
+                                  <td><input type="text" id="mc_calificacion_capcDiasRetrasoHabiles" onchange="CalculaRetraso()" value="{DiasRetrasoHabiles}" maxlength="5" size="5" name="{DiasRetrasoHabiles_Name}"></td> 
                                   <td><label for="mc_calificacion_capcDiasRetrasoNaturales" style="display: inline;">Retraso Días Naturales </label></td> 
-                                  <td><input type="text" onchange="CalculaRetraso()" id="mc_calificacion_capcDiasRetrasoNaturales" maxlength="5" size="5" value="{DiasRetrasoNaturales}" name="{DiasRetrasoNaturales_Name}"></td>
+                                  <td><input type="text" id="mc_calificacion_capcDiasRetrasoNaturales" onchange="CalculaRetraso()" value="{DiasRetrasoNaturales}" maxlength="5" size="5" name="{DiasRetrasoNaturales_Name}"></td>
                                 </tr>
  
                                 <tr class="Controls">
                                   <td><label for="mc_calificacion_capcPctMaximo" style="display: inline;">% Deductiva&nbsp; </label></td> 
-                                  <td><input type="text" id="mc_calificacion_capcPctMaximo" maxlength="5" size="4" value="{PctMaximo}" name="{PctMaximo_Name}"></td> 
+                                  <td><input type="text" id="mc_calificacion_capcPctMaximo" value="{PctMaximo}" maxlength="5" size="4" name="{PctMaximo_Name}"></td> 
                                   <td></td> 
                                   <td></td> 
                                   <td></td> 
@@ -490,7 +482,7 @@ jQuery(function ($) {
  
                                 <tr class="Controls">
                                   <td class="th">URL Entregables</td> 
-                                  <td colspan="7"><input type="text" id="mc_calificacion_capcURLEntregables" maxlength="725" size="83" value="{URLEntregables}" name="{URLEntregables_Name}"></td>
+                                  <td colspan="7"><input type="text" id="mc_calificacion_capcURLEntregables" value="{URLEntregables}" maxlength="725" size="83" name="{URLEntregables_Name}"></td>
                                 </tr>
  
                                 <tr class="Controls">
@@ -504,12 +496,12 @@ jQuery(function ($) {
                       </div>
                     </td>
                   </tr>
- 
+ -->
                   <tr class="Bottom">
                     <td style="TEXT-ALIGN: right" colspan="3">
-                      <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_calificacion_capcButton_Insert" class="Button" alt="Agregar" value="Guardar" name="{Button_Name}"><!-- END Button Button_Insert -->
-                      <!-- BEGIN Button Button_Update --><input type="submit" id="mc_calificacion_capcButton_Update" class="Button" alt="Enviar" value="Guardar" name="{Button_Name}"><!-- END Button Button_Update -->
-                      <!-- BEGIN Button Button_Delete --><input type="submit" id="mc_calificacion_capcButton_Delete" class="Button" alt="Borrar" value="Borrar" name="{Button_Name}"><!-- END Button Button_Delete --><input type="hidden" id="mc_calificacion_capcid_proveedor" value="{id_proveedor}" name="{id_proveedor_Name}"></td>
+                      <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_calificacion_capcButton_Insert" class="Button" value="Guardar" alt="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input type="submit" id="mc_calificacion_capcButton_Update" class="Button" value="Guardar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input type="submit" id="mc_calificacion_capcButton_Delete" class="Button" value="Borrar" alt="Borrar" name="{Button_Name}"><!-- END Button Button_Delete --><input type="hidden" id="mc_calificacion_capcid_proveedor" value="{id_proveedor}" name="{id_proveedor_Name}"></td>
                   </tr>
                 </table>
               </td>

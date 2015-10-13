@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>PPMCsCrbCalidad</title>
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
+</head>
+<body>
+<p>&nbsp; <strong></strong>{Header} </p>
+<table width="90%">
+  <tr>
+    <td><a href="{lkAnterior_Src}" id="lkAnterior">{lkAnterior}</a></td> 
+    <td>
+      <div align="right">
+<a href="{lkSiguiente_Src}" id="lkSiguiente">{lkSiguiente}</a> 
+      </div>
+    </td>
+  </tr>
+</table>
+<table width="100%">
+  <tr>
+    <td>&nbsp;</td> 
+    <td>&nbsp; 
+      <!-- BEGIN Record mc_info_rs_cr_calidad_capc -->
+      <form id="mc_info_rs_cr_calidad_capc_capc" method="post" name="{HTMLFormName}" action="{Action}">
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Calificar Calidad de Productos Terminados (CAPC)</strong>{lReportado}</td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr id="ErrorBlock" class="Error">
+                  <td colspan="4">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"><label for="mc_info_rs_cr_calidad_capc_capcid_ppmc">PPMC</label></td> 
+                  <td colspan="3"><input type="hidden" id="mc_info_rs_cr_calidad_capc_capcid_ppmc" value="{id_ppmc}" name="{id_ppmc_Name}">{lbIdPPMC}&nbsp;&nbsp;{sNombreProyecto}</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_info_rs_cr_calidad_capc_capcid_estimacion">Estimación</label></td> 
+                  <td><input type="hidden" id="mc_info_rs_cr_calidad_capc_capcid_estimacion" value="{id_estimacion}" name="{id_estimacion_Name}">{lbIdEstimacion}</td> 
+                  <td class="th">&nbsp;{sTipoRequerimiento}</td> 
+                  <td class="th">&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Servicio de Negocio&nbsp;</td> 
+                  <td colspan="2"><input type="hidden" id="mc_info_rs_cr_calidad_capc_capclsServNegocio" value="{lsServNegocio}" name="{lsServNegocio_Name}">{lbServNegocio} </td> 
+                  <td class="th">&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Servicio Contractual</td> 
+                  <td colspan="2"><input type="hidden" id="mc_info_rs_cr_calidad_capc_capclsServContractual" value="{lsServContractual}" name="{lsServContractual_Name}">{lbServContractual} </td> 
+                  <td class="th">&nbsp;</td>
+                </tr>
+ 
+                <tr>
+                  <td colspan="2">&nbsp;</td> 
+                  <td colspan="2">&nbsp;</td>
+                </tr>
+ 
+                <tr>
+                  <td colspan="2"><strong>Hallazgos:</strong></td> 
+                  <td colspan="2"><strong>Defectos:</strong></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_info_rs_cr_calidad_capc_capcRechazosDocAVL">&nbsp;Errores Ortográficos</label></td> 
+                  <td class="th"><label for="mc_info_rs_cr_calidad_capchallazgo_errores_ort" style="display: none;">&nbsp;</label><input type="text" id="mc_info_rs_cr_calidad_capchallazgo_errores_ort" value="{hallazgo_errores_ort}" name="{hallazgo_errores_ort_Name}"></td> 
+                  <td class="th"><label for="mc_info_rs_cr_calidad_capc_capcRechazosFunAVL">&nbsp;Errores Ortográficos</label></td> 
+                  <td class="th"><label for="mc_info_rs_cr_calidad_capcdefectos_errores_ort" style="display: none;">&nbsp;</label><input type="text" id="mc_info_rs_cr_calidad_capcdefectos_errores_ort" value="{defectos_errores_ort}" name="{defectos_errores_ort_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_info_rs_cr_calidad_capc_capcHallazgosDocQC">&nbsp;Formáto incorrecto</label></td> 
+                  <td class="th"><label for="mc_info_rs_cr_calidad_capchallazgo_formato_incorrecto" style="display: none;">&nbsp;</label><input type="text" id="mc_info_rs_cr_calidad_capchallazgo_formato_incorrecto" value="{hallazgo_formato_incorrecto}" name="{hallazgo_formato_incorrecto_Name}"></td> 
+                  <td class="th"><label for="mc_info_rs_cr_calidad_capc_capcDefectosQC">&nbsp;Formáto incorrecto</label></td> 
+                  <td class="th"><label for="mc_info_rs_cr_calidad_capcdefectos_formato_incorrecto" style="display: none;">&nbsp;</label><input type="text" id="mc_info_rs_cr_calidad_capcdefectos_formato_incorrecto" value="{defectos_formato_incorrecto}" name="{defectos_formato_incorrecto_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">&nbsp;Falta componente</td> 
+                  <td class="th">&nbsp;<input type="text" id="mc_info_rs_cr_calidad_capchallazgo_falta_vinculo" value="{hallazgo_falta_vinculo}" name="{hallazgo_falta_vinculo_Name}"></td> 
+                  <td class="th">&nbsp;Falta componente</td> 
+                  <td class="th">&nbsp;<input type="text" id="mc_info_rs_cr_calidad_capcdefectos_falta_vinculo" value="{defectos_falta_vinculo}" name="{defectos_falta_vinculo_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">&nbsp;Incumplimiento de criterios</td> 
+                  <td class="th">&nbsp;<input type="text" id="mc_info_rs_cr_calidad_capchallazgo_incumpl_acept" value="{hallazgo_incumpl_acept}" name="{hallazgo_incumpl_acept_Name}"></td> 
+                  <td class="th">&nbsp;Incumplimiento de criterios</td> 
+                  <td class="th">&nbsp;<input type="text" id="mc_info_rs_cr_calidad_capcdefectos_incumpl_acept" value="{defectos_incumpl_acept}" name="{defectos_incumpl_acept_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">&nbsp;Documentación Incorrecta</td> 
+                  <td class="th">&nbsp;<input type="text" id="mc_info_rs_cr_calidad_capchallazgo_doc_incorrecta" value="{hallazgo_doc_incorrecta}" name="{hallazgo_doc_incorrecta_Name}"></td> 
+                  <td class="th">&nbsp;Documentación incorrecta</td> 
+                  <td class="th">&nbsp;<input type="text" id="mc_info_rs_cr_calidad_capcdefectos_doc_incorrecta" value="{defectos_doc_incorrecta}" name="{defectos_doc_incorrecta_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">&nbsp;</td> 
+                  <td class="th">&nbsp;</td> 
+                  <td class="th">&nbsp;</td> 
+                  <td class="th">&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_info_rs_cr_calidad_capc_capcIndiceCalidadDoc">Indice Calidad Documental</label></td> 
+                  <td class="th"><input type="text" id="mc_info_rs_cr_calidad_capc_capcIndiceCalidadDoc" value="{IndiceCalidadDoc}" maxlength="3" size="3" name="{IndiceCalidadDoc_Name}"></td> 
+                  <td class="th"><label for="mc_info_rs_cr_calidad_capc_capcTotalDefectos"><label for="mc_info_rs_cr_calidad_capc_capcIndiceCalidadFun">&nbsp;</label></label></td> 
+                  <td class="th"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_info_rs_cr_calidad_capc_capcDeductivaDoc">Deductiva Documental</label></td> 
+                  <td class="th"><input type="text" id="mc_info_rs_cr_calidad_capc_capcDeductivaDoc" value="{DeductivaDoc}" maxlength="3" size="3" name="{DeductivaDoc_Name}"></td> 
+                  <td class="th"><label for="mc_info_rs_cr_calidad_capc_capcTotalDefectos"><font style="BACKGROUND-COLOR: rgb(232,232,232)"><label for="mc_info_rs_cr_calidad_capc_capcDeductivaFun">&nbsp;</label></font></label></td> 
+                  <td class="th"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_info_rs_cr_calidad_capc_capcCumpleCalidad">Cumple Calidad</label></td> 
+                  <td colspan="3">
+                    <select id="mc_info_rs_cr_calidad_capc_capcCumpleCalidad" name="{CumpleCalidad_Name}">
+                      <option selected value="">No Aplica</option>
+                      {CumpleCalidad_Options}
+                    </select>
+ </td>
+                  <!--<td class="th">Deductiva Total</td> 
+                  <td class="th"><input type="text" id="mc_info_rs_cr_calidad_capc_capcDeductivaTot" value="{DeductivaTot}" maxlength="3" size="3" name="{DeductivaTot_Name}"></td>-->
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_info_rs_cr_calidad_capc_capcObservaciones">Observaciones</label></td> 
+                  <td colspan="3"><textarea id="mc_info_rs_cr_calidad_capc_capcObservaciones" rows="3" cols="50" name="{Observaciones_Name}">{Observaciones}</textarea></td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td>
+                    <!-- BEGIN Button btnCalcula --><input type="submit" id="mc_info_rs_cr_calidad_capc_capcbtnCalcula" class="Button" value="Calcular y Agregar " alt="Calcular y Agregar" name="{Button_Name}" size="20"><!-- END Button btnCalcula -->
+                    <!-- BEGIN Button btnCalculaUpdate --><input type="submit" id="mc_info_rs_cr_calidad_capcbtnCalculaUpdate" class="Button" value="Recalcular y Actualizar" alt="Recalcular y Actualizar" name="{Button_Name}"><!-- END Button btnCalculaUpdate --></td> 
+                  <td style="TEXT-ALIGN: right" colspan="3">
+                    <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_info_rs_cr_calidad_capc_capcButton_Insert" class="Button" value="Agregar" alt="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input type="submit" id="mc_info_rs_cr_calidad_capc_capcButton_Update" class="Button" value="Enviar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Update --><input type="hidden" id="mc_info_rs_cr_calidad_capc_capcUsuarioUltMod" value="{UsuarioUltMod}" name="{UsuarioUltMod_Name}"><label for="mc_info_rs_cr_calidad_capc_capcFechaUltMod" style="display: none;">Fcha Ult Mod</label><input type="hidden" id="mc_info_rs_cr_calidad_capc_capcFechaUltMod" value="{FechaUltMod}" name="{FechaUltMod_Name}"><input type="hidden" id="mc_info_rs_cr_calidad_capc_capchdId" value="{hdId}" name="{hdId_Name}"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record mc_info_rs_cr_calidad_capc -->&nbsp;&nbsp;&nbsp; </td> 
+    <td>{lDocs}</td>
+  </tr>
+</table>
+</body>
+</html>

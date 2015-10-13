@@ -186,7 +186,7 @@ function mc_info_rs_ap_EC_BeforeShow(& $sender)
 		case "Proyecto";
 			$DBcnDisenio->query('SELECT Nombre_Proyecto, SERVICIO_NEGOCIO, TIP_REQUERIMIENTO, ESTADO, TIPO_SERVICIO_CTI ' . 
 				' FROM PPMC_PROYECTOS_AS ' .
-				' WHERE ID_PROYECTO = ' . $sPPMC );
+				' WHERE ID_PROYECTO = ' . $sPPMC . 'order by ULTIMA_MODIFICACION desc');
 			break;
 		case "RO";
 			$DBcnDisenio->query('SELECT Name, SERVICIO_NEGOCIO, TIPO_REQUERIMIENTO, ESTADO, TipoServicioCTI ' .

@@ -1,10 +1,11 @@
 <?php
-//BindEvents Method @1-6C8C6BF9
+//BindEvents Method @1-73A398FC
 function BindEvents()
 {
     global $mc_calificacion_capc;
     global $CCSEvents;
     $mc_calificacion_capc->FechaFirmaCAES->CCSEvents["BeforeShow"] = "mc_calificacion_capc_FechaFirmaCAES_BeforeShow";
+    $mc_calificacion_capc->btnCalcular->CCSEvents["OnClick"] = "mc_calificacion_capc_btnCalcular_OnClick";
     $CCSEvents["AfterInitialize"] = "Page_AfterInitialize";
 }
 //End BindEvents Method
@@ -18,10 +19,41 @@ function mc_calificacion_capc_FechaFirmaCAES_BeforeShow(& $sender)
     global $mc_calificacion_capc; //Compatibility
 //End mc_calificacion_capc_FechaFirmaCAES_BeforeShow
 
+		$mc_calificacion_capc->btnCalcular->Visible=true;
+		if (! $mc_calificacion_capc->EditMode){
+			$mc_calificacion_capc->btnCalcular->Visible=false;	
+        }
+
 //Close mc_calificacion_capc_FechaFirmaCAES_BeforeShow @59-D780BEBB
     return $mc_calificacion_capc_FechaFirmaCAES_BeforeShow;
 }
 //End Close mc_calificacion_capc_FechaFirmaCAES_BeforeShow
+
+//mc_calificacion_capc_btnCalcular_OnClick @111-0D208761
+function mc_calificacion_capc_btnCalcular_OnClick(& $sender)
+{
+    $mc_calificacion_capc_btnCalcular_OnClick = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $mc_calificacion_capc; //Compatibility
+//End mc_calificacion_capc_btnCalcular_OnClick
+
+//Custom Code @112-2A29BDB7
+// -------------------------
+    $db= new clsDBcnDisenio;
+    $sSQL= 'update mc_calificacion_capc set DiasRetrasoNaturales  =(select top 1 DiasNaturalesDesviacion from mc_info_rs_cr_RE_RC_Artefacto_CAPC where Id_Padre = mc_calificacion_capc.Id   order by DiasNaturalesDesviacion desc ), ' .
+			' DiasRetrasoHabiles = (select top 1 DiasHabilesDesviacion from mc_info_rs_cr_RE_RC_Artefacto_CAPC where Id_Padre = mc_calificacion_capc.id order by DiasHabilesDesviacion desc ) , ' .
+			' PctMaximo = isnull((select top 1 PctDeductiva from mc_info_rs_cr_RE_RC_Artefacto_CAPC where Id_Padre = NULL.id  order by PctDeductiva desc ),0)	' .
+			' where NULL.id= ' . CCGetParam("id",0) ;
+	$db->query($sSQL);
+
+// -------------------------
+//End Custom Code
+
+//Close mc_calificacion_capc_btnCalcular_OnClick @111-3AA4B018
+    return $mc_calificacion_capc_btnCalcular_OnClick;
+}
+//End Close mc_calificacion_capc_btnCalcular_OnClick
 
 //Page_AfterInitialize @1-086205A1
 function Page_AfterInitialize(& $sender)
@@ -70,6 +102,11 @@ function Page_AfterInitialize(& $sender)
 				        		$sValues = $vIdPPMC . "," . $vId . ",";
 					        	$EstFin = CCParseDate($data[6],array("dd","/","mm","/","yyyy"));
 					        	//se da formato a las fechas
+					        	$data[1] = str_replace("'","''",$data[1]);
+					        	$data[2] = str_replace("'","''",$data[2]);
+					        	$data[3] = str_replace("'","''",$data[3]);
+					        	$data[4] = str_replace("'","''",$data[4]);
+
 					        	$data[5] = CCFormatDate(CCParseDate($data[5],array("dd","/","mm","/","yyyy")),array("yyyy","-","mm","-","dd"," ","HH",":","nn",":","ss")) ;
 					        	$data[6] = CCFormatDate(CCParseDate($data[6],array("dd","/","mm","/","yyyy")),array("yyyy","-","mm","-","dd"," ","HH",":","nn",":","ss")) ;
 					        	for ($c=1; $c < $num; $c++) { // se descarta la columna 1 que es el numerador del archivo
@@ -83,6 +120,7 @@ function Page_AfterInitialize(& $sender)
 					            		}
 					            	}
 					        	}
+					        	
 					        	//si no tiene fecha de entrega se toma la del ultimo día del mes de medición
 					        	$dUltDia = "1900-01-01";
 					        	if($EstFin == strtotime($dUltDia)){
@@ -95,8 +133,9 @@ function Page_AfterInitialize(& $sender)
 					        	}
 					        	//$sValues = $sValues . " case when datediff(d,'" . $data[5]  . "','" . $data[6] . "')<0 THEN 0 else datediff(d,'" . $data[5]  . "','" . $data[6] . "') end , ";
 					        	//$sValues = $sValues  . "dbo.ufNumDiasHabilesMC('" . $data[5] . "','" . $data[6] . "')- (select COUNT(fecha) from dia_inhabil where fecha >= '" . $data[5] . "' and fecha <= '" . $data[6] . "')";
+					        	
 					        	$sValues = $sValues . ",0)";
-					        	$ssql="Insert into mc_info_capc_cr_RE_Artefacto (Id_PPMC, Id_Padre, Nombre, Descripcion, Formato, NombreConHerramienta, FechaEstFin, FechaEntrega, DiasNaturalesDesviacion,DiasHabilesDesviacion,DiasHabilesReales) values (";
+					        	$ssql="Insert into mc_info_rs_cr_RE_RC_Artefacto_CAPC (Id_PPMC, Id_Padre, Nombre, Descripcion, Formato, NombreConHerramienta, FechaEstFin, FechaEntrega, DiasNaturalesDesviacion,DiasHabilesDesviacion,DiasHabilesReales) values (";
 					        	if(strlen($data[1])>0){
 					        		$db->query($ssql . $sValues); //echo $ssql . $sValues . "<br><br>";
 					        		if($db->Errors->Count()>0){
@@ -111,14 +150,8 @@ function Page_AfterInitialize(& $sender)
 				    }
 				    fclose($handle);
 				    //se actualiza la deductiva de los artefactos
-				    $ssql = ' update mc_info_capc_cr_RE_Artefacto set PctDeductiva = ' .
+				    $ssql = ' update mc_info_rs_cr_RE_RC_Artefacto_CAPC set PctDeductiva = ' .
 							' case when DiasNaturalesDesviacion>0 then ' . 
-							'	case ' . 
-							'	when rc.idtiporeq=-1 then ' . 
-							'		case when DiasDesarrolloEst >0 then ' .
-							'			case when (abs(af.DiasNaturalesDesviacion-rc.DiasDesarrolloEst)/rc.DiasDesarrolloEst)*100 >= 10 then 5 else 0 end ' . 
-							'		else 5 end ' .
-							'	else ' . 
 							'		case when af.DiasNaturalesDesviacion between 1 and 3 then 2 ' . 
 							'			when af.DiasNaturalesDesviacion between 4 and 6 then 3 ' . 
 							'			when af.DiasNaturalesDesviacion between 7 and 10 then 5 ' . 
@@ -126,12 +159,11 @@ function Page_AfterInitialize(& $sender)
 							'				case when af.DiasNaturalesDesviacion >35 then 30 + af.DiasNaturalesDesviacion  *0.143 ' . 
 							'				else (abs(af.DiasNaturalesDesviacion-5)) end ' . 
 							'		end ' . 
-							'	end ' . 
 							'else 0.0 end ' . 
-						' from mc_info_capc_cr_RE_Artefacto af ' . 
+						' from mc_info_rs_cr_RE_RC_Artefacto_CAPC af ' . 
 						'	inner join  mc_calificacion_CAPC rc on rc.id = af.Id_Padre ' . 
 						' where rc.id = ' . $vId ;
-					echo $ssql . "<br>";
+					//echo $ssql . "<br>";
 					$db->query($ssql);
 				} else {
 					$lErrores->Setvalue("<div style='color:red'>No se puede cargar el archivo</div>");

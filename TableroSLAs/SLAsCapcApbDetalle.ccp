@@ -434,7 +434,7 @@ order by nombre
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<Hidden id="145" fieldSourceType="DBColumn" dataType="Text" name="hdNombreProyecto" PathID="mc_info_rs_ap_EChdNombreProyecto" fieldSource="Descripcion">
+				<Hidden id="145" fieldSourceType="DBColumn" dataType="Text" name="hdNombreProyecto" PathID="mc_info_rs_ap_EChdNombreProyecto">
 					<Components/>
 					<Events/>
 					<Attributes/>

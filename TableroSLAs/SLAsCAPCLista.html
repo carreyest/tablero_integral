@@ -41,10 +41,10 @@
         <p><br>
         </p>
  
-        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="top">
-              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Buscar</strong></td> 
@@ -60,7 +60,7 @@
                 <!-- END Error -->
                 <tr class="Controls">
                   <td class="th"><label for="mc_calificacion_capcs_numero">PPMC</label></td> 
-                  <td><input type="text" id="mc_calificacion_capcs_numero" maxlength="25" size="25" value="{s_numero}" name="{s_numero_Name}"></td> 
+                  <td><input type="text" id="mc_calificacion_capcs_numero" value="{s_numero}" maxlength="25" size="25" name="{s_numero_Name}"></td> 
                   <td class="th"><label for="mc_calificacion_capcs_mes">Mes</label></td> 
                   <td>
                     <select id="mc_calificacion_capcs_mes" name="{s_mes_Name}">
@@ -86,7 +86,7 @@
  
                 <tr class="Bottom">
                   <td style="TEXT-ALIGN: right" colspan="8">
-                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="mc_calificacion_capcButton_DoSearch" class="Button" alt="Buscar" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="mc_calificacion_capcButton_DoSearch" class="Button" value="Buscar" alt="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                 </tr>
               </table>
             </td>
@@ -103,7 +103,7 @@
     </td> 
     <td>
       <div style="TEXT-ALIGN: center">
-<a href="{lkTableroExcelCAPC_Src}" id="lkTableroExcelCAPC"><img style="BORDER-LEFT-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px; VERTICAL-ALIGN: middle; BORDER-BOTTOM-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; border-image: none" alt="{lkReporteExcel}" src="images/xls.jpg" width="20" height="20">&nbsp;Tablero Excel CAPC</a> 
+<a href="{lkTableroExcelCAPC_Src}" id="lkTableroExcelCAPC"><img style="BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; VERTICAL-ALIGN: middle; BORDER-LEFT-WIDTH: 0px; border-image: none" alt="{lkReporteExcel}" src="images/xls.jpg" width="20" height="20">&nbsp;Tablero Excel CAPC</a> 
       </div>
     </td>
   </tr>
@@ -111,10 +111,10 @@
   <tr>
     <td colspan="2">&nbsp; 
       <!-- BEGIN Grid mc_c_ServContractual_mc_c -->
-      <table id="mc_c_ServContractual_mc_c" class="MainTable" cellspacing="0" cellpadding="0" border="0">
+      <table id="mc_c_ServContractual_mc_c" class="MainTable" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td valign="top">
-            <table class="Header" cellspacing="0" cellpadding="0" border="0">
+            <table class="Header" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                 <td class="th"><strong>Detalle SLAs CAPC </strong></td> 
@@ -191,13 +191,17 @@
                 <td>{Descripcion}&nbsp;</td> 
                 <td><a href="{Agrupador_Src}" id="mc_c_ServContractual_mc_cAgrupador_{mc_c_ServContractual_mc_c:rowNumber}">{Agrupador}</a>&nbsp;</td> 
                 <td style="TEXT-ALIGN: center">{HERR_EST_COST}&nbsp; 
-                  <!-- BEGIN ImageLink Img_HERR_EST_COST --><a href="{Img_HERR_EST_COST}" id="mc_c_ServContractual_mc_cImg_HERR_EST_COST_{mc_c_ServContractual_mc_c:rowNumber}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" alt="{Img_HERR_EST_COST}" src="{Img_HERR_EST_COST_Src}"></a><!-- END ImageLink Img_HERR_EST_COST --></td> 
+                  <!-- BEGIN ImageLink Img_HERR_EST_COST --><a href="{Img_HERR_EST_COST}" id="mc_c_ServContractual_mc_cImg_HERR_EST_COST_{mc_c_ServContractual_mc_c:rowNumber}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt="{Img_HERR_EST_COST}" src="{Img_HERR_EST_COST_Src}"></a><!-- END ImageLink Img_HERR_EST_COST --></td> 
                 <td style="TEXT-ALIGN: center">{REQ_SERV}&nbsp; 
-                  <!-- BEGIN ImageLink Img_REQ_SERV --><a href="{Img_REQ_SERV}" id="mc_c_ServContractual_mc_cImg_REQ_SERV_{mc_c_ServContractual_mc_c:rowNumber}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" alt="{Img_REQ_SERV}" src="{Img_REQ_SERV_Src}"></a><!-- END ImageLink Img_REQ_SERV --></td> 
-                <td style="TEXT-ALIGN: center"><a href="{CUMPL_REQ_FUN_Src}" id="mc_c_ServContractual_mc_cCUMPL_REQ_FUN_{mc_c_ServContractual_mc_c:rowNumber}">{CUMPL_REQ_FUN}</a>&nbsp;<!-- BEGIN ImageLink Img_CUMPL_REQ_FUN --><a href="{Img_CUMPL_REQ_FUN}" id="mc_c_ServContractual_mc_cImg_CUMPL_REQ_FUN_{mc_c_ServContractual_mc_c:rowNumber}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" alt="{Img_CUMPL_REQ_FUN}" src="{Img_CUMPL_REQ_FUN_Src}"></a><!-- END ImageLink Img_CUMPL_REQ_FUN --></td> 
-                <td style="TEXT-ALIGN: center"><a href="{CALIDAD_PROD_TERM_Src}" id="mc_c_ServContractual_mc_cCALIDAD_PROD_TERM_{mc_c_ServContractual_mc_c:rowNumber}">{CALIDAD_PROD_TERM}</a>&nbsp;<!-- BEGIN ImageLink Img_CALIDAD_PROD_TERM --><a href="{Img_CALIDAD_PROD_TERM}" id="mc_c_ServContractual_mc_cImg_CALIDAD_PROD_TERM_{mc_c_ServContractual_mc_c:rowNumber}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" alt="{Img_CALIDAD_PROD_TERM}" src="{Img_CALIDAD_PROD_TERM_Src}"></a><!-- END ImageLink Img_CALIDAD_PROD_TERM --></td> 
-                <td style="TEXT-ALIGN: center"><a href="{DEDUC_OMISION_Src}" id="mc_c_ServContractual_mc_cDEDUC_OMISION_{mc_c_ServContractual_mc_c:rowNumber}">{DEDUC_OMISION}</a>&nbsp;<!-- BEGIN ImageLink Img_DEDUC_OMISION --><a href="{Img_DEDUC_OMISION}" id="mc_c_ServContractual_mc_cImg_DEDUC_OMISION_{mc_c_ServContractual_mc_c:rowNumber}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" alt="{Img_DEDUC_OMISION}" src="{Img_DEDUC_OMISION_Src}"></a><!-- END ImageLink Img_DEDUC_OMISION --></td> 
-                <td style="TEXT-ALIGN: center"><a href="{RETR_ENTREGABLE_Src}" id="mc_c_ServContractual_mc_cRETR_ENTREGABLE_{mc_c_ServContractual_mc_c:rowNumber}">{RETR_ENTREGABLE}</a>&nbsp;<!-- BEGIN ImageLink Img_RETR_ENTREGABLE --><a href="{Img_RETR_ENTREGABLE}" id="mc_c_ServContractual_mc_cImg_RETR_ENTREGABLE_{mc_c_ServContractual_mc_c:rowNumber}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" alt="{Img_RETR_ENTREGABLE}" src="{Img_RETR_ENTREGABLE_Src}"></a><!-- END ImageLink Img_RETR_ENTREGABLE --></td> 
+                  <!-- BEGIN ImageLink Img_REQ_SERV --><a href="{Img_REQ_SERV}" id="mc_c_ServContractual_mc_cImg_REQ_SERV_{mc_c_ServContractual_mc_c:rowNumber}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt="{Img_REQ_SERV}" src="{Img_REQ_SERV_Src}"></a><!-- END ImageLink Img_REQ_SERV --></td> 
+                <td style="TEXT-ALIGN: center"><a href="{CUMPL_REQ_FUN_Src}" id="mc_c_ServContractual_mc_cCUMPL_REQ_FUN_{mc_c_ServContractual_mc_c:rowNumber}">{CUMPL_REQ_FUN}</a>&nbsp; 
+                  <!-- BEGIN ImageLink Img_CUMPL_REQ_FUN --><a href="{Img_CUMPL_REQ_FUN}" id="mc_c_ServContractual_mc_cImg_CUMPL_REQ_FUN_{mc_c_ServContractual_mc_c:rowNumber}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt="{Img_CUMPL_REQ_FUN}" src="{Img_CUMPL_REQ_FUN_Src}"></a><!-- END ImageLink Img_CUMPL_REQ_FUN --></td> 
+                <td style="TEXT-ALIGN: center"><a href="{CALIDAD_PROD_TERM_Src}" id="mc_c_ServContractual_mc_cCALIDAD_PROD_TERM_{mc_c_ServContractual_mc_c:rowNumber}">{CALIDAD_PROD_TERM}</a>&nbsp; 
+                  <!-- BEGIN ImageLink Img_CALIDAD_PROD_TERM --><a href="{Img_CALIDAD_PROD_TERM}" id="mc_c_ServContractual_mc_cImg_CALIDAD_PROD_TERM_{mc_c_ServContractual_mc_c:rowNumber}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt="{Img_CALIDAD_PROD_TERM}" src="{Img_CALIDAD_PROD_TERM_Src}"></a><!-- END ImageLink Img_CALIDAD_PROD_TERM --></td> 
+                <td style="TEXT-ALIGN: center"><a href="{DEDUC_OMISION_Src}" id="mc_c_ServContractual_mc_cDEDUC_OMISION_{mc_c_ServContractual_mc_c:rowNumber}">{DEDUC_OMISION}</a>&nbsp; 
+                  <!-- BEGIN ImageLink Img_DEDUC_OMISION --><a href="{Img_DEDUC_OMISION}" id="mc_c_ServContractual_mc_cImg_DEDUC_OMISION_{mc_c_ServContractual_mc_c:rowNumber}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt="{Img_DEDUC_OMISION}" src="{Img_DEDUC_OMISION_Src}"></a><!-- END ImageLink Img_DEDUC_OMISION --></td> 
+                <td style="TEXT-ALIGN: center"><a href="{RETR_ENTREGABLE_Src}" id="mc_c_ServContractual_mc_cRETR_ENTREGABLE_{mc_c_ServContractual_mc_c:rowNumber}">{RETR_ENTREGABLE}</a>&nbsp; 
+                  <!-- BEGIN ImageLink Img_RETR_ENTREGABLE --><a href="{Img_RETR_ENTREGABLE}" id="mc_c_ServContractual_mc_cImg_RETR_ENTREGABLE_{mc_c_ServContractual_mc_c:rowNumber}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt="{Img_RETR_ENTREGABLE}" src="{Img_RETR_ENTREGABLE_Src}"></a><!-- END ImageLink Img_RETR_ENTREGABLE --></td> 
                 <td>{Obs_AP}<br>
                   {DetalleCalidad}<br>
                   {Observaciones}&nbsp;</td>

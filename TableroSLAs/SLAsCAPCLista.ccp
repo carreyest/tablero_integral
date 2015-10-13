@@ -193,29 +193,32 @@ AND (id_serviciocont = {s_id_serviciocont}  or 0={s_id_serviciocont} )" pageSize
 						<LinkParameter id="57" sourceType="DataField" name="id" source="id"/>
 					</LinkParameters>
 				</Link>
-				<Link id="26" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="CALIDAD_PROD_TERM" fieldSource="CALIDAD_PROD_TERM" wizardCaption="CALIDAD PROD TERM" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_c_ServContractual_mc_cCALIDAD_PROD_TERM" visible="Yes" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCAPCDetalle.ccp" linkProperties="{&quot;textSource&quot;:&quot;&quot;,&quot;textSourceDB&quot;:&quot;CALIDAD_PROD_TERM&quot;,&quot;hrefSource&quot;:&quot;SLAsCAPCDetalle.ccp&quot;,&quot;hrefSourceDB&quot;:&quot;&quot;,&quot;title&quot;:&quot;&quot;,&quot;target&quot;:&quot;&quot;,&quot;name&quot;:&quot;&quot;,&quot;linkParameters&quot;:{&quot;0&quot;:{&quot;sourceType&quot;:&quot;DataField&quot;,&quot;parameterSource&quot;:&quot;id&quot;,&quot;parameterName&quot;:&quot;id&quot;},&quot;length&quot;:1,&quot;objectType&quot;:&quot;linkParameters&quot;}}">
+				<Link id="26" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="CALIDAD_PROD_TERM" fieldSource="CALIDAD_PROD_TERM" wizardCaption="CALIDAD PROD TERM" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_c_ServContractual_mc_cCALIDAD_PROD_TERM" visible="Yes" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="PPMCsCrbCalidadCAPC.ccp" linkProperties="{'textSource':'','textSourceDB':'CALIDAD_PROD_TERM','hrefSource':'PPMCsCrbCalidadCAPC.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'length':7,'objectType':'linkParameters','1':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'2':{'sourceType':'DataField','parameterSource':'id','parameterName':'Id'},'3':{'sourceType':'DataField','parameterSource':'id','parameterName':'Id'},'4':{'sourceType':'DataField','parameterSource':'mes','parameterName':'mes'},'5':{'sourceType':'DataField','parameterSource':'anio','parameterName':'anio'},'6':{'sourceType':'DataField','parameterSource':'id','parameterName':'Id'}}}">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 					<LinkParameters>
-						<LinkParameter id="45" sourceType="DataField" name="id" source="id"/>
+						<LinkParameter id="45" sourceType="DataField" name="Id" source="id"/>
 					</LinkParameters>
 				</Link>
-				<Link id="27" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="DEDUC_OMISION" fieldSource="DEDUC_OMISION" wizardCaption="DEDUC OMISION" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_c_ServContractual_mc_cDEDUC_OMISION" visible="Yes" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCAPCDetalle.ccp">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-					<LinkParameters/>
-				</Link>
-				<Link id="29" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="RETR_ENTREGABLE" fieldSource="RETR_ENTREGABLE" wizardCaption="RETR ENTREGABLE" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_c_ServContractual_mc_cRETR_ENTREGABLE" visible="Yes" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCAPCRetEnt.ccp" linkProperties="{'textSource':'','textSourceDB':'RETR_ENTREGABLE','hrefSource':'SLAsCAPCRetEnt.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'1':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'length':2,'objectType':'linkParameters'}}">
+				<Link id="27" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="DEDUC_OMISION" fieldSource="DEDUC_OMISION" wizardCaption="DEDUC OMISION" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_c_ServContractual_mc_cDEDUC_OMISION" visible="Yes" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCAPCDetalle.ccp" linkProperties="{'textSource':'','textSourceDB':'DEDUC_OMISION','hrefSource':'SLAsCAPCDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':4,'objectType':'linkParameters','0':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'1':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'2':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'3':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'}}}">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 					<LinkParameters>
-						<LinkParameter id="117" sourceType="DataField" name="id" source="id"/>
+<LinkParameter id="132" sourceType="DataField" name="id" source="id"/>
+</LinkParameters>
+				</Link>
+				<Link id="29" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="RETR_ENTREGABLE" fieldSource="RETR_ENTREGABLE" wizardCaption="RETR ENTREGABLE" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_c_ServContractual_mc_cRETR_ENTREGABLE" visible="Yes" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCAPCRetEnt.ccp" linkProperties="{'textSource':'','textSourceDB':'RETR_ENTREGABLE','hrefSource':'SLAsCAPCRetEnt.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'1':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'length':5,'objectType':'linkParameters','2':{'sourceType':'DataField','parameterSource':'id','parameterName':'sId'},'3':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'4':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'}}}">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+					<LinkParameters>
+						<LinkParameter id="126" sourceType="DataField" name="s_numero" source="numero"/>
+						<LinkParameter id="127" sourceType="DataField" name="id" source="id"/>
 					</LinkParameters>
 				</Link>
 				<Label id="30" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Observaciones" fieldSource="Observaciones" wizardCaption="Observaciones" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_c_ServContractual_mc_cObservaciones">
@@ -230,13 +233,12 @@ AND (id_serviciocont = {s_id_serviciocont}  or 0={s_id_serviciocont} )" pageSize
 					<Attributes/>
 					<Features/>
 				</Navigator>
-				<ImageLink id="47" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" name="Img_CALIDAD_PROD_TERM" PathID="mc_c_ServContractual_mc_cImg_CALIDAD_PROD_TERM" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCAPCDetalle.ccp" linkProperties="{'textSource':'','textSourceDB':'','hrefSource':'SLAsCAPCDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'1':{'sourceType':'DataField','parameterSource':'id','parameterName':'sID'},'2':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'3':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'length':4,'objectType':'linkParameters'}}"><Components/>
+				<ImageLink id="47" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" name="Img_CALIDAD_PROD_TERM" PathID="mc_c_ServContractual_mc_cImg_CALIDAD_PROD_TERM" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="PPMCsCrbCalidadCAPC.ccp" linkProperties="{'textSource':'','textSourceDB':'','hrefSource':'PPMCsCrbCalidadCAPC.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'1':{'sourceType':'DataField','parameterSource':'id','parameterName':'sID'},'2':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'3':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'length':7,'objectType':'linkParameters','4':{'sourceType':'URL','parameterSource':'id','parameterName':'Id'},'5':{'sourceType':'URL','parameterSource':'id','parameterName':'Id'},'6':{'sourceType':'DataField','parameterSource':'id','parameterName':'Id'}}}"><Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 					<LinkParameters>
-						<LinkParameter id="105" sourceType="DataField" name="s_numero" source="numero"/>
-						<LinkParameter id="106" sourceType="DataField" name="id" source="id"/>
+						<LinkParameter id="106" sourceType="DataField" name="Id" source="id"/>
 					</LinkParameters>
 				</ImageLink>
 				<ImageLink id="48" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" name="Img_DEDUC_OMISION" PathID="mc_c_ServContractual_mc_cImg_DEDUC_OMISION" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCAPCDetalle.ccp" linkProperties="{'textSource':'','textSourceDB':'','hrefSource':'SLAsCAPCDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'id','parameterName':'sID'},'1':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'2':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'3':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'4':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'5':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'length':6,'objectType':'linkParameters'}}"><Components/>
@@ -344,10 +346,10 @@ AND (id_serviciocont = {s_id_serviciocont}  or 0={s_id_serviciocont} )" pageSize
 			<PKFields/>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="120" dataType="Text" designDefaultValue="0" parameterSource="s_numero" parameterType="URL" variable="s_numero"/>
-				<SQLParameter id="121" dataType="Integer" defaultValue="date(&quot;m&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="0" parameterSource="s_mes" parameterType="URL" variable="s_mes"/>
-				<SQLParameter id="122" dataType="Integer" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="2014" parameterSource="s_anio" parameterType="URL" variable="s_anio"/>
-				<SQLParameter id="123" dataType="Integer" defaultValue="0" designDefaultValue="0" parameterSource="s_id_serviciocont" parameterType="URL" variable="s_id_serviciocont"/>
+				<SQLParameter id="128" dataType="Text" designDefaultValue="0" parameterSource="s_numero" parameterType="URL" variable="s_numero"/>
+				<SQLParameter id="129" dataType="Integer" defaultValue="date(&quot;m&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="0" parameterSource="s_mes" parameterType="URL" variable="s_mes"/>
+				<SQLParameter id="130" dataType="Integer" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="2014" parameterSource="s_anio" parameterType="URL" variable="s_anio"/>
+				<SQLParameter id="131" dataType="Integer" defaultValue="0" designDefaultValue="0" parameterSource="s_id_serviciocont" parameterType="URL" variable="s_id_serviciocont"/>
 			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
@@ -379,6 +381,11 @@ AND (id_serviciocont = {s_id_serviciocont}  or 0={s_id_serviciocont} )" pageSize
 		<Event name="BeforeShow" type="Server">
 			<Actions>
 				<Action actionName="Custom Code" actionCategory="General" id="73"/>
+			</Actions>
+		</Event>
+		<Event name="BeforeOutput" type="Server">
+			<Actions>
+				<Action actionName="Custom Code" actionCategory="General" id="125"/>
 			</Actions>
 		</Event>
 	</Events>

@@ -521,7 +521,7 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
     }
 //End UpdateRow Method
 
-//Show Method @3-5A2CA15E
+//Show Method @3-81C06F2E
     function Show()
     {
         global $CCSUseAmp;
@@ -584,7 +584,6 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
                     $this->TipoPadre->SetValue($this->DataSource->TipoPadre->GetValue());
                     $this->hdUsrUltMod->SetValue($this->DataSource->hdUsrUltMod->GetValue());
                     $this->hdFechaUltMod->SetValue($this->DataSource->hdFechaUltMod->GetValue());
-                    $this->hdNombreProyecto->SetValue($this->DataSource->hdNombreProyecto->GetValue());
                     $this->URLEvidenciaMed->SetValue($this->DataSource->URLEvidenciaMed->GetValue());
                     $this->SinEvidencia->SetValue($this->DataSource->SinEvidencia->GetValue());
                     $this->HorasSAT->SetValue($this->DataSource->HorasSAT->GetValue());
@@ -791,7 +790,7 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
     public $SLO;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @3-04B57CD4
+//DataSourceClass_Initialize Event @3-9A8D74BA
     function clsmc_info_rs_ap_ECDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -918,7 +917,6 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
         $this->InsertFields["TipoPadre"] = array("Name" => "[TipoPadre]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->InsertFields["UsuarioUltMod"] = array("Name" => "[UsuarioUltMod]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["FechaUltMod"] = array("Name" => "[FechaUltMod]", "Value" => "", "DataType" => ccsDate, "OmitIfEmpty" => 1);
-        $this->InsertFields["Descripcion"] = array("Name" => "[Descripcion]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["URLEvidencia"] = array("Name" => "[URLEvidencia]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["SinEvidencia"] = array("Name" => "[SinEvidencia]", "Value" => "", "DataType" => ccsBoolean);
         $this->InsertFields["HorasSAT"] = array("Name" => "[HorasSAT]", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
@@ -952,7 +950,6 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
         $this->UpdateFields["TipoPadre"] = array("Name" => "[TipoPadre]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->UpdateFields["UsuarioUltMod"] = array("Name" => "[UsuarioUltMod]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["FechaUltMod"] = array("Name" => "[FechaUltMod]", "Value" => "", "DataType" => ccsDate, "OmitIfEmpty" => 1);
-        $this->UpdateFields["Descripcion"] = array("Name" => "[Descripcion]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["URLEvidencia"] = array("Name" => "[URLEvidencia]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["SinEvidencia"] = array("Name" => "[SinEvidencia]", "Value" => "", "DataType" => ccsBoolean);
         $this->UpdateFields["HorasSAT"] = array("Name" => "[HorasSAT]", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
@@ -987,7 +984,7 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
     }
 //End Open Method
 
-//SetValues Method @3-84F8BEB0
+//SetValues Method @3-F785BF7F
     function SetValues()
     {
         $this->Id_Proveedor->SetDBValue(trim($this->f("Id_Proveedor")));
@@ -1019,7 +1016,6 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
         $this->TipoPadre->SetDBValue(trim($this->f("TipoPadre")));
         $this->hdUsrUltMod->SetDBValue($this->f("UsuarioUltMod"));
         $this->hdFechaUltMod->SetDBValue(trim($this->f("FechaUltMod")));
-        $this->hdNombreProyecto->SetDBValue($this->f("Descripcion"));
         $this->URLEvidenciaMed->SetDBValue($this->f("URLEvidencia"));
         $this->SinEvidencia->SetDBValue(trim($this->f("SinEvidencia")));
         $this->HorasSAT->SetDBValue(trim($this->f("HorasSAT")));
@@ -1028,7 +1024,7 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
     }
 //End SetValues Method
 
-//Insert Method @3-AADE535F
+//Insert Method @3-E7D2615E
     function Insert()
     {
         global $CCSLocales;
@@ -1063,7 +1059,6 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
         $this->InsertFields["TipoPadre"]["Value"] = $this->TipoPadre->GetDBValue(true);
         $this->InsertFields["UsuarioUltMod"]["Value"] = $this->hdUsrUltMod->GetDBValue(true);
         $this->InsertFields["FechaUltMod"]["Value"] = $this->hdFechaUltMod->GetDBValue(true);
-        $this->InsertFields["Descripcion"]["Value"] = $this->hdNombreProyecto->GetDBValue(true);
         $this->InsertFields["URLEvidencia"]["Value"] = $this->URLEvidenciaMed->GetDBValue(true);
         $this->InsertFields["SinEvidencia"]["Value"] = $this->SinEvidencia->GetDBValue(true);
         $this->InsertFields["HorasSAT"]["Value"] = $this->HorasSAT->GetDBValue(true);
@@ -1078,7 +1073,7 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
     }
 //End Insert Method
 
-//Update Method @3-6FEFD6E5
+//Update Method @3-FF4F07D3
     function Update()
     {
         global $CCSLocales;
@@ -1114,7 +1109,6 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
         $this->UpdateFields["TipoPadre"]["Value"] = $this->TipoPadre->GetDBValue(true);
         $this->UpdateFields["UsuarioUltMod"]["Value"] = $this->hdUsrUltMod->GetDBValue(true);
         $this->UpdateFields["FechaUltMod"]["Value"] = $this->hdFechaUltMod->GetDBValue(true);
-        $this->UpdateFields["Descripcion"]["Value"] = $this->hdNombreProyecto->GetDBValue(true);
         $this->UpdateFields["URLEvidencia"]["Value"] = $this->URLEvidenciaMed->GetDBValue(true);
         $this->UpdateFields["SinEvidencia"]["Value"] = $this->SinEvidencia->GetDBValue(true);
         $this->UpdateFields["HorasSAT"]["Value"] = $this->HorasSAT->GetDBValue(true);

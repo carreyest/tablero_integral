@@ -122,15 +122,16 @@ function calculaSLA(){
         var dAsignacion  = new Date(aAsignacion[2].valueOf(),aAsignacion[1].valueOf()-1,aAsignacion[0].valueOf(),aAsignacionHrs[0].valueOf(),aAsignacionHrs[1].valueOf(),0);
         var dAsignacion2 = new Date(aAsignacion[2].valueOf(),aAsignacion[1].valueOf()-1,aAsignacion[0].valueOf(),aAsignacionHrs[0].valueOf(),aAsignacionHrs[1].valueOf(),0);
         //si se asignó después de las 4 se manda al siguiente día hábil
-        if(aAsignacionHrs[0]>=16 ){
-            if(dAsignacion2.getDay()==5) {//si es viernes lo manda hasta el lunes
-                dAsignacion2.setDate(dAsignacion2.getDate() + 3);
-                }else {
-                        dAsignacion2.setDate(dAsignacion2.getDate() + 1);
-                }
-            dAsignacion2.setHours(8);
-            dAsignacion2.setMinutes(59);
-        }
+        //Ajuste en los criterios de medición SDMA4
+        //if(aAsignacionHrs[0]>=16 ){
+        //    if(dAsignacion2.getDay()==5) {//si es viernes lo manda hasta el lunes
+        //        dAsignacion2.setDate(dAsignacion2.getDate() + 3);
+        //        }else {
+        //                dAsignacion2.setDate(dAsignacion2.getDate() + 1);
+        //        }
+        //    dAsignacion2.setHours(8);
+        //    dAsignacion2.setMinutes(59);
+        //}
         
         var dPropuesta = new Date(aPropuesta[2].valueOf(),aPropuesta[1].valueOf()-1,aPropuesta[0].valueOf(),aPropuestaHrs[0].valueOf(),aPropuestaHrs[1].valueOf(),0);
         var dPropuesta2= new Date(aPropuesta[2].valueOf(),aPropuesta[1].valueOf()-1,aPropuesta[0].valueOf(),aPropuestaHrs[0].valueOf(),aPropuestaHrs[1].valueOf(),0);
@@ -341,15 +342,16 @@ function addObservaciones(){
         var dAsignacion =  new Date(aAsignacion[2].valueOf(),aAsignacion[1].valueOf()-1,aAsignacion[0].valueOf(),aAsignacionHrs[0].valueOf(),aAsignacionHrs[1].valueOf(),0);
         //var dAsignacion2 = new Date(aAsignacion[2].valueOf(),aAsignacion[1].valueOf()-1,aAsignacion[0].valueOf(),aAsignacionHrs[0].valueOf(),aAsignacionHrs[1].valueOf(),0);
         //si se asignó después de las 4 se manda al siguiente día hábil
-        if(aAsignacionHrs[0]>=16 ){
-            if(dAsignacion.getDay()==5) {//si es viernes lo manda hasta el lunes
-                dAsignacion.setDate(dAsignacion.getDate() + 3);
-                }else {
-                        dAsignacion.setDate(dAsignacion.getDate() + 1);
-                }
-            dAsignacion.setHours(8);
-            dAsignacion.setMinutes(59);
-        }
+		//Ajuste en los criterios de medición SDMA4
+        //if(aAsignacionHrs[0]>=16 ){
+        //    if(dAsignacion.getDay()==5) {//si es viernes lo manda hasta el lunes
+        //        dAsignacion.setDate(dAsignacion.getDate() + 3);
+        //        }else {
+        //                dAsignacion.setDate(dAsignacion.getDate() + 1);
+        //        }
+        //    dAsignacion.setHours(8);
+        //    dAsignacion.setMinutes(59);
+        //}
         
         var HrsDiff = Math.abs(Math.round((dAsignacion-dPropuesta2) /3600000));
         var daysDiff = Math.abs(Math.round((dAsignacion-dPropuesta2)/86400000));

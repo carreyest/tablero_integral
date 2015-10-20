@@ -266,6 +266,25 @@
 					<Attributes/>
 					<Features/>
 				</CheckBox>
+				<CheckBox id="119" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="CheckBox2" PathID="mc_c_usuarios1CheckBox2" fieldSource="Rape" checkedValue="1" uncheckedValue="0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</CheckBox>
+				<ListBox id="120" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox1" wizardEmptyCaption="Seleccionar Valor" PathID="mc_c_usuarios1ListBox1" dataSource="AMCI;AMCI;APE1;APE1;APE2;APE2;APE3;APE3;APE4;APE4;APE5;APE5;AVL;AVL;APESAyCO;APESAyCO" fieldSource="Administracion_rape">
+					<Components/>
+					<Events/>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables/>
+					<JoinLinks/>
+					<Fields/>
+					<PKFields/>
+					<Attributes/>
+					<Features/>
+				</ListBox>
 			</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
@@ -378,22 +397,22 @@
 				</Event>
 			</Events>
 			<TableParameters>
-				<TableParameter id="114" conditionType="Parameter" useIsNull="False" dataType="Integer" field="id_usuario" logicOperator="And" parameterSource="Id" parameterType="URL" searchConditionType="Equal"/>
-</TableParameters>
+				<TableParameter id="122" conditionType="Parameter" useIsNull="False" dataType="Integer" field="id_usuario" logicOperator="And" parameterSource="Id" parameterType="URL" searchConditionType="Equal"/>
+			</TableParameters>
 			<SPParameters/>
 			<SQLParameters/>
 			<JoinTables>
-				<JoinTable id="113" posHeight="152" posLeft="10" posTop="10" posWidth="123" tableName="usuario_reporteMyM"/>
-</JoinTables>
+				<JoinTable id="121" posHeight="152" posLeft="10" posTop="10" posWidth="123" tableName="usuario_reporteMyM"/>
+			</JoinTables>
 			<JoinLinks/>
 			<Fields>
-				<Field id="115" fieldName="nombre_reporte" tableName="usuario_reporteMyM"/>
-<Field id="116" fieldName="activo" tableName="usuario_reporteMyM"/>
-<Field id="117" fieldName="id_registro" tableName="usuario_reporteMyM"/>
-</Fields>
+				<Field id="123" fieldName="nombre_reporte" tableName="usuario_reporteMyM"/>
+				<Field id="124" fieldName="activo" tableName="usuario_reporteMyM"/>
+				<Field id="125" fieldName="id_registro" tableName="usuario_reporteMyM"/>
+			</Fields>
 			<PKFields>
-				<PKField id="118" dataType="Integer" fieldName="id_registro" tableName="usuario_reporteMyM"/>
-</PKFields>
+				<PKField id="126" dataType="Integer" fieldName="id_registro" tableName="usuario_reporteMyM"/>
+			</PKFields>
 			<ISPParameters/>
 			<ISQLParameters/>
 			<IFormElements/>

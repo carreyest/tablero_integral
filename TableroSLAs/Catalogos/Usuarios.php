@@ -541,7 +541,7 @@ class clsRecordmc_c_usuarios1 { //mc_c_usuarios1 Class @28-F7AA8C5C
     // Class variables
 //End Variables
 
-//Class_Initialize Event @28-3D721DD0
+//Class_Initialize Event @28-16E1034D
     function clsRecordmc_c_usuarios1($RelativePath, & $Parent)
     {
 
@@ -596,11 +596,19 @@ class clsRecordmc_c_usuarios1 { //mc_c_usuarios1 Class @28-F7AA8C5C
             $this->CheckBox1 = new clsControl(ccsCheckBox, "CheckBox1", "CheckBox1", ccsInteger, "", CCGetRequestParam("CheckBox1", $Method, NULL), $this);
             $this->CheckBox1->CheckedValue = $this->CheckBox1->GetParsedValue(1);
             $this->CheckBox1->UncheckedValue = $this->CheckBox1->GetParsedValue(0);
+            $this->CheckBox2 = new clsControl(ccsCheckBox, "CheckBox2", "CheckBox2", ccsBoolean, $CCSLocales->GetFormatInfo("BooleanFormat"), CCGetRequestParam("CheckBox2", $Method, NULL), $this);
+            $this->CheckBox2->CheckedValue = true;
+            $this->CheckBox2->UncheckedValue = false;
+            $this->ListBox1 = new clsControl(ccsListBox, "ListBox1", "ListBox1", ccsText, "", CCGetRequestParam("ListBox1", $Method, NULL), $this);
+            $this->ListBox1->DSType = dsListOfValues;
+            $this->ListBox1->Values = array(array("AMCI", "AMCI"), array("APE1", "APE1"), array("APE2", "APE2"), array("APE3", "APE3"), array("APE4", "APE4"), array("APE5", "APE5"), array("AVL", "AVL"), array("APESAyCO", "APESAyCO"));
             if(!$this->FormSubmitted) {
                 if(!is_array($this->CDSDefault->Value) && !strlen($this->CDSDefault->Value) && $this->CDSDefault->Value !== false)
                     $this->CDSDefault->SetText(0);
                 if(!is_array($this->CheckBox1->Value) && !strlen($this->CheckBox1->Value) && $this->CheckBox1->Value !== false)
                     $this->CheckBox1->SetValue(false);
+                if(!is_array($this->CheckBox2->Value) && !strlen($this->CheckBox2->Value) && $this->CheckBox2->Value !== false)
+                    $this->CheckBox2->SetValue(false);
             }
         }
     }
@@ -617,7 +625,7 @@ class clsRecordmc_c_usuarios1 { //mc_c_usuarios1 Class @28-F7AA8C5C
     }
 //End Initialize Method
 
-//Validate Method @28-C0854312
+//Validate Method @28-A5E381D8
     function Validate()
     {
         global $CCSLocales;
@@ -633,6 +641,8 @@ class clsRecordmc_c_usuarios1 { //mc_c_usuarios1 Class @28-F7AA8C5C
         $Validation = ($this->CDSDefault->Validate() && $Validation);
         $Validation = ($this->Nombre->Validate() && $Validation);
         $Validation = ($this->CheckBox1->Validate() && $Validation);
+        $Validation = ($this->CheckBox2->Validate() && $Validation);
+        $Validation = ($this->ListBox1->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->Usuario->Errors->Count() == 0);
         $Validation =  $Validation && ($this->Clave->Errors->Count() == 0);
@@ -644,11 +654,13 @@ class clsRecordmc_c_usuarios1 { //mc_c_usuarios1 Class @28-F7AA8C5C
         $Validation =  $Validation && ($this->CDSDefault->Errors->Count() == 0);
         $Validation =  $Validation && ($this->Nombre->Errors->Count() == 0);
         $Validation =  $Validation && ($this->CheckBox1->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->CheckBox2->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->ListBox1->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @28-A18FCD8B
+//CheckErrors Method @28-90C57360
     function CheckErrors()
     {
         $errors = false;
@@ -662,6 +674,8 @@ class clsRecordmc_c_usuarios1 { //mc_c_usuarios1 Class @28-F7AA8C5C
         $errors = ($errors || $this->CDSDefault->Errors->Count());
         $errors = ($errors || $this->Nombre->Errors->Count());
         $errors = ($errors || $this->CheckBox1->Errors->Count());
+        $errors = ($errors || $this->CheckBox2->Errors->Count());
+        $errors = ($errors || $this->ListBox1->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -710,7 +724,7 @@ class clsRecordmc_c_usuarios1 { //mc_c_usuarios1 Class @28-F7AA8C5C
     }
 //End Operation Method
 
-//InsertRow Method @28-3696ECD6
+//InsertRow Method @28-4236B398
     function InsertRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
@@ -725,13 +739,15 @@ class clsRecordmc_c_usuarios1 { //mc_c_usuarios1 Class @28-F7AA8C5C
         $this->DataSource->CDSDefault->SetValue($this->CDSDefault->GetValue(true));
         $this->DataSource->Nombre->SetValue($this->Nombre->GetValue(true));
         $this->DataSource->CheckBox1->SetValue($this->CheckBox1->GetValue(true));
+        $this->DataSource->CheckBox2->SetValue($this->CheckBox2->GetValue(true));
+        $this->DataSource->ListBox1->SetValue($this->ListBox1->GetValue(true));
         $this->DataSource->Insert();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterInsert", $this);
         return (!$this->CheckErrors());
     }
 //End InsertRow Method
 
-//UpdateRow Method @28-D8B0874F
+//UpdateRow Method @28-CA68595D
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
@@ -746,13 +762,15 @@ class clsRecordmc_c_usuarios1 { //mc_c_usuarios1 Class @28-F7AA8C5C
         $this->DataSource->CDSDefault->SetValue($this->CDSDefault->GetValue(true));
         $this->DataSource->Nombre->SetValue($this->Nombre->GetValue(true));
         $this->DataSource->CheckBox1->SetValue($this->CheckBox1->GetValue(true));
+        $this->DataSource->CheckBox2->SetValue($this->CheckBox2->GetValue(true));
+        $this->DataSource->ListBox1->SetValue($this->ListBox1->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
         return (!$this->CheckErrors());
     }
 //End UpdateRow Method
 
-//Show Method @28-919C34E0
+//Show Method @28-83DAE55A
     function Show()
     {
         global $CCSUseAmp;
@@ -769,6 +787,7 @@ class clsRecordmc_c_usuarios1 { //mc_c_usuarios1 Class @28-F7AA8C5C
         $this->Nivel->Prepare();
         $this->Grupo->Prepare();
         $this->CDSDefault->Prepare();
+        $this->ListBox1->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -792,6 +811,8 @@ class clsRecordmc_c_usuarios1 { //mc_c_usuarios1 Class @28-F7AA8C5C
                     $this->CDSDefault->SetValue($this->DataSource->CDSDefault->GetValue());
                     $this->Nombre->SetValue($this->DataSource->Nombre->GetValue());
                     $this->CheckBox1->SetValue($this->DataSource->CheckBox1->GetValue());
+                    $this->CheckBox2->SetValue($this->DataSource->CheckBox2->GetValue());
+                    $this->ListBox1->SetValue($this->DataSource->ListBox1->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -812,6 +833,8 @@ class clsRecordmc_c_usuarios1 { //mc_c_usuarios1 Class @28-F7AA8C5C
             $Error = ComposeStrings($Error, $this->CDSDefault->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Nombre->Errors->ToString());
             $Error = ComposeStrings($Error, $this->CheckBox1->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->CheckBox2->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->ListBox1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -844,6 +867,8 @@ class clsRecordmc_c_usuarios1 { //mc_c_usuarios1 Class @28-F7AA8C5C
         $this->CDSDefault->Show();
         $this->Nombre->Show();
         $this->CheckBox1->Show();
+        $this->CheckBox2->Show();
+        $this->ListBox1->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -854,7 +879,7 @@ class clsRecordmc_c_usuarios1 { //mc_c_usuarios1 Class @28-F7AA8C5C
 
 class clsmc_c_usuarios1DataSource extends clsDBcnDisenio {  //mc_c_usuarios1DataSource Class @28-ACEFFDFB
 
-//DataSource Variables @28-841C3CF9
+//DataSource Variables @28-34A3C8F6
     public $Parent = "";
     public $CCSEvents = "";
     public $CCSEventResult;
@@ -880,9 +905,11 @@ class clsmc_c_usuarios1DataSource extends clsDBcnDisenio {  //mc_c_usuarios1Data
     public $CDSDefault;
     public $Nombre;
     public $CheckBox1;
+    public $CheckBox2;
+    public $ListBox1;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @28-AB7A1CD2
+//DataSourceClass_Initialize Event @28-E8ED717D
     function clsmc_c_usuarios1DataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -908,6 +935,10 @@ class clsmc_c_usuarios1DataSource extends clsDBcnDisenio {  //mc_c_usuarios1Data
         
         $this->CheckBox1 = new clsField("CheckBox1", ccsInteger, "");
         
+        $this->CheckBox2 = new clsField("CheckBox2", ccsBoolean, $this->BooleanFormat);
+        
+        $this->ListBox1 = new clsField("ListBox1", ccsText, "");
+        
 
         $this->InsertFields["Usuario"] = array("Name" => "[Usuario]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["Clave"] = array("Name" => "[Clave]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
@@ -918,6 +949,8 @@ class clsmc_c_usuarios1DataSource extends clsDBcnDisenio {  //mc_c_usuarios1Data
         $this->InsertFields["CDSDefault"] = array("Name" => "[CDSDefault]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["Nombre"] = array("Name" => "[Nombre]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["Activo"] = array("Name" => "[Activo]", "Value" => "", "DataType" => ccsInteger);
+        $this->InsertFields["Rape"] = array("Name" => "[Rape]", "Value" => "", "DataType" => ccsBoolean);
+        $this->InsertFields["Administracion_rape"] = array("Name" => "[Administracion_rape]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["Usuario"] = array("Name" => "[Usuario]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["Clave"] = array("Name" => "[Clave]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["Nivel"] = array("Name" => "[Nivel]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
@@ -927,6 +960,8 @@ class clsmc_c_usuarios1DataSource extends clsDBcnDisenio {  //mc_c_usuarios1Data
         $this->UpdateFields["CDSDefault"] = array("Name" => "[CDSDefault]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["Nombre"] = array("Name" => "[Nombre]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["Activo"] = array("Name" => "[Activo]", "Value" => "", "DataType" => ccsInteger);
+        $this->UpdateFields["Rape"] = array("Name" => "[Rape]", "Value" => "", "DataType" => ccsBoolean);
+        $this->UpdateFields["Administracion_rape"] = array("Name" => "[Administracion_rape]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
     }
 //End DataSourceClass_Initialize Event
 
@@ -956,7 +991,7 @@ class clsmc_c_usuarios1DataSource extends clsDBcnDisenio {  //mc_c_usuarios1Data
     }
 //End Open Method
 
-//SetValues Method @28-03FDCD50
+//SetValues Method @28-813F6EDB
     function SetValues()
     {
         $this->Usuario->SetDBValue($this->f("Usuario"));
@@ -968,10 +1003,12 @@ class clsmc_c_usuarios1DataSource extends clsDBcnDisenio {  //mc_c_usuarios1Data
         $this->CDSDefault->SetDBValue($this->f("CDSDefault"));
         $this->Nombre->SetDBValue($this->f("Nombre"));
         $this->CheckBox1->SetDBValue(trim($this->f("Activo")));
+        $this->CheckBox2->SetDBValue(trim($this->f("Rape")));
+        $this->ListBox1->SetDBValue($this->f("Administracion_rape"));
     }
 //End SetValues Method
 
-//Insert Method @28-AF0DA40A
+//Insert Method @28-8F0A122C
     function Insert()
     {
         global $CCSLocales;
@@ -987,6 +1024,8 @@ class clsmc_c_usuarios1DataSource extends clsDBcnDisenio {  //mc_c_usuarios1Data
         $this->InsertFields["CDSDefault"]["Value"] = $this->CDSDefault->GetDBValue(true);
         $this->InsertFields["Nombre"]["Value"] = $this->Nombre->GetDBValue(true);
         $this->InsertFields["Activo"]["Value"] = $this->CheckBox1->GetDBValue(true);
+        $this->InsertFields["Rape"]["Value"] = $this->CheckBox2->GetDBValue(true);
+        $this->InsertFields["Administracion_rape"]["Value"] = $this->ListBox1->GetDBValue(true);
         $this->SQL = CCBuildInsert("mc_c_usuarios", $this->InsertFields, $this);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
@@ -996,7 +1035,7 @@ class clsmc_c_usuarios1DataSource extends clsDBcnDisenio {  //mc_c_usuarios1Data
     }
 //End Insert Method
 
-//Update Method @28-0472C278
+//Update Method @28-B2B6B43C
     function Update()
     {
         global $CCSLocales;
@@ -1013,6 +1052,8 @@ class clsmc_c_usuarios1DataSource extends clsDBcnDisenio {  //mc_c_usuarios1Data
         $this->UpdateFields["CDSDefault"]["Value"] = $this->CDSDefault->GetDBValue(true);
         $this->UpdateFields["Nombre"]["Value"] = $this->Nombre->GetDBValue(true);
         $this->UpdateFields["Activo"]["Value"] = $this->CheckBox1->GetDBValue(true);
+        $this->UpdateFields["Rape"]["Value"] = $this->CheckBox2->GetDBValue(true);
+        $this->UpdateFields["Administracion_rape"]["Value"] = $this->ListBox1->GetDBValue(true);
         $this->SQL = CCBuildUpdate("mc_c_usuarios", $this->UpdateFields, $this);
         $this->SQL .= strlen($this->Where) ? " WHERE " . $this->Where : $this->Where;
         if (!strlen($this->Where) && $this->Errors->Count() == 0) 

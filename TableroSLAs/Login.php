@@ -228,7 +228,7 @@ include_once("./Login_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-3BF57EFB
+//Initialize Objects @1-C7E19FCF
 $Attributes = new clsAttributes("page:");
 $Attributes->SetValue("pathToRoot", $PathToRoot);
 $MainPage->Attributes = & $Attributes;
@@ -237,8 +237,11 @@ $MainPage->Attributes = & $Attributes;
 $Login1 = new clsRecordLogin1("", $MainPage);
 $Header = new clsHeader("", "Header", $MainPage);
 $Header->Initialize();
+$lReportContent = new clsControl(ccsLabel, "lReportContent", "lReportContent", ccsText, "", CCGetRequestParam("lReportContent", ccsGet, NULL), $MainPage);
+$lReportContent->HTML = true;
 $MainPage->Login1 = & $Login1;
 $MainPage->Header = & $Header;
+$MainPage->lReportContent = & $lReportContent;
 $ScriptIncludes = "";
 $SList = explode("|", $Scripts);
 foreach ($SList as $Script) {
@@ -290,9 +293,10 @@ if($Redirect)
 }
 //End Go to destination page
 
-//Show Page @1-E2FEACA6
+//Show Page @1-71BF2075
 $Login1->Show();
 $Header->Show();
+$lReportContent->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);

@@ -26,7 +26,13 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
-			</Components>
+				<Image id="12" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Image1" PathID="Login1Image1">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Image>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
@@ -54,6 +60,12 @@
 			<Events/>
 			<Features/>
 		</IncludePage>
+		<Label id="11" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="lReportContent" PathID="lReportContent">
+			<Components/>
+			<Events/>
+			<Attributes/>
+			<Features/>
+		</Label>
 	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="Login_events.php" forShow="False" comment="//" codePage="windows-1252"/>

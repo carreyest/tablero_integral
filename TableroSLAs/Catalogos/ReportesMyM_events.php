@@ -45,7 +45,7 @@ function ReportesMyM2_ds_AfterExecuteInsert(& $sender)
 	$DBcnDisenio->query("select idReporte,nombre from ReportesMyM where IdReporte = (select MAX(idReporte) from ReportesMyM)" );
 	if($DBcnDisenio->next_record()){
 		$sInsert="insert into usuario_reporteMyM(id_usuario, id_reporte, activo, nombre_reporte,usuario) 
-				  select id, ".$DBcnDisenio->f("idReporte").",1,'".$DBcnDisenio->f("nombre")."',Usuario  from mc_c_usuarios";	
+				  select id, ".$DBcnDisenio->f("idReporte").",0,'".$DBcnDisenio->f("nombre")."',Usuario  from mc_c_usuarios";	
 	}
 	$DBcnDisenio->query($sInsert);    
     // Write your own code here.

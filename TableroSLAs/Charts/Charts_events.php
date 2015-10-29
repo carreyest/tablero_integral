@@ -51,20 +51,27 @@ function Page_BeforeShow(& $sender)
 	    
 	    $db->query("select COUNT(*), MesReporte, AnioReporte , p.nombre " .
 	    	"from mc_calificacion_incidentes_MC i inner join mc_c_proveedor p on i.id_proveedor = p.id_proveedor " .
+	    	" inner join mc_universo_cds u on i.id_incidente = u.numero " .
 	    	" where anioreporte = " . CCGetParam("s_Anio",date(Y))  .
+	    	" and u.slo=0 " .
 	    	" group by MesReporte, AnioReporte, p.nombre order by 2,1");
 	    $aCDS=array();
 	    while($db->next_record()){
 	    	$sCDS = $db->f("nombre");
 	    	if(count($$sCDS)==0){ 
-	    		$$sCDS = array();
+	    		//$$sCDS = array();
+	    		$$sCDS = array(0,0,0,0,0,0,0,0,0,0,0,0);
 	    		array_push($aCDS, $db->f("nombre"));
 	    	}
 	    	// si el numero de mes es menor al indice del arreglo se insertan los meses que faltan	
+	    	$aValores= &$$sCDS;
+	    	/*
 	    	while(count($$sCDS) < $db->f(1)-1) {
 	    		array_push($$sCDS, 0);
 	    	}
 	    	array_push($$sCDS, $db->f(0));
+	    	*/
+	    	$aValores[$db->f("MesReporte")-1]= number_format($db->f(0));
 	    }
 	    $db->close();
 	    // Dataset definition  
@@ -77,12 +84,12 @@ function Page_BeforeShow(& $sender)
 			$DataSet->SetSerieName($aCDS[$i],$aCDS[$i]);  	
 			$sTable= $sTable . "<tr><td  width='80px'>" . $aCDS[$i] . "</td><td width='40px'>" . implode("</td><td  width='40px'>",$$aCDS[$i]) . "</td></tr>";
 		}
-		$DataSet->AddPoint(array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"),"Serie4");  
-		$DataSet->SetAbsciseLabelSerie("Serie4");  
+		$DataSet->AddPoint(array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"),"Serie". $i+1);  
+		$DataSet->SetAbsciseLabelSerie("Serie". $i+1);  
 		$sTable = $sTable . "</table>";
 		 
 		// Initialise the graph  
-		$Test = new pChart(700,230);  
+		$Test = new pChart(780,230);  
 		$Test->setFontProperties("Fonts/tahoma.ttf",10);  
 		$Test->setGraphArea(40,30,680,200);  
 		$Test->drawGraphArea(252,252,252);  
@@ -95,9 +102,9 @@ function Page_BeforeShow(& $sender)
 		 
 		// Finish the graph  
 		$Test->setFontProperties("Fonts/tahoma.ttf",8);  
-		$Test->drawLegend(45,35,$DataSet->GetDataDescription(),255,255,255);  
+		$Test->drawLegend(685,35,$DataSet->GetDataDescription(),255,255,255);  
 		$Test->setFontProperties("Fonts/tahoma.ttf",10);  
-		$Test->drawTitle(60,22,"Incidentesx Totales por CDS por Mes",50,50,50,585);  
+		$Test->drawTitle(60,22,"Incidentes Totales por CDS por Mes",50,50,50,585);  
 		$Test->Render("Incidentes.png");  
 	
 		//limpia los arreglos creados para los CDSs
@@ -110,20 +117,28 @@ function Page_BeforeShow(& $sender)
 		/// Genera la gráfica de los de Apertura
 		$db->query("select COUNT(*) , MesReporte, AnioReporte , p.nombre " .
 	    	"from mc_calificacion_rs_MC i inner join mc_c_proveedor p on i.id_proveedor = p.id_proveedor " .
-	    	" where (HERR_EST_COST is not null or REQ_SERV is not null) and anioreporte = " . CCGetParam("s_Anio",date(Y))  .
+	    	" inner join mc_universo_cds u on i.IdUniverso = u.id " .
+	    	" where (HERR_EST_COST is not null or REQ_SERV is not null) " . 
+	    	" and anioreporte = " . CCGetParam("s_Anio",date(Y))  .
+	    	" and u.slo=0 " .
 	    	" group by MesReporte, AnioReporte , p.nombre order by 2,1");
 	    $aCDSa=array();
 	    while($db->next_record()){
 	    	$sCDSa = $db->f("nombre");
 	    	if(count($$sCDSa)==0){ 
-	    		$$sCDSa = array();
+	    		//$$sCDSa = array();
+	    		$$sCDSa = array(0,0,0,0,0,0,0,0,0,0,0,0);
 	    		array_push($aCDSa, $db->f("nombre"));
 	    	}
 	    	// si el numero de mes es menor al indice del arreglo se insertan los meses que faltan	
+	    	/*
 	    	while(count($$sCDSa) < $db->f(1)-1) {
 	    		array_push($$sCDSa, 0);
 	    	}
 	    		array_push($$sCDSa, $db->f(0));
+	    	*/
+	    	$aValores= &$$sCDSa;
+	    	$aValores[$db->f("MesReporte")-1]= number_format($db->f(0));
 	    }
 		
 		// Dataset definition   
@@ -136,12 +151,12 @@ function Page_BeforeShow(& $sender)
 			$DataSeta->SetSerieName($aCDSa[$i],$aCDSa[$i]); 
 			$sTablea = $sTablea . "<tr><td  width='80px'>" . $aCDSa[$i] . "</td><td width='40px'>" . implode("</td><td  width='40px'>",$sCDSAcronimo) . "</td></tr>"; 	
 		}
-		$DataSeta->AddPoint(array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"),"Serie4");  
-		$DataSeta->SetAbsciseLabelSerie("Serie4");  
+		$DataSeta->AddPoint(array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"),"Serie". $i+1);  
+		$DataSeta->SetAbsciseLabelSerie("Serie". $i+1);  
 		$sTablea = $sTablea . "</table>";
 		
 		// Initialise the graph  
-		$Testa = new pChart(700,230);  
+		$Testa = new pChart(780,230);  
 		$Testa->setFontProperties("Fonts/tahoma.ttf",10);  
 		$Testa->setGraphArea(40,30,680,200);  
 		$Testa->drawGraphArea(252,252,252);  
@@ -154,7 +169,7 @@ function Page_BeforeShow(& $sender)
 		 
 		// Finish the graph  
 		$Testa->setFontProperties("Fonts/tahoma.ttf",8);  
-		$Testa->drawLegend(45,35,$DataSeta->GetDataDescription(),255,255,255);  
+		$Testa->drawLegend(685,35,$DataSeta->GetDataDescription(),255,255,255);  
 		$Testa->setFontProperties("Fonts/tahoma.ttf",10);  
 		$Testa->drawTitle(60,22,"Reuqerimientos de Apertura por CDS por Mes",50,50,50,585);  
 		$Testa->Render("Apertura1.png");  
@@ -165,25 +180,33 @@ function Page_BeforeShow(& $sender)
 			unset($$sCDSa);
 		}
 		unset($aCDSa) ;
+		
 	
 		///Genera la gráfica de los de cierre
 		$db->query("select COUNT(*) , MesReporte, AnioReporte , p.nombre " .
 	    	"from mc_calificacion_rs_MC i inner join mc_c_proveedor p on i.id_proveedor = p.id_proveedor " .
+	    	" inner join mc_universo_cds u on i.IdUniverso = u.id " .
 	    	" where (CUMPL_REQ_FUNC is not null or RETR_ENTREGABLE is not null or CALIDAD_PROD_TERM is not null or DEF_FUG_AMB_PROD is not null) " .
 	    	"  and anioreporte = " . CCGetParam("s_Anio",date(Y))  .
-	    	"group by MesReporte, AnioReporte , p.nombre order by 2,1");
+	    	" and u.slo=0 " .
+	    	" group by MesReporte, AnioReporte , p.nombre order by 2,1");
 	    $aCDSc=array();
 	    while($db->next_record()){
 	    	$sCDSc = $db->f("nombre");
 	    	if(count($$sCDSc)==0){ 
-	    		$$sCDSc = array();
+	    		//$$sCDSc = array();
+	    		$$sCDSc = array(0,0,0,0,0,0,0,0,0,0,0,0);
 	    		array_push($aCDSc, $db->f("nombre"));
 	    	}
 	    	// si el numero de mes es menor al indice del arreglo se insertan los meses que faltan	
+	    	/*
 	    	while(count($$sCDSc) < $db->f(1)-1) {
 	    		array_push($$sCDSc, 0);
 	    	}
 	    		array_push($$sCDSc, $db->f(0));
+	    	*/
+	    	$aValores= &$$sCDSc;
+	    	$aValores[$db->f("MesReporte")-1]= number_format($db->f(0));
 	    }
 		$db->close();
 		
@@ -195,13 +218,14 @@ function Page_BeforeShow(& $sender)
 			$DataSetc->AddSerie($aCDSc[$i]);  
 			$DataSetc->SetSerieName($aCDSc[$i],$aCDSc[$i]);  	
 			$sTablec = $sTablec . "<tr><td  width='80px'>" . $aCDSc[$i] . "</td><td width='40px'>" . implode("</td><td  width='40px'>",$$aCDSc[$i]) . "</td></tr>";
+			var_dump($$aCDSc[$i]);
 		}
-		$DataSetc->AddPoint(array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"),"Serie4");  
-		$DataSetc->SetAbsciseLabelSerie("Serie4");  		
+		$DataSetc->AddPoint(array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"),"Serie". $i+1);  
+		$DataSetc->SetAbsciseLabelSerie("Serie". $i+1);  		
 		$sTablec = $sTablec . "</table>";
 		 
 		// Initialise the graph  
-		$Testc = new pChart(700,230);  
+		$Testc = new pChart(780,230);  
 		$Testc->setFontProperties("Fonts/tahoma.ttf",10);  
 		$Testc->setGraphArea(40,30,680,200);  
 		$Testc->drawGraphArea(252,252,252);  
@@ -214,7 +238,7 @@ function Page_BeforeShow(& $sender)
 		 
 		// Finish the graph  
 		$Testc->setFontProperties("Fonts/tahoma.ttf",8);  
-		$Testc->drawLegend(45,35,$DataSetc->GetDataDescription(),255,255,255);  
+		$Testc->drawLegend(685,35,$DataSetc->GetDataDescription(),255,255,255);  
 		$Testc->setFontProperties("Fonts/tahoma.ttf",10);  
 		$Testc->drawTitle(60,22,"Requerimientos de Cierre por CDS por Mes",50,50,50,585);  
 		$Testc->Render("Cierre1.png");  
@@ -261,12 +285,13 @@ function ufIndicadoresCumplimiento(){
 	 "(Select Meta from mc_c_metrica where acronimo='Inc_TiempoSolucion') as Meta_Inc_TiempoSolucion,  " .
 	 "avg(TotTiempoSolucion) TotInc_TiempoSolucion, avg(CumplenTiempoSolucion) CumplenInc_TiempoSolucion, avg(cast(CumplenTiempoSolucion as float))/avg(cast(TotTiempoSolucion as float))*100 Inc_TiempoSolucion,  " .
 	 "(Select Meta from mc_c_metrica where acronimo='Inc_TiempoAsignacion') as Meta_Inc_TiempoAsignacion,  " .
-	 "avg(TotCumple_DISP_SOPORTE) TotDISP_SOPORTE , avg(CumplenCumple_DISP_SOPORTE) CumplenDISP_SOPORTE, avg(cast(TotCumple_DISP_SOPORTE as float))/avg(cast(TotCumple_DISP_SOPORTE as float))*100 DISP_SOPORTE,  " .
-	 "(Select Meta from mc_c_metrica where acronimo='DISP_SOPORTE') as Meta_DISP_SOPORTE,  " .
+	 //"avg(TotCumple_DISP_SOPORTE) TotDISP_SOPORTE , avg(CumplenCumple_DISP_SOPORTE) CumplenDISP_SOPORTE, avg(cast(TotCumple_DISP_SOPORTE as float))/avg(cast(TotCumple_DISP_SOPORTE as float))*100 DISP_SOPORTE,  " .
+	 //"(Select Meta from mc_c_metrica where acronimo='DISP_SOPORTE') as Meta_DISP_SOPORTE,  " .
 	 "AVG(Cumple_EF) Cumple_EF, AVG(total_ef) Total_ef, avg(cast(Cumple_EF as float))/avg(total_ef)*100  EFIC_PRESUP,  " .
 	 "(Select Meta from mc_c_metrica where acronimo='EFIC_PRESUP') as Meta_EFIC_PRESUP,  " .
 	 "m.MesReporte , m.anioreporte , p.nombre   " .
 	"from  mc_c_proveedor p  inner join  mc_calificacion_rs_MC m on p.id_proveedor = m.id_proveedor  " .
+	 " inner join mc_universo_cds u on m.IdUniverso = u.id " .
 	 	"left join	(select  " .
 	 		"COUNT(Cumple_Inc_TiempoAsignacion) TotTiempoAsignacion, SUM(cast(Cumple_Inc_TiempoAsignacion as int)) CumplenTiempoAsignacion,  " .
 	 		"COUNT(Cumple_DISP_SOPORTE) TotCumple_DISP_SOPORTE, SUM(cast(Cumple_DISP_SOPORTE as int)) CumplenCumple_DISP_SOPORTE,   " .
@@ -279,11 +304,13 @@ function ufIndicadoresCumplimiento(){
 			"from mc_eficiencia_presupuestal  where CumpleSLA in (1,0)  and [GrupoAplicativos] not like 'Todos%'   " .
 			"group by Id_Proveedor, MesReporte , anioreporte  ) ef   " .
 			"on ef.Id_Proveedor  = m.id_proveedor  and m.MesReporte  = ef.MesReporte and m.AnioReporte  = ef.anioreporte    " .
-				"where m.anioreporte = " . CCGetParam("s_Anio",date(Y)) .  " and (m.mesreporte =" . CCGetParam("s_Mes",0) .  " or " . CCGetParam("s_Mes",0) . " =0) " .
+				"where m.anioreporte = " . CCGetParam("s_Anio",date(Y)) .  " and ((m.mesreporte =" . CCGetParam("s_Mes",0) .  " or " . CCGetParam("s_Mes",0) . " =0) ) " .
+				" and u.slo=0 " .
 	" group by m.MesReporte , m.anioreporte , p.nombre  order by p.nombre, MesReporte,anioreporte  "  ;
-
 	global $db;
     $db= new clsDBcnDisenio;
+    //echo $sSQL;
+    //die();
     $db->query($sSQL);
 	
 	//Si no se especifico un mes,  para cada SLA seleccionado se genera una gráfica
@@ -294,22 +321,31 @@ function ufIndicadoresCumplimiento(){
 	    while($db->next_record()){
 	    	$sCDS = $db->f("nombre");
 	    	if(array_search($sCDS,$aCDS)===false)  $aCDS[]=$sCDS;
-	    	
 	    	//para cada proveedor verifica si existe el arreglo del acronimo de la metrica 
 	    	for($iAcronimo=0;$iAcronimo<count($s_Acronimo);$iAcronimo++){
 				$sCDSAcronimo = $sCDS .$s_Acronimo[$iAcronimo] ;
 				if(count($$sCDSAcronimo)==0){ 
-					$$sCDSAcronimo = array();
+					$$sCDSAcronimo = array(0,0,0,0,0,0,0,0,0,0,0,0);
+					//$$sCDSAcronimo = array();
 				}
+				$aValores= &$$sCDSAcronimo;
 				switch(CCGetParam("s_Metrica","")){
 					case 1:
-						array_push($$sCDSAcronimo, $db->f("Tot" . $s_Acronimo[$iAcronimo]));		
+						//array_push($$sCDSAcronimo, $db->f("Tot" . $s_Acronimo[$iAcronimo]));		
+						$aValores[$db->f("MesReporte")-1]= number_format($db->f("Tot" . $s_Acronimo[$iAcronimo]));
 						break;
 					case 2:
-						array_push($$sCDSAcronimo, $db->f("Cumplen" . $s_Acronimo[$iAcronimo]));		
+						//array_push($$sCDSAcronimo, $db->f("Cumplen" . $s_Acronimo[$iAcronimo]));		
+						$aValores[$db->f("MesReporte")-1]= number_format($db->f("Cumplen" . $s_Acronimo[$iAcronimo]));
 						break;
 					default:
-						array_push($$sCDSAcronimo, number_format($db->f($s_Acronimo[$iAcronimo])));	
+						//array_push($$sCDSAcronimo, number_format($db->f($s_Acronimo[$iAcronimo])));	
+						if($db->f($s_Acronimo[$iAcronimo])!=null){
+							$aValores[$db->f("MesReporte")-1]= number_format($db->f($s_Acronimo[$iAcronimo]));
+						} else {
+							$aValores[$db->f("MesReporte")-1]= "Sin Datos para Medir";
+						}
+						//$$sCDSAcronimo=$x;
 				}
 				
 				$saMeta = "Meta_" . $s_Acronimo[$iAcronimo];
@@ -323,18 +359,19 @@ function ufIndicadoresCumplimiento(){
 	    for($iAcronimo=0;$iAcronimo<count($s_Acronimo);$iAcronimo++){    			
 				// Dataset definition   
 				$DataSet = new pData;
-				$DataSet->AddPoint(array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"),"Serie4");  
-				$DataSet->SetAbsciseLabelSerie("Serie4");  
+				$DataSet->AddPoint(array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"),"Serie". $i+1);  
+				$DataSet->SetAbsciseLabelSerie("Serie". $i+1);  
 				
 				//se pone la meta
 				$i=0;
+				
 				$DataSet->AddPoint($$saMeta,$aMeta[$iAcronimo]);  
 				$DataSet->AddSerie($aMeta[$iAcronimo]);  
-				$DataSet->SetSerieName($aMeta[$iAcronimo],$aMeta[$iAcronimo]);  	
+				$DataSet->SetSerieName("Objetivo",$aMeta[$iAcronimo]);  	
+				
 				$sTable="<table border=1><tr><td></td><td>Ene</td><td>Feb</td><td>Mar</td><td>Abr</td><td>May</td><td>Jun</td><td>Jul</td><td>Ago</td><td>Sep</td><td>Oct</td><td>Nov</td><td>Dic</td></tr>";	
 				for ($i = 0; $i < count($aCDS); $i++) {
 			    	$sCDSAcronimo = $aCDS[$i] .$s_Acronimo[$iAcronimo] ;
-			    	
 			    	$DataSet->AddPoint($$sCDSAcronimo,$aCDS[$i]);  
 					$DataSet->AddSerie($aCDS[$i]);  
 					$DataSet->SetSerieName($aCDS[$i],$aCDS[$i]);  	
@@ -358,7 +395,17 @@ function ufIndicadoresCumplimiento(){
 					$Test->setFontProperties("Fonts/tahoma.ttf",8);  
 					$Test->drawLegend(745,15,$DataSet->GetDataDescription(),255,255,255);  
 					$Test->setFontProperties("Fonts/tahoma.ttf",10);  
-					$Test->drawTitle(60,22,"Cumplimieto por Mes por CDS " . $s_Acronimo[$iAcronimo] ,50,50,50,585);  
+					
+					$dbNombre= new clsDBcnDisenio;
+				    $dbNombre->query("select nombre from mc_c_metrica where acronimo='" . $s_Acronimo[$iAcronimo] . "'");
+					if($dbNombre->next_record()){
+						$Test->drawTitle(60,22,"Cumplimieto por Mes por CDS de " . $dbNombre->f(0) ,50,50,50,585);  
+					} else {
+						$Test->drawTitle(60,22,"Cumplimieto por Mes por CDS de " . $s_Acronimo[$iAcronimo] ,50,50,50,585);  
+					}
+					$dbNombre->close;
+					
+					
 					$Test->Render( $sCDSAcronimo .".png");  	
 	
 					$sCharts= $sCharts . '<center><img src="' .  $sCDSAcronimo . '.png" border=1/>' . $sTable  . '</center><br /> <br />';
@@ -390,8 +437,8 @@ function ufIndicadoresCumplimiento(){
 	    // Dataset definition   
 		$DataSet = new pData;
 				
-		$DataSet->AddPoint($s_Acronimo,"Serie4");  
-		$DataSet->SetAbsciseLabelSerie("Serie4");  
+		$DataSet->AddPoint($s_Acronimo,"xSerie");  
+		$DataSet->SetAbsciseLabelSerie("xSerie");  
 				
 		for ($i = 0; $i < count($aCDS); $i++) {
 			$sCDS = $aCDS[$i];   	
@@ -418,13 +465,14 @@ function ufIndicadoresCumplimiento(){
 					$Test->setFontProperties("Fonts/tahoma.ttf",10);  
 					$Test->drawTitle(0,22,"Comparativa por CDS por Mes",50,50,50,400);  
 					$Test->Render( "radar.png");  	
-	
+					unset($Test);
 					$sCharts= $sCharts . '<center><img src="radar.png" border=1/></center><br /> <br />';	    
 	}    
 		global $Tpl;
 		$Tpl->Setvar("vGrafica",$sCharts);	
 		unset($aCDS);
 	    unset($$sCDS);
+	    
 }
 
 

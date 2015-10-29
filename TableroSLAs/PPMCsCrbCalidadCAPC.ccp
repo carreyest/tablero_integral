@@ -172,84 +172,84 @@ order by nombre" boundColumn="id_servicio" textColumn="nombre" required="True" c
 					<Features/>
 				</Label>
 				<TextBox id="329" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" name="hallazgo_errores_ort" PathID="mc_info_rs_cr_calidad_capchallazgo_errores_ort" fieldSource="hallazgos_errores_ortogr">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<TextBox id="330" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" name="hallazgo_formato_incorrecto" PathID="mc_info_rs_cr_calidad_capchallazgo_formato_incorrecto" fieldSource="hallazgos_formato_incorrecto">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<TextBox id="331" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" name="hallazgo_falta_vinculo" PathID="mc_info_rs_cr_calidad_capchallazgo_falta_vinculo" fieldSource="hallazgos_falta_vinculo">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<Label id="145" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="sTipoRequerimiento" PathID="mc_info_rs_cr_calidad_capcsTipoRequerimiento">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-<TextBox id="335" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" name="hallazgo_doc_incorrecta" PathID="mc_info_rs_cr_calidad_capchallazgo_doc_incorrecta" fieldSource="hallazgos_doc_incorrecta">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<TextBox id="336" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" name="hallazgo_incumpl_acept" PathID="mc_info_rs_cr_calidad_capchallazgo_incumpl_acept" fieldSource="hallazgos_incumpl_acept">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<TextBox id="337" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" name="defectos_errores_ort" PathID="mc_info_rs_cr_calidad_capcdefectos_errores_ort" fieldSource="defectos_errores_ortogr">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<TextBox id="338" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="defectos_formato_incorrecto" PathID="mc_info_rs_cr_calidad_capcdefectos_formato_incorrecto" fieldSource="defectos_formato_incorrecto">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<TextBox id="339" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" name="defectos_falta_vinculo" PathID="mc_info_rs_cr_calidad_capcdefectos_falta_vinculo" fieldSource="defectos_falta_vinculo">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<TextBox id="340" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" name="defectos_incumpl_acept" PathID="mc_info_rs_cr_calidad_capcdefectos_incumpl_acept" fieldSource="defectos_incumpl_acept">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<TextBox id="341" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" name="defectos_doc_incorrecta" PathID="mc_info_rs_cr_calidad_capcdefectos_doc_incorrecta" fieldSource="defectos_doc_incorrecta">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<Button id="342" urlType="Relative" enableValidation="True" isDefault="False" name="btnCalculaUpdate" operation="Update" PathID="mc_info_rs_cr_calidad_capcbtnCalculaUpdate">
-<Components/>
-<Events>
-<Event name="OnClick" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="343"/>
-</Actions>
-</Event>
-</Events>
-<Attributes/>
-<Features/>
-</Button>
-</Components>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="330" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" name="hallazgo_formato_incorrecto" PathID="mc_info_rs_cr_calidad_capchallazgo_formato_incorrecto" fieldSource="hallazgos_formato_incorrecto">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="331" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" name="hallazgo_falta_vinculo" PathID="mc_info_rs_cr_calidad_capchallazgo_falta_vinculo" fieldSource="hallazgos_falta_vinculo">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<Label id="145" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="sTipoRequerimiento" PathID="mc_info_rs_cr_calidad_capcsTipoRequerimiento">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<TextBox id="335" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" name="hallazgo_doc_incorrecta" PathID="mc_info_rs_cr_calidad_capchallazgo_doc_incorrecta" fieldSource="hallazgos_doc_incorrecta">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="336" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" name="hallazgo_incumpl_acept" PathID="mc_info_rs_cr_calidad_capchallazgo_incumpl_acept" fieldSource="hallazgos_incumpl_acept">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="337" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" name="defectos_errores_ort" PathID="mc_info_rs_cr_calidad_capcdefectos_errores_ort" fieldSource="defectos_errores_ortogr">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="338" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="defectos_formato_incorrecto" PathID="mc_info_rs_cr_calidad_capcdefectos_formato_incorrecto" fieldSource="defectos_formato_incorrecto">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="339" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" name="defectos_falta_vinculo" PathID="mc_info_rs_cr_calidad_capcdefectos_falta_vinculo" fieldSource="defectos_falta_vinculo">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="340" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" name="defectos_incumpl_acept" PathID="mc_info_rs_cr_calidad_capcdefectos_incumpl_acept" fieldSource="defectos_incumpl_acept">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="341" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" name="defectos_doc_incorrecta" PathID="mc_info_rs_cr_calidad_capcdefectos_doc_incorrecta" fieldSource="defectos_doc_incorrecta">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<Button id="342" urlType="Relative" enableValidation="True" isDefault="False" name="btnCalculaUpdate" operation="Update" PathID="mc_info_rs_cr_calidad_capcbtnCalculaUpdate">
+					<Components/>
+					<Events>
+						<Event name="OnClick" type="Server">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="343"/>
+							</Actions>
+						</Event>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
+			</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>
@@ -284,12 +284,12 @@ order by nombre" boundColumn="id_servicio" textColumn="nombre" required="True" c
 			</Events>
 			<TableParameters>
 				<TableParameter id="333" conditionType="Parameter" useIsNull="False" dataType="Integer" field="id" logicOperator="And" orderNumber="1" parameterSource="Id" parameterType="URL" searchConditionType="Equal"/>
-</TableParameters>
+			</TableParameters>
 			<SPParameters/>
 			<SQLParameters/>
 			<JoinTables>
 				<JoinTable id="334" tableName="mc_info_rs_cr_calidad_CAPC"/>
-</JoinTables>
+			</JoinTables>
 			<JoinLinks/>
 			<Fields>
 			</Fields>
@@ -326,33 +326,31 @@ order by nombre" boundColumn="id_servicio" textColumn="nombre" required="True" c
 			<Attributes/>
 			<Features/>
 		</Link>
-		<Link id="129" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkReqFun" PathID="lkReqFun" hrefSource="PPMCsCumpReqFunDetalle.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Cumplimiento de&lt;br&gt;            Requisitos Funcionales','textSourceDB':'','hrefSource':'PPMCsCumpReqFunDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'1':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'2':{'sourceType':'URL','parameterSource':'1','parameterName':'src'},'3':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'4':{'sourceType':'Expression','parameterSource':'1','parameterName':'src'},'length':5,'objectType':'linkParameters'}}"><Components/>
+		<Link id="344" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkCumplimiento" PathID="lkCumplimiento" hrefSource="SLAsCAPCReqFunDetalle.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Cumplimiento en&lt;br&gt;      Requisitos Funcionales','textSourceDB':'','hrefSource':'SLAsCAPCReqFunDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'1':{'sourceType':'URL','parameterSource':'sID','parameterName':'Id'},'length':9,'objectType':'linkParameters','2':{'sourceType':'URL','parameterSource':'sID','parameterName':'Id'},'3':{'sourceType':'URL','parameterSource':'sID','parameterName':'Id'},'4':{'sourceType':'URL','parameterSource':'id','parameterName':'sID'},'5':{'sourceType':'URL','parameterSource':'id','parameterName':'sID'},'6':{'sourceType':'URL','parameterSource':'Id','parameterName':'sID'},'7':{'sourceType':'URL','parameterSource':'id','parameterName':'sID'},'8':{'sourceType':'URL','parameterSource':'Id','parameterName':'sID'}}}"><Components/>
 			<Events/>
 			<LinkParameters>
-				<LinkParameter id="130" sourceType="URL" format="yyyy-mm-dd" name="Id" source="Id"/>
-				<LinkParameter id="139" sourceType="Expression" name="src" source="1"/>
+				<LinkParameter id="82" sourceType="URL" format="yyyy-mm-dd" name="sID" source="Id"/>
 			</LinkParameters>
 			<Attributes/>
 			<Features/>
 		</Link>
-		<Link id="135" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkCalidadCod" PathID="lkCalidadCod" hrefSource="PPMCsCrCalCodDetalle.ccp" wizardUseTemplateBlock="False" linkProperties="{&quot;textSource&quot;:&quot;Calidad de Código&quot;,&quot;textSourceDB&quot;:&quot;&quot;,&quot;hrefSource&quot;:&quot;PPMCsCrCalCodDetalle.ccp&quot;,&quot;hrefSourceDB&quot;:&quot;&quot;,&quot;title&quot;:&quot;&quot;,&quot;target&quot;:&quot;&quot;,&quot;name&quot;:&quot;&quot;,&quot;linkParameters&quot;:{&quot;0&quot;:{&quot;sourceType&quot;:&quot;URL&quot;,&quot;parameterSource&quot;:&quot;Id&quot;,&quot;parameterName&quot;:&quot;Id&quot;},&quot;1&quot;:{&quot;sourceType&quot;:&quot;URL&quot;,&quot;parameterSource&quot;:&quot;Id&quot;,&quot;parameterName&quot;:&quot;Id&quot;},&quot;length&quot;:2,&quot;objectType&quot;:&quot;linkParameters&quot;}}">
-			<Components/>
+<Link id="85" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkCalidad" PathID="lkCalidad" hrefSource="SLAsCAPCDetalle.php" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Deductivas por Omisión','textSourceDB':'','hrefSource':'SLAsCAPCDetalle.php','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'1':{'sourceType':'URL','parameterSource':'Id','parameterName':'sID'},'2':{'sourceType':'URL','parameterSource':'Id','parameterName':'sID'},'3':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'length':11,'objectType':'linkParameters','4':{'sourceType':'URL','parameterSource':'sID','parameterName':'id'},'5':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'6':{'sourceType':'URL','parameterSource':'id','parameterName':'id'},'7':{'sourceType':'URL','parameterSource':'Id','parameterName':'id'},'8':{'sourceType':'URL','parameterSource':'id','parameterName':'Id'},'9':{'sourceType':'URL','parameterSource':'id','parameterName':'Id'},'10':{'sourceType':'URL','parameterSource':'Id','parameterName':'id'}}}"><Components/>
 			<Events/>
 			<LinkParameters>
-				<LinkParameter id="136" sourceType="URL" format="yyyy-mm-dd" name="Id" source="Id"/>
+				<LinkParameter id="347" sourceType="URL" format="yyyy-mm-dd" name="id" source="Id"/>
 			</LinkParameters>
 			<Attributes/>
 			<Features/>
 		</Link>
-		<Link id="137" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="Link1" PathID="Link1" hrefSource="PPMCsDefFugDetalle.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Defectos Fugados a Producción','textSourceDB':'','hrefSource':'PPMCsDefFugDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'length':1,'objectType':'linkParameters'}}"><Components/>
+<Link id="89" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkRetraso" PathID="lkRetraso" hrefSource="SLAsCAPCRetEnt.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Retraso en entregables','textSourceDB':'','hrefSource':'SLAsCAPCRetEnt.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'1':{'sourceType':'URL','parameterSource':'sID','parameterName':'Id'},'2':{'sourceType':'URL','parameterSource':'sID','parameterName':'Id'},'length':8,'objectType':'linkParameters','3':{'sourceType':'URL','parameterSource':'sID','parameterName':'id'},'4':{'sourceType':'URL','parameterSource':'id','parameterName':'Id'},'5':{'sourceType':'URL','parameterSource':'Id','parameterName':'id'},'6':{'sourceType':'URL','parameterSource':'id','parameterName':'id'},'7':{'sourceType':'URL','parameterSource':'Id','parameterName':'id'}}}"><Components/>
 			<Events/>
 			<LinkParameters>
-				<LinkParameter id="138" sourceType="URL" format="yyyy-mm-dd" name="Id" source="Id"/>
+				<LinkParameter id="350" sourceType="URL" format="yyyy-mm-dd" name="id" source="Id"/>
 			</LinkParameters>
 			<Attributes/>
 			<Features/>
 		</Link>
-	</Components>
+</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="PPMCsCrbCalidadCAPC_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="PPMCsCrbCalidadCAPC.php" forShow="True" url="PPMCsCrbCalidadCAPC.php" comment="//" codePage="windows-1252"/>

@@ -276,7 +276,7 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
     public $Sorter_Observaciones;
 //End Variables
 
-//Class_Initialize Event @3-FFB02B3D
+//Class_Initialize Event @3-0E885D8E
     function clsGridmc_c_ServContractual_mc_c($RelativePath, & $Parent)
     {
         global $FileName;
@@ -342,6 +342,8 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
         $this->Img_CUMPL_REQ_FUN->Page = "SLAsCAPCReqFunDetalle.php";
         $this->DetalleCalidad = new clsControl(ccsLabel, "DetalleCalidad", "DetalleCalidad", ccsText, "", CCGetRequestParam("DetalleCalidad", ccsGet, NULL), $this);
         $this->Obs_AP = new clsControl(ccsLabel, "Obs_AP", "Obs_AP", ccsText, "", CCGetRequestParam("Obs_AP", ccsGet, NULL), $this);
+        $this->rf_obs = new clsControl(ccsLabel, "rf_obs", "rf_obs", ccsText, "", CCGetRequestParam("rf_obs", ccsGet, NULL), $this);
+        $this->cal_obs = new clsControl(ccsLabel, "cal_obs", "cal_obs", ccsText, "", CCGetRequestParam("cal_obs", ccsGet, NULL), $this);
         $this->Sorter_mc_c_ServContractual_Descripcion = new clsSorter($this->ComponentName, "Sorter_mc_c_ServContractual_Descripcion", $FileName, $this);
         $this->Sorter_numero = new clsSorter($this->ComponentName, "Sorter_numero", $FileName, $this);
         $this->Sorter_Descripcion = new clsSorter($this->ComponentName, "Sorter_Descripcion", $FileName, $this);
@@ -369,7 +371,7 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
     }
 //End Initialize Method
 
-//Show Method @3-CCBBFD59
+//Show Method @3-955EA46B
     function Show()
     {
         $Tpl = CCGetTemplate($this);
@@ -420,6 +422,8 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
             $this->ControlsVisible["Img_CUMPL_REQ_FUN"] = $this->Img_CUMPL_REQ_FUN->Visible;
             $this->ControlsVisible["DetalleCalidad"] = $this->DetalleCalidad->Visible;
             $this->ControlsVisible["Obs_AP"] = $this->Obs_AP->Visible;
+            $this->ControlsVisible["rf_obs"] = $this->rf_obs->Visible;
+            $this->ControlsVisible["cal_obs"] = $this->cal_obs->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -444,7 +448,6 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
                 $this->DEDUC_OMISION->SetValue($this->DataSource->DEDUC_OMISION->GetValue());
                 $this->DEDUC_OMISION->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
                 $this->DEDUC_OMISION->Parameters = CCAddParam($this->DEDUC_OMISION->Parameters, "id", $this->DataSource->f("id"));
-                $this->DEDUC_OMISION->Parameters = CCAddParam($this->DEDUC_OMISION->Parameters, "s_numero", $this->DataSource->f("numero"));
                 $this->RETR_ENTREGABLE->SetValue($this->DataSource->RETR_ENTREGABLE->GetValue());
                 $this->RETR_ENTREGABLE->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
                 $this->RETR_ENTREGABLE->Parameters = CCAddParam($this->RETR_ENTREGABLE->Parameters, "s_numero", $this->DataSource->f("numero"));
@@ -474,6 +477,8 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
                 $this->Img_CUMPL_REQ_FUN->Parameters = CCAddParam($this->Img_CUMPL_REQ_FUN->Parameters, "s_numero", $this->DataSource->f("numero"));
                 $this->DetalleCalidad->SetValue($this->DataSource->DetalleCalidad->GetValue());
                 $this->Obs_AP->SetValue($this->DataSource->Obs_AP->GetValue());
+                $this->rf_obs->SetValue($this->DataSource->rf_obs->GetValue());
+                $this->cal_obs->SetValue($this->DataSource->cal_obs->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -496,6 +501,8 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
                 $this->Img_CUMPL_REQ_FUN->Show();
                 $this->DetalleCalidad->Show();
                 $this->Obs_AP->Show();
+                $this->rf_obs->Show();
+                $this->cal_obs->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -537,7 +544,7 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
     }
 //End Show Method
 
-//GetErrors Method @3-E82AB2AF
+//GetErrors Method @3-0799AAAD
     function GetErrors()
     {
         $errors = "";
@@ -560,6 +567,8 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
         $errors = ComposeStrings($errors, $this->Img_CUMPL_REQ_FUN->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DetalleCalidad->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Obs_AP->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->rf_obs->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->cal_obs->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -570,7 +579,7 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
 
 class clsmc_c_ServContractual_mc_cDataSource extends clsDBcnDisenio {  //mc_c_ServContractual_mc_cDataSource Class @3-51953D32
 
-//DataSource Variables @3-4D8457B8
+//DataSource Variables @3-3E829BD3
     public $Parent = "";
     public $CCSEvents = "";
     public $CCSEventResult;
@@ -595,9 +604,11 @@ class clsmc_c_ServContractual_mc_cDataSource extends clsDBcnDisenio {  //mc_c_Se
     public $CUMPL_REQ_FUN;
     public $DetalleCalidad;
     public $Obs_AP;
+    public $rf_obs;
+    public $cal_obs;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @3-967C63CE
+//DataSourceClass_Initialize Event @3-D1304724
     function clsmc_c_ServContractual_mc_cDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -628,6 +639,10 @@ class clsmc_c_ServContractual_mc_cDataSource extends clsDBcnDisenio {  //mc_c_Se
         $this->DetalleCalidad = new clsField("DetalleCalidad", ccsText, "");
         
         $this->Obs_AP = new clsField("Obs_AP", ccsText, "");
+        
+        $this->rf_obs = new clsField("rf_obs", ccsText, "");
+        
+        $this->cal_obs = new clsField("cal_obs", ccsText, "");
         
 
     }
@@ -662,15 +677,18 @@ class clsmc_c_ServContractual_mc_cDataSource extends clsDBcnDisenio {  //mc_c_Se
     }
 //End Prepare Method
 
-//Open Method @3-3FA2FF6C
+//Open Method @3-BD89A806
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->CountSQL = "SELECT COUNT(*) FROM (SELECT distinct mc_calificacion_capc.*, mc_c_ServContractual.Descripcion AS mc_c_ServContractual_Descripcion ,\n" .
-        "	a.Observaciones Obs_Ap, DatosPPMC.Name\n" .
+        "	a.Observaciones Obs_Ap, DatosPPMC.Name,  rf.Observaciones obs_rf, cal.Observaciones obs_cal\n" .
         "FROM mc_calificacion_capc \n" .
         "	left  JOIN mc_c_ServContractual ON mc_calificacion_capc.id_serviciocont = mc_c_ServContractual.Id\n" .
         "		left join mc_info_capc_ap a on a.id =  mc_calificacion_capc.id \n" .
+        "		left join mc_info_capc_cr_RF rf on rf .Id = mc_calificacion_capc.id \n" .
+        "		left join mc_info_rs_cr_calidad_CAPC cal on cal.id = mc_calificacion_capc.id \n" .
+        "\n" .
         "		left join (\n" .
         "SELECT DISTINCT  REQUEST_ID ID_PPMC, NAME, SERVICIO_NEGOCIO, TIPO_REQUERIMIENTO, FECHA_CARGA, 0 PPMC_Relacionado, slo\n" .
         "	FROM PPMC_RO_AS \n" .
@@ -689,10 +707,13 @@ class clsmc_c_ServContractual_mc_cDataSource extends clsDBcnDisenio {  //mc_c_Se
         "AND (anio = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " or " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "=0)\n" .
         "AND (id_serviciocont = " . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . "  or 0=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " )) cnt";
         $this->SQL = "SELECT distinct mc_calificacion_capc.*, mc_c_ServContractual.Descripcion AS mc_c_ServContractual_Descripcion ,\n" .
-        "	a.Observaciones Obs_Ap, DatosPPMC.Name\n" .
+        "	a.Observaciones Obs_Ap, DatosPPMC.Name,  rf.Observaciones obs_rf, cal.Observaciones obs_cal\n" .
         "FROM mc_calificacion_capc \n" .
         "	left  JOIN mc_c_ServContractual ON mc_calificacion_capc.id_serviciocont = mc_c_ServContractual.Id\n" .
         "		left join mc_info_capc_ap a on a.id =  mc_calificacion_capc.id \n" .
+        "		left join mc_info_capc_cr_RF rf on rf .Id = mc_calificacion_capc.id \n" .
+        "		left join mc_info_rs_cr_calidad_CAPC cal on cal.id = mc_calificacion_capc.id \n" .
+        "\n" .
         "		left join (\n" .
         "SELECT DISTINCT  REQUEST_ID ID_PPMC, NAME, SERVICIO_NEGOCIO, TIPO_REQUERIMIENTO, FECHA_CARGA, 0 PPMC_Relacionado, slo\n" .
         "	FROM PPMC_RO_AS \n" .
@@ -721,7 +742,7 @@ class clsmc_c_ServContractual_mc_cDataSource extends clsDBcnDisenio {  //mc_c_Se
     }
 //End Open Method
 
-//SetValues Method @3-DA2C800E
+//SetValues Method @3-C64B6656
     function SetValues()
     {
         $this->mc_c_ServContractual_Descripcion->SetDBValue($this->f("mc_c_ServContractual_Descripcion"));
@@ -737,6 +758,8 @@ class clsmc_c_ServContractual_mc_cDataSource extends clsDBcnDisenio {  //mc_c_Se
         $this->CUMPL_REQ_FUN->SetDBValue($this->f("CUMPL_REQ_FUN"));
         $this->DetalleCalidad->SetDBValue($this->f("DetalleCalidad"));
         $this->Obs_AP->SetDBValue($this->f("Obs_Ap"));
+        $this->rf_obs->SetDBValue($this->f("obs_rf"));
+        $this->cal_obs->SetDBValue($this->f("obs_cal"));
     }
 //End SetValues Method
 

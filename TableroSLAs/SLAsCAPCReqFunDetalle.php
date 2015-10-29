@@ -753,7 +753,7 @@ include_once("./SLAsCAPCReqFunDetalle_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-B2097140
+//Initialize Objects @1-FDCA0402
 $DBcnDisenio = new clsDBcnDisenio();
 $MainPage->Connections["cnDisenio"] = & $DBcnDisenio;
 $Attributes = new clsAttributes("page:");
@@ -764,8 +764,27 @@ $MainPage->Attributes = & $Attributes;
 $Header = new clsHeader("", "Header", $MainPage);
 $Header->Initialize();
 $mc_info_rs_cr_RF = new clsRecordmc_info_rs_cr_RF("", $MainPage);
+$lkAnterior = new clsControl(ccsLink, "lkAnterior", "lkAnterior", ccsText, "", CCGetRequestParam("lkAnterior", ccsGet, NULL), $MainPage);
+$lkAnterior->Page = "SLAsCAPCReqFunDetalle.php";
+$lkSiguiente = new clsControl(ccsLink, "lkSiguiente", "lkSiguiente", ccsText, "", CCGetRequestParam("lkSiguiente", ccsGet, NULL), $MainPage);
+$lkSiguiente->Page = "SLAsCAPCReqFunDetalle.php";
+$lkCalidad = new clsControl(ccsLink, "lkCalidad", "lkCalidad", ccsText, "", CCGetRequestParam("lkCalidad", ccsGet, NULL), $MainPage);
+$lkCalidad->Parameters = CCAddParam($lkCalidad->Parameters, "Id", CCGetFromGet("sID", NULL));
+$lkCalidad->Page = "PPMCsCrbCalidadCAPC.php";
+$lkDeductiva = new clsControl(ccsLink, "lkDeductiva", "lkDeductiva", ccsText, "", CCGetRequestParam("lkDeductiva", ccsGet, NULL), $MainPage);
+$lkDeductiva->Parameters = CCAddParam($lkDeductiva->Parameters, "id", CCGetFromGet("sID", NULL));
+$lkDeductiva->Parameters = CCAddParam($lkDeductiva->Parameters, "Id", CCGetFromGet("Id", NULL));
+$lkDeductiva->Page = "SLAsCAPCDetalle.php";
+$lkRetraso = new clsControl(ccsLink, "lkRetraso", "lkRetraso", ccsText, "", CCGetRequestParam("lkRetraso", ccsGet, NULL), $MainPage);
+$lkRetraso->Parameters = CCAddParam($lkRetraso->Parameters, "id", CCGetFromGet("sID", NULL));
+$lkRetraso->Page = "SLAsCAPCRetEnt.php";
 $MainPage->Header = & $Header;
 $MainPage->mc_info_rs_cr_RF = & $mc_info_rs_cr_RF;
+$MainPage->lkAnterior = & $lkAnterior;
+$MainPage->lkSiguiente = & $lkSiguiente;
+$MainPage->lkCalidad = & $lkCalidad;
+$MainPage->lkDeductiva = & $lkDeductiva;
+$MainPage->lkRetraso = & $lkRetraso;
 $mc_info_rs_cr_RF->Initialize();
 $ScriptIncludes = "";
 $SList = explode("|", $Scripts);
@@ -819,9 +838,14 @@ if($Redirect)
 }
 //End Go to destination page
 
-//Show Page @1-AA313BF9
+//Show Page @1-EF54CC53
 $Header->Show();
 $mc_info_rs_cr_RF->Show();
+$lkAnterior->Show();
+$lkSiguiente->Show();
+$lkCalidad->Show();
+$lkDeductiva->Show();
+$lkRetraso->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);

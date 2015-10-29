@@ -95,10 +95,15 @@ function grdSLAsCAPC_BeforeShowRow(& $sender)
 //	$db->query("SELECT att.Activo , m.Acronimo  FROM mc_c_metrica m LEFT JOIN mc_metrica_atributo att " .
 // 				" ON att.id_ver_metrica = m.id_ver_metrica  AND att.nombre = 'Aplica_Servicio' AND valor=" . $grdSLAsCAPC->DataSource->f("IdServCont") .
 // 				" where  Acronimo is not null");
+//	$db->query("SELECT att.Activo , m.Acronimo  FROM mc_c_metrica m LEFT JOIN mc_metrica_atributo att " .
+// 				" ON att.id_ver_metrica = m.id_ver_metrica  AND att.nombre = 'Aplica_Servicio' AND valor=" . $grdSLAsCAPC->DataSource->f("id_serviciocont") .
+// 				" where  Acronimo is not null and Acronimo not in ('CAL_COD','DEF_FUG_AMB_PROD','Inc_TiempoAsignacion','Inc_TiempoSolucion','EFIC_PRESUP')");
 	$db->query("SELECT att.Activo , m.Acronimo  FROM mc_c_metrica m LEFT JOIN mc_metrica_atributo att " .
- 				" ON att.id_ver_metrica = m.id_ver_metrica  AND att.nombre = 'Aplica_Servicio' AND valor=" . $grdSLAsCAPC->DataSource->f("IdServCont") .
+ 				" ON att.id_ver_metrica = m.id_ver_metrica  AND att.nombre = 'Aplica_Servicio' AND valor in (select idOld from mc_c_ServContractual where Aplica='CAPC') " .
  				" where  Acronimo is not null and Acronimo not in ('CAL_COD','DEF_FUG_AMB_PROD','Inc_TiempoAsignacion','Inc_TiempoSolucion','EFIC_PRESUP')");
 
+
+//	$db->query("select EsSLA, Acronimo from mc_c_metrica where id_ver_metrica in (1,2,3,5,6,13)");	
 
 	while($db->next_record()){
 		$sAcronimo= $db->f(1);
@@ -112,25 +117,46 @@ function grdSLAsCAPC_BeforeShowRow(& $sender)
 			$grdSLAsCAPC->$sImg->SetValue("images/blank_SLA.png");
 			if (isset($grdSLAsCAPC->$sImg)){
 				if($grdSLAsCAPC->DataSource->f($db->f(1)) != ""){
-					$grdSLAsCAPC->$sAcronimo->SetValue($grdSLAsCAPC->$sCumplen->GetValue() . "/" . $grdSLAsCAPC->$sTotal->GetValue() . " = " . $grdSLAsCAPC->$sAcronimo->GetValue() . "%");
-					if($grdSLAsCAPC->DataSource->f($db->f(1))<$grdSLAsCAPC->DataSource->f($sMeta)){
+					if($grdSLAsCAPC->$sCumplen->GetValue() != 0) {
+						$valPct=round($grdSLAsCAPC->$sCumplen->GetValue()/$grdSLAsCAPC->$sTotal->GetValue(),2)*100;
+					} else{
+					    $valPct=0;
+					}
+					$grdSLAsCAPC->$sAcronimo->SetValue($grdSLAsCAPC->$sCumplen->GetValue() . "/" . $grdSLAsCAPC->$sTotal->GetValue() . " = " . $valPct . "%");
+					//if($grdSLAsCAPC->DataSource->f($db->f(1))<$grdSLAsCAPC->DataSource->f($sMeta)){
+					if($valPct<$grdSLAsCAPC->DataSource->f($sMeta)){
 						$grdSLAsCAPC->$sImg->SetValue("images/down.png");
 					} else {
 						$grdSLAsCAPC->$sImg->SetValue("images/up.png");
 					}
 				} else {
-					$grdSLAsCAPC->$sImg->SetValue("images/left.png");
+					$grdSLAsCAPC->$sImg->SetValue("images/left.png");					
 					$grdSLAsCAPC->$sAcronimo->SetValue("Sin Datos<br>para Medir");
+
 				}
 			}
 		} else {
-			//$grdTableroSLAs->$sAcronimo->SetValue("No Aplica para<br>este servicio");
-			$grdSLAsCAPC->$sAcronimo->SetValue("");
+			$grdSLAsCAPC->$sAcronimo->SetValue("No Aplica para<br>este servicio");
+			//$grdSLAsCAPC->$sAcronimo->SetValue("");
 			$grdSLAsCAPC->$sImg->SetValue("images/blank_SLA.png");
 		}
+		
+		if( 
+		($grdSLAsCAPC->DataSource->f("id_serviciocont") <> 6 ) AND ($sAcronimo=='DEDUC_OMISION') OR 
+		($grdSLAsCAPC->DataSource->f("id_serviciocont") == 9 ) AND ($sAcronimo=='CUMPL_REQ_FUNC')
+		) {
+			$grdSLAsCAPC->$sAcronimo->SetValue("No Aplica para<br>este servicio");
+			//$grdSLAsCAPC->$sAcronimo->SetValue("");
+			$grdSLAsCAPC->$sImg->SetValue("images/blank_SLA.png");
+			
+		}
+		
+		
 	}
 	$db->close();
-	
+
+
+ 	
 // -------------------------
 //End Custom Code
 

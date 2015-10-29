@@ -827,7 +827,7 @@ class clsgrdSLAsCAPCDataSource extends clsDBcnDisenio {  //grdSLAsCAPCDataSource
     }
 //End Prepare Method
 
-//Open Method @412-4280B0B9
+//Open Method @412-512DDECC
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -847,19 +847,28 @@ class clsgrdSLAsCAPCDataSource extends clsDBcnDisenio {  //grdSLAsCAPCDataSource
         "	case when count(cast(CUMPL_REQ_FUN as int)) >0 then sum(cast(CUMPL_REQ_FUN as int)) /count(cast(CUMPL_REQ_FUN as int)) *100 else NULL end as CUMPL_REQ_FUN,\n" .
         "	(Select Meta from mc_c_metrica where acronimo='CUMPL_REQ_FUNC') as Meta_CUMPL_REQ_FUNC,\n" .
         "	max(c.Deductiva) Deductiva,\n" .
+        "	count(cast(CALIDAD_PROD_TERM as int)) as TotCALIDAD_PROD_TERM,\n" .
+        "	sum(cast(CALIDAD_PROD_TERM as int)) as CumplenCALIDAD_PROD_TERM,\n" .
         "	max(cast(c.CALIDAD_PROD_TERM as int)) CALIDAD_PROD_TERM ,\n" .
         "	(Select Meta from mc_c_metrica where acronimo='CALIDAD_PROD_TERM') as Meta_CALIDAD_PROD_TERM,\n" .
         "	sum(c.ReportesCompletos) ReportesCompletos,\n" .
         "	sum(c.SLAsNoReportados) SLAsNoReportados,\n" .
+        "	count(cast(c.DEDUC_OMISION as int)) as TotDEDUC_OMISION,\n" .
+        "	sum(cast(c.DEDUC_OMISION as int)) as CumplenDEDUC_OMISION,\n" .
         "	max(cast(c.DEDUC_OMISION as int)) DEDUC_OMISION,\n" .
         "	sum(cast(c.UnidadesActuales as float)) UnidadesActuales,\n" .
         "	sum(cast(c.UnidadesAnteriores as float)) UnidadesAnteriores,  \n" .
         "	max(cast(c.EFIC_PRESUP as int)) EFIC_PRESUP,\n" .
         "	avg(cast(c.DiasPlaneados as int)) DiasPlaneados,\n" .
         "	avg(cast(c.DiasReales as int)) DiasReales,\n" .
+        "	count(cast(c.RETR_ENTREGABLE as int)) as TotRETR_ENTREGABLE,\n" .
+        "	sum(cast(c.RETR_ENTREGABLE as int)) as CumplenRETR_ENTREGABLE,\n" .
         "	max(cast(c.RETR_ENTREGABLE as int)) RETR_ENTREGABLE,\n" .
+        "	--case when count(cast(c.RETR_ENTREGABLE as int)) >0 then sum(cast(c.RETR_ENTREGABLE as int)) /count(cast(c.RETR_ENTREGABLE as int)) *100 else NULL end as RETR_ENTREGABLE,\n" .
+        "	(Select Meta from mc_c_metrica where acronimo='RETR_ENTREGABLE') as Meta_RETR_ENTREGABLE,\n" .
         "	v.id IdServCont\n" .
-        "	, avg(c.pctcalidad) pctcalidad\n" .
+        "	, avg(c.pctcalidad) pctcalidad,\n" .
+        "	c.id_serviciocont\n" .
         "from dbo.mc_c_ServContractual v \n" .
         "     left join mc_calificacion_CAPC c \n" .
         "	on v.id = c.id_serviciocont \n" .
@@ -870,7 +879,8 @@ class clsgrdSLAsCAPCDataSource extends clsDBcnDisenio {  //grdSLAsCAPCDataSource
         "group by 	\n" .
         "	v.Descripcion ,\n" .
         "	v.id ,\n" .
-        "	c.agrupador) cnt";
+        "	c.agrupador,\n" .
+        "	c.id_serviciocont) cnt";
         $this->SQL = "select \n" .
         "	c.agrupador,\n" .
         "	v.Descripcion , \n" .
@@ -887,19 +897,28 @@ class clsgrdSLAsCAPCDataSource extends clsDBcnDisenio {  //grdSLAsCAPCDataSource
         "	case when count(cast(CUMPL_REQ_FUN as int)) >0 then sum(cast(CUMPL_REQ_FUN as int)) /count(cast(CUMPL_REQ_FUN as int)) *100 else NULL end as CUMPL_REQ_FUN,\n" .
         "	(Select Meta from mc_c_metrica where acronimo='CUMPL_REQ_FUNC') as Meta_CUMPL_REQ_FUNC,\n" .
         "	max(c.Deductiva) Deductiva,\n" .
+        "	count(cast(CALIDAD_PROD_TERM as int)) as TotCALIDAD_PROD_TERM,\n" .
+        "	sum(cast(CALIDAD_PROD_TERM as int)) as CumplenCALIDAD_PROD_TERM,\n" .
         "	max(cast(c.CALIDAD_PROD_TERM as int)) CALIDAD_PROD_TERM ,\n" .
         "	(Select Meta from mc_c_metrica where acronimo='CALIDAD_PROD_TERM') as Meta_CALIDAD_PROD_TERM,\n" .
         "	sum(c.ReportesCompletos) ReportesCompletos,\n" .
         "	sum(c.SLAsNoReportados) SLAsNoReportados,\n" .
+        "	count(cast(c.DEDUC_OMISION as int)) as TotDEDUC_OMISION,\n" .
+        "	sum(cast(c.DEDUC_OMISION as int)) as CumplenDEDUC_OMISION,\n" .
         "	max(cast(c.DEDUC_OMISION as int)) DEDUC_OMISION,\n" .
         "	sum(cast(c.UnidadesActuales as float)) UnidadesActuales,\n" .
         "	sum(cast(c.UnidadesAnteriores as float)) UnidadesAnteriores,  \n" .
         "	max(cast(c.EFIC_PRESUP as int)) EFIC_PRESUP,\n" .
         "	avg(cast(c.DiasPlaneados as int)) DiasPlaneados,\n" .
         "	avg(cast(c.DiasReales as int)) DiasReales,\n" .
+        "	count(cast(c.RETR_ENTREGABLE as int)) as TotRETR_ENTREGABLE,\n" .
+        "	sum(cast(c.RETR_ENTREGABLE as int)) as CumplenRETR_ENTREGABLE,\n" .
         "	max(cast(c.RETR_ENTREGABLE as int)) RETR_ENTREGABLE,\n" .
+        "	--case when count(cast(c.RETR_ENTREGABLE as int)) >0 then sum(cast(c.RETR_ENTREGABLE as int)) /count(cast(c.RETR_ENTREGABLE as int)) *100 else NULL end as RETR_ENTREGABLE,\n" .
+        "	(Select Meta from mc_c_metrica where acronimo='RETR_ENTREGABLE') as Meta_RETR_ENTREGABLE,\n" .
         "	v.id IdServCont\n" .
-        "	, avg(c.pctcalidad) pctcalidad\n" .
+        "	, avg(c.pctcalidad) pctcalidad,\n" .
+        "	c.id_serviciocont\n" .
         "from dbo.mc_c_ServContractual v \n" .
         "     left join mc_calificacion_CAPC c \n" .
         "	on v.id = c.id_serviciocont \n" .
@@ -910,7 +929,8 @@ class clsgrdSLAsCAPCDataSource extends clsDBcnDisenio {  //grdSLAsCAPCDataSource
         "group by 	\n" .
         "	v.Descripcion ,\n" .
         "	v.id ,\n" .
-        "	c.agrupador";
+        "	c.agrupador,\n" .
+        "	c.id_serviciocont";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);

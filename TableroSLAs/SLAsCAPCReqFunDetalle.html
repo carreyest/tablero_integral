@@ -260,15 +260,38 @@ jQuery(function ($) {
 </head>
 <body>
 <p>{Header} </p>
+<p>
+<table border="0" cellspacing="0" cellpadding="0" width="90%">
+  <tr>
+    <td></td> 
+    <td><a href="{lkAnterior_Src}" id="lkAnterior">{lkAnterior}</a></td> 
+    <td style="TEXT-ALIGN: right"><a href="{lkSiguiente_Src}" id="lkSiguiente">{lkSiguiente}</a></td>
+  </tr>
+ 
+  <tr>
+    <td colspan="3"></td>
+  </tr>
+</table>
+</p>
+<p>
+<table width="100%">
+  <tr style="BACKGROUND-COLOR: rgb(218,224,228)">
+    <td><a href="{lkCalidad_Src}" id="lkCalidad">Calidad de<br>
+      Productos Terminados</a></td> 
+    <td><a href="{lkDeductiva_Src}" id="lkDeductiva">Deductivas por Omisión</a></td> 
+    <td><a href="{lkRetraso_Src}" id="lkRetraso">Retraso en entregables</a></td>
+  </tr>
+</table>
+</p>
 <p></p>
 <!-- BEGIN Record mc_info_rs_cr_RF -->
 <p><br>
 </p>
 <form id="mc_info_rs_cr_RF" method="post" name="{HTMLFormName}" action="{Action}">
-  <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+  <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td valign="top">
-        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+        <table class="Header" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
             <td class="th"><strong>Cumplimiento de Requisitos Funcionales</strong>{lReportado}</td> 
@@ -307,17 +330,17 @@ jQuery(function ($) {
  
           <tr class="Controls">
             <td class="th"><label for="mc_info_rs_cr_RFPuntuacion">Puntuacion Total</label></td> 
-            <td><input type="text" id="mc_info_rs_cr_RFPuntuacion" maxlength="8" size="8" value="{Puntuacion}" name="{Puntuacion_Name}"></td>
+            <td><input type="text" id="mc_info_rs_cr_RFPuntuacion" value="{Puntuacion}" maxlength="8" size="8" name="{Puntuacion_Name}"></td>
           </tr>
  
           <tr class="Controls">
             <td class="th"><label for="mc_info_rs_cr_RFURLRepositorio">URL Repositorio</label></td> 
-            <td><input type="text" id="mc_info_rs_cr_RFURLRepositorio" maxlength="700" size="75" value="{URLRepositorio}" name="{URLRepositorio_Name}"></td>
+            <td><input type="text" id="mc_info_rs_cr_RFURLRepositorio" value="{URLRepositorio}" maxlength="700" size="75" name="{URLRepositorio_Name}"></td>
           </tr>
  
           <tr class="Controls">
             <td class="th"><label for="mc_info_rs_cr_RFFechaSubida">Fecha de Liberación</label></td> 
-            <td><input type="text" onblur="muestraCheck()" id="mc_info_rs_cr_RFFechaSubida" maxlength="100" size="10" value="{FechaSubida}" name="{FechaSubida_Name}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            <td><input type="text" onblur="muestraCheck()" id="mc_info_rs_cr_RFFechaSubida" value="{FechaSubida}" maxlength="100" size="10" name="{FechaSubida_Name}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
               <div id="ListaPDF">
                 <label for="mc_info_rs_cr_RFListaenPDF" style="display: inline;">Lista de Requisitos en PDF </label><input type="checkbox" id="mc_info_rs_cr_RFListaenPDF" value="1" name="{ListaenPDF_Name}" {ListaenPDF}>
               </div>
@@ -351,8 +374,8 @@ jQuery(function ($) {
  
           <tr class="Bottom">
             <td style="TEXT-ALIGN: right" colspan="2">
-              <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_info_rs_cr_RFButton_Insert" class="Button" alt="Agregar" value="Guardar" name="{Button_Name}"><!-- END Button Button_Insert -->
-              <!-- BEGIN Button Button_Update --><input type="submit" id="mc_info_rs_cr_RFButton_Update" class="Button" alt="Enviar" value="Guardar" name="{Button_Name}" size="20"><!-- END Button Button_Update --><input type="hidden" id="mc_info_rs_cr_RFId_PPMC" value="{Id_PPMC}" name="{Id_PPMC_Name}"><input type="hidden" id="mc_info_rs_cr_RFId" value="{Id}" name="{Id_Name}"><input type="hidden" id="mc_info_rs_cr_RFID_Estimacion" value="{ID_Estimacion}" name="{ID_Estimacion_Name}"><input type="hidden" id="mc_info_rs_cr_RFUsuarioUltMod" value="{UsuarioUltMod}" name="{UsuarioUltMod_Name}"><input type="hidden" id="mc_info_rs_cr_RFFechaUltMod" value="{FechaUltMod}" name="{FechaUltMod_Name}"></td>
+              <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_info_rs_cr_RFButton_Insert" class="Button" value="Guardar" alt="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+              <!-- BEGIN Button Button_Update --><input type="submit" id="mc_info_rs_cr_RFButton_Update" class="Button" value="Guardar" alt="Enviar" name="{Button_Name}" size="20"><!-- END Button Button_Update --><input type="hidden" id="mc_info_rs_cr_RFId_PPMC" value="{Id_PPMC}" name="{Id_PPMC_Name}"><input type="hidden" id="mc_info_rs_cr_RFId" value="{Id}" name="{Id_Name}"><input type="hidden" id="mc_info_rs_cr_RFID_Estimacion" value="{ID_Estimacion}" name="{ID_Estimacion_Name}"><input type="hidden" id="mc_info_rs_cr_RFUsuarioUltMod" value="{UsuarioUltMod}" name="{UsuarioUltMod_Name}"><input type="hidden" id="mc_info_rs_cr_RFFechaUltMod" value="{FechaUltMod}" name="{FechaUltMod_Name}"></td>
           </tr>
         </table>
       </td>

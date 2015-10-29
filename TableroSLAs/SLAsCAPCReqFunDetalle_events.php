@@ -140,7 +140,7 @@ function mc_info_rs_cr_RF_BeforeShow(& $sender)
     	}
     }
     //se trae la información general del requerimiento
-    $sql = 'SELECT id_serviciocont, id_servicio_negoico, id_tipo, idestimacion, mc.descripcion NombreProyecto,  ' .
+    $sql = 'SELECT id_serviciocont, id_servicio_negoico, id_tipo, idestimacion, TipoMedicion, mc.descripcion NombreProyecto,  ' .
     	' sc.Descripcion  ServContractual, sn.nombre ServNegocio, t.Descripcion TipoPPMC ' .
 		' FROM mc_calificacion_CAPC mc  inner join mc_c_servcontractual sc on sc.id = mc.id_serviciocont  ' .
 		' 		left  join mc_c_servicio   sn on sn.id_servicio   = mc.id_servicio_negoico and sn.id_tipo_servicio =2  ' .
@@ -152,10 +152,17 @@ function mc_info_rs_cr_RF_BeforeShow(& $sender)
 			$mc_info_rs_cr_RF->ID_Estimacion->SetValue($db->f("idestimacion"));
 		}
 		$mc_info_rs_cr_RF->sNombreProyecto->SetValue($db->f("NombreProyecto"));
+		
+		if($db->f("TipoMedicion")!="PC"){
+			$mc_info_rs_cr_RF->Button_Insert->Visible= false;
+    		$mc_info_rs_cr_RF->Button_Update->Visible = false;				
+		}
 	} else {
 		$mc_info_rs_cr_RF->Button_Insert->Visible= false;
     	$mc_info_rs_cr_RF->Button_Update->Visible = false;	
 	}
+
+
     $db->Close();
 // -------------------------
 //End Custom Code
@@ -297,6 +304,28 @@ function Page_BeforeShow(& $sender)
 
 //Custom Code @54-2A29BDB7
 // -------------------------
+    global $lkAnterior;
+    global $lkSiguiente;
+    
+    $aPPMCsAPbIds = unserialize(CCGetSession("aPPMCsAPbIdsCAPC"));
+    $aPPMCsAPbValues = unserialize(CCGetSession("aPPMCsAPbValuesCAPC"));
+
+    if(count($aPPMCsAPbIds)>1){
+    	$iPos=array_search(CCGetParam("sID"),$aPPMCsAPbIds);
+    	if($iPos==0){
+			$lkAnterior->SetLink("SLAsCAPCLista.php?" . CCGetQueryString("QueryString",""));
+			$lkAnterior->SetValue("Lista Requerimientos");
+    	} else {
+    		$lkAnterior->SetValue($aPPMCsAPbValues[$iPos-1]);
+    		$lkAnterior->SetLink("SLAsCAPCReqFunDetalle.php?" . CCAddParam( CCRemoveParam( CCGetQueryString("QueryString","sID"),"ccsForm"),"sID",$aPPMCsAPbIds[$iPos-1]));
+    	}
+    	if($iPos < count($aPPMCsAPbIds)-1){
+    		$lkSiguiente->SetValue($aPPMCsAPbValues[$iPos+1]);
+    		$lkSiguiente->SetLink("SLAsCAPCReqFunDetalle.php?" . CCAddParam( CCRemoveParam( CCGetQueryString("QueryString","sID"),"ccsForm"),"sID",$aPPMCsAPbIds[$iPos+1]));
+    	} else {
+    		$lkSiguiente->SetValue("");
+    	}
+    }
 
 // -------------------------
 //End Custom Code

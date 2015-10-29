@@ -34,7 +34,6 @@ function mc_c_ServContractual_mc_c_BeforeShowRow(& $sender)
 	
 	if($mc_c_ServContractual_mc_c->DataSource->f("TipoMedicion")=="PC"){
 		$mc_c_ServContractual_mc_c->numero->SetLink('SLAsCapcDetalle.php?'. CCAddParam("","id",$mc_c_ServContractual_mc_c->DataSource->f("id")) );
-		$mc_c_ServContractual_mc_c->numero->SetLink('SLAsCapcDetalle.php?'. CCAddParam("","id",$mc_c_ServContractual_mc_c->DataSource->f("id")) );
 	} 
 	
     if($mc_c_ServContractual_mc_c->CALIDAD_PROD_TERM->GetValue()!=""){
@@ -138,17 +137,39 @@ function mc_c_ServContractual_mc_c_BeforeShowRow(& $sender)
 		$mc_c_ServContractual_mc_c->CUMPL_REQ_FUN->SetValue("No&nbsp;Aplica");
 	}
 
-
+ 
 /*
+ 	global $link_HERR_EST_COST;
+ 	global $link_REQ_SERV;
+ 	global $link_CUMPL_REQ_FUN;
+ 	global $link_CALIDAD_PROD_TERM;
+ 	global $link_DEDUC_OMISION;
+ 	global $link_RETR_ENTREGABLE;
+
+
+ 	$link_HERR_EST_COST=$mc_c_ServContractual_mc_c->HERR_EST_COST->GetLink();
+ 	$link_REQ_SERV=$mc_c_ServContractual_mc_c->REQ_SERV->GetLink();
+ 	$link_CUMPL_REQ_FUN=$mc_c_ServContractual_mc_c->CUMPL_REQ_FUN->GetLink();
+ 	$link_CALIDAD_PROD_TERM=$mc_c_ServContractual_mc_c->CALIDAD_PROD_TERM->GetLink();
+ 	$link_DEDUC_OMISION=$mc_c_ServContractual_mc_c->DEDUC_OMISION->GetLink();
+ 	$link_RETR_ENTREGABLE=$mc_c_ServContractual_mc_c->RETR_ENTREGABLE->GetLink();
+
 	if($mc_c_ServContractual_mc_c->DataSource->f("TipoMedicion")=="PC"){
 		$mc_c_ServContractual_mc_c->HERR_EST_COST->SetLink('');
 		$mc_c_ServContractual_mc_c->REQ_SERV->SetLink('');
+		$mc_c_ServContractual_mc_c->CUMPL_REQ_FUN->SetLink($link_CUMPL_REQ_FUN);
+		$mc_c_ServContractual_mc_c->CALIDAD_PROD_TERM->SetLink($link_CALIDAD_PROD_TERM);
+		$mc_c_ServContractual_mc_c->DEDUC_OMISION->SetLink($link_DEDUC_OMISION);
+		$mc_c_ServContractual_mc_c->RETR_ENTREGABLE->SetLink($link_RETR_ENTREGABLE);
+
 	} 
 	else {	
 		$mc_c_ServContractual_mc_c->CUMPL_REQ_FUN->SetLink('');
 		$mc_c_ServContractual_mc_c->CALIDAD_PROD_TERM->SetLink('');
 		$mc_c_ServContractual_mc_c->DEDUC_OMISION->SetLink('');
 		$mc_c_ServContractual_mc_c->RETR_ENTREGABLE->SetLink('');
+		$mc_c_ServContractual_mc_c->HERR_EST_COST->SetLink($link_HERR_EST_COST);
+		$mc_c_ServContractual_mc_c->REQ_SERV->SetLink($link_REQ_SERV);
 
 	}
 */

@@ -1238,7 +1238,7 @@ include_once("./SLAsCAPCRetEnt_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-1FC2758A
+//Initialize Objects @1-625B27F7
 $DBcnDisenio = new clsDBcnDisenio();
 $MainPage->Connections["cnDisenio"] = & $DBcnDisenio;
 $Attributes = new clsAttributes("page:");
@@ -1252,11 +1252,29 @@ $mc_calificacion_capc = new clsRecordmc_calificacion_capc("", $MainPage);
 $mc_info_capc_cr_RE_Artefa = new clsGridmc_info_capc_cr_RE_Artefa("", $MainPage);
 $Panel1 = new clsPanel("Panel1", $MainPage);
 $lErrores = new clsControl(ccsLabel, "lErrores", "lErrores", ccsText, "", CCGetRequestParam("lErrores", ccsGet, NULL), $MainPage);
+$lkAnterior = new clsControl(ccsLink, "lkAnterior", "lkAnterior", ccsText, "", CCGetRequestParam("lkAnterior", ccsGet, NULL), $MainPage);
+$lkAnterior->Page = "SLAsCAPCRetEnt.php";
+$lkSiguiente = new clsControl(ccsLink, "lkSiguiente", "lkSiguiente", ccsText, "", CCGetRequestParam("lkSiguiente", ccsGet, NULL), $MainPage);
+$lkSiguiente->Page = "SLAsCAPCRetEnt.php";
+$lkCumplimiento = new clsControl(ccsLink, "lkCumplimiento", "lkCumplimiento", ccsText, "", CCGetRequestParam("lkCumplimiento", ccsGet, NULL), $MainPage);
+$lkCumplimiento->Parameters = CCAddParam($lkCumplimiento->Parameters, "sID", CCGetFromGet("id", NULL));
+$lkCumplimiento->Page = "SLAsCAPCReqFunDetalle.php";
+$lkCalidad = new clsControl(ccsLink, "lkCalidad", "lkCalidad", ccsText, "", CCGetRequestParam("lkCalidad", ccsGet, NULL), $MainPage);
+$lkCalidad->Parameters = CCAddParam($lkCalidad->Parameters, "Id", CCGetFromGet("id", NULL));
+$lkCalidad->Page = "PPMCsCrbCalidadCAPC.php";
+$lkDeductiva = new clsControl(ccsLink, "lkDeductiva", "lkDeductiva", ccsText, "", CCGetRequestParam("lkDeductiva", ccsGet, NULL), $MainPage);
+$lkDeductiva->Parameters = CCAddParam($lkDeductiva->Parameters, "id", CCGetFromGet("id", NULL));
+$lkDeductiva->Page = "SLAsCAPCDetalle.php";
 $MainPage->Header = & $Header;
 $MainPage->mc_calificacion_capc = & $mc_calificacion_capc;
 $MainPage->mc_info_capc_cr_RE_Artefa = & $mc_info_capc_cr_RE_Artefa;
 $MainPage->Panel1 = & $Panel1;
 $MainPage->lErrores = & $lErrores;
+$MainPage->lkAnterior = & $lkAnterior;
+$MainPage->lkSiguiente = & $lkSiguiente;
+$MainPage->lkCumplimiento = & $lkCumplimiento;
+$MainPage->lkCalidad = & $lkCalidad;
+$MainPage->lkDeductiva = & $lkDeductiva;
 $mc_calificacion_capc->Initialize();
 $mc_info_capc_cr_RE_Artefa->Initialize();
 $ScriptIncludes = "";
@@ -1312,12 +1330,17 @@ if($Redirect)
 }
 //End Go to destination page
 
-//Show Page @1-78CBFDFD
+//Show Page @1-F9E56B12
 $Header->Show();
 $mc_calificacion_capc->Show();
 $mc_info_capc_cr_RE_Artefa->Show();
 $Panel1->Show();
 $lErrores->Show();
+$lkAnterior->Show();
+$lkSiguiente->Show();
+$lkCumplimiento->Show();
+$lkCalidad->Show();
+$lkDeductiva->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);

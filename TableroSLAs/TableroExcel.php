@@ -912,6 +912,10 @@ class clsmc_reporte_nsDataSource extends clsDBcnDisenio {  //mc_reporte_nsDataSo
 
 } //End mc_reporte_nsDataSource Class @5-FCB6E20C
 
+//Include Page implementation @206-1C97D460
+include_once(RelativePath . "/MenuTablero.php");
+//End Include Page implementation
+
 
 
 
@@ -961,7 +965,7 @@ $CCSEvents["BeforeInitialize"] = "Page_BeforeInitialize";
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-CEC9E85E
+//Initialize Objects @1-CA45B6AA
 $DBcnDisenio = new clsDBcnDisenio();
 $MainPage->Connections["cnDisenio"] = & $DBcnDisenio;
 $Attributes = new clsAttributes("page:");
@@ -974,10 +978,13 @@ $Header->Initialize();
 $mc_reporte_ns1 = new clsRecordmc_reporte_ns1("", $MainPage);
 $Panel1 = new clsPanel("Panel1", $MainPage);
 $mc_reporte_ns = new clsRecordmc_reporte_ns("", $MainPage);
+$MenuTablero = new clsMenuTablero("", "MenuTablero", $MainPage);
+$MenuTablero->Initialize();
 $MainPage->Header = & $Header;
 $MainPage->mc_reporte_ns1 = & $mc_reporte_ns1;
 $MainPage->Panel1 = & $Panel1;
 $MainPage->mc_reporte_ns = & $mc_reporte_ns;
+$MainPage->MenuTablero = & $MenuTablero;
 $Panel1->AddComponent("mc_reporte_ns", $mc_reporte_ns);
 $mc_reporte_ns->Initialize();
 $ScriptIncludes = "";
@@ -1013,13 +1020,14 @@ $Attributes->SetValue("pathToRoot", "");
 $Attributes->Show();
 //End Initialize HTML Template
 
-//Execute Components @1-DAB6EDA6
+//Execute Components @1-C4F353DE
+$MenuTablero->Operations();
 $mc_reporte_ns->Operation();
 $mc_reporte_ns1->Operation();
 $Header->Operations();
 //End Execute Components
 
-//Go to destination page @1-B0F33256
+//Go to destination page @1-97060DE0
 if($Redirect)
 {
     $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
@@ -1029,14 +1037,17 @@ if($Redirect)
     unset($Header);
     unset($mc_reporte_ns1);
     unset($mc_reporte_ns);
+    $MenuTablero->Class_Terminate();
+    unset($MenuTablero);
     unset($Tpl);
     exit;
 }
 //End Go to destination page
 
-//Show Page @1-E2DF98F5
+//Show Page @1-63808814
 $Header->Show();
 $mc_reporte_ns1->Show();
+$MenuTablero->Show();
 $Panel1->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
@@ -1045,13 +1056,15 @@ $CCSEventResult = CCGetEvent($CCSEvents, "BeforeOutput", $MainPage);
 if ($CCSEventResult) echo $main_block;
 //End Show Page
 
-//Unload Page @1-D88DAF1F
+//Unload Page @1-401FB66D
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
 $DBcnDisenio->close();
 $Header->Class_Terminate();
 unset($Header);
 unset($mc_reporte_ns1);
 unset($mc_reporte_ns);
+$MenuTablero->Class_Terminate();
+unset($MenuTablero);
 unset($Tpl);
 //End Unload Page
 

@@ -212,6 +212,29 @@ jQuery(function ($) {
 </head>
 <body onload="OcultaSLAs()">
 <p>{Header}</p>
+<p>
+<table width="90%">
+  <tr>
+    <td><a href="{lkAnterior_Src}" id="lkAnterior">{lkAnterior}</a></td> 
+    <td>
+      <div align="right">
+<a href="{lkSiguiente_Src}" id="lkSiguiente">{lkSiguiente}</a> 
+      </div>
+    </td>
+  </tr>
+</table>
+</p>
+<p>
+<table width="100%">
+  <tr style="BACKGROUND-COLOR: rgb(218,224,228)">
+    <td><a href="{lkCumplimiento_Src}" id="lkCumplimiento">Cumplimiento en<br>
+      Requisitos Funcionales</a></td> 
+    <td><a href="{lkCalidad_Src}" id="lkCalidad">Calidad de<br>
+      Productos terminados</a></td> 
+    <td><a href="{lkRetraso_Src}" id="lkRetraso">Retraso en entregables</a></td>
+  </tr>
+</table>
+</p>
 <p></p>
 <table width="100%">
   <tr>
@@ -253,21 +276,30 @@ jQuery(function ($) {
                   <td><input type="text" id="mc_calificacion_capcIdEstimacion" value="{IdEstimacion}" maxlength="6" size="6" name="{IdEstimacion_Name}"></td> 
                   <td>&nbsp;</td>
                 </tr>
- 
-                <tr class="Controls">
+                <!--<tr class="Controls">
                   <td class="th">Rubro</td> 
                   <td><input type="text" id="mc_calificacion_capcAgrupador" value="{Agrupador}" maxlength="75" size="50" name="{Agrupador_Name}"></td> 
+                  <td>&nbsp;</td>
+                </tr>-->
+                <tr class="Controls">
+                  <td class="th"><label for="mc_calificacion_capcid_serviciocont">Servicio de Negocio</label></td> 
+                  <td>
+                    <select id="mc_calificacion_capcid_servicionegocio" name="{id_servicionegocio_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {id_servicionegocio_Options}
+                    </select>
+                  </td> 
                   <td>&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th"><label for="mc_calificacion_capcid_serviciocont">Servicio</label></td> 
+                  <td class="th">Servicio Contractual</td> 
                   <td>
                     <select id="mc_calificacion_capcid_serviciocont" onchange="OcultaSLAs()" name="{id_serviciocont_Name}">
                       {id_serviciocont_Options}
                     </select>
- </td> 
-                  <td>&nbsp;</td>
+                  </td> 
+                  <td></td>
                 </tr>
  
                 <tr class="Controls">
@@ -433,7 +465,7 @@ jQuery(function ($) {
                     </div>
                   </td>
                 </tr>
- <!--
+                <!--
                 <tr class="Controls">
                   <td colspan="3">
                     <div id="divRetrasoE">
@@ -497,28 +529,28 @@ jQuery(function ($) {
                     </td>
                   </tr>
  -->
-                  <tr class="Bottom">
-                    <td style="TEXT-ALIGN: right" colspan="3">
-                      <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_calificacion_capcButton_Insert" class="Button" value="Guardar" alt="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
-                      <!-- BEGIN Button Button_Update --><input type="submit" id="mc_calificacion_capcButton_Update" class="Button" value="Guardar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Update -->
-                      <!-- BEGIN Button Button_Delete --><input type="submit" id="mc_calificacion_capcButton_Delete" class="Button" value="Borrar" alt="Borrar" name="{Button_Name}"><!-- END Button Button_Delete --><input type="hidden" id="mc_calificacion_capcid_proveedor" value="{id_proveedor}" name="{id_proveedor_Name}"></td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
-        </form>
-        <!-- END Record mc_calificacion_capc --><br>
-      </td> 
-      <td>&nbsp;</td>
-    </tr>
+                <tr class="Bottom">
+                  <td style="TEXT-ALIGN: right" colspan="3">
+                    <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_calificacion_capcButton_Insert" class="Button" value="Guardar" alt="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input type="submit" id="mc_calificacion_capcButton_Update" class="Button" value="Guardar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Update -->
+                    <!-- BEGIN Button Button_Delete --><input type="submit" id="mc_calificacion_capcButton_Delete" class="Button" value="Borrar" alt="Borrar" name="{Button_Name}"><!-- END Button Button_Delete --><input type="hidden" id="mc_calificacion_capcid_proveedor" value="{id_proveedor}" name="{id_proveedor_Name}"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record mc_calificacion_capc --><br>
+    </td> 
+    <td>&nbsp;</td>
+  </tr>
  
-    <tr>
-      <td>&nbsp;</td> 
-      <td></td> 
-      <td>&nbsp;</td>
-    </tr>
-  </table>
-  <p></p>
-  </body>
-  </html>
+  <tr>
+    <td>&nbsp;</td> 
+    <td></td> 
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<p></p>
+</body>
+</html>

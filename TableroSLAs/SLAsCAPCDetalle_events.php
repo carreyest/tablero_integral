@@ -33,29 +33,21 @@ function mc_calificacion_capc_BeforeShow(& $sender)
     global $mc_calificacion_capc; //Compatibility
 //End mc_calificacion_capc_BeforeShow
 
-//Custom Code @78-2A29BDB7
+//Custom Code @77-2A29BDB7
 // -------------------------
-     global $db;
-     $db= new clsDBcnDisenio;
-     $sSQL="select top 1 * from  ( " .
-		"SELECT DISTINCT  REQUEST_ID ID_PPMC, NAME, SERVICIO_NEGOCIO, TIPO_REQUERIMIENTO, FECHA_CARGA, 0 PPMC_Relacionado, slo " .
-		"	FROM PPMC_RO_AS  " .
-		"UNION ALL " .
-		"SELECT DISTINCT  ID_PROYECTO, Nombre_Proyecto, SERVICIO_NEGOCIO, TIP_REQUERIMIENTO, FECHA_CARGA, 0 PPMC_Relacionado, slo " .
-		"	FROM PPMC_PROYECTOS_AS  " .
-		"UNION ALL " .
-		"SELECT DISTINCT REQ_CAMBIO_ID, DESC_BREVE, SERVICIO_NEGOCIO, TIPO_Solicitud, C.FECHA_CARGA, ID_PPMC, c.slo " .
-		"	FROM PPMC_CAMBIOS C inner join PPMC_Proyectos_AS on PPMC_PROYECTOS_AS.ID_PROYECTO = C.ID_PPMC  " .
-		"UNION ALL " .
-		"SELECT DISTINCT ID_CC, NOMBRE_RO, SERVICIO_NEGOCIO, MOTIVO_CAMBIO, C.FECHA_CARGA, ID_RO, c.slo " .
-		"	FROM PPMC_CAMBIOS_RO C inner join PPMC_RO_AS  on PPMC_RO_AS.REQUEST_ID  = C.ID_RO   " .
-		" ) as DatosPPMC " .
-	"WHERE id_ppmc LIKE '%" . CCGetParam("s_numero") . "%'";
-     //on DatosPPMC.ID_PPMC = numero 	and mc_calificacion_capc.mes = month(FECHA_CARGA) and mc_calificacion_capc.anio = YEAR(FECHA_CARGA)  " .
-     $db->query($sSQL);
-	if($db->next_record()){
-		$mc_calificacion_capc->Descripcion->SetValue($db->f("NAME"));
+    global $db;
+    $db= new clsDBcnDisenio;
+    global $DBcnDisenio;
+	$DBcnDisenio->query('SELECT TipoMedicion FROM mc_calificacion_capc where id='. CCGetParam("id",0));
+		if($DBcnDisenio->has_next_record()){
+			$DBcnDisenio->next_record();
+				if($DBcnDisenio->f("TipoMedicion")!="PC" ){
+					$mc_calificacion_capc->Button_Insert->Visible=false;
+					$mc_calificacion_capc->Button_Update->Visible=false;
+					$mc_calificacion_capc->Button_Delete->Visible=false;
+				} 
 	}
+
 // -------------------------
 //End Custom Code
 
@@ -73,9 +65,31 @@ function Page_BeforeShow(& $sender)
     global $SLAsCAPCDetalle; //Compatibility
 //End Page_BeforeShow
 
-//Custom Code @77-2A29BDB7
+//Custom Code @91-2A29BDB7
 // -------------------------
-    // Write your own code here.
+    global $lkAnterior;
+    global $lkSiguiente;
+    global $sPPMC;
+    
+    $aPPMCsAPbIds = unserialize(CCGetSession("aPPMCsAPbIdsCAPC"));
+    $aPPMCsAPbValues = unserialize(CCGetSession("aPPMCsAPbValuesCAPC"));
+	if(count($aPPMCsAPbIds)>1){
+    	$iPos=array_search(CCGetParam("id"),$aPPMCsAPbIds);
+    	if($iPos==0){
+			$lkAnterior->SetLink("SLAsCAPCLista.php?" . CCGetQueryString("QueryString",""));
+			$lkAnterior->SetValue("Lista Requerimientos");
+    	} else {
+    		$lkAnterior->SetValue($aPPMCsAPbValues[$iPos-1]);
+    		$lkAnterior->SetLink("SLAsCAPCDetalle.php?" . CCAddParam( CCRemoveParam( CCGetQueryString("QueryString","id"),"ccsForm"),"id",$aPPMCsAPbIds[$iPos-1]));
+    	}
+    	if($iPos < count($aPPMCsAPbIds)-1){
+    		$lkSiguiente->SetValue($aPPMCsAPbValues[$iPos+1]);
+    		$lkSiguiente->SetLink("SLAsCAPCDetalle.php?" . CCAddParam( CCRemoveParam( CCGetQueryString("QueryString","id"),"ccsForm"),"id",$aPPMCsAPbIds[$iPos+1]));
+    	} else {
+    		$lkSiguiente->SetValue("");
+    	}
+    }
+
 // -------------------------
 //End Custom Code
 

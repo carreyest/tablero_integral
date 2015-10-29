@@ -1,12 +1,14 @@
 <?php
-//BindEvents Method @1-73A398FC
+//BindEvents Method @1-878CA8D8
 function BindEvents()
 {
     global $mc_calificacion_capc;
     global $CCSEvents;
     $mc_calificacion_capc->FechaFirmaCAES->CCSEvents["BeforeShow"] = "mc_calificacion_capc_FechaFirmaCAES_BeforeShow";
     $mc_calificacion_capc->btnCalcular->CCSEvents["OnClick"] = "mc_calificacion_capc_btnCalcular_OnClick";
+    $mc_calificacion_capc->CCSEvents["BeforeShow"] = "mc_calificacion_capc_BeforeShow";
     $CCSEvents["AfterInitialize"] = "Page_AfterInitialize";
+    $CCSEvents["BeforeShow"] = "Page_BeforeShow";
 }
 //End BindEvents Method
 
@@ -17,9 +19,28 @@ function mc_calificacion_capc_FechaFirmaCAES_BeforeShow(& $sender)
     $Component = & $sender;
     $Container = & CCGetParentContainer($sender);
     global $mc_calificacion_capc; //Compatibility
+    global $Panel1;
 //End mc_calificacion_capc_FechaFirmaCAES_BeforeShow
 
-		$mc_calificacion_capc->btnCalcular->Visible=true;
+    global $db;
+    $db= new clsDBcnDisenio;
+    global $DBcnDisenio;
+	$DBcnDisenio->query('SELECT TipoMedicion FROM mc_calificacion_capc where id='. CCGetParam("id",0));
+		if($DBcnDisenio->has_next_record()){
+			$DBcnDisenio->next_record();
+				if($DBcnDisenio->f("TipoMedicion")!="PC" ){
+						$mc_calificacion_capc->btnCalcular->Visible=false;
+						$Panel1->Visible=false;
+
+				} else {
+						$mc_calificacion_capc->btnCalcular->Visible=true;
+
+				}
+	}
+
+
+
+
 		if (! $mc_calificacion_capc->EditMode){
 			$mc_calificacion_capc->btnCalcular->Visible=false;	
         }
@@ -54,6 +75,38 @@ function mc_calificacion_capc_btnCalcular_OnClick(& $sender)
     return $mc_calificacion_capc_btnCalcular_OnClick;
 }
 //End Close mc_calificacion_capc_btnCalcular_OnClick
+
+//mc_calificacion_capc_BeforeShow @3-5FF7ECB3
+function mc_calificacion_capc_BeforeShow(& $sender)
+{
+    $mc_calificacion_capc_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $mc_calificacion_capc; //Compatibility
+//End mc_calificacion_capc_BeforeShow
+
+//Custom Code @113-2A29BDB7
+// -------------------------
+    global $db;
+    $db= new clsDBcnDisenio;
+    global $DBcnDisenio;
+	$DBcnDisenio->query('SELECT TipoMedicion FROM mc_calificacion_capc where id='. CCGetParam("id",0));
+		if($DBcnDisenio->has_next_record()){
+			$DBcnDisenio->next_record();
+				if($DBcnDisenio->f("TipoMedicion")!="PC" ){
+					$mc_calificacion_capc->Button_Insert->Visible=false;
+					$mc_calificacion_capc->Button_Update->Visible=false;
+					$mc_calificacion_capc->Button_Delete->Visible=false;
+				} 
+	}
+
+// -------------------------
+//End Custom Code
+
+//Close mc_calificacion_capc_BeforeShow @3-4A8DC635
+    return $mc_calificacion_capc_BeforeShow;
+}
+//End Close mc_calificacion_capc_BeforeShow
 
 //Page_AfterInitialize @1-086205A1
 function Page_AfterInitialize(& $sender)
@@ -181,6 +234,48 @@ function Page_AfterInitialize(& $sender)
     return $Page_AfterInitialize;
 }
 //End Close Page_AfterInitialize
+
+//Page_BeforeShow @1-AC5FA96B
+function Page_BeforeShow(& $sender)
+{
+    $Page_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $SLAsCAPCRetEnt; //Compatibility
+//End Page_BeforeShow
+
+//Custom Code @127-2A29BDB7
+// -------------------------
+    global $lkAnterior;
+    global $lkSiguiente;
+    
+    $aPPMCsAPbIds = unserialize(CCGetSession("aPPMCsAPbIdsCAPC"));
+    $aPPMCsAPbValues = unserialize(CCGetSession("aPPMCsAPbValuesCAPC"));
+
+    if(count($aPPMCsAPbIds)>1){
+    	$iPos=array_search(CCGetParam("id"),$aPPMCsAPbIds);
+    	if($iPos==0){
+			$lkAnterior->SetLink("SLAsCAPCLista.php?" . CCGetQueryString("QueryString",""));
+			$lkAnterior->SetValue("Lista Requerimientos");
+    	} else {
+    		$lkAnterior->SetValue($aPPMCsAPbValues[$iPos-1]);
+    		$lkAnterior->SetLink("SLAsCAPCRetEnt.php?" . CCAddParam( CCRemoveParam( CCGetQueryString("QueryString","id"),"ccsForm"),"id",$aPPMCsAPbIds[$iPos-1]));
+    	}
+    	if($iPos < count($aPPMCsAPbIds)-1){
+    		$lkSiguiente->SetValue($aPPMCsAPbValues[$iPos+1]);
+    		$lkSiguiente->SetLink("SLAsCAPCRetEnt.php?" . CCAddParam( CCRemoveParam( CCGetQueryString("QueryString","id"),"ccsForm"),"id",$aPPMCsAPbIds[$iPos+1]));
+    	} else {
+    		$lkSiguiente->SetValue("");
+    	}
+    }
+
+// -------------------------
+//End Custom Code
+
+//Close Page_BeforeShow @1-4BC230CD
+    return $Page_BeforeShow;
+}
+//End Close Page_BeforeShow
 
 
 ?>

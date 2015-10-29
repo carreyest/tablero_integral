@@ -97,12 +97,12 @@
 					<Features/>
 				</ListBox>
 				<TextArea id="30" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="URLEntregables" PathID="mc_calificacion_capcURLEntregables" fieldSource="urlentregables">
-<Components/>
+					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextArea>
-<CheckBox id="58" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="CAPFirmada" PathID="mc_calificacion_capcCAPFirmada" fieldSource="CAPFirmada" checkedValue="1" uncheckedValue="0">
+				<CheckBox id="58" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="CAPFirmada" PathID="mc_calificacion_capcCAPFirmada" fieldSource="CAPFirmada" checkedValue="1" uncheckedValue="0">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -188,12 +188,12 @@
 					<Features/>
 				</CheckBox>
 				<CheckBox id="110" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="paquetes_cerrados" PathID="mc_calificacion_capcpaquetes_cerrados" checkedValue="1" uncheckedValue="0" fieldSource="paquetes_cerrados">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</CheckBox>
-<ListBox id="19" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Boolean" returnValueType="Number" name="RETR_ENTREGABLE" fieldSource="RETR_ENTREGABLE" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="RETR ENTREGABLE" caption="RETR ENTREGABLE" required="False" unique="False" connection="cnDisenio" wizardEmptyCaption="Seleccionar Valor" PathID="mc_calificacion_capcRETR_ENTREGABLE" dataSource="1;Cumple;0;No Cumple">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</CheckBox>
+				<ListBox id="19" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Boolean" returnValueType="Number" name="RETR_ENTREGABLE" fieldSource="RETR_ENTREGABLE" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="RETR ENTREGABLE" caption="RETR ENTREGABLE" required="False" unique="False" connection="cnDisenio" wizardEmptyCaption="Seleccionar Valor" PathID="mc_calificacion_capcRETR_ENTREGABLE" dataSource="1;Cumple;0;No Cumple">
 					<Components/>
 					<Events/>
 					<TableParameters/>
@@ -206,20 +206,26 @@
 					<Attributes/>
 					<Features/>
 				</ListBox>
-<Button id="111" urlType="Relative" enableValidation="True" isDefault="False" name="btnCalcular" PathID="mc_calificacion_capcbtnCalcular" returnPage="SLAsCAPCRetEnt.ccp" operation="Cancel">
-<Components/>
-<Events>
-<Event name="OnClick" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="112"/>
-</Actions>
-</Event>
-</Events>
-<Attributes/>
-<Features/>
-</Button>
-</Components>
-			<Events/>
+				<Button id="111" urlType="Relative" enableValidation="True" isDefault="False" name="btnCalcular" PathID="mc_calificacion_capcbtnCalcular" returnPage="SLAsCAPCRetEnt.ccp" operation="Cancel">
+					<Components/>
+					<Events>
+						<Event name="OnClick" type="Server">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="112"/>
+							</Actions>
+						</Event>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
+			</Components>
+			<Events>
+				<Event name="BeforeShow" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="113"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters>
 				<TableParameter id="72" conditionType="Parameter" useIsNull="False" dataType="Integer" field="id" logicOperator="And" orderNumber="1" parameterSource="id" parameterType="URL" searchConditionType="Equal"/>
 			</TableParameters>
@@ -431,6 +437,42 @@
 			<Attributes/>
 			<Features/>
 		</Label>
+		<Link id="114" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkAnterior" PathID="lkAnterior" hrefSource="SLAsCAPCRetEnt.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Anterior','textSourceDB':'','hrefSource':'SLAsCAPCRetEnt.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
+			<Events/>
+			<LinkParameters/>
+			<Attributes/>
+			<Features/>
+		</Link>
+		<Link id="116" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkSiguiente" PathID="lkSiguiente" hrefSource="SLAsCAPCRetEnt.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Siguiente','textSourceDB':'','hrefSource':'SLAsCAPCRetEnt.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
+			<Events/>
+			<LinkParameters/>
+			<Attributes/>
+			<Features/>
+		</Link>
+		<Link id="117" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkCumplimiento" PathID="lkCumplimiento" hrefSource="SLAsCAPCReqFunDetalle.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Cumplimiento en&lt;br&gt;      Requisitos Funcionales','textSourceDB':'','hrefSource':'SLAsCAPCReqFunDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'1':{'sourceType':'URL','parameterSource':'sID','parameterName':'Id'},'length':6,'objectType':'linkParameters','2':{'sourceType':'URL','parameterSource':'sID','parameterName':'Id'},'3':{'sourceType':'URL','parameterSource':'sID','parameterName':'Id'},'4':{'sourceType':'URL','parameterSource':'id','parameterName':'sID'},'5':{'sourceType':'URL','parameterSource':'id','parameterName':'sID'}}}"><Components/>
+			<Events/>
+			<LinkParameters>
+				<LinkParameter id="118" sourceType="URL" format="yyyy-mm-dd" name="sID" source="id"/>
+			</LinkParameters>
+			<Attributes/>
+			<Features/>
+		</Link>
+		<Link id="126" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkCalidad" PathID="lkCalidad" hrefSource="PPMCsCrbCalidadCAPC.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Calidad de &lt;br&gt; Productos Terminados','textSourceDB':'','hrefSource':'PPMCsCrbCalidadCAPC.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'1':{'sourceType':'URL','parameterSource':'sID','parameterName':'Id'},'2':{'sourceType':'URL','parameterSource':'sID','parameterName':'Id'},'length':5,'objectType':'linkParameters','3':{'sourceType':'URL','parameterSource':'sID','parameterName':'id'},'4':{'sourceType':'URL','parameterSource':'id','parameterName':'Id'}}}"><Components/>
+			<Events/>
+			<LinkParameters>
+				<LinkParameter id="124" sourceType="URL" format="yyyy-mm-dd" name="Id" source="id"/>
+			</LinkParameters>
+			<Attributes/>
+			<Features/>
+		</Link>
+		<Link id="121" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkDeductiva" PathID="lkDeductiva" hrefSource="SLAsCAPCDetalle.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Deductivas por Omisión','textSourceDB':'','hrefSource':'SLAsCAPCDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'1':{'sourceType':'URL','parameterSource':'Id','parameterName':'sID'},'2':{'sourceType':'URL','parameterSource':'Id','parameterName':'sID'},'3':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'length':7,'objectType':'linkParameters','4':{'sourceType':'URL','parameterSource':'sID','parameterName':'id'},'5':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'6':{'sourceType':'URL','parameterSource':'id','parameterName':'id'}}}"><Components/>
+			<Events/>
+			<LinkParameters>
+				<LinkParameter id="122" sourceType="URL" format="yyyy-mm-dd" name="id" source="id"/>
+			</LinkParameters>
+			<Attributes/>
+			<Features/>
+		</Link>
 	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="SLAsCAPCRetEnt_events.php" forShow="False" comment="//" codePage="windows-1252"/>
@@ -444,6 +486,11 @@
 		<Event name="AfterInitialize" type="Server">
 			<Actions>
 				<Action actionName="Custom Code" actionCategory="General" id="108"/>
+			</Actions>
+		</Event>
+		<Event name="BeforeShow" type="Server">
+			<Actions>
+				<Action actionName="Custom Code" actionCategory="General" id="127"/>
 			</Actions>
 		</Event>
 	</Events>

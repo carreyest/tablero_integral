@@ -864,7 +864,7 @@ include_once("./PPMCsCrbCalidadCAPC_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-41313925
+//Initialize Objects @1-64E35D81
 $DBcnDisenio = new clsDBcnDisenio();
 $MainPage->Connections["cnDisenio"] = & $DBcnDisenio;
 $Attributes = new clsAttributes("page:");
@@ -881,11 +881,23 @@ $lkAnterior = new clsControl(ccsLink, "lkAnterior", "lkAnterior", ccsText, "", C
 $lkAnterior->Page = "PPMCsCrbCalidadCAPC.php";
 $lkSiguiente = new clsControl(ccsLink, "lkSiguiente", "lkSiguiente", ccsText, "", CCGetRequestParam("lkSiguiente", ccsGet, NULL), $MainPage);
 $lkSiguiente->Page = "PPMCsCrbCalidadCAPC.php";
+$lkCumplimiento = new clsControl(ccsLink, "lkCumplimiento", "lkCumplimiento", ccsText, "", CCGetRequestParam("lkCumplimiento", ccsGet, NULL), $MainPage);
+$lkCumplimiento->Parameters = CCAddParam($lkCumplimiento->Parameters, "sID", CCGetFromGet("Id", NULL));
+$lkCumplimiento->Page = "SLAsCAPCReqFunDetalle.php";
+$lkCalidad = new clsControl(ccsLink, "lkCalidad", "lkCalidad", ccsText, "", CCGetRequestParam("lkCalidad", ccsGet, NULL), $MainPage);
+$lkCalidad->Parameters = CCAddParam($lkCalidad->Parameters, "id", CCGetFromGet("Id", NULL));
+$lkCalidad->Page = "SLAsCAPCDetalle.php";
+$lkRetraso = new clsControl(ccsLink, "lkRetraso", "lkRetraso", ccsText, "", CCGetRequestParam("lkRetraso", ccsGet, NULL), $MainPage);
+$lkRetraso->Parameters = CCAddParam($lkRetraso->Parameters, "id", CCGetFromGet("Id", NULL));
+$lkRetraso->Page = "SLAsCAPCRetEnt.php";
 $MainPage->lDocs = & $lDocs;
 $MainPage->mc_info_rs_cr_calidad_capc = & $mc_info_rs_cr_calidad_capc;
 $MainPage->Header = & $Header;
 $MainPage->lkAnterior = & $lkAnterior;
 $MainPage->lkSiguiente = & $lkSiguiente;
+$MainPage->lkCumplimiento = & $lkCumplimiento;
+$MainPage->lkCalidad = & $lkCalidad;
+$MainPage->lkRetraso = & $lkRetraso;
 $mc_info_rs_cr_calidad_capc->Initialize();
 $ScriptIncludes = "";
 $SList = explode("|", $Scripts);
@@ -939,12 +951,15 @@ if($Redirect)
 }
 //End Go to destination page
 
-//Show Page @1-7633EC98
+//Show Page @1-422DD1EA
 $mc_info_rs_cr_calidad_capc->Show();
 $Header->Show();
 $lDocs->Show();
 $lkAnterior->Show();
 $lkSiguiente->Show();
+$lkCumplimiento->Show();
+$lkCalidad->Show();
+$lkRetraso->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);

@@ -90,10 +90,13 @@
 			<Features/>
 		</Record>
 		<Grid id="3" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="20" name="mc_c_ServContractual_mc_c" connection="cnDisenio" dataSource="SELECT distinct mc_calificacion_capc.*, mc_c_ServContractual.Descripcion AS mc_c_ServContractual_Descripcion ,
-	a.Observaciones Obs_Ap, DatosPPMC.Name
+	a.Observaciones Obs_Ap, DatosPPMC.Name,  rf.Observaciones obs_rf, cal.Observaciones obs_cal
 FROM mc_calificacion_capc 
 	left  JOIN mc_c_ServContractual ON mc_calificacion_capc.id_serviciocont = mc_c_ServContractual.Id
 		left join mc_info_capc_ap a on a.id =  mc_calificacion_capc.id 
+		left join mc_info_capc_cr_RF rf on rf .Id = mc_calificacion_capc.id 
+		left join mc_info_rs_cr_calidad_CAPC cal on cal.id = mc_calificacion_capc.id 
+
 		left join (
 SELECT DISTINCT  REQUEST_ID ID_PPMC, NAME, SERVICIO_NEGOCIO, TIPO_REQUERIMIENTO, FECHA_CARGA, 0 PPMC_Relacionado, slo
 	FROM PPMC_RO_AS 
@@ -208,8 +211,8 @@ AND (id_serviciocont = {s_id_serviciocont}  or 0={s_id_serviciocont} )" pageSize
 					<Attributes/>
 					<Features/>
 					<LinkParameters>
-<LinkParameter id="132" sourceType="DataField" name="id" source="id"/>
-</LinkParameters>
+						<LinkParameter id="132" sourceType="DataField" name="id" source="id"/>
+					</LinkParameters>
 				</Link>
 				<Link id="29" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="RETR_ENTREGABLE" fieldSource="RETR_ENTREGABLE" wizardCaption="RETR ENTREGABLE" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_c_ServContractual_mc_cRETR_ENTREGABLE" visible="Yes" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCAPCRetEnt.ccp" linkProperties="{'textSource':'','textSourceDB':'RETR_ENTREGABLE','hrefSource':'SLAsCAPCRetEnt.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'1':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'length':5,'objectType':'linkParameters','2':{'sourceType':'DataField','parameterSource':'id','parameterName':'sId'},'3':{'sourceType':'DataField','parameterSource':'numero','parameterName':'s_numero'},'4':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'}}}">
 					<Components/>
@@ -294,6 +297,7 @@ AND (id_serviciocont = {s_id_serviciocont}  or 0={s_id_serviciocont} )" pageSize
 					<Features/>
 					<LinkParameters>
 						<LinkParameter id="93" sourceType="DataField" name="s_numero" source="numero"/>
+
 						<LinkParameter id="96" sourceType="DataField" name="sID" source="id"/>
 					</LinkParameters>
 				</ImageLink>
@@ -327,7 +331,19 @@ AND (id_serviciocont = {s_id_serviciocont}  or 0={s_id_serviciocont} )" pageSize
 					<Attributes/>
 					<Features/>
 				</Label>
-			</Components>
+				<Label id="137" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="rf_obs" PathID="mc_c_ServContractual_mc_crf_obs" fieldSource="obs_rf">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Label>
+<Label id="138" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="cal_obs" PathID="mc_c_ServContractual_mc_ccal_obs" fieldSource="obs_cal">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Label>
+</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
@@ -346,11 +362,11 @@ AND (id_serviciocont = {s_id_serviciocont}  or 0={s_id_serviciocont} )" pageSize
 			<PKFields/>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="128" dataType="Text" designDefaultValue="0" parameterSource="s_numero" parameterType="URL" variable="s_numero"/>
-				<SQLParameter id="129" dataType="Integer" defaultValue="date(&quot;m&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="0" parameterSource="s_mes" parameterType="URL" variable="s_mes"/>
-				<SQLParameter id="130" dataType="Integer" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="2014" parameterSource="s_anio" parameterType="URL" variable="s_anio"/>
-				<SQLParameter id="131" dataType="Integer" defaultValue="0" designDefaultValue="0" parameterSource="s_id_serviciocont" parameterType="URL" variable="s_id_serviciocont"/>
-			</SQLParameters>
+				<SQLParameter id="133" dataType="Text" designDefaultValue="0" parameterSource="s_numero" parameterType="URL" variable="s_numero"/>
+<SQLParameter id="134" dataType="Integer" defaultValue="date(&quot;m&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="0" parameterSource="s_mes" parameterType="URL" variable="s_mes"/>
+<SQLParameter id="135" dataType="Integer" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="2014" parameterSource="s_anio" parameterType="URL" variable="s_anio"/>
+<SQLParameter id="136" dataType="Integer" defaultValue="0" designDefaultValue="0" parameterSource="s_id_serviciocont" parameterType="URL" variable="s_id_serviciocont"/>
+</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>

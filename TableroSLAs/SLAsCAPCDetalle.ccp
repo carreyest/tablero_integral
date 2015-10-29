@@ -114,27 +114,6 @@
 					<Attributes/>
 					<Features/>
 				</ListBox>
-				<ListBox id="20" visible="Yes" fieldSourceType="DBColumn" sourceType="Table" dataType="Integer" returnValueType="Number" name="id_serviciocont" fieldSource="id_serviciocont" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Id Serviciocont" caption="Id Serviciocont" required="False" unique="False" connection="cnDisenio" wizardEmptyCaption="Seleccionar Valor" PathID="mc_calificacion_capcid_serviciocont" dataSource="mc_c_ServContractual" boundColumn="Id" textColumn="Descripcion">
-					<Components/>
-					<Events/>
-					<TableParameters>
-						<TableParameter id="44" conditionType="Parameter" useIsNull="False" dataType="Text" field="Aplica" logicOperator="And" parameterSource="'CAPC'" parameterType="Expression" searchConditionType="Equal"/>
-					</TableParameters>
-					<SPParameters/>
-					<SQLParameters/>
-					<JoinTables>
-						<JoinTable id="43" posHeight="136" posLeft="10" posTop="10" posWidth="95" tableName="mc_c_ServContractual"/>
-					</JoinTables>
-					<JoinLinks/>
-					<Fields>
-						<Field id="45" fieldName="*"/>
-					</Fields>
-					<PKFields>
-						<PKField id="46" dataType="Integer" fieldName="Id" tableName="mc_c_ServContractual"/>
-					</PKFields>
-					<Attributes/>
-					<Features/>
-				</ListBox>
 				<ListBox id="16" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Boolean" returnValueType="Number" name="CALIDAD_PROD_TERM" fieldSource="CALIDAD_PROD_TERM" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="CALIDAD PROD TERM" caption="CALIDAD PROD TERM" required="False" unique="False" connection="cnDisenio" wizardEmptyCaption="Seleccionar Valor" PathID="mc_calificacion_capcCALIDAD_PROD_TERM" dataSource="1;Cumple;0;No Cumple">
 					<Components/>
 					<Events/>
@@ -323,28 +302,52 @@
 					<Attributes/>
 					<Features/>
 				</CheckBox>
-				<ListBox id="79" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="ListBox1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Seleccionar Valor" PathID="mc_calificacion_capcListBox1" fieldSource="Id_servicio_negoico" connection="cnDisenio" dataSource="
-select id_servicio, nombre
-from mc_c_servicio where id_tipo_servicio=2
-order by nombre
-" boundColumn="id_servicio" textColumn="nombre">
+				<ListBox id="97" visible="Yes" fieldSourceType="DBColumn" sourceType="Table" dataType="Integer" returnValueType="Number" name="id_servicionegocio" wizardEmptyCaption="Seleccionar Valor" PathID="mc_calificacion_capcid_servicionegocio" caption="Servicio de Negocio" fieldSource="Id_servicio_negoico" connection="cnDisenio" dataSource="mc_c_servicio" boundColumn="id_servicio" textColumn="nombre" required="True">
 <Components/>
 <Events/>
-<TableParameters/>
+<TableParameters>
+<TableParameter id="98" conditionType="Parameter" useIsNull="False" dataType="Integer" field="id_tipo_servicio" logicOperator="Or" parameterSource="1" parameterType="Expression" searchConditionType="Equal"/>
+<TableParameter id="99" conditionType="Parameter" useIsNull="False" dataType="Integer" field="id_tipo_servicio" logicOperator="Or" parameterSource="2" parameterType="Expression" searchConditionType="Equal"/>
+</TableParameters>
 <SPParameters/>
 <SQLParameters/>
-<JoinTables/>
+<JoinTables>
+<JoinTable id="100" posHeight="152" posLeft="10" posTop="10" posWidth="137" tableName="mc_c_servicio"/>
+</JoinTables>
 <JoinLinks/>
-<Fields/>
+<Fields>
+<Field id="101" fieldName="*"/>
+</Fields>
 <PKFields/>
 <Attributes/>
 <Features/>
 </ListBox>
+<ListBox id="20" visible="Yes" fieldSourceType="DBColumn" sourceType="Table" dataType="Integer" returnValueType="Number" name="id_serviciocont" fieldSource="id_serviciocont" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Id Serviciocont" caption="Servicio Contractual" unique="False" connection="cnDisenio" wizardEmptyCaption="Seleccionar Valor" PathID="mc_calificacion_capcid_serviciocont" dataSource="mc_c_ServContractual" boundColumn="Id" textColumn="Descripcion" required="True">
+					<Components/>
+					<Events/>
+					<TableParameters>
+						<TableParameter id="94" conditionType="Parameter" useIsNull="False" dataType="Text" field="Aplica" logicOperator="And" parameterSource="'CAPC'" parameterType="Expression" searchConditionType="Equal"/>
+</TableParameters>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables>
+						<JoinTable id="93" posHeight="136" posLeft="10" posTop="10" posWidth="95" tableName="mc_c_ServContractual"/>
+</JoinTables>
+					<JoinLinks/>
+					<Fields>
+						<Field id="95" fieldName="*"/>
+</Fields>
+					<PKFields>
+						<PKField id="96" dataType="Integer" fieldName="Id" tableName="mc_c_ServContractual"/>
+</PKFields>
+					<Attributes/>
+					<Features/>
+				</ListBox>
 </Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>
-						<Action actionName="Custom Code" actionCategory="General" id="78"/>
+						<Action actionName="Custom Code" actionCategory="General" id="77"/>
 					</Actions>
 				</Event>
 			</Events>
@@ -354,8 +357,8 @@ order by nombre
 			<SPParameters/>
 			<SQLParameters/>
 			<JoinTables>
-				<JoinTable id="71" posHeight="253" posLeft="10" posTop="10" posWidth="160" tableName="mc_calificacion_capc"/>
-			</JoinTables>
+				<JoinTable id="92" tableName="mc_calificacion_capc"/>
+</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="73" fieldName="*"/>
@@ -377,6 +380,42 @@ order by nombre
 			<Attributes/>
 			<Features/>
 		</Record>
+		<Link id="78" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkAnterior" PathID="lkAnterior" hrefSource="SLAsCAPCDetalle.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'lkAnterior','textSourceDB':'','hrefSource':'SLAsCAPCDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
+			<Events/>
+			<LinkParameters/>
+			<Attributes/>
+			<Features/>
+		</Link>
+		<Link id="80" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkSiguiente" PathID="lkSiguiente" hrefSource="SLAsCAPCDetalle.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'lkSiguiente','textSourceDB':'','hrefSource':'SLAsCAPCDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
+			<Events/>
+			<LinkParameters/>
+			<Attributes/>
+			<Features/>
+		</Link>
+		<Link id="81" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkCumplimiento" PathID="lkCumplimiento" hrefSource="SLAsCAPCReqFunDetalle.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Cumplimiento en&lt;br&gt;      Requisitos Funcionales','textSourceDB':'','hrefSource':'SLAsCAPCReqFunDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'1':{'sourceType':'URL','parameterSource':'sID','parameterName':'Id'},'length':8,'objectType':'linkParameters','2':{'sourceType':'URL','parameterSource':'sID','parameterName':'Id'},'3':{'sourceType':'URL','parameterSource':'sID','parameterName':'Id'},'4':{'sourceType':'URL','parameterSource':'id','parameterName':'sID'},'5':{'sourceType':'URL','parameterSource':'id','parameterName':'sID'},'6':{'sourceType':'URL','parameterSource':'Id','parameterName':'sID'},'7':{'sourceType':'URL','parameterSource':'id','parameterName':'sID'}}}"><Components/>
+			<Events/>
+			<LinkParameters>
+				<LinkParameter id="82" sourceType="URL" format="yyyy-mm-dd" name="sID" source="id"/>
+			</LinkParameters>
+			<Attributes/>
+			<Features/>
+		</Link>
+		<Link id="85" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkCalidad" PathID="lkCalidad" hrefSource="PPMCsCrbCalidadCAPC.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Calidad de &lt;br&gt; Productos terminados','textSourceDB':'','hrefSource':'PPMCsCrbCalidadCAPC.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'1':{'sourceType':'URL','parameterSource':'Id','parameterName':'sID'},'2':{'sourceType':'URL','parameterSource':'Id','parameterName':'sID'},'3':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'length':9,'objectType':'linkParameters','4':{'sourceType':'URL','parameterSource':'sID','parameterName':'id'},'5':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'6':{'sourceType':'URL','parameterSource':'id','parameterName':'id'},'7':{'sourceType':'URL','parameterSource':'Id','parameterName':'id'},'8':{'sourceType':'URL','parameterSource':'id','parameterName':'Id'}}}"><Components/>
+			<Events/>
+			<LinkParameters>
+				<LinkParameter id="86" sourceType="URL" format="yyyy-mm-dd" name="Id" source="id"/>
+			</LinkParameters>
+			<Attributes/>
+			<Features/>
+		</Link>
+		<Link id="89" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkRetraso" PathID="lkRetraso" hrefSource="SLAsCAPCRetEnt.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Retraso en entregables','textSourceDB':'','hrefSource':'SLAsCAPCRetEnt.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'1':{'sourceType':'URL','parameterSource':'sID','parameterName':'Id'},'2':{'sourceType':'URL','parameterSource':'sID','parameterName':'Id'},'length':7,'objectType':'linkParameters','3':{'sourceType':'URL','parameterSource':'sID','parameterName':'id'},'4':{'sourceType':'URL','parameterSource':'id','parameterName':'Id'},'5':{'sourceType':'URL','parameterSource':'Id','parameterName':'id'},'6':{'sourceType':'URL','parameterSource':'id','parameterName':'id'}}}"><Components/>
+			<Events/>
+			<LinkParameters>
+				<LinkParameter id="90" sourceType="URL" format="yyyy-mm-dd" name="id" source="id"/>
+			</LinkParameters>
+			<Attributes/>
+			<Features/>
+		</Link>
 	</Components>
 	<CodeFiles>
 		<CodeFile id="Code" language="PHPTemplates" name="SLAsCAPCDetalle.php" forShow="True" url="SLAsCAPCDetalle.php" comment="//" codePage="windows-1252"/>
@@ -389,7 +428,7 @@ order by nombre
 	<Events>
 		<Event name="BeforeShow" type="Server">
 			<Actions>
-				<Action actionName="Custom Code" actionCategory="General" id="77"/>
+				<Action actionName="Custom Code" actionCategory="General" id="91"/>
 			</Actions>
 		</Event>
 	</Events>

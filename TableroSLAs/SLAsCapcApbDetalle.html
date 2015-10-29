@@ -723,7 +723,7 @@ jQuery(function ($) {
  
                 <tr class="Controls">
                   <td class="th">&nbsp;SLO</td> 
-                  <td><label style="display: none;" for="mc_info_rs_ap_ECSLO">CheckBox1</label><input type="checkbox" id="mc_info_rs_ap_ECSLO" value="1" name="{SLO_Name}" {SLO}>&nbsp;</td>
+                  <td><label for="mc_info_rs_ap_ECSLO" style="display: none;">CheckBox1</label><input type="checkbox" id="mc_info_rs_ap_ECSLO" value="1" name="{SLO_Name}" {SLO}>&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
@@ -762,7 +762,7 @@ jQuery(function ($) {
  
                 <tr class="Controls">
                   <td class="th">PPMC&nbsp;Padre</td> 
-                  <td><label style="display: inline;" for="mc_info_rs_ap_ECsDatosPadre">PPMC Padre&nbsp;&nbsp; </label><input type="text" id="mc_info_rs_ap_ECsDatosPadre" value="{sDatosPadre}" maxlength="7" size="7" name="{sDatosPadre_Name}">&nbsp;&nbsp;&nbsp;<label style="display: inline;" for="mc_info_rs_ap_ECTipoPadre">Tipo Padre:</label> 
+                  <td><label for="mc_info_rs_ap_ECsDatosPadre" style="display: inline;">PPMC Padre&nbsp;&nbsp; </label><input type="text" id="mc_info_rs_ap_ECsDatosPadre" value="{sDatosPadre}" maxlength="7" size="7" name="{sDatosPadre_Name}">&nbsp;&nbsp;&nbsp;<label for="mc_info_rs_ap_ECTipoPadre" style="display: inline;">Tipo Padre:</label> 
                     <select id="mc_info_rs_ap_ECTipoPadre" name="{TipoPadre_Name}">
                       <option selected value="">Seleccionar Valor</option>
                       {TipoPadre_Options}
@@ -792,22 +792,22 @@ jQuery(function ($) {
  
                 <tr class="Controls">
                   <td class="th">&nbsp;</td> 
-                  <td><label style="display: inline;" for="mc_info_rs_ap_ECURLEvidencia">La URL de la evidencia de la herramienta de estimación es incorrecta</label><input type="checkbox" id="mc_info_rs_ap_ECURLEvidencia" value="1" name="{URLEvidencia_Name}" {URLEvidencia}></td>
+                  <td><label for="mc_info_rs_ap_ECURLEvidencia" style="display: inline;">La URL de la evidencia de la herramienta de estimación es incorrecta</label><input type="checkbox" id="mc_info_rs_ap_ECURLEvidencia" value="1" name="{URLEvidencia_Name}" {URLEvidencia}></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">&nbsp;</td> 
-                  <td><label style="display: inline;" for="mc_info_rs_ap_ECformatoEvidencia">El formato de la evidencia de la herramienta de estimación es incorrecto</label><input type="checkbox" id="mc_info_rs_ap_ECformatoEvidencia" value="1" name="{formatoEvidencia_Name}" {formatoEvidencia}>&nbsp;</td>
+                  <td><label for="mc_info_rs_ap_ECformatoEvidencia" style="display: inline;">El formato de la evidencia de la herramienta de estimación es incorrecto</label><input type="checkbox" id="mc_info_rs_ap_ECformatoEvidencia" value="1" name="{formatoEvidencia_Name}" {formatoEvidencia}>&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">&nbsp;</td> 
-                  <td><label style="display: inline;" for="mc_info_rs_ap_ECIDsCorrectos">Es&nbsp;incorrecto el Id PPMC en la evidencia de la herramienta de estimación</label><input type="checkbox" id="mc_info_rs_ap_ECIDsCorrectos" value="1" name="{IDsCorrectos_Name}" {IDsCorrectos}></td>
+                  <td><label for="mc_info_rs_ap_ECIDsCorrectos" style="display: inline;">Es&nbsp;incorrecto el Id PPMC en la evidencia de la herramienta de estimación</label><input type="checkbox" id="mc_info_rs_ap_ECIDsCorrectos" value="1" name="{IDsCorrectos_Name}" {IDsCorrectos}></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">&nbsp;</td> 
-                  <td>Sin evidencia de uso de herramienta de estimación&nbsp;<label style="display: none;" for="mc_info_rs_ap_ECSinEvidencia">CheckBox1</label><input type="checkbox" id="mc_info_rs_ap_ECSinEvidencia" value="1" name="{SinEvidencia_Name}" {SinEvidencia}></td>
+                  <td>Sin evidencia de uso de herramienta de estimación&nbsp;<label for="mc_info_rs_ap_ECSinEvidencia" style="display: none;">CheckBox1</label><input type="checkbox" id="mc_info_rs_ap_ECSinEvidencia" value="1" name="{SinEvidencia_Name}" {SinEvidencia}></td>
                 </tr>
  
                 <tr class="Controls">
@@ -873,12 +873,12 @@ jQuery(function ($) {
  
                 <tr class="Controls">
                   <td class="th">URL de Evidencia de medición</td> 
-                  <td><label style="display: none;" for="mc_info_rs_ap_ECURLEvidenciaMed">TextBox1</label><input type="text" id="mc_info_rs_ap_ECURLEvidenciaMed" value="{URLEvidenciaMed}" size="50" name="{URLEvidenciaMed_Name}"></td>
+                  <td><label for="mc_info_rs_ap_ECURLEvidenciaMed" style="display: none;">TextBox1</label><input type="text" id="mc_info_rs_ap_ECURLEvidenciaMed" value="{URLEvidenciaMed}" size="50" name="{URLEvidenciaMed_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">&nbsp;</td> 
-                  <td>&nbsp;<input type="hidden" id="mc_info_rs_ap_EChdUsrUltMod" value="{hdUsrUltMod}" name="{hdUsrUltMod_Name}"><label style="display: none;" for="mc_info_rs_ap_EChdFechaUltMod">hdFechaUltMod</label><input type="hidden" id="mc_info_rs_ap_EChdFechaUltMod" value="{hdFechaUltMod}" name="{hdFechaUltMod_Name}"></td>
+                  <td>&nbsp;<input type="hidden" id="mc_info_rs_ap_EChdUsrUltMod" value="{hdUsrUltMod}" name="{hdUsrUltMod_Name}"><label for="mc_info_rs_ap_EChdFechaUltMod" style="display: none;">hdFechaUltMod</label><input type="hidden" id="mc_info_rs_ap_EChdFechaUltMod" value="{hdFechaUltMod}" name="{hdFechaUltMod_Name}"></td>
                 </tr>
  
                 <tr class="Bottom">

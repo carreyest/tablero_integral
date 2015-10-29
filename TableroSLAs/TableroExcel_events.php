@@ -257,17 +257,7 @@ function GeneraReporte(){
 		$PASWD = CCDLookUp("valor","mc_parametros","parametro='PwdSSRS'",$db);
 		$SERVICE_URL = CCDLookUp("valor","mc_parametros","parametro='SSRSURL'",$db);
 		
-		/*	
-		if(CCGetParam("SAT",0)==0){
-			$REPORT= "http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCompleto.rdl";
-		} else {
-			$REPORT= "http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCompleto_SLO.rdl";
-		}
-		*/
-		
-		$REPORT="http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCompleto.rdl";
-		$TipoReporte="NS";
-		$ReporteSLA="SLA";
+	if(CCGetParam("s_id_proveedor",0)>1) {	
 
 		if( (CCGetParam("DyP",0)==1) AND (CCGetParam("s_SLO",0)==1) ){
 
@@ -275,26 +265,46 @@ function GeneraReporte(){
 			$TipoReporte="DyP";
 			$ReporteSLA="SLO";
 
-		}
-				
-		if( (CCGetParam("DyP",0)==1) AND (CCGetParam("s_SLO",0)==0) ){
+		} else if( (CCGetParam("DyP",0)==1) AND (CCGetParam("s_SLO",0)==0) ){
 			$REPORT="http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteDP.rdl";
 			$TipoReporte="DyP";
-		}
-		
-		if( (CCGetParam("s_SLO",0)==1)  AND (CCGetParam("DyP",0)==0) ){
+		} else if( (CCGetParam("s_SLO",0)==1)  AND (CCGetParam("DyP",0)==0) ){
 			$REPORT="http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCompleto_SLO.rdl";
 			$ReporteSLA="SLO";
+		} else {
+			$REPORT="http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCompleto.rdl";
+			$TipoReporte="NS";
+			$ReporteSLA="SLA";
 		}
-		
+
+	} else 	{
+		if( (CCGetParam("DyP",0)==1) ){
+
+			$REPORT="http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteDP_CAPC.rdl";
+			$TipoReporte="DyP";
+		} else {
+			$REPORT="http://webiterasrv2/AnalyticsReports/SLASSDMA4/ReporteCAPC.rdl";
+			$TipoReporte="NS";
+			$ReporteSLA="SLA";
+		}	
+	
+	}
+	
+	
 		$sCDS=0;
 		$sCDS= CCGetParam("s_id_proveedor");
-		$sCDS=$sCDS-1;
+		if(CCGetParam("s_id_proveedor",0)>1) {	
+			$sCDS=$sCDS-1;
+			$tCDS="CDS".$sCDS;
+		} else {
+			$tCDS="CAPC";
+		}
+		
 	
 		if(CCGetParam("s_MesReporte")<10){
-			$FILENAME= "Reporte" . $TipoReporte . "_CDS" . $sCDS . "_". $ReporteSLA ."_" . CCGetParam("s_AnioReporte")  . "0" . CCGetParam("s_MesReporte") .  date("t") . ".xls";
+			$FILENAME= "Reporte" . $TipoReporte . "_" . $tCDS . "_". $ReporteSLA ."_" . CCGetParam("s_AnioReporte")  . "0" . CCGetParam("s_MesReporte") .  date("t") . ".xls";
 		} else {
-			$FILENAME = "Reporte" . $TipoReporte . "_CDS" . $sCDS . "_". $ReporteSLA ."_" . CCGetParam("s_AnioReporte")  . CCGetParam("s_MesReporte") . date("t") .  ".xls";
+			$FILENAME = "Reporte" . $TipoReporte . "_" . $tCDS . "_". $ReporteSLA ."_" . CCGetParam("s_AnioReporte")  . CCGetParam("s_MesReporte") . date("t") .  ".xls";
 		}
 		
 		try {
@@ -308,9 +318,12 @@ function GeneraReporte(){
 		    $parameters[1] = new ParameterValue();
 		    $parameters[1]->Name = "Anio";
 		    $parameters[1]->Value = CCGetParam("s_AnioReporte",date("Y"));
-		    $parameters[2] = new ParameterValue();
-		    $parameters[2]->Name = "Proveedor";
-		    $parameters[2]->Value = CCGetParam("s_id_proveedor",0);
+		    
+			if(CCGetParam("s_id_proveedor",0)>1) {			    
+		  	 $parameters[2] = new ParameterValue();
+		   	 $parameters[2]->Name = "Proveedor";
+		   	 $parameters[2]->Value = CCGetParam("s_id_proveedor",0);
+			}
 		    $executionInfo = $ssrs_report->SetExecutionParameters2($parameters, "en-us");
 			
 		    $ssrs_report->LoadReport2($REPORT, NULL);

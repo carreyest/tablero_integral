@@ -211,6 +211,30 @@ jQuery(function ($) {
 </head>
 <body onload="OcultaSLAs()">
 <p>{Header}</p>
+<p>
+<table border="0" cellspacing="0" cellpadding="0" width="90%">
+  <tr>
+    <td></td> 
+    <td><a href="{lkAnterior_Src}" id="lkAnterior">{lkAnterior}</a></td> 
+    <td style="TEXT-ALIGN: right"><a href="{lkSiguiente_Src}" id="lkSiguiente">{lkSiguiente}</a></td>
+  </tr>
+ 
+  <tr>
+    <td colspan="3"></td>
+  </tr>
+</table>
+</p>
+<p>
+<table width="100%">
+  <tr style="BACKGROUND-COLOR: rgb(218,224,228)">
+    <td><a href="{lkCumplimiento_Src}" id="lkCumplimiento">Cumplimiento en<br>
+      Requisitos Funcionales</a></td> 
+    <td><a href="{lkCalidad_Src}" id="lkCalidad">Calidad de<br>
+      Productos Terminados</a></td> 
+    <td><a href="{lkDeductiva_Src}" id="lkDeductiva">Deductivas por Omisión</a></td>
+  </tr>
+</table>
+</p>
 <p></p>
 <table width="100%">
   <tr>
@@ -532,7 +556,7 @@ jQuery(function ($) {
         <form enctype="multipart/form-data" method="post" action="{ActionFileUpload}">
           <input type="hidden" value="100000" name="MAX_FILE_SIZE"><br>
           <br>
-          <b>Cargar Artefactos de rchivo: </b><br>
+          <b>Cargar Artefactos de Archivo: </b><br>
           <input type="file" accept="text/csv" name="userfile">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Procesar">
         </form>
         <!-- END Panel Panel1 --></td> 

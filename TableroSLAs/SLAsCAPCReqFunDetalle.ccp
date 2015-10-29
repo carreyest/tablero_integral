@@ -254,7 +254,7 @@
 			<SQLParameters/>
 			<JoinTables>
 				<JoinTable id="87" tableName="mc_info_capc_cr_RF"/>
-</JoinTables>
+			</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="85" fieldName="*"/>
@@ -276,6 +276,43 @@
 			<Attributes/>
 			<Features/>
 		</Record>
+		<Link id="88" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkAnterior" PathID="lkAnterior" hrefSource="SLAsCAPCReqFunDetalle.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Anterior','textSourceDB':'','hrefSource':'SLAsCAPCReqFunDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
+			<Events/>
+			<LinkParameters/>
+			<Attributes/>
+			<Features/>
+		</Link>
+		<Link id="90" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkSiguiente" PathID="lkSiguiente" hrefSource="SLAsCAPCReqFunDetalle.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Siguiente','textSourceDB':'','hrefSource':'SLAsCAPCReqFunDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
+			<Events/>
+			<LinkParameters/>
+			<Attributes/>
+			<Features/>
+		</Link>
+		<Link id="97" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkCalidad" PathID="lkCalidad" hrefSource="PPMCsCrbCalidadCAPC.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Calidad de&lt;br&gt;      Productos Terminados','textSourceDB':'','hrefSource':'PPMCsCrbCalidadCAPC.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'1':{'sourceType':'URL','parameterSource':'sID','parameterName':'Id'},'length':4,'objectType':'linkParameters','2':{'sourceType':'URL','parameterSource':'sID','parameterName':'Id'},'3':{'sourceType':'URL','parameterSource':'sID','parameterName':'Id'}}}"><Components/>
+			<Events/>
+			<LinkParameters>
+				<LinkParameter id="98" sourceType="URL" format="yyyy-mm-dd" name="Id" source="sID"/>
+			</LinkParameters>
+			<Attributes/>
+			<Features/>
+		</Link>
+		<Link id="101" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkDeductiva" PathID="lkDeductiva" hrefSource="SLAsCAPCDetalle.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Deductivas por Omisión','textSourceDB':'','hrefSource':'SLAsCAPCDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'1':{'sourceType':'URL','parameterSource':'Id','parameterName':'sID'},'2':{'sourceType':'URL','parameterSource':'Id','parameterName':'sID'},'3':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'length':6,'objectType':'linkParameters','4':{'sourceType':'URL','parameterSource':'sID','parameterName':'id'},'5':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'}}}"><Components/>
+			<Events/>
+			<LinkParameters>
+				<LinkParameter id="102" sourceType="URL" format="yyyy-mm-dd" name="id" source="sID"/>
+				<LinkParameter id="103" sourceType="URL" name="Id" source="Id"/>
+			</LinkParameters>
+			<Attributes/>
+			<Features/>
+		</Link>
+		<Link id="107" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkRetraso" PathID="lkRetraso" hrefSource="SLAsCAPCRetEnt.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Retraso en entregables','textSourceDB':'','hrefSource':'SLAsCAPCRetEnt.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'1':{'sourceType':'URL','parameterSource':'sID','parameterName':'Id'},'2':{'sourceType':'URL','parameterSource':'sID','parameterName':'Id'},'length':4,'objectType':'linkParameters','3':{'sourceType':'URL','parameterSource':'sID','parameterName':'id'}}}"><Components/>
+			<Events/>
+			<LinkParameters>
+				<LinkParameter id="108" sourceType="URL" format="yyyy-mm-dd" name="id" source="sID"/>
+			</LinkParameters>
+			<Attributes/>
+			<Features/>
+		</Link>
 	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="SLAsCAPCReqFunDetalle_events.php" forShow="False" comment="//" codePage="windows-1252"/>

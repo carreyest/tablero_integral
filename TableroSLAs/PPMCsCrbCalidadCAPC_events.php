@@ -71,12 +71,25 @@ function mc_info_rs_cr_calidad_capc_BeforeShow(& $sender)
 
 //Custom Code @115-2A29BDB7
 // -------------------------
-    global $mc_detalle_PPMC_Defectos;
-    global $mc_detalle_PPMC_Hallazgos;
+
     global $db;
     $db= new clsDBcnDisenio;
-    
     global $DBcnDisenio;
+	$DBcnDisenio->query('SELECT TipoMedicion FROM mc_calificacion_capc where id='. CCGetParam("Id",0));
+		if($DBcnDisenio->has_next_record()){
+			$DBcnDisenio->next_record();
+			$tipoMedicion=$DBcnDisenio->f("TipoMedicion");
+				if($tipoMedicion!="PC" ){
+					$mc_info_rs_cr_calidad_capc->btnCalcula->Visible=false;
+					$mc_info_rs_cr_calidad_capc->btnCalculaUpdate->Visible=false;
+					$mc_info_rs_cr_calidad_capc->Button_Insert->Visible=false;
+					$mc_info_rs_cr_calidad_capc->Button_Update->Visible=false;
+				} 
+	}
+
+
+    global $mc_detalle_PPMC_Defectos;
+    global $mc_detalle_PPMC_Hallazgos;
 	global $sPPMC;
 	global $sTipoReq;
 	global $lDocs;
@@ -247,15 +260,28 @@ function mc_info_rs_cr_calidad_capc_BeforeShow(& $sender)
 	    } 
 	    if($flgCerrado==1){*/
 	    	//$mc_info_rs_cr_calidad->Button_Insert->Visible= true;
-	    	$mc_info_rs_cr_calidad_capc->Button_Update->Visible = true;
-	    	$mc_info_rs_cr_calidad_capc->btnCalculaUpdate->Visible = true;
+				if($tipoMedicion!="PC" ){
+					$mc_info_rs_cr_calidad_capc->btnCalculaUpdate->Visible=false;
+					$mc_info_rs_cr_calidad_capc->Button_Update->Visible=false;
+				} else {
+			    	$mc_info_rs_cr_calidad_capc->Button_Update->Visible = true;
+			    	$mc_info_rs_cr_calidad_capc->btnCalculaUpdate->Visible = true;				
+				}
+				
+
+	    		    		    	
+	    	
 	    	$mc_info_rs_cr_calidad_capc->btnCalcula->Visible = false;
 //	    }
 	    
 		
 		$db->close();
-		if(!$mc_info_rs_cr_calidad_capc->EditMode){
-			$mc_info_rs_cr_calidad_capc->btnCalcula->Visible = true;
+		if(!$mc_info_rs_cr_calidad_capc->EditMode){			
+			if($tipoMedicion!="PC" ){
+				$mc_info_rs_cr_calidad_capc->btnCalcula->Visible = false;
+			} else {
+				$mc_info_rs_cr_calidad_capc->btnCalcula->Visible = true;
+			}
 			$mc_info_rs_cr_calidad_capc->btnCalculaUpdate->Visible = false;
 			$mc_info_rs_cr_calidad_capc->Button_Update->Visible = false;
 	 		CalculaIndiceCalidad();   
@@ -722,7 +748,7 @@ function CalculaIndiceCalidad(){
 
     $indiceCalidad =	$defecto_errores_ortogr +  $defecto_formato_incorrecto + $defecto_falta_vinculo + $defecto_doc_incorrecta +  $defecto_incumpl_acept;
 
-	if($indiceCalidad > 0)
+	if($indiceCalidad > 0) {
 	    if( $indiceCalidad <=5  )
 	      $deductiva=0;
 	    else if($indiceCalidad > 5 and
@@ -736,18 +762,16 @@ function CalculaIndiceCalidad(){
 	       else
 	        $deductiva = $acumulado + 2; 
 	      }
-	else
+	}     
 
-    if ($deductiva > 0) 
-      $cumpleCalidad = 0;
-    else
-      $cumpleCalidad = 1;
-    
+	    if ($deductiva > 0) 
+	      $cumpleCalidad = 0;
+	    else
+	      $cumpleCalidad = 1;
 
 	$mc_info_rs_cr_calidad_capc->IndiceCalidadDoc->SetValue($indiceCalidad);
     $mc_info_rs_cr_calidad_capc->DeductivaDoc->SetValue($deductiva);
     $mc_info_rs_cr_calidad_capc->CumpleCalidad->SetValue($cumpleCalidad);
-    
     
     $mc_info_rs_cr_calidad_capc->defectos_errores_ort->SetValue($defecto_errores_ortogr);
     $mc_info_rs_cr_calidad_capc->defectos_formato_incorrecto->SetValue($defecto_formato_incorrecto);

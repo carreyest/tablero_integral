@@ -57,14 +57,14 @@
 					<SPParameters/>
 					<SQLParameters/>
 					<JoinTables>
-						<JoinTable id="206" posHeight="180" posLeft="10" posTop="10" posWidth="158" tableName="mc_c_proveedor"/>
+						<JoinTable id="207" posHeight="180" posLeft="10" posTop="10" posWidth="158" tableName="mc_c_proveedor"/>
 </JoinTables>
 					<JoinLinks/>
 					<Fields>
-						<Field id="207" fieldName="*"/>
+						<Field id="208" fieldName="*"/>
 </Fields>
 					<PKFields>
-						<PKField id="208" dataType="Integer" fieldName="id_proveedor" tableName="mc_c_proveedor"/>
+						<PKField id="209" dataType="Integer" fieldName="id_proveedor" tableName="mc_c_proveedor"/>
 </PKFields>
 					<Attributes/>
 					<Features/>
@@ -456,6 +456,11 @@ VALUES({Version}, {s_MesReporte}, '{Comentario}', {s_AnioReporte}, '{s_id_provee
 			<Attributes/>
 			<Features/>
 		</Panel>
+		<IncludePage id="206" name="MenuTablero" PathID="MenuTablero" page="MenuTablero.ccp">
+			<Components/>
+			<Events/>
+			<Features/>
+		</IncludePage>
 	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="TableroExcel_events.php" forShow="False" comment="//" codePage="windows-1252"/>

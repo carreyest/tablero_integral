@@ -68,6 +68,15 @@ function Header_BeforeShow(& $sender)
     		$Component->pnlMenuAdmin->Visible=true;
     	} 
     }
+    if(CCGetSession("Rape",0)==1) {
+	   	$Component->Link6->Visible = false;
+    	$Component->LabelReportesSitioSAT->Visible = true;
+    	$Component->LabelReportesSitioSAT->SetValue("Reportes Sitio SAT");
+    } else {
+   	   	$Component->Link6->Visible = true;
+    	$Component->LabelReportesSitioSAT->Visible = false;
+
+    }
     
     global $id_repo;
     $id_repo=CCGetParam("IdReporte",0) ; 

@@ -1,17 +1,73 @@
 <?php
-//BindEvents Method @1-88A68ABF
+//BindEvents Method @1-C8F1AC86
 function BindEvents()
 {
     global $ReportesMyM;
     global $CCSEvents;
     $ReportesMyM->Nombre->CCSEvents["BeforeShow"] = "ReportesMyM_Nombre_BeforeShow";
     $ReportesMyM->Detail->CCSEvents["BeforeShow"] = "ReportesMyM_Detail_BeforeShow";
-    $ReportesMyM->CCSEvents["BeforeShow"] = "ReportesMyM_BeforeShow";
     $CCSEvents["BeforeShow"] = "Page_BeforeShow";
 }
 //End BindEvents Method
 
-//ReportesMyM_Nombre_BeforeShow @18-E12B16BF
+//DEL  // -------------------------
+//DEL      // Write your own code here.  	
+//DEL  
+//DEL      global $tipo_pantalla;
+//DEL      $tipo_pantalla=    CCGetParam("fullscreen",0) ; 
+//DEL      global $Tpl;
+//DEL      if ($tipo_pantalla==1) {
+//DEL      	//pantalla completa
+//DEL      	$Tpl->SetVar("func_pantalla","ocultar()");
+//DEL      	
+//DEL      	}
+//DEL      else{
+//DEL      	//pantalla normal
+//DEL      	$Tpl->SetVar("func_pantalla","mostrar()");
+//DEL      	
+//DEL      	}
+//DEL      
+//DEL  // -------------------------
+
+//DEL  // -------------------------
+//DEL      // Write your own code here.
+//DEL      
+//DEL      // $Component->SetValue("green");
+//DEL  // -------------------------
+
+//DEL  // -------------------------
+//DEL      // Write your own code here.
+//DEL      global $Tpl;
+//DEL      //hidden=getparam
+//DEL     if($ReportesMyM->Hidden1->GetValue()==CCGetParam("IdReporte"))
+//DEL   	{
+//DEL   		$Tpl->SetVar("vbgcolor","rgb(59,148,55)");
+//DEL     	 	$Tpl->SetVar("vfontcolor","white"); 
+//DEL  	}
+//DEL     else{
+//DEL      	$Tpl->SetVar("vbgcolor","rgb(244,244,244)");
+//DEL     	$Tpl->SetVar("vfontcolor","black"); 
+//DEL     } 
+//DEL     	 
+//DEL      // $Component->ReportLabel1->SetValue("green");
+//DEL  
+//DEL  // -------------------------
+
+//DEL  // -------------------------
+//DEL      // Write your own code here.
+//DEL  //     $Component->ReportLabel1->SetValue("green");
+//DEL      
+//DEL  // -------------------------
+
+//DEL  // -------------------------
+//DEL      if($ReportesMyM->DataSource->f("Activo")==1){
+//DEL      	$ReportesMyM->Nombre->SetLink($ReportesMyM->Nombre->GetLink());
+//DEL      } else {
+//DEL      	$ReportesMyM->Nombre->SetLink("");
+//DEL      }
+//DEL  // -------------------------
+
+//ReportesMyM_Nombre_BeforeShow @37-E12B16BF
 function ReportesMyM_Nombre_BeforeShow(& $sender)
 {
     $ReportesMyM_Nombre_BeforeShow = true;
@@ -20,39 +76,31 @@ function ReportesMyM_Nombre_BeforeShow(& $sender)
     global $ReportesMyM; //Compatibility
 //End ReportesMyM_Nombre_BeforeShow
 
-//Custom Code @25-2A29BDB7
+//Custom Code @38-2A29BDB7
 // -------------------------
-    // Write your own code here.  	
-
-    global $tipo_pantalla;
-    $tipo_pantalla=    CCGetParam("fullscreen",0) ; 
-    global $Tpl;
-    if ($tipo_pantalla==1) {
-    	//pantalla completa
-    	$Tpl->SetVar("func_pantalla","ocultar()");
-    	
-    	}
-    else{
-    	//pantalla normal
-    	$Tpl->SetVar("func_pantalla","mostrar()");
-    	
-    	}
     
+    if($ReportesMyM->activo->GetValue()==1){
+    	if($ReportesMyM->Nombre->GetValue()=="Tendencias de Niveles de Servicio"){
+    		$ReportesMyM->Nombre->SetLink("Charts/Charts.php");
+    		}
+    	$ReportesMyM->Nombre->Visible = true;
+    	$ReportesMyM->ReportLabel1->Visible = false;
+    } else {
+    	$ReportesMyM->Nombre->Visible=false;
+    	$ReportesMyM->ReportLabel1->Visible=true;
+    	$ReportesMyM->ReportLabel1->SetValue($ReportesMyM->Nombre->GetText());
+    }
+    $ReportesMyM->activo->SetValue("");
+    $ReportesMyM->IdReporte->SetValue("");
 // -------------------------
 //End Custom Code
 
-//Close ReportesMyM_Nombre_BeforeShow @18-E17C3411
+//Close ReportesMyM_Nombre_BeforeShow @37-E17C3411
     return $ReportesMyM_Nombre_BeforeShow;
 }
 //End Close ReportesMyM_Nombre_BeforeShow
 
-//DEL  // -------------------------
-//DEL      // Write your own code here.
-//DEL      
-//DEL      // $Component->SetValue("green");
-//DEL  // -------------------------
-
-//ReportesMyM_Detail_BeforeShow @11-DDA6CAD8
+//ReportesMyM_Detail_BeforeShow @35-DDA6CAD8
 function ReportesMyM_Detail_BeforeShow(& $sender)
 {
     $ReportesMyM_Detail_BeforeShow = true;
@@ -61,12 +109,11 @@ function ReportesMyM_Detail_BeforeShow(& $sender)
     global $ReportesMyM; //Compatibility
 //End ReportesMyM_Detail_BeforeShow
 
-//Custom Code @24-2A29BDB7
+//Custom Code @77-2A29BDB7
 // -------------------------
-    // Write your own code here.
-    global $Tpl;
+      global $Tpl;
     //hidden=getparam
-   if($ReportesMyM->Hidden1->GetValue()==CCGetParam("IdReporte"))
+   if($ReportesMyM->IdReporte->GetValue()==CCGetParam("IdReporte"))
  	{
  		$Tpl->SetVar("vbgcolor","rgb(59,148,55)");
    	 	$Tpl->SetVar("vfontcolor","white"); 
@@ -75,38 +122,13 @@ function ReportesMyM_Detail_BeforeShow(& $sender)
     	$Tpl->SetVar("vbgcolor","rgb(244,244,244)");
    	$Tpl->SetVar("vfontcolor","black"); 
    } 
-   	 
-    // $Component->ReportLabel1->SetValue("green");
-
 // -------------------------
 //End Custom Code
 
-//Close ReportesMyM_Detail_BeforeShow @11-E5038549
+//Close ReportesMyM_Detail_BeforeShow @35-E5038549
     return $ReportesMyM_Detail_BeforeShow;
 }
 //End Close ReportesMyM_Detail_BeforeShow
-
-//ReportesMyM_BeforeShow @5-5317CB32
-function ReportesMyM_BeforeShow(& $sender)
-{
-    $ReportesMyM_BeforeShow = true;
-    $Component = & $sender;
-    $Container = & CCGetParentContainer($sender);
-    global $ReportesMyM; //Compatibility
-//End ReportesMyM_BeforeShow
-
-//Custom Code @21-2A29BDB7
-// -------------------------
-    // Write your own code here.
-//     $Component->ReportLabel1->SetValue("green");
-    
-// -------------------------
-//End Custom Code
-
-//Close ReportesMyM_BeforeShow @5-06B7CC95
-    return $ReportesMyM_BeforeShow;
-}
-//End Close ReportesMyM_BeforeShow
 
 //Page_BeforeShow @1-F9FE9218
 function Page_BeforeShow(& $sender)
@@ -120,6 +142,19 @@ function Page_BeforeShow(& $sender)
 //Custom Code @2-2A29BDB7
 // -------------------------
 	
+	global $tipo_pantalla;
+    $tipo_pantalla=    CCGetParam("fullscreen",0) ; 
+    global $Tpl;
+    if ($tipo_pantalla==1) {
+    	//pantalla completa
+    	$Tpl->SetVar("func_pantalla","ocultar()");
+    	
+    	}
+    else{
+    	//pantalla normal
+    	$Tpl->SetVar("func_pantalla","mostrar()");
+    	
+    	}
 	//inicia sesión en el servidor de reportes para evitar el doblehop
 	$ldaprdn  = 'sharepoint@capcmc.itera';     // ldap rdn or dn
 	$ldappass = 'itera.2012';  // associated password
@@ -147,7 +182,11 @@ function Page_BeforeShow(& $sender)
 		$db->query("select nombrerdl from ReportesMyM where IdReporte=" . CCGetParam("IdReporte","0"));
 		if($db->next_record()){
 			global $PathToRoot;
-			$lReportContent->SetValue("<iframe  id='rep_metri'  style='overflow:auto; width:1160px; height:700px;' frameborder=0 src=" . $PathToRoot . "reportviewer/VerReporte.aspx?urlreporte=" . $db->f(0) . "&fullscreen=" . CCGetParam("fullscreen",0) ."></iframe>");
+			if(CCGetSession("Rape","")==1 && CCGetSession("Nivel","")!=5){ //Sólo si es rape pero no administrador
+				$lReportContent->SetValue("<iframe  id='rep_metri'  style='overflow:auto; width:1160px; height:700px;' frameborder=0 src=" . $PathToRoot . "reportviewer/VerReporte2.aspx?urlreporte=" . $db->f(0) . "&fullscreen=" . CCGetParam("fullscreen",0) ."&Admon=".CCGetSession("AdministracionRape","")."></iframe>");
+  			} else {
+				$lReportContent->SetValue("<iframe  id='rep_metri'  style='overflow:auto; width:1160px; height:700px;' frameborder=0 src=" . $PathToRoot . "reportviewer/VerReporte.aspx?urlreporte=" . $db->f(0) . "&fullscreen=" . CCGetParam("fullscreen",0) ."></iframe>");  			
+  			}
 		}
 		$db->close();
 	} else {

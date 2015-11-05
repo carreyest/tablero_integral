@@ -38,6 +38,12 @@ function Login1_Button_DoLogin_OnClick(& $sender)
 		CCSetSession("GrupoValoracion",$sGrupoValoracion); 
 		$sCDSPreferido  = CCDLookUp("CDSDefault","mc_c_usuarios","id= " . CCGetUserID() , $db);
 		CCSetSession("CDSPreferido",$sCDSPreferido); 
+        $sAdministracion = CCDLookUp("Administracion_rape","mc_c_usuarios","id= " . CCGetUserID() , $db);
+		CCSetSession("AdministracionRape",$sAdministracion); 
+        $sNivel = CCDLookUp("Nivel","mc_c_usuarios","id= " . CCGetUserID() , $db);
+		CCSetSession("Nivel",$sNivel); 
+		$sEsRape = CCDLookUp("Rape","mc_c_usuarios","id= " . CCGetUserID() , $db);
+		CCSetSession("Rape",$sEsRape); 
 		$db->close();
 		
 		// dependiendo del grupo lo manda a la página que le interesa
@@ -74,6 +80,29 @@ function Page_BeforeShow(& $sender)
 
 //Custom Code @9-2A29BDB7
 // -------------------------
+	$ldaprdn  = 'sharepoint@capcmc.itera';     // ldap rdn or dn
+	$ldappass = 'itera.2012';  // associated password
+	// connect to ldap server
+	$ldapconn = ldap_connect("capcmc.itera")
+    or die("No es posible conectarse con el servidor de dominio.");
+
+	if ($ldapconn) {
+    	// binding to ldap server
+    	$ldapbind = ldap_bind($ldapconn, $ldaprdn, $ldappass);
+    	// verify binding
+    	if ($ldapbind) {
+    		
+    	} else {
+        	echo "No es posible autenticarse con el AD...";
+    	}
+	}
+
+
+			$REPORT = "/AnalyticsReports/1%20Varios/VistaInicial.rdl";
+		                                     
+					global $lReportContent;
+					//$lReportContent->SetValue("<div style='overflow:auto; width:1000px; height:700px' >" . $result_html . "</div>");
+					$lReportContent->SetValue("<center><iframe  id='rep_metri'   width='85%' height='900px' scrolling='no'  frameborder=0 src=reportviewer/VerReporteVistaLogin.aspx?urlreporte=" . $REPORT . "&fullscreen=1></iframe></center>");
     
 // -------------------------
 //End Custom Code

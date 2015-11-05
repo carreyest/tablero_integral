@@ -65,7 +65,7 @@ class clsHeader { //Header class @1-CC982CB1
     }
 //End Operations Method
 
-//Initialize Method @1-50558C34
+//Initialize Method @1-697CF81F
     function Initialize($Path = "")
     {
         global $FileName;
@@ -126,6 +126,7 @@ class clsHeader { //Header class @1-CC982CB1
         $this->Link6 = new clsControl(ccsLink, "Link6", "Link6", ccsText, "", CCGetRequestParam("Link6", ccsGet, NULL), $this);
         $this->Link6->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
         $this->Link6->Page = "http://webiterasrv2/sites/SDMA_Reporte/Pages/default.aspx";
+        $this->LabelReportesSitioSAT = new clsControl(ccsLabel, "LabelReportesSitioSAT", "LabelReportesSitioSAT", ccsText, "", CCGetRequestParam("LabelReportesSitioSAT", ccsGet, NULL), $this);
         $this->pnlMenu->AddComponent("pnlMenuAdmin", $this->pnlMenuAdmin);
         $this->pnlMenu->AddComponent("Panel3", $this->Panel3);
         $this->pnlMenuAdmin->AddComponent("lkAdmin", $this->lkAdmin);
@@ -141,6 +142,7 @@ class clsHeader { //Header class @1-CC982CB1
         $this->Panel2->AddComponent("Link4", $this->Link4);
         $this->Panel2->AddComponent("Link5", $this->Link5);
         $this->Panel4->AddComponent("Link6", $this->Link6);
+        $this->Panel4->AddComponent("LabelReportesSitioSAT", $this->LabelReportesSitioSAT);
         $this->BindEvents();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnInitializeView", $this);
         $this->lkIncidentes->Parameters = CCGetQueryString("QueryString", array("ccsForm"));

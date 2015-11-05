@@ -11,31 +11,36 @@
 			<Attributes/>
 			<Features/>
 		</Label>
-		<Report id="5" secured="False" enablePrint="False" showMode="Web" sourceType="SQL" returnValueType="Number" linesPerWebPage="50" linesPerPhysicalPage="10" name="ReportesMyM" connection="cnDisenio" dataSource="SELECT * 
-FROM ReportesMyM Rep
-left join usuario_reporteMyM  Perm on Perm.id_reporte=Rep.IdReporte
-where (Rep.Grupo &lt;&gt; 'SLAs' or '{GrupoValoracion}'  ='SLAs')
-	and Rep.activo=1
-	and Perm.activo=1
-	and Perm.id_usuario={MyMUserID}
-ORDER BY Rep.Nombre
-" pageSizeLimit="100" wizardCaption="Reportes" changedCaptionReport="True" wizardLayoutType="GroupAbove" wizardGridPaging="Centered" wizardHideDetail="False" wizardPercentForSums="False" wizardEnablePrintMode="False" wizardReportSeparator="False" wizardReportAddTotalRecords="False" wizardReportAddPageNumbers="False" wizardReportAddNbsp="False" wizardReportAddDateTime="False" wizardReportDateTimeAs="CurrentDate" wizardReportAddRowNumber="False" wizardReportRowNumberResetAt="Report" wizardUseSearch="False" wizardNoRecords="No hay registros" wizardUseInterVariables="False" wizardThemeApplyTo="Page" reportAddTemplatePanel="False" editableComponentTypeString="Report">
+		<ImageLink id="28" visible="Yes" fieldSourceType="DBColumn" dataType="Text" hrefType="Page" urlType="Relative" preserveParameters="GET" name="ImageLink2" PathID="ImageLink2" hrefSource="MuestraReporte.ccp" linkProperties="{'textSource':'images/cierra_verde.jpg','textSourceDB':'','hrefSource':'MuestraReporte.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':3,'objectType':'linkParameters','0':{'sourceType':'URL','parameterSource':'1','parameterName':'fullscreen'},'1':{'sourceType':'URL','parameterSource':'0','parameterName':'fullscreen'},'2':{'sourceType':'Expression','parameterSource':'0','parameterName':'fullscreen'}}}"><Components/>
+			<Events/>
+			<LinkParameters>
+				<LinkParameter id="29" sourceType="Expression" format="yyyy-mm-dd" name="fullscreen" source="0"/>
+			</LinkParameters>
+			<Attributes/>
+			<Features/>
+		</ImageLink>
+		<Report id="30" secured="False" enablePrint="False" showMode="Web" sourceType="SQL" returnValueType="Number" linesPerWebPage="50" linesPerPhysicalPage="10" name="ReportesMyM" connection="cnDisenio" dataSource="SELECT IdReporte, Nombre, Grupo, usuario_reporteMyM.activo AS Perm_activo 
+FROM ReportesMyM INNER JOIN usuario_reporteMyM ON
+ReportesMyM.IdReporte = usuario_reporteMyM.id_reporte
+WHERE Grupo &lt;&gt; '{Expr0}'
+AND ReportesMyM.activo = {Expr1}
+AND id_usuario = {MyMUserID} " pageSizeLimit="100" wizardCaption="Reportes" changedCaptionReport="True" wizardLayoutType="GroupLeftAbove" wizardGridPaging="Centered" wizardHideDetail="False" wizardPercentForSums="False" wizardEnablePrintMode="False" wizardReportSeparator="False" wizardReportAddTotalRecords="False" wizardReportAddPageNumbers="False" wizardReportAddNbsp="False" wizardReportAddDateTime="False" wizardReportDateTimeAs="CurrentDate" wizardReportAddRowNumber="False" wizardReportRowNumberResetAt="Report" wizardUseSearch="False" wizardNoRecords="No hay registros" wizardUseInterVariables="False" wizardThemeApplyTo="Page" reportAddTemplatePanel="False" editableComponentTypeString="Report">
 			<Components>
-				<Section id="7" visible="True" lines="0" name="Report_Header" wizardSectionType="ReportHeader">
+				<Section id="31" visible="True" lines="0" name="Report_Header" wizardSectionType="ReportHeader">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Section>
-				<Section id="8" visible="True" lines="0" name="Page_Header" wizardSectionType="PageHeader">
+				<Section id="32" visible="False" lines="1" name="Page_Header" wizardSectionType="PageHeader">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Section>
-				<Section id="10" visible="True" lines="2" name="grupo_Header">
+				<Section id="33" visible="True" lines="1" name="Grupo_Header">
 					<Components>
-						<ReportLabel id="16" fieldSourceType="DBColumn" dataType="Text" html="False" hideDuplicates="False" resetAt="Report" name="grupo" fieldSource="Grupo" fieldTableSource="ReportesMyM" wizardCaption="Grupo" wizardIsPassword="False" visible="Yes" wizardUseTemplateBlock="False" wizardAddNbsp="False" PathID="ReportesMyMgrupo_Headergrupo">
+						<ReportLabel id="34" fieldSourceType="DBColumn" dataType="Text" html="False" hideDuplicates="False" resetAt="Report" name="Grupo" fieldSource="Grupo" wizardCaption="Grupo" wizardIsPassword="False" visible="Yes" wizardUseTemplateBlock="False" wizardAddNbsp="False" PathID="ReportesMyMGrupo_HeaderGrupo">
 							<Components/>
 							<Events/>
 							<Attributes/>
@@ -46,49 +51,61 @@ ORDER BY Rep.Nombre
 					<Attributes/>
 					<Features/>
 				</Section>
-				<Section id="11" visible="True" lines="1" name="Detail">
+				<Section id="35" visible="True" lines="1" name="Detail">
 					<Components>
-						<Link id="18" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" preserveParameters="GET" name="Nombre" fieldSource="Nombre" fieldTableSource="ReportesMyM" wizardCaption="Nombre" wizardIsPassword="False" linkProperties="{'textSource':'','textSourceDB':'Nombre','hrefSource':'','hrefSourceDB':'Nombre','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'IdReporte','parameterName':'IdReporte'},'length':1,'objectType':'linkParameters'}}" PathID="ReportesMyMDetailNombre" urlType="Relative" wizardUseTemplateBlock="False">
+						<Link id="37" fieldSourceType="DBColumn" dataType="Text" html="False" hideDuplicates="False" resetAt="Report" name="Nombre" fieldSource="Nombre" wizardCaption="Nombre" wizardIsPassword="False" visible="Dynamic" wizardUseTemplateBlock="False" wizardAddNbsp="False" PathID="ReportesMyMDetailNombre" hrefType="Page" urlType="Relative" preserveParameters="GET" linkProperties="{&quot;textSource&quot;:&quot;&quot;,&quot;textSourceDB&quot;:&quot;Nombre&quot;,&quot;hrefSource&quot;:&quot;&quot;,&quot;hrefSourceDB&quot;:&quot;&quot;,&quot;title&quot;:&quot;&quot;,&quot;target&quot;:&quot;&quot;,&quot;name&quot;:&quot;&quot;,&quot;linkParameters&quot;:{&quot;0&quot;:{&quot;sourceType&quot;:&quot;DataField&quot;,&quot;parameterSource&quot;:&quot;IdReporte&quot;,&quot;parameterName&quot;:&quot;IdReporte&quot;},&quot;1&quot;:{&quot;sourceType&quot;:&quot;DataField&quot;,&quot;parameterSource&quot;:&quot;IdReporte&quot;,&quot;parameterName&quot;:&quot;IdReporte&quot;},&quot;2&quot;:{&quot;sourceType&quot;:&quot;DataField&quot;,&quot;parameterSource&quot;:&quot;IdReporte&quot;,&quot;parameterName&quot;:&quot;IdReporte&quot;},&quot;length&quot;:3,&quot;objectType&quot;:&quot;linkParameters&quot;}}">
 							<Components/>
 							<Events>
 								<Event name="BeforeShow" type="Server">
 									<Actions>
-										<Action actionName="Custom Code" actionCategory="General" id="25"/>
+										<Action actionName="Custom Code" actionCategory="General" id="38"/>
 									</Actions>
 								</Event>
 							</Events>
-							<LinkParameters>
-								<LinkParameter id="19" sourceType="DataField" name="IdReporte" source="IdReporte"/>
-							</LinkParameters>
 							<Attributes/>
 							<Features/>
+							<LinkParameters>
+								<LinkParameter id="39" sourceType="DataField" name="IdReporte" source="IdReporte"/>
+							</LinkParameters>
 						</Link>
-						<Hidden id="26" fieldSourceType="DBColumn" dataType="Integer" name="Hidden1" PathID="ReportesMyMDetailHidden1" fieldSource="IdReporte">
+						<ReportLabel id="76" fieldSourceType="DBColumn" dataType="Text" html="False" hideDuplicates="False" resetAt="Report" name="ReportLabel1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="ReportesMyMDetailReportLabel1">
+							<Components/>
+							<Events/>
+							<Attributes/>
+							<Features/>
+						</ReportLabel>
+						<Hidden id="36" fieldSourceType="DBColumn" dataType="Integer" html="False" hideDuplicates="False" resetAt="Report" name="IdReporte" fieldSource="IdReporte" wizardCaption="Id Reporte" wizardIsPassword="False" visible="Yes" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardAlign="right" PathID="ReportesMyMDetailIdReporte">
 							<Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
 						</Hidden>
+						<ReportLabel id="40" fieldSourceType="DBColumn" dataType="Integer" html="False" hideDuplicates="False" resetAt="Report" name="activo" fieldSource="Perm_activo" wizardCaption="Activo" wizardIsPassword="False" visible="Yes" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardAlign="right" PathID="ReportesMyMDetailactivo">
+							<Components/>
+							<Events/>
+							<Attributes/>
+							<Features/>
+						</ReportLabel>
 					</Components>
 					<Events>
 						<Event name="BeforeShow" type="Server">
 							<Actions>
-								<Action actionName="Custom Code" actionCategory="General" id="24"/>
+								<Action actionName="Custom Code" actionCategory="General" id="77"/>
 							</Actions>
 						</Event>
 					</Events>
 					<Attributes/>
 					<Features/>
 				</Section>
-				<Section id="12" visible="True" lines="0" name="grupo_Footer">
+				<Section id="41" visible="True" lines="0" name="Grupo_Footer">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Section>
-				<Section id="13" visible="True" lines="0" name="Report_Footer" wizardSectionType="ReportFooter">
+				<Section id="42" visible="True" lines="0" name="Report_Footer" wizardSectionType="ReportFooter">
 					<Components>
-						<Panel id="14" visible="True" generateDiv="False" name="NoRecords" wizardNoRecords="No hay registros">
+						<Panel id="43" visible="True" generateDiv="False" name="NoRecords" wizardNoRecords="No hay registros">
 							<Components/>
 							<Events/>
 							<Attributes/>
@@ -99,9 +116,9 @@ ORDER BY Rep.Nombre
 					<Attributes/>
 					<Features/>
 				</Section>
-				<Section id="15" visible="True" lines="1" name="Page_Footer" wizardSectionType="PageFooter" pageBreakAfter="True">
+				<Section id="44" visible="True" lines="1" name="Page_Footer" wizardSectionType="PageFooter" pageBreakAfter="True">
 					<Components>
-						<Navigator id="17" size="10" type="Centered" pageSizes="1;5;10;25;50" name="Navigator" wizardPagingType="Centered" wizardFirst="True" wizardFirstText="Inicio" wizardPrev="True" wizardPrevText="Anterior" wizardNext="True" wizardNextText="Siguiente" wizardLast="True" wizardLastText="Final" wizardPageNumbers="Centered" wizardSize="10" wizardTotalPages="True" wizardHideDisabled="False" wizardOfText="de" wizardImagesScheme="{ccs_style}">
+						<Navigator id="45" size="10" type="Centered" pageSizes="1;5;10;25;50" name="Navigator" wizardPagingType="Centered" wizardFirst="True" wizardFirstText="Inicio" wizardPrev="True" wizardPrevText="Anterior" wizardNext="True" wizardNextText="Siguiente" wizardLast="True" wizardLastText="Final" wizardPageNumbers="Centered" wizardSize="10" wizardTotalPages="True" wizardHideDisabled="False" wizardOfText="de" wizardImagesScheme="{ccs_style}">
 							<Components/>
 							<Events/>
 							<Attributes/>
@@ -113,41 +130,29 @@ ORDER BY Rep.Nombre
 					<Features/>
 				</Section>
 			</Components>
-			<Events>
-				<Event name="BeforeShow" type="Server">
-					<Actions>
-						<Action actionName="Custom Code" actionCategory="General" id="21"/>
-					</Actions>
-				</Event>
-			</Events>
-			<TableParameters/>
+			<Events/>
+			<TableParameters>
+			</TableParameters>
 			<JoinTables>
 			</JoinTables>
-			<JoinLinks/>
+			<JoinLinks>
+			</JoinLinks>
 			<Fields>
 			</Fields>
-			<PKFields>
-			</PKFields>
+			<PKFields/>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="30" dataType="Text" designDefaultValue="SLAs" parameterSource="GrupoValoracion" parameterType="Session" variable="GrupoValoracion"/>
-<SQLParameter id="31" dataType="Integer" defaultValue="0" designDefaultValue="2" parameterSource="MyMUserID" parameterType="Session" variable="MyMUserID"/>
-</SQLParameters>
+				<SQLParameter id="78" dataType="Text" designDefaultValue="SLAS" parameterSource="'SLAS'" parameterType="Expression" variable="Expr0"/>
+				<SQLParameter id="79" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="1" parameterType="Expression" variable="Expr1"/>
+				<SQLParameter id="80" dataType="Integer" defaultValue="0" designDefaultValue="53" parameterSource="MyMUserID" parameterType="Session" variable="MyMUserID"/>
+			</SQLParameters>
 			<ReportGroups>
-				<ReportGroup id="9" name="grupo" field="Grupo" sqlField="ReportesMyM.Grupo" sortOrder="asc"/>
+				<ReportGroup id="55" name="Grupo" field="Grupo" sortOrder="asc" sqlField="ReportesMyM.Grupo"/>
 			</ReportGroups>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
 		</Report>
-		<ImageLink id="28" visible="Yes" fieldSourceType="DBColumn" dataType="Text" hrefType="Page" urlType="Relative" preserveParameters="GET" name="ImageLink2" PathID="ImageLink2" hrefSource="MuestraReporte.ccp" linkProperties="{'textSource':'images/cierra_verde.jpg','textSourceDB':'','hrefSource':'MuestraReporte.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':3,'objectType':'linkParameters','0':{'sourceType':'URL','parameterSource':'1','parameterName':'fullscreen'},'1':{'sourceType':'URL','parameterSource':'0','parameterName':'fullscreen'},'2':{'sourceType':'Expression','parameterSource':'0','parameterName':'fullscreen'}}}"><Components/>
-			<Events/>
-			<LinkParameters>
-				<LinkParameter id="29" sourceType="Expression" format="yyyy-mm-dd" name="fullscreen" source="0"/>
-			</LinkParameters>
-			<Attributes/>
-			<Features/>
-		</ImageLink>
 	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="MuestraReporte_events.php" forShow="False" comment="//" codePage="windows-1252"/>

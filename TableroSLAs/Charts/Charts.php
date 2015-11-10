@@ -283,6 +283,10 @@ CCSecurityRedirect("", "");
 include_once("./Charts_events.php");
 //End Include events file
 
+//BeforeInitialize Binding @1-17AC9191
+$CCSEvents["BeforeInitialize"] = "Page_BeforeInitialize";
+//End BeforeInitialize Binding
+
 //Before Initialize @1-E870CEBC
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize

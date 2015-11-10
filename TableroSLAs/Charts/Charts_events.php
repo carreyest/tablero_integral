@@ -1,10 +1,11 @@
 <?php
-//BindEvents Method @1-EF623785
+//BindEvents Method @1-E552A776
 function BindEvents()
 {
     global $CCSEvents;
     $CCSEvents["OnInitializeView"] = "Page_OnInitializeView";
     $CCSEvents["BeforeShow"] = "Page_BeforeShow";
+    $CCSEvents["AfterInitialize"] = "Page_AfterInitialize";
 }
 //End BindEvents Method
 
@@ -19,6 +20,10 @@ function Page_OnInitializeView(& $sender)
 
 //Custom Code @2-2A29BDB7
 // -------------------------
+    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+	header("Cache-Control: post-check=0, pre-check=0", false);
+	header("Pragma: no-cache");
+	
 	error_reporting(E_ERROR ); 
     include_once(RelativePath . "/Charts/pChart/pData.class");
     include_once(RelativePath . "/Charts/pChart/pChart.class");
@@ -218,7 +223,7 @@ function Page_BeforeShow(& $sender)
 			$DataSetc->AddSerie($aCDSc[$i]);  
 			$DataSetc->SetSerieName($aCDSc[$i],$aCDSc[$i]);  	
 			$sTablec = $sTablec . "<tr><td  width='80px'>" . $aCDSc[$i] . "</td><td width='40px'>" . implode("</td><td  width='40px'>",$$aCDSc[$i]) . "</td></tr>";
-			var_dump($$aCDSc[$i]);
+			//var_dump($$aCDSc[$i]);
 		}
 		$DataSetc->AddPoint(array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"),"Serie". $i+1);  
 		$DataSetc->SetAbsciseLabelSerie("Serie". $i+1);  		
@@ -260,6 +265,48 @@ function Page_BeforeShow(& $sender)
     return $Page_BeforeShow;
 }
 //End Close Page_BeforeShow
+
+//Page_AfterInitialize @1-C3135BEA
+function Page_AfterInitialize(& $sender)
+{
+    $Page_AfterInitialize = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $Charts; //Compatibility
+//End Page_AfterInitialize
+
+//Custom Code @35-2A29BDB7
+// -------------------------
+    
+// -------------------------
+//End Custom Code
+
+//Close Page_AfterInitialize @1-379D319D
+    return $Page_AfterInitialize;
+}
+//End Close Page_AfterInitialize
+
+//Page_BeforeInitialize @1-0285FC7C
+function Page_BeforeInitialize(& $sender)
+{
+    $Page_BeforeInitialize = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $Charts; //Compatibility
+//End Page_BeforeInitialize
+
+//Custom Code @36-2A29BDB7
+// -------------------------
+    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+	header("Cache-Control: post-check=0, pre-check=0", false);
+	header("Pragma: no-cache");
+// -------------------------
+//End Custom Code
+
+//Close Page_BeforeInitialize @1-23E6A029
+    return $Page_BeforeInitialize;
+}
+//End Close Page_BeforeInitialize
 
 function ufIndicadoresCumplimiento(){
 	global $sCharts;
@@ -309,8 +356,6 @@ function ufIndicadoresCumplimiento(){
 	" group by m.MesReporte , m.anioreporte , p.nombre  order by p.nombre, MesReporte,anioreporte  "  ;
 	global $db;
     $db= new clsDBcnDisenio;
-    //echo $sSQL;
-    //die();
     $db->query($sSQL);
 	
 	//Si no se especifico un mes,  para cada SLA seleccionado se genera una gráfica
@@ -352,8 +397,9 @@ function ufIndicadoresCumplimiento(){
 				if(array_search($saMeta ,$aMeta)===false)  $aMeta[]=$saMeta;
 				if(count($$saMeta)==0) $$saMeta=array();
 				// no mete mas elementos a la meta que los que tiene el proveedor
-				if(count($$saMeta)<count($$sCDSAcronimo))
+				if(count($$saMeta)<count($$sCDSAcronimo)){
 					array_push($$saMeta, $db->f("Meta_" . $s_Acronimo[$iAcronimo]));	
+				}
 			}	
 	    }
 	    for($iAcronimo=0;$iAcronimo<count($s_Acronimo);$iAcronimo++){    			
@@ -362,13 +408,7 @@ function ufIndicadoresCumplimiento(){
 				$DataSet->AddPoint(array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"),"Serie". $i+1);  
 				$DataSet->SetAbsciseLabelSerie("Serie". $i+1);  
 				
-				//se pone la meta
-				$i=0;
-				
-				$DataSet->AddPoint($$saMeta,$aMeta[$iAcronimo]);  
-				$DataSet->AddSerie($aMeta[$iAcronimo]);  
-				$DataSet->SetSerieName("Objetivo",$aMeta[$iAcronimo]);  	
-				
+				$i=0; 
 				$sTable="<table border=1><tr><td></td><td>Ene</td><td>Feb</td><td>Mar</td><td>Abr</td><td>May</td><td>Jun</td><td>Jul</td><td>Ago</td><td>Sep</td><td>Oct</td><td>Nov</td><td>Dic</td></tr>";	
 				for ($i = 0; $i < count($aCDS); $i++) {
 			    	$sCDSAcronimo = $aCDS[$i] .$s_Acronimo[$iAcronimo] ;
@@ -377,9 +417,19 @@ function ufIndicadoresCumplimiento(){
 					$DataSet->SetSerieName($aCDS[$i],$aCDS[$i]);  	
 					$sTable= $sTable . "<tr><td  width='80px'>" . $aCDS[$i] . "</td><td width='40px'>" . implode("</td><td  width='40px'>",$$sCDSAcronimo) . "</td></tr>";
 				}	
+				//se pone la meta
+				//echo var_dump($$aMeta[$iAcronimo]). " <b>" . $$saMeta. "</b> " . $aMeta[$iAcronimo] . "<b> " . var_dump($$saMeta) ."<br>";
+				$DataSet->RemoveSerie("Objetivo");  
+				if(CCGetParam("s_Metrica","")==0){
+					//for ($i = 0; $i < count($aCDS); $i++) {
+						$DataSet->AddPoint($$aMeta[$iAcronimo],"Objetivo");  
+						$DataSet->AddSerie("Objetivo");  
+						//$DataSet->SetSerieName("Objetivo",$aMeta[$iAcronimo]);  	
+					//}
+				}
 					$sTable = $sTable . "</table>";
 					
-					// Initialise the graph  
+					// Initialise the graph  					
 					$Test = new pChart(920,250);  
 					$Test->setFontProperties("Fonts/tahoma.ttf",10);  
 					$Test->setGraphArea(40,30,720,200);  
@@ -407,7 +457,9 @@ function ufIndicadoresCumplimiento(){
 					
 					
 					$Test->Render( $sCDSAcronimo .".png");  	
-	
+					$DataSet->AddSerie($aMeta[$iAcronimo]);  
+					unset($DataSet);
+					unset($Test);
 					$sCharts= $sCharts . '<center><img src="' .  $sCDSAcronimo . '.png" border=1/>' . $sTable  . '</center><br /> <br />';
 					
 	    }

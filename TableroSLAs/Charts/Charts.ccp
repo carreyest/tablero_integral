@@ -120,5 +120,15 @@
 				<Action actionName="Custom Code" actionCategory="General" id="3"/>
 			</Actions>
 		</Event>
+		<Event name="AfterInitialize" type="Server">
+			<Actions>
+				<Action actionName="Custom Code" actionCategory="General" id="35"/>
+			</Actions>
+		</Event>
+		<Event name="BeforeInitialize" type="Server">
+			<Actions>
+				<Action actionName="Custom Code" actionCategory="General" id="36"/>
+			</Actions>
+		</Event>
 	</Events>
 </Page>

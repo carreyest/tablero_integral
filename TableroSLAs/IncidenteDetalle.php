@@ -313,7 +313,7 @@ class clsmc_detalle_incidente_avlDataSource extends clsDBcnDisenio {  //mc_detal
     }
 //End Prepare Method
 
-//Open Method @68-6D967095
+//Open Method @68-5419F583
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -328,7 +328,7 @@ class clsmc_detalle_incidente_avlDataSource extends clsDBcnDisenio {  //mc_detal
         "	inner join mc_c_movimiento m on m.ClaveMovimiento = det.ClaveMovimiento \n" .
         "	left join (select id_incidente, paquete, FechaCarga, Min(FechaFinMov) LiberacionAVL, count(FechaFinMov)  CountPaquete\n" .
         "			from mc_detalle_incidente_avl det \n" .
-        "				where ClaveMovimiento ='38'\n" .
+        "				where ClaveMovimiento ='38' OR ClaveMovimiento ='49'\n" .
         "				group by id_incidente, Paquete, FechaCarga  \n" .
         "	) as r on r.Id_Incidente = det.Id_Incidente and r.Paquete = det.Paquete and MONTH(r.FechaCarga )= u.mes  and YEAR(r.FechaCarga )= u.anio \n" .
         "	left join (select id_incidente, paquete, FechaCarga, SUM(dbo.ufDiffFechasMCSec(FechaInicioMov,FechaFinMov)) TotalSecPaquete\n" .
@@ -353,7 +353,7 @@ class clsmc_detalle_incidente_avlDataSource extends clsDBcnDisenio {  //mc_detal
         "	inner join mc_c_movimiento m on m.ClaveMovimiento = det.ClaveMovimiento \n" .
         "	left join (select id_incidente, paquete, FechaCarga, Min(FechaFinMov) LiberacionAVL, count(FechaFinMov)  CountPaquete\n" .
         "			from mc_detalle_incidente_avl det \n" .
-        "				where ClaveMovimiento ='38'\n" .
+        "				where ClaveMovimiento ='38' OR ClaveMovimiento ='49'\n" .
         "				group by id_incidente, Paquete, FechaCarga  \n" .
         "	) as r on r.Id_Incidente = det.Id_Incidente and r.Paquete = det.Paquete and MONTH(r.FechaCarga )= u.mes  and YEAR(r.FechaCarga )= u.anio \n" .
         "	left join (select id_incidente, paquete, FechaCarga, SUM(dbo.ufDiffFechasMCSec(FechaInicioMov,FechaFinMov)) TotalSecPaquete\n" .
@@ -1891,16 +1891,16 @@ class clsmc_info_incidentes3DataSource extends clsDBcnDisenio {  //mc_info_incid
     }
 //End Prepare Method
 
-//Open Method @112-83C67DC2
+//Open Method @112-DE942651
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->SQL = "SELECT TOP 1 * ,(dbo.ufDiffFechasMCSec(\n" .
         "	(select top 1 FechaFinMov from mc_detalle_incidente_avl where (Id_Incidente =a.Id_Incidente or Id_Incidente = a.IncPadre ) \n" .
-        "		and ClaveMovimiento =38 and month(FechaCarga) = u.mes and year(FechaCarga) = u.anio order by fechaFinMov desc )  ,	FechaResuelto )) as HorasInvertidas,\n" .
+        "		and (ClaveMovimiento =38 OR ClaveMovimiento =49) and month(FechaCarga) = u.mes and year(FechaCarga) = u.anio order by fechaFinMov desc )  ,	FechaResuelto )) as HorasInvertidas,\n" .
         "(select top 1 FechaFinMov from mc_detalle_incidente_avl \n" .
         "	where (Id_Incidente =a.Id_Incidente or Id_Incidente = a.IncPadre ) \n" .
-        "	and ClaveMovimiento =38 	and month(FechaCarga) = u.mes and year(FechaCarga) = u.anio order by fechaFinMov desc ) as LiberacionAVL\n" .
+        "	and (ClaveMovimiento =38 OR ClaveMovimiento =49) 	and month(FechaCarga) = u.mes and year(FechaCarga) = u.anio order by fechaFinMov desc ) as LiberacionAVL\n" .
         "FROM mc_info_incidentes a\n" .
         "		inner join mc_universo_cds u on a.Id_incidente = u.numero  and month(a.FechaCarga ) = u.mes and YEAR(a.fechacarga)= u.anio \n" .
         "WHERE Id_incidente = '" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "' ";

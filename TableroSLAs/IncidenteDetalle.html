@@ -308,7 +308,7 @@ jQuery(function ($) {
 <body onload="ayudaValidaciones('','')">
 <p>&nbsp;&nbsp;&nbsp;{Header}</p>
 <p align="left"></p>
-<table width="100%" border="0">
+<table border="0" width="100%">
   <tr>
     <td>&nbsp;</td> 
     <td colspan="2">&nbsp; 
@@ -327,10 +327,10 @@ jQuery(function ($) {
       <p align="left"></p>
       <!-- BEGIN Record mc_info_incidentes -->
       <form id="mc_info_incidentes" method="post" name="{HTMLFormName}" action="{Action}">
-        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="top">
-              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"></td> 
                   <td class="th"><strong>Detalle de Incidente:&nbsp; {Id_incidente}&nbsp; de&nbsp;&nbsp; {slCDS}&nbsp; - Reportado en {lMes} </strong></td> 
@@ -380,12 +380,12 @@ jQuery(function ($) {
                   <td style="TEXT-ALIGN: center">{SeveridadApp}</td> 
                   <td style="TEXT-ALIGN: center">{TiempoAtencion}</td> 
                   <td style="TEXT-ALIGN: center">{TiempoSolucion}</td> 
-                  <td>&nbsp;<img onclick="ayudaMostrar('Historial')" id="Image1" alt="" src="Images/ayuda.jpg"></td>
+                  <td>&nbsp;<img id="Image1" onclick="ayudaMostrar('Historial')" alt="" src="Images/ayuda.jpg"></td>
                 </tr>
  
                 <tr class="Controls" width="33%">
                   <td colspan="15">
-                    <div id="Historial" style="DISPLAY: none">
+                    <div style="DISPLAY: none" id="Historial">
                       {slHistorial} 
                     </div>
                   </td>
@@ -409,10 +409,10 @@ jQuery(function ($) {
     <td>&nbsp; 
       <!-- BEGIN Record mc_info_incidentes1 -->
       <form id="mc_info_incidentes1" method="post" name="{HTMLFormName}" action="{Action}">
-        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="top">
-              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"></td> 
                   <td class="th"><strong>Tiempo de Atención</strong></td> 
@@ -451,10 +451,10 @@ jQuery(function ($) {
       <!-- END Record mc_info_incidentes1 --><br>
       <!-- BEGIN Record mc_info_incidentes2 -->
       <form id="mc_info_incidentes2" method="post" name="{HTMLFormName}" action="{Action}">
-        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="top">
-              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"></td> 
                   <td class="th"><strong>Tiempo de Solución&nbsp;</strong></td> 
@@ -474,7 +474,7 @@ jQuery(function ($) {
                   <td class="th">Tiempo del estado "En Curso" y el Registro en AVL</td> 
                   <td>{FechaEnCurso}</td> 
                   <td>{lblRegistroAVL}</td> 
-                  <td id="mc_lbl_tiemposolucion" style="TEXT-ALIGN: center">{HorasInvertidas}</td>
+                  <td style="TEXT-ALIGN: center" id="mc_lbl_tiemposolucion">{HorasInvertidas}</td>
                 </tr>
  
                 <tr class="Bottom">
@@ -488,10 +488,10 @@ jQuery(function ($) {
       <!-- END Record mc_info_incidentes2 --></td> 
     <td style="VERTICAL-ALIGN: top">
       <!-- BEGIN Grid mc_incidentes_relacionado -->
-      <table id="mc_incidentes_relacionado" class="MainTable" cellspacing="0" cellpadding="0" border="0">
+      <table id="mc_incidentes_relacionado" class="MainTable" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td valign="top">
-            <table class="Header" cellspacing="0" cellpadding="0" border="0">
+            <table class="Header" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                 <td class="th"><strong>Incidentes Relacionados </strong></td> 
@@ -548,7 +548,7 @@ jQuery(function ($) {
     <td>
       <p>
       <!-- BEGIN Grid mc_detalle_incidente_avl -->
-      <table id="mc_detalle_incidente_avl" class="MainTable" cellspacing="0" cellpadding="0" border="0">
+      <table id="mc_detalle_incidente_avl" class="MainTable" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td valign="top">
             <table class="Grid" cellspacing="0" cellpadding="0">
@@ -602,7 +602,7 @@ jQuery(function ($) {
                 <td style="TEXT-ALIGN: right" rowspan="{iRows}">{Paquete}</td> <!-- END Panel Panel1 -->
                 <!-- BEGIN Panel Panel2 -->
                 <td style="TEXT-ALIGN: right" rowspan="{iRows}">{sflAVLG}</td> <!-- END Panel Panel2 -->
-                <td><input type="hidden" id="mc_detalle_incidente_avlsTotalSecPaquete" style="HEIGHT: 22px; WIDTH: 24px" size="1" value="{sTotalSecPaquete}" name="{sTotalSecPaquete_Name}"></td>
+                <td><input type="hidden" style="WIDTH: 24px; HEIGHT: 22px" id="mc_detalle_incidente_avlsTotalSecPaquete" value="{sTotalSecPaquete}" size="1" name="{sTotalSecPaquete_Name}"></td>
               </tr>
  <!-- END Row -->
               <tr class="Total">
@@ -653,7 +653,7 @@ jQuery(function ($) {
             <p></p>
  
             <form id="mc_info_incidentes3" method="post" name="{HTMLFormName}" action="{Action}">
-              <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+              <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td valign="top">
                     <table class="Record" cellspacing="0" cellpadding="0">
@@ -694,7 +694,7 @@ jQuery(function ($) {
             <p></p>
  
             <form id="mc_info_incidentes4" method="post" name="{HTMLFormName}" action="{Action}">
-              <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+              <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td valign="top">
                     <table class="Record" cellspacing="0" cellpadding="0">
@@ -733,10 +733,10 @@ jQuery(function ($) {
           <td>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
             <!-- BEGIN Record Final -->
             <form id="Final" method="post" name="{HTMLFormName}" action="{Action}">
-              <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+              <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td valign="top">
-                    <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                    <table class="Header" border="0" cellspacing="0" cellpadding="0">
                       <tr>
                         <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                         <td class="th"><strong>Total tiempo de Solución</strong></td> 
@@ -752,11 +752,11 @@ jQuery(function ($) {
                       <!-- END Error -->
                       <tr class="Controls">
                         <td style="TEXT-ALIGN: center">
-                          <div id="totalDiv" style="DISPLAY: none">
+                          <div style="DISPLAY: none" id="totalDiv">
                             {TotalHorasSolucion} 
                           </div>
  
-                          <div id="totalDiv2" style="DISPLAY: none">
+                          <div style="DISPLAY: none" id="totalDiv2">
                             {HorasCursoAResuelto} 
                           </div>
  
@@ -768,7 +768,7 @@ jQuery(function ($) {
  
                       <tr class="Controls">
                         <td style="TEXT-ALIGN: center">
-                          <!-- BEGIN ImageLink ImageLink1 --><a href="{ImageLink1}" id="FinalImageLink1"><img style="BORDER-LEFT-WIDTH: 0px; HEIGHT: 24px; BORDER-RIGHT-WIDTH: 0px; WIDTH: 27px; BORDER-BOTTOM-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; border-image: none" alt="{ImageLink1}" src="Images/xls.jpg" width="204" height="203"></a><!-- END ImageLink ImageLink1 --></td>
+                          <!-- BEGIN ImageLink ImageLink1 --><a href="{ImageLink1}" id="FinalImageLink1"><img style="BORDER-RIGHT-WIDTH: 0px; WIDTH: 27px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; HEIGHT: 24px; BORDER-LEFT-WIDTH: 0px; border-image: none" alt="{ImageLink1}" src="Images/xls.jpg" width="204" height="203"></a><!-- END ImageLink ImageLink1 --></td>
                       </tr>
                     </table>
                   </td>
@@ -784,15 +784,15 @@ jQuery(function ($) {
       <p></p>
     </td> 
     <td style="VERTICAL-ALIGN: top">
-      <table style="HEIGHT: 545px; WIDTH: 511px; MARGIN-TOP: 2px" width="511">
+      <table style="MARGIN-TOP: 2px; WIDTH: 511px; HEIGHT: 545px" width="511">
         <tr>
           <td>&nbsp; 
             <!-- BEGIN Record mc_calificacion_incidente -->
             <form id="mc_calificacion_incidente" method="post" name="{HTMLFormName}" action="{Action}">
-              <table class="MainTable" style="HEIGHT: 463px; WIDTH: 497px" cellspacing="0" cellpadding="0" border="0">
+              <table style="WIDTH: 497px; HEIGHT: 463px" class="MainTable" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td valign="top">
-                    <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                    <table class="Header" border="0" cellspacing="0" cellpadding="0">
                       <tr>
                         <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                         <td class="th"><strong>Califica Incidente</strong></td> 
@@ -800,7 +800,7 @@ jQuery(function ($) {
                       </tr>
                     </table>
  
-                    <table class="Record" style="HEIGHT: 412px; WIDTH: 99.9%" cellspacing="0" cellpadding="0">
+                    <table style="WIDTH: 99.9%; HEIGHT: 412px" class="Record" cellspacing="0" cellpadding="0">
                       <!-- BEGIN Error -->
                       <tr id="ECalificados</a>k" class="Error">
                         <td colspan="2">{Error}</td>
@@ -813,7 +813,7 @@ jQuery(function ($) {
  
                       <tr class="Controls">
                         <td class="th">Considerar tiempo total</td> 
-                        <td><input type="checkbox" onclick="ayudaMostrarTotal(this)" id="mc_calificacion_incidenteCheckBox1" value="1" name="{CheckBox1_Name}" {CheckBox1}></td> 
+                        <td><input type="checkbox" id="mc_calificacion_incidenteCheckBox1" onclick="ayudaMostrarTotal(this)" value="1" name="{CheckBox1_Name}" {CheckBox1}></td> 
                         <tr class="Controls">
                           <td class="th"><label for="mc_calificacion_incidenteid_servicio">Servicio</label></td> 
                           <td><input type="hidden" id="mc_calificacion_incidenteid_servicio" value="{id_servicio}" name="{id_servicio_Name}">{Servicio}</td>
@@ -827,7 +827,7 @@ jQuery(function ($) {
                         <tr class="Controls">
                           <td class="th"><label for="mc_calificacion_incidenteseveridad">Severidad</label></td> 
                           <td><label for="mc_fcacion_incidentesh_Severidad" style="display: none;">&nbsp;</label> 
-                            <select onchange="ayudaMostrarTotal(mc_calificacion_incidenteCheckBox1)" id="mc_calificacion_incidenteslSeveridad" name="{slSeveridad_Name}">
+                            <select id="mc_calificacion_incidenteslSeveridad" onchange="ayudaMostrarTotal(mc_calificacion_incidenteCheckBox1)" name="{slSeveridad_Name}">
                               <option selected value="">{res:CCS_SelectValue}</option>
                               {slSeveridad_Options}
                             </select>
@@ -837,13 +837,13 @@ jQuery(function ($) {
                         <tr class="Controls">
                           <td class="th"><label for="mc_calificacion_incidenteCumple_Inc_TiempoAsignacion">Cumple Tiempo Atención</label></td> 
                           <td>
-                            <select onchange="validaModificacion('div_TiempoAtencion')" id="mc_calificacion_incidenteCumple_Inc_TiempoAsignacion" name="{Cumple_Inc_TiempoAsignacion_Name}">
+                            <select id="mc_calificacion_incidenteCumple_Inc_TiempoAsignacion" onchange="validaModificacion('div_TiempoAtencion')" name="{Cumple_Inc_TiempoAsignacion_Name}">
                               <option selected value="">{res:CCS_SelectValue}</option>
                               {Cumple_Inc_TiempoAsignacion_Options}
                             </select>
- <img onclick="ayudaMostrar('div_TiempoAtencion')" id="mc_calificacion_incidenteImage1" alt="" src="{Image1}"><label for="mc_calificacion_incidentetxtCumple_Inc_TiempoAsignacion" style="display: none;">txtCumple_Inc_TiempoAsignacion</label> 
-                            <div id="div_TiempoAtencion" style="DISPLAY: none">
-                              <textarea id="mc_calificacion_incidentetxtCumple_Inc_TiempoAsignacion" style="HEIGHT: 54px; WIDTH: 337px" rows="3" cols="7" name="{txtCumple_Inc_TiempoAsignacion_Name}">{txtCumple_Inc_TiempoAsignacion}</textarea>
+ <img id="mc_calificacion_incidenteImage1" onclick="ayudaMostrar('div_TiempoAtencion')" alt="" src="{Image1}"><label for="mc_calificacion_incidentetxtCumple_Inc_TiempoAsignacion" style="display: none;">txtCumple_Inc_TiempoAsignacion</label> 
+                            <div style="DISPLAY: none" id="div_TiempoAtencion">
+                              <textarea style="WIDTH: 337px; HEIGHT: 54px" id="mc_calificacion_incidentetxtCumple_Inc_TiempoAsignacion" rows="3" cols="7" name="{txtCumple_Inc_TiempoAsignacion_Name}">{txtCumple_Inc_TiempoAsignacion}</textarea>
                             </div>
                           </td>
                         </tr>
@@ -851,29 +851,29 @@ jQuery(function ($) {
                         <tr class="Controls">
                           <td class="th"><label for="mc_calificacion_incidenteCumple_Inc_TiempoSolucion">Cumple Tiempo Solución</label></td> 
                           <td>
-                            <select onchange="validaModificacion('div_TiempoSolucion')" id="mc_calificacion_incidenteCumple_Inc_TiempoSolucion" name="{Cumple_Inc_TiempoSolucion_Name}">
+                            <select id="mc_calificacion_incidenteCumple_Inc_TiempoSolucion" onchange="validaModificacion('div_TiempoSolucion')" name="{Cumple_Inc_TiempoSolucion_Name}">
                               <option selected value="">{res:CCS_SelectValue}</option>
                               {Cumple_Inc_TiempoSolucion_Options}
                             </select>
- <img onclick="ayudaMostrar('div_TiempoSolucion')" id="mc_calificacion_incidenteImage2" alt="" src="{Image2}"><label for="mc_calificacion_incidentetxtCumple_Inc_TiempoSolucion" style="display: none;">txtCumple_Inc_TiempoSolucion</label> 
-                            <div id="div_TiempoSolucion" style="DISPLAY: none">
-                              <textarea id="mc_calificacion_incidentetxtCumple_Inc_TiempoSolucion" style="HEIGHT: 54px; WIDTH: 336px" rows="3" cols="16" name="{txtCumple_Inc_TiempoSolucion_Name}">{txtCumple_Inc_TiempoSolucion}</textarea>
+ <img id="mc_calificacion_incidenteImage2" onclick="ayudaMostrar('div_TiempoSolucion')" alt="" src="{Image2}"><label for="mc_calificacion_incidentetxtCumple_Inc_TiempoSolucion" style="display: none;">txtCumple_Inc_TiempoSolucion</label> 
+                            <div style="DISPLAY: none" id="div_TiempoSolucion">
+                              <textarea style="WIDTH: 336px; HEIGHT: 54px" id="mc_calificacion_incidentetxtCumple_Inc_TiempoSolucion" rows="3" cols="16" name="{txtCumple_Inc_TiempoSolucion_Name}">{txtCumple_Inc_TiempoSolucion}</textarea>
                             </div>
                           </td>
                         </tr>
  
                         <tr class="Controls">
                           <td class="th"></td> 
-                          <td><input type="hidden" id="mc_calificacion_incidenteCumple_DISP_SOPORTE" value="{Cumple_DISP_SOPORTE}" name="{Cumple_DISP_SOPORTE_Name}"><img onclick="ayudaMostrar('div_DispSoporte')" id="mc_calificacion_incidenteImage3" alt="" src="{Image3}"><label for="mc_calificacion_incidentetxtCumple_DISP_SOPORTE" style="display: none;">txtCumple_DISP_SOPORTE</label> 
-                            <div id="div_DispSoporte" style="DISPLAY: none">
-                              <textarea id="mc_calificacion_incidentetxtCumple_DISP_SOPORTE" style="HEIGHT: 54px; WIDTH: 336px" rows="3" cols="18" name="{txtCumple_DISP_SOPORTE_Name}">{txtCumple_DISP_SOPORTE}</textarea>
+                          <td><input type="hidden" id="mc_calificacion_incidenteCumple_DISP_SOPORTE" value="{Cumple_DISP_SOPORTE}" name="{Cumple_DISP_SOPORTE_Name}"><img id="mc_calificacion_incidenteImage3" onclick="ayudaMostrar('div_DispSoporte')" alt="" src="{Image3}"><label for="mc_calificacion_incidentetxtCumple_DISP_SOPORTE" style="display: none;">txtCumple_DISP_SOPORTE</label> 
+                            <div style="DISPLAY: none" id="div_DispSoporte">
+                              <textarea style="WIDTH: 336px; HEIGHT: 54px" id="mc_calificacion_incidentetxtCumple_DISP_SOPORTE" rows="3" cols="18" name="{txtCumple_DISP_SOPORTE_Name}">{txtCumple_DISP_SOPORTE}</textarea>
                             </div>
                           </td>
                         </tr>
  
                         <tr class="Controls">
                           <td class="th"><label for="mc_calificacion_incidenteObs_Manuales">Observaciones</label></td> 
-                          <td><textarea id="mc_calificacion_incidenteObs_Manuales" style="HEIGHT: 90px; WIDTH: 248px" rows="3" cols="1" name="{Obs_Manuales_Name}">{Obs_Manuales}</textarea></td>
+                          <td><textarea style="WIDTH: 248px; HEIGHT: 90px" id="mc_calificacion_incidenteObs_Manuales" rows="3" cols="1" name="{Obs_Manuales_Name}">{Obs_Manuales}</textarea></td>
                         </tr>
  
                         <tr class="Controls">
@@ -887,14 +887,14 @@ jQuery(function ($) {
                         </tr>
  
                         <tr class="Bottom">
-                          <td style="FONT-WEIGHT: bolder; TEXT-ALIGN: right" colspan="2"><label for="mc_calificacion_incidenteshUsuarioAlta" style="display: none;">&nbsp;</label><input type="hidden" id="mc_calificacion_incidenteshUsuarioAlta" style="HEIGHT: 22px; WIDTH: 78px" size="3" value="{shUsuarioAlta}" name="{shUsuarioAlta_Name}"><input type="hidden" id="mc_calificacion_incidenteshTiempoSoporte" style="HEIGHT: 22px; WIDTH: 38px" size="1" value="{shTiempoSoporte}" name="{shTiempoSoporte_Name}"><input type="hidden" id="mc_calificacion_incidenteshTiempoSolucion" style="HEIGHT: 22px; WIDTH: 34px" size="1" value="{shTiempoSolucion}" name="{shTiempoSolucion_Name}"><input type="hidden" id="mc_calificacion_incidenteshTiempoAtencion" style="HEIGHT: 22px; WIDTH: 40px" size="1" value="{shTiempoAtencion}" name="{shTiempoAtencion_Name}"><input type="hidden" id="mc_calificacion_incidenteshIdProveedor" style="HEIGHT: 22px; WIDTH: 48px" size="1" value="{shIdProveedor}" name="{shIdProveedor_Name}"><input type="hidden" id="mc_calificacion_incidenteshAnio" style="HEIGHT: 22px; WIDTH: 58px" size="1" value="{shAnio}" name="{shAnio_Name}"><input type="hidden" id="mc_calificacion_incidenteshMes" style="HEIGHT: 22px; WIDTH: 42px" size="1" value="{shMes}" name="{shMes_Name}"><input type="hidden" id="mc_calificacion_incidenteshDescartar" style="HEIGHT: 22px; WIDTH: 66px" size="1" value="{shDescartar}" name="{shDescartar_Name}"><input type="hidden" id="mc_calificacion_incidenteshId_Incidente" style="HEIGHT: 22px; WIDTH: 55px" size="1" value="{shId_Incidente}" name="{shId_Incidente_Name}">&nbsp;</td>
+                          <td style="TEXT-ALIGN: right; FONT-WEIGHT: bolder" colspan="2"><label for="mc_calificacion_incidenteshUsuarioAlta" style="display: none;">&nbsp;</label><input type="hidden" style="WIDTH: 78px; HEIGHT: 22px" id="mc_calificacion_incidenteshUsuarioAlta" value="{shUsuarioAlta}" size="3" name="{shUsuarioAlta_Name}"><input type="hidden" style="WIDTH: 38px; HEIGHT: 22px" id="mc_calificacion_incidenteshTiempoSoporte" value="{shTiempoSoporte}" size="1" name="{shTiempoSoporte_Name}"><input type="hidden" style="WIDTH: 34px; HEIGHT: 22px" id="mc_calificacion_incidenteshTiempoSolucion" value="{shTiempoSolucion}" size="1" name="{shTiempoSolucion_Name}"><input type="hidden" style="WIDTH: 40px; HEIGHT: 22px" id="mc_calificacion_incidenteshTiempoAtencion" value="{shTiempoAtencion}" size="1" name="{shTiempoAtencion_Name}"><input type="hidden" style="WIDTH: 48px; HEIGHT: 22px" id="mc_calificacion_incidenteshIdProveedor" value="{shIdProveedor}" size="1" name="{shIdProveedor_Name}"><input type="hidden" style="WIDTH: 58px; HEIGHT: 22px" id="mc_calificacion_incidenteshAnio" value="{shAnio}" size="1" name="{shAnio_Name}"><input type="hidden" style="WIDTH: 42px; HEIGHT: 22px" id="mc_calificacion_incidenteshMes" value="{shMes}" size="1" name="{shMes_Name}"><input type="hidden" style="WIDTH: 66px; HEIGHT: 22px" id="mc_calificacion_incidenteshDescartar" value="{shDescartar}" size="1" name="{shDescartar_Name}"><input type="hidden" style="WIDTH: 55px; HEIGHT: 22px" id="mc_calificacion_incidenteshId_Incidente" value="{shId_Incidente}" size="1" name="{shId_Incidente_Name}">&nbsp;</td>
                         </tr>
  
                         <tr class="Bottom">
                           <td style="TEXT-ALIGN: right" colspan="2">&nbsp; 
-                            <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_calificacion_incidenteButton_Insert" class="Button" alt="{res:CCS_Insert}" value="Calificar" name="{Button_Name}"><!-- END Button Button_Insert -->
-                            <!-- BEGIN Button Button_Update --><input type="submit" id="mc_calificacion_incidenteButton_Update" class="Button" alt="{res:CCS_Update}" value="Calificar" name="{Button_Name}"><!-- END Button Button_Update -->
-                            <!-- BEGIN Button Cancelar --><input type="submit" id="mc_calificacion_incidenteCancelar" class="Button" alt="Button1" value="Cancelar" name="{Button_Name}"><!-- END Button Cancelar --></td>
+                            <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_calificacion_incidenteButton_Insert" class="Button" value="Calificar" alt="{res:CCS_Insert}" name="{Button_Name}"><!-- END Button Button_Insert -->
+                            <!-- BEGIN Button Button_Update --><input type="submit" id="mc_calificacion_incidenteButton_Update" class="Button" value="Calificar" alt="{res:CCS_Update}" name="{Button_Name}"><!-- END Button Button_Update -->
+                            <!-- BEGIN Button Cancelar --><input type="submit" id="mc_calificacion_incidenteCancelar" class="Button" value="Cancelar" alt="Button1" name="{Button_Name}"><!-- END Button Cancelar --></td>
                         </tr>
                       </table>
                     </td>

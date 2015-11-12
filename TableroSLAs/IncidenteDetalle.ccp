@@ -11,7 +11,7 @@ from mc_info_incidentes i
 	inner join mc_c_movimiento m on m.ClaveMovimiento = det.ClaveMovimiento 
 	left join (select id_incidente, paquete, FechaCarga, Min(FechaFinMov) LiberacionAVL, count(FechaFinMov)  CountPaquete
 			from mc_detalle_incidente_avl det 
-				where ClaveMovimiento ='38'
+				where ClaveMovimiento ='38' OR ClaveMovimiento ='49'
 				group by id_incidente, Paquete, FechaCarga  
 	) as r on r.Id_Incidente = det.Id_Incidente and r.Paquete = det.Paquete and MONTH(r.FechaCarga )= u.mes  and YEAR(r.FechaCarga )= u.anio 
 	left join (select id_incidente, paquete, FechaCarga, SUM(dbo.ufDiffFechasMCSec(FechaInicioMov,FechaFinMov)) TotalSecPaquete
@@ -178,8 +178,8 @@ where i.id_incidente = '{Id_incidente}'
 			</PKFields>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="337" dataType="Text" designDefaultValue="INC000003376478" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
-			</SQLParameters>
+				<SQLParameter id="340" dataType="Text" designDefaultValue="INC000003376478" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
+</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -459,6 +459,7 @@ AND i.Id_incidente = '{Id_incidente}' ">
 						<Event name="BeforeShow" type="Server">
 							<Actions>
 								<Action actionName="Custom Code" actionCategory="General" id="164" eventType="Server"/>
+
 							</Actions>
 						</Event>
 					</Events>
@@ -754,10 +755,10 @@ AND i.Id_incidente = '{Id_incidente}' ">
 		</Record>
 		<Record id="112" sourceType="SQL" urlType="Relative" secured="False" allowInsert="False" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="mc_info_incidentes3" connection="cnDisenio" dataSource="SELECT * ,(dbo.ufDiffFechasMCSec(
 	(select top 1 FechaFinMov from mc_detalle_incidente_avl where (Id_Incidente =a.Id_Incidente or Id_Incidente = a.IncPadre ) 
-		and ClaveMovimiento =38 and month(FechaCarga) = u.mes and year(FechaCarga) = u.anio order by fechaFinMov desc )  ,	FechaResuelto )) as HorasInvertidas,
+		and (ClaveMovimiento =38 OR ClaveMovimiento =49) and month(FechaCarga) = u.mes and year(FechaCarga) = u.anio order by fechaFinMov desc )  ,	FechaResuelto )) as HorasInvertidas,
 (select top 1 FechaFinMov from mc_detalle_incidente_avl 
 	where (Id_Incidente =a.Id_Incidente or Id_Incidente = a.IncPadre ) 
-	and ClaveMovimiento =38 	and month(FechaCarga) = u.mes and year(FechaCarga) = u.anio order by fechaFinMov desc ) as LiberacionAVL
+	and (ClaveMovimiento =38 OR ClaveMovimiento =49) 	and month(FechaCarga) = u.mes and year(FechaCarga) = u.anio order by fechaFinMov desc ) as LiberacionAVL
 FROM mc_info_incidentes a
 		inner join mc_universo_cds u on a.Id_incidente = u.numero  and month(a.FechaCarga ) = u.mes and YEAR(a.fechacarga)= u.anio 
 WHERE Id_incidente = '{Id_incidente}' " errorSummator="Error" allowCancel="False" recordDeleteConfirmation="False" buttonsType="button" wizardRecordKey="Id" encryptPasswordField="False" wizardUseInterVariables="False" pkIsAutoincrement="True" wizardCaption="Add/Edit Mc Info Incidentes " wizardThemeApplyTo="Page" wizardFormMethod="post" wizardType="Record" changedCaptionRecord="False" recordDirection="Horizontal" templatePageRecord="C:\Program Files (x86)\CodeChargeStudio5//Templates//Record//Horizontal.ccp|ccsTemplate" recordAddTemplatePanel="False" PathID="mc_info_incidentes3">
@@ -792,8 +793,8 @@ WHERE Id_incidente = '{Id_incidente}' " errorSummator="Error" allowCancel="False
 			</TableParameters>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="338" dataType="Text" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
-			</SQLParameters>
+				<SQLParameter id="341" dataType="Text" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
+</SQLParameters>
 			<JoinTables>
 			</JoinTables>
 			<JoinLinks/>
@@ -863,6 +864,7 @@ WHERE Id_incidente = '{Id_incidente}' " errorSummator="Error" allowCancel="False
 			<PKFields>
 			</PKFields>
 			<ISPParameters/>
+
 			<ISQLParameters/>
 			<IFormElements/>
 			<USPParameters/>
@@ -983,7 +985,7 @@ WHERE mi.Id_incidente = '{Id_incidente}' " errorSummator="Error" allowCancel="Fa
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="339" dataType="Text" designDefaultValue="INC000003432416" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
-</SQLParameters>
+			</SQLParameters>
 			<JoinTables/>
 			<JoinLinks/>
 			<Fields/>

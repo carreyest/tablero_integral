@@ -411,7 +411,7 @@ class clsReportReportesMyM { //ReportesMyM Class @30-846FA4A6
     }
 //End GetErrors Method
 
-//Show Method @30-C82D72DC
+//Show Method @30-19B8224E
     function Show()
     {
         $Tpl = CCGetTemplate($this);
@@ -420,9 +420,10 @@ class clsReportReportesMyM { //ReportesMyM Class @30-846FA4A6
 
         $ShownRecords = 0;
 
-        $this->DataSource->Parameters["expr78"] = 'SLAS';
+        $this->DataSource->Parameters["expr78"] = 'SLAs';
         $this->DataSource->Parameters["expr79"] = 1;
         $this->DataSource->Parameters["sesMyMUserID"] = CCGetSession("MyMUserID", NULL);
+        $this->DataSource->Parameters["sesGrupoValoracion"] = CCGetSession("GrupoValoracion", NULL);
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
@@ -637,7 +638,7 @@ class clsReportesMyMDataSource extends clsDBcnDisenio {  //ReportesMyMDataSource
     }
 //End SetOrder Method
 
-//Prepare Method @30-69066B4B
+//Prepare Method @30-F1DF0B83
     function Prepare()
     {
         global $CCSLocales;
@@ -646,17 +647,18 @@ class clsReportesMyMDataSource extends clsDBcnDisenio {  //ReportesMyMDataSource
         $this->wp->AddParameter("1", "expr78", ccsText, "", "", $this->Parameters["expr78"], "", false);
         $this->wp->AddParameter("2", "expr79", ccsInteger, "", "", $this->Parameters["expr79"], 0, false);
         $this->wp->AddParameter("3", "sesMyMUserID", ccsInteger, "", "", $this->Parameters["sesMyMUserID"], 0, false);
+        $this->wp->AddParameter("4", "sesGrupoValoracion", ccsText, "", "", $this->Parameters["sesGrupoValoracion"], "", false);
     }
 //End Prepare Method
 
-//Open Method @30-67BFCED5
+//Open Method @30-C09B83E9
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->SQL = "SELECT IdReporte, Nombre, Grupo, usuario_reporteMyM.activo AS Perm_activo \n" .
         "FROM ReportesMyM INNER JOIN usuario_reporteMyM ON\n" .
         "ReportesMyM.IdReporte = usuario_reporteMyM.id_reporte\n" .
-        "WHERE Grupo <> '" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "'\n" .
+        "WHERE (Grupo <> '" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "' OR '" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "' =  'CAPC' )\n" .
         "AND ReportesMyM.activo = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
         "AND id_usuario = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " ";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);

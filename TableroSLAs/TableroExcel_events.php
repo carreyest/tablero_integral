@@ -300,11 +300,16 @@ function GeneraReporte(){
 			$tCDS="CAPC";
 		}
 		
+	$mesAnio = CCGetParam("s_AnioReporte")."-".CCGetParam("s_MesReporte")."-1";
 	
+   
+    	
 		if(CCGetParam("s_MesReporte")<10){
-			$FILENAME= "Reporte" . $TipoReporte . "_" . $tCDS . "_". $ReporteSLA ."_" . CCGetParam("s_AnioReporte")  . "0" . CCGetParam("s_MesReporte") .  date("t") . ".xls";
+			//$FILENAME= "Reporte" . $TipoReporte . "_" . $tCDS . "_". $ReporteSLA ."_" . CCGetParam("s_AnioReporte")  . "0" . CCGetParam("s_MesReporte") .  date("t") . ".xls";
+			$FILENAME= "Reporte" . $TipoReporte . "_" . $tCDS . "_". CCGetParam("s_AnioReporte")  . "0" . CCGetParam("s_MesReporte") .  date("t", strtotime($mesAnio)) . ".xls";
 		} else {
-			$FILENAME = "Reporte" . $TipoReporte . "_" . $tCDS . "_". $ReporteSLA ."_" . CCGetParam("s_AnioReporte")  . CCGetParam("s_MesReporte") . date("t") .  ".xls";
+			//$FILENAME = "Reporte" . $TipoReporte . "_" . $tCDS . "_". $ReporteSLA ."_" . CCGetParam("s_AnioReporte")  . CCGetParam("s_MesReporte") . date("t") .  ".xls";
+			$FILENAME = "Reporte" . $TipoReporte . "_" . $tCDS . "_" . CCGetParam("s_AnioReporte")  . CCGetParam("s_MesReporte") . date("t", strtotime($mesAnio)) .  ".xls";
 		}
 		
 		try {

@@ -193,6 +193,7 @@ function mc_info_rs_ap_EC_BeforeShow(& $sender)
 				' WHERE REQUEST_ID = ' . $sPPMC );
 			break;
 		case "Control de Cambios";
+/*		
 			$DBcnDisenio->query('SELECT Project_Name, SERVICIO_NEGOCIO, TIPO_Solicitud, c.ESTADO, TIPO_SERVICIO_CTI, ID_PPMC,  TIP_REQUERIMIENTO  ' .
 				' FROM PPMC_CAMBIOS C inner join PPMC_Proyectos_AS on PPMC_PROYECTOS_AS.ID_PROYECTO = C.ID_PPMC ' .
 				' inner join mc_universo_cds u on tipo=\'PA\'  and u.numero = REQ_CAMBIO_ID and month(c.fecha_carga)=u.mes and YEAR(c.FECHA_CARGA) = u.anio  ' .
@@ -200,8 +201,18 @@ function mc_info_rs_ap_EC_BeforeShow(& $sender)
 				' SELECT NOMBRE_RO, SERVICIO_NEGOCIO, MOTIVO_CAMBIO, c.ESTADO, TIPOSERVICIOCTI, ID_RO,  TIPO_REQUERIMIENTO   ' .
 				' FROM PPMC_CAMBIOS_RO C inner join PPMC_RO_AS on PPMC_RO_AS.request_id = C.ID_RO ' .
 				' inner join mc_universo_cds u on tipo=\'PA\'  and u.numero = ID_CC   and month(c.fecha_carga)=u.mes and YEAR(c.FECHA_CARGA) = u.anio  ' .
-				' WHERE ID_CC  = ' . $sPPMC  );		
-			break;
+				' WHERE ID_CC  = ' . $sPPMC  );	
+*/				
+			$DBcnDisenio->query('SELECT Project_Name, SERVICIO_NEGOCIO, TIPO_Solicitud, c.ESTADO, TIPO_SERVICIO_CTI, ID_PPMC,  TIP_REQUERIMIENTO  ' .
+				' FROM PPMC_CAMBIOS C inner join PPMC_Proyectos_AS on PPMC_PROYECTOS_AS.ID_PROYECTO = C.ID_PPMC ' .
+				' inner join mc_calificacion_capc u on  u.numero = REQ_CAMBIO_ID and month(c.fecha_carga)=u.mes and YEAR(c.FECHA_CARGA) = u.anio  ' .
+				' WHERE REQ_CAMBIO_ID  =  ' . $sPPMC  . ' UNION ' .
+				' SELECT NOMBRE_RO, SERVICIO_NEGOCIO, MOTIVO_CAMBIO, c.ESTADO, TIPOSERVICIOCTI, ID_RO,  TIPO_REQUERIMIENTO   ' .
+				' FROM PPMC_CAMBIOS_RO C inner join PPMC_RO_AS on PPMC_RO_AS.request_id = C.ID_RO ' .
+				' inner join mc_calificacion_capc u on  u.numero = ID_CC   and month(c.fecha_carga)=u.mes and YEAR(c.FECHA_CARGA) = u.anio  ' .
+				' WHERE ID_CC  = ' . $sPPMC  );	
+						
+	break;
 	}
 
 	if($DBcnDisenio->has_next_record()){
@@ -638,6 +649,7 @@ function Page_BeforeShow(& $sender)
     global $lkAnterior;
     global $lkSiguiente;
     
+  
     $aPPMCsAPbIds = unserialize(CCGetSession("aPPMCsAPbIdsCAPC"));
     $aPPMCsAPbValues = unserialize(CCGetSession("aPPMCsAPbValuesCAPC"));
 
@@ -648,11 +660,23 @@ function Page_BeforeShow(& $sender)
 			$lkAnterior->SetValue("Lista Requerimientos");
     	} else {
     		$lkAnterior->SetValue($aPPMCsAPbValues[$iPos-1]);
-    		$lkAnterior->SetLink("SLAsCapcApbDetalle.php?" . CCAddParam( CCRemoveParam( CCGetQueryString("QueryString","sID"),"ccsForm"),"sID",$aPPMCsAPbIds[$iPos-1]));
+    		//$lkAnterior->SetLink("SLAsCapcApbDetalle.php?" . CCAddParam( CCRemoveParam( CCGetQueryString("QueryString","sID"),"ccsForm"),"sID",$aPPMCsAPbIds[$iPos-1]));
+	   		$QueryString = CCGetQueryString("QueryString", "");
+			$QueryString = CCAddParam($QueryString, "sID", $aPPMCsAPbIds[$iPos-1]);
+			$QueryString = CCAddParam($QueryString, "s_numero", $aPPMCsAPbValues[$iPos-1]);
+			$QueryString = CCRemoveParam($QueryString, "ccsForm");
+    		$lkAnterior->SetLink("SLAsCapcApbDetalle.php?" . $QueryString);
+
     	}
     	if($iPos < count($aPPMCsAPbIds)-1){
     		$lkSiguiente->SetValue($aPPMCsAPbValues[$iPos+1]);
-    		$lkSiguiente->SetLink("SLAsCapcApbDetalle.php?" . CCAddParam( CCRemoveParam( CCGetQueryString("QueryString","sID"),"ccsForm"),"sID",$aPPMCsAPbIds[$iPos+1]));
+    		//$lkSiguiente->SetLink("SLAsCapcApbDetalle.php?" . CCAddParam( CCRemoveParam( CCGetQueryString("QueryString","sID"),"ccsForm"),"sID",$aPPMCsAPbIds[$iPos+1]));
+    		$QueryString = CCGetQueryString("QueryString", "");
+			$QueryString = CCAddParam($QueryString, "sID", $aPPMCsAPbIds[$iPos+1]);
+			$QueryString = CCAddParam($QueryString, "s_numero", $aPPMCsAPbValues[$iPos+1]);
+			$QueryString = CCRemoveParam($QueryString, "ccsForm");
+    		$lkSiguiente->SetLink("SLAsCapcApbDetalle.php?" . $QueryString);
+    		
     	} else {
     		$lkSiguiente->SetValue("");
     	}

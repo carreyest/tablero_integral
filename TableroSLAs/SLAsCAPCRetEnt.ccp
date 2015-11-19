@@ -232,8 +232,8 @@
 			<SPParameters/>
 			<SQLParameters/>
 			<JoinTables>
-				<JoinTable id="71" posHeight="253" posLeft="10" posTop="10" posWidth="160" tableName="mc_calificacion_capc"/>
-			</JoinTables>
+				<JoinTable id="132" tableName="mc_calificacion_capc"/>
+</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="73" fieldName="*"/>
@@ -353,13 +353,13 @@
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="95" fieldSourceType="DBColumn" dataType="Date" html="False" generateSpan="False" name="FechaEstFin" fieldSource="FechaEstFin" wizardCaption="Fecha Est Fin" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_info_capc_cr_RE_ArtefaFechaEstFin">
+				<Label id="95" fieldSourceType="DBColumn" dataType="Date" html="False" generateSpan="False" name="FechaEstFin" fieldSource="FechaEstFin" wizardCaption="Fecha Est Fin" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_info_capc_cr_RE_ArtefaFechaEstFin" format="ShortDate" DBFormat="yyyy-mm-dd HH:nn:ss.S">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="96" fieldSourceType="DBColumn" dataType="Date" html="False" generateSpan="False" name="FechaEntrega" fieldSource="FechaEntrega" wizardCaption="Fecha Entrega" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_info_capc_cr_RE_ArtefaFechaEntrega">
+				<Label id="96" fieldSourceType="DBColumn" dataType="Date" html="False" generateSpan="False" name="FechaEntrega" fieldSource="FechaEntrega" wizardCaption="Fecha Entrega" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_info_capc_cr_RE_ArtefaFechaEntrega" format="ShortDate" DBFormat="yyyy-mm-dd HH:nn:ss.S">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -404,15 +404,18 @@
 			</Components>
 			<Events/>
 			<TableParameters>
-				<TableParameter id="104" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Id_Padre" logicOperator="And" parameterSource="id" parameterType="URL" searchConditionType="Equal"/>
-			</TableParameters>
+				<TableParameter id="129" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Id_Padre" logicOperator="And" parameterSource="id" parameterType="URL" searchConditionType="Equal"/>
+</TableParameters>
 			<JoinTables>
-			</JoinTables>
+				<JoinTable id="128" posHeight="180" posLeft="10" posTop="10" posWidth="160" tableName="mc_info_rs_cr_RE_RC_Artefacto_CAPC"/>
+</JoinTables>
 			<JoinLinks/>
 			<Fields>
-			</Fields>
+				<Field id="130" fieldName="*"/>
+</Fields>
 			<PKFields>
-			</PKFields>
+				<PKField id="131" dataType="Integer" fieldName="Id" tableName="mc_info_rs_cr_RE_RC_Artefacto_CAPC"/>
+</PKFields>
 			<SPParameters/>
 			<SQLParameters/>
 			<SecurityGroups/>

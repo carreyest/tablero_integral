@@ -224,7 +224,7 @@ class clsRecordmc_info_rs_cr_RF { //mc_info_rs_cr_RF Class @3-697396CF
     }
 //End CheckErrors Method
 
-//Operation Method @3-E955BD63
+//Operation Method @3-34FA8D2A
     function Operation()
     {
         if(!$this->Visible)
@@ -254,6 +254,7 @@ class clsRecordmc_info_rs_cr_RF { //mc_info_rs_cr_RF Class @3-697396CF
                     $Redirect = "";
                 }
             } else if($this->PressedButton == "Button_Update") {
+                $Redirect = "SLAsCAPCReqFunDetalle.php" . "?" . CCGetQueryString("QueryString", array("ccsForm"));
                 if(!CCGetEvent($this->Button_Update->CCSEvents, "OnClick", $this->Button_Update) || !$this->UpdateRow()) {
                     $Redirect = "";
                 }

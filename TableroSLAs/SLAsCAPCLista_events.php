@@ -29,7 +29,12 @@ function mc_c_ServContractual_mc_c_BeforeShowRow(& $sender)
     array_push($aPPMCsAPbValuesCAPC,$mc_c_ServContractual_mc_c->DataSource->f("numero"));
 
 	if($mc_c_ServContractual_mc_c->Descripcion->GetValue()==""){
-		$mc_c_ServContractual_mc_c->Descripcion->SetValue($mc_c_ServContractual_mc_c->DataSource->f("Name"));
+		if( $mc_c_ServContractual_mc_c->DataSource->f("NOMBRE_PROYECTO")!="" ){
+			$mc_c_ServContractual_mc_c->Descripcion->SetValue($mc_c_ServContractual_mc_c->DataSource->f("NOMBRE_PROYECTO"));
+		} else{
+			$mc_c_ServContractual_mc_c->Descripcion->SetValue($mc_c_ServContractual_mc_c->DataSource->f("Name"));
+		}
+		
 	}
 	
 	if($mc_c_ServContractual_mc_c->DataSource->f("TipoMedicion")=="PC"){

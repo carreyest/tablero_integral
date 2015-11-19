@@ -856,7 +856,7 @@ class clsGridmc_info_capc_cr_RE_Artefa { //mc_info_capc_cr_RE_Artefa class @77-3
     public $Sorter_PctDeductiva;
 //End Variables
 
-//Class_Initialize Event @77-986683C7
+//Class_Initialize Event @77-B77F4EC8
     function clsGridmc_info_capc_cr_RE_Artefa($RelativePath, & $Parent)
     {
         global $FileName;
@@ -890,8 +890,8 @@ class clsGridmc_info_capc_cr_RE_Artefa { //mc_info_capc_cr_RE_Artefa class @77-3
         $this->Descripcion = new clsControl(ccsLabel, "Descripcion", "Descripcion", ccsText, "", CCGetRequestParam("Descripcion", ccsGet, NULL), $this);
         $this->Formato = new clsControl(ccsLabel, "Formato", "Formato", ccsText, "", CCGetRequestParam("Formato", ccsGet, NULL), $this);
         $this->NombreConHerramienta = new clsControl(ccsLabel, "NombreConHerramienta", "NombreConHerramienta", ccsText, "", CCGetRequestParam("NombreConHerramienta", ccsGet, NULL), $this);
-        $this->FechaEstFin = new clsControl(ccsLabel, "FechaEstFin", "FechaEstFin", ccsDate, $DefaultDateFormat, CCGetRequestParam("FechaEstFin", ccsGet, NULL), $this);
-        $this->FechaEntrega = new clsControl(ccsLabel, "FechaEntrega", "FechaEntrega", ccsDate, $DefaultDateFormat, CCGetRequestParam("FechaEntrega", ccsGet, NULL), $this);
+        $this->FechaEstFin = new clsControl(ccsLabel, "FechaEstFin", "FechaEstFin", ccsDate, array("ShortDate"), CCGetRequestParam("FechaEstFin", ccsGet, NULL), $this);
+        $this->FechaEntrega = new clsControl(ccsLabel, "FechaEntrega", "FechaEntrega", ccsDate, array("ShortDate"), CCGetRequestParam("FechaEntrega", ccsGet, NULL), $this);
         $this->DiasHabilesDesviacion = new clsControl(ccsLabel, "DiasHabilesDesviacion", "DiasHabilesDesviacion", ccsInteger, "", CCGetRequestParam("DiasHabilesDesviacion", ccsGet, NULL), $this);
         $this->DiasNaturalesDesviacion = new clsControl(ccsLabel, "DiasNaturalesDesviacion", "DiasNaturalesDesviacion", ccsInteger, "", CCGetRequestParam("DiasNaturalesDesviacion", ccsGet, NULL), $this);
         $this->Comentarios = new clsControl(ccsLabel, "Comentarios", "Comentarios", ccsMemo, "", CCGetRequestParam("Comentarios", ccsGet, NULL), $this);
@@ -1094,7 +1094,7 @@ class clsmc_info_capc_cr_RE_ArtefaDataSource extends clsDBcnDisenio {  //mc_info
     public $PctDeductiva;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @77-8DEEDE9C
+//DataSourceClass_Initialize Event @77-9EDFA00E
     function clsmc_info_capc_cr_RE_ArtefaDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1110,9 +1110,9 @@ class clsmc_info_capc_cr_RE_ArtefaDataSource extends clsDBcnDisenio {  //mc_info
         
         $this->NombreConHerramienta = new clsField("NombreConHerramienta", ccsText, "");
         
-        $this->FechaEstFin = new clsField("FechaEstFin", ccsDate, $this->DateFormat);
+        $this->FechaEstFin = new clsField("FechaEstFin", ccsDate, array("yyyy", "-", "mm", "-", "dd", " ", "HH", ":", "nn", ":", "ss", ".", "S"));
         
-        $this->FechaEntrega = new clsField("FechaEntrega", ccsDate, $this->DateFormat);
+        $this->FechaEntrega = new clsField("FechaEntrega", ccsDate, array("yyyy", "-", "mm", "-", "dd", " ", "HH", ":", "nn", ":", "ss", ".", "S"));
         
         $this->DiasHabilesDesviacion = new clsField("DiasHabilesDesviacion", ccsInteger, "");
         

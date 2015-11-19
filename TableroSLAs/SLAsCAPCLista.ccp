@@ -89,8 +89,9 @@
 			<Attributes/>
 			<Features/>
 		</Record>
-		<Grid id="3" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="20" name="mc_c_ServContractual_mc_c" connection="cnDisenio" dataSource="SELECT distinct mc_calificacion_capc.*, mc_c_ServContractual.Descripcion AS mc_c_ServContractual_Descripcion ,
-	a.Observaciones Obs_Ap, DatosPPMC.Name,  rf.Observaciones obs_rf, cal.Observaciones obs_cal
+		<Grid id="3" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="20" name="mc_c_ServContractual_mc_c" connection="cnDisenio" dataSource="select slas.*, pp.NOMBRE_PROYECTO from (
+SELECT distinct mc_calificacion_capc.*, mc_c_ServContractual.Descripcion AS mc_c_ServContractual_Descripcion ,
+	a.Observaciones Obs_Ap, DatosPPMC.Name,  rf.Observaciones obs_rf, cal.Observaciones obs_cal, DatosPPMC.PPMC_Relacionado
 FROM mc_calificacion_capc 
 	left  JOIN mc_c_ServContractual ON mc_calificacion_capc.id_serviciocont = mc_c_ServContractual.Id
 		left join mc_info_capc_ap a on a.id =  mc_calificacion_capc.id 
@@ -113,7 +114,10 @@ SELECT DISTINCT ID_CC, NOMBRE_RO, SERVICIO_NEGOCIO, MOTIVO_CAMBIO, C.FECHA_CARGA
 WHERE numero LIKE '%{s_numero}%'
 AND (mes = {s_mes} or  {s_mes}=0)
 AND (anio = {s_anio} or {s_anio}=0)
-AND (id_serviciocont = {s_id_serviciocont}  or 0={s_id_serviciocont} )" pageSizeLimit="100" pageSize="True" wizardCaption="Detalle SLAs CAPC" wizardThemeApplyTo="Page" wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No hay registros" wizardGridPagingType="Simple" wizardUseSearch="False" wizardAddNbsp="True" gridTotalRecords="False" wizardAddPanels="False" wizardType="Grid" wizardUseInterVariables="False" addTemplatePanel="False" changedCaptionGrid="True" gridExtendedHTML="False" PathID="mc_c_ServContractual_mc_c">
+AND (id_serviciocont = {s_id_serviciocont}  or 0={s_id_serviciocont} )
+) as slas
+left join PPMC_PROYECTOS_AS pp on pp.ID_PROYECTO =slas.PPMC_Relacionado and MONTH(pp.FECHA_CARGA)={s_mes} and YEAR(pp.FECHA_CARGA)={s_anio}
+" pageSizeLimit="100" pageSize="True" wizardCaption="Detalle SLAs CAPC" wizardThemeApplyTo="Page" wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No hay registros" wizardGridPagingType="Simple" wizardUseSearch="False" wizardAddNbsp="True" gridTotalRecords="False" wizardAddPanels="False" wizardType="Grid" wizardUseInterVariables="False" addTemplatePanel="False" changedCaptionGrid="True" gridExtendedHTML="False" PathID="mc_c_ServContractual_mc_c">
 			<Components>
 				<Sorter id="12" visible="True" name="Sorter_mc_c_ServContractual_Descripcion" column="mc_c_ServContractual_Descripcion" wizardCaption="Mc C Serv Contractual Descripcion" wizardSortingType="SimpleDir" wizardControl="mc_c_ServContractual_Descripcion" wizardAddNbsp="False" PathID="mc_c_ServContractual_mc_cSorter_mc_c_ServContractual_Descripcion">
 					<Components/>
@@ -297,7 +301,6 @@ AND (id_serviciocont = {s_id_serviciocont}  or 0={s_id_serviciocont} )" pageSize
 					<Features/>
 					<LinkParameters>
 						<LinkParameter id="93" sourceType="DataField" name="s_numero" source="numero"/>
-
 						<LinkParameter id="96" sourceType="DataField" name="sID" source="id"/>
 					</LinkParameters>
 				</ImageLink>
@@ -332,18 +335,18 @@ AND (id_serviciocont = {s_id_serviciocont}  or 0={s_id_serviciocont} )" pageSize
 					<Features/>
 				</Label>
 				<Label id="137" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="rf_obs" PathID="mc_c_ServContractual_mc_crf_obs" fieldSource="obs_rf">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-<Label id="138" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="cal_obs" PathID="mc_c_ServContractual_mc_ccal_obs" fieldSource="obs_cal">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-</Components>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="138" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="cal_obs" PathID="mc_c_ServContractual_mc_ccal_obs" fieldSource="obs_cal">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+			</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
@@ -362,10 +365,10 @@ AND (id_serviciocont = {s_id_serviciocont}  or 0={s_id_serviciocont} )" pageSize
 			<PKFields/>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="133" dataType="Text" designDefaultValue="0" parameterSource="s_numero" parameterType="URL" variable="s_numero"/>
-<SQLParameter id="134" dataType="Integer" defaultValue="date(&quot;m&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="0" parameterSource="s_mes" parameterType="URL" variable="s_mes"/>
-<SQLParameter id="135" dataType="Integer" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="2014" parameterSource="s_anio" parameterType="URL" variable="s_anio"/>
-<SQLParameter id="136" dataType="Integer" defaultValue="0" designDefaultValue="0" parameterSource="s_id_serviciocont" parameterType="URL" variable="s_id_serviciocont"/>
+				<SQLParameter id="139" dataType="Text" designDefaultValue="0" parameterSource="s_numero" parameterType="URL" variable="s_numero"/>
+<SQLParameter id="140" dataType="Integer" defaultValue="date(&quot;m&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="0" parameterSource="s_mes" parameterType="URL" variable="s_mes"/>
+<SQLParameter id="141" dataType="Integer" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="2014" parameterSource="s_anio" parameterType="URL" variable="s_anio"/>
+<SQLParameter id="142" dataType="Integer" defaultValue="0" designDefaultValue="0" parameterSource="s_id_serviciocont" parameterType="URL" variable="s_id_serviciocont"/>
 </SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>

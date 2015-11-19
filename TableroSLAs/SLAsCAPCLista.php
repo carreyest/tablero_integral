@@ -677,12 +677,13 @@ class clsmc_c_ServContractual_mc_cDataSource extends clsDBcnDisenio {  //mc_c_Se
     }
 //End Prepare Method
 
-//Open Method @3-BD89A806
+//Open Method @3-348A8DA5
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT distinct mc_calificacion_capc.*, mc_c_ServContractual.Descripcion AS mc_c_ServContractual_Descripcion ,\n" .
-        "	a.Observaciones Obs_Ap, DatosPPMC.Name,  rf.Observaciones obs_rf, cal.Observaciones obs_cal\n" .
+        $this->CountSQL = "SELECT COUNT(*) FROM (select slas.*, pp.NOMBRE_PROYECTO from (\n" .
+        "SELECT distinct mc_calificacion_capc.*, mc_c_ServContractual.Descripcion AS mc_c_ServContractual_Descripcion ,\n" .
+        "	a.Observaciones Obs_Ap, DatosPPMC.Name,  rf.Observaciones obs_rf, cal.Observaciones obs_cal, DatosPPMC.PPMC_Relacionado\n" .
         "FROM mc_calificacion_capc \n" .
         "	left  JOIN mc_c_ServContractual ON mc_calificacion_capc.id_serviciocont = mc_c_ServContractual.Id\n" .
         "		left join mc_info_capc_ap a on a.id =  mc_calificacion_capc.id \n" .
@@ -705,9 +706,13 @@ class clsmc_c_ServContractual_mc_cDataSource extends clsDBcnDisenio {  //mc_c_Se
         "WHERE numero LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
         "AND (mes = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . " or  " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "=0)\n" .
         "AND (anio = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " or " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "=0)\n" .
-        "AND (id_serviciocont = " . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . "  or 0=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " )) cnt";
-        $this->SQL = "SELECT distinct mc_calificacion_capc.*, mc_c_ServContractual.Descripcion AS mc_c_ServContractual_Descripcion ,\n" .
-        "	a.Observaciones Obs_Ap, DatosPPMC.Name,  rf.Observaciones obs_rf, cal.Observaciones obs_cal\n" .
+        "AND (id_serviciocont = " . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . "  or 0=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " )\n" .
+        ") as slas\n" .
+        "left join PPMC_PROYECTOS_AS pp on pp.ID_PROYECTO =slas.PPMC_Relacionado and MONTH(pp.FECHA_CARGA)=" . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . " and YEAR(pp.FECHA_CARGA)=" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
+        ") cnt";
+        $this->SQL = "select slas.*, pp.NOMBRE_PROYECTO from (\n" .
+        "SELECT distinct mc_calificacion_capc.*, mc_c_ServContractual.Descripcion AS mc_c_ServContractual_Descripcion ,\n" .
+        "	a.Observaciones Obs_Ap, DatosPPMC.Name,  rf.Observaciones obs_rf, cal.Observaciones obs_cal, DatosPPMC.PPMC_Relacionado\n" .
         "FROM mc_calificacion_capc \n" .
         "	left  JOIN mc_c_ServContractual ON mc_calificacion_capc.id_serviciocont = mc_c_ServContractual.Id\n" .
         "		left join mc_info_capc_ap a on a.id =  mc_calificacion_capc.id \n" .
@@ -730,7 +735,10 @@ class clsmc_c_ServContractual_mc_cDataSource extends clsDBcnDisenio {  //mc_c_Se
         "WHERE numero LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
         "AND (mes = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . " or  " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "=0)\n" .
         "AND (anio = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " or " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "=0)\n" .
-        "AND (id_serviciocont = " . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . "  or 0=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " )";
+        "AND (id_serviciocont = " . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . "  or 0=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " )\n" .
+        ") as slas\n" .
+        "left join PPMC_PROYECTOS_AS pp on pp.ID_PROYECTO =slas.PPMC_Relacionado and MONTH(pp.FECHA_CARGA)=" . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . " and YEAR(pp.FECHA_CARGA)=" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
+        "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);

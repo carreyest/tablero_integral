@@ -13,7 +13,7 @@
 					<Attributes/>
 					<Features/>
 				</Button>
-				<Button id="6" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Update" operation="Update" wizardCaption="Enviar" PathID="mc_info_rs_cr_RFButton_Update">
+				<Button id="6" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Update" operation="Update" wizardCaption="Enviar" PathID="mc_info_rs_cr_RFButton_Update" returnPage="SLAsCAPCReqFunDetalle.ccp">
 					<Components/>
 					<Events/>
 					<Attributes/>

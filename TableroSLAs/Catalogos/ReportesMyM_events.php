@@ -47,7 +47,8 @@ function ReportesMyM2_ds_AfterExecuteInsert(& $sender)
 		$sInsert="insert into usuario_reporteMyM(id_usuario, id_reporte, activo, nombre_reporte,usuario) 
 				  select id, ".$DBcnDisenio->f("idReporte").",0,'".$DBcnDisenio->f("nombre")."',Usuario  from mc_c_usuarios";	
 	}
-	$DBcnDisenio->query($sInsert);    
+	$DBcnDisenio->query($sInsert);
+	$DBcnDisenio->query("execute sp_reportesMyMXGrupo");        
     // Write your own code here.
 // -------------------------
 //End Custom Code
@@ -74,7 +75,7 @@ function ReportesMyM2_AfterUpdate(& $sender)
 
     	$DBcnDisenio->query("update usuario_reporteMyM set nombre_reporte='".$ReportesMyM2->Nombre->GetValue()."' where id_reporte = ".CCGetParam("IdReporte") );
 	}
-
+	$DBcnDisenio->query("execute sp_reportesMyMXGrupo");        
 // -------------------------
 //End Custom Code
 

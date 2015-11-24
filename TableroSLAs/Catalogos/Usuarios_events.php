@@ -160,6 +160,8 @@ function usuario_reporteMyM_BeforeShow(& $sender)
     $Component = & $sender;
     $Container = & CCGetParentContainer($sender);
     global $usuario_reporteMyM; //Compatibility
+    global $Panel1;
+    global $NewRecord1;
 //End usuario_reporteMyM_BeforeShow
 
 //Custom Code @111-2A29BDB7
@@ -170,6 +172,8 @@ function usuario_reporteMyM_BeforeShow(& $sender)
 	{
 
     	$usuario_reporteMyM->Visible = False;
+    	$Panel1->Visible = False;
+    	$NewRecord1->Visible = False;
 	}
 
 // -------------------------

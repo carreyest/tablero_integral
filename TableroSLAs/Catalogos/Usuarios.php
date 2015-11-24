@@ -1120,7 +1120,7 @@ class clsEditableGridusuario_reporteMyM { //usuario_reporteMyM Class @96-0150820
     public $Sorter_activo;
 //End Variables
 
-//Class_Initialize Event @96-6F7688CA
+//Class_Initialize Event @96-14FBC5A1
     function clsEditableGridusuario_reporteMyM($RelativePath, & $Parent)
     {
 
@@ -1140,7 +1140,7 @@ class clsEditableGridusuario_reporteMyM { //usuario_reporteMyM Class @96-0150820
         $this->ds = & $this->DataSource;
         $this->PageSize = CCGetParam($this->ComponentName . "PageSize", "");
         if(!is_numeric($this->PageSize) || !strlen($this->PageSize))
-            $this->PageSize = 40;
+            $this->PageSize = 70;
         else
             $this->PageSize = intval($this->PageSize);
         if ($this->PageSize > 100)
@@ -1394,7 +1394,7 @@ class clsEditableGridusuario_reporteMyM { //usuario_reporteMyM Class @96-0150820
     }
 //End GetFormState Method
 
-//Show Method @96-3B267080
+//Show Method @96-30125E85
     function Show()
     {
         $Tpl = CCGetTemplate($this);
@@ -1455,6 +1455,7 @@ class clsEditableGridusuario_reporteMyM { //usuario_reporteMyM Class @96-0150820
                     $this->nombre_reporte->SetText("");
                     $this->activo->SetText($this->FormParameters["activo"][$this->RowNumber], $this->RowNumber);
                 }
+                $this->Attributes->SetValue("idreporte", $this->DataSource->f("id_reporte"));
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -1597,13 +1598,13 @@ class clsusuario_reporteMyMDataSource extends clsDBcnDisenio {  //usuario_report
     }
 //End Prepare Method
 
-//Open Method @96-BE5F3A65
+//Open Method @96-85A4C41A
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->CountSQL = "SELECT COUNT(*)\n\n" .
         "FROM usuario_reporteMyM";
-        $this->SQL = "SELECT TOP {SqlParam_endRecord} nombre_reporte, activo, id_registro \n\n" .
+        $this->SQL = "SELECT TOP {SqlParam_endRecord} nombre_reporte, activo, id_registro, id_reporte \n\n" .
         "FROM usuario_reporteMyM {SQL_Where} {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
@@ -1652,6 +1653,295 @@ class clsusuario_reporteMyMDataSource extends clsDBcnDisenio {  //usuario_report
 
 } //End usuario_reporteMyMDataSource Class @96-FCB6E20C
 
+class clsRecordNewRecord1 { //NewRecord1 Class @161-D7EDAFB1
+
+//Variables @161-9E315808
+
+    // Public variables
+    public $ComponentType = "Record";
+    public $ComponentName;
+    public $Parent;
+    public $HTMLFormAction;
+    public $PressedButton;
+    public $Errors;
+    public $ErrorBlock;
+    public $FormSubmitted;
+    public $FormEnctype;
+    public $Visible;
+    public $IsEmpty;
+
+    public $CCSEvents = "";
+    public $CCSEventResult;
+
+    public $RelativePath = "";
+
+    public $InsertAllowed = false;
+    public $UpdateAllowed = false;
+    public $DeleteAllowed = false;
+    public $ReadAllowed   = false;
+    public $EditMode      = false;
+    public $ds;
+    public $DataSource;
+    public $ValidatingControls;
+    public $Controls;
+    public $Attributes;
+
+    // Class variables
+//End Variables
+
+//Class_Initialize Event @161-95F8489E
+    function clsRecordNewRecord1($RelativePath, & $Parent)
+    {
+
+        global $FileName;
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->Visible = true;
+        $this->Parent = & $Parent;
+        $this->RelativePath = $RelativePath;
+        $this->Errors = new clsErrors();
+        $this->ErrorBlock = "Record NewRecord1/Error";
+        $this->DataSource = new clsNewRecord1DataSource($this);
+        $this->ds = & $this->DataSource;
+        $this->ReadAllowed = true;
+        if($this->Visible)
+        {
+            $this->ComponentName = "NewRecord1";
+            $this->Attributes = new clsAttributes($this->ComponentName . ":");
+            $CCSForm = explode(":", CCGetFromGet("ccsForm", ""), 2);
+            if(sizeof($CCSForm) == 1)
+                $CCSForm[1] = "";
+            list($FormName, $FormMethod) = $CCSForm;
+            $this->EditMode = ($FormMethod == "Edit");
+            $this->FormEnctype = "application/x-www-form-urlencoded";
+            $this->FormSubmitted = ($FormName == $this->ComponentName);
+            $Method = $this->FormSubmitted ? ccsPost : ccsGet;
+            $this->CheckBoxList1 = new clsControl(ccsCheckBoxList, "CheckBoxList1", "CheckBoxList1", ccsText, "", CCGetRequestParam("CheckBoxList1", $Method, NULL), $this);
+            $this->CheckBoxList1->Multiple = true;
+            $this->CheckBoxList1->DSType = dsTable;
+            $this->CheckBoxList1->DataSource = new clsDBcnDisenio();
+            $this->CheckBoxList1->ds = & $this->CheckBoxList1->DataSource;
+            $this->CheckBoxList1->DataSource->SQL = "SELECT Grupo, Reportes \n" .
+"FROM ReportesMyM_X_Grupo {SQL_Where} {SQL_OrderBy}";
+            list($this->CheckBoxList1->BoundColumn, $this->CheckBoxList1->TextColumn, $this->CheckBoxList1->DBFormat) = array("Reportes", "Grupo", "");
+            $this->CheckBoxList1->HTML = true;
+            $this->Button_Insert = new clsButton("Button_Insert", $Method, $this);
+            $this->Button_Update = new clsButton("Button_Update", $Method, $this);
+            $this->Button_Delete = new clsButton("Button_Delete", $Method, $this);
+        }
+    }
+//End Class_Initialize Event
+
+//Initialize Method @161-5D060BAC
+    function Initialize()
+    {
+
+        if(!$this->Visible)
+            return;
+
+    }
+//End Initialize Method
+
+//Validate Method @161-1066AC2B
+    function Validate()
+    {
+        global $CCSLocales;
+        $Validation = true;
+        $Where = "";
+        $Validation = ($this->CheckBoxList1->Validate() && $Validation);
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
+        $Validation =  $Validation && ($this->CheckBoxList1->Errors->Count() == 0);
+        return (($this->Errors->Count() == 0) && $Validation);
+    }
+//End Validate Method
+
+//CheckErrors Method @161-A32F5131
+    function CheckErrors()
+    {
+        $errors = false;
+        $errors = ($errors || $this->CheckBoxList1->Errors->Count());
+        $errors = ($errors || $this->Errors->Count());
+        $errors = ($errors || $this->DataSource->Errors->Count());
+        return $errors;
+    }
+//End CheckErrors Method
+
+//Operation Method @161-2FD502C1
+    function Operation()
+    {
+        if(!$this->Visible)
+            return;
+
+        global $Redirect;
+        global $FileName;
+
+        $this->DataSource->Prepare();
+        if(!$this->FormSubmitted) {
+            $this->EditMode = true;
+            return;
+        }
+
+        if($this->FormSubmitted) {
+            $this->PressedButton = "Button_Insert";
+            if($this->Button_Insert->Pressed) {
+                $this->PressedButton = "Button_Insert";
+            } else if($this->Button_Update->Pressed) {
+                $this->PressedButton = "Button_Update";
+            } else if($this->Button_Delete->Pressed) {
+                $this->PressedButton = "Button_Delete";
+            }
+        }
+        $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
+        if($this->PressedButton == "Button_Delete") {
+            if(!CCGetEvent($this->Button_Delete->CCSEvents, "OnClick", $this->Button_Delete)) {
+                $Redirect = "";
+            }
+        } else if($this->Validate()) {
+            if($this->PressedButton == "Button_Insert") {
+                if(!CCGetEvent($this->Button_Insert->CCSEvents, "OnClick", $this->Button_Insert)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button_Update") {
+                if(!CCGetEvent($this->Button_Update->CCSEvents, "OnClick", $this->Button_Update)) {
+                    $Redirect = "";
+                }
+            }
+        } else {
+            $Redirect = "";
+        }
+        if ($Redirect)
+            $this->DataSource->close();
+    }
+//End Operation Method
+
+//Show Method @161-5CB64085
+    function Show()
+    {
+        global $CCSUseAmp;
+        $Tpl = CCGetTemplate($this);
+        global $FileName;
+        global $CCSLocales;
+        $Error = "";
+
+        if(!$this->Visible)
+            return;
+
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
+
+        $this->CheckBoxList1->Prepare();
+
+        $RecordBlock = "Record " . $this->ComponentName;
+        $ParentPath = $Tpl->block_path;
+        $Tpl->block_path = $ParentPath . "/" . $RecordBlock;
+        $this->EditMode = $this->EditMode && $this->ReadAllowed;
+        if($this->EditMode) {
+            if($this->DataSource->Errors->Count()){
+                $this->Errors->AddErrors($this->DataSource->Errors);
+                $this->DataSource->Errors->clear();
+            }
+            $this->DataSource->Open();
+            if($this->DataSource->Errors->Count() == 0 && $this->DataSource->next_record()) {
+                $this->DataSource->SetValues();
+            } else {
+                $this->EditMode = false;
+            }
+        }
+        if (!$this->FormSubmitted) {
+        }
+
+        if($this->FormSubmitted || $this->CheckErrors()) {
+            $Error = "";
+            $Error = ComposeStrings($Error, $this->CheckBoxList1->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
+            $Tpl->SetVar("Error", $Error);
+            $Tpl->Parse("Error", false);
+        }
+        $CCSForm = $this->EditMode ? $this->ComponentName . ":" . "Edit" : $this->ComponentName;
+        $this->HTMLFormAction = $FileName . "?" . CCAddParam(CCGetQueryString("QueryString", ""), "ccsForm", $CCSForm);
+        $Tpl->SetVar("Action", !$CCSUseAmp ? $this->HTMLFormAction : str_replace("&", "&amp;", $this->HTMLFormAction));
+        $Tpl->SetVar("HTMLFormName", $this->ComponentName);
+        $Tpl->SetVar("HTMLFormEnctype", $this->FormEnctype);
+        $this->Button_Insert->Visible = !$this->EditMode && $this->InsertAllowed;
+        $this->Button_Update->Visible = $this->EditMode && $this->UpdateAllowed;
+        $this->Button_Delete->Visible = $this->EditMode && $this->DeleteAllowed;
+
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShow", $this);
+        $this->Attributes->Show();
+        if(!$this->Visible) {
+            $Tpl->block_path = $ParentPath;
+            return;
+        }
+
+        $this->CheckBoxList1->Show();
+        $this->Button_Insert->Show();
+        $this->Button_Update->Show();
+        $this->Button_Delete->Show();
+        $Tpl->parse();
+        $Tpl->block_path = $ParentPath;
+        $this->DataSource->close();
+    }
+//End Show Method
+
+} //End NewRecord1 Class @161-FCB6E20C
+
+class clsNewRecord1DataSource extends clsDBcnDisenio {  //NewRecord1DataSource Class @161-477F71F0
+
+//DataSource Variables @161-A533F2DA
+    public $Parent = "";
+    public $CCSEvents = "";
+    public $CCSEventResult;
+    public $ErrorBlock;
+    public $CmdExecution;
+
+    public $wp;
+    public $AllParametersSet;
+
+
+    // Datasource fields
+    public $CheckBoxList1;
+//End DataSource Variables
+
+//DataSourceClass_Initialize Event @161-DA746630
+    function clsNewRecord1DataSource(& $Parent)
+    {
+        $this->Parent = & $Parent;
+        $this->ErrorBlock = "Record NewRecord1/Error";
+        $this->Initialize();
+        $this->CheckBoxList1 = new clsField("CheckBoxList1", ccsText, "");
+        
+
+    }
+//End DataSourceClass_Initialize Event
+
+//Prepare Method @161-14D6CD9D
+    function Prepare()
+    {
+        global $CCSLocales;
+        global $DefaultDateFormat;
+    }
+//End Prepare Method
+
+//Open Method @161-33DBD75F
+    function Open()
+    {
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
+        $this->SQL = "SELECT Grupo, Reportes \n\n" .
+        "FROM ReportesMyM_X_Grupo {SQL_Where} {SQL_OrderBy}";
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
+        $this->query(CCBuildSQL($this->SQL, $this->Where, $this->Order));
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteSelect", $this->Parent);
+    }
+//End Open Method
+
+//SetValues Method @161-BAF0975B
+    function SetValues()
+    {
+    }
+//End SetValues Method
+
+} //End NewRecord1DataSource Class @161-FCB6E20C
+
 
 
 
@@ -1697,7 +1987,7 @@ include_once("./Usuarios_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-F8196B98
+//Initialize Objects @1-4FF7C686
 $DBcnDisenio = new clsDBcnDisenio();
 $MainPage->Connections["cnDisenio"] = & $DBcnDisenio;
 $Attributes = new clsAttributes("page:");
@@ -1711,14 +2001,19 @@ $mc_c_usuariosSearch = new clsRecordmc_c_usuariosSearch("", $MainPage);
 $mc_c_usuarios = new clsGridmc_c_usuarios("", $MainPage);
 $mc_c_usuarios1 = new clsRecordmc_c_usuarios1("", $MainPage);
 $usuario_reporteMyM = new clsEditableGridusuario_reporteMyM("", $MainPage);
+$NewRecord1 = new clsRecordNewRecord1("", $MainPage);
+$Panel1 = new clsPanel("Panel1", $MainPage);
 $MainPage->Header = & $Header;
 $MainPage->mc_c_usuariosSearch = & $mc_c_usuariosSearch;
 $MainPage->mc_c_usuarios = & $mc_c_usuarios;
 $MainPage->mc_c_usuarios1 = & $mc_c_usuarios1;
 $MainPage->usuario_reporteMyM = & $usuario_reporteMyM;
+$MainPage->NewRecord1 = & $NewRecord1;
+$MainPage->Panel1 = & $Panel1;
 $mc_c_usuarios->Initialize();
 $mc_c_usuarios1->Initialize();
 $usuario_reporteMyM->Initialize();
+$NewRecord1->Initialize();
 $ScriptIncludes = "";
 $SList = explode("|", $Scripts);
 foreach ($SList as $Script) {
@@ -1752,14 +2047,15 @@ $Attributes->SetValue("pathToRoot", "../");
 $Attributes->Show();
 //End Initialize HTML Template
 
-//Execute Components @1-CCCD5824
+//Execute Components @1-6B259C0E
+$NewRecord1->Operation();
 $usuario_reporteMyM->Operation();
 $mc_c_usuarios1->Operation();
 $mc_c_usuariosSearch->Operation();
 $Header->Operations();
 //End Execute Components
 
-//Go to destination page @1-5B065570
+//Go to destination page @1-BD20CC42
 if($Redirect)
 {
     $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
@@ -1771,17 +2067,20 @@ if($Redirect)
     unset($mc_c_usuarios);
     unset($mc_c_usuarios1);
     unset($usuario_reporteMyM);
+    unset($NewRecord1);
     unset($Tpl);
     exit;
 }
 //End Go to destination page
 
-//Show Page @1-F2632A3C
+//Show Page @1-3334856E
 $Header->Show();
 $mc_c_usuariosSearch->Show();
 $mc_c_usuarios->Show();
 $mc_c_usuarios1->Show();
 $usuario_reporteMyM->Show();
+$NewRecord1->Show();
+$Panel1->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);
@@ -1789,7 +2088,7 @@ $CCSEventResult = CCGetEvent($CCSEvents, "BeforeOutput", $MainPage);
 if ($CCSEventResult) echo $main_block;
 //End Show Page
 
-//Unload Page @1-AAE4E7C7
+//Unload Page @1-0A4A24D4
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
 $DBcnDisenio->close();
 $Header->Class_Terminate();
@@ -1798,6 +2097,7 @@ unset($mc_c_usuariosSearch);
 unset($mc_c_usuarios);
 unset($mc_c_usuarios1);
 unset($usuario_reporteMyM);
+unset($NewRecord1);
 unset($Tpl);
 //End Unload Page
 

@@ -18,10 +18,58 @@
 <script type="text/javascript">
 //End Include User Scripts
 
+//Common Script Start @1-8BFA436B
+jQuery(function ($) {
+    var features = { };
+    var actions = { };
+    var params = { };
+//End Common Script Start
+
+//Plugin Calls @1-37CD8BB2
+    $('*:ccsControl(NewRecord1, Button_Delete)').ccsBind(function() {
+        this.bind("click", function(){ $("body").data("disableValidation", true); });
+    });
+//End Plugin Calls
+
+//Common Script End @1-562554DE
+});
+//End Common Script End
+
 //End CCS script
 </script>
 <link rel="stylesheet" type="text/css" href="../Styles/Austere4/Style_doctype.css">
 <link rel="stylesheet" type="text/css" href="../Styles/Austere4/jquery-ui.css">
+<script type="text/javascript">
+$(document).ready(function(){
+        $("input[name=checktodos]").change(function(){
+                $('input[id^=usuario_reporteMyMactivo]').each( function() {                                                             
+                 
+                        if($("input[name=checktodos]:checked").length == 1){
+                                this.checked = true;                                
+                        } else {
+                                this.checked = false;
+                        }
+                });
+           
+        });
+        
+        
+        $('input[id^=NewRecord1CheckBoxList]').change( function() {           
+                var str = this.value;
+                        var arrayReportes = new Array();
+                        arrayReportes = str.split(",");                                                                         
+                $('input[id^=usuario_reporteMyMactivo]').each( function() {                                                             
+                                        if ($.inArray($(this).attr("id_reporte"), arrayReportes) > -1){
+                                              if ( this.checked == true ) this.checked = false;
+                                              else this.checked = true;
+                                         } 
+                });
+                        
+          });
+
+ 
+});
+</script>
 </head>
 <body>
 <p>{Header}</p>
@@ -327,7 +375,7 @@
                 <tr class="Row">
                   <!--<td>{id_registro}</td>-->
                   <td>{nombre_reporte}</td> 
-                  <td><label for="usuario_reporteMyMactivo_{usuario_reporteMyM:rowNumber}" style="display: none;">Activo</label><input type="checkbox" id="usuario_reporteMyMactivo_{usuario_reporteMyM:rowNumber}" value="1" name="{activo_Name}" {activo}></td>
+                  <td><label for="usuario_reporteMyMactivo_{usuario_reporteMyM:rowNumber}" style="display: none;">Activo</label><input type="checkbox" id="usuario_reporteMyMactivo_{usuario_reporteMyM:rowNumber}" value="1" name="{activo_Name}" {activo} id_reporte="{usuario_reporteMyM:idreporte}"></td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
@@ -357,13 +405,60 @@
             </td>
           </tr>
         </table>
+ 
+        <p><label for="usuario_reporteMyMCheckBox1" style="display: none;">&nbsp;</label>&nbsp;</p>
       </form>
-      <!-- END EditableGrid usuario_reporteMyM --><br>
+      <!-- END EditableGrid usuario_reporteMyM -->
+      <p><strong>
+      <!-- BEGIN Panel Panel1 --></p>
+ 
+      <p>&nbsp;Marcar por Grupos: 
+      <table>
+        <thead>
+          <tr>
+            <th id="allchkbox"><input type="checkbox" name="checktodos">&nbsp;Todos</th>
+          </tr>
+ 
+        </thead>
+      </table>
+      </p>
+      <!-- END Panel Panel1 --></strong> 
+      <p>
+      <!-- BEGIN Record NewRecord1 -->
+      <form id="NewRecord1" method="post" name="{HTMLFormName}" action="{Action}">
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr id="{@error-block}" class="Error">
+                  <td colspan="2">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <!--<td class="th"></td> -->
+                  <td colspan="2">
+                    <!-- BEGIN CheckBoxList CheckBoxList1 --><input type="checkbox" id="NewRecord1CheckBoxList1_{CheckBoxList1:optionNumber}" value="{Value}" name="{CheckBoxList1_Name}" {Check}><label for="NewRecord1CheckBoxList1_{CheckBoxList1:optionNumber}" lst_reportes="">{Description}</label><!-- END CheckBoxList CheckBoxList1 --></td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td style="TEXT-ALIGN: right" colspan="2">
+                    <!-- BEGIN Button Button_Insert --><input type="hidden" id="NewRecord1Button_Insert" class="Button" disabled value="Agregar" alt="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input type="submit" id="NewRecord1Button_Update" class="Button" value="Enviar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Update -->
+                    <!-- BEGIN Button Button_Delete --><input type="submit" id="NewRecord1Button_Delete" class="Button" value="Borrar" alt="Borrar" name="{Button_Name}"><!-- END Button Button_Delete --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record NewRecord1 --><br>
       <br>
       <br>
       <br>
       <br>
       <br>
+      </p>
     </td>
   </tr>
  

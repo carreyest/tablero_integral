@@ -338,7 +338,7 @@
 			<Attributes/>
 			<Features/>
 		</Record>
-		<EditableGrid id="96" urlType="Relative" secured="False" emptyRows="0" allowInsert="False" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" sourceType="Table" defaultPageSize="40" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="usuario_reporteMyM" connection="cnDisenio" dataSource="usuario_reporteMyM" pageSizeLimit="100" wizardGridPageSize="True" wizardUseSearch="False" allowCancel="False" wizardSubmitConfirmation="False" wizardCaption="Permisos en reportes" wizardGridType="Tabular" wizardSortingType="Extended" wizardAltRecord="False" wizardRecordSeparator="False" wizardNoRecords="No hay registros" wizardGridKey="id_registro" wizardGridPaging="Simple" wizardAddNbsp="False" wizardTotalRecords="False" wizardButtonsType="button" changedCaptionEditableGrid="True" wizardUseInterVariables="False" pkIsAutoincrement="True" wizardType="EditableGrid" wizardThemeApplyTo="Page" addTemplatePanel="False" PathID="usuario_reporteMyM" orderBy="nombre_reporte">
+		<EditableGrid id="96" urlType="Relative" secured="False" emptyRows="0" allowInsert="False" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" sourceType="Table" defaultPageSize="70" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="usuario_reporteMyM" connection="cnDisenio" dataSource="usuario_reporteMyM" pageSizeLimit="100" wizardGridPageSize="True" wizardUseSearch="False" allowCancel="False" wizardSubmitConfirmation="False" wizardCaption="Permisos en reportes" wizardGridType="Tabular" wizardSortingType="Extended" wizardAltRecord="False" wizardRecordSeparator="False" wizardNoRecords="No hay registros" wizardGridKey="id_registro" wizardGridPaging="Simple" wizardAddNbsp="False" wizardTotalRecords="False" wizardButtonsType="button" changedCaptionEditableGrid="True" wizardUseInterVariables="False" pkIsAutoincrement="True" wizardType="EditableGrid" wizardThemeApplyTo="Page" addTemplatePanel="False" PathID="usuario_reporteMyM" orderBy="nombre_reporte">
 			<Components>
 				<Sorter id="103" visible="True" name="Sorter_id_registro" column="id_registro" wizardCaption="Id Registro" wizardSortingType="Extended" wizardControl="id_registro" wizardAddNbsp="False" PathID="usuario_reporteMyMSorter_id_registro">
 					<Components/>
@@ -397,22 +397,92 @@
 				</Event>
 			</Events>
 			<TableParameters>
-				<TableParameter id="122" conditionType="Parameter" useIsNull="False" dataType="Integer" field="id_usuario" logicOperator="And" parameterSource="Id" parameterType="URL" searchConditionType="Equal"/>
+				<TableParameter id="154" conditionType="Parameter" useIsNull="False" dataType="Integer" field="id_usuario" logicOperator="And" parameterSource="Id" parameterType="URL" searchConditionType="Equal"/>
 			</TableParameters>
 			<SPParameters/>
 			<SQLParameters/>
 			<JoinTables>
-				<JoinTable id="121" posHeight="152" posLeft="10" posTop="10" posWidth="123" tableName="usuario_reporteMyM"/>
+				<JoinTable id="153" posHeight="152" posLeft="10" posTop="10" posWidth="123" tableName="usuario_reporteMyM"/>
 			</JoinTables>
 			<JoinLinks/>
 			<Fields>
-				<Field id="123" fieldName="nombre_reporte" tableName="usuario_reporteMyM"/>
-				<Field id="124" fieldName="activo" tableName="usuario_reporteMyM"/>
-				<Field id="125" fieldName="id_registro" tableName="usuario_reporteMyM"/>
+				<Field id="155" fieldName="nombre_reporte" tableName="usuario_reporteMyM"/>
+				<Field id="156" fieldName="activo" tableName="usuario_reporteMyM"/>
+				<Field id="157" fieldName="id_registro" tableName="usuario_reporteMyM"/>
+				<Field id="158" fieldName="id_reporte" tableName="usuario_reporteMyM"/>
 			</Fields>
 			<PKFields>
-				<PKField id="126" dataType="Integer" fieldName="id_registro" tableName="usuario_reporteMyM"/>
+				<PKField id="159" dataType="Integer" fieldName="id_registro" tableName="usuario_reporteMyM"/>
 			</PKFields>
+			<ISPParameters/>
+			<ISQLParameters/>
+			<IFormElements/>
+			<USPParameters/>
+			<USQLParameters/>
+			<UConditions/>
+			<UFormElements/>
+			<DSPParameters/>
+			<DSQLParameters/>
+			<DConditions/>
+			<SecurityGroups/>
+			<Attributes>
+				<Attribute id="160" name="idreporte" sourceType="DataField" source="id_reporte"/>
+			</Attributes>
+			<Features/>
+		</EditableGrid>
+		<Record id="161" sourceType="Table" urlType="Relative" secured="False" allowInsert="False" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="NewRecord1" actionPage="Usuarios" errorSummator="Error" wizardFormMethod="post" PathID="NewRecord1" connection="cnDisenio" dataSource="ReportesMyM_X_Grupo">
+			<Components>
+				<CheckBoxList id="162" visible="Yes" fieldSourceType="DBColumn" sourceType="Table" dataType="Text" html="True" returnValueType="Number" name="CheckBoxList1" PathID="NewRecord1CheckBoxList1" connection="cnDisenio" boundColumn="Reportes" textColumn="Grupo" dataSource="ReportesMyM_X_Grupo" schemaName="dbo">
+					<Components/>
+					<Events/>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables>
+						<JoinTable id="188" tableName="ReportesMyM_X_Grupo"/>
+					</JoinTables>
+					<JoinLinks/>
+					<Fields>
+						<Field id="185" fieldName="Grupo" tableName="ReportesMyM_X_Grupo"/>
+						<Field id="186" fieldName="Reportes" tableName="ReportesMyM_X_Grupo"/>
+					</Fields>
+					<PKFields/>
+					<Attributes>
+					</Attributes>
+					<Features/>
+				</CheckBoxList>
+				<Button id="163" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Agregar" PathID="NewRecord1Button_Insert">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+				<Button id="164" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Update" operation="Update" wizardCaption="Enviar" PathID="NewRecord1Button_Update">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+				<Button id="165" urlType="Relative" enableValidation="False" isDefault="False" name="Button_Delete" operation="Delete" wizardCaption="Borrar" PathID="NewRecord1Button_Delete">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+			</Components>
+			<Events/>
+			<TableParameters/>
+			<SPParameters/>
+			<SQLParameters/>
+			<JoinTables>
+				<JoinTable id="180" posHeight="88" posLeft="10" posTop="10" posWidth="95" schemaName="dbo" tableName="ReportesMyM_X_Grupo"/>
+			</JoinTables>
+			<JoinLinks/>
+			<Fields>
+				<Field id="181" fieldName="Grupo" tableName="ReportesMyM_X_Grupo"/>
+				<Field id="182" fieldName="Reportes" tableName="ReportesMyM_X_Grupo"/>
+			</Fields>
+			<PKFields/>
 			<ISPParameters/>
 			<ISQLParameters/>
 			<IFormElements/>
@@ -426,8 +496,14 @@
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
-		</EditableGrid>
-	</Components>
+		</Record>
+		<Panel id="189" visible="True" generateDiv="False" name="Panel1" PathID="Panel1">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Panel>
+</Components>
 	<CodeFiles>
 		<CodeFile id="Code" language="PHPTemplates" name="Usuarios.php" forShow="True" url="Usuarios.php" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Events" language="PHPTemplates" name="Usuarios_events.php" forShow="False" comment="//" codePage="windows-1252"/>

@@ -130,7 +130,13 @@ AND id_usuario = {MyMUserID} " pageSizeLimit="100" wizardCaption="Reportes" chan
 					<Features/>
 				</Section>
 			</Components>
-			<Events/>
+			<Events>
+<Event name="BeforeSelect" type="Server">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="82"/>
+</Actions>
+</Event>
+</Events>
 			<TableParameters>
 			</TableParameters>
 			<JoinTables>
@@ -143,10 +149,10 @@ AND id_usuario = {MyMUserID} " pageSizeLimit="100" wizardCaption="Reportes" chan
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="78" dataType="Text" designDefaultValue="SLAS" parameterSource="'SLAs'" parameterType="Expression" variable="Expr0"/>
-<SQLParameter id="79" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="1" parameterType="Expression" variable="Expr1"/>
-<SQLParameter id="80" dataType="Integer" defaultValue="0" designDefaultValue="53" parameterSource="MyMUserID" parameterType="Session" variable="MyMUserID"/>
-<SQLParameter id="81" dataType="Text" designDefaultValue="SLAS" parameterSource="GrupoValoracion" parameterType="Session" variable="grupovaloracion"/>
-</SQLParameters>
+				<SQLParameter id="79" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="1" parameterType="Expression" variable="Expr1"/>
+				<SQLParameter id="80" dataType="Integer" defaultValue="0" designDefaultValue="53" parameterSource="MyMUserID" parameterType="Session" variable="MyMUserID"/>
+				<SQLParameter id="81" dataType="Text" designDefaultValue="SLAS" parameterSource="GrupoValoracion" parameterType="Session" variable="grupovaloracion"/>
+			</SQLParameters>
 			<ReportGroups>
 				<ReportGroup id="55" name="Grupo" field="Grupo" sortOrder="asc" sqlField="ReportesMyM.Grupo"/>
 			</ReportGroups>

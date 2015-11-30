@@ -1,11 +1,12 @@
 <?php
-//BindEvents Method @1-C8F1AC86
+//BindEvents Method @1-5DE7023B
 function BindEvents()
 {
     global $ReportesMyM;
     global $CCSEvents;
     $ReportesMyM->Nombre->CCSEvents["BeforeShow"] = "ReportesMyM_Nombre_BeforeShow";
     $ReportesMyM->Detail->CCSEvents["BeforeShow"] = "ReportesMyM_Detail_BeforeShow";
+    $ReportesMyM->CCSEvents["BeforeSelect"] = "ReportesMyM_BeforeSelect";
     $CCSEvents["BeforeShow"] = "Page_BeforeShow";
 }
 //End BindEvents Method
@@ -129,6 +130,30 @@ function ReportesMyM_Detail_BeforeShow(& $sender)
     return $ReportesMyM_Detail_BeforeShow;
 }
 //End Close ReportesMyM_Detail_BeforeShow
+
+//ReportesMyM_BeforeSelect @30-A1CA7FDE
+function ReportesMyM_BeforeSelect(& $sender)
+{
+    $ReportesMyM_BeforeSelect = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $ReportesMyM; //Compatibility
+//End ReportesMyM_BeforeSelect
+
+//Custom Code @82-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
+  If ($ReportesMyM->DataSource->Order == "") { 
+     $ReportesMyM->DataSource->Order = "orden asc";
+  }
+
+//Close ReportesMyM_BeforeSelect @30-3130CD7B
+    return $ReportesMyM_BeforeSelect;
+}
+//End Close ReportesMyM_BeforeSelect
 
 //Page_BeforeShow @1-F9FE9218
 function Page_BeforeShow(& $sender)

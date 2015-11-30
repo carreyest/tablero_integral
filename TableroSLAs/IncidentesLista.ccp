@@ -85,20 +85,20 @@
 					<Components/>
 					<Events/>
 					<TableParameters>
-						<TableParameter id="188" conditionType="Parameter" useIsNull="False" dataType="Text" field="Grupo" logicOperator="And" parameterSource="'CAPC'" parameterType="Expression" searchConditionType="Equal"/>
-</TableParameters>
+						<TableParameter id="133" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Nivel" logicOperator="And" parameterSource="&quot;3&quot;" parameterType="Expression" searchConditionType="Equal"/>
+					</TableParameters>
 					<SPParameters/>
 					<SQLParameters/>
 					<JoinTables>
-						<JoinTable id="187" posHeight="180" posLeft="10" posTop="10" posWidth="118" tableName="mc_c_usuarios"/>
-</JoinTables>
+						<JoinTable id="138" tableName="mc_c_usuarios"/>
+					</JoinTables>
 					<JoinLinks/>
 					<Fields>
-						<Field id="189" fieldName="*"/>
-</Fields>
+						<Field id="134" fieldName="*"/>
+					</Fields>
 					<PKFields>
-						<PKField id="190" dataType="Integer" fieldName="Id" tableName="mc_c_usuarios"/>
-</PKFields>
+						<PKField id="135" dataType="Integer" fieldName="Id" tableName="mc_c_usuarios"/>
+					</PKFields>
 					<Attributes/>
 					<Features/>
 				</ListBox>
@@ -332,12 +332,12 @@ and ((CASE WHEN (SELECT COUNT(id_incidente) from  mc_calificacion_incidentes_MC 
 					<Features/>
 				</Label>
 				<Label id="186" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="lAnalista" PathID="mc_info_incidenteslAnalista" defaultValue="&quot;Analista&quot;">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Label>
-			</Components>
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Label>
+</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>

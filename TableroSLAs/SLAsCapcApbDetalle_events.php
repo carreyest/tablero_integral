@@ -657,7 +657,7 @@ function Page_BeforeShow(& $sender)
     	$iPos=array_search(CCGetParam("sID"),$aPPMCsAPbIds);
     	if($iPos==0){
 			$lkAnterior->SetLink("SLAsCAPCLista.php?" . CCGetQueryString("QueryString",""));
-			$lkAnterior->SetValue("Lista Requerimientos");
+			$lkAnterior->SetValue("Lista requerimientos");
     	} else {
     		$lkAnterior->SetValue($aPPMCsAPbValues[$iPos-1]);
     		//$lkAnterior->SetLink("SLAsCapcApbDetalle.php?" . CCAddParam( CCRemoveParam( CCGetQueryString("QueryString","sID"),"ccsForm"),"sID",$aPPMCsAPbIds[$iPos-1]));

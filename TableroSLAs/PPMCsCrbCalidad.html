@@ -73,13 +73,13 @@ function calculaSLA(){
       <table width="100%">
         <tr style="BACKGROUND-COLOR: rgb(218,224,228)">
           <td><a href="{lkReqFun_Src}" id="lkReqFun">Cumplimiento de<br>
-            Requisitos Funcionales</a></td> 
+            requisitos funcionales</a></td> 
           <td><a href="{lkCalidad_Src}" id="lkCalidad">Calidad de<br>
-            Productos Terminados</a></td> 
-          <td><a href="{lkRetEnt_Calidad_Src}" id="lkRetEnt_Calidad">Retraso en Entregables</a></td> 
-          <td><a href="{lkCalidadCod_Src}" id="lkCalidadCod">Calidad de Código</a></td> 
-          <td><a href="{Link1_Src}" id="Link1">Defectos Fugados<br>
-            a Producción</a></td>
+            productos terminados</a></td> 
+          <td><a href="{lkRetEnt_Calidad_Src}" id="lkRetEnt_Calidad">Retraso en entregables</a></td> 
+          <td><a href="{lkCalidadCod_Src}" id="lkCalidadCod">Calidad de código</a></td> 
+          <td><a href="{Link1_Src}" id="Link1">Defectos fugados<br>
+            a producción</a></td>
         </tr>
       </table>
     </td>
@@ -90,13 +90,13 @@ function calculaSLA(){
     <td>&nbsp; 
       <!-- BEGIN Record mc_info_rs_cr_calidad -->
       <form id="mc_info_rs_cr_calidad" method="post" name="{HTMLFormName}" action="{Action}">
-        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="top">
-              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
-                  <td class="th"><strong>Calificar Calidad de Productos Terminados</strong>{lReportado}</td> 
+                  <td class="th"><strong>Calificar calidad de productos terminados</strong>{lReportado}</td> 
                   <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
                 </tr>
               </table>
@@ -120,55 +120,55 @@ function calculaSLA(){
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th">Servicio de Negocio&nbsp;</td> 
+                  <td class="th">Servicio de negocio&nbsp;</td> 
                   <td colspan="2"><input type="hidden" id="mc_info_rs_cr_calidadlsServNegocio" value="{lsServNegocio}" name="{lsServNegocio_Name}">{lbServNegocio} </td> 
                   <td class="th">&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th">Servicio Contractual</td> 
+                  <td class="th">Servicio contractual</td> 
                   <td colspan="2"><input type="hidden" id="mc_info_rs_cr_calidadlsServContractual" value="{lsServContractual}" name="{lsServContractual_Name}">{lbServContractual} </td> 
                   <td class="th">&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th"><label for="mc_info_rs_cr_calidadRechazosDocAVL">Rechazos Documentales</label></td> 
-                  <td><input type="text" id="mc_info_rs_cr_calidadRechazosDocAVL" maxlength="3" size="3" value="{RechazosDocAVL}" name="{RechazosDocAVL_Name}"></td> 
-                  <td class="th"><label for="mc_info_rs_cr_calidadRechazosFunAVL">Rechazos Funcionales&nbsp;AVL</label>&nbsp;</td> 
-                  <td class="th"><input type="text" id="mc_info_rs_cr_calidadRechazosFunAVL" maxlength="3" size="3" value="{RechazosFunAVL}" name="{RechazosFunAVL_Name}"></td>
+                  <td class="th"><label for="mc_info_rs_cr_calidadRechazosDocAVL">Rechazos documentales</label></td> 
+                  <td><input type="text" id="mc_info_rs_cr_calidadRechazosDocAVL" value="{RechazosDocAVL}" maxlength="3" size="3" name="{RechazosDocAVL_Name}"></td> 
+                  <td class="th"><label for="mc_info_rs_cr_calidadRechazosFunAVL">Rechazos funcionales&nbsp;AVL</label>&nbsp;</td> 
+                  <td class="th"><input type="text" id="mc_info_rs_cr_calidadRechazosFunAVL" value="{RechazosFunAVL}" maxlength="3" size="3" name="{RechazosFunAVL_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th"><label for="mc_info_rs_cr_calidadHallazgosDocQC">Hallazgos Documentales</label></td> 
-                  <td><input type="text" id="mc_info_rs_cr_calidadHallazgosDocQC" maxlength="3" size="3" value="{HallazgosDocQC}" name="{HallazgosDocQC_Name}"></td> 
-                  <td class="th"><label for="mc_info_rs_cr_calidadDefectosQC">Relación Defectos QC / Casos de Prueba</label></td> 
-                  <td class="th"><input type="text" id="mc_info_rs_cr_calidadDefectosQC" maxlength="3" size="3" value="{DefectosQC}" name="{DefectosQC_Name}">/<input type="text" onchange="calculaSLA()" id="mc_info_rs_cr_calidadCasosdePrueba" maxlength="3" size="3" value="{CasosdePrueba}" name="{CasosdePrueba_Name}">=<span id="PctDefectosCasos">&nbsp;</span>%=<input type="text" id="mc_info_rs_cr_calidadTotalDefectos" maxlength="3" size="3" value="{TotalDefectos}" name="{TotalDefectos_Name}"></td>
+                  <td class="th"><label for="mc_info_rs_cr_calidadHallazgosDocQC">Hallazgos documentales</label></td> 
+                  <td><input type="text" id="mc_info_rs_cr_calidadHallazgosDocQC" value="{HallazgosDocQC}" maxlength="3" size="3" name="{HallazgosDocQC_Name}"></td> 
+                  <td class="th"><label for="mc_info_rs_cr_calidadDefectosQC">Relación defectos QC / casos de prueba</label></td> 
+                  <td class="th"><input type="text" id="mc_info_rs_cr_calidadDefectosQC" value="{DefectosQC}" maxlength="3" size="3" name="{DefectosQC_Name}">/<input type="text" id="mc_info_rs_cr_calidadCasosdePrueba" onchange="calculaSLA()" value="{CasosdePrueba}" maxlength="3" size="3" name="{CasosdePrueba_Name}">=<span id="PctDefectosCasos">&nbsp;</span>%=<input type="text" id="mc_info_rs_cr_calidadTotalDefectos" value="{TotalDefectos}" maxlength="3" size="3" name="{TotalDefectos_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th"><label for="mc_info_rs_cr_calidadIndiceCalidadDoc">Indice Calidad Documental</label></td> 
-                  <td><input type="text" id="mc_info_rs_cr_calidadIndiceCalidadDoc" maxlength="3" size="3" value="{IndiceCalidadDoc}" name="{IndiceCalidadDoc_Name}"></td> 
-                  <td class="th"><label for="mc_info_rs_cr_calidadTotalDefectos"><label for="mc_info_rs_cr_calidadIndiceCalidadFun">Indice Calidad Funcional</label><font style="BACKGROUND-COLOR: rgb(232,232,232)">&nbsp;</font></label></td> 
-                  <td class="th"><input type="text" id="mc_info_rs_cr_calidadIndiceCalidadFun" maxlength="3" size="3" value="{IndiceCalidadFun}" name="{IndiceCalidadFun_Name}"></td>
+                  <td class="th"><label for="mc_info_rs_cr_calidadIndiceCalidadDoc">Indice calidad documental</label></td> 
+                  <td><input type="text" id="mc_info_rs_cr_calidadIndiceCalidadDoc" value="{IndiceCalidadDoc}" maxlength="3" size="3" name="{IndiceCalidadDoc_Name}"></td> 
+                  <td class="th"><label for="mc_info_rs_cr_calidadTotalDefectos"><label for="mc_info_rs_cr_calidadIndiceCalidadFun">Indice calidad funcional</label><font style="BACKGROUND-COLOR: rgb(232,232,232)">&nbsp;</font></label></td> 
+                  <td class="th"><input type="text" id="mc_info_rs_cr_calidadIndiceCalidadFun" value="{IndiceCalidadFun}" maxlength="3" size="3" name="{IndiceCalidadFun_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th"><label for="mc_info_rs_cr_calidadDeductivaDoc">Deductiva Documental</label></td> 
-                  <td><input type="text" id="mc_info_rs_cr_calidadDeductivaDoc" maxlength="3" size="3" value="{DeductivaDoc}" name="{DeductivaDoc_Name}"></td> 
-                  <td class="th"><label for="mc_info_rs_cr_calidadTotalDefectos"><font style="BACKGROUND-COLOR: rgb(232,232,232)"><label for="mc_info_rs_cr_calidadDeductivaFun">Deductiva Funcional</label></font></label></td> 
-                  <td class="th"><input type="text" id="mc_info_rs_cr_calidadDeductivaFun" maxlength="3" size="3" value="{DeductivaFun}" name="{DeductivaFun_Name}"></td>
+                  <td class="th"><label for="mc_info_rs_cr_calidadDeductivaDoc">Deductiva documental</label></td> 
+                  <td><input type="text" id="mc_info_rs_cr_calidadDeductivaDoc" value="{DeductivaDoc}" maxlength="3" size="3" name="{DeductivaDoc_Name}"></td> 
+                  <td class="th"><label for="mc_info_rs_cr_calidadTotalDefectos"><font style="BACKGROUND-COLOR: rgb(232,232,232)"><label for="mc_info_rs_cr_calidadDeductivaFun">Deductiva funcional</label></font></label></td> 
+                  <td class="th"><input type="text" id="mc_info_rs_cr_calidadDeductivaFun" value="{DeductivaFun}" maxlength="3" size="3" name="{DeductivaFun_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th"><label for="mc_info_rs_cr_calidadCumpleCalidad">Cumple Calidad</label></td> 
+                  <td class="th"><label for="mc_info_rs_cr_calidadCumpleCalidad">Cumple calidad</label></td> 
                   <td>
                     <select id="mc_info_rs_cr_calidadCumpleCalidad" name="{CumpleCalidad_Name}">
                       <option selected value="">No Aplica</option>
                       {CumpleCalidad_Options}
                     </select>
  </td> 
-                  <td class="th">Deductiva Total</td> 
-                  <td class="th"><input type="text" id="mc_info_rs_cr_calidadDeductivaTot" maxlength="3" size="3" value="{DeductivaTot}" name="{DeductivaTot_Name}"></td>
+                  <td class="th">Deductiva total</td> 
+                  <td class="th"><input type="text" id="mc_info_rs_cr_calidadDeductivaTot" value="{DeductivaTot}" maxlength="3" size="3" name="{DeductivaTot_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
@@ -178,10 +178,10 @@ function calculaSLA(){
  
                 <tr class="Bottom">
                   <td>
-                    <!-- BEGIN Button btnCalcula --><input type="submit" id="mc_info_rs_cr_calidadbtnCalcula" class="Button" alt="Button1" value="Recalcular y Guardar" name="{Button_Name}" size="20"><!-- END Button btnCalcula --></td> 
+                    <!-- BEGIN Button btnCalcula --><input type="submit" id="mc_info_rs_cr_calidadbtnCalcula" class="Button" value="Recalcular y guardar" alt="Button1" name="{Button_Name}" size="20"><!-- END Button btnCalcula --></td> 
                   <td style="TEXT-ALIGN: right" colspan="3">
-                    <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_info_rs_cr_calidadButton_Insert" class="Button" alt="Agregar" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
-                    <!-- BEGIN Button Button_Update --><input type="submit" id="mc_info_rs_cr_calidadButton_Update" class="Button" alt="Enviar" value="Enviar" name="{Button_Name}"><!-- END Button Button_Update --><input type="hidden" id="mc_info_rs_cr_calidadUsuarioUltMod" value="{UsuarioUltMod}" name="{UsuarioUltMod_Name}"><label for="mc_info_rs_cr_calidadFechaUltMod" style="display: none;">Fcha Ult Mod</label><input type="hidden" id="mc_info_rs_cr_calidadFechaUltMod" value="{FechaUltMod}" name="{FechaUltMod_Name}"><input type="hidden" id="mc_info_rs_cr_calidadhdId" value="{hdId}" name="{hdId_Name}"></td>
+                    <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_info_rs_cr_calidadButton_Insert" class="Button" value="Agregar" alt="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input type="submit" id="mc_info_rs_cr_calidadButton_Update" class="Button" value="Enviar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Update --><input type="hidden" id="mc_info_rs_cr_calidadUsuarioUltMod" value="{UsuarioUltMod}" name="{UsuarioUltMod_Name}"><label for="mc_info_rs_cr_calidadFechaUltMod" style="display: none;">Fcha Ult Mod</label><input type="hidden" id="mc_info_rs_cr_calidadFechaUltMod" value="{FechaUltMod}" name="{FechaUltMod_Name}"><input type="hidden" id="mc_info_rs_cr_calidadhdId" value="{hdId}" name="{hdId_Name}"></td>
                 </tr>
               </table>
             </td>
@@ -198,13 +198,13 @@ function calculaSLA(){
       <!-- BEGIN EditableGrid EditableGrid1 -->
       <form id="EditableGrid1" method="post" name="{HTMLFormName}" action="{Action}">
         <input type="hidden" value="{FormState}" name="FormState">{FormScript} 
-        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="top">
-              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
-                  <td class="th"><strong>Detalle de Rechazos</strong></td> 
+                  <td class="th"><strong>Detalle de rechazos</strong></td> 
                   <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
                 </tr>
               </table>
@@ -222,9 +222,9 @@ function calculaSLA(){
  
                   <th scope="col">Cierre</th>
  
-                  <th scope="col">Tipo&nbsp;Rechazo</th>
+                  <th scope="col">Tipo&nbsp;rechazo</th>
  
-                  <th scope="col">Fecha&nbsp;Ingreso&nbsp;AVL</th>
+                  <th scope="col">Fecha&nbsp;ingreso&nbsp;AVL</th>
  
                   <th scope="col">Ciclo</th>
  
@@ -254,7 +254,7 @@ function calculaSLA(){
                 <!-- END NoRecords -->
                 <tr class="Footer">
                   <td style="TEXT-ALIGN: right" colspan="99">
-                    <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+                    <!-- BEGIN Navigator Navigator --><span class="Navigator">Registros por página: 
                     <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
                       <option selected value="">-</option>
  {PageSize_Options}
@@ -268,7 +268,7 @@ function calculaSLA(){
                     <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
                     <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
                     <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->
-                    <!-- BEGIN Button Button_Submit --><input type="submit" id="EditableGrid1Button_Submit" class="Button" alt="Enviar" value="Enviar" name="{Button_Name}"><!-- END Button Button_Submit --></td>
+                    <!-- BEGIN Button Button_Submit --><input type="submit" id="EditableGrid1Button_Submit" class="Button" value="Enviar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Submit --></td>
                 </tr>
               </table>
             </td>
@@ -290,13 +290,13 @@ function calculaSLA(){
       <form id="mc_info_detalle_hallazgos" method="post" name="{HTMLFormName}" action="{Action}">
         <p><input type="hidden" value="{FormState}" name="FormState">{FormScript} </p>
  
-        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="top">
-              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
-                  <td class="th"><strong>Lista de Hallazgos</strong></td> 
+                  <td class="th"><strong>Lista de hallazgos</strong></td> 
                   <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
                 </tr>
               </table>
@@ -314,7 +314,7 @@ function calculaSLA(){
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter1 --></th>
  
                   <th scope="col">
-                  <!-- BEGIN Sorter Sorter_TipoRegistro --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_hallazgosSorter_TipoRegistro">Tipo Registro</a> 
+                  <!-- BEGIN Sorter Sorter_TipoRegistro --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_hallazgosSorter_TipoRegistro">Tipo registro</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_TipoRegistro --></th>
  
@@ -324,7 +324,7 @@ function calculaSLA(){
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Estado --></th>
  
                   <th scope="col">
-                  <!-- BEGIN Sorter Sorter_Tipo --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_hallazgosSorter_Tipo">Tipo Hallazgo</a> 
+                  <!-- BEGIN Sorter Sorter_Tipo --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_hallazgosSorter_Tipo">Tipo hallazgo</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Tipo --></th>
  
@@ -333,12 +333,12 @@ function calculaSLA(){
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Paquete --></th>
  
-                  <th scope="col">Proveedor&nbsp;Paq.</th>
+                  <th scope="col">Proveedor&nbsp;paq.</th>
  
-                  <th scope="col">Fecha Mov.</th>
+                  <th scope="col">Fecha mov.</th>
  
                   <th scope="col">
-                  <!-- BEGIN Sorter Sorter_Descripcion --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_hallazgosSorter_Descripcion">Descripcion</a> 
+                  <!-- BEGIN Sorter Sorter_Descripcion --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_hallazgosSorter_Descripcion">Descripción</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Descripcion --></th>
  
@@ -373,7 +373,7 @@ function calculaSLA(){
                 <!-- END NoRecords -->
                 <tr class="Footer">
                   <td style="TEXT-ALIGN: right" colspan="102">
-                    <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+                    <!-- BEGIN Navigator Navigator --><span class="Navigator">Registros por página: 
                     <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
                       <option selected value="">-</option>
  {PageSize_Options}
@@ -387,7 +387,7 @@ function calculaSLA(){
                     <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
                     <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
                     <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->
-                    <!-- BEGIN Button Button_Submit --><input type="submit" id="mc_info_detalle_hallazgosButton_Submit" class="Button" alt="Enviar" value="Guardar" name="{Button_Name}" size="20"><!-- END Button Button_Submit --></td>
+                    <!-- BEGIN Button Button_Submit --><input type="submit" id="mc_info_detalle_hallazgosButton_Submit" class="Button" value="Guardar" alt="Enviar" name="{Button_Name}" size="20"><!-- END Button Button_Submit --></td>
                 </tr>
               </table>
             </td>
@@ -409,13 +409,13 @@ function calculaSLA(){
       <form id="mc_info_detalle_defectos" method="post" name="{HTMLFormName}" action="{Action}">
         <p><input type="hidden" value="{FormState}" name="FormState">{FormScript} </p>
  
-        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="top">
-              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
-                  <td class="th"><strong>Lista de Defectos</strong></td> 
+                  <td class="th"><strong>Lista de defectos</strong></td> 
                   <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
                 </tr>
               </table>
@@ -433,7 +433,7 @@ function calculaSLA(){
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter1 --></th>
  
                   <th scope="col">
-                  <!-- BEGIN Sorter Sorter_TipoRegistro --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_defectosSorter_TipoRegistro">Tipo Registro</a> 
+                  <!-- BEGIN Sorter Sorter_TipoRegistro --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_defectosSorter_TipoRegistro">Tipo registro</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_TipoRegistro --></th>
  
@@ -452,10 +452,10 @@ function calculaSLA(){
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Paquete --></th>
  
-                  <th scope="col">Proveedor&nbsp;Paq.</th>
+                  <th scope="col">Proveedor&nbsp;paq.</th>
  
                   <th scope="col">
-                  <!-- BEGIN Sorter Sorter_Descripcion --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_defectosSorter_Descripcion">Descripcion</a> 
+                  <!-- BEGIN Sorter Sorter_Descripcion --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_defectosSorter_Descripcion">Descripción</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Descripcion --></th>
  
@@ -489,7 +489,7 @@ function calculaSLA(){
                 <!-- END NoRecords -->
                 <tr class="Footer">
                   <td style="TEXT-ALIGN: right" colspan="101">
-                    <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+                    <!-- BEGIN Navigator Navigator --><span class="Navigator">Registros por página: 
                     <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
                       <option selected value="">-</option>
  {PageSize_Options}
@@ -503,7 +503,7 @@ function calculaSLA(){
                     <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
                     <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
                     <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->
-                    <!-- BEGIN Button Button_Submit --><input type="submit" id="mc_info_detalle_defectosButton_Submit" class="Button" alt="Enviar" value="Guardar" name="{Button_Name}" size="20"><!-- END Button Button_Submit --></td>
+                    <!-- BEGIN Button Button_Submit --><input type="submit" id="mc_info_detalle_defectosButton_Submit" class="Button" value="Guardar" alt="Enviar" name="{Button_Name}" size="20"><!-- END Button Button_Submit --></td>
                 </tr>
               </table>
             </td>

@@ -230,7 +230,26 @@ function mc_info_incidentes_BeforeShowRow(& $sender)
 
 //Custom Code @200-2A29BDB7
 // -------------------------
-    
+
+
+	switch (CCGetParam("s_id_proveedor")){
+	//case 1 : $sProveedor = 'Evidencia_CAPC';break;
+	case 2 : $sProveedor = 'Evidencias_CDS1y3';break;
+	case 3 : $sProveedor = 'Evidencias_CDS2';break;
+	//default: $sProveedor = 'Evidencias_CAPC';break;
+	default: $sProveedor = 'Evidencias_CDS1y3';break;					
+	}
+
+	if(CCGetParam("s_MesReporte")<10){
+		$sMes = "0" . CCGetParam("s_MesReporte");
+	} else {
+		$sMes = CCGetParam("s_MesReporte");
+	}
+	
+	$mc_info_incidentes->lkEvidencia->SetLink("http://satportal.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos compartidos/Operación del Servicio/Itera/" . CCGetParam("s_AnioReporte","") . $sMes . "/EntregablesPeriódicos/NivelesServicio/". $sProveedor ."/");
+
+
+/*    
 	if (CCGetParam("s_id_proveedor")==4){
 		$sProveedor ="3y4";
 	} else {
@@ -241,8 +260,9 @@ function mc_info_incidentes_BeforeShowRow(& $sender)
 	} else {
 		$sMes = CCGetParam("s_MesReporte");
 	}
-	//http://satportal.dssat.sat.gob.mx/agcti/CAPC_ITERA/SDMA3/AdmonContrato/CAPC/Entregables_C/201401/MC/Evidencia_CDS2/INC000003271613.xls
+
 	$mc_info_incidentes->lkEvidencia->SetLink("http://satportal.dssat.sat.gob.mx/agcti/CAPC_ITERA/SDMA3/AdmonContrato/CAPC/Entregables_C/" . CCGetParam("s_AnioReporte","") . $sMes .  "/MC/Evidencia_CDS" . $sProveedor  . "/"); 
+*/
 		// . $mc_info_incidentes->id_ppmc->GetValue() . "_A.doc");
 	
 	//si es el SAT cambia la liga al repositorio de evidencia

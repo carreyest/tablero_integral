@@ -446,7 +446,7 @@ function Page_BeforeShow(& $sender)
     	$iPos=array_search(CCGetParam("Id"),$aPPMCsAPbIds);
     	if($iPos==0){
 			$lkAnterior->SetLink("PPMCsCrbLista.php?" . CCGetQueryString("QueryString",""));
-			$lkAnterior->SetValue("Lista Requerimientos");
+			$lkAnterior->SetValue("Lista requerimientos");
     	} else {
     		$lkAnterior->SetValue($aPPMCsAPbValues[$iPos-1]);
     		$lkAnterior->SetLink("PPMCsCrbCalidad.php?" . CCAddParam( CCRemoveParam( CCGetQueryString("QueryString","Id"),"ccsForm"),"Id",$aPPMCsAPbIds[$iPos-1]));
@@ -664,6 +664,7 @@ function CalculaIndiceCalidad(){
     	' 	inner   join mc_c_Errores e on replace(e.Descripcion,\' \',\'\')  = replace(det.Descripcion,\' \',\'\')   and e.AplicaCDS = 1 ' .
     	' where mc_universo_cds.id =  ' . CCGetParam("Id") . 
     	' and e.tipo not like \'%docum%\'  and considerar =1 group by e.tipo ';
+    	//echo($sql);
     $db->query($sql);
     while($db->next_record()){
 		$RechazosFunAVL = $RechazosFunAVL + $db->f(0);

@@ -2,9 +2,8 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=windows-1252">
-<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
 <title>EficienciaPresLista</title>
- 
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
 <script language="JavaScript" type="text/javascript">
 //Begin CCS script
 //Include Common JSFunctions @1-2504AB44
@@ -15,7 +14,7 @@
 
 //Include User Scripts @1-A87AC9EE
 </script>
-{page:scriptIncludes} 
+{page:scriptIncludes}
 <script type="text/javascript">
 //End Include User Scripts
 
@@ -91,7 +90,6 @@ jQuery(function ($) {
 <link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
 <link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
 </head>
- 
 <body>
 <p>{Header}</p>
 <p></p>
@@ -100,7 +98,7 @@ jQuery(function ($) {
     <td>&nbsp;</td> 
     <td>
       <!-- BEGIN Record mc_eficiencia_presupuesta1 -->
-      <form name="{HTMLFormName}" id="mc_eficiencia_presupuesta1" action="{Action}" method="post">
+      <form id="mc_eficiencia_presupuesta1" method="post" name="{HTMLFormName}" action="{Action}">
         <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="top">
@@ -108,79 +106,74 @@ jQuery(function ($) {
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Buscar</strong></td> 
-                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
                 </tr>
- 
               </table>
  
               <table class="Record" cellspacing="0" cellpadding="0">
                 <!-- BEGIN Error -->
-                <tr class="Error" id="{@error-block}">
-                  <td colspan="8">{Error}</td> 
+                <tr id="{@error-block}" class="Error">
+                  <td colspan="8">{Error}</td>
                 </tr>
- <!-- END Error -->
+                <!-- END Error -->
                 <tr class="Controls">
-                  <td class="th"><label for="mc_eficiencia_presupuesta1s_Id_Proveedor">Id Proveedor</label></td> 
+                  <td class="th"><label for="mc_eficiencia_presupuesta1s_Id_Proveedor">Id proveedor</label></td> 
                   <td>
-                    <select name="{s_Id_Proveedor_Name}" id="mc_eficiencia_presupuesta1s_Id_Proveedor">
-                      <option value="">Seleccionar Valor</option>
- {s_Id_Proveedor_Options} 
+                    <select id="mc_eficiencia_presupuesta1s_Id_Proveedor" name="{s_Id_Proveedor_Name}">
+                      <option selected value="">Seleccionar valor</option>
+                      {s_Id_Proveedor_Options}
                     </select>
  </td> 
-                  <td class="th"><label for="mc_eficiencia_presupuesta1s_GrupoAplicativos">Grupo Aplicativos</label></td> 
-                  <td><input type="text" name="{s_GrupoAplicativos_Name}" id="mc_eficiencia_presupuesta1s_GrupoAplicativos" size="45" maxlength="45" value="{s_GrupoAplicativos}"></td> 
-                  <td class="th"><label for="mc_eficiencia_presupuesta1s_MesReporte">Mes Reporte</label></td> 
+                  <td class="th"><label for="mc_eficiencia_presupuesta1s_GrupoAplicativos">Grupo aplicativos</label></td> 
+                  <td><input type="text" id="mc_eficiencia_presupuesta1s_GrupoAplicativos" value="{s_GrupoAplicativos}" maxlength="45" size="45" name="{s_GrupoAplicativos_Name}"></td> 
+                  <td class="th"><label for="mc_eficiencia_presupuesta1s_MesReporte">Mes reporte</label></td> 
                   <td>
-                    <select name="{s_MesReporte_Name}" id="mc_eficiencia_presupuesta1s_MesReporte">
-                      <option value="">Seleccionar Valor</option>
- {s_MesReporte_Options} 
+                    <select id="mc_eficiencia_presupuesta1s_MesReporte" name="{s_MesReporte_Name}">
+                      <option selected value="">Seleccionar valor</option>
+                      {s_MesReporte_Options}
                     </select>
  </td> 
-                  <td class="th"><label for="mc_eficiencia_presupuesta1s_AnioRepote">Año Reporte</label></td> 
+                  <td class="th"><label for="mc_eficiencia_presupuesta1s_AnioRepote">Año reporte</label></td> 
                   <td>
-                    <select name="{s_AnioRepote_Name}" id="mc_eficiencia_presupuesta1s_AnioRepote">
-                      <option value="">Seleccionar Valor</option>
- {s_AnioRepote_Options} 
+                    <select id="mc_eficiencia_presupuesta1s_AnioRepote" name="{s_AnioRepote_Name}">
+                      <option selected value="">Seleccionar valor</option>
+                      {s_AnioRepote_Options}
                     </select>
- </td> 
+ </td>
                 </tr>
  
                 <tr class="Bottom">
-                  <td style="text-align: right;" colspan="8">
-                    <!-- BEGIN Button Button_DoSearch --><input type="submit" name="{Button_Name}" class="Button" id="mc_eficiencia_presupuesta1Button_DoSearch" alt="Buscar" value="Buscar"><!-- END Button Button_DoSearch --></td> 
+                  <td style="TEXT-ALIGN: right" colspan="8">
+                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="mc_eficiencia_presupuesta1Button_DoSearch" class="Button" value="Buscar" alt="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                 </tr>
- 
               </table>
- </td> 
+            </td>
           </tr>
- 
         </table>
- 
       </form>
- <!-- END Record mc_eficiencia_presupuesta1 --><br>
+      <!-- END Record mc_eficiencia_presupuesta1 --><br>
     </td> 
-    <td>&nbsp;</td> 
+    <td>&nbsp;</td>
   </tr>
  
   <tr>
-    <td rowspan="1" colspan="1">&nbsp;</td> 
-    <td rowspan="1" colspan="1">
+    <td>&nbsp;</td> 
+    <td>
       <!-- BEGIN Grid mc_c_proveedor_mc_eficien -->
-      <table class="MainTable" id="mc_c_proveedor_mc_eficien" border="0" cellspacing="0" cellpadding="0">
+      <table id="mc_c_proveedor_mc_eficien" class="MainTable" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td valign="top">
             <table class="Header" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
-                <td class="th"><strong>Eficiencia Presupuestal </strong></td> 
-                <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                <td class="th"><strong>Eficiencia presupuestal </strong></td> 
+                <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
               </tr>
- 
             </table>
  
             <table class="Grid" cellspacing="0" cellpadding="0">
               <tr class="Row">
-                <td rowspan="1" colspan="11">Total de Registros:&nbsp;{mc_c_proveedor_mc_eficien_TotalRecords}</td> 
+                <td colspan="11">Total de registros:&nbsp;{mc_c_proveedor_mc_eficien_TotalRecords}</td>
               </tr>
  
               <tr class="Caption">
@@ -190,80 +183,79 @@ jQuery(function ($) {
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Id --></th>
  
                 <th scope="col">
-                <!-- BEGIN Sorter Sorter_GrupoAplicativos --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_proveedor_mc_eficienSorter_GrupoAplicativos">Grupo de Aplicativos</a> 
+                <!-- BEGIN Sorter Sorter_GrupoAplicativos --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_proveedor_mc_eficienSorter_GrupoAplicativos">Grupo de aplicativos</a> 
                 <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_GrupoAplicativos --></th>
  
                 <th scope="col">
-                <!-- BEGIN Sorter Sorter_ServiciosRelacionados --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_proveedor_mc_eficienSorter_ServiciosRelacionados">Servicios de Negocio Relacionados</a> 
+                <!-- BEGIN Sorter Sorter_ServiciosRelacionados --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_proveedor_mc_eficienSorter_ServiciosRelacionados">Servicios de negocio relacionados</a> 
                 <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_ServiciosRelacionados --></th>
  
                 <th scope="col">
-                <!-- BEGIN Sorter Sorter_CFMAnterior --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_proveedor_mc_eficienSorter_CFMAnterior">Promedio CFM Año Pasado</a> 
+                <!-- BEGIN Sorter Sorter_CFMAnterior --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_proveedor_mc_eficienSorter_CFMAnterior">Promedio CFM año pasado</a> 
                 <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_CFMAnterior --></th>
  
                 <th scope="col">
-                <!-- BEGIN Sorter Sorter_CFMActual --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_proveedor_mc_eficienSorter_CFMActual">CFM Nuevo</a> 
+                <!-- BEGIN Sorter Sorter_CFMActual --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_proveedor_mc_eficienSorter_CFMActual">CFM nuevo</a> 
                 <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_CFMActual --></th>
  
                 <th scope="col">
-                <!-- BEGIN Sorter Sorter_EficienciaPresupuestal --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_proveedor_mc_eficienSorter_EficienciaPresupuestal">Resultado Eficiencia Presupuestal</a> 
+                <!-- BEGIN Sorter Sorter_EficienciaPresupuestal --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_proveedor_mc_eficienSorter_EficienciaPresupuestal">Resultado eficiencia presupuestal</a> 
                 <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_EficienciaPresupuestal --></th>
  
                 <th scope="col">
-                <!-- BEGIN Sorter Sorter_CumpleSLA --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_proveedor_mc_eficienSorter_CumpleSLA">Eficiencia Presupuestal</a> 
+                <!-- BEGIN Sorter Sorter_CumpleSLA --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_proveedor_mc_eficienSorter_CumpleSLA">Eficiencia presupuestal</a> 
                 <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_CumpleSLA --></th>
  
                 <th scope="col">
-                <!-- BEGIN Sorter Sorter_MesReporte --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_proveedor_mc_eficienSorter_MesReporte">Mes Reporte</a> 
+                <!-- BEGIN Sorter Sorter_MesReporte --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_proveedor_mc_eficienSorter_MesReporte">Mes reporte</a> 
                 <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_MesReporte --></th>
  
                 <th scope="col">
-                <!-- BEGIN Sorter Sorter_AnioRepote --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_proveedor_mc_eficienSorter_AnioRepote">Año Reporte</a> 
+                <!-- BEGIN Sorter Sorter_AnioRepote --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_proveedor_mc_eficienSorter_AnioRepote">Año reporte</a> 
                 <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_AnioRepote --></th>
  
-                <th rowspan="1" scope="col">
+                <th scope="col">
                 <!-- BEGIN Sorter Sorter_nombre --><span class="Sorter"><a href="{Sort_URL}" id="mc_c_proveedor_mc_eficienSorter_nombre">Proveedor</a> 
                 <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_nombre --></th>
  
                 <th scope="col">&nbsp;</th>
- 
               </tr>
  
               <!-- BEGIN Row -->
               <tr class="Row">
-                <td style="text-align: right;"><a href="{Id_Src}" id="mc_c_proveedor_mc_eficienId_{mc_c_proveedor_mc_eficien:rowNumber}">{Id}</a>&nbsp;</td> 
+                <td style="TEXT-ALIGN: right"><a href="{Id_Src}" id="mc_c_proveedor_mc_eficienId_{mc_c_proveedor_mc_eficien:rowNumber}">{Id}</a>&nbsp;</td> 
                 <td>{GrupoAplicativos}&nbsp;</td> 
                 <td>{ServiciosRelacionados}&nbsp;</td> 
                 <td>{CFMAnterior}&nbsp;</td> 
                 <td>{CFMActual}&nbsp;</td> 
                 <td>{EficienciaPresupuestal}&nbsp;</td> 
-                <td style="text-align: center;"><input type="hidden" name="{CumpleSLA_Name}" id="mc_c_proveedor_mc_eficienCumpleSLA_{mc_c_proveedor_mc_eficien:rowNumber}" value="{CumpleSLA}">&nbsp;<img id="mc_c_proveedor_mc_eficienimgCumpleSLA" alt="" src="{imgCumpleSLA}"></td> 
-                <td style="text-align: right;">{MesReporte}&nbsp;</td> 
-                <td style="text-align: right;">{AnioRepote}&nbsp;</td> 
-                <td rowspan="1">{nombre}</td> 
-                <td style="text-align: right;">{observaciones}</td> 
+                <td style="TEXT-ALIGN: center"><input type="hidden" id="mc_c_proveedor_mc_eficienCumpleSLA_{mc_c_proveedor_mc_eficien:rowNumber}" value="{CumpleSLA}" name="{CumpleSLA_Name}">&nbsp;<img id="mc_c_proveedor_mc_eficienimgCumpleSLA" alt="" src="{imgCumpleSLA}"></td> 
+                <td style="TEXT-ALIGN: right">{MesReporte}&nbsp;</td> 
+                <td style="TEXT-ALIGN: right">{AnioRepote}&nbsp;</td> 
+                <td>{nombre}</td> 
+                <td style="TEXT-ALIGN: right">{observaciones}</td>
               </tr>
  <!-- END Row -->
               <!-- BEGIN NoRecords -->
               <tr class="NoRecords">
-                <td rowspan="1" colspan="11">No hay registros</td> 
+                <td colspan="11">No hay registros</td>
               </tr>
- <!-- END NoRecords -->
+              <!-- END NoRecords -->
               <tr class="Footer">
-                <td rowspan="1" colspan="11">
-                  <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
-                  <select name="{FormName}PageSize" style="vertical-align: middle;" data-grid-size="{FormName}">
+                <td colspan="11">
+                  <!-- BEGIN Navigator Navigator --><span class="Navigator">Registros por página: 
+                  <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
                     <option selected value="">-</option>
- {PageSize_Options} 
+ {PageSize_Options}
                   </select>
  
                   <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
@@ -273,23 +265,21 @@ jQuery(function ($) {
                   <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/Next.gif"></a> <!-- END Next_On -->
                   <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
                   <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
-                  <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td> 
+                  <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td>
               </tr>
- 
             </table>
- </td> 
+          </td>
         </tr>
- 
       </table>
- <!-- END Grid mc_c_proveedor_mc_eficien --></td> 
-    <td rowspan="1" colspan="1">&nbsp;</td> 
+      <!-- END Grid mc_c_proveedor_mc_eficien --></td> 
+    <td>&nbsp;</td>
   </tr>
  
   <tr>
     <td>&nbsp;</td> 
     <td>
       <!-- BEGIN Record mc_eficiencia_presupuesta -->
-      <form name="{HTMLFormName}" id="mc_eficiencia_presupuesta" action="{Action}" method="post">
+      <form id="mc_eficiencia_presupuesta" method="post" name="{HTMLFormName}" action="{Action}">
         <p></p>
  
         <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
@@ -298,86 +288,82 @@ jQuery(function ($) {
               <table class="Header" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
-                  <td class="th"><strong>Eficiencia Presupuestal </strong></td> 
-                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Eficiencia presupuestal </strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
                 </tr>
- 
               </table>
  
               <table class="Record" cellspacing="0" cellpadding="0">
                 <!-- BEGIN Error -->
-                <tr class="Error" id="ErrorBlock">
-                  <td colspan="2">{Error}</td> 
+                <tr id="ErrorBlock" class="Error">
+                  <td colspan="2">{Error}</td>
                 </tr>
- <!-- END Error -->
+                <!-- END Error -->
                 <tr class="Controls">
                   <td class="th"><label for="mc_eficiencia_presupuestaId_Proveedor">Proveedor</label></td> 
-                  <td><input type="hidden" name="{Id_Proveedor_Name}" id="mc_eficiencia_presupuestaId_Proveedor" value="{Id_Proveedor}">{lProveedor} </td> 
+                  <td><input type="hidden" id="mc_eficiencia_presupuestaId_Proveedor" value="{Id_Proveedor}" name="{Id_Proveedor_Name}">{lProveedor} </td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th"><label for="mc_eficiencia_presupuestaGrupoAplicativos">Grupo Aplicativos</label></td> 
-                  <td><input type="hidden" name="{GrupoAplicativos_Name}" id="mc_eficiencia_presupuestaGrupoAplicativos" value="{GrupoAplicativos}">&nbsp;{lGrupoAplicativos}</td> 
+                  <td class="th"><label for="mc_eficiencia_presupuestaGrupoAplicativos">Grupo aplicativos</label></td> 
+                  <td><input type="hidden" id="mc_eficiencia_presupuestaGrupoAplicativos" value="{GrupoAplicativos}" name="{GrupoAplicativos_Name}">&nbsp;{lGrupoAplicativos}</td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th"><label for="mc_eficiencia_presupuestaServiciosRelacionados">Servicios Relacionados</label></td> 
-                  <td><input type="hidden" name="{ServiciosRelacionados_Name}" id="mc_eficiencia_presupuestaServiciosRelacionados" value="{ServiciosRelacionados}">&nbsp;{lServiciosRelacionados}</td> 
+                  <td class="th"><label for="mc_eficiencia_presupuestaServiciosRelacionados">Servicios relacionados</label></td> 
+                  <td><input type="hidden" id="mc_eficiencia_presupuestaServiciosRelacionados" value="{ServiciosRelacionados}" name="{ServiciosRelacionados_Name}">&nbsp;{lServiciosRelacionados}</td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_eficiencia_presupuestaCFMAnterior">CFMAnterior</label></td> 
-                  <td><input type="hidden" name="{CFMAnterior_Name}" id="mc_eficiencia_presupuestaCFMAnterior" value="{CFMAnterior}">&nbsp;{lCFMAnterior}</td> 
+                  <td><input type="hidden" id="mc_eficiencia_presupuestaCFMAnterior" value="{CFMAnterior}" name="{CFMAnterior_Name}">&nbsp;{lCFMAnterior}</td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_eficiencia_presupuestaCFMActual">CFMActual</label></td> 
-                  <td><input type="text" name="{CFMActual_Name}" id="mc_eficiencia_presupuestaCFMActual" size="12" maxlength="12" value="{CFMActual}"></td> 
+                  <td><input type="text" id="mc_eficiencia_presupuestaCFMActual" value="{CFMActual}" maxlength="12" size="12" name="{CFMActual_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th"><label for="mc_eficiencia_presupuestaEficienciaPresupuestal">Eficiencia Presupuestal</label></td> 
-                  <td><input type="text" name="{EficienciaPresupuestal_Name}" id="mc_eficiencia_presupuestaEficienciaPresupuestal" size="12" maxlength="12" value="{EficienciaPresupuestal}"></td> 
+                  <td class="th"><label for="mc_eficiencia_presupuestaEficienciaPresupuestal">Eficiencia presupuestal</label></td> 
+                  <td><input type="text" id="mc_eficiencia_presupuestaEficienciaPresupuestal" value="{EficienciaPresupuestal}" maxlength="12" size="12" name="{EficienciaPresupuestal_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_eficiencia_presupuestaCumpleSLA">Cumple SLA</label></td> 
                   <td>
-                    <select name="{CumpleSLA_Name}" id="mc_eficiencia_presupuestaCumpleSLA">
-                      <option value="">No Aplica</option>
- {CumpleSLA_Options} 
+                    <select id="mc_eficiencia_presupuestaCumpleSLA" name="{CumpleSLA_Name}">
+                      <option selected value="">No Aplica</option>
+                      {CumpleSLA_Options}
                     </select>
- </td> 
+ </td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th" rowspan="1" colspan="1">Observaciones</td> 
-                  <td rowspan="1" colspan="1"><textarea name="{Observaciones_Name}" id="mc_eficiencia_presupuestaObservaciones" rows="6" cols="50">{Observaciones}</textarea></td> 
+                  <td class="th">Observaciones</td> 
+                  <td><textarea id="mc_eficiencia_presupuestaObservaciones" rows="6" cols="50" name="{Observaciones_Name}">{Observaciones}</textarea></td>
                 </tr>
  
                 <tr class="Bottom">
-                  <td style="text-align: right;" colspan="2">
-                    <!-- BEGIN Button Button_Insert --><input type="submit" name="{Button_Name}" class="Button" id="mc_eficiencia_presupuestaButton_Insert" alt="Agregar" value="Agregar"><!-- END Button Button_Insert -->
-                    <!-- BEGIN Button Button_Update --><input type="submit" name="{Button_Name}" class="Button" id="mc_eficiencia_presupuestaButton_Update" alt="Enviar" value="Guardar" size="20"><!-- END Button Button_Update -->
-                    <!-- BEGIN Button Button_Delete --><input type="submit" name="{Button_Name}" class="Button" id="mc_eficiencia_presupuestaButton_Delete" alt="Borrar" value="Borrar"><!-- END Button Button_Delete --></td> 
+                  <td style="TEXT-ALIGN: right" colspan="2">
+                    <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_eficiencia_presupuestaButton_Insert" class="Button" value="Agregar" alt="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input type="submit" id="mc_eficiencia_presupuestaButton_Update" class="Button" value="Guardar" alt="Enviar" name="{Button_Name}" size="20"><!-- END Button Button_Update -->
+                    <!-- BEGIN Button Button_Delete --><input type="submit" id="mc_eficiencia_presupuestaButton_Delete" class="Button" value="Borrar" alt="Borrar" name="{Button_Name}"><!-- END Button Button_Delete --></td>
                 </tr>
- 
               </table>
- </td> 
+            </td>
           </tr>
- 
         </table>
  
         <p><br>
         </p>
- 
       </form>
  
       <p>&nbsp;</p>
- <!-- END Record mc_eficiencia_presupuesta -->
+      <!-- END Record mc_eficiencia_presupuesta -->
       <p></p>
- </td> 
-    <td>&nbsp;</td> 
+    </td> 
+    <td>&nbsp;</td>
   </tr>
 </table>
 </body>

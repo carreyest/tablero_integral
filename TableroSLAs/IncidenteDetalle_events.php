@@ -312,7 +312,7 @@ function slAnterior_BeforeShow(& $sender)
 	else
 	{
    		$RedirectAnterior =  "IncidentesLista.php?" . CCGetQueryString("QueryString","");
-		$Container->slAnterior->SetValue("Lista Incidentes");
+		$Container->slAnterior->SetValue("Lista incidentes");
 		$Container->slAnterior->SetLink($RedirectAnterior);
 
 	}

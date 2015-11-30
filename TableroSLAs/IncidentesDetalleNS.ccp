@@ -70,12 +70,12 @@
 					<Features/>
 				</ListBox>
 				<TextBox id="228" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="s_Id_incidente_param" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="mc_info_incidentesSearchs_Id_incidente_param">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-</Components>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
@@ -325,7 +325,12 @@ and (mcu.slo is null or mcu.slo =0)" pageSizeLimit="100" pageSize="True" wizardC
 			<Events/>
 			<Features/>
 		</IncludePage>
-	</Components>
+		<IncludePage id="229" name="MenuTablero" page="MenuTablero.ccp">
+<Components/>
+<Events/>
+<Features/>
+</IncludePage>
+</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="IncidentesDetalleNS_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="IncidentesDetalleNS.php" forShow="True" url="IncidentesDetalleNS.php" comment="//" codePage="windows-1252"/>

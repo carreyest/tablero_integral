@@ -622,6 +622,10 @@ class clsmc_info_incidentesDataSource extends clsDBcnDisenio {  //mc_info_incide
 include_once(RelativePath . "/Header.php");
 //End Include Page implementation
 
+//Include Page implementation @229-1C97D460
+include_once(RelativePath . "/MenuTablero.php");
+//End Include Page implementation
+
 //Initialize Page @1-46DBA311
 // Variables
 $FileName = "";
@@ -661,7 +665,7 @@ $CCSEvents["BeforeInitialize"] = "Page_BeforeInitialize";
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-AA513ACD
+//Initialize Objects @1-262334E9
 $DBcnDisenio = new clsDBcnDisenio();
 $MainPage->Connections["cnDisenio"] = & $DBcnDisenio;
 $Attributes = new clsAttributes("page:");
@@ -673,9 +677,12 @@ $mc_info_incidentesSearch = new clsRecordmc_info_incidentesSearch("", $MainPage)
 $mc_info_incidentes = new clsGridmc_info_incidentes("", $MainPage);
 $Header = new clsHeader("", "Header", $MainPage);
 $Header->Initialize();
+$MenuTablero = new clsMenuTablero("", "MenuTablero", $MainPage);
+$MenuTablero->Initialize();
 $MainPage->mc_info_incidentesSearch = & $mc_info_incidentesSearch;
 $MainPage->mc_info_incidentes = & $mc_info_incidentes;
 $MainPage->Header = & $Header;
+$MainPage->MenuTablero = & $MenuTablero;
 $mc_info_incidentes->Initialize();
 $ScriptIncludes = "";
 $SList = explode("|", $Scripts);
@@ -710,12 +717,13 @@ $Attributes->SetValue("pathToRoot", "");
 $Attributes->Show();
 //End Initialize HTML Template
 
-//Execute Components @1-F5FF4D86
+//Execute Components @1-9B61BE67
+$MenuTablero->Operations();
 $Header->Operations();
 $mc_info_incidentesSearch->Operation();
 //End Execute Components
 
-//Go to destination page @1-46F91559
+//Go to destination page @1-46DD2E7E
 if($Redirect)
 {
     $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
@@ -725,15 +733,18 @@ if($Redirect)
     unset($mc_info_incidentes);
     $Header->Class_Terminate();
     unset($Header);
+    $MenuTablero->Class_Terminate();
+    unset($MenuTablero);
     unset($Tpl);
     exit;
 }
 //End Go to destination page
 
-//Show Page @1-E1A9E962
+//Show Page @1-36EC22F0
 $mc_info_incidentesSearch->Show();
 $mc_info_incidentes->Show();
 $Header->Show();
+$MenuTablero->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);
@@ -741,13 +752,15 @@ $CCSEventResult = CCGetEvent($CCSEvents, "BeforeOutput", $MainPage);
 if ($CCSEventResult) echo $main_block;
 //End Show Page
 
-//Unload Page @1-320DCC29
+//Unload Page @1-5DC95C61
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
 $DBcnDisenio->close();
 unset($mc_info_incidentesSearch);
 unset($mc_info_incidentes);
 $Header->Class_Terminate();
 unset($Header);
+$MenuTablero->Class_Terminate();
+unset($MenuTablero);
 unset($Tpl);
 //End Unload Page
 

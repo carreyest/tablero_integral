@@ -2,9 +2,8 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=windows-1252">
-<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
 <title>IncidentesCuadroNSxls</title>
- 
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
 <script language="JavaScript" type="text/javascript">
 //Begin CCS script
 //Include Common JSFunctions @1-2504AB44
@@ -15,7 +14,7 @@
 
 //Include User Scripts @1-A87AC9EE
 </script>
-{page:scriptIncludes} 
+{page:scriptIncludes}
 <script type="text/javascript">
 //End Include User Scripts
 
@@ -24,15 +23,14 @@
 <link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
 <link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
 </head>
- 
 <body>
 <p>{Header}</p>
-<p>&nbsp; </p>
+<p></p>
 <table width="100%">
   <tr>
     <td>&nbsp; 
       <!-- BEGIN Record mc_calificacion_incidente -->
-      <form name="{HTMLFormName}" id="mc_calificacion_incidente" action="{Action}" method="post">
+      <form id="mc_calificacion_incidente" method="post" name="{HTMLFormName}" action="{Action}">
         <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="top">
@@ -46,59 +44,57 @@
  
               <table class="Record" cellspacing="0" cellpadding="0">
                 <!-- BEGIN Error -->
-                <tr class="Error" id="{@error-block}">
+                <tr id="{@error-block}" class="Error">
                   <td colspan="6">{Error}</td>
                 </tr>
                 <!-- END Error -->
                 <tr class="Controls">
                   <td class="th"><label for="mc_calificacion_incidentes_id_proveedor">CDS </label></td> 
                   <td>
-                    <select name="{s_id_proveedor_Name}" id="mc_calificacion_incidentes_id_proveedor">
-                      <option value="">Seleccionar Valor</option>
+                    <select id="mc_calificacion_incidentes_id_proveedor" name="{s_id_proveedor_Name}">
+                      <option selected value="">Seleccionar valor</option>
                       {s_id_proveedor_Options}
                     </select>
  </td> 
                   <td class="th"><label for="mc_calificacion_incidentes_MesReporte">Mes </label></td> 
                   <td>
-                    <select name="{s_MesReporte_Name}" id="mc_calificacion_incidentes_MesReporte">
-                      <option value="">Seleccionar Valor</option>
+                    <select id="mc_calificacion_incidentes_MesReporte" name="{s_MesReporte_Name}">
                       {s_MesReporte_Options}
                     </select>
  </td> 
                   <td class="th"><label for="mc_calificacion_incidentes_AnioReporte">Año </label></td> 
                   <td>
-                    <select name="{s_AnioReporte_Name}" id="mc_calificacion_incidentes_AnioReporte">
-                      <option value="">Seleccionar Valor</option>
+                    <select id="mc_calificacion_incidentes_AnioReporte" name="{s_AnioReporte_Name}">
                       {s_AnioReporte_Options}
                     </select>
  </td>
                 </tr>
  
                 <tr class="Bottom">
-                  <td style="text-align: right;" colspan="6">
-                    <!-- BEGIN Button Button_DoSearch --><input type="submit" name="{Button_Name}" class="Button" id="mc_calificacion_incidenteButton_DoSearch" alt="Buscar" value="Buscar"><!-- END Button Button_DoSearch --></td>
+                  <td style="TEXT-ALIGN: right" colspan="6">
+                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="mc_calificacion_incidenteButton_DoSearch" class="Button" value="Buscar" alt="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                 </tr>
               </table>
             </td>
           </tr>
         </table>
       </form>
- <!-- END Record mc_calificacion_incidente --><br>
+      <!-- END Record mc_calificacion_incidente --><br>
     </td> 
     <td>{MenuTablero} </td> 
     <td>&nbsp;</td>
   </tr>
  
   <tr>
-    <td rowspan="1" colspan="1">
+    <td>
       <!-- BEGIN Grid grdIncCuadroNS -->
-      <table class="MainTable" id="grdIncCuadroNS" border="0" cellspacing="0" cellpadding="0">
+      <table id="grdIncCuadroNS" class="MainTable" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td valign="top">
             <table class="Header" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
-                <td class="th"><strong>Cuadro NS Incidentes&nbsp; del CAPC</strong></td> 
+                <td class="th"><strong>Cuadro NS incidentes&nbsp; del CAPC</strong></td> 
                 <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
               </tr>
             </table>
@@ -119,7 +115,7 @@
  
                 <th scope="col">
                 <!-- BEGIN Sorter Sorter_Suma --><span class="Sorter"><a href="{Sort_URL}" id="grdIncCuadroNSSorter_Suma">Incidentes<br>
-                Cerrados</a> 
+                cerrados</a> 
                 <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Suma --></th>
  
@@ -146,25 +142,25 @@
               <!-- BEGIN Row -->
               <tr class="Row">
                 <td>{nombre}&nbsp;</td> 
-                <td style="text-align: right;" rowspan="1" colspan="1">&nbsp;</td> 
-                <td style="text-align: center;">{severidad}</td> 
-                <td style="text-align: center;">{Suma}</td> 
-                <td style="text-align: center;">{Cumplen}</td> 
-                <td style="text-align: center;">{PctCumplimiento}</td> 
-                <td style="text-align: center;"><img id="grdIncCuadroNSImgCumple" alt="" src="{ImgCumple}">&nbsp;</td> 
+                <td style="TEXT-ALIGN: right">&nbsp;</td> 
+                <td style="TEXT-ALIGN: center">{severidad}</td> 
+                <td style="TEXT-ALIGN: center">{Suma}</td> 
+                <td style="TEXT-ALIGN: center">{Cumplen}</td> 
+                <td style="TEXT-ALIGN: center">{PctCumplimiento}</td> 
+                <td style="TEXT-ALIGN: center"><img id="grdIncCuadroNSImgCumple" alt="" src="{ImgCumple}">&nbsp;</td> 
                 <td>{Meta}</td> 
                 <td>{pena}</td>
               </tr>
  <!-- END Row -->
               <!-- BEGIN NoRecords -->
               <tr class="NoRecords">
-                <td rowspan="1" colspan="9">No hay registros</td>
+                <td colspan="9">No hay registros</td>
               </tr>
               <!-- END NoRecords -->
               <tr class="Footer">
-                <td rowspan="1" colspan="9">
-                  <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
-                  <select name="{FormName}PageSize" style="vertical-align: middle;" data-grid-size="{FormName}">
+                <td colspan="9">
+                  <!-- BEGIN Navigator Navigator --><span class="Navigator">Registros por página: 
+                  <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
                     <option selected value="">-</option>
  {PageSize_Options}
                   </select>
@@ -182,22 +178,22 @@
           </td>
         </tr>
       </table>
- <!-- END Grid grdIncCuadroNS --><br>
+      <!-- END Grid grdIncCuadroNS --><br>
     </td> 
-    <td rowspan="1" colspan="1"></td> 
-    <td rowspan="1" colspan="1">&nbsp;</td>
+    <td></td> 
+    <td>&nbsp;</td>
   </tr>
  
   <tr>
-    <td rowspan="1" colspan="1">
+    <td>
       <!-- BEGIN Grid grdIncCuadroNS1 -->
-      <table class="MainTable" id="grdIncCuadroNS1" border="0" cellspacing="0" cellpadding="0">
+      <table id="grdIncCuadroNS1" class="MainTable" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td valign="top">
             <table class="Header" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
-                <td class="th"><strong>Cuadro NS Incidentes de Modelo de Gobierno</strong></td> 
+                <td class="th"><strong>Cuadro NS incidentes de Modelo de Gobierno</strong></td> 
                 <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
               </tr>
             </table>
@@ -218,7 +214,7 @@
  
                 <th scope="col">
                 <!-- BEGIN Sorter Sorter_Suma --><span class="Sorter"><a href="{Sort_URL}" id="grdIncCuadroNS1Sorter_Suma">Incidentes<br>
-                Cerrados</a> 
+                cerrados</a> 
                 <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Suma --></th>
  
@@ -245,25 +241,25 @@
               <!-- BEGIN Row -->
               <tr class="Row">
                 <td>{nombre}&nbsp;</td> 
-                <td style="text-align: right;" rowspan="1" colspan="1">&nbsp;</td> 
-                <td style="text-align: center;">{severidad}</td> 
-                <td style="text-align: center;">{Suma}</td> 
-                <td style="text-align: center;">{Cumplen}</td> 
-                <td style="text-align: center;">{PctCumplimiento}</td> 
-                <td style="text-align: center;"><img id="grdIncCuadroNS1ImgCumple" alt="" src="{ImgCumple}">&nbsp;</td> 
+                <td style="TEXT-ALIGN: right">&nbsp;</td> 
+                <td style="TEXT-ALIGN: center">{severidad}</td> 
+                <td style="TEXT-ALIGN: center">{Suma}</td> 
+                <td style="TEXT-ALIGN: center">{Cumplen}</td> 
+                <td style="TEXT-ALIGN: center">{PctCumplimiento}</td> 
+                <td style="TEXT-ALIGN: center"><img id="grdIncCuadroNS1ImgCumple" alt="" src="{ImgCumple}">&nbsp;</td> 
                 <td>{Meta}</td> 
                 <td>{pena}</td>
               </tr>
  <!-- END Row -->
               <!-- BEGIN NoRecords -->
               <tr class="NoRecords">
-                <td rowspan="1" colspan="9">No hay registros</td>
+                <td colspan="9">No hay registros</td>
               </tr>
               <!-- END NoRecords -->
               <tr class="Footer">
-                <td rowspan="1" colspan="9">
-                  <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
-                  <select name="{FormName}PageSize" style="vertical-align: middle;" data-grid-size="{FormName}">
+                <td colspan="9">
+                  <!-- BEGIN Navigator Navigator --><span class="Navigator">Registros por página: 
+                  <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
                     <option selected value="">-</option>
  {PageSize_Options}
                   </select>
@@ -281,8 +277,8 @@
           </td>
         </tr>
       </table>
- <!-- END Grid grdIncCuadroNS1 --></td> 
-    <td rowspan="1" colspan="1">&nbsp;</td> 
+      <!-- END Grid grdIncCuadroNS1 --></td> 
+    <td>&nbsp;</td> 
     <td>&nbsp;</td>
   </tr>
 </table>

@@ -2,9 +2,8 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=windows-1252">
-<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
 <title>EficienciaPresBase</title>
- 
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
 <script language="JavaScript" type="text/javascript">
 //Begin CCS script
 //Include Common JSFunctions @1-2504AB44
@@ -15,7 +14,7 @@
 
 //Include User Scripts @1-A87AC9EE
 </script>
-{page:scriptIncludes} 
+{page:scriptIncludes}
 <script type="text/javascript">
 //End Include User Scripts
 
@@ -41,15 +40,14 @@ jQuery(function ($) {
 <link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
 <link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
 </head>
- 
 <body>
 <p>{Header} </p>
-<strong></strong> 
+<strong></strong>
 <table width="100%">
   <tr>
     <td colspan="2">&nbsp; 
       <!-- BEGIN Record mc_c_proveedor_mc_EfPresu1 -->
-      <form name="{HTMLFormName}" id="mc_c_proveedor_mc_EfPresu1" action="{Action}" method="post">
+      <form id="mc_c_proveedor_mc_EfPresu1" method="post" name="{HTMLFormName}" action="{Action}">
         <p><br>
         </p>
  
@@ -66,46 +64,46 @@ jQuery(function ($) {
  
               <table class="Record" cellspacing="0" cellpadding="0">
                 <!-- BEGIN Error -->
-                <tr class="Error" id="{@error-block}">
+                <tr id="{@error-block}" class="Error">
                   <td colspan="6">{Error}</td>
                 </tr>
                 <!-- END Error -->
                 <tr class="Controls">
                   <td class="th"><label for="mc_c_proveedor_mc_EfPresu1s_Id_Proveedor">Proveedor</label></td> 
                   <td>
-                    <select name="{s_Id_Proveedor_Name}" id="mc_c_proveedor_mc_EfPresu1s_Id_Proveedor">
-                      <option value="">Seleccionar Valor</option>
+                    <select id="mc_c_proveedor_mc_EfPresu1s_Id_Proveedor" name="{s_Id_Proveedor_Name}">
+                      <option selected value="">Seleccionar valor</option>
                       {s_Id_Proveedor_Options}
                     </select>
  </td> 
                   <td class="th"><label for="mc_c_proveedor_mc_EfPresu1s_GrupoAplicativos">Grupo Aplicativos</label></td> 
-                  <td><input type="text" name="{s_GrupoAplicativos_Name}" id="mc_c_proveedor_mc_EfPresu1s_GrupoAplicativos" size="50" maxlength="75" value="{s_GrupoAplicativos}"></td> 
+                  <td><input type="text" id="mc_c_proveedor_mc_EfPresu1s_GrupoAplicativos" value="{s_GrupoAplicativos}" maxlength="75" size="50" name="{s_GrupoAplicativos_Name}"></td> 
                   <td class="th"><label for="mc_c_proveedor_mc_EfPresu1s_ServiciosRelacionados">Servicios Relacionados</label></td> 
-                  <td><input type="text" name="{s_ServiciosRelacionados_Name}" id="mc_c_proveedor_mc_EfPresu1s_ServiciosRelacionados" size="50" maxlength="125" value="{s_ServiciosRelacionados}"></td>
+                  <td><input type="text" id="mc_c_proveedor_mc_EfPresu1s_ServiciosRelacionados" value="{s_ServiciosRelacionados}" maxlength="125" size="50" name="{s_ServiciosRelacionados_Name}"></td>
                 </tr>
  
                 <tr class="Bottom">
-                  <td style="text-align: right;" colspan="6">
-                    <!-- BEGIN Button Button_DoSearch --><input type="submit" name="{Button_Name}" class="Button" id="mc_c_proveedor_mc_EfPresu1Button_DoSearch" alt="Buscar" value="Buscar"><!-- END Button Button_DoSearch --></td>
+                  <td style="TEXT-ALIGN: right" colspan="6">
+                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="mc_c_proveedor_mc_EfPresu1Button_DoSearch" class="Button" value="Buscar" alt="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                 </tr>
               </table>
             </td>
           </tr>
         </table>
       </form>
- <!-- END Record mc_c_proveedor_mc_EfPresu1 --></td>
+      <!-- END Record mc_c_proveedor_mc_EfPresu1 --></td>
   </tr>
  
   <tr>
     <td>&nbsp; 
       <!-- BEGIN Grid mc_c_proveedor_mc_EfPresu -->
-      <table class="MainTable" id="mc_c_proveedor_mc_EfPresu" border="0" cellspacing="0" cellpadding="0">
+      <table id="mc_c_proveedor_mc_EfPresu" class="MainTable" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td valign="top">
             <table class="Header" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
-                <td class="th"><strong>Costo Fijo mensual</strong></td> 
+                <td class="th"><strong>Costo fijo mensual</strong></td> 
                 <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
               </tr>
             </table>
@@ -149,7 +147,7 @@ jQuery(function ($) {
  
               <!-- BEGIN Row -->
               <tr class="Row">
-                <td style="text-align: right;"><a href="{Id_Src}" id="mc_c_proveedor_mc_EfPresuId_{mc_c_proveedor_mc_EfPresu:rowNumber}">{Id}</a>&nbsp;</td> 
+                <td style="TEXT-ALIGN: right"><a href="{Id_Src}" id="mc_c_proveedor_mc_EfPresuId_{mc_c_proveedor_mc_EfPresu:rowNumber}">{Id}</a>&nbsp;</td> 
                 <td>{nombre}&nbsp;</td> 
                 <td>{GrupoAplicativos}&nbsp;</td> 
                 <td>{ServiciosRelacionados}&nbsp;</td> 
@@ -164,8 +162,8 @@ jQuery(function ($) {
               <!-- END NoRecords -->
               <tr class="Footer">
                 <td colspan="6"><a href="{mc_c_proveedor_mc_EfPresu_Insert_Src}" id="mc_c_proveedor_mc_EfPresumc_c_proveedor_mc_EfPresu_Insert">Agregar Nuevo</a>&nbsp; 
-                  <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
-                  <select name="{FormName}PageSize" style="vertical-align: middle;" data-grid-size="{FormName}">
+                  <!-- BEGIN Navigator Navigator --><span class="Navigator">Registros por página 
+                  <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
                     <option selected value="">-</option>
  {PageSize_Options}
                   </select>
@@ -183,103 +181,103 @@ jQuery(function ($) {
           </td>
         </tr>
       </table>
- <!-- END Grid mc_c_proveedor_mc_EfPresu --></td> 
+      <!-- END Grid mc_c_proveedor_mc_EfPresu --></td> 
     <td>&nbsp;</td>
   </tr>
  
   <tr>
     <td>&nbsp; 
       <!-- BEGIN Record mc_EfPresup_base -->
-      <form name="{HTMLFormName}" id="mc_EfPresup_base" action="{Action}" method="post">
+      <form id="mc_EfPresup_base" method="post" name="{HTMLFormName}" action="{Action}">
         <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="top">
               <table class="Header" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
-                  <td class="th"><strong>Registro de CFM Histórico</strong></td> 
+                  <td class="th"><strong>Registro de CFM histórico</strong></td> 
                   <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
                 </tr>
               </table>
  
               <table class="Record" cellspacing="0" cellpadding="0">
                 <!-- BEGIN Error -->
-                <tr class="Error" id="ErrorBlock">
+                <tr id="ErrorBlock" class="Error">
                   <td colspan="2">{Error}</td>
                 </tr>
                 <!-- END Error -->
                 <tr class="Controls">
                   <td class="th"><label for="mc_EfPresup_baseId_Proveedor">Id Proveedor</label></td> 
                   <td>
-                    <select name="{Id_Proveedor_Name}" id="mc_EfPresup_baseId_Proveedor">
-                      <option selected value="">Seleccionar Valor</option>
+                    <select id="mc_EfPresup_baseId_Proveedor" name="{Id_Proveedor_Name}">
+                      <option selected value="">Seleccionar valor</option>
                       {Id_Proveedor_Options}
                     </select>
  </td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th" rowspan="1" colspan="1">Año de Servicio</td> 
-                  <td rowspan="1" colspan="1"><input type="text" name="{AnioServicio_Name}" id="mc_EfPresup_baseAnioServicio" value="{AnioServicio}"></td>
+                  <td class="th">Año de Servicio</td> 
+                  <td><input type="text" id="mc_EfPresup_baseAnioServicio" value="{AnioServicio}" name="{AnioServicio_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_EfPresup_baseGrupoAplicativos">Grupo Aplicativos</label></td> 
-                  <td><input type="text" name="{GrupoAplicativos_Name}" id="mc_EfPresup_baseGrupoAplicativos" size="50" maxlength="75" value="{GrupoAplicativos}"></td>
+                  <td><input type="text" id="mc_EfPresup_baseGrupoAplicativos" value="{GrupoAplicativos}" maxlength="75" size="50" name="{GrupoAplicativos_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_EfPresup_baseServiciosRelacionados">Servicios Relacionados</label></td> 
-                  <td><input type="text" name="{ServiciosRelacionados_Name}" id="mc_EfPresup_baseServiciosRelacionados" size="50" maxlength="125" value="{ServiciosRelacionados}"></td>
+                  <td><input type="text" id="mc_EfPresup_baseServiciosRelacionados" value="{ServiciosRelacionados}" maxlength="125" size="50" name="{ServiciosRelacionados_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_EfPresup_baseCFMAnterior">CFMAnterior</label></td> 
-                  <td><input type="text" name="{CFMAnterior_Name}" id="mc_EfPresup_baseCFMAnterior" size="12" maxlength="12" value="{CFMAnterior}"></td>
+                  <td><input type="text" id="mc_EfPresup_baseCFMAnterior" value="{CFMAnterior}" maxlength="12" size="12" name="{CFMAnterior_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_EfPresup_baseVigente">Vigente</label></td> 
-                  <td><input type="checkbox" name="{Vigente_Name}" id="mc_EfPresup_baseVigente" value="1" {Vigente}></td>
+                  <td><input type="checkbox" id="mc_EfPresup_baseVigente" value="1" name="{Vigente_Name}" {Vigente}></td>
                 </tr>
  
                 <tr class="Bottom">
-                  <td style="text-align: right;" colspan="2">
-                    <!-- BEGIN Button Button_Insert --><input type="submit" name="{Button_Name}" class="Button" id="mc_EfPresup_baseButton_Insert" alt="Agregar" value="Agregar"><!-- END Button Button_Insert -->
-                    <!-- BEGIN Button Button_Update --><input type="submit" name="{Button_Name}" class="Button" id="mc_EfPresup_baseButton_Update" alt="Enviar" value="Guardar" size="20"><!-- END Button Button_Update -->
-                    <!-- BEGIN Button Button_Cancel --><input type="submit" name="{Button_Name}" class="Button" id="mc_EfPresup_baseButton_Cancel" alt="Cancelar" value="Cancelar"><!-- END Button Button_Cancel --></td>
+                  <td style="TEXT-ALIGN: right" colspan="2">
+                    <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_EfPresup_baseButton_Insert" class="Button" value="Agregar" alt="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input type="submit" id="mc_EfPresup_baseButton_Update" class="Button" value="Guardar" alt="Enviar" name="{Button_Name}" size="20"><!-- END Button Button_Update -->
+                    <!-- BEGIN Button Button_Cancel --><input type="submit" id="mc_EfPresup_baseButton_Cancel" class="Button" value="Cancelar" alt="Cancelar" name="{Button_Name}"><!-- END Button Button_Cancel --></td>
                 </tr>
               </table>
             </td>
           </tr>
         </table>
       </form>
- <!-- END Record mc_EfPresup_base --></td> 
+      <!-- END Record mc_EfPresup_base --></td> 
     <td>&nbsp; 
       <!-- BEGIN Record mc_eficiencia_presupuesta -->
-      <form name="{HTMLFormName}" id="mc_eficiencia_presupuesta" action="{Action}" method="post">
+      <form id="mc_eficiencia_presupuesta" method="post" name="{HTMLFormName}" action="{Action}">
         <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="top">
               <table class="Header" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
-                  <td class="th"><strong>Actualizar Costo Fijo Vigente para Medición</strong></td> 
+                  <td class="th"><strong>Actualizar costo fijo vigente para medición</strong></td> 
                   <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
                 </tr>
               </table>
  
               <table class="Record" cellspacing="0" cellpadding="0">
                 <!-- BEGIN Error -->
-                <tr class="Error" id="ErrorBlock">
+                <tr id="ErrorBlock" class="Error">
                   <td colspan="2">{Error}</td>
                 </tr>
                 <!-- END Error -->
                 <tr class="Controls">
                   <td class="th"><label for="mc_eficiencia_presupuestaId_Proveedor">Proveedor</label></td> 
                   <td>
-                    <select name="{Id_Proveedor_Name}" id="mc_eficiencia_presupuestaId_Proveedor">
-                      <option value="">Seleccionar Valor</option>
+                    <select id="mc_eficiencia_presupuestaId_Proveedor" name="{Id_Proveedor_Name}">
+                      <option selected value="">Seleccionar valor</option>
                       {Id_Proveedor_Options}
                     </select>
  </td>
@@ -288,8 +286,8 @@ jQuery(function ($) {
                 <tr class="Controls">
                   <td class="th"><label for="mc_eficiencia_presupuestaMesReporte">Mes </label></td> 
                   <td>
-                    <select name="{MesReporte_Name}" id="mc_eficiencia_presupuestaMesReporte">
-                      <option value="">Seleccionar Valor</option>
+                    <select id="mc_eficiencia_presupuestaMesReporte" name="{MesReporte_Name}">
+                      <option selected value="">Seleccionar valor</option>
                       {MesReporte_Options}
                     </select>
  </td>
@@ -298,23 +296,23 @@ jQuery(function ($) {
                 <tr class="Controls">
                   <td class="th"><label for="mc_eficiencia_presupuestaanioreporte">Año</label></td> 
                   <td>
-                    <select name="{anioreporte_Name}" id="mc_eficiencia_presupuestaanioreporte">
-                      <option value="">Seleccionar Valor</option>
+                    <select id="mc_eficiencia_presupuestaanioreporte" name="{anioreporte_Name}">
+                      <option selected value="">Seleccionar valor</option>
                       {anioreporte_Options}
                     </select>
  </td>
                 </tr>
  
                 <tr class="Bottom">
-                  <td style="text-align: right;" colspan="2">
-                    <!-- BEGIN Button Button_Insert --><input type="submit" name="{Button_Name}" class="Button" id="mc_eficiencia_presupuestaButton_Insert" alt="Agregar" value="Agregar"><!-- END Button Button_Insert --></td>
+                  <td style="TEXT-ALIGN: right" colspan="2">
+                    <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_eficiencia_presupuestaButton_Insert" class="Button" value="Agregar" alt="Agregar" name="{Button_Name}"><!-- END Button Button_Insert --></td>
                 </tr>
               </table>
             </td>
           </tr>
         </table>
       </form>
- <!-- END Record mc_eficiencia_presupuesta --><br>
+      <!-- END Record mc_eficiencia_presupuesta --><br>
     </td>
   </tr>
 </table>

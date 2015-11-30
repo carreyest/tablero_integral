@@ -1294,6 +1294,10 @@ class clsGenListDataSource extends clsDBcnDisenio {  //GenListDataSource Class @
 
 } //End GenListDataSource Class @44-FCB6E20C
 
+//Include Page implementation @141-1C97D460
+include_once(RelativePath . "/MenuTablero.php");
+//End Include Page implementation
+
 
 
 
@@ -1337,7 +1341,7 @@ include_once("./ListadoVerificacionEntregables_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-3B05BAFC
+//Initialize Objects @1-1B2E1870
 $DBcnDisenio = new clsDBcnDisenio();
 $MainPage->Connections["cnDisenio"] = & $DBcnDisenio;
 $Attributes = new clsAttributes("page:");
@@ -1353,11 +1357,14 @@ $lnkexcellista = new clsControl(ccsLink, "lnkexcellista", "lnkexcellista", ccsTe
 $lnkexcellista->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
 $lnkexcellista->Page = "EntregablesExcel.php";
 $GenList = new clsRecordGenList("", $MainPage);
+$MenuTablero1 = new clsMenuTablero("", "MenuTablero1", $MainPage);
+$MenuTablero1->Initialize();
 $MainPage->Header = & $Header;
 $MainPage->Buscar = & $Buscar;
 $MainPage->GridEntregables = & $GridEntregables;
 $MainPage->lnkexcellista = & $lnkexcellista;
 $MainPage->GenList = & $GenList;
+$MainPage->MenuTablero1 = & $MenuTablero1;
 $GridEntregables->Initialize();
 $GenList->Initialize();
 $ScriptIncludes = "";
@@ -1393,14 +1400,15 @@ $Attributes->SetValue("pathToRoot", "");
 $Attributes->Show();
 //End Initialize HTML Template
 
-//Execute Components @1-EB2664BD
+//Execute Components @1-D8824DCC
+$MenuTablero1->Operations();
 $GenList->Operation();
 $GridEntregables->Operation();
 $Buscar->Operation();
 $Header->Operations();
 //End Execute Components
 
-//Go to destination page @1-EF864C37
+//Go to destination page @1-7BC6E4BF
 if($Redirect)
 {
     $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
@@ -1411,16 +1419,19 @@ if($Redirect)
     unset($Buscar);
     unset($GridEntregables);
     unset($GenList);
+    $MenuTablero1->Class_Terminate();
+    unset($MenuTablero1);
     unset($Tpl);
     exit;
 }
 //End Go to destination page
 
-//Show Page @1-4031E54F
+//Show Page @1-DC83DBB8
 $Header->Show();
 $Buscar->Show();
 $GridEntregables->Show();
 $GenList->Show();
+$MenuTablero1->Show();
 $lnkexcellista->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
@@ -1429,7 +1440,7 @@ $CCSEventResult = CCGetEvent($CCSEvents, "BeforeOutput", $MainPage);
 if ($CCSEventResult) echo $main_block;
 //End Show Page
 
-//Unload Page @1-F24B9730
+//Unload Page @1-03215A9C
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
 $DBcnDisenio->close();
 $Header->Class_Terminate();
@@ -1437,6 +1448,8 @@ unset($Header);
 unset($Buscar);
 unset($GridEntregables);
 unset($GenList);
+$MenuTablero1->Class_Terminate();
+unset($MenuTablero1);
 unset($Tpl);
 //End Unload Page
 

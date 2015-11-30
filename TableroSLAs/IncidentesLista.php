@@ -45,7 +45,7 @@ class clsRecordmc_info_incidentesSearch { //mc_info_incidentesSearch Class @2-A8
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-F22586E3
+//Class_Initialize Event @2-E071FFF2
     function clsRecordmc_info_incidentesSearch($RelativePath, & $Parent)
     {
 
@@ -111,10 +111,10 @@ class clsRecordmc_info_incidentesSearch { //mc_info_incidentesSearch Class @2-A8
             $this->s_analista_param1->DataSource->SQL = "SELECT * \n" .
 "FROM mc_c_usuarios {SQL_Where} {SQL_OrderBy}";
             list($this->s_analista_param1->BoundColumn, $this->s_analista_param1->TextColumn, $this->s_analista_param1->DBFormat) = array("Usuario", "Usuario", "");
-            $this->s_analista_param1->DataSource->Parameters["expr188"] = 'CAPC';
+            $this->s_analista_param1->DataSource->Parameters["expr133"] = "3";
             $this->s_analista_param1->DataSource->wp = new clsSQLParameters();
-            $this->s_analista_param1->DataSource->wp->AddParameter("1", "expr188", ccsText, "", "", $this->s_analista_param1->DataSource->Parameters["expr188"], "", false);
-            $this->s_analista_param1->DataSource->wp->Criterion[1] = $this->s_analista_param1->DataSource->wp->Operation(opEqual, "[Grupo]", $this->s_analista_param1->DataSource->wp->GetDBValue("1"), $this->s_analista_param1->DataSource->ToSQL($this->s_analista_param1->DataSource->wp->GetDBValue("1"), ccsText),false);
+            $this->s_analista_param1->DataSource->wp->AddParameter("1", "expr133", ccsInteger, "", "", $this->s_analista_param1->DataSource->Parameters["expr133"], "", false);
+            $this->s_analista_param1->DataSource->wp->Criterion[1] = $this->s_analista_param1->DataSource->wp->Operation(opEqual, "[Nivel]", $this->s_analista_param1->DataSource->wp->GetDBValue("1"), $this->s_analista_param1->DataSource->ToSQL($this->s_analista_param1->DataSource->wp->GetDBValue("1"), ccsInteger),false);
             $this->s_analista_param1->DataSource->Where = 
                  $this->s_analista_param1->DataSource->wp->Criterion[1];
             $this->s_estado_param = new clsControl(ccsListBox, "s_estado_param", "s_estado_param", ccsText, "", CCGetRequestParam("s_estado_param", $Method, NULL), $this);

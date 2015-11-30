@@ -333,7 +333,7 @@ jQuery(function ($) {
               <table class="Header" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"></td> 
-                  <td class="th"><strong>Detalle de Incidente:&nbsp; {Id_incidente}&nbsp; de&nbsp;&nbsp; {slCDS}&nbsp; - Reportado en {lMes} </strong></td> 
+                  <td class="th"><strong>Detalle de incidente:&nbsp; {Id_incidente}&nbsp; de&nbsp;&nbsp; {slCDS}&nbsp; - Reportado en {lMes} </strong></td> 
                   <td class="HeaderRight"></td>
                 </tr>
               </table>
@@ -348,20 +348,20 @@ jQuery(function ($) {
                 </tr>
                 <!-- END Error -->
                 <tr class="Controls">
-                  <td><strong>Servicion de Negocio</strong></td> 
+                  <td><strong>Servicion de negocio</strong></td> 
                   <td>&nbsp;</td> 
-                  <td><strong>Nombre del Producto</strong></td> 
+                  <td><strong>Nombre del producto</strong></td> 
                   <td><strong>Nuevo</strong></td> 
                   <td><strong>Asignado&nbsp;</strong></td> 
-                  <td><strong>En Curso&nbsp;</strong></td> 
+                  <td><strong>En cCurso&nbsp;</strong></td> 
                   <td><strong>Pendiente&nbsp;</strong></td> 
                   <td><strong>Resuelto&nbsp;</strong></td> 
                   <td><strong>Cerrado</strong></td> 
                   <td><strong>Dictamen</strong></td> 
                   <td><strong>Aplicación</strong></td> 
                   <td><strong>Severidad</strong></td> 
-                  <td><strong>Tiempo Atención</strong></td> 
-                  <td><strong>Tiempo Solución</strong></td> 
+                  <td><strong>Tiempo atención</strong></td> 
+                  <td><strong>Tiempo solución</strong></td> 
                   <td>Historial&nbsp;</td>
                 </tr>
  
@@ -415,7 +415,7 @@ jQuery(function ($) {
               <table class="Header" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"></td> 
-                  <td class="th"><strong>Tiempo de Atención</strong></td> 
+                  <td class="th"><strong>Tiempo de atención</strong></td> 
                   <td class="HeaderRight"></td>
                 </tr>
               </table>
@@ -429,12 +429,12 @@ jQuery(function ($) {
                 <tr class="Controls">
                   <td class="th"></td> 
                   <td><strong>Asignado</strong></td> 
-                  <td><strong>En Curso</strong></td> 
-                  <td>&nbsp;<strong>Horas Invertidas</strong></td>
+                  <td><strong>En curso</strong></td> 
+                  <td>&nbsp;<strong>Horas invertidas</strong></td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th">Tiempo de Atención</td> 
+                  <td class="th">Tiempo de atención</td> 
                   <td>{FechaAsignado}</td> 
                   <td>{FechaEnCurso}</td> 
                   <td>&nbsp;<label id="mc_lbl_tiempo_atencion">{HorasInvertidas}</label></td>
@@ -457,7 +457,7 @@ jQuery(function ($) {
               <table class="Header" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"></td> 
-                  <td class="th"><strong>Tiempo de Solución&nbsp;</strong></td> 
+                  <td class="th"><strong>Tiempo de solución&nbsp;</strong></td> 
                   <td class="HeaderRight"></td>
                 </tr>
               </table>
@@ -465,13 +465,13 @@ jQuery(function ($) {
               <table class="Record" cellspacing="0" cellpadding="0">
                 <tr class="Controls">
                   <td class="th"></td> 
-                  <td><strong>En Curso</strong></td> 
+                  <td><strong>En curso</strong></td> 
                   <td><strong>Registro en AVL</strong></td> 
-                  <td><strong>Horas Invertidas</strong></td>
+                  <td><strong>Horas invertidas</strong></td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th">Tiempo del estado "En Curso" y el Registro en AVL</td> 
+                  <td class="th">Tiempo del estado "En curso" y el Registro en AVL</td> 
                   <td>{FechaEnCurso}</td> 
                   <td>{lblRegistroAVL}</td> 
                   <td style="TEXT-ALIGN: center" id="mc_lbl_tiemposolucion">{HorasInvertidas}</td>
@@ -494,7 +494,7 @@ jQuery(function ($) {
             <table class="Header" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
-                <td class="th"><strong>Incidentes Relacionados </strong></td> 
+                <td class="th"><strong>Incidentes relacionados </strong></td> 
                 <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
               </tr>
             </table>
@@ -521,7 +521,7 @@ jQuery(function ($) {
               <!-- END NoRecords -->
               <tr class="Footer">
                 <td colspan="2">
-                  <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+                  <!-- BEGIN Navigator Navigator --><span class="Navigator">Registros por página: 
                   <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
                     <option selected value="">-</option>
  {PageSize_Options}
@@ -554,7 +554,7 @@ jQuery(function ($) {
             <table class="Grid" cellspacing="0" cellpadding="0">
               <tr class="Caption">
                 <th scope="col">
-                <!-- BEGIN Sorter Sorter_ClaveMovimiento --><span class="Sorter"><a href="{Sort_URL}" id="mc_detalle_incidente_avlSorter_ClaveMovimiento">ID Movimiento</a> 
+                <!-- BEGIN Sorter Sorter_ClaveMovimiento --><span class="Sorter"><a href="{Sort_URL}" id="mc_detalle_incidente_avlSorter_ClaveMovimiento">ID movimiento</a> 
                 <!-- BEGIN Asc_On --><img alt="Ascending" src="Styles/Basic/Images/Asc.gif"><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/Basic/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_ClaveMovimiento --></th>
  
@@ -564,12 +564,12 @@ jQuery(function ($) {
                 <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/Basic/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_DescMovimiento --></th>
  
                 <th scope="col">
-                <!-- BEGIN Sorter Sorter_FechaInicioMov --><span class="Sorter"><a href="{Sort_URL}" id="mc_detalle_incidente_avlSorter_FechaInicioMov">Fecha Inicio</a> 
+                <!-- BEGIN Sorter Sorter_FechaInicioMov --><span class="Sorter"><a href="{Sort_URL}" id="mc_detalle_incidente_avlSorter_FechaInicioMov">Fecha inicio</a> 
                 <!-- BEGIN Asc_On --><img alt="Ascending" src="Styles/Basic/Images/Asc.gif"><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/Basic/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_FechaInicioMov --></th>
  
                 <th scope="col">
-                <!-- BEGIN Sorter Sorter_FechaFinMov --><span class="Sorter"><a href="{Sort_URL}" id="mc_detalle_incidente_avlSorter_FechaFinMov">Fecha Fin</a> 
+                <!-- BEGIN Sorter Sorter_FechaFinMov --><span class="Sorter"><a href="{Sort_URL}" id="mc_detalle_incidente_avlSorter_FechaFinMov">Fecha fin</a> 
                 <!-- BEGIN Asc_On --><img alt="Ascending" src="Styles/Basic/Images/Asc.gif"><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/Basic/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_FechaFinMov --></th>
  
@@ -608,17 +608,17 @@ jQuery(function ($) {
               <tr class="Total">
                 <td valign="baseline">&nbsp;</td> 
                 <td>&nbsp; </td> 
-                <td colspan="2">Total Horas en Solución</td> 
+                <td colspan="2">Total horas en solución</td> 
                 <td style="TEXT-ALIGN: center" valign="baseline">{TotalHoras} </td>
               </tr>
               <!-- BEGIN NoRecords -->
               <tr class="NoRecords">
-                <td colspan="11">No records</td>
+                <td colspan="11">No hay registros</td>
               </tr>
               <!-- END NoRecords -->
               <tr class="Footer">
                 <td colspan="11">
-                  <!-- BEGIN Navigator Navigator --><span class="Navigator">Records per page 
+                  <!-- BEGIN Navigator Navigator --><span class="Navigator">Registros por página:
                   <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
                     <option selected value="">-</option>
  {PageSize_Options}
@@ -739,7 +739,7 @@ jQuery(function ($) {
                     <table class="Header" border="0" cellspacing="0" cellpadding="0">
                       <tr>
                         <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
-                        <td class="th"><strong>Total tiempo de Solución</strong></td> 
+                        <td class="th"><strong>Total tiempo de solución</strong></td> 
                         <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
                       </tr>
                     </table>

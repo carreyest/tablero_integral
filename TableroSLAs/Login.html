@@ -82,9 +82,9 @@ jQuery(function ($) {
         z-index:1002;
         overflow: auto;
         border-style: solid;
-		border-color: blue;
-		border-width: 1px;
-		font-size: 14px;
+                border-color: blue;
+                border-width: 1px;
+                font-size: 14px;
     }
     </style>
 </head>
@@ -101,7 +101,7 @@ jQuery(function ($) {
               <table class="Header" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
-                  <td class="th"><strong>Inicio de Sesión</strong></td> 
+                  <td class="th"><strong>Inicio de sesión</strong></td> 
                   <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
                 </tr>
               </table>
@@ -113,58 +113,85 @@ jQuery(function ($) {
                 </tr>
                 <!-- END Error -->
                 <tr class="Controls">
-                  <td class="th"><label for="Login1login">Login</label></td> 
+                  <td class="th"><label for="Login1login">Usuario</label></td> 
                   <td><input type="text" id="Login1login" value="{login}" maxlength="100" name="{login_Name}" size="20"></td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th"><label for="Login1password">Password</label></td> 
+                  <td class="th"><label for="Login1password">Contraseña</label></td> 
                   <td><input type="password" id="Login1password" value="{password}" maxlength="100" name="{password_Name}" size="20"></td>
                 </tr>
  
                 <tr class="Bottom">
                   <td style="TEXT-ALIGN: right" colspan="2">
-                    <!-- BEGIN Button Button_DoLogin --><input type="submit" id="Login1Button_DoLogin" class="Button" value="Login" alt="Login" name="{Button_Name}"><!-- END Button Button_DoLogin --></td>
+                    <!-- BEGIN Button Button_DoLogin --><input type="submit" id="Login1Button_DoLogin" class="Button" value="Iniciar" alt="Login" name="{Button_Name}"><!-- END Button Button_DoLogin --></td>
                 </tr>
               </table>
             </td>
           </tr>
         </table>
-        
-		<div id="fade" class="overlay" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"></div>
- 		<div id="light" class="modal">
-     		<p style="font-size:14pt;margin-top: -10px" align="right">
-     		 <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">cerrar</a>
-     		</p>
-     		<p>
-     		<strong>Tablero de Control Integral</strong>.- Es el mecanismo que permite dar visibilidad, a los distintos Grupos de interés del Gobierno del Contrato, sobre el desempeño de los objetivos y resultados esperados del SDMA-4, a fin de apoyar la toma de decisiones de manera racional e informada
-     		</p>
-     		<p>
-     		El Tablero de Control integral muestra 3 diferentes vistass enfocadas en la toma de decisiones Estratégica, Táctica y Operativa.
-     		</p>
-     		<p>
-     		En las diferentes vistas se podrá visualizar información relacionada con las siguientes Administraciones:
-     		</p>
-			<p>
-				<table style="margin-left: 300px">
-					<tr><td>APE1</td><td>ACSI</td></tr>
-					<tr><td>APE2</td><td>ACSMC</td></tr>
-					<tr><td>APE3</td><td>ACPT</td></tr>
-					<tr><td>APE4</td><td>ACTT</td></tr>
-					<tr><td>APE5</td><td></td></tr>
-					<tr><td>APESAYCO</td><td></td></tr>
-					<tr><td>AMCI</td><td></td></tr>
-					<tr><td>AVL</td><td></td></tr>				
-				</table>	
-			</p>     		
-			<p>
-			Para el acceso a este Tablero deberá gestionar su usuario por medio del grupo de Configuración y Métricas establecido por el Modelo de Gobierno del Contrato del SDMA-4. (Alejandro Bermúdez Lozano <a href="mailto: alejandro.bermudez@sat.gob.mx">alejandro.bermudez@sat.gob.mx</a>)
-			</p>
-    	</div>
-    	<div style="width:90%"> 
-	        <p align="right">
-	        	<a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block';"><img src="images/ayuda2.jpg" width="24" height="24" border="0"></a>
-	        </p>
+ 
+        <div id="fade" class="overlay" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
+        </div>
+ 
+        <div id="light" class="modal">
+          <p style="MARGIN-TOP: -10px; FONT-SIZE: 14pt" align="right"><a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">cerrar</a> </p>
+ 
+          <p><strong>Tablero de Control Integral</strong>.- Es el mecanismo que permite dar visibilidad, a los distintos Grupos de interés del Gobierno del Contrato, sobre el desempeño de los objetivos y resultados esperados del SDMA-4, a fin de apoyar la toma de decisiones de manera racional e informada </p>
+ 
+          <p>El Tablero de Control integral muestra 3 diferentes vistass enfocadas en la toma de decisiones Estratégica, Táctica y Operativa. </p>
+ 
+          <p>En las diferentes vistas se podrá visualizar información relacionada con las siguientes Administraciones: </p>
+ 
+          <p>
+          <table style="MARGIN-LEFT: 300px">
+            <tr>
+              <td>APE1</td> 
+              <td>ACSI</td>
+            </tr>
+ 
+            <tr>
+              <td>APE2</td> 
+              <td>ACSMC</td>
+            </tr>
+ 
+            <tr>
+              <td>APE3</td> 
+              <td>ACPT</td>
+            </tr>
+ 
+            <tr>
+              <td>APE4</td> 
+              <td>ACTT</td>
+            </tr>
+ 
+            <tr>
+              <td>APE5</td> 
+              <td></td>
+            </tr>
+ 
+            <tr>
+              <td>APESAYCO</td> 
+              <td></td>
+            </tr>
+ 
+            <tr>
+              <td>AMCI</td> 
+              <td></td>
+            </tr>
+ 
+            <tr>
+              <td>AVL</td> 
+              <td></td>
+            </tr>
+          </table>
+          </p>
+ 
+          <p>Para el acceso a este Tablero deberá gestionar su usuario por medio del grupo de Configuración y Métricas establecido por el Modelo de Gobierno del Contrato del SDMA-4. (Alejandro Bermúdez Lozano <a href="mailto: alejandro.bermudez@sat.gob.mx">alejandro.bermudez@sat.gob.mx</a>) </p>
+        </div>
+ 
+        <div style="WIDTH: 90%">
+          <p align="right"><a href="javascript:void(0)" onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block';"><img border="0" src="images/ayuda2.jpg" width="24" height="24"></a> </p>
         </div>
       </form>
       <!-- END Record Login1 -->

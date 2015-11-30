@@ -363,7 +363,12 @@ OR c.proveedor = p.descripcion)" PathID="GenList">
 			<Attributes/>
 			<Features/>
 		</Record>
-	</Components>
+		<IncludePage id="141" name="MenuTablero1" PathID="MenuTablero1" page="MenuTablero.ccp">
+<Components/>
+<Events/>
+<Features/>
+</IncludePage>
+</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="ListadoVerificacionEntregables_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="ListadoVerificacionEntregables.php" forShow="True" url="ListadoVerificacionEntregables.php" comment="//" codePage="windows-1252"/>

@@ -673,7 +673,7 @@ jQuery(function ($) {
               <table class="Header" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
-                  <td class="th">Calificar Requerimiento&nbsp;&nbsp;&nbsp; {sIdPPMC}</td> 
+                  <td class="th">Calificar requerimiento&nbsp;&nbsp;&nbsp; {sIdPPMC}</td> 
                   <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
                 </tr>
               </table>
@@ -685,15 +685,15 @@ jQuery(function ($) {
                 </tr>
                 <!-- END Error -->
                 <tr class="Controls">
-                  <td class="th">Nombre Proyecto</td> 
+                  <td class="th">Nombre proyecto</td> 
                   <td>{sNombreProyecto}<input type="hidden" id="mc_info_rs_ap_EChdNombreProyecto" value="{hdNombreProyecto}" name="{hdNombreProyecto_Name}">&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th">Servicio de Negocio</td> 
+                  <td class="th">Servicio de negocio</td> 
                   <td>
                     <select id="mc_info_rs_ap_ECsServicioNegocio" name="{sServicioNegocio_Name}">
-                      <option selected value="">Seleccionar Valor</option>
+                      <option selected value="">Seleccionar valor</option>
                       {sServicioNegocio_Options}
                     </select>
  <br>
@@ -701,10 +701,10 @@ jQuery(function ($) {
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th">Servicio Contractual</td> 
+                  <td class="th">Servicio contractual</td> 
                   <td>
                     <select id="mc_info_rs_ap_EClstServContractual" name="{lstServContractual_Name}">
-                      <option selected value="">Seleccionar Valor</option>
+                      <option selected value="">Seleccionar valor</option>
                       {lstServContractual_Options}
                     </select>
  <br>
@@ -712,10 +712,10 @@ jQuery(function ($) {
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th">Tipo Requerimiento</td> 
+                  <td class="th">Tipo requerimiento</td> 
                   <td>
                     <select id="mc_info_rs_ap_ECsTipoRequerimiento" name="{sTipoRequerimiento_Name}">
-                      <option selected value="">Seleccionar Valor</option>
+                      <option selected value="">Seleccionar valor</option>
                       {sTipoRequerimiento_Options}
                     </select>
  </td>
@@ -723,7 +723,7 @@ jQuery(function ($) {
  
                 <tr class="Controls">
                   <td class="th">&nbsp;SLO</td> 
-                  <td><label style="display: none;" for="mc_info_rs_ap_ECSLO">CheckBox1</label><input type="checkbox" id="mc_info_rs_ap_ECSLO" value="1" name="{SLO_Name}" {SLO}>&nbsp;</td>
+                  <td><label for="mc_info_rs_ap_ECSLO" style="display: none;">CheckBox1</label><input type="checkbox" id="mc_info_rs_ap_ECSLO" value="1" name="{SLO_Name}" {SLO}>&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
@@ -741,7 +741,7 @@ jQuery(function ($) {
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th">ID de Estimación</td> 
+                  <td class="th">Id de estimación</td> 
                   <td>{sIDEstimacion}</td>
                 </tr>
  
@@ -751,7 +751,7 @@ jQuery(function ($) {
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th">Cantidad de Unidades Aprobadas</td> 
+                  <td class="th">Cantidad de unidades aprobadas</td> 
                   <td><input type="text" id="mc_info_rs_ap_ECsUnidadesManuales" value="{sUnidadesManuales}" maxlength="9" size="9" name="{sUnidadesManuales_Name}">UAC<br>
                     <input type="text" onblur="calculaDiasPropuesta()" id="mc_info_rs_ap_ECUDX" value="{UDX}" maxlength="9" size="9" name="{UDX_Name}">UG<br>
                     <input type="text" id="mc_info_rs_ap_ECUDA" value="{UDA}" maxlength="9" size="9" name="{UDA_Name}">USE-PyA<br>
@@ -761,10 +761,10 @@ jQuery(function ($) {
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th">PPMC&nbsp;Padre</td> 
-                  <td><label style="display: inline;" for="mc_info_rs_ap_ECsDatosPadre">PPMC Padre&nbsp;&nbsp; </label><input type="text" id="mc_info_rs_ap_ECsDatosPadre" value="{sDatosPadre}" maxlength="7" size="7" name="{sDatosPadre_Name}">&nbsp;&nbsp;&nbsp;<label style="display: inline;" for="mc_info_rs_ap_ECTipoPadre">Tipo Padre:</label> 
+                  <td class="th">PPMC&nbsp;padre</td> 
+                  <td><label for="mc_info_rs_ap_ECsDatosPadre" style="display: inline;">PPMC padre&nbsp;&nbsp; </label><input type="text" id="mc_info_rs_ap_ECsDatosPadre" value="{sDatosPadre}" maxlength="7" size="7" name="{sDatosPadre_Name}">&nbsp;&nbsp;&nbsp;<label for="mc_info_rs_ap_ECTipoPadre" style="display: inline;">Tipo padre:</label> 
                     <select id="mc_info_rs_ap_ECTipoPadre" name="{TipoPadre_Name}">
-                      <option selected value="">Seleccionar Valor</option>
+                      <option selected value="">Seleccionar valor</option>
                       {TipoPadre_Options}
                     </select>
  &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; </td>
@@ -776,12 +776,12 @@ jQuery(function ($) {
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th">Horas Aprobadas</td> 
+                  <td class="th">Horas aprobadas</td> 
                   <td><input type="text" onblur="calculaDiasPropuesta()" id="mc_info_rs_ap_ECsHorasManuales" value="{sHorasManuales}" maxlength="7" size="7" name="{sHorasManuales_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th">Días para Propuesta</td> 
+                  <td class="th">Días para propuesta</td> 
                   <td><input type="text" id="mc_info_rs_ap_ECsDiasPropuesta" value="{sDiasPropuesta}" maxlength="5" size="5" name="{sDiasPropuesta_Name}"></td>
                 </tr>
  
@@ -792,52 +792,52 @@ jQuery(function ($) {
  
                 <tr class="Controls">
                   <td class="th">&nbsp;</td> 
-                  <td><label style="display: inline;" for="mc_info_rs_ap_ECURLEvidencia">La URL de la evidencia de la herramienta de estimación es incorrecta</label><input type="checkbox" id="mc_info_rs_ap_ECURLEvidencia" value="1" name="{URLEvidencia_Name}" {URLEvidencia}></td>
+                  <td><label for="mc_info_rs_ap_ECURLEvidencia" style="display: inline;">La URL de la evidencia de la herramienta de estimación es incorrecta</label><input type="checkbox" id="mc_info_rs_ap_ECURLEvidencia" value="1" name="{URLEvidencia_Name}" {URLEvidencia}></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">&nbsp;</td> 
-                  <td><label style="display: inline;" for="mc_info_rs_ap_ECformatoEvidencia">El formato de la evidencia de la herramienta de estimación es incorrecto</label><input type="checkbox" id="mc_info_rs_ap_ECformatoEvidencia" value="1" name="{formatoEvidencia_Name}" {formatoEvidencia}>&nbsp;</td>
+                  <td><label for="mc_info_rs_ap_ECformatoEvidencia" style="display: inline;">El formato de la evidencia de la herramienta de estimación es incorrecto</label><input type="checkbox" id="mc_info_rs_ap_ECformatoEvidencia" value="1" name="{formatoEvidencia_Name}" {formatoEvidencia}>&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">&nbsp;</td> 
-                  <td><label style="display: inline;" for="mc_info_rs_ap_ECIDsCorrectos">Es&nbsp;incorrecto el Id PPMC en la evidencia de la herramienta de estimación</label><input type="checkbox" id="mc_info_rs_ap_ECIDsCorrectos" value="1" name="{IDsCorrectos_Name}" {IDsCorrectos}></td>
+                  <td><label for="mc_info_rs_ap_ECIDsCorrectos" style="display: inline;">Es&nbsp;incorrecto el Id PPMC en la evidencia de la herramienta de estimación</label><input type="checkbox" id="mc_info_rs_ap_ECIDsCorrectos" value="1" name="{IDsCorrectos_Name}" {IDsCorrectos}></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">&nbsp;</td> 
-                  <td>Sin evidencia de uso de herramienta de estimación&nbsp;<label style="display: none;" for="mc_info_rs_ap_ECSinEvidencia">CheckBox1</label><input type="checkbox" id="mc_info_rs_ap_ECSinEvidencia" value="1" name="{SinEvidencia_Name}" {SinEvidencia}></td>
+                  <td>Sin evidencia de uso de herramienta de estimación&nbsp;<label for="mc_info_rs_ap_ECSinEvidencia" style="display: none;">CheckBox1</label><input type="checkbox" id="mc_info_rs_ap_ECSinEvidencia" value="1" name="{SinEvidencia_Name}" {SinEvidencia}></td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th"><label for="mc_info_rs_ap_ECURLReferencia">URL Referencia</label></td> 
+                  <td class="th"><label for="mc_info_rs_ap_ECURLReferencia">URL referencia</label></td> 
                   <td><textarea id="mc_info_rs_ap_ECURLReferencia" rows="3" cols="50" name="{URLReferencia_Name}">{URLReferencia}</textarea></td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th"><label for="mc_info_rs_ap_ECFechaAsignacion">Fecha Asignación</label></td> 
+                  <td class="th"><label for="mc_info_rs_ap_ECFechaAsignacion">Fecha asignación</label></td> 
                   <td><input type="text" onblur="calculaSLAInicial()" id="mc_info_rs_ap_ECFechaAsignacion" value="{FechaAsignacion}" maxlength="20" size="16" name="{FechaAsignacion_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th"><label for="mc_info_rs_ap_ECFechaEntregaPropuesta">Fecha Entrega Propuesta</label></td> 
+                  <td class="th"><label for="mc_info_rs_ap_ECFechaEntregaPropuesta">Fecha entrega propuesta</label></td> 
                   <td><input type="text" onblur="calculaSLAInicial()" id="mc_info_rs_ap_ECFechaEntregaPropuesta" value="{FechaEntregaPropuesta}" maxlength="20" size="16" name="{FechaEntregaPropuesta_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th"><label for="mc_info_rs_ap_ECFechaEntregaEvidencia">Fecha Entrega Evidencia Herramienta</label></td> 
+                  <td class="th"><label for="mc_info_rs_ap_ECFechaEntregaEvidencia">Fecha entrega evidencia herramienta</label></td> 
                   <td><input type="text" onblur="calculaSLAInicial()" id="mc_info_rs_ap_ECFechaEntregaEvidencia" value="{FechaEntregaEvidencia}" maxlength="20" size="16" name="{FechaEntregaEvidencia_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th">Fecha Entrega Herramienta Estimación</td> 
+                  <td class="th">Fecha entrega herramienta estimación</td> 
                   <td>
                     <!-- BEGIN TextBox FechaEntregaHerramienta --><input type="text" id="mc_info_rs_ap_ECFechaEntregaHerramienta" value="{FechaEntregaHerramienta}" maxlength="20" size="16" name="{FechaEntregaHerramienta_Name}"><!-- END TextBox FechaEntregaHerramienta --></td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th"><label for="mc_info_rs_ap_ECFechaAceptacionPropuesta">Fecha Aceptación Propuesta</label></td> 
+                  <td class="th"><label for="mc_info_rs_ap_ECFechaAceptacionPropuesta">Fecha aceptación propuesta</label></td> 
                   <td><input type="text" onblur="calculaSLAInicial()" id="mc_info_rs_ap_ECFechaAceptacionPropuesta" value="{FechaAceptacionPropuesta}" maxlength="20" size="16" name="{FechaAceptacionPropuesta_Name}"><input type="hidden" id="mc_info_rs_ap_EChIDPPMC" value="{hIDPPMC}" name="{hIDPPMC_Name}"></td>
                 </tr>
  
@@ -852,7 +852,7 @@ jQuery(function ($) {
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th">Uso de una Herramienta de Estimación</td> 
+                  <td class="th">Uso de una herramienta de estimación</td> 
                   <td>
                     <select id="mc_info_rs_ap_ECCumplioHE" name="{CumplioHE_Name}">
                       <option selected value="">No Aplica</option>
@@ -862,7 +862,7 @@ jQuery(function ($) {
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th"><label for="mc_info_rs_ap_ECCumplioRS">Requisitos de Servicio</label></td> 
+                  <td class="th"><label for="mc_info_rs_ap_ECCumplioRS">Requisitos de servicio</label></td> 
                   <td>
                     <select id="mc_info_rs_ap_ECCumplioRS" name="{CumplioRS_Name}">
                       <option selected value="">No Aplica</option>
@@ -872,13 +872,13 @@ jQuery(function ($) {
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th">URL de Evidencia de medición</td> 
-                  <td><label style="display: none;" for="mc_info_rs_ap_ECURLEvidenciaMed">TextBox1</label><input type="text" id="mc_info_rs_ap_ECURLEvidenciaMed" value="{URLEvidenciaMed}" size="50" name="{URLEvidenciaMed_Name}"></td>
+                  <td class="th">URL de evidencia de medición</td> 
+                  <td><label for="mc_info_rs_ap_ECURLEvidenciaMed" style="display: none;">TextBox1</label><input type="text" id="mc_info_rs_ap_ECURLEvidenciaMed" value="{URLEvidenciaMed}" size="50" name="{URLEvidenciaMed_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">&nbsp;</td> 
-                  <td>&nbsp;<input type="hidden" id="mc_info_rs_ap_EChdUsrUltMod" value="{hdUsrUltMod}" name="{hdUsrUltMod_Name}"><label style="display: none;" for="mc_info_rs_ap_EChdFechaUltMod">hdFechaUltMod</label><input type="hidden" id="mc_info_rs_ap_EChdFechaUltMod" value="{hdFechaUltMod}" name="{hdFechaUltMod_Name}"></td>
+                  <td>&nbsp;<input type="hidden" id="mc_info_rs_ap_EChdUsrUltMod" value="{hdUsrUltMod}" name="{hdUsrUltMod_Name}"><label for="mc_info_rs_ap_EChdFechaUltMod" style="display: none;">hdFechaUltMod</label><input type="hidden" id="mc_info_rs_ap_EChdFechaUltMod" value="{hdFechaUltMod}" name="{hdFechaUltMod_Name}"></td>
                 </tr>
  
                 <tr class="Bottom">
@@ -901,7 +901,7 @@ jQuery(function ($) {
         <table class="Header" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
-            <td class="th">Documentos en el Repositorio</td> 
+            <td class="th">Documentos en el repositorio</td> 
             <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
           </tr>
         </table>

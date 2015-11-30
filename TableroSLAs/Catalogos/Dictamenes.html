@@ -32,10 +32,10 @@
     <td>
       <!-- BEGIN Record mc_c_dictamenesSearch -->
       <form id="mc_c_dictamenesSearch" method="post" name="{HTMLFormName}" action="{Action}">
-        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="top">
-              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Buscar</strong></td> 
@@ -50,8 +50,8 @@
                 </tr>
                 <!-- END Error -->
                 <tr class="Controls">
-                  <td class="th"><label for="mc_c_dictamenesSearchs_Codigo">Codigo</label></td> 
-                  <td><input type="text" id="mc_c_dictamenesSearchs_Codigo" maxlength="5" size="5" value="{s_Codigo}" name="{s_Codigo_Name}"></td> 
+                  <td class="th"><label for="mc_c_dictamenesSearchs_Codigo">Código</label></td> 
+                  <td><input type="text" id="mc_c_dictamenesSearchs_Codigo" value="{s_Codigo}" maxlength="5" size="5" name="{s_Codigo_Name}"></td> 
                   <td class="th"><label for="mc_c_dictamenesSearchs_SeMideSLA">Se Mide SLA</label></td> 
                   <td>
                     <select id="mc_c_dictamenesSearchs_SeMideSLA" name="{s_SeMideSLA_Name}">
@@ -66,7 +66,7 @@
                       {s_TipoSLA_Options}
                     </select>
  </td> 
-                  <td class="th"><label for="mc_c_dictamenesSearchs_FugadoProduccion">Fugado Produccion</label></td> 
+                  <td class="th"><label for="mc_c_dictamenesSearchs_FugadoProduccion">Fugado Producción</label></td> 
                   <td>
                     <select id="mc_c_dictamenesSearchs_FugadoProduccion" name="{s_FugadoProduccion_Name}">
                       <option selected value="">Seleccionar Valor</option>
@@ -77,7 +77,7 @@
  
                 <tr class="Bottom">
                   <td style="TEXT-ALIGN: right" colspan="8">
-                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="mc_c_dictamenesSearchButton_DoSearch" class="Button" alt="Buscar" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="mc_c_dictamenesSearchButton_DoSearch" class="Button" value="Buscar" alt="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                 </tr>
               </table>
             </td>
@@ -86,10 +86,10 @@
       </form>
       <!-- END Record mc_c_dictamenesSearch --><br>
       <!-- BEGIN Grid mc_c_dictamenes -->
-      <table id="mc_c_dictamenes" class="MainTable" cellspacing="0" cellpadding="0" border="0">
+      <table id="mc_c_dictamenes" class="MainTable" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td valign="top">
-            <table class="Header" cellspacing="0" cellpadding="0" border="0">
+            <table class="Header" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td class="HeaderLeft"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                 <td class="th"><strong>Lista de dictamenes </strong></td> 
@@ -159,7 +159,7 @@
               <!-- END NoRecords -->
               <tr class="Footer">
                 <td colspan="8"><a href="{mc_c_dictamenes_Insert_Src}" id="mc_c_dictamenesmc_c_dictamenes_Insert">Agregar Nuevo</a>&nbsp; 
-                  <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+                  <!-- BEGIN Navigator Navigator --><span class="Navigator">Registros por página 
                   <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
                     <option selected value="">-</option>
  {PageSize_Options}
@@ -181,13 +181,13 @@
       <!-- END Grid mc_c_dictamenes --><br>
       <!-- BEGIN Record mc_c_dictamenes1 -->
       <form id="mc_c_dictamenes1" method="post" name="{HTMLFormName}" action="{Action}">
-        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="top">
-              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td> 
-                  <td class="th"><strong>Editar Dictamenes </strong></td> 
+                  <td class="th"><strong>Editar dictamenes </strong></td> 
                   <td class="HeaderRight"><img alt="" src="../Styles/{CCS_Style}/Images/Spacer.gif"></td>
                 </tr>
               </table>
@@ -199,13 +199,13 @@
                 </tr>
                 <!-- END Error -->
                 <tr class="Controls">
-                  <td class="th"><label for="mc_c_dictamenes1Codigo">Codigo</label></td> 
-                  <td><input type="text" id="mc_c_dictamenes1Codigo" maxlength="5" size="5" value="{Codigo}" name="{Codigo_Name}"></td>
+                  <td class="th"><label for="mc_c_dictamenes1Codigo">Código</label></td> 
+                  <td><input type="text" id="mc_c_dictamenes1Codigo" value="{Codigo}" maxlength="5" size="5" name="{Codigo_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th"><label for="mc_c_dictamenes1Descripcion">Descripcion</label></td> 
-                  <td><input type="text" id="mc_c_dictamenes1Descripcion" style="HEIGHT: 22px; WIDTH: 418px" maxlength="250" size="50" value="{Descripcion}" name="{Descripcion_Name}"></td>
+                  <td class="th"><label for="mc_c_dictamenes1Descripcion">Descripción</label></td> 
+                  <td><input type="text" style="WIDTH: 418px; HEIGHT: 22px" id="mc_c_dictamenes1Descripcion" value="{Descripcion}" maxlength="250" size="50" name="{Descripcion_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
@@ -220,11 +220,11 @@
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_c_dictamenes1TipoSLA">Tipo SLA</label></td> 
-                  <td><input type="text" id="mc_c_dictamenes1TipoSLA" maxlength="15" size="15" value="{TipoSLA}" name="{TipoSLA_Name}"></td>
+                  <td><input type="text" id="mc_c_dictamenes1TipoSLA" value="{TipoSLA}" maxlength="15" size="15" name="{TipoSLA_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th"><label for="mc_c_dictamenes1FugadoProduccion">Fugado Produccion</label></td> 
+                  <td class="th"><label for="mc_c_dictamenes1FugadoProduccion">Fugado Producción</label></td> 
                   <td><input type="checkbox" id="mc_c_dictamenes1FugadoProduccion" value="1" name="{FugadoProduccion_Name}" {FugadoProduccion}></td>
                 </tr>
  
@@ -235,8 +235,8 @@
  
                 <tr class="Bottom">
                   <td style="TEXT-ALIGN: right" colspan="2">
-                    <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_c_dictamenes1Button_Insert" class="Button" alt="Agregar" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
-                    <!-- BEGIN Button Button_Update --><input type="submit" id="mc_c_dictamenes1Button_Update" class="Button" alt="Enviar" value="Grabar" name="{Button_Name}"><!-- END Button Button_Update --></td>
+                    <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_c_dictamenes1Button_Insert" class="Button" value="Agregar" alt="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input type="submit" id="mc_c_dictamenes1Button_Update" class="Button" value="Grabar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Update --></td>
                 </tr>
               </table>
             </td>

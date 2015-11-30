@@ -2,9 +2,8 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=windows-1252">
-<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
 <title>PPMCsDefFugDetalle</title>
- 
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
 <script language="JavaScript" type="text/javascript">
 //Begin CCS script
 //Include Common JSFunctions @1-2504AB44
@@ -16,7 +15,7 @@
 //Include User Scripts @1-FA240378
 </script>
 <link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/ccs-jquery-ui-calendar.css">
-{page:scriptIncludes} 
+{page:scriptIncludes}
 <script type="text/javascript">
 //End Include User Scripts
 
@@ -86,240 +85,233 @@ jQuery(function ($) {
 <link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
 <link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
 </head>
- 
 <body onload="calculaSLA()">
 <p>{Header}</p>
 <p><br>
 </p>
 <table width="100%">
   <tr>
-    <td rowspan="1" colspan="1"></td> 
+    <td></td> 
     <td><a href="{lkAnterior_Src}" id="lkAnterior">{lkAnterior}</a></td> 
-    <td><a href="{lkSiguiente_Src}" id="lkSiguiente">{lkSiguiente}</a></td> 
+    <td><a href="{lkSiguiente_Src}" id="lkSiguiente">{lkSiguiente}</a></td>
   </tr>
  
   <tr>
     <td colspan="3">
       <table width="100%">
-        <tr style="background-color: rgb(218, 224, 228);">
+        <tr style="BACKGROUND-COLOR: rgb(218,224,228)">
           <td><a href="{lkReqFun_Src}" id="lkReqFun">Cumplimiento de<br>
-            Requisitos Funcionales</a></td> 
+            requisitos funcionales</a></td> 
           <td><a href="{lkCalidad_Src}" id="lkCalidad">Calidad de<br>
-            Productos Terminados</a></td> 
-          <td><a href="{lkRetEnt_Calidad_Src}" id="lkRetEnt_Calidad">Retraso en Entregables</a></td> 
-          <td><a href="{lkCalidadCod_Src}" id="lkCalidadCod">Calidad de Código</a></td> 
-          <td><a href="{Link1_Src}" id="Link1">Defectos Fugados<br>
-            a Producción</a></td> 
+            productos terminados</a></td> 
+          <td><a href="{lkRetEnt_Calidad_Src}" id="lkRetEnt_Calidad">Retraso en entregables</a></td> 
+          <td><a href="{lkCalidadCod_Src}" id="lkCalidadCod">Calidad de código</a></td> 
+          <td><a href="{Link1_Src}" id="Link1">Defectos fugados<br>
+            a producción</a></td>
         </tr>
- 
       </table>
- </td> 
+    </td>
   </tr>
  
   <tr>
-    <td rowspan="1" colspan="1"></td> 
+    <td></td> 
     <td>&nbsp;&nbsp; 
       <!-- BEGIN Record mc_info_rs_cr_deffug -->
-      <form name="{HTMLFormName}" id="mc_info_rs_cr_deffug" action="{Action}" method="post">
+      <form id="mc_info_rs_cr_deffug" method="post" name="{HTMLFormName}" action="{Action}">
         <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="top">
               <table class="Header" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="data:image/png;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="></td> 
-                  <td class="th"><strong>Calificar Defectos Fugados</strong>&nbsp;{lReportado} </td> 
-                  <td class="HeaderRight"><img alt="" src="data:image/png;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="></td> 
+                  <td class="th"><strong>Calificar defectos fugados</strong>&nbsp;{lReportado} </td> 
+                  <td class="HeaderRight"><img alt="" src="data:image/png;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="></td>
                 </tr>
- 
               </table>
  
               <table class="Record" cellspacing="0" cellpadding="0">
                 <!-- BEGIN Error -->
-                <tr class="Error" id="ErrorBlock">
-                  <td rowspan="1" colspan="4">{Error}</td> 
+                <tr id="ErrorBlock" class="Error">
+                  <td colspan="4">{Error}</td>
                 </tr>
- <!-- END Error -->
+                <!-- END Error -->
                 <tr class="Controls">
                   <td class="th"><label for="mc_info_rs_cr_deffugId_PPMC">PPMC</label>&nbsp;&nbsp;&nbsp;{lbPPMC}</td> 
-                  <td><input type="hidden" name="{Id_PPMC_Name}" id="mc_info_rs_cr_deffugId_PPMC" value="{Id_PPMC}"><input type="hidden" name="{hdIdProveedor_Name}" id="mc_info_rs_cr_deffughdIdProveedor" value="{hdIdProveedor}">{sNombreProyecto}</td> 
-                  <td class="th" rowspan="1" colspan="1"></td> 
-                  <td class="th" rowspan="1" colspan="1"></td> 
+                  <td><input type="hidden" id="mc_info_rs_cr_deffugId_PPMC" value="{Id_PPMC}" name="{Id_PPMC_Name}"><input type="hidden" id="mc_info_rs_cr_deffughdIdProveedor" value="{hdIdProveedor}" name="{hdIdProveedor_Name}">{sNombreProyecto}</td> 
+                  <td class="th"></td> 
+                  <td class="th"></td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th" rowspan="1" colspan="1"><label for="mc_info_rs_cr_deffugId_Estimacion">Servicio de Negocio</label></td> 
-                  <td rowspan="1" colspan="1"><input type="hidden" name="{ID_Estimacion_Name}" id="mc_info_rs_cr_deffugID_Estimacion" value="{ID_Estimacion}">{lServNegocio}</td> 
-                  <td class="th" rowspan="1" colspan="1"></td> 
-                  <td class="th" rowspan="1" colspan="1"></td> 
+                  <td class="th"><label for="mc_info_rs_cr_deffugId_Estimacion">Servicio de negocio</label></td> 
+                  <td><input type="hidden" id="mc_info_rs_cr_deffugID_Estimacion" value="{ID_Estimacion}" name="{ID_Estimacion_Name}">{lServNegocio}</td> 
+                  <td class="th"></td> 
+                  <td class="th"></td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th" rowspan="1" colspan="1">Tipo Requerimiento</td> 
-                  <td rowspan="1" colspan="1">{sTipoRequerimiento}&nbsp;</td> 
-                  <td class="th" rowspan="1" colspan="1">&nbsp;</td> 
-                  <td class="th" rowspan="1" colspan="1">&nbsp;</td> 
+                  <td class="th">Tipo requerimiento</td> 
+                  <td>{sTipoRequerimiento}&nbsp;</td> 
+                  <td class="th">&nbsp;</td> 
+                  <td class="th">&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th" rowspan="1" colspan="1"><label for="mc_info_rs_cr_deffugIncidentes">Incidente en &nbsp;PPMC</label></td> 
-                  <td rowspan="1" colspan="1"><input type="text" name="{Incidentes_Name}" id="mc_info_rs_cr_deffugIncidentes" size="50" maxlength="250" value="{Incidentes}"></td> 
-                  <td class="th" rowspan="1" colspan="1"></td> 
-                  <td class="th" rowspan="1" colspan="1"></td> 
+                  <td class="th"><label for="mc_info_rs_cr_deffugIncidentes">Incidente en &nbsp;PPMC</label></td> 
+                  <td><input type="text" id="mc_info_rs_cr_deffugIncidentes" value="{Incidentes}" maxlength="250" size="50" name="{Incidentes_Name}"></td> 
+                  <td class="th"></td> 
+                  <td class="th"></td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th" rowspan="1" colspan="1"><label for="mc_info_rs_cr_deffugNumIncidentes">Cantidad de&nbsp;&nbsp;Paquetes</label></td> 
-                  <td rowspan="1" colspan="1"><input type="text" name="{NumIncidentes_Name}" id="mc_info_rs_cr_deffugNumIncidentes" size="10" maxlength="10" value="{NumIncidentes}"></td> 
-                  <td class="th" rowspan="1" colspan="1"></td> 
-                  <td class="th" rowspan="1" colspan="1"></td> 
+                  <td class="th"><label for="mc_info_rs_cr_deffugNumIncidentes">Cantidad de&nbsp;&nbsp;paquetes</label></td> 
+                  <td><input type="text" id="mc_info_rs_cr_deffugNumIncidentes" value="{NumIncidentes}" maxlength="10" size="10" name="{NumIncidentes_Name}"></td> 
+                  <td class="th"></td> 
+                  <td class="th"></td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th" rowspan="1" colspan="1"><label for="mc_info_rs_cr_deffugIncidentesRAPE">Incidente RAPE<br>
+                  <td class="th"><label for="mc_info_rs_cr_deffugIncidentesRAPE">Incidente RAPE<br>
                     Garantías</label></td> 
-                  <td rowspan="1" colspan="1"><input type="text" name="{IncidentesRAPE_Name}" id="mc_info_rs_cr_deffugIncidentesRAPE" size="50" maxlength="250" value="{IncidentesRAPE}"></td> 
-                  <td class="th" rowspan="1" colspan="1"></td> 
-                  <td class="th" rowspan="1" colspan="1"></td> 
+                  <td><input type="text" id="mc_info_rs_cr_deffugIncidentesRAPE" value="{IncidentesRAPE}" maxlength="250" size="50" name="{IncidentesRAPE_Name}"></td> 
+                  <td class="th"></td> 
+                  <td class="th"></td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th" rowspan="1" colspan="1"><label for="mc_info_rs_cr_deffugNumIncidentesRAPE">Cantidad de Paquetes </label></td> 
-                  <td rowspan="1" colspan="1"><input type="text" name="{NumIncidentesRAPE_Name}" id="mc_info_rs_cr_deffugNumIncidentesRAPE" size="10" maxlength="10" value="{NumIncidentesRAPE}"></td> 
-                  <td class="th" rowspan="1" colspan="1"></td> 
-                  <td class="th" rowspan="1" colspan="1"></td> 
+                  <td class="th"><label for="mc_info_rs_cr_deffugNumIncidentesRAPE">Cantidad de paquetes </label></td> 
+                  <td><input type="text" id="mc_info_rs_cr_deffugNumIncidentesRAPE" value="{NumIncidentesRAPE}" maxlength="10" size="10" name="{NumIncidentesRAPE_Name}"></td> 
+                  <td class="th"></td> 
+                  <td class="th"></td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th" rowspan="1" colspan="1"><label for="mc_info_rs_cr_deffugPaquetes">Paquetes del Requerimiento</label></td> 
-                  <td rowspan="1" colspan="1"><input type="text" name="{Paquetes_Name}" id="mc_info_rs_cr_deffugPaquetes" size="5" maxlength="5" value="{Paquetes}"></td> 
-                  <td class="th" rowspan="1" colspan="1"></td> 
-                  <td class="th" rowspan="1" colspan="1"></td> 
+                  <td class="th"><label for="mc_info_rs_cr_deffugPaquetes">Paquetes del requerimiento</label></td> 
+                  <td><input type="text" id="mc_info_rs_cr_deffugPaquetes" value="{Paquetes}" maxlength="5" size="5" name="{Paquetes_Name}"></td> 
+                  <td class="th"></td> 
+                  <td class="th"></td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th" rowspan="1" colspan="1"><label for="mc_info_rs_cr_deffugNumPaquetes">Rechazos de Operaciones</label></td> 
-                  <td rowspan="1" colspan="1"><input type="text" name="{NumPaquetes_Name}" id="mc_info_rs_cr_deffugNumPaquetes" size="10" maxlength="10" value="{NumPaquetes}"></td> 
-                  <td class="th" rowspan="1" colspan="1"></td> 
-                  <td class="th" rowspan="1" colspan="1"></td> 
+                  <td class="th"><label for="mc_info_rs_cr_deffugNumPaquetes">Rechazos de operaciones</label></td> 
+                  <td><input type="text" id="mc_info_rs_cr_deffugNumPaquetes" value="{NumPaquetes}" maxlength="10" size="10" name="{NumPaquetes_Name}"></td> 
+                  <td class="th"></td> 
+                  <td class="th"></td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th" rowspan="1" colspan="1">Total de Defectos</td> 
-                  <td rowspan="1" colspan="1">
+                  <td class="th">Total de defectos</td> 
+                  <td>
                     <div id="TotalDefectos">
                       {lbTotalDefectos} 
                     </div>
- </td> 
-                  <td class="th" rowspan="1" colspan="1">&nbsp;</td> 
-                  <td class="th" rowspan="1" colspan="1">&nbsp;</td> 
+                  </td> 
+                  <td class="th">&nbsp;</td> 
+                  <td class="th">&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th" rowspan="1" colspan="1"><label for="mc_info_rs_cr_deffugDeductiva">Deductiva</label></td> 
-                  <td rowspan="1" colspan="1"><input type="text" name="{Deductiva_Name}" id="mc_info_rs_cr_deffugDeductiva" size="4" maxlength="4" value="{Deductiva}">&nbsp;%</td> 
-                  <td class="th" rowspan="1" colspan="1"></td> 
-                  <td class="th" rowspan="1" colspan="1"></td> 
+                  <td class="th"><label for="mc_info_rs_cr_deffugDeductiva">Deductiva</label></td> 
+                  <td><input type="text" id="mc_info_rs_cr_deffugDeductiva" value="{Deductiva}" maxlength="4" size="4" name="{Deductiva_Name}">&nbsp;%</td> 
+                  <td class="th"></td> 
+                  <td class="th"></td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th" rowspan="1" colspan="1"><label for="mc_info_rs_cr_deffugCumpleDefFug">Cumple Defectos Fugados</label></td> 
-                  <td rowspan="1" colspan="1">
-                    <select name="{CumpleDefFug_Name}" id="mc_info_rs_cr_deffugCumpleDefFug">
+                  <td class="th"><label for="mc_info_rs_cr_deffugCumpleDefFug">Cumple defectos fugados</label></td> 
+                  <td>
+                    <select id="mc_info_rs_cr_deffugCumpleDefFug" name="{CumpleDefFug_Name}">
                       <option selected value="">No Aplica</option>
- {CumpleDefFug_Options} 
+                      {CumpleDefFug_Options}
                     </select>
  </td> 
-                  <td class="th" rowspan="1" colspan="1"></td> 
-                  <td class="th" rowspan="1" colspan="1"></td> 
+                  <td class="th"></td> 
+                  <td class="th"></td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th" rowspan="1" colspan="1"><label for="mc_info_rs_cr_deffugObservaciones">Observaciones</label></td> 
-                  <td rowspan="1" colspan="1"><textarea name="{Observaciones_Name}" id="mc_info_rs_cr_deffugObservaciones" rows="5" cols="50">{Observaciones}</textarea></td> 
-                  <td class="th" rowspan="1" colspan="1"></td> 
-                  <td class="th" rowspan="1" colspan="1"></td> 
+                  <td class="th"><label for="mc_info_rs_cr_deffugObservaciones">Observaciones</label></td> 
+                  <td><textarea id="mc_info_rs_cr_deffugObservaciones" rows="5" cols="50" name="{Observaciones_Name}">{Observaciones}</textarea></td> 
+                  <td class="th"></td> 
+                  <td class="th"></td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th" rowspan="1" colspan="1"><label for="mc_info_rs_cr_deffugUsuarioUltMod"><br>
+                  <td class="th"><label for="mc_info_rs_cr_deffugUsuarioUltMod"><br>
                     </label></td> 
-                  <td rowspan="1" colspan="1"><input type="hidden" name="{UsuarioUltMod_Name}" id="mc_info_rs_cr_deffugUsuarioUltMod" value="{UsuarioUltMod}"></td> 
-                  <td class="th" rowspan="1" colspan="1"></td> 
-                  <td class="th" rowspan="1" colspan="1"></td> 
+                  <td><input type="hidden" id="mc_info_rs_cr_deffugUsuarioUltMod" value="{UsuarioUltMod}" name="{UsuarioUltMod_Name}"></td> 
+                  <td class="th"></td> 
+                  <td class="th"></td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th" rowspan="1" colspan="1"><label for="mc_info_rs_cr_deffugFechaUltMod"><br>
+                  <td class="th"><label for="mc_info_rs_cr_deffugFechaUltMod"><br>
                     </label></td> 
-                  <td rowspan="1" colspan="1"><input type="hidden" name="{FechaUltMod_Name}" id="mc_info_rs_cr_deffugFechaUltMod" value="{FechaUltMod}"></td> 
-                  <td class="th" rowspan="1" colspan="1"></td> 
-                  <td class="th" rowspan="1" colspan="1"></td> 
+                  <td><input type="hidden" id="mc_info_rs_cr_deffugFechaUltMod" value="{FechaUltMod}" name="{FechaUltMod_Name}"></td> 
+                  <td class="th"></td> 
+                  <td class="th"></td>
                 </tr>
  
                 <tr class="Bottom">
-                  <td rowspan="1" colspan="1">
-                    <!-- BEGIN Button btnCalcula --><input type="submit" name="{Button_Name}" class="Button" id="mc_info_rs_cr_deffugbtnCalcula" alt="Button1" value="Buscar Paquetes" size="20"><!-- END Button btnCalcula --></td> 
-                  <td style="text-align: right;" rowspan="1" colspan="1">
-                    <!-- BEGIN Button Button_Insert --><input type="submit" name="{Button_Name}" class="Button" id="mc_info_rs_cr_deffugButton_Insert" alt="Agregar" value="Agregar"><!-- END Button Button_Insert -->
-                    <!-- BEGIN Button Button_Update --><input type="submit" name="{Button_Name}" class="Button" id="mc_info_rs_cr_deffugButton_Update" alt="Enviar" value="Enviar"><!-- END Button Button_Update --><input type="hidden" name="{Id_Name}" id="mc_info_rs_cr_deffugId" value="{Id}"></td> 
-                  <td rowspan="1" colspan="1"></td> 
-                  <td rowspan="1" colspan="1"></td> 
+                  <td>
+                    <!-- BEGIN Button btnCalcula --><input type="submit" id="mc_info_rs_cr_deffugbtnCalcula" class="Button" value="Buscar paquetes" alt="Button1" name="{Button_Name}" size="20"><!-- END Button btnCalcula --></td> 
+                  <td style="TEXT-ALIGN: right">
+                    <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_info_rs_cr_deffugButton_Insert" class="Button" value="Agregar" alt="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input type="submit" id="mc_info_rs_cr_deffugButton_Update" class="Button" value="Enviar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Update --><input type="hidden" id="mc_info_rs_cr_deffugId" value="{Id}" name="{Id_Name}"></td> 
+                  <td></td> 
+                  <td></td>
                 </tr>
- 
               </table>
- </td> 
+            </td>
           </tr>
- 
         </table>
- 
       </form>
- &nbsp; &nbsp; <!-- END Record mc_info_rs_cr_deffug --><br>
+      &nbsp; &nbsp; <!-- END Record mc_info_rs_cr_deffug --><br>
     </td> 
-    <td>{lDocs}</td> 
+    <td>{lDocs}</td>
   </tr>
  
   <tr>
-    <td rowspan="1" colspan="1">&nbsp;</td> 
-    <td rowspan="1" colspan="1">
+    <td>&nbsp;</td> 
+    <td>
       <!-- BEGIN EditableGrid IncidentesPPMC -->
-      <form name="{HTMLFormName}" id="IncidentesPPMC" action="{Action}" method="post">
-        <input type="hidden" name="FormState" value="{FormState}">{FormScript} 
+      <form id="IncidentesPPMC" method="post" name="{HTMLFormName}" action="{Action}">
+        <input type="hidden" value="{FormState}" name="FormState">{FormScript} 
         <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="top">
               <table class="Header" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
-                  <td class="th"><strong>Paquetes del Incidente en PPMC</strong></td> 
-                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Paquetes del incidente en PPMC</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
                 </tr>
- 
               </table>
  
               <table class="Grid" cellspacing="0" cellpadding="0">
                 <!-- BEGIN Error -->
                 <tr class="Error">
-                  <td rowspan="1" colspan="98">{Error}</td> 
+                  <td colspan="98">{Error}</td>
                 </tr>
- <!-- END Error -->
+                <!-- END Error -->
                 <tr class="Caption">
                   <th scope="col">
-                  <!-- BEGIN Sorter Sorter_Id_Incidente --><span class="Sorter"><a href="{Sort_URL}" id="IncidentesPPMCSorter_Id_Incidente">Id Incidente</a> 
+                  <!-- BEGIN Sorter Sorter_Id_Incidente --><span class="Sorter"><a href="{Sort_URL}" id="IncidentesPPMCSorter_Id_Incidente">Id incidente</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Id_Incidente --></th>
  
                   <th scope="col">
-                  <!-- BEGIN Sorter Sorter_ClaveMovimiento --><span class="Sorter"><a href="{Sort_URL}" id="IncidentesPPMCSorter_ClaveMovimiento">Clave Movimiento</a> 
+                  <!-- BEGIN Sorter Sorter_ClaveMovimiento --><span class="Sorter"><a href="{Sort_URL}" id="IncidentesPPMCSorter_ClaveMovimiento">Clave movimiento</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_ClaveMovimiento --></th>
  
                   <th scope="col">
-                  <!-- BEGIN Sorter Sorter_DescMovimiento --><span class="Sorter"><a href="{Sort_URL}" id="IncidentesPPMCSorter_DescMovimiento">Desc Movimiento</a> 
+                  <!-- BEGIN Sorter Sorter_DescMovimiento --><span class="Sorter"><a href="{Sort_URL}" id="IncidentesPPMCSorter_DescMovimiento">Desc movimiento</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_DescMovimiento --></th>
  
                   <th scope="col">
-                  <!-- BEGIN Sorter Sorter_FechaInicioMov --><span class="Sorter"><a href="{Sort_URL}" id="IncidentesPPMCSorter_FechaInicioMov">Fecha Inicio Mov</a> 
+                  <!-- BEGIN Sorter Sorter_FechaInicioMov --><span class="Sorter"><a href="{Sort_URL}" id="IncidentesPPMCSorter_FechaInicioMov">Fecha inicio mov</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_FechaInicioMov --></th>
  
@@ -338,19 +330,18 @@ jQuery(function ($) {
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Ignorar --></th>
  
-                  <th rowspan="1" scope="col">
+                  <th scope="col">
                   <!-- BEGIN Sorter Sorter_Id --><span class="Sorter"><a href="{Sort_URL}" id="IncidentesPPMCSorter_Id">Id</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Id --></th>
- 
                 </tr>
  
                 <!-- BEGIN Row -->
                 <!-- BEGIN RowError -->
                 <tr class="Error">
-                  <td rowspan="1" colspan="7">{Error}</td> 
+                  <td colspan="7">{Error}</td>
                 </tr>
- <!-- END RowError -->
+                <!-- END RowError -->
                 <tr class="Row">
                   <td><label for="IncidentesPPMCId_Incidente_{IncidentesPPMC:rowNumber}" style="display: none;">Id Incidente</label>{Id_Incidente}</td> 
                   <td><label for="IncidentesPPMCClaveMovimiento_{IncidentesPPMC:rowNumber}" style="display: none;">Clave Movimiento</label>{ClaveMovimiento}</td> 
@@ -358,21 +349,21 @@ jQuery(function ($) {
                   <td><label for="IncidentesPPMCFechaInicioMov_{IncidentesPPMC:rowNumber}" style="display: none;">Fecha Inicio Mov</label>{FechaInicioMov}</td> 
                   <td><label for="IncidentesPPMCFechaFinMov_{IncidentesPPMC:rowNumber}" style="display: none;">Fecha Fin Mov</label>{FechaFinMov}</td> 
                   <td><label for="IncidentesPPMCPaquete_{IncidentesPPMC:rowNumber}" style="display: none;">Paquete</label>{Paquete}</td> 
-                  <td><label for="IncidentesPPMCIgnorar_{IncidentesPPMC:rowNumber}" style="display: none;">Ignorar</label><input type="checkbox" name="{Ignorar_Name}" id="IncidentesPPMCIgnorar_{IncidentesPPMC:rowNumber}" value="1" {Ignorar}></td> 
-                  <td rowspan="1" colspan="91"><input type="hidden" name="{Id_Name}" id="IncidentesPPMCId_{IncidentesPPMC:rowNumber}" value="{Id}"></td> 
+                  <td><label for="IncidentesPPMCIgnorar_{IncidentesPPMC:rowNumber}" style="display: none;">Ignorar</label><input type="checkbox" id="IncidentesPPMCIgnorar_{IncidentesPPMC:rowNumber}" value="1" name="{Ignorar_Name}" {Ignorar}></td> 
+                  <td colspan="91"><input type="hidden" id="IncidentesPPMCId_{IncidentesPPMC:rowNumber}" value="{Id}" name="{Id_Name}"></td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td rowspan="1" colspan="7">No hay registros</td> 
+                  <td colspan="7">No hay registros</td>
                 </tr>
- <!-- END NoRecords -->
+                <!-- END NoRecords -->
                 <tr class="Footer">
-                  <td style="text-align: right;" rowspan="1" colspan="98">
-                    <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
-                    <select name="{FormName}PageSize" style="vertical-align: middle;" data-grid-size="{FormName}">
-                      <option value="">-</option>
- {PageSize_Options} 
+                  <td style="TEXT-ALIGN: right" colspan="98">
+                    <!-- BEGIN Navigator Navigator --><span class="Navigator">Registros por página: 
+                    <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+                      <option selected value="">-</option>
+ {PageSize_Options}
                     </select>
  
                     <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
@@ -383,68 +374,64 @@ jQuery(function ($) {
                     <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
                     <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
                     <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->
-                    <!-- BEGIN Button Button_Submit --><input type="submit" name="{Button_Name}" class="Button" id="IncidentesPPMCButton_Submit" alt="Enviar" value="Enviar"><!-- END Button Button_Submit --></td> 
+                    <!-- BEGIN Button Button_Submit --><input type="submit" id="IncidentesPPMCButton_Submit" class="Button" value="Enviar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Submit --></td>
                 </tr>
- 
               </table>
- </td> 
+            </td>
           </tr>
- 
         </table>
- 
       </form>
- <!-- END EditableGrid IncidentesPPMC --><br>
+      <!-- END EditableGrid IncidentesPPMC --><br>
     </td> 
-    <td rowspan="1" colspan="1">&nbsp;</td> 
+    <td>&nbsp;</td>
   </tr>
  
   <tr>
-    <td rowspan="1" colspan="1"></td> 
+    <td></td> 
     <td>
       <!-- BEGIN EditableGrid EditableGrid1 -->
-      <form name="{HTMLFormName}" id="EditableGrid1" action="{Action}" method="post">
-        <input type="hidden" name="FormState" value="{FormState}">{FormScript} 
+      <form id="EditableGrid1" method="post" name="{HTMLFormName}" action="{Action}">
+        <input type="hidden" value="{FormState}" name="FormState">{FormScript} 
         <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="top">
               <table class="Header" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
-                  <td class="th"><strong>Paquetes del Incidente del RAPE</strong></td> 
-                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Paquetes del incidente del RAPE</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
                 </tr>
- 
               </table>
  
               <table class="Grid" cellspacing="0" cellpadding="0">
                 <!-- BEGIN Error -->
                 <tr class="Error">
-                  <td rowspan="1" colspan="98">{Error}</td> 
+                  <td colspan="98">{Error}</td>
                 </tr>
- <!-- END Error -->
+                <!-- END Error -->
                 <tr class="Caption">
                   <th scope="col">
-                  <!-- BEGIN Sorter Sorter_Id_Incidente --><span class="Sorter"><a href="{Sort_URL}" id="EditableGrid1Sorter_Id_Incidente">Id Incidente</a> 
+                  <!-- BEGIN Sorter Sorter_Id_Incidente --><span class="Sorter"><a href="{Sort_URL}" id="EditableGrid1Sorter_Id_Incidente">Id incidente</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Id_Incidente --></th>
  
                   <th scope="col">
-                  <!-- BEGIN Sorter Sorter_ClaveMovimiento --><span class="Sorter"><a href="{Sort_URL}" id="EditableGrid1Sorter_ClaveMovimiento">Clave Movimiento</a> 
+                  <!-- BEGIN Sorter Sorter_ClaveMovimiento --><span class="Sorter"><a href="{Sort_URL}" id="EditableGrid1Sorter_ClaveMovimiento">Clave movimiento</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_ClaveMovimiento --></th>
  
                   <th scope="col">
-                  <!-- BEGIN Sorter Sorter_DescMovimiento --><span class="Sorter"><a href="{Sort_URL}" id="EditableGrid1Sorter_DescMovimiento">Desc Movimiento</a> 
+                  <!-- BEGIN Sorter Sorter_DescMovimiento --><span class="Sorter"><a href="{Sort_URL}" id="EditableGrid1Sorter_DescMovimiento">Desc movimiento</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_DescMovimiento --></th>
  
                   <th scope="col">
-                  <!-- BEGIN Sorter Sorter_FechaInicioMov --><span class="Sorter"><a href="{Sort_URL}" id="EditableGrid1Sorter_FechaInicioMov">Fecha Inicio Mov</a> 
+                  <!-- BEGIN Sorter Sorter_FechaInicioMov --><span class="Sorter"><a href="{Sort_URL}" id="EditableGrid1Sorter_FechaInicioMov">Fecha inicio mov</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_FechaInicioMov --></th>
  
                   <th scope="col">
-                  <!-- BEGIN Sorter Sorter_FechaFinMov --><span class="Sorter"><a href="{Sort_URL}" id="EditableGrid1Sorter_FechaFinMov">Fecha Fin Mov</a> 
+                  <!-- BEGIN Sorter Sorter_FechaFinMov --><span class="Sorter"><a href="{Sort_URL}" id="EditableGrid1Sorter_FechaFinMov">Fecha fin mov</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_FechaFinMov --></th>
  
@@ -453,40 +440,39 @@ jQuery(function ($) {
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Paquete --></th>
  
-                  <th rowspan="1" scope="col">
+                  <th scope="col">
                   <!-- BEGIN Sorter Sorter_Ignorar --><span class="Sorter"><a href="{Sort_URL}" id="EditableGrid1Sorter_Ignorar">Ignorar</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Ignorar --></th>
- 
                 </tr>
  
                 <!-- BEGIN Row -->
                 <!-- BEGIN RowError -->
                 <tr class="Error">
-                  <td rowspan="1" colspan="98">{Error}</td> 
+                  <td colspan="98">{Error}</td>
                 </tr>
- <!-- END RowError -->
+                <!-- END RowError -->
                 <tr class="Row">
-                  <td>{Id_Incidente}&nbsp; <input type="hidden" name="{mc_info_detalle_paquetes_df_Id_Name}" id="EditableGrid1mc_info_detalle_paquetes_df_Id" value="{mc_info_detalle_paquetes_df_Id}"></td> 
+                  <td>{Id_Incidente}&nbsp; <input type="hidden" id="EditableGrid1mc_info_detalle_paquetes_df_Id" value="{mc_info_detalle_paquetes_df_Id}" name="{mc_info_detalle_paquetes_df_Id_Name}"></td> 
                   <td>{ClaveMovimiento}</td> 
                   <td>{DescMovimiento}</td> 
                   <td>{FechaInicioMov}</td> 
                   <td>{FechaFinMov}</td> 
                   <td>{Paquete}</td> 
-                  <td rowspan="1"><label for="EditableGrid1Ignorar_{EditableGrid1:rowNumber}" style="display: none;">Ignorar</label><input type="checkbox" name="{Ignorar_Name}" id="EditableGrid1Ignorar_{EditableGrid1:rowNumber}" value="1" {Ignorar}></td> 
+                  <td><label for="EditableGrid1Ignorar_{EditableGrid1:rowNumber}" style="display: none;">Ignorar</label><input type="checkbox" id="EditableGrid1Ignorar_{EditableGrid1:rowNumber}" value="1" name="{Ignorar_Name}" {Ignorar}></td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td rowspan="1" colspan="6">No hay registros</td> 
+                  <td colspan="6">No hay registros</td>
                 </tr>
- <!-- END NoRecords -->
+                <!-- END NoRecords -->
                 <tr class="Footer">
-                  <td style="text-align: right;" rowspan="1" colspan="98">
-                    <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
-                    <select name="{FormName}PageSize" style="vertical-align: middle;" data-grid-size="{FormName}">
-                      <option value="">-</option>
- {PageSize_Options} 
+                  <td style="TEXT-ALIGN: right" colspan="98">
+                    <!-- BEGIN Navigator Navigator --><span class="Navigator">Registros por página: 
+                    <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+                      <option selected value="">-</option>
+ {PageSize_Options}
                     </select>
  
                     <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
@@ -497,30 +483,27 @@ jQuery(function ($) {
                     <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
                     <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
                     <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->
-                    <!-- BEGIN Button Button_Submit --><input type="submit" name="{Button_Name}" class="Button" id="EditableGrid1Button_Submit" alt="Enviar" value="Enviar"><!-- END Button Button_Submit --></td> 
+                    <!-- BEGIN Button Button_Submit --><input type="submit" id="EditableGrid1Button_Submit" class="Button" value="Enviar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Submit --></td>
                 </tr>
- 
               </table>
- </td> 
+            </td>
           </tr>
- 
         </table>
- 
       </form>
- <!-- END EditableGrid EditableGrid1 --><br>
+      <!-- END EditableGrid EditableGrid1 --><br>
       <br>
       <br>
     </td> 
-    <td rowspan="1" colspan="1"></td> 
+    <td></td>
   </tr>
  
   <tr>
-    <td rowspan="1" colspan="1">&nbsp;</td> 
-    <td rowspan="1" colspan="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
-      <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong> 
+    <td>&nbsp;</td> 
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+      <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>
       <!-- BEGIN EditableGrid mc_info_detalle_PPMC_avl -->
-      <form name="{HTMLFormName}" id="mc_info_detalle_PPMC_avl" action="{Action}" method="post">
-        <input type="hidden" name="FormState" value="{FormState}">{FormScript} 
+      <form id="mc_info_detalle_PPMC_avl" method="post" name="{HTMLFormName}" action="{Action}">
+        <input type="hidden" value="{FormState}" name="FormState">{FormScript} 
         <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="top">
@@ -528,35 +511,34 @@ jQuery(function ($) {
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Paquetes del PPMC</strong></td> 
-                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
                 </tr>
- 
               </table>
  
               <table class="Grid" cellspacing="0" cellpadding="0">
                 <!-- BEGIN Error -->
                 <tr class="Error">
-                  <td rowspan="1" colspan="98">{Error}</td> 
+                  <td colspan="98">{Error}</td>
                 </tr>
- <!-- END Error -->
+                <!-- END Error -->
                 <tr class="Caption">
                   <th scope="col">
-                  <!-- BEGIN Sorter Sorter_ClaveMovimiento --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_PPMC_avlSorter_ClaveMovimiento">Clave Movimiento</a> 
+                  <!-- BEGIN Sorter Sorter_ClaveMovimiento --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_PPMC_avlSorter_ClaveMovimiento">Clave movimiento</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_ClaveMovimiento --></th>
  
                   <th scope="col">
-                  <!-- BEGIN Sorter Sorter_Descripcion --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_PPMC_avlSorter_Descripcion">Descripcion</a> 
+                  <!-- BEGIN Sorter Sorter_Descripcion --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_PPMC_avlSorter_Descripcion">Descripción</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Descripcion --></th>
  
                   <th scope="col">
-                  <!-- BEGIN Sorter Sorter_FechaInicioMov --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_PPMC_avlSorter_FechaInicioMov">Fecha Inicio Mov</a> 
+                  <!-- BEGIN Sorter Sorter_FechaInicioMov --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_PPMC_avlSorter_FechaInicioMov">Fecha inicio mov</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_FechaInicioMov --></th>
  
                   <th scope="col">
-                  <!-- BEGIN Sorter Sorter_FechaFinMov --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_PPMC_avlSorter_FechaFinMov">Fecha Fin Mov</a> 
+                  <!-- BEGIN Sorter Sorter_FechaFinMov --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_PPMC_avlSorter_FechaFinMov">Fecha fin mov</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_FechaFinMov --></th>
  
@@ -571,23 +553,22 @@ jQuery(function ($) {
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_c_rdl --></th>
  
                   <th scope="col">
-                  <!-- BEGIN Sorter Sorter_PAQ_CVE_FOL --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_PPMC_avlSorter_PAQ_CVE_FOL">PAQ CVE FOL</a> 
+                  <!-- BEGIN Sorter Sorter_PAQ_CVE_FOL --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_PPMC_avlSorter_PAQ_CVE_FOL">Paq cve fol</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_PAQ_CVE_FOL --></th>
  
-                  <th rowspan="1" colspan="7" scope="col">
+                  <th colspan="7" scope="col">
                   <!-- BEGIN Sorter Sorter_Ignorar --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_detalle_PPMC_avlSorter_Ignorar">Ignorar</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Ignorar --></th>
- 
                 </tr>
  
                 <!-- BEGIN Row -->
                 <!-- BEGIN RowError -->
                 <tr class="Error">
-                  <td rowspan="1" colspan="98">{Error}</td> 
+                  <td colspan="98">{Error}</td>
                 </tr>
- <!-- END RowError -->
+                <!-- END RowError -->
                 <tr class="Row">
                   <td>{ClaveMovimiento}</td> 
                   <td>{Descripcion}</td> 
@@ -596,20 +577,20 @@ jQuery(function ($) {
                   <td>{Paquete}</td> 
                   <td>{c_rdl}</td> 
                   <td>{PAQ_CVE_FOL}</td> 
-                  <td rowspan="1"><input type="hidden" name="{mc_info_detalle_paquetes_df_Id_Name}" id="mc_info_detalle_PPMC_avlmc_info_detalle_paquetes_df_Id_{mc_info_detalle_PPMC_avl:rowNumber}" value="{mc_info_detalle_paquetes_df_Id}"><label for="mc_info_detalle_PPMC_avlIgnorar_{mc_info_detalle_PPMC_avl:rowNumber}" style="display: none;">Ignorar</label><input type="checkbox" name="{Ignorar_Name}" id="mc_info_detalle_PPMC_avlIgnorar_{mc_info_detalle_PPMC_avl:rowNumber}" value="1" {Ignorar}></td> 
+                  <td><input type="hidden" id="mc_info_detalle_PPMC_avlmc_info_detalle_paquetes_df_Id_{mc_info_detalle_PPMC_avl:rowNumber}" value="{mc_info_detalle_paquetes_df_Id}" name="{mc_info_detalle_paquetes_df_Id_Name}"><label for="mc_info_detalle_PPMC_avlIgnorar_{mc_info_detalle_PPMC_avl:rowNumber}" style="display: none;">Ignorar</label><input type="checkbox" id="mc_info_detalle_PPMC_avlIgnorar_{mc_info_detalle_PPMC_avl:rowNumber}" value="1" name="{Ignorar_Name}" {Ignorar}></td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td rowspan="1" colspan="7">No hay registros</td> 
+                  <td colspan="7">No hay registros</td>
                 </tr>
- <!-- END NoRecords -->
+                <!-- END NoRecords -->
                 <tr class="Footer">
-                  <td style="text-align: right;" rowspan="1" colspan="98">
-                    <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
-                    <select name="{FormName}PageSize" style="vertical-align: middle;" data-grid-size="{FormName}">
-                      <option value="">-</option>
- {PageSize_Options} 
+                  <td style="TEXT-ALIGN: right" colspan="98">
+                    <!-- BEGIN Navigator Navigator --><span class="Navigator">Registros por página: 
+                    <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+                      <option selected value="">-</option>
+ {PageSize_Options}
                     </select>
  
                     <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
@@ -620,28 +601,25 @@ jQuery(function ($) {
                     <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
                     <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
                     <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->
-                    <!-- BEGIN Button Button_Submit --><input type="submit" name="{Button_Name}" class="Button" id="mc_info_detalle_PPMC_avlButton_Submit" alt="Enviar" value="Enviar"><!-- END Button Button_Submit --></td> 
+                    <!-- BEGIN Button Button_Submit --><input type="submit" id="mc_info_detalle_PPMC_avlButton_Submit" class="Button" value="Enviar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Submit --></td>
                 </tr>
- 
               </table>
- </td> 
+            </td>
           </tr>
- 
         </table>
- 
       </form>
- <!-- END EditableGrid mc_info_detalle_PPMC_avl --><br>
+      <!-- END EditableGrid mc_info_detalle_PPMC_avl --><br>
       <br>
     </td> 
-    <td rowspan="1" colspan="1">&nbsp;</td> 
+    <td>&nbsp;</td>
   </tr>
  
   <tr>
-    <td rowspan="1" colspan="1">&nbsp;</td> 
-    <td rowspan="1" colspan="1">&nbsp;<br>
+    <td>&nbsp;</td> 
+    <td>&nbsp;<br>
       <br>
     </td> 
-    <td rowspan="1" colspan="1">&nbsp;</td> 
+    <td>&nbsp;</td>
   </tr>
 </table>
 <p></p>

@@ -228,10 +228,10 @@ jQuery(function ($) {
 <table width="100%">
   <tr style="BACKGROUND-COLOR: rgb(218,224,228)">
     <td><a href="{lkCumplimiento_Src}" id="lkCumplimiento">Cumplimiento en<br>
-      Requisitos Funcionales</a></td> 
+      requisitos funcionales</a></td> 
     <td><a href="{lkCalidad_Src}" id="lkCalidad">Calidad de<br>
-      Productos Terminados</a></td> 
-    <td><a href="{lkDeductiva_Src}" id="lkDeductiva">Deductivas por Omisión</a></td>
+      productos terminados</a></td> 
+    <td><a href="{lkDeductiva_Src}" id="lkDeductiva">Deductivas por omisión</a></td>
   </tr>
 </table>
 </p>
@@ -272,7 +272,7 @@ jQuery(function ($) {
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th">Id Estimación</td> 
+                  <td class="th">Id estimación</td> 
                   <td><input type="text" id="mc_calificacion_capcIdEstimacion" value="{IdEstimacion}" maxlength="6" size="6" name="{IdEstimacion_Name}"></td> 
                   <td>&nbsp;</td>
                 </tr>
@@ -294,10 +294,10 @@ jQuery(function ($) {
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th">Tipo de Requerimiento</td> 
+                  <td class="th">Tipo de requerimiento</td> 
                   <td>
                     <select id="mc_calificacion_capcid_tipo" name="{id_tipo_Name}">
-                      <option selected value="">Seleccionar Valor</option>
+                      <option selected value="">Seleccionar valor</option>
                       {id_tipo_Options}
                     </select>
  </td> 
@@ -313,7 +313,7 @@ jQuery(function ($) {
                   <td class="th"><label for="mc_calificacion_capcmes">Mes</label></td> 
                   <td>
                     <select id="mc_calificacion_capcmes" name="{mes_Name}">
-                      <option selected value="">Seleccionar Valor</option>
+                      <option selected value="">Seleccionar valor</option>
                       {mes_Options}
                     </select>
  </td> 
@@ -324,7 +324,7 @@ jQuery(function ($) {
                   <td class="th"><label for="mc_calificacion_capcanio">Año</label></td> 
                   <td>
                     <select id="mc_calificacion_capcanio" name="{anio_Name}">
-                      <option selected value="">Seleccionar Valor</option>
+                      <option selected value="">Seleccionar valor</option>
                       {anio_Options}
                     </select>
  </td> 
@@ -341,7 +341,7 @@ jQuery(function ($) {
                             <table class="Header" border="0" cellspacing="0" cellpadding="0">
                               <tr>
                                 <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
-                                <td class="th"><strong><font color="#ffffff" size="3">Calificar Retraso en Entregables</font></strong></td> 
+                                <td class="th"><strong><font color="#ffffff" size="3">Calificar retraso en entregables</font></strong></td> 
                                 <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
                               </tr>
                             </table>
@@ -351,8 +351,8 @@ jQuery(function ($) {
                             <td>
                               <table style="BORDER-RIGHT-WIDTH: 0px; BORDER-COLLAPSE: collapse; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; border-image: none" id="tblRetEnt" cellspacing="0" cellpadding="0" width="100%">
                                 <tr>
-                                  <td><label for="mc_calificacion_capcCAPFirmada" style="display: inline;">CAP Firmada</label><input type="checkbox" id="mc_calificacion_capcCAPFirmada" value="1" name="{CAPFirmada_Name}" {CAPFirmada}></td> 
-                                  <td colspan="2"><label for="mc_calificacion_capcFechaFirmaCAES" style="display: inline;">Fecha Firma CAES</label></td> 
+                                  <td><label for="mc_calificacion_capcCAPFirmada" style="display: inline;">CAP firmada</label><input type="checkbox" id="mc_calificacion_capcCAPFirmada" value="1" name="{CAPFirmada_Name}" {CAPFirmada}></td> 
+                                  <td colspan="2"><label for="mc_calificacion_capcFechaFirmaCAES" style="display: inline;">Fecha firma CAES</label></td> 
                                   <td colspan="2"><input type="text" id="mc_calificacion_capcFechaFirmaCAES" value="{FechaFirmaCAES}" name="{FechaFirmaCAES_Name}"></td> 
                                   <td>
                                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Todos los paquetes cerrados?<input type="checkbox" id="mc_calificacion_capcpaquetes_cerrados" value="1" name="{paquetes_cerrados_Name}" {paquetes_cerrados}></p>
@@ -371,9 +371,9 @@ jQuery(function ($) {
                                   <td><label for="mc_calificacion_capcDiasReales" style="display: inline;">&nbsp;</label></td> 
                                   <td>
                                     <!-- BEGIN TextBox DiasReales --><input type="text" id="mc_calificacion_capcDiasReales" onchange="CalculaRetraso()" value="{DiasReales}" maxlength="4" size="4" name="{DiasReales_Name}"><!-- END TextBox DiasReales --></td> 
-                                  <td><label for="mc_calificacion_capcDiasRetrasoHabiles" style="display: inline;">Máximo&nbsp;Días de Retraso&nbsp;Hábiles</label></td> 
+                                  <td><label for="mc_calificacion_capcDiasRetrasoHabiles" style="display: inline;">Máximo&nbsp;días de retraso&nbsp;hábiles</label></td> 
                                   <td><input type="text" id="mc_calificacion_capcDiasRetrasoHabiles" onchange="CalculaRetraso()" value="{DiasRetrasoHabiles}" maxlength="5" size="5" name="{DiasRetrasoHabiles_Name}"></td> 
-                                  <td><label for="mc_calificacion_capcDiasRetrasoNaturales" style="display: inline;"><label for="mc_calificacion_capcDiasRetrasoHabiles" style="display: inline;">Máximo&nbsp;Días de Retraso&nbsp;Naturales</label></label></td> 
+                                  <td><label for="mc_calificacion_capcDiasRetrasoNaturales" style="display: inline;"><label for="mc_calificacion_capcDiasRetrasoHabiles" style="display: inline;">Máximo&nbsp;días de retraso&nbsp;naturales</label></label></td> 
                                   <td><input type="text" id="mc_calificacion_capcDiasRetrasoNaturales" onchange="CalculaRetraso()" value="{DiasRetrasoNaturales}" maxlength="5" size="5" name="{DiasRetrasoNaturales_Name}"></td>
                                 </tr>
  
@@ -392,7 +392,7 @@ jQuery(function ($) {
                                 </tr>
  
                                 <tr class="Controls">
-                                  <td class="th">URL Referencia</td> 
+                                  <td class="th">URL referencia</td> 
                                   <td colspan="7"><textarea id="mc_calificacion_capcURLEntregables" rows="3" cols="62" name="{URLEntregables_Name}">{URLEntregables}</textarea></td>
                                 </tr>
  
@@ -452,7 +452,7 @@ jQuery(function ($) {
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Nombre --></th>
  
                   <th scope="col">
-                  <!-- BEGIN Sorter Sorter_Descripcion --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_Descripcion">Descripcion</a> 
+                  <!-- BEGIN Sorter Sorter_Descripcion --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_Descripcion">Descripción</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Descripcion --></th>
  
@@ -462,39 +462,39 @@ jQuery(function ($) {
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Formato --></th>
  
                   <th scope="col">
-                  <!-- BEGIN Sorter Sorter_NombreConHerramienta --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_NombreConHerramienta">Nombre Con Herramienta</a> 
+                  <!-- BEGIN Sorter Sorter_NombreConHerramienta --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_NombreConHerramienta">Nombre con herramienta</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_NombreConHerramienta --></th>
  
                   <th scope="col">
-                  <!-- BEGIN Sorter Sorter_FechaEstFin --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_FechaEstFin">Fecha Est Fin</a> 
+                  <!-- BEGIN Sorter Sorter_FechaEstFin --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_FechaEstFin">Fecha est fin</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_FechaEstFin --></th>
  
                   <th scope="col">
-                  <!-- BEGIN Sorter Sorter_FechaEntrega --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_FechaEntrega">Fecha Entrega</a> 
+                  <!-- BEGIN Sorter Sorter_FechaEntrega --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_FechaEntrega">Fecha entrega</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_FechaEntrega --></th>
  
                   <th scope="col">
-                  <!-- BEGIN Sorter Sorter_DiasHabilesDesviacion --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_DiasHabilesDesviacion">Dias Habiles Desviacion</a> 
+                  <!-- BEGIN Sorter Sorter_DiasHabilesDesviacion --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_DiasHabilesDesviacion">Días habiles desviacion</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_DiasHabilesDesviacion --></th>
  
                   <th scope="col">
-                  <!-- BEGIN Sorter Sorter_DiasNaturalesDesviacion --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_DiasNaturalesDesviacion">Dias Naturales Desviacion</a> 
+                  <!-- BEGIN Sorter Sorter_DiasNaturalesDesviacion --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_DiasNaturalesDesviacion">Días naturales desviacion</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_DiasNaturalesDesviacion --></th>
  
                   <th scope="col">Comentarios</th>
  
                   <th scope="col">
-                  <!-- BEGIN Sorter Sorter_DiasHabilesReales --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_DiasHabilesReales">Dias Habiles Reales</a> 
+                  <!-- BEGIN Sorter Sorter_DiasHabilesReales --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_DiasHabilesReales">Días hábiles reales</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_DiasHabilesReales --></th>
  
                   <th scope="col">
-                  <!-- BEGIN Sorter Sorter_PctDeductiva --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_PctDeductiva">Pct Deductiva</a> 
+                  <!-- BEGIN Sorter Sorter_PctDeductiva --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_PctDeductiva">Pct deductiva</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_PctDeductiva --></th>
                 </tr>
@@ -522,7 +522,7 @@ jQuery(function ($) {
                 <!-- END NoRecords -->
                 <tr class="Footer">
                   <td colspan="12">
-                    <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+                    <!-- BEGIN Navigator Navigator --><span class="Navigator">Registros por página: 
                     <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
                       <option selected value="">-</option>
  {PageSize_Options}
@@ -556,7 +556,7 @@ jQuery(function ($) {
         <form enctype="multipart/form-data" method="post" action="{ActionFileUpload}">
           <input type="hidden" value="100000" name="MAX_FILE_SIZE"><br>
           <br>
-          <b>Cargar Artefactos de Archivo: </b><br>
+          <b>Cargar artefactos de archivo: </b><br>
           <input type="file" accept="text/csv" name="userfile">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Procesar">
         </form>
         <!-- END Panel Panel1 --></td> 

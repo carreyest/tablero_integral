@@ -1,12 +1,14 @@
 <?php
-//BindEvents Method @1-461FC75D
+//BindEvents Method @1-C86AC1B8
 function BindEvents()
 {
     global $grdIncCuadroNS;
+    global $mc_calificacion_incidente;
     global $grdIncCuadroNS1;
     global $CCSEvents;
     $grdIncCuadroNS->CCSEvents["BeforeShowRow"] = "grdIncCuadroNS_BeforeShowRow";
     $grdIncCuadroNS->CCSEvents["BeforeShow"] = "grdIncCuadroNS_BeforeShow";
+    $mc_calificacion_incidente->CCSEvents["BeforeShow"] = "mc_calificacion_incidente_BeforeShow";
     $grdIncCuadroNS1->CCSEvents["BeforeShowRow"] = "grdIncCuadroNS1_BeforeShowRow";
     $grdIncCuadroNS1->CCSEvents["BeforeShow"] = "grdIncCuadroNS1_BeforeShow";
     $CCSEvents["BeforeShow"] = "Page_BeforeShow";
@@ -133,6 +135,41 @@ function grdIncCuadroNS_BeforeShow(& $sender)
     return $grdIncCuadroNS_BeforeShow;
 }
 //End Close grdIncCuadroNS_BeforeShow
+
+//mc_calificacion_incidente_BeforeShow @21-BCFAF919
+function mc_calificacion_incidente_BeforeShow(& $sender)
+{
+    $mc_calificacion_incidente_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $mc_calificacion_incidente; //Compatibility
+//End mc_calificacion_incidente_BeforeShow
+
+//Custom Code @81-2A29BDB7
+// -------------------------
+    global $db;
+    $db= new clsDBcnDisenio();
+    $db->query("select month(cast(max(cast(anioreporte as varchar) + '-' + CAST(mesreporte as varchar) + '-01') as date)) " .
+    	 ", year(cast(max(cast(anioreporte as varchar) + '-' + CAST(mesreporte as varchar) + '-01') as date)) from mc_calificacion_rs_MC");
+    if($db->next_record()){
+    	if(CCGetParam("s_MesReporte","")==""){
+    		//$Grid2->s_MesReporte->SetValue($db->f(0));
+    		$mc_calificacion_incidente->s_MesReporte->SetValue(date("m")-2);
+    	}
+    	if(CCGetParam("s_AnioReporte","")==""){
+    		$mc_calificacion_incidente->s_AnioReporte->SetValue($db->f(1));
+    		$mc_calificacion_incidente->s_AnioReporte->SetValue(date("Y"));
+    	}
+    }
+    $db->close();
+
+// -------------------------
+//End Custom Code
+
+//Close mc_calificacion_incidente_BeforeShow @21-DB37D23A
+    return $mc_calificacion_incidente_BeforeShow;
+}
+//End Close mc_calificacion_incidente_BeforeShow
 
 //grdIncCuadroNS1_BeforeShowRow @40-10466D9B
 function grdIncCuadroNS1_BeforeShowRow(& $sender)

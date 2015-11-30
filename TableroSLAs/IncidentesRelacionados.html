@@ -2,9 +2,8 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=windows-1252">
-<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
 <title>IncidentesRelacionados</title>
- 
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
 <script language="JavaScript" type="text/javascript">
 //Begin CCS script
 //Include Common JSFunctions @1-2504AB44
@@ -15,7 +14,7 @@
 
 //Include User Scripts @1-A87AC9EE
 </script>
-{page:scriptIncludes} 
+{page:scriptIncludes}
 <script type="text/javascript">
 //End Include User Scripts
 
@@ -24,7 +23,6 @@
 <link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
 <link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
 </head>
- 
 <body>
 <p>{Header}</p>
 <p><br>
@@ -36,7 +34,7 @@
       <p><br>
       </p>
  
-      <form name="{HTMLFormName}" id="mc_universo_cds" action="{Action}" method="post">
+      <form id="mc_universo_cds" method="post" name="{HTMLFormName}" action="{Action}">
         <p><br>
         </p>
  
@@ -46,39 +44,39 @@
               <table class="Header" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
-                  <td class="th"><strong>Buscar Incidentes</strong></td> 
+                  <td class="th"><strong>Buscar incidentes</strong></td> 
                   <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
                 </tr>
               </table>
  
               <table class="Record" cellspacing="0" cellpadding="0">
                 <!-- BEGIN Error -->
-                <tr class="Error" id="{@error-block}">
+                <tr id="{@error-block}" class="Error">
                   <td colspan="6">{Error}</td>
                 </tr>
                 <!-- END Error -->
                 <tr class="Controls">
                   <td class="th"><label for="mc_universo_cdss_numero">Paquete</label></td> 
-                  <td><input type="text" name="{s_numero_Name}" id="mc_universo_cdss_numero" size="25" maxlength="25" value="{s_numero}"></td> 
+                  <td><input type="text" id="mc_universo_cdss_numero" value="{s_numero}" maxlength="25" size="25" name="{s_numero_Name}"></td> 
                   <td class="th"><label for="mc_universo_cdss_mes">Mes</label></td> 
                   <td>
-                    <select name="{s_mes_Name}" id="mc_universo_cdss_mes">
-                      <option value="">Seleccionar Valor</option>
+                    <select id="mc_universo_cdss_mes" name="{s_mes_Name}">
+                      <option selected value="">Seleccionar valor</option>
                       {s_mes_Options}
                     </select>
  </td> 
-                  <td class="th"><label for="mc_universo_cdss_anio">Anio</label></td> 
+                  <td class="th"><label for="mc_universo_cdss_anio">Año</label></td> 
                   <td>
-                    <select name="{s_anio_Name}" id="mc_universo_cdss_anio">
-                      <option value="">Seleccionar Valor</option>
+                    <select id="mc_universo_cdss_anio" name="{s_anio_Name}">
+                      <option selected value="">Seleccionar valor</option>
                       {s_anio_Options}
                     </select>
  </td>
                 </tr>
  
                 <tr class="Bottom">
-                  <td style="text-align: right;" colspan="6">
-                    <!-- BEGIN Button Button_DoSearch --><input type="submit" name="{Button_Name}" class="Button" id="mc_universo_cdsButton_DoSearch" alt="Buscar" value="Buscar"><!-- END Button Button_DoSearch --></td>
+                  <td style="TEXT-ALIGN: right" colspan="6">
+                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="mc_universo_cdsButton_DoSearch" class="Button" value="Buscar" alt="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                 </tr>
               </table>
             </td>
@@ -90,7 +88,7 @@
       </form>
  
       <p>&nbsp;</p>
- <!-- END Record mc_universo_cds -->
+      <!-- END Record mc_universo_cds -->
       <p></p>
     </td> 
     <td>&nbsp;</td>
@@ -101,8 +99,8 @@
       <!-- BEGIN EditableGrid EditableGrid1 -->
       <p></p>
  
-      <form name="{HTMLFormName}" id="EditableGrid1" action="{Action}" method="post">
-        <input type="hidden" name="FormState" value="{FormState}">{FormScript} 
+      <form id="EditableGrid1" method="post" name="{HTMLFormName}" action="{Action}">
+        <input type="hidden" value="{FormState}" name="FormState">{FormScript} 
         <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="top">
@@ -122,7 +120,7 @@
                 <!-- END Error -->
                 <tr class="Caption">
                   <th scope="col">
-                  <!-- BEGIN Sorter Sorter_id_incidente --><span class="Sorter"><a href="{Sort_URL}" id="EditableGrid1Sorter_id_incidente">Id Incidente</a> 
+                  <!-- BEGIN Sorter Sorter_id_incidente --><span class="Sorter"><a href="{Sort_URL}" id="EditableGrid1Sorter_id_incidente">Id incidente</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_id_incidente --></th>
  
@@ -132,7 +130,7 @@
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_paquete --></th>
  
                   <th scope="col">
-                  <!-- BEGIN Sorter Sorter_FechaCarga --><span class="Sorter"><a href="{Sort_URL}" id="EditableGrid1Sorter_FechaCarga">Fecha Asignado</a> 
+                  <!-- BEGIN Sorter Sorter_FechaCarga --><span class="Sorter"><a href="{Sort_URL}" id="EditableGrid1Sorter_FechaCarga">Fecha asignado</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_FechaCarga --></th>
  
@@ -146,12 +144,12 @@
                 </tr>
                 <!-- END RowError -->
                 <tr class="Row">
-                  <td style="background-color:{bgcolorP}">{id_incidente}<input type="hidden" name="{hdIdIncidente_Name}" id="EditableGrid1hdIdIncidente_{EditableGrid1:rowNumber}" value="{hdIdIncidente}"></td> 
-                  <td style="background-color:{bgcolorP}">{paquete}<input type="hidden" name="{hdPaquete_Name}" id="EditableGrid1hdPaquete_{EditableGrid1:rowNumber}" value="{hdPaquete}"></td> 
+                  <td style="background-color:{bgcolorP}">{id_incidente}<input type="hidden" id="EditableGrid1hdIdIncidente_{EditableGrid1:rowNumber}" value="{hdIdIncidente}" name="{hdIdIncidente_Name}"></td> 
+                  <td style="background-color:{bgcolorP}">{paquete}<input type="hidden" id="EditableGrid1hdPaquete_{EditableGrid1:rowNumber}" value="{hdPaquete}" name="{hdPaquete_Name}"></td> 
                   <td style="background-color:{bgcolorP}">{FechaCarga}</td> 
                   <td style="background-color:{bgcolorP}">
                     <!-- BEGIN Panel CheckBox_Delete_Panel --><label for="EditableGrid1CheckBox_Delete_PanelCheckBox_Delete_{EditableGrid1:rowNumber}" style="display: none;">Borrar</label> 
-                    <!-- BEGIN CheckBox CheckBox_Delete --><input type="checkbox" name="{CheckBox_Delete_Name}" id="EditableGrid1CheckBox_Delete_PanelCheckBox_Delete_{EditableGrid1:rowNumber}" value="1" {CheckBox_Delete}><!-- END CheckBox CheckBox_Delete --><!-- END Panel CheckBox_Delete_Panel -->&nbsp;</td>
+                    <!-- BEGIN CheckBox CheckBox_Delete --><input type="checkbox" id="EditableGrid1CheckBox_Delete_PanelCheckBox_Delete_{EditableGrid1:rowNumber}" value="1" name="{CheckBox_Delete_Name}" {CheckBox_Delete}><!-- END CheckBox CheckBox_Delete --><!-- END Panel CheckBox_Delete_Panel -->&nbsp;</td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
@@ -160,9 +158,9 @@
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
-                  <td style="text-align: right;" colspan="4">
-                    <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
-                    <select name="{FormName}PageSize" style="vertical-align: middle;" data-grid-size="{FormName}">
+                  <td style="TEXT-ALIGN: right" colspan="4">
+                    <!-- BEGIN Navigator Navigator --><span class="Navigator">Registros por página: 
+                    <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
                       <option selected value="">-</option>
  {PageSize_Options}
                     </select>
@@ -175,27 +173,27 @@
                     <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
                     <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
                     <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->
-                    <!-- BEGIN Button Button_Submit --><input type="submit" name="{Button_Name}" class="Button" id="EditableGrid1Button_Submit" alt="Enviar" value="Enviar"><!-- END Button Button_Submit --></td>
+                    <!-- BEGIN Button Button_Submit --><input type="submit" id="EditableGrid1Button_Submit" class="Button" value="Enviar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Submit --></td>
                 </tr>
               </table>
             </td>
           </tr>
         </table>
       </form>
- &nbsp;<br>
+      &nbsp;<br>
       <p></p>
- <!-- END EditableGrid EditableGrid1 -->
+      <!-- END EditableGrid EditableGrid1 -->
       <p></p>
     </td> 
-    <td style="vertical-align: top;">&nbsp;&nbsp;&nbsp; 
+    <td style="VERTICAL-ALIGN: top">&nbsp;&nbsp;&nbsp; 
       <!-- BEGIN Grid Grid1 -->
-      <table class="MainTable" id="Grid1" border="0" cellspacing="0" cellpadding="0">
+      <table id="Grid1" class="MainTable" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td valign="top">
             <table class="Header" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
-                <td class="th"><strong>Incidentes Relacionados </strong></td> 
+                <td class="th"><strong>Incidentes relacionados </strong></td> 
                 <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
               </tr>
             </table>
@@ -208,7 +206,7 @@
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Id --></th>
  
                 <th scope="col">
-                <!-- BEGIN Sorter Sorter_Inc_Principal --><span class="Sorter"><a href="{Sort_URL}" id="Grid1Sorter_Inc_Principal">Inc Principal</a> 
+                <!-- BEGIN Sorter Sorter_Inc_Principal --><span class="Sorter"><a href="{Sort_URL}" id="Grid1Sorter_Inc_Principal">Inc principal</a> 
                 <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Inc_Principal --></th>
  
@@ -218,7 +216,7 @@
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Paquete --></th>
  
                 <th scope="col">
-                <!-- BEGIN Sorter Sorter_Inc_Secundario --><span class="Sorter"><a href="{Sort_URL}" id="Grid1Sorter_Inc_Secundario">Inc Secundario</a> 
+                <!-- BEGIN Sorter Sorter_Inc_Secundario --><span class="Sorter"><a href="{Sort_URL}" id="Grid1Sorter_Inc_Secundario">Inc secundario</a> 
                 <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Inc_Secundario --></th>
               </tr>
@@ -252,7 +250,7 @@
           </td>
         </tr>
       </table>
- <!-- END Grid Grid1 --><br>
+      <!-- END Grid Grid1 --><br>
       <br>
     </td>
   </tr>

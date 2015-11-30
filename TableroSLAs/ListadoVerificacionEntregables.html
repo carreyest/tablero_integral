@@ -53,7 +53,7 @@
               </td> 
               <td>
                 <select id="BuscarMesReporte" name="{MesReporte_Name}">
-                  <option selected value="">Seleccionar Valor</option>
+                  <option selected value="">Seleccionar valor</option>
                   {MesReporte_Options}
                 </select>
  </td> 
@@ -62,7 +62,7 @@
               </td> 
               <td>
                 <select id="Buscaranioreporte" name="{anioreporte_Name}">
-                  <option selected value="">Seleccionar Valor</option>
+                  <option selected value="">Seleccionar valor</option>
                   {anioreporte_Options}
                 </select>
  </td> 
@@ -71,7 +71,7 @@
               </td> 
               <td>
                 <select id="Buscarbusqproveedor" name="{busqproveedor_Name}">
-                  <option selected value="">Seleccionar Valor</option>
+                  <option selected value="">Seleccionar valor</option>
                   {busqproveedor_Options}
                 </select>
  </td>
@@ -87,6 +87,16 @@
     </table>
   </form>
   <!-- END Record Buscar --></p>
+</div>
+<div style="FLOAT: right">
+<table width="100%">
+  <tr>
+    <td></td> 
+    <td>
+        {MenuTablero1} 
+ </td> 
+  </tr>
+</table>
 </div>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -141,12 +151,12 @@
               <th scope="col">Comentarios</th>
  
               <th scope="col">
-              <!-- BEGIN Sorter Sorter_mes --><span class="Sorter"><a href="{Sort_URL}" id="GridEntregablesSorter_mes">Mes Corte</a> 
+              <!-- BEGIN Sorter Sorter_mes --><span class="Sorter"><a href="{Sort_URL}" id="GridEntregablesSorter_mes">Mes corte</a> 
               <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
               <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_mes --></th>
  
               <th scope="col">
-              <!-- BEGIN Sorter Sorter_anio_corte --><span class="Sorter"><a href="{Sort_URL}" id="GridEntregablesSorter_anio_corte">Año Corte</a> 
+              <!-- BEGIN Sorter Sorter_anio_corte --><span class="Sorter"><a href="{Sort_URL}" id="GridEntregablesSorter_anio_corte">Año corte</a> 
               <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
               <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_anio_corte --></th>
             </tr>
@@ -163,7 +173,7 @@
               <td>{proveedor}</td> 
               <td><label for="GridEntregablesentregado_{GridEntregables:rowNumber}" style="display: none;">Entregado</label> 
                 <select id="GridEntregablesentregado_{GridEntregables:rowNumber}" name="{entregado_Name}">
-                  <option selected value="">Seleccionar Valor</option>
+                  <option selected value="">Seleccionar valor</option>
                   {entregado_Options}
                 </select>
  </td> 
@@ -183,7 +193,7 @@
             <!-- END NoRecords -->
             <tr class="Footer">
               <td style="TEXT-ALIGN: right" colspan="9">
-                <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+                <!-- BEGIN Navigator Navigator --><span class="Navigator">Registros por página: 
                 <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
                   <option selected value="">-</option>
  {PageSize_Options}
@@ -219,7 +229,7 @@
           <table class="Header" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
-              <td class="th"><strong>Generar Nuevo Mes</strong></td> 
+              <td class="th"><strong>Generar nuevo mes</strong></td> 
               <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
             </tr>
           </table>
@@ -234,14 +244,14 @@
               <td class="th"><label for="GenListMesGenCorte">Mes</label></td> 
               <td>
                 <select id="GenListMesGenCorte" name="{MesGenCorte_Name}">
-                  <option selected value="">Seleccionar Valor</option>
+                  <option selected value="">Seleccionar valor</option>
                   {MesGenCorte_Options}
                 </select>
  </td> 
               <td>&nbsp;Año</td> 
               <td>
                 <select id="GenListAnioGenCorte" name="{AnioGenCorte_Name}">
-                  <option selected value="">Seleccionar Valor</option>
+                  <option selected value="">Seleccionar valor</option>
                   {AnioGenCorte_Options}
                 </select>
  </td> 
@@ -250,7 +260,7 @@
               </td> 
               <td>
                 <select id="GenListGenproveedor" name="{Genproveedor_Name}">
-                  <option selected value="">Seleccionar Valor</option>
+                  <option selected value="">Seleccionar valor</option>
                   {Genproveedor_Options}
                 </select>
  </td>

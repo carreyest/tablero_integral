@@ -520,21 +520,20 @@ order by nombre
 				</Event>
 			</Events>
 			<TableParameters>
-				<TableParameter id="200" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Id" logicOperator="And" orderNumber="1" parameterSource="sID" parameterType="URL" searchConditionType="Equal"/>
-			</TableParameters>
+				<TableParameter id="209" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Id" logicOperator="And" orderNumber="1" parameterSource="sID" parameterType="URL" searchConditionType="Equal"/>
+</TableParameters>
 			<SPParameters/>
 			<SQLParameters/>
 			<JoinTables>
-				<JoinTable id="199" posHeight="213" posLeft="10" posTop="10" posWidth="160" tableName="mc_info_capc_ap"/>
-			</JoinTables>
+				<JoinTable id="212" tableName="mc_info_capc_ap"/>
+</JoinTables>
 			<JoinLinks/>
 			<Fields>
-				<Field id="201" fieldName="*"/>
-			</Fields>
+				<Field id="210" fieldName="*"/>
+</Fields>
 			<PKFields>
-				<PKField id="202" dataType="Integer" fieldName="Id" tableName="mc_info_capc_ap"/>
-				<PKField id="203" dataType="Text" fieldName="ID_PPMC" tableName="mc_info_capc_ap"/>
-			</PKFields>
+				<PKField id="211" dataType="Text" fieldName="ID_PPMC" tableName="mc_info_capc_ap"/>
+</PKFields>
 			<ISPParameters/>
 			<ISQLParameters>
 				<SQLParameter id="87" variable="URLReferencia" dataType="Memo" parameterType="Control" parameterSource="URLReferencia"/>

@@ -46,7 +46,7 @@ function Header_BeforeShow(& $sender)
     	$Component->Panel2->Visible=false;
     	$Component->Panel4->Visible=false;
     } else {
-    	$Component->lSesion->SetValue(CCGetUserLogin());
+    	$Component->lSesion->SetValue(CCGetSession('NombreCorto'));
     }
     if(CCGetSession("GrupoValoracion")=="CAPC"){
     	$Component->pnlMenu->Visible=true;

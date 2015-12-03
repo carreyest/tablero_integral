@@ -44,6 +44,8 @@ function Login1_Button_DoLogin_OnClick(& $sender)
 		CCSetSession("Nivel",$sNivel); 
 		$sEsRape = CCDLookUp("Rape","mc_c_usuarios","id= " . CCGetUserID() , $db);
 		CCSetSession("Rape",$sEsRape); 
+		$sNombre = CCDLookUp("substring(nombre,1,case when charindex(' ',nombre)=0 then len(nombre) else charindex(' ',nombre)-1 end )","mc_c_usuarios","id= " . CCGetUserID() , $db);
+		CCSetSession("NombreCorto",$sNombre);
 		$db->close();
 		
 		// dependiendo del grupo lo manda a la página que le interesa

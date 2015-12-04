@@ -140,9 +140,9 @@ function mc_c_usuarios1_ds_AfterExecuteInsert(& $sender)
     // Write your own code here.
     global $DBcnDisenio;
 
-	$DBcnDisenio->query("select id, Nombre from mc_c_usuarios where id = (select MAX(id) from mc_c_usuarios)" );
+	$DBcnDisenio->query("select id, Nombre, usuario from mc_c_usuarios where id = (select MAX(id) from mc_c_usuarios)" );
 	if($DBcnDisenio->next_record()){
-		$sInsert="insert into usuario_reporteMyM(id_usuario, id_reporte, activo, nombre_reporte,usuario) select ".$DBcnDisenio->f("id").", IdReporte, 1, nombre,'".$DBcnDisenio->f("Nombre")."' from ReportesMyM";	
+		$sInsert="insert into usuario_reporteMyM(id_usuario, id_reporte, activo, nombre_reporte,usuario) select ".$DBcnDisenio->f("id").", IdReporte, 1, nombre,'".$DBcnDisenio->f("usuario")."' from ReportesMyM";	
 	}
 	$DBcnDisenio->query($sInsert);
 // -------------------------

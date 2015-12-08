@@ -195,12 +195,18 @@ where a.administracion like '%{s_Admon}%'
 				<ListBox id="25" visible="Yes" fieldSourceType="DBColumn" sourceType="Table" dataType="Text" returnValueType="Number" name="id_admon" fieldSource="id_admon" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Id Admon" caption="Id Admon" required="True" unique="False" connection="ConnCarga" wizardEmptyCaption="Seleccionar Valor" PathID="c_mapeo_admin_serv_rape_rid_admon" dataSource="c_administracion_repo" boundColumn="id_admon" textColumn="administracion">
 					<Components/>
 					<Events/>
-					<TableParameters/>
+					<TableParameters>
+<TableParameter id="79" conditionType="Parameter" useIsNull="False" dataType="Text" field="administracion" logicOperator="And" parameterSource="'-'" parameterType="Expression" searchConditionType="NotContains"/>
+</TableParameters>
 					<SPParameters/>
 					<SQLParameters/>
-					<JoinTables/>
+					<JoinTables>
+<JoinTable id="78" posHeight="120" posLeft="10" posTop="10" posWidth="96" tableName="c_administracion_repo"/>
+</JoinTables>
 					<JoinLinks/>
-					<Fields/>
+					<Fields>
+<Field id="80" fieldName="*"/>
+</Fields>
 					<PKFields/>
 					<Attributes/>
 					<Features/>
@@ -357,35 +363,35 @@ where a.administracion like '%{s_Admon}%'
 					<Features/>
 				</Hidden>
 				<Hidden id="76" fieldSourceType="DBColumn" dataType="Text" name="id_servicio" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="c_servicio_negocio_ppm_apid_servicio" fieldSource="id_servicio" defaultValue="CCGetParam(&quot;id_servicio&quot;)">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Hidden>
-</Components>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+			</Components>
 			<Events>
-<Event name="BeforeShow" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="77"/>
-</Actions>
-</Event>
-</Events>
+				<Event name="BeforeShow" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="77"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters>
 				<TableParameter id="72" conditionType="Parameter" useIsNull="False" dataType="Integer" field="id_mapa_servicio" logicOperator="And" orderNumber="1" parameterSource="id_mapa_servicio" parameterType="URL" searchConditionType="Equal"/>
-</TableParameters>
+			</TableParameters>
 			<SPParameters/>
 			<SQLParameters/>
 			<JoinTables>
 				<JoinTable id="71" posHeight="136" posLeft="10" posTop="10" posWidth="150" tableName="c_servicio_negocio_ppm_aplicativo_repo"/>
-</JoinTables>
+			</JoinTables>
 			<JoinLinks/>
 			<Fields>
-<Field id="73" fieldName="*"/>
-</Fields>
+				<Field id="73" fieldName="*"/>
+			</Fields>
 			<PKFields>
-<PKField id="74" dataType="Text" fieldName="servicio_negocio_aplic" tableName="c_servicio_negocio_ppm_aplicativo_repo"/>
-<PKField id="75" dataType="Text" fieldName="servicio_negocio_ppm" tableName="c_servicio_negocio_ppm_aplicativo_repo"/>
-</PKFields>
+				<PKField id="74" dataType="Text" fieldName="servicio_negocio_aplic" tableName="c_servicio_negocio_ppm_aplicativo_repo"/>
+				<PKField id="75" dataType="Text" fieldName="servicio_negocio_ppm" tableName="c_servicio_negocio_ppm_aplicativo_repo"/>
+			</PKFields>
 			<ISPParameters/>
 			<ISQLParameters/>
 			<IFormElements/>

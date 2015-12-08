@@ -49,7 +49,7 @@ class clsRecordmc_c_usuarios { //mc_c_usuarios Class @3-51B8D947
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-6BFF9FCD
+//Class_Initialize Event @3-6E890586
     function clsRecordmc_c_usuarios($RelativePath, & $Parent)
     {
 
@@ -80,12 +80,17 @@ class clsRecordmc_c_usuarios { //mc_c_usuarios Class @3-51B8D947
             $this->Button_Update = new clsButton("Button_Update", $Method, $this);
             $this->Clave = new clsControl(ccsTextBox, "Clave", "Clave", ccsText, "", CCGetRequestParam("Clave", $Method, NULL), $this);
             $this->Clave->Required = true;
-            $this->UsrSharePoint = new clsControl(ccsTextBox, "UsrSharePoint", "Usr Share Point", ccsText, "", CCGetRequestParam("UsrSharePoint", $Method, NULL), $this);
-            $this->PwdSharePoint = new clsControl(ccsTextBox, "PwdSharePoint", "Pwd Share Point", ccsText, "", CCGetRequestParam("PwdSharePoint", $Method, NULL), $this);
-            $this->CDSDefault = new clsControl(ccsTextBox, "CDSDefault", "CDSDefault", ccsText, "", CCGetRequestParam("CDSDefault", $Method, NULL), $this);
             $this->Clave_Shadow = new clsControl(ccsHidden, "Clave_Shadow", "Clave_Shadow", ccsText, "", CCGetRequestParam("Clave_Shadow", $Method, NULL), $this);
             $this->NewPwd = new clsControl(ccsTextBox, "NewPwd", "NewPwd", ccsText, "", CCGetRequestParam("NewPwd", $Method, NULL), $this);
             $this->ConfirmNewPwd = new clsControl(ccsTextBox, "ConfirmNewPwd", "ConfirmNewPwd", ccsText, "", CCGetRequestParam("ConfirmNewPwd", $Method, NULL), $this);
+            $this->Panel1 = new clsPanel("Panel1", $this);
+            $this->UsrSharePoint = new clsControl(ccsTextBox, "UsrSharePoint", "Usr Share Point", ccsText, "", CCGetRequestParam("UsrSharePoint", $Method, NULL), $this);
+            $this->PwdSharePoint = new clsControl(ccsTextBox, "PwdSharePoint", "Pwd Share Point", ccsText, "", CCGetRequestParam("PwdSharePoint", $Method, NULL), $this);
+            $this->CDSDefault = new clsControl(ccsTextBox, "CDSDefault", "CDSDefault", ccsText, "", CCGetRequestParam("CDSDefault", $Method, NULL), $this);
+            $this->Panel1->Visible = false;
+            $this->Panel1->AddComponent("UsrSharePoint", $this->UsrSharePoint);
+            $this->Panel1->AddComponent("PwdSharePoint", $this->PwdSharePoint);
+            $this->Panel1->AddComponent("CDSDefault", $this->CDSDefault);
         }
     }
 //End Class_Initialize Event
@@ -101,42 +106,42 @@ class clsRecordmc_c_usuarios { //mc_c_usuarios Class @3-51B8D947
     }
 //End Initialize Method
 
-//Validate Method @3-1F7875C1
+//Validate Method @3-FD4BB0FA
     function Validate()
     {
         global $CCSLocales;
         $Validation = true;
         $Where = "";
         $Validation = ($this->Clave->Validate() && $Validation);
-        $Validation = ($this->UsrSharePoint->Validate() && $Validation);
-        $Validation = ($this->PwdSharePoint->Validate() && $Validation);
-        $Validation = ($this->CDSDefault->Validate() && $Validation);
         $Validation = ($this->Clave_Shadow->Validate() && $Validation);
         $Validation = ($this->NewPwd->Validate() && $Validation);
         $Validation = ($this->ConfirmNewPwd->Validate() && $Validation);
+        $Validation = ($this->UsrSharePoint->Validate() && $Validation);
+        $Validation = ($this->PwdSharePoint->Validate() && $Validation);
+        $Validation = ($this->CDSDefault->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->Clave->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->UsrSharePoint->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->PwdSharePoint->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->CDSDefault->Errors->Count() == 0);
         $Validation =  $Validation && ($this->Clave_Shadow->Errors->Count() == 0);
         $Validation =  $Validation && ($this->NewPwd->Errors->Count() == 0);
         $Validation =  $Validation && ($this->ConfirmNewPwd->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->UsrSharePoint->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->PwdSharePoint->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->CDSDefault->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-9002A9F1
+//CheckErrors Method @3-2B94934B
     function CheckErrors()
     {
         $errors = false;
         $errors = ($errors || $this->Clave->Errors->Count());
-        $errors = ($errors || $this->UsrSharePoint->Errors->Count());
-        $errors = ($errors || $this->PwdSharePoint->Errors->Count());
-        $errors = ($errors || $this->CDSDefault->Errors->Count());
         $errors = ($errors || $this->Clave_Shadow->Errors->Count());
         $errors = ($errors || $this->NewPwd->Errors->Count());
         $errors = ($errors || $this->ConfirmNewPwd->Errors->Count());
+        $errors = ($errors || $this->UsrSharePoint->Errors->Count());
+        $errors = ($errors || $this->PwdSharePoint->Errors->Count());
+        $errors = ($errors || $this->CDSDefault->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -179,25 +184,25 @@ class clsRecordmc_c_usuarios { //mc_c_usuarios Class @3-51B8D947
     }
 //End Operation Method
 
-//UpdateRow Method @3-CA829EEE
+//UpdateRow Method @3-34325363
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
         if(!$this->UpdateAllowed) return false;
         $this->DataSource->Clave->SetValue($this->Clave->GetValue(true));
-        $this->DataSource->UsrSharePoint->SetValue($this->UsrSharePoint->GetValue(true));
-        $this->DataSource->PwdSharePoint->SetValue($this->PwdSharePoint->GetValue(true));
-        $this->DataSource->CDSDefault->SetValue($this->CDSDefault->GetValue(true));
         $this->DataSource->Clave_Shadow->SetValue($this->Clave_Shadow->GetValue(true));
         $this->DataSource->NewPwd->SetValue($this->NewPwd->GetValue(true));
         $this->DataSource->ConfirmNewPwd->SetValue($this->ConfirmNewPwd->GetValue(true));
+        $this->DataSource->UsrSharePoint->SetValue($this->UsrSharePoint->GetValue(true));
+        $this->DataSource->PwdSharePoint->SetValue($this->PwdSharePoint->GetValue(true));
+        $this->DataSource->CDSDefault->SetValue($this->CDSDefault->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
         return (!$this->CheckErrors());
     }
 //End UpdateRow Method
 
-//Show Method @3-06478026
+//Show Method @3-6F99B48D
     function Show()
     {
         global $CCSUseAmp;
@@ -240,12 +245,12 @@ class clsRecordmc_c_usuarios { //mc_c_usuarios Class @3-51B8D947
         if($this->FormSubmitted || $this->CheckErrors()) {
             $Error = "";
             $Error = ComposeStrings($Error, $this->Clave->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->UsrSharePoint->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->PwdSharePoint->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->CDSDefault->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Clave_Shadow->Errors->ToString());
             $Error = ComposeStrings($Error, $this->NewPwd->Errors->ToString());
             $Error = ComposeStrings($Error, $this->ConfirmNewPwd->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->UsrSharePoint->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->PwdSharePoint->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->CDSDefault->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -267,12 +272,10 @@ class clsRecordmc_c_usuarios { //mc_c_usuarios Class @3-51B8D947
 
         $this->Button_Update->Show();
         $this->Clave->Show();
-        $this->UsrSharePoint->Show();
-        $this->PwdSharePoint->Show();
-        $this->CDSDefault->Show();
         $this->Clave_Shadow->Show();
         $this->NewPwd->Show();
         $this->ConfirmNewPwd->Show();
+        $this->Panel1->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -283,7 +286,7 @@ class clsRecordmc_c_usuarios { //mc_c_usuarios Class @3-51B8D947
 
 class clsmc_c_usuariosDataSource extends clsDBcnDisenio {  //mc_c_usuariosDataSource Class @3-86F6BAC1
 
-//DataSource Variables @3-62BCE385
+//DataSource Variables @3-42BB6B90
     public $Parent = "";
     public $CCSEvents = "";
     public $CCSEventResult;
@@ -298,15 +301,15 @@ class clsmc_c_usuariosDataSource extends clsDBcnDisenio {  //mc_c_usuariosDataSo
 
     // Datasource fields
     public $Clave;
-    public $UsrSharePoint;
-    public $PwdSharePoint;
-    public $CDSDefault;
     public $Clave_Shadow;
     public $NewPwd;
     public $ConfirmNewPwd;
+    public $UsrSharePoint;
+    public $PwdSharePoint;
+    public $CDSDefault;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @3-FD3D9139
+//DataSourceClass_Initialize Event @3-298E51BC
     function clsmc_c_usuariosDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -314,17 +317,17 @@ class clsmc_c_usuariosDataSource extends clsDBcnDisenio {  //mc_c_usuariosDataSo
         $this->Initialize();
         $this->Clave = new clsField("Clave", ccsText, "");
         
-        $this->UsrSharePoint = new clsField("UsrSharePoint", ccsText, "");
-        
-        $this->PwdSharePoint = new clsField("PwdSharePoint", ccsText, "");
-        
-        $this->CDSDefault = new clsField("CDSDefault", ccsText, "");
-        
         $this->Clave_Shadow = new clsField("Clave_Shadow", ccsText, "");
         
         $this->NewPwd = new clsField("NewPwd", ccsText, "");
         
         $this->ConfirmNewPwd = new clsField("ConfirmNewPwd", ccsText, "");
+        
+        $this->UsrSharePoint = new clsField("UsrSharePoint", ccsText, "");
+        
+        $this->PwdSharePoint = new clsField("PwdSharePoint", ccsText, "");
+        
+        $this->CDSDefault = new clsField("CDSDefault", ccsText, "");
         
 
         $this->UpdateFields["Clave"] = array("Name" => "[Clave]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);

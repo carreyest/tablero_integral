@@ -3,14 +3,14 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=windows-1252">
 <title>Charts</title>
-<meta name="expires" content="0">
-<meta http-equiv="PRAGMA" content="NO-CACHE">
 <meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
+<meta http-equiv="PRAGMA" content="NO-CACHE">
+<meta name="expires" content="0">
 <link rel="stylesheet" type="text/css" href="../Styles/{CCS_Style}/Style_doctype.css">
 <link rel="stylesheet" type="text/css" href="../Styles/{CCS_Style}/jquery-ui.css">
 <script language="javascript">
     function ufHabilitaMes(){
-    	document.getElementById("mc_c_metricas_Mes").disabled= (document.getElementById("mc_c_metricas_Metrica").selectedIndex !=1)
+        document.getElementById("mc_c_metricas_Mes").disabled= (document.getElementById("mc_c_metricas_Metrica").selectedIndex !=1)
     }
 </script>
 </head>
@@ -42,7 +42,7 @@
                 <tr class="Controls">
                   <td>
                     <!-- BEGIN CheckBoxList s_Acronimo --><input type="checkbox" id="mc_c_metricas_Acronimo_{s_Acronimo:optionNumber}" value="{Value}" name="{s_Acronimo_Name}" {Check}><label for="mc_c_metricas_Acronimo_{s_Acronimo:optionNumber}">{Description}</label><br>
-                    <!-- END CheckBoxList s_Acronimo --></td>
+                    &nbsp; &nbsp; <!-- END CheckBoxList s_Acronimo --></td>
                 </tr>
  
                 <tr>
@@ -51,28 +51,32 @@
  
                 <tr class="Controls">
                   <td>Dato&nbsp;&nbsp;&nbsp; 
-                    <select id="mc_c_metricas_Metrica" name="{s_Metrica_Name}" onchange="ufHabilitaMes()">
-  <option selected value="">Seleccionar Valor</option>
-  {s_Metrica_Options} </select>
- &nbsp;</td>
+                    <select onchange="ufHabilitaMes()" id="mc_c_metricas_Metrica" name="{s_Metrica_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {s_Metrica_Options}
+                    </select>
+ &nbsp; </td>
                 </tr>
  
                 <tr class="Controls">
                   <td><label for="mc_c_metricas_Anio" style="display: inline;">Año&nbsp;&nbsp; </label>&nbsp; 
                     <select id="mc_c_metricas_Anio" name="{s_Anio_Name}">
-  <option selected value="">Seleccionar Valor</option>
-  {s_Anio_Options} </select>
+                      <option selected value="">Seleccionar Valor</option>
+                      {s_Anio_Options}
+                    </select>
  </td>
                 </tr>
  
+                <!-- BEGIN Panel Panel1 -->
                 <tr class="Controls">
-                  <td><label for="mc_c_metricas_Mes" style="display: inline;">Mes&nbsp;&nbsp;&nbsp;</label> 
-                    <select id="mc_c_metricas_Mes" name="{s_Mes_Name}">
-  <option selected value="0">Todos los Meses</option>
-  {s_Mes_Options} </select>
+                  <td><label for="mc_c_metricaPanel1s_Mes" style="display: inline;">Mes&nbsp;&nbsp;&nbsp;</label> 
+                    <select id="mc_c_metricaPanel1s_Mes" name="{s_Mes_Name}">
+                      <option selected value="0">Seleccionar Valor</option>
+                      {s_Mes_Options}
+                    </select>
  </td>
                 </tr>
- 
+ <!-- END Panel Panel1 -->
                 <tr class="Controls">
                   <td>&nbsp;</td>
                 </tr>
@@ -108,6 +112,6 @@
     <td style="VERTICAL-ALIGN: top" width="330">&nbsp;</td>
   </tr>
 </table>
-</p>
+<p></p>
 </body>
 </html>

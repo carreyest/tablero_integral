@@ -46,6 +46,13 @@ function mc_c_usuarios_BeforeShow(& $sender)
     }
 //End Preserve Password
 
+//Custom Code @22-2A29BDB7
+// -------------------------
+    $Component->PwdSharePoint->SetValue("");
+    $Component->UsrSharePoint->SetValue("");
+// -------------------------
+//End Custom Code
+
 //Close mc_c_usuarios_BeforeShow @3-31769AD9
     return $mc_c_usuarios_BeforeShow;
 }

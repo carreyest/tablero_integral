@@ -468,18 +468,17 @@ class clsGrid1DataSource extends clsDBConnCarga {  //Grid1DataSource Class @3-11
     }
 //End Prepare Method
 
-//Open Method @3-1D974C9F
+//Open Method @3-D2316169
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (select m.id_mapeo, a.administracion, s.servicio_negocio,  r.rape , r.id_rape, s.id_servicio\n" .
-        "from c_mapeo_admin_serv_rape_repo m \n" .
+        $this->CountSQL = "SELECT COUNT(*) FROM c_mapeo_admin_serv_rape_repo m \n" .
         "inner join c_administracion_repo a on m.id_admon=a.id_admon\n" .
         "inner join c_rape_repo r on    m.id_rape=r.id_rape\n" .
         "inner join c_servicio_negocio_repo s on m.id_servicio=s.id_servicio \n" .
         "where a.administracion like '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%'\n" .
         "	and s.servicio_negocio like '%" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "%'\n" .
-        "	and r.rape like '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') cnt";
+        "	and r.rape like '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'";
         $this->SQL = "select m.id_mapeo, a.administracion, s.servicio_negocio,  r.rape , r.id_rape, s.id_servicio\n" .
         "from c_mapeo_admin_serv_rape_repo m \n" .
         "inner join c_administracion_repo a on m.id_admon=a.id_admon\n" .
@@ -493,7 +492,7 @@ class clsGrid1DataSource extends clsDBConnCarga {  //Grid1DataSource Class @3-11
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
         else
             $this->RecordsCount = "CCS not counted";
-        $this->query($this->OptimizeSQL(CCBuildSQL($this->SQL, $this->Where, $this->Order)));
+        $this->query(CCBuildSQL($this->SQL, $this->Where, $this->Order));
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteSelect", $this->Parent);
         $this->MoveToPage($this->AbsolutePage);
     }
@@ -547,7 +546,7 @@ class clsRecordc_mapeo_admin_serv_rape_r { //c_mapeo_admin_serv_rape_r Class @17
     // Class variables
 //End Variables
 
-//Class_Initialize Event @17-324AEB8C
+//Class_Initialize Event @17-11A795AE
     function clsRecordc_mapeo_admin_serv_rape_r($RelativePath, & $Parent)
     {
 
@@ -588,6 +587,12 @@ class clsRecordc_mapeo_admin_serv_rape_r { //c_mapeo_admin_serv_rape_r Class @17
             $this->id_admon->DataSource->SQL = "SELECT * \n" .
 "FROM c_administracion_repo {SQL_Where} {SQL_OrderBy}";
             list($this->id_admon->BoundColumn, $this->id_admon->TextColumn, $this->id_admon->DBFormat) = array("id_admon", "administracion", "");
+            $this->id_admon->DataSource->Parameters["expr79"] = '-';
+            $this->id_admon->DataSource->wp = new clsSQLParameters();
+            $this->id_admon->DataSource->wp->AddParameter("1", "expr79", ccsText, "", "", $this->id_admon->DataSource->Parameters["expr79"], "", false);
+            $this->id_admon->DataSource->wp->Criterion[1] = $this->id_admon->DataSource->wp->Operation(opNotContains, "administracion", $this->id_admon->DataSource->wp->GetDBValue("1"), $this->id_admon->DataSource->ToSQL($this->id_admon->DataSource->wp->GetDBValue("1"), ccsText),false);
+            $this->id_admon->DataSource->Where = 
+                 $this->id_admon->DataSource->wp->Criterion[1];
             $this->id_admon->Required = true;
             $this->id_servicio = new clsControl(ccsListBox, "id_servicio", "Id Servicio", ccsText, "", CCGetRequestParam("id_servicio", $Method, NULL), $this);
             $this->id_servicio->DSType = dsTable;
@@ -1962,13 +1967,12 @@ class clsc_servicio_negocio_ppm_ap1DataSource extends clsDBConnCarga {  //c_serv
     }
 //End Prepare Method
 
-//Open Method @61-F1725522
+//Open Method @61-F4919E7C
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT * \n" .
-        "FROM c_servicio_negocio_ppm_aplicativo_repo \n" .
-        "where servicio_negocio_aplic = (select servicio_negocio from c_servicio_negocio_repo where id_servicio=" . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . ")) cnt";
+        $this->CountSQL = "SELECT COUNT(*) FROM c_servicio_negocio_ppm_aplicativo_repo \n" .
+        "where servicio_negocio_aplic = (select servicio_negocio from c_servicio_negocio_repo where id_servicio=" . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . ")";
         $this->SQL = "SELECT * \n" .
         "FROM c_servicio_negocio_ppm_aplicativo_repo \n" .
         "where servicio_negocio_aplic = (select servicio_negocio from c_servicio_negocio_repo where id_servicio=" . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . ")";
@@ -1977,7 +1981,7 @@ class clsc_servicio_negocio_ppm_ap1DataSource extends clsDBConnCarga {  //c_serv
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
         else
             $this->RecordsCount = "CCS not counted";
-        $this->query($this->OptimizeSQL(CCBuildSQL($this->SQL, $this->Where, $this->Order)));
+        $this->query(CCBuildSQL($this->SQL, $this->Where, $this->Order));
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteSelect", $this->Parent);
         $this->MoveToPage($this->AbsolutePage);
     }

@@ -471,6 +471,12 @@ order by nombre
 					<Attributes/>
 					<Features/>
 				</TextBox>
+				<TextBox id="186" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="UPL" PathID="mc_info_rs_ap_ECUPL" fieldSource="UPL">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
 			</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">

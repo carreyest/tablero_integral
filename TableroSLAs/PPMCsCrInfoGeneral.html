@@ -46,10 +46,10 @@
     <td>
       <!-- BEGIN Record mc_calificacion_rs_MC -->
       <form id="mc_calificacion_rs_MC" onsubmit="Button_Insert.disabled = true; return true;" method="post" name="{HTMLFormName}" action="{Action}">
-        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
           <tr>
             <td valign="top">
-              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Información general del requerimiento - {lReportado}</strong></td> 
@@ -77,7 +77,7 @@
  
                 <tr class="Controls">
                   <td class="th">Estimación asociada</td> 
-                  <td><input type="text" id="mc_calificacion_rs_MCIdEstimacion" value="{IdEstimacion}" size="10" name="{IdEstimacion_Name}"></td> 
+                  <td><input type="text" id="mc_calificacion_rs_MCIdEstimacion" size="10" value="{IdEstimacion}" name="{IdEstimacion_Name}"></td> 
                   <td></td>
                 </tr>
  
@@ -116,7 +116,7 @@
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_calificacion_rs_MCdescripci_n">Descripción</label></td> 
-                  <td><input type="text" id="mc_calificacion_rs_MCdescripci_n" value="{descripci_n}" maxlength="250" size="75" name="{descripci_n_Name}"></td> 
+                  <td><input type="text" id="mc_calificacion_rs_MCdescripci_n" maxlength="250" size="75" value="{descripci_n}" name="{descripci_n_Name}"></td> 
                   <td></td>
                 </tr>
  
@@ -128,7 +128,7 @@
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_calificacion_rs_MCppmc_adicional">Requerimiento padre</label></td> 
-                  <td><input type="text" id="mc_calificacion_rs_MCppmc_adicional" value="{ppmc_adicional}" maxlength="6" name="{ppmc_adicional_Name}" size="20"></td> 
+                  <td><input type="text" id="mc_calificacion_rs_MCppmc_adicional" maxlength="6" value="{ppmc_adicional}" name="{ppmc_adicional_Name}" size="20"></td> 
                   <td>&nbsp;</td>
                 </tr>
  
@@ -140,12 +140,7 @@
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_calificacion_rs_MCUCOS">Unidades</label></td> 
-                  <td><input type="text" id="mc_calificacion_rs_MCUCOS" value="{UCOS}" maxlength="8" size="6" name="{UCOS_Name}">UCOs&nbsp;&nbsp;&nbsp;&nbsp; 
-                  <input type="text" id="mc_calificacion_rs_MCUDX" value="{UDX}" maxlength="8" size="6" name="{UDX_Name}">UDXs&nbsp;&nbsp;&nbsp;&nbsp; 
-                  <input type="text" id="mc_calificacion_rs_MCUSP" value="{USP}" maxlength="8" size="6" name="{USP_Name}">USP&nbsp;&nbsp;&nbsp;&nbsp; 
-                  <input type="text" id="mc_calificacion_rs_MCUDA" value="{UDA}" maxlength="8" size="6" name="{UDA_Name}">UDA&nbsp;&nbsp;&nbsp;&nbsp; 
-                  <input type="text" id="mc_calificacion_rs_MCUST" value="{UST}" maxlength="8" size="6" name="{UST_Name}">UST&nbsp;&nbsp;&nbsp;
-                  <input type="text" id="mc_calificacion_rs_MCUPL" value="{UPL}" maxlength="8" size="6" name="{UPL_Name}">UPL&nbsp;&nbsp;&nbsp;</td> 
+                  <td><input type="text" id="mc_calificacion_rs_MCUCOS" maxlength="8" size="6" value="{UCOS}" name="{UCOS_Name}">UCOs&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="mc_calificacion_rs_MCUDX" maxlength="8" size="6" value="{UDX}" name="{UDX_Name}">UDXs&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="mc_calificacion_rs_MCUSP" maxlength="8" size="6" value="{USP}" name="{USP_Name}">USP&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="mc_calificacion_rs_MCUDA" maxlength="8" size="6" value="{UDA}" name="{UDA_Name}">UDA&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="mc_calificacion_rs_MCUST" maxlength="8" size="6" value="{UST}" name="{UST_Name}">UST&nbsp;&nbsp;&nbsp;&nbsp; </td> 
                   <td>&nbsp;</td>
                 </tr>
  
@@ -157,8 +152,8 @@
  
                 <tr class="Bottom">
                   <td style="TEXT-ALIGN: right" colspan="3">
-                    <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_calificacion_rs_MCButton_Insert" class="Button" value="Agregar" alt="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
-                    <!-- BEGIN Button Button_Update --><input type="submit" id="mc_calificacion_rs_MCButton_Update" class="Button" value="Enviar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Update --><input type="hidden" id="mc_calificacion_rs_MCMesReporte" value="{MesReporte}" name="{MesReporte_Name}"><input type="hidden" id="mc_calificacion_rs_MCAnioReporte" value="{AnioReporte}" name="{AnioReporte_Name}"><input type="hidden" id="mc_calificacion_rs_MCid_proveedor" value="{id_proveedor}" name="{id_proveedor_Name}"><input type="hidden" id="mc_calificacion_rs_MChdid_ppmc" value="{hdid_ppmc}" name="{hdid_ppmc_Name}"></td>
+                    <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_calificacion_rs_MCButton_Insert" class="Button" alt="Agregar" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input type="submit" id="mc_calificacion_rs_MCButton_Update" class="Button" alt="Enviar" value="Enviar" name="{Button_Name}"><!-- END Button Button_Update --><input type="hidden" id="mc_calificacion_rs_MCMesReporte" value="{MesReporte}" name="{MesReporte_Name}"><input type="hidden" id="mc_calificacion_rs_MCAnioReporte" value="{AnioReporte}" name="{AnioReporte_Name}"><input type="hidden" id="mc_calificacion_rs_MCid_proveedor" value="{id_proveedor}" name="{id_proveedor_Name}"><input type="hidden" id="mc_calificacion_rs_MChdid_ppmc" value="{hdid_ppmc}" name="{hdid_ppmc_Name}"></td>
                 </tr>
               </table>
             </td>

@@ -343,7 +343,7 @@ function addObservaciones(){
         var dAsignacion =  new Date(aAsignacion[2].valueOf(),aAsignacion[1].valueOf()-1,aAsignacion[0].valueOf(),aAsignacionHrs[0].valueOf(),aAsignacionHrs[1].valueOf(),0);
         //var dAsignacion2 = new Date(aAsignacion[2].valueOf(),aAsignacion[1].valueOf()-1,aAsignacion[0].valueOf(),aAsignacionHrs[0].valueOf(),aAsignacionHrs[1].valueOf(),0);
         //si se asignó después de las 4 se manda al siguiente día hábil
-                //Ajuste en los criterios de medición SDMA4
+		//Ajuste en los criterios de medición SDMA4
         //if(aAsignacionHrs[0]>=16 ){
         //    if(dAsignacion.getDay()==5) {//si es viernes lo manda hasta el lunes
         //        dAsignacion.setDate(dAsignacion.getDate() + 3);
@@ -652,7 +652,7 @@ jQuery(function ($) {
 </head>
 <body>
 <p>{Header}&nbsp;&nbsp;</p>
-<table border="0" cellspacing="0" cellpadding="0" width="600">
+<table cellspacing="0" cellpadding="0" width="600" border="0">
   <tr>
     <td>&nbsp;</td> 
     <td><a href="{lkAnterior_Src}" id="lkAnterior">{lkAnterior}</a></td> 
@@ -673,10 +673,10 @@ jQuery(function ($) {
     <td valign="top">
       <!-- BEGIN Record mc_info_rs_ap_EC -->
       <form id="mc_info_rs_ap_EC" method="post" name="{HTMLFormName}" action="{Action}">
-        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
           <tr>
             <td valign="top">
-              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th">Calificar Requerimiento&nbsp;&nbsp;&nbsp; {sIdPPMC}</td> 
@@ -753,17 +753,17 @@ jQuery(function ($) {
  
                 <tr class="Controls">
                   <td class="th">Cantidad de Unidades Aprobadas</td> 
-                  <td><input type="text" id="mc_info_rs_ap_ECsUnidadesManuales" value="{sUnidadesManuales}" maxlength="9" size="9" name="{sUnidadesManuales_Name}">UCOs<br>
-                    <input type="text" onblur="calculaDiasPropuesta()" id="mc_info_rs_ap_ECUDX" value="{UDX}" maxlength="9" size="9" name="{UDX_Name}">UDX<br>
-                    <input type="text" id="mc_info_rs_ap_ECUDA" value="{UDA}" maxlength="9" size="9" name="{UDA_Name}">UDA<br>
-                    <input type="text" id="mc_info_rs_ap_ECUSP" value="{USP}" maxlength="9" size="9" name="{USP_Name}">USP<br>
-                    <input type="text" id="mc_info_rs_ap_ECUST" value="{UST}" maxlength="9" size="9" name="{UST_Name}">UST<br>
-                    <input type="text" id="mc_info_rs_ap_ECUPL" value="{UPL}" maxlength="9" size="9" name="{UPL_Name}">UPL</td>
+                  <td><input type="text" id="mc_info_rs_ap_ECsUnidadesManuales" maxlength="9" size="9" value="{sUnidadesManuales}" name="{sUnidadesManuales_Name}">UCOs<br>
+                    <input type="text" onblur="calculaDiasPropuesta()" id="mc_info_rs_ap_ECUDX" maxlength="9" size="9" value="{UDX}" name="{UDX_Name}">UDX<br>
+                    <input type="text" id="mc_info_rs_ap_ECUDA" maxlength="9" size="9" value="{UDA}" name="{UDA_Name}">UDA<br>
+                    <input type="text" id="mc_info_rs_ap_ECUSP" maxlength="9" size="9" value="{USP}" name="{USP_Name}">USP<br>
+                    <input type="text" id="mc_info_rs_ap_ECUST" maxlength="9" size="9" value="{UST}" name="{UST_Name}">UST<br>
+                  </td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">PPMC&nbsp;Padre</td> 
-                  <td><label for="mc_info_rs_ap_ECsDatosPadre" style="display: inline;">PPMC Padre&nbsp;&nbsp; </label><input type="text" id="mc_info_rs_ap_ECsDatosPadre" value="{sDatosPadre}" maxlength="7" size="7" name="{sDatosPadre_Name}">&nbsp;&nbsp;&nbsp;<label for="mc_info_rs_ap_ECTipoPadre" style="display: inline;">Tipo Padre:</label> 
+                  <td><label for="mc_info_rs_ap_ECsDatosPadre" style="display: inline;">PPMC Padre&nbsp;&nbsp; </label><input type="text" id="mc_info_rs_ap_ECsDatosPadre" maxlength="7" size="7" value="{sDatosPadre}" name="{sDatosPadre_Name}">&nbsp;&nbsp;&nbsp;<label for="mc_info_rs_ap_ECTipoPadre" style="display: inline;">Tipo Padre:</label> 
                     <select id="mc_info_rs_ap_ECTipoPadre" name="{TipoPadre_Name}">
                       <option selected value="">Seleccionar Valor</option>
                       {TipoPadre_Options}
@@ -778,12 +778,12 @@ jQuery(function ($) {
  
                 <tr class="Controls">
                   <td class="th">Horas Aprobadas</td> 
-                  <td><input type="text" onblur="calculaDiasPropuesta()" id="mc_info_rs_ap_ECsHorasManuales" value="{sHorasManuales}" maxlength="7" size="7" name="{sHorasManuales_Name}"></td>
+                  <td><input type="text" onblur="calculaDiasPropuesta()" id="mc_info_rs_ap_ECsHorasManuales" maxlength="7" size="7" value="{sHorasManuales}" name="{sHorasManuales_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">Días para Propuesta</td> 
-                  <td><input type="text" id="mc_info_rs_ap_ECsDiasPropuesta" value="{sDiasPropuesta}" maxlength="5" size="5" name="{sDiasPropuesta_Name}"></td>
+                  <td><input type="text" id="mc_info_rs_ap_ECsDiasPropuesta" maxlength="5" size="5" value="{sDiasPropuesta}" name="{sDiasPropuesta_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
@@ -818,33 +818,33 @@ jQuery(function ($) {
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_info_rs_ap_ECFechaAsignacion">Fecha Asignación</label></td> 
-                  <td><input type="text" onblur="calculaSLAInicial()" id="mc_info_rs_ap_ECFechaAsignacion" value="{FechaAsignacion}" maxlength="20" size="16" name="{FechaAsignacion_Name}"></td>
+                  <td><input type="text" onblur="calculaSLAInicial()" id="mc_info_rs_ap_ECFechaAsignacion" maxlength="20" size="16" value="{FechaAsignacion}" name="{FechaAsignacion_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_info_rs_ap_ECFechaEntregaPropuesta">Fecha Entrega Propuesta</label></td> 
-                  <td><input type="text" onblur="calculaSLAInicial()" id="mc_info_rs_ap_ECFechaEntregaPropuesta" value="{FechaEntregaPropuesta}" maxlength="20" size="16" name="{FechaEntregaPropuesta_Name}"></td>
+                  <td><input type="text" onblur="calculaSLAInicial()" id="mc_info_rs_ap_ECFechaEntregaPropuesta" maxlength="20" size="16" value="{FechaEntregaPropuesta}" name="{FechaEntregaPropuesta_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_info_rs_ap_ECFechaEntregaEvidencia">Fecha Entrega Evidencia Herramienta</label></td> 
-                  <td><input type="text" onblur="calculaSLAInicial()" id="mc_info_rs_ap_ECFechaEntregaEvidencia" value="{FechaEntregaEvidencia}" maxlength="20" size="16" name="{FechaEntregaEvidencia_Name}"></td>
+                  <td><input type="text" onblur="calculaSLAInicial()" id="mc_info_rs_ap_ECFechaEntregaEvidencia" maxlength="20" size="16" value="{FechaEntregaEvidencia}" name="{FechaEntregaEvidencia_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">Fecha Entrega Herramienta Estimación</td> 
                   <td>
-                    <!-- BEGIN TextBox FechaEntregaHerramienta --><input type="text" id="mc_info_rs_ap_ECFechaEntregaHerramienta" value="{FechaEntregaHerramienta}" maxlength="20" size="16" name="{FechaEntregaHerramienta_Name}"><!-- END TextBox FechaEntregaHerramienta --></td>
+                    <!-- BEGIN TextBox FechaEntregaHerramienta --><input type="text" id="mc_info_rs_ap_ECFechaEntregaHerramienta" maxlength="20" size="16" value="{FechaEntregaHerramienta}" name="{FechaEntregaHerramienta_Name}"><!-- END TextBox FechaEntregaHerramienta --></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_info_rs_ap_ECFechaAceptacionPropuesta">Fecha Aceptación Propuesta</label></td> 
-                  <td><input type="text" onblur="calculaSLAInicial()" id="mc_info_rs_ap_ECFechaAceptacionPropuesta" value="{FechaAceptacionPropuesta}" maxlength="20" size="16" name="{FechaAceptacionPropuesta_Name}"><input type="hidden" id="mc_info_rs_ap_EChIDPPMC" value="{hIDPPMC}" name="{hIDPPMC_Name}"></td>
+                  <td><input type="text" onblur="calculaSLAInicial()" id="mc_info_rs_ap_ECFechaAceptacionPropuesta" maxlength="20" size="16" value="{FechaAceptacionPropuesta}" name="{FechaAceptacionPropuesta_Name}"><input type="hidden" id="mc_info_rs_ap_EChIDPPMC" value="{hIDPPMC}" name="{hIDPPMC_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">Tiempo en espera de información</td> 
-                  <td><input type="text" id="mc_info_rs_ap_ECHorasSAT" onchange="calculaSLAInicial()" value="{HorasSAT}" maxlength="6" size="4" name="{HorasSAT_Name}">&nbsp;horas</td>
+                  <td><input type="text" onchange="calculaSLAInicial()" id="mc_info_rs_ap_ECHorasSAT" maxlength="6" size="4" value="{HorasSAT}" name="{HorasSAT_Name}">&nbsp;horas</td>
                 </tr>
  
                 <tr class="Controls">
@@ -874,7 +874,7 @@ jQuery(function ($) {
  
                 <tr class="Controls">
                   <td class="th">URL de Evidencia de medición</td> 
-                  <td><label for="mc_info_rs_ap_ECURLEvidenciaMed" style="display: none;">TextBox1</label><input type="text" id="mc_info_rs_ap_ECURLEvidenciaMed" value="{URLEvidenciaMed}" size="50" name="{URLEvidenciaMed_Name}"></td>
+                  <td><label for="mc_info_rs_ap_ECURLEvidenciaMed" style="display: none;">TextBox1</label><input type="text" id="mc_info_rs_ap_ECURLEvidenciaMed" size="50" value="{URLEvidenciaMed}" name="{URLEvidenciaMed_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
@@ -884,11 +884,11 @@ jQuery(function ($) {
  
                 <tr class="Bottom">
                   <td><input type="hidden" id="mc_info_rs_ap_ECsID" value="{sID}" name="{sID_Name}"><input type="hidden" id="mc_info_rs_ap_EChdUsrAlta" value="{hdUsrAlta}" name="{hdUsrAlta_Name}">
-                    <!-- BEGIN Button btnCalcular --><input type="button" id="mc_info_rs_ap_ECbtnCalcular" class="Button" value="Calcular" alt="Calcular" name="{Button_Name}"><!-- END Button btnCalcular -->{DatosUltMod}</td> 
+                    <!-- BEGIN Button btnCalcular --><input type="button" id="mc_info_rs_ap_ECbtnCalcular" class="Button" alt="Calcular" value="Calcular" name="{Button_Name}"><!-- END Button btnCalcular -->{DatosUltMod}</td> 
                   <td style="TEXT-ALIGN: right">
-                    <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_info_rs_ap_ECButton_Insert" class="Button" value="Agregar" alt="Agregar" name="{Button_Name}" size="20"><!-- END Button Button_Insert -->
-                    <!-- BEGIN Button Button_Update --><input type="submit" id="mc_info_rs_ap_ECButton_Update" class="Button" value="Guardar" alt="Enviar" name="{Button_Name}" size="20"><!-- END Button Button_Update -->
-                    <!-- BEGIN Button Button_Delete --><input type="submit" id="mc_info_rs_ap_ECButton_Delete" class="Button" value="Borrar" alt="Borrar" name="{Button_Name}"><!-- END Button Button_Delete --></td>
+                    <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_info_rs_ap_ECButton_Insert" class="Button" alt="Agregar" value="Agregar" name="{Button_Name}" size="20"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input type="submit" id="mc_info_rs_ap_ECButton_Update" class="Button" alt="Enviar" value="Guardar" name="{Button_Name}" size="20"><!-- END Button Button_Update -->
+                    <!-- BEGIN Button Button_Delete --><input type="submit" id="mc_info_rs_ap_ECButton_Delete" class="Button" alt="Borrar" value="Borrar" name="{Button_Name}"><!-- END Button Button_Delete --></td>
                 </tr>
               </table>
             </td>
@@ -899,7 +899,7 @@ jQuery(function ($) {
     </td> 
     <td valign="top">
       <div style="WIDTH: 460px; MARGIN-LEFT: 20px">
-        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
           <tr>
             <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
             <td class="th">Documentos en el Repositorio</td> 

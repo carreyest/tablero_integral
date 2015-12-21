@@ -119,7 +119,7 @@ function mc_calificacion_rs_MC_BeforeShow(& $sender)
 			/////////////////////////////////
 			//se busca si ya se le metieron datos de apertura
 			$sSQL='select mc_calificacion_rs_MC.[descripción] descripcion,  mc_calificacion_rs_MC.id_servicio_cont, mc_calificacion_rs_MC.id_servicio_negocio,  ' .
-				' mc_calificacion_rs_MC.id_tipo, 	mc_info_rs_ap_ec.idpadre, mc_info_rs_ap_ec.UDX, mc_info_rs_ap_ec.UCO, mc_info_rs_ap_ec.UDA, mc_info_rs_ap_ec.USP,  mc_info_rs_ap_ec.UST,  mc_info_rs_ap_ec.UPL ' .
+				' mc_calificacion_rs_MC.id_tipo, 	mc_info_rs_ap_ec.idpadre, mc_info_rs_ap_ec.UDX, mc_info_rs_ap_ec.UCO, mc_info_rs_ap_ec.UDA, mc_info_rs_ap_ec.USP,  mc_info_rs_ap_ec.UST ' .
 				' from mc_calificacion_rs_MC  inner join mc_info_rs_ap_ec on mc_info_rs_ap_ec.id = mc_calificacion_rs_MC.iduniverso ' .
 				' where mc_calificacion_rs_MC.id_ppmc = ' . $sPPMC . ' and HERR_EST_COST is not null and REQ_SERV is not null';
 			$db->query($sSQL);
@@ -133,8 +133,7 @@ function mc_calificacion_rs_MC_BeforeShow(& $sender)
 				$mc_calificacion_rs_MC->UCOS->SetValue($db->f("UCO"));
 				$mc_calificacion_rs_MC->UDA->SetValue($db->f("UDA"));
 				$mc_calificacion_rs_MC->USP->SetValue($db->f("USP"));
-				$mc_calificacion_rs_MC->UST->SetValue($db->f("UST"));
-				$mc_calificacion_rs_MC->UPL->SetValue($db->f("UPL"));
+				$mc_calificacion_rs_MC->USP->SetValue($db->f("UST"));
 			}
    		}else {
    			//$mc_calificacion_rs_MC->id_ppmc->SetValue($sPPMC);

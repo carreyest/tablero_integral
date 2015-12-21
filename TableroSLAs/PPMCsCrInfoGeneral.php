@@ -49,7 +49,7 @@ class clsRecordmc_calificacion_rs_MC { //mc_calificacion_rs_MC Class @3-58DA90F6
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-7E3807FE
+//Class_Initialize Event @3-4055A3E8
     function clsRecordmc_calificacion_rs_MC($RelativePath, & $Parent)
     {
 
@@ -136,7 +136,6 @@ class clsRecordmc_calificacion_rs_MC { //mc_calificacion_rs_MC Class @3-58DA90F6
             $this->lReportado = new clsControl(ccsLabel, "lReportado", "lReportado", ccsText, "", CCGetRequestParam("lReportado", $Method, NULL), $this);
             $this->UST = new clsControl(ccsTextBox, "UST", "UST", ccsFloat, "", CCGetRequestParam("UST", $Method, NULL), $this);
             $this->UST->Required = true;
-            $this->UPL = new clsControl(ccsTextBox, "UPL", "UPL", ccsFloat, "", CCGetRequestParam("UPL", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
@@ -152,7 +151,7 @@ class clsRecordmc_calificacion_rs_MC { //mc_calificacion_rs_MC Class @3-58DA90F6
     }
 //End Initialize Method
 
-//Validate Method @3-64607FAA
+//Validate Method @3-D77A32FA
     function Validate()
     {
         global $CCSLocales;
@@ -175,7 +174,6 @@ class clsRecordmc_calificacion_rs_MC { //mc_calificacion_rs_MC Class @3-58DA90F6
         $Validation = ($this->USP->Validate() && $Validation);
         $Validation = ($this->UDA->Validate() && $Validation);
         $Validation = ($this->UST->Validate() && $Validation);
-        $Validation = ($this->UPL->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->id_servicio_cont->Errors->Count() == 0);
         $Validation =  $Validation && ($this->id_servicio_negocio->Errors->Count() == 0);
@@ -194,12 +192,11 @@ class clsRecordmc_calificacion_rs_MC { //mc_calificacion_rs_MC Class @3-58DA90F6
         $Validation =  $Validation && ($this->USP->Errors->Count() == 0);
         $Validation =  $Validation && ($this->UDA->Errors->Count() == 0);
         $Validation =  $Validation && ($this->UST->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->UPL->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-A08BC301
+//CheckErrors Method @3-10B13843
     function CheckErrors()
     {
         $errors = false;
@@ -223,7 +220,6 @@ class clsRecordmc_calificacion_rs_MC { //mc_calificacion_rs_MC Class @3-58DA90F6
         $errors = ($errors || $this->UDA->Errors->Count());
         $errors = ($errors || $this->lReportado->Errors->Count());
         $errors = ($errors || $this->UST->Errors->Count());
-        $errors = ($errors || $this->UPL->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -299,7 +295,7 @@ class clsRecordmc_calificacion_rs_MC { //mc_calificacion_rs_MC Class @3-58DA90F6
     }
 //End InsertRow Method
 
-//UpdateRow Method @3-70F41817
+//UpdateRow Method @3-40BC865C
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
@@ -324,14 +320,13 @@ class clsRecordmc_calificacion_rs_MC { //mc_calificacion_rs_MC Class @3-58DA90F6
         $this->DataSource->UDA->SetValue($this->UDA->GetValue(true));
         $this->DataSource->lReportado->SetValue($this->lReportado->GetValue(true));
         $this->DataSource->UST->SetValue($this->UST->GetValue(true));
-        $this->DataSource->UPL->SetValue($this->UPL->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
         return (!$this->CheckErrors());
     }
 //End UpdateRow Method
 
-//Show Method @3-8EEE0440
+//Show Method @3-F7C9482B
     function Show()
     {
         global $CCSUseAmp;
@@ -379,7 +374,6 @@ class clsRecordmc_calificacion_rs_MC { //mc_calificacion_rs_MC Class @3-58DA90F6
                     $this->USP->SetValue($this->DataSource->USP->GetValue());
                     $this->UDA->SetValue($this->DataSource->UDA->GetValue());
                     $this->UST->SetValue($this->DataSource->UST->GetValue());
-                    $this->UPL->SetValue($this->DataSource->UPL->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -408,7 +402,6 @@ class clsRecordmc_calificacion_rs_MC { //mc_calificacion_rs_MC Class @3-58DA90F6
             $Error = ComposeStrings($Error, $this->UDA->Errors->ToString());
             $Error = ComposeStrings($Error, $this->lReportado->Errors->ToString());
             $Error = ComposeStrings($Error, $this->UST->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->UPL->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -451,7 +444,6 @@ class clsRecordmc_calificacion_rs_MC { //mc_calificacion_rs_MC Class @3-58DA90F6
         $this->UDA->Show();
         $this->lReportado->Show();
         $this->UST->Show();
-        $this->UPL->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -462,7 +454,7 @@ class clsRecordmc_calificacion_rs_MC { //mc_calificacion_rs_MC Class @3-58DA90F6
 
 class clsmc_calificacion_rs_MCDataSource extends clsDBcnDisenio {  //mc_calificacion_rs_MCDataSource Class @3-EB5F0A7A
 
-//DataSource Variables @3-D6F70E03
+//DataSource Variables @3-32C03C5C
     public $Parent = "";
     public $CCSEvents = "";
     public $CCSEventResult;
@@ -498,10 +490,9 @@ class clsmc_calificacion_rs_MCDataSource extends clsDBcnDisenio {  //mc_califica
     public $UDA;
     public $lReportado;
     public $UST;
-    public $UPL;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @3-E997CE92
+//DataSourceClass_Initialize Event @3-DA6E657E
     function clsmc_calificacion_rs_MCDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -547,8 +538,6 @@ class clsmc_calificacion_rs_MCDataSource extends clsDBcnDisenio {  //mc_califica
         
         $this->UST = new clsField("UST", ccsFloat, "");
         
-        $this->UPL = new clsField("UPL", ccsFloat, "");
-        
 
         $this->InsertFields["id_servicio_cont"] = array("Name" => "id_servicio_cont", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->InsertFields["id_servicio_negocio"] = array("Name" => "id_servicio_negocio", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
@@ -584,7 +573,6 @@ class clsmc_calificacion_rs_MCDataSource extends clsDBcnDisenio {  //mc_califica
         $this->UpdateFields["USP"] = array("Name" => "USP", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
         $this->UpdateFields["UDA"] = array("Name" => "UDA", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
         $this->UpdateFields["UST"] = array("Name" => "UST", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
-        $this->UpdateFields["UPL"] = array("Name" => "UPL", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
     }
 //End DataSourceClass_Initialize Event
 
@@ -614,7 +602,7 @@ class clsmc_calificacion_rs_MCDataSource extends clsDBcnDisenio {  //mc_califica
     }
 //End Open Method
 
-//SetValues Method @3-19DA6947
+//SetValues Method @3-00A2ED93
     function SetValues()
     {
         $this->id_servicio_cont->SetDBValue(trim($this->f("id_servicio_cont")));
@@ -634,7 +622,6 @@ class clsmc_calificacion_rs_MCDataSource extends clsDBcnDisenio {  //mc_califica
         $this->USP->SetDBValue(trim($this->f("USP")));
         $this->UDA->SetDBValue(trim($this->f("UDA")));
         $this->UST->SetDBValue(trim($this->f("UST")));
-        $this->UPL->SetDBValue(trim($this->f("UPL")));
     }
 //End SetValues Method
 
@@ -722,7 +709,7 @@ class clsmc_calificacion_rs_MCDataSource extends clsDBcnDisenio {  //mc_califica
     }
 //End Insert Method
 
-//Update Method @3-98D716E4
+//Update Method @3-A80C5AF5
     function Update()
     {
         global $CCSLocales;
@@ -747,7 +734,6 @@ class clsmc_calificacion_rs_MCDataSource extends clsDBcnDisenio {  //mc_califica
         $this->UpdateFields["USP"]["Value"] = $this->USP->GetDBValue(true);
         $this->UpdateFields["UDA"]["Value"] = $this->UDA->GetDBValue(true);
         $this->UpdateFields["UST"]["Value"] = $this->UST->GetDBValue(true);
-        $this->UpdateFields["UPL"]["Value"] = $this->UPL->GetDBValue(true);
         $this->SQL = CCBuildUpdate("mc_calificacion_rs_MC", $this->UpdateFields, $this);
         $this->SQL .= strlen($this->Where) ? " WHERE " . $this->Where : $this->Where;
         if (!strlen($this->Where) && $this->Errors->Count() == 0) 

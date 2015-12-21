@@ -177,13 +177,7 @@ order by nombre" boundColumn="id_servicio" textColumn="nombre">
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="163" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="UPL" PathID="mc_calificacion_rs_MCUPL" fieldSource="UPL">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>

@@ -17,6 +17,7 @@ function mc_c_ServContractual_mc_c_BeforeShowRow(& $sender)
     $Component = & $sender;
     $Container = & CCGetParentContainer($sender);
     global $mc_c_ServContractual_mc_c; //Compatibility
+    global $mc_calificacion_capc;
 //End mc_c_ServContractual_mc_c_BeforeShowRow
 
 //Custom Code @46-2A29BDB7
@@ -39,7 +40,12 @@ function mc_c_ServContractual_mc_c_BeforeShowRow(& $sender)
 	
 	if($mc_c_ServContractual_mc_c->DataSource->f("TipoMedicion")=="PC"){
 		$mc_c_ServContractual_mc_c->numero->SetLink('SLAsCapcDetalle.php?'. CCAddParam("","id",$mc_c_ServContractual_mc_c->DataSource->f("id")) );
-	} 
+	} else
+	{
+		//$mc_c_ServContractual_mc_c->numero->SetLink('SLAsCapcApbDetalle.php?'. CCAddParam(CCAddParam(CCAddParam("","id",$mc_c_ServContractual_mc_c->DataSource->f("id")),"s_numero",$mc_c_ServContractual_mc_c->DataSource->f("numero"))),"s_mes",$mc_calificacion_capc->s_mes->GetValue());
+		$mc_c_ServContractual_mc_c->numero->SetLink('SLAsCapcApbDetalle.php?s_mes='.$mc_calificacion_capc->s_mes->GetValue().'&s_anio='.$mc_calificacion_capc->s_anio->GetValue().'&'. CCAddParam(CCAddParam("","id",$mc_c_ServContractual_mc_c->DataSource->f("id")),"s_numero",$mc_c_ServContractual_mc_c->DataSource->f("numero")));
+	}
+	
 	
     if($mc_c_ServContractual_mc_c->CALIDAD_PROD_TERM->GetValue()!=""){
 		$mc_c_ServContractual_mc_c->Img_CALIDAD_PROD_TERM->Visible=true;

@@ -43,7 +43,7 @@ function mc_c_ServContractual_mc_c_BeforeShowRow(& $sender)
 	} else
 	{
 		//$mc_c_ServContractual_mc_c->numero->SetLink('SLAsCapcApbDetalle.php?'. CCAddParam(CCAddParam(CCAddParam("","id",$mc_c_ServContractual_mc_c->DataSource->f("id")),"s_numero",$mc_c_ServContractual_mc_c->DataSource->f("numero"))),"s_mes",$mc_calificacion_capc->s_mes->GetValue());
-		$mc_c_ServContractual_mc_c->numero->SetLink('SLAsCapcApbDetalle.php?s_mes='.$mc_calificacion_capc->s_mes->GetValue().'&s_anio='.$mc_calificacion_capc->s_anio->GetValue().'&'. CCAddParam(CCAddParam("","id",$mc_c_ServContractual_mc_c->DataSource->f("id")),"s_numero",$mc_c_ServContractual_mc_c->DataSource->f("numero")));
+		$mc_c_ServContractual_mc_c->numero->SetLink('SLAsCapcApbDetalle.php?s_mes='.$mc_calificacion_capc->s_mes->GetValue().'&s_anio='.$mc_calificacion_capc->s_anio->GetValue().'&'. CCAddParam(CCAddParam("","sID",$mc_c_ServContractual_mc_c->DataSource->f("id")),"s_numero",$mc_c_ServContractual_mc_c->DataSource->f("numero")));
 	}
 	
 	

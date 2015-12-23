@@ -362,9 +362,9 @@ function mc_info_rs_ap_EC_BeforeShow(& $sender)
 	$lDocs->SetValue(iconv('UTF-8','Windows-1252', $sItems));
 	}
 	
-    // Verifica si esta cerrado para medición
-    $flgCerrado=CCDLookUp("Medido","mc_universo_cds","Id='" . CCGetParam("sID",0) ."'",$DBcnDisenio);
-    if($flgCerrado==1){
+    // Verifica si esta de cierre
+    $flgCerrado=CCDLookUp("TipoMedicion","mc_calificacion_capc","Id='" . CCGetParam("sID",0) ."'",$DBcnDisenio);
+    if($flgCerrado=='PC'){
     	$mc_info_rs_ap_EC->Button_Insert->Visible= false;
     	$mc_info_rs_ap_EC->Button_Update->Visible = false;
     }
@@ -413,8 +413,10 @@ function mc_info_rs_ap_EC_ds_BeforeBuildInsert(& $sender)
 	global $vIdPPMC;
 	//obtiene los datos no editables
 	$vId= CCGetParam("sID",0);
-	$DBcnDisenio->query('SELECT id_proveedor, numero, tipo, mes, anio ' .
-					' FROM mc_universo_cds u WHERE u.Id = ' . $vId );
+//	$DBcnDisenio->query('SELECT id_proveedor, numero, tipo, mes, anio ' .
+//					' FROM mc_universo_cds u WHERE u.Id = ' . $vId );
+	$DBcnDisenio->query('SELECT id_proveedor, numero, id_tipo, mes, anio ' .
+					' FROM mc_calificacion_capc u WHERE u.id = ' . $vId );
 	
 	if($DBcnDisenio->next_record()){
     	$vIdProveedor = $DBcnDisenio->f(0);
@@ -437,12 +439,12 @@ function mc_info_rs_ap_EC_ds_BeforeBuildInsert(& $sender)
 		$sCumpleHE="NULL";
 	}
 	// verifica si existe el PPMC en la tabla de calificación
-    $sSQL="select count(*) from mc_calificacion_capc where Id= " . CCGetParam("sID");
+    $sSQL="select count(*) from mc_calificacion_capc where id= " . CCGetParam("sID");
     $DBcnDisenio->query($sSQL);
     if($DBcnDisenio->next_record()){ 
     	if($DBcnDisenio->f(0)==0){ // si no existe se inserta
 			$sInsert = "insert into mc_calificacion_capc  (id_ppmc, id_proveedor, id_servicio_negoico, id_serviciocont, [descripción], mesreporte, anioreporte, HERR_EST_COST, REQ_SERV,  obs_manuales, id, id_tipo, SLO) " .
-				" values (" . $vIdPPMC . ", " . $vIdProveedor . ", " . $mc_info_rs_ap_EC->sServicioNegocio->GetValue() . ", " . $mc_info_rs_ap_EC->lstServContractual->GetValue() . ", " . 
+				" values (" . $vIdPPMC . ", " . $vIdProveedor . ", " . $mc_info_rs_ap_EC->sServicioNegocio->GetValue() . ", " .  
 				$mc_info_rs_ap_EC->lstServContractual->GetValue() . " , '" . $mc_info_rs_ap_EC->hdNombreProyecto->GetValue() . "'," . $vMesReporte . "," . $vAnioReporte . "," .
 				$sCumpleHE . "," . $sCumpleRS . ",'" . str_replace("'","''",$mc_info_rs_ap_EC->Observaciones->GetValue()) . "'," . CCGetParam("sID") . "," . $mc_info_rs_ap_EC->sTipoRequerimiento->GetValue() . ", " . $mc_info_rs_ap_EC->SLO->GetValue() . ")";    	
     	} else {
@@ -520,7 +522,7 @@ function mc_info_rs_ap_EC_BeforeUpdate(& $sender)
 	$db=new clsDBcnDisenio;
 	$vId= CCGetParam("sID",0);
 	$db->query('SELECT id_proveedor, numero, mes, anio ' .
-					' FROM mc_calificacion_capc u WHERE u.Id = ' . $vId );
+					' FROM mc_calificacion_capc u WHERE u.id = ' . $vId );
 	
 	if($db->next_record()){
     	$vIdProveedor = $db->f(0);
@@ -539,7 +541,7 @@ function mc_info_rs_ap_EC_BeforeUpdate(& $sender)
 	}
 	
 	// verifica si existe el PPMC en la tabla de calificación
-    $sSQL="select count(*) from mc_calificacion_capc where Id= " . CCGetParam("sID");
+    $sSQL="select count(*) from mc_calificacion_capc where id= " . CCGetParam("sID");
     $db->query($sSQL);
     if($db->next_record()){ 
     	if($db->f(0)==0){ // si no existe se inserta
@@ -554,7 +556,7 @@ function mc_info_rs_ap_EC_BeforeUpdate(& $sender)
 			" id_tipo=" .  $mc_info_rs_ap_EC->sTipoRequerimiento->GetValue() . ", ". 
 			" REQ_SERV=" . $sCumpleRS . ", HERR_EST_COST = " . $sCumpleHE .  ", " .
 			" SLO = " . $mc_info_rs_ap_EC->SLO->GetValue() .
-			" Where Id =" . CCGetParam("sID");
+			" Where id =" . CCGetParam("sID");
     	}
     }
     $db->query($sUpdate);

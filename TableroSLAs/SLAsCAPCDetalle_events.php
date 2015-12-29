@@ -44,7 +44,7 @@ function mc_calificacion_capc_BeforeShow(& $sender)
 				if($DBcnDisenio->f("TipoMedicion")!="PC" ){
 					$mc_calificacion_capc->Button_Insert->Visible=false;
 					$mc_calificacion_capc->Button_Update->Visible=false;
-					$mc_calificacion_capc->Button_Delete->Visible=false;
+					//$mc_calificacion_capc->Button_Delete->Visible=false;
 				} 
 	}
 
@@ -77,7 +77,7 @@ function Page_BeforeShow(& $sender)
     	$iPos=array_search(CCGetParam("id"),$aPPMCsAPbIds);
     	if($iPos==0){
 			$lkAnterior->SetLink("SLAsCAPCLista.php?" . CCGetQueryString("QueryString",""));
-			$lkAnterior->SetValue("Lista Requerimientos");
+			$lkAnterior->SetValue("Lista requerimientos");
     	} else {
     		$lkAnterior->SetValue($aPPMCsAPbValues[$iPos-1]);
     		$lkAnterior->SetLink("SLAsCAPCDetalle.php?" . CCAddParam( CCRemoveParam( CCGetQueryString("QueryString","id"),"ccsForm"),"id",$aPPMCsAPbIds[$iPos-1]));

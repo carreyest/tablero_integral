@@ -19,12 +19,6 @@
 					<Attributes/>
 					<Features/>
 				</Button>
-				<Button id="7" urlType="Relative" enableValidation="False" isDefault="False" name="Button_Delete" operation="Delete" wizardCaption="Borrar" PathID="mc_calificacion_capcButton_Delete">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Button>
 				<Hidden id="9" fieldSourceType="DBColumn" dataType="Integer" name="id_proveedor" fieldSource="id_proveedor" wizardIsPassword="False" wizardUseTemplateBlock="False" visible="Yes" wizardCaption="Id Proveedor" caption="Id Proveedor" required="True" unique="False" PathID="mc_calificacion_capcid_proveedor" defaultValue="1">
 					<Components/>
 					<Events/>
@@ -177,6 +171,7 @@
 				</TextBox>
 				<TextBox id="49" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Defectos" PathID="mc_calificacion_capcDefectos" fieldSource="Defectos">
 					<Components/>
+
 					<Events/>
 					<Attributes/>
 					<Features/>
@@ -303,47 +298,47 @@
 					<Features/>
 				</CheckBox>
 				<ListBox id="97" visible="Yes" fieldSourceType="DBColumn" sourceType="Table" dataType="Integer" returnValueType="Number" name="id_servicionegocio" wizardEmptyCaption="Seleccionar Valor" PathID="mc_calificacion_capcid_servicionegocio" caption="Servicio de Negocio" fieldSource="Id_servicio_negoico" connection="cnDisenio" dataSource="mc_c_servicio" boundColumn="id_servicio" textColumn="nombre" required="True">
-<Components/>
-<Events/>
-<TableParameters>
-<TableParameter id="98" conditionType="Parameter" useIsNull="False" dataType="Integer" field="id_tipo_servicio" logicOperator="Or" parameterSource="1" parameterType="Expression" searchConditionType="Equal"/>
-<TableParameter id="99" conditionType="Parameter" useIsNull="False" dataType="Integer" field="id_tipo_servicio" logicOperator="Or" parameterSource="2" parameterType="Expression" searchConditionType="Equal"/>
-</TableParameters>
-<SPParameters/>
-<SQLParameters/>
-<JoinTables>
-<JoinTable id="100" posHeight="152" posLeft="10" posTop="10" posWidth="137" tableName="mc_c_servicio"/>
-</JoinTables>
-<JoinLinks/>
-<Fields>
-<Field id="101" fieldName="*"/>
-</Fields>
-<PKFields/>
-<Attributes/>
-<Features/>
-</ListBox>
-<ListBox id="20" visible="Yes" fieldSourceType="DBColumn" sourceType="Table" dataType="Integer" returnValueType="Number" name="id_serviciocont" fieldSource="id_serviciocont" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Id Serviciocont" caption="Servicio Contractual" unique="False" connection="cnDisenio" wizardEmptyCaption="Seleccionar Valor" PathID="mc_calificacion_capcid_serviciocont" dataSource="mc_c_ServContractual" boundColumn="Id" textColumn="Descripcion" required="True">
+					<Components/>
+					<Events/>
+					<TableParameters>
+						<TableParameter id="98" conditionType="Parameter" useIsNull="False" dataType="Integer" field="id_tipo_servicio" logicOperator="Or" parameterSource="1" parameterType="Expression" searchConditionType="Equal"/>
+						<TableParameter id="99" conditionType="Parameter" useIsNull="False" dataType="Integer" field="id_tipo_servicio" logicOperator="Or" parameterSource="2" parameterType="Expression" searchConditionType="Equal"/>
+					</TableParameters>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables>
+						<JoinTable id="100" posHeight="152" posLeft="10" posTop="10" posWidth="137" tableName="mc_c_servicio"/>
+					</JoinTables>
+					<JoinLinks/>
+					<Fields>
+						<Field id="101" fieldName="*"/>
+					</Fields>
+					<PKFields/>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+				<ListBox id="20" visible="Yes" fieldSourceType="DBColumn" sourceType="Table" dataType="Integer" returnValueType="Number" name="id_serviciocont" fieldSource="id_serviciocont" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Id Serviciocont" caption="Servicio Contractual" unique="False" connection="cnDisenio" wizardEmptyCaption="Seleccionar Valor" PathID="mc_calificacion_capcid_serviciocont" dataSource="mc_c_ServContractual" boundColumn="Id" textColumn="Descripcion" required="True">
 					<Components/>
 					<Events/>
 					<TableParameters>
 						<TableParameter id="94" conditionType="Parameter" useIsNull="False" dataType="Text" field="Aplica" logicOperator="And" parameterSource="'CAPC'" parameterType="Expression" searchConditionType="Equal"/>
-</TableParameters>
+					</TableParameters>
 					<SPParameters/>
 					<SQLParameters/>
 					<JoinTables>
 						<JoinTable id="93" posHeight="136" posLeft="10" posTop="10" posWidth="95" tableName="mc_c_ServContractual"/>
-</JoinTables>
+					</JoinTables>
 					<JoinLinks/>
 					<Fields>
 						<Field id="95" fieldName="*"/>
-</Fields>
+					</Fields>
 					<PKFields>
 						<PKField id="96" dataType="Integer" fieldName="Id" tableName="mc_c_ServContractual"/>
-</PKFields>
+					</PKFields>
 					<Attributes/>
 					<Features/>
 				</ListBox>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>
@@ -358,7 +353,7 @@
 			<SQLParameters/>
 			<JoinTables>
 				<JoinTable id="92" tableName="mc_calificacion_capc"/>
-</JoinTables>
+			</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="73" fieldName="*"/>

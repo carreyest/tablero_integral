@@ -96,7 +96,7 @@ function mc_calificacion_capc_BeforeShow(& $sender)
 				if($DBcnDisenio->f("TipoMedicion")!="PC" ){
 					$mc_calificacion_capc->Button_Insert->Visible=false;
 					$mc_calificacion_capc->Button_Update->Visible=false;
-					$mc_calificacion_capc->Button_Delete->Visible=false;
+					//$mc_calificacion_capc->Button_Delete->Visible=false;
 				} 
 	}
 

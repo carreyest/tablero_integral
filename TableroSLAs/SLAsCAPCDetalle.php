@@ -49,7 +49,7 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-F8A78112
+//Class_Initialize Event @3-2A7BFD79
     function clsRecordmc_calificacion_capc($RelativePath, & $Parent)
     {
 
@@ -81,7 +81,6 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
             $this->Button_Insert = new clsButton("Button_Insert", $Method, $this);
             $this->Button_Update = new clsButton("Button_Update", $Method, $this);
-            $this->Button_Delete = new clsButton("Button_Delete", $Method, $this);
             $this->id_proveedor = new clsControl(ccsHidden, "id_proveedor", "Id Proveedor", ccsInteger, "", CCGetRequestParam("id_proveedor", $Method, NULL), $this);
             $this->id_proveedor->Required = true;
             $this->numero = new clsControl(ccsTextBox, "numero", "Numero", ccsText, "", CCGetRequestParam("numero", $Method, NULL), $this);
@@ -349,7 +348,7 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
     }
 //End CheckErrors Method
 
-//Operation Method @3-B908BA44
+//Operation Method @3-E955BD63
     function Operation()
     {
         if(!$this->Visible)
@@ -370,16 +369,10 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
                 $this->PressedButton = "Button_Insert";
             } else if($this->Button_Update->Pressed) {
                 $this->PressedButton = "Button_Update";
-            } else if($this->Button_Delete->Pressed) {
-                $this->PressedButton = "Button_Delete";
             }
         }
         $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
-        if($this->PressedButton == "Button_Delete") {
-            if(!CCGetEvent($this->Button_Delete->CCSEvents, "OnClick", $this->Button_Delete) || !$this->DeleteRow()) {
-                $Redirect = "";
-            }
-        } else if($this->Validate()) {
+        if($this->Validate()) {
             if($this->PressedButton == "Button_Insert") {
                 if(!CCGetEvent($this->Button_Insert->CCSEvents, "OnClick", $this->Button_Insert) || !$this->InsertRow()) {
                     $Redirect = "";
@@ -506,7 +499,7 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
     }
 //End DeleteRow Method
 
-//Show Method @3-1AE5BEF5
+//Show Method @3-BF52746B
     function Show()
     {
         global $CCSUseAmp;
@@ -639,7 +632,6 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
         $Tpl->SetVar("HTMLFormEnctype", $this->FormEnctype);
         $this->Button_Insert->Visible = !$this->EditMode && $this->InsertAllowed;
         $this->Button_Update->Visible = $this->EditMode && $this->UpdateAllowed;
-        $this->Button_Delete->Visible = $this->EditMode && $this->DeleteAllowed;
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShow", $this);
         $this->Attributes->Show();
@@ -650,7 +642,6 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
 
         $this->Button_Insert->Show();
         $this->Button_Update->Show();
-        $this->Button_Delete->Show();
         $this->id_proveedor->Show();
         $this->numero->Show();
         $this->Descripcion->Show();

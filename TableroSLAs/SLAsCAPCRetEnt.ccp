@@ -19,12 +19,6 @@
 					<Attributes/>
 					<Features/>
 				</Button>
-				<Button id="7" urlType="Relative" enableValidation="False" isDefault="False" name="Button_Delete" operation="Delete" wizardCaption="Borrar" PathID="mc_calificacion_capcButton_Delete">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Button>
 				<Hidden id="9" fieldSourceType="DBColumn" dataType="Integer" name="id_proveedor" fieldSource="id_proveedor" wizardIsPassword="False" wizardUseTemplateBlock="False" visible="Yes" wizardCaption="Id Proveedor" caption="Id Proveedor" required="True" unique="False" PathID="mc_calificacion_capcid_proveedor" defaultValue="1">
 					<Components/>
 					<Events/>
@@ -233,7 +227,7 @@
 			<SQLParameters/>
 			<JoinTables>
 				<JoinTable id="132" tableName="mc_calificacion_capc"/>
-</JoinTables>
+			</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="73" fieldName="*"/>
@@ -405,17 +399,17 @@
 			<Events/>
 			<TableParameters>
 				<TableParameter id="129" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Id_Padre" logicOperator="And" parameterSource="id" parameterType="URL" searchConditionType="Equal"/>
-</TableParameters>
+			</TableParameters>
 			<JoinTables>
 				<JoinTable id="128" posHeight="180" posLeft="10" posTop="10" posWidth="160" tableName="mc_info_rs_cr_RE_RC_Artefacto_CAPC"/>
-</JoinTables>
+			</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="130" fieldName="*"/>
-</Fields>
+			</Fields>
 			<PKFields>
 				<PKField id="131" dataType="Integer" fieldName="Id" tableName="mc_info_rs_cr_RE_RC_Artefacto_CAPC"/>
-</PKFields>
+			</PKFields>
 			<SPParameters/>
 			<SQLParameters/>
 			<SecurityGroups/>

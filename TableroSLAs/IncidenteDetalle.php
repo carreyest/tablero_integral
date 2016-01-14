@@ -2314,7 +2314,7 @@ class clsRecordmc_info_incidentes2 { //mc_info_incidentes2 Class @56-A6E4C9EA
     }
 //End Class_Initialize Event
 
-//Initialize Method @56-3E703885
+//Initialize Method @56-C52A8F00
     function Initialize()
     {
 
@@ -2322,6 +2322,8 @@ class clsRecordmc_info_incidentes2 { //mc_info_incidentes2 Class @56-A6E4C9EA
             return;
 
         $this->DataSource->Parameters["urlId_incidente"] = CCGetFromGet("Id_incidente", NULL);
+        $this->DataSource->Parameters["urls_mes_param"] = CCGetFromGet("s_mes_param", NULL);
+        $this->DataSource->Parameters["urls_anio_param"] = CCGetFromGet("s_anio_param", NULL);
     }
 //End Initialize Method
 
@@ -2474,27 +2476,31 @@ class clsmc_info_incidentes2DataSource extends clsDBcnDisenio {  //mc_info_incid
     }
 //End DataSourceClass_Initialize Event
 
-//Prepare Method @56-D5067C86
+//Prepare Method @56-FD1693A3
     function Prepare()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->wp = new clsSQLParameters($this->ErrorBlock);
         $this->wp->AddParameter("1", "urlId_incidente", ccsText, "", "", $this->Parameters["urlId_incidente"], "", false);
+        $this->wp->AddParameter("2", "urls_mes_param", ccsInteger, "", "", $this->Parameters["urls_mes_param"], 1, false);
+        $this->wp->AddParameter("3", "urls_anio_param", ccsInteger, "", "", $this->Parameters["urls_anio_param"], 2014, false);
         $this->AllParametersSet = $this->wp->AllParamsSet();
     }
 //End Prepare Method
 
-//Open Method @56-831EB7F5
+//Open Method @56-628ED241
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->SQL = "SELECT TOP 1 mi.*,\n" .
         "	(select top 1 FechaInicioMov from mc_detalle_incidente_avl \n" .
-        "	        where (Id_Incidente=mi.Id_incidente or Id_Incidente = mi.IncPadre ) \n" .
+        "	        where (Id_Incidente=mi.Id_incidente or Id_Incidente = mi.IncPadre )\n" .
+        "	        and  MONTH(FechaCarga)= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . " and YEAR(FechaCarga) = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " \n" .
         "	        order by FechaInicioMov   ) as RegistroAVL ,\n" .
         "dbo.ufDiffFechasMCSec(FechaEnCurso,(select top 1 FechaInicioMov from mc_detalle_incidente_avl \n" .
-        "                                           where (Id_Incidente=mi.Id_incidente or Id_Incidente = mi.IncPadre ) \n" .
+        "                                           where (Id_Incidente=mi.Id_incidente or Id_Incidente = mi.IncPadre)\n" .
+        "                                           and  MONTH(FechaCarga)= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . " and YEAR(FechaCarga) = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "                                             \n" .
         "                                          order by FechaInicioMov   ) ) \n" .
         "as HorasInvertidas\n" .
         "FROM mc_info_incidentes mi\n" .

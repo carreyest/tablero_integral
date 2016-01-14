@@ -179,7 +179,7 @@ where i.id_incidente = '{Id_incidente}'
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="340" dataType="Text" designDefaultValue="INC000003376478" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
-</SQLParameters>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -459,7 +459,6 @@ AND i.Id_incidente = '{Id_incidente}' ">
 						<Event name="BeforeShow" type="Server">
 							<Actions>
 								<Action actionName="Custom Code" actionCategory="General" id="164" eventType="Server"/>
-
 							</Actions>
 						</Event>
 					</Events>
@@ -794,7 +793,7 @@ WHERE Id_incidente = '{Id_incidente}' " errorSummator="Error" allowCancel="False
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="341" dataType="Text" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
-</SQLParameters>
+			</SQLParameters>
 			<JoinTables>
 			</JoinTables>
 			<JoinLinks/>
@@ -864,7 +863,6 @@ WHERE Id_incidente = '{Id_incidente}' " errorSummator="Error" allowCancel="False
 			<PKFields>
 			</PKFields>
 			<ISPParameters/>
-
 			<ISQLParameters/>
 			<IFormElements/>
 			<USPParameters/>
@@ -945,10 +943,12 @@ WHERE Id_incidente = '{Id_incidente}' " errorSummator="Error" allowCancel="False
 		</Record>
 		<Record id="56" sourceType="SQL" urlType="Relative" secured="False" allowInsert="False" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="mc_info_incidentes2" connection="cnDisenio" dataSource="SELECT mi.*,
 	(select top 1 FechaInicioMov from mc_detalle_incidente_avl 
-	        where (Id_Incidente=mi.Id_incidente or Id_Incidente = mi.IncPadre ) 
+	        where (Id_Incidente=mi.Id_incidente or Id_Incidente = mi.IncPadre )
+	        and  MONTH(FechaCarga)= {s_mes_param} and YEAR(FechaCarga) = {s_anio_param} 
 	        order by FechaInicioMov   ) as RegistroAVL ,
 dbo.ufDiffFechasMCSec(FechaEnCurso,(select top 1 FechaInicioMov from mc_detalle_incidente_avl 
-                                           where (Id_Incidente=mi.Id_incidente or Id_Incidente = mi.IncPadre ) 
+                                           where (Id_Incidente=mi.Id_incidente or Id_Incidente = mi.IncPadre)
+                                           and  MONTH(FechaCarga)= {s_mes_param} and YEAR(FechaCarga) = {s_anio_param}                                             
                                           order by FechaInicioMov   ) ) 
 as HorasInvertidas
 FROM mc_info_incidentes mi
@@ -984,8 +984,10 @@ WHERE mi.Id_incidente = '{Id_incidente}' " errorSummator="Error" allowCancel="Fa
 			<TableParameters/>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="339" dataType="Text" designDefaultValue="INC000003432416" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
-			</SQLParameters>
+				<SQLParameter id="342" dataType="Text" designDefaultValue="INC000003432416" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
+<SQLParameter id="343" dataType="Integer" defaultValue="1" parameterSource="s_mes_param" parameterType="URL" variable="s_mes_param"/>
+<SQLParameter id="344" dataType="Integer" defaultValue="2014" parameterSource="s_anio_param" parameterType="URL" variable="s_anio_param"/>
+</SQLParameters>
 			<JoinTables/>
 			<JoinLinks/>
 			<Fields/>

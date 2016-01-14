@@ -1515,7 +1515,7 @@ function Final_TotalHorasSolucion_BeforeShow(& $sender)
   		$DBcnDisenio->query("SELECT ClaveMovimiento,DescMovimiento,FechaInicioMov,FechaFinMov,Paquete, dbo.ufDiffFechasMCSec(FechaInicioMov,FechaFinMov) as  HorasInvertidas " .
 			" FROM mc_detalle_incidente_avl a inner join mc_universo_cds u on u.numero = a.Id_Incidente  and month(FechaCarga)= u.mes and u.anio  = year(FechaCarga) " .
 			" where ( ClaveMovimiento in (select claveMovimiento from mc_c_movimiento where issolucion=1) ) " .
-			" and Id_Incidente='"  . CCGetParam("Id_incidente",0) . "'  ORDER BY ClaveMovimiento, case when fechacarga > '2014-09-01' then fechainiciomov end,  HorasInvertidas desc" );
+			" and Id_Incidente='"  . CCGetParam("Id_incidente",0) . "'  ORDER BY  ClaveMovimiento, case when fechacarga > '2014-09-01' then fechainiciomov end,  HorasInvertidas desc" );
   		if(!$DBcnDisenio->has_next_record()){
   			//si no tiene paquetes busca por el padre
   			$DBcnDisenio->query("select 	det.ClaveMovimiento, det.DescMovimiento , det.FechaInicioMov, det.FechaFinMov, det.Paquete " .
@@ -1562,13 +1562,14 @@ function Final_TotalHorasSolucion_BeforeShow(& $sender)
 							$sql="select dbo.ufDiffFechasMCSec('" . $vFechaINI . "','" . $vFechaINIAnt . "')";
 							$db->query($sql);
 						}
-						if($vFechaFIN > $vFechaFINAnt && $vFechaINI > $vFechaINIAnt && $vFechaINI < $vFechaFINAnt){
+						if($vFechaFIN > $vFechaFINAnt && $vFechaINI > $vFechaINIAnt && $vFechaINI <= $vFechaFINAnt){
 							$sql="select dbo.ufDiffFechasMCSec('" . $vFechaFINAnt . "','" . $vFechaFIN . "')";
 							$db->query($sql);
 						}
 						if($db->next_record()){
 							$TiempoPaquetes = $TiempoPaquetes + $db->f(0);
 						}
+						
 					}
 				} else {
 						$TiempoPaquetes=$TiempoPaquetes+ $SEGUNDOS;				
@@ -1581,6 +1582,7 @@ function Final_TotalHorasSolucion_BeforeShow(& $sender)
 			$vFechaFINAnt= $DBcnDisenio->f("FechaFinMov");
 			$i++;
 	  	}	
+
 	}	//fin calculo de tiempo ==1
 
 

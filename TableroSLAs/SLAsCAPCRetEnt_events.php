@@ -62,10 +62,11 @@ function mc_calificacion_capc_btnCalcular_OnClick(& $sender)
 //Custom Code @112-2A29BDB7
 // -------------------------
     $db= new clsDBcnDisenio;
-    $sSQL= 'update mc_calificacion_capc set DiasRetrasoNaturales  =(select top 1 DiasNaturalesDesviacion from mc_info_rs_cr_RE_RC_Artefacto_CAPC where Id_Padre = mc_calificacion_capc.Id   order by DiasNaturalesDesviacion desc ), ' .
-			' DiasRetrasoHabiles = (select top 1 DiasHabilesDesviacion from mc_info_rs_cr_RE_RC_Artefacto_CAPC where Id_Padre = mc_calificacion_capc.id order by DiasHabilesDesviacion desc ) , ' .
-			' PctMaximo = isnull((select top 1 PctDeductiva from mc_info_rs_cr_RE_RC_Artefacto_CAPC where Id_Padre = NULL.id  order by PctDeductiva desc ),0)	' .
-			' where NULL.id= ' . CCGetParam("id",0) ;
+    $sSQL= 'update mc_calificacion_capc set DiasRetrasoNaturales  =(select top 1 DiasNaturalesDesviacion from mc_info_rs_cr_RE_RC_Artefacto_CAPC where Id_Padre = '. CCGetParam("id",0).'   order by DiasNaturalesDesviacion desc ), ' .
+			' DiasRetrasoHabiles = (select top 1 DiasHabilesDesviacion from mc_info_rs_cr_RE_RC_Artefacto_CAPC where Id_Padre = ' .CCGetParam("id",0).' order by DiasHabilesDesviacion desc ) , ' .
+			' PctMaximo = isnull((select top 1 PctDeductiva from mc_info_rs_cr_RE_RC_Artefacto_CAPC where Id_Padre = '. CCGetParam("id",0).'  order by PctDeductiva desc ),0)	' .
+			' where mc_calificacion_capc.Id= ' . CCGetParam("id",0) ;
+			//echo($sSQL);die;
 	$db->query($sSQL);
 
 // -------------------------

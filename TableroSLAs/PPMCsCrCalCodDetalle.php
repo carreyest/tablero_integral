@@ -49,7 +49,7 @@ class clsRecordmc_info_rs_CC { //mc_info_rs_CC Class @27-62C12348
     // Class variables
 //End Variables
 
-//Class_Initialize Event @27-F99575A0
+//Class_Initialize Event @27-F587B0A0
     function clsRecordmc_info_rs_CC($RelativePath, & $Parent)
     {
 
@@ -87,13 +87,17 @@ class clsRecordmc_info_rs_CC { //mc_info_rs_CC Class @27-62C12348
             $this->CumpleCalidadCod->DSType = dsListOfValues;
             $this->CumpleCalidadCod->Values = array(array("-1", "No Aplica"), array("1", "Cumplio"), array("0", "No Cumplio"));
             $this->UsuarioUltMod = new clsControl(ccsHidden, "UsuarioUltMod", "Usuario Ult Mod", ccsText, "", CCGetRequestParam("UsuarioUltMod", $Method, NULL), $this);
-            $this->FechaUltMod = new clsControl(ccsHidden, "FechaUltMod", "Fecha Ult Mod", ccsDate, array("ShortDate"), CCGetRequestParam("FechaUltMod", $Method, NULL), $this);
+            $this->FechaUltMod = new clsControl(ccsHidden, "FechaUltMod", "Fecha Ult Mod", ccsDate, array("yyyy", "-", "mm", "-", "dd", " ", "HH", ":", "nn"), CCGetRequestParam("FechaUltMod", $Method, NULL), $this);
             $this->Observaciones = new clsControl(ccsTextArea, "Observaciones", "Observaciones", ccsText, "", CCGetRequestParam("Observaciones", $Method, NULL), $this);
             $this->PctMetricas = new clsControl(ccsTextBox, "PctMetricas", "PctMetricas", ccsFloat, array(True, 2, Null, "", False, array("#"), array("#", "#"), 1, True, ""), CCGetRequestParam("PctMetricas", $Method, NULL), $this);
             $this->Id_PPMC_HID = new clsControl(ccsHidden, "Id_PPMC_HID", "Id_PPMC_HID", ccsText, "", CCGetRequestParam("Id_PPMC_HID", $Method, NULL), $this);
             $this->ID_Estimacion_HID = new clsControl(ccsHidden, "ID_Estimacion_HID", "ID_Estimacion_HID", ccsText, "", CCGetRequestParam("ID_Estimacion_HID", $Method, NULL), $this);
             $this->mesMed = new clsControl(ccsHidden, "mesMed", "mesMed", ccsText, "", CCGetRequestParam("mesMed", $Method, NULL), $this);
             $this->anioMed = new clsControl(ccsHidden, "anioMed", "anioMed", ccsText, "", CCGetRequestParam("anioMed", $Method, NULL), $this);
+            if(!$this->FormSubmitted) {
+                if(!is_array($this->FechaUltMod->Value) && !strlen($this->FechaUltMod->Value) && $this->FechaUltMod->Value !== false)
+                    $this->FechaUltMod->SetText(date("Y-m-d H:i"));
+            }
         }
     }
 //End Class_Initialize Event
@@ -375,7 +379,7 @@ class clsmc_info_rs_CCDataSource extends clsDBcnDisenio {  //mc_info_rs_CCDataSo
     public $anioMed;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @27-B46144AF
+//DataSourceClass_Initialize Event @27-9C5F9D08
     function clsmc_info_rs_CCDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -391,7 +395,7 @@ class clsmc_info_rs_CCDataSource extends clsDBcnDisenio {  //mc_info_rs_CCDataSo
         
         $this->UsuarioUltMod = new clsField("UsuarioUltMod", ccsText, "");
         
-        $this->FechaUltMod = new clsField("FechaUltMod", ccsDate, $this->DateFormat);
+        $this->FechaUltMod = new clsField("FechaUltMod", ccsDate, array("yyyy", "-", "mm", "-", "dd", " ", "HH", ":", "nn", ":", "ss", ".", "S"));
         
         $this->Observaciones = new clsField("Observaciones", ccsText, "");
         
@@ -466,7 +470,7 @@ class clsmc_info_rs_CCDataSource extends clsDBcnDisenio {  //mc_info_rs_CCDataSo
     }
 //End SetValues Method
 
-//Insert Method @27-7FAC5899
+//Insert Method @27-EF0C7B4B
     function Insert()
     {
         global $CCSLocales;
@@ -480,7 +484,7 @@ class clsmc_info_rs_CCDataSource extends clsDBcnDisenio {  //mc_info_rs_CCDataSo
         $this->cp["PctMetricas"] = new clsSQLParameter("ctrlPctMetricas", ccsFloat, array(True, 2, Null, "", False, array("#"), array("#", "#"), 1, True, ""), "", $this->PctMetricas->GetValue(true), NULL, false, $this->ErrorBlock);
         $this->cp["Id_PPMC"] = new clsSQLParameter("ctrlId_PPMC_HID", ccsInteger, "", "", $this->Id_PPMC_HID->GetValue(true), NULL, false, $this->ErrorBlock);
         $this->cp["ID_Estimacion"] = new clsSQLParameter("ctrlID_Estimacion_HID", ccsInteger, "", "", $this->ID_Estimacion_HID->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["IdUniverso"] = new clsSQLParameter("urlIdUniverso", ccsInteger, "", "", CCGetFromGet("IdUniverso", NULL), NULL, false, $this->ErrorBlock);
+        $this->cp["IdUniverso"] = new clsSQLParameter("urlId", ccsInteger, "", "", CCGetFromGet("Id", NULL), NULL, false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildInsert", $this->Parent);
         if (!is_null($this->cp["PctReglas"]->GetValue()) and !strlen($this->cp["PctReglas"]->GetText()) and !is_bool($this->cp["PctReglas"]->GetValue())) 
             $this->cp["PctReglas"]->SetValue($this->PctReglas->GetValue(true));
@@ -499,7 +503,7 @@ class clsmc_info_rs_CCDataSource extends clsDBcnDisenio {  //mc_info_rs_CCDataSo
         if (!is_null($this->cp["ID_Estimacion"]->GetValue()) and !strlen($this->cp["ID_Estimacion"]->GetText()) and !is_bool($this->cp["ID_Estimacion"]->GetValue())) 
             $this->cp["ID_Estimacion"]->SetValue($this->ID_Estimacion_HID->GetValue(true));
         if (!is_null($this->cp["IdUniverso"]->GetValue()) and !strlen($this->cp["IdUniverso"]->GetText()) and !is_bool($this->cp["IdUniverso"]->GetValue())) 
-            $this->cp["IdUniverso"]->SetText(CCGetFromGet("IdUniverso", NULL));
+            $this->cp["IdUniverso"]->SetText(CCGetFromGet("Id", NULL));
         $this->InsertFields["PctReglas"]["Value"] = $this->cp["PctReglas"]->GetDBValue(true);
         $this->InsertFields["CumpleCalidadCod"]["Value"] = $this->cp["CumpleCalidadCod"]->GetDBValue(true);
         $this->InsertFields["UsuarioUltMod"]["Value"] = $this->cp["UsuarioUltMod"]->GetDBValue(true);

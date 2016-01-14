@@ -1,5 +1,5 @@
 <?php
-//BindEvents Method @1-EBD58A2F
+//BindEvents Method @1-020C2C74
 function BindEvents()
 {
     global $mc_info_rs_CC;
@@ -7,6 +7,7 @@ function BindEvents()
     global $CalidadCodigoReglas;
     global $CCSEvents;
     $mc_info_rs_CC->Button_Insert->CCSEvents["BeforeShow"] = "mc_info_rs_CC_Button_Insert_BeforeShow";
+    $mc_info_rs_CC->Button_Update->CCSEvents["OnClick"] = "mc_info_rs_CC_Button_Update_OnClick";
     $mc_info_rs_CC->Id_PPMC->CCSEvents["BeforeShow"] = "mc_info_rs_CC_Id_PPMC_BeforeShow";
     $mc_info_rs_CC->CCSEvents["BeforeShow"] = "mc_info_rs_CC_BeforeShow";
     $mc_info_rs_CC->ds->CCSEvents["BeforeExecuteInsert"] = "mc_info_rs_CC_ds_BeforeExecuteInsert";
@@ -84,6 +85,26 @@ function mc_info_rs_CC_Button_Insert_BeforeShow(& $sender)
 }
 //End Close mc_info_rs_CC_Button_Insert_BeforeShow
 
+//mc_info_rs_CC_Button_Update_OnClick @30-DE398A06
+function mc_info_rs_CC_Button_Update_OnClick(& $sender)
+{
+    $mc_info_rs_CC_Button_Update_OnClick = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $mc_info_rs_CC; //Compatibility
+//End mc_info_rs_CC_Button_Update_OnClick
+
+//Custom Code @211-2A29BDB7
+// -------------------------
+
+// -------------------------
+//End Custom Code
+
+//Close mc_info_rs_CC_Button_Update_OnClick @30-09881C17
+    return $mc_info_rs_CC_Button_Update_OnClick;
+}
+//End Close mc_info_rs_CC_Button_Update_OnClick
+
 //mc_info_rs_CC_Id_PPMC_BeforeShow @33-D85E30E0
 function mc_info_rs_CC_Id_PPMC_BeforeShow(& $sender)
 {
@@ -95,7 +116,6 @@ function mc_info_rs_CC_Id_PPMC_BeforeShow(& $sender)
 
 //Custom Code @46-2A29BDB7
 // -------------------------
-
   	global $IdPPMC;
   	global $CalMet;
   	global $CalReg;
@@ -184,12 +204,13 @@ function mc_info_rs_CC_Id_PPMC_BeforeShow(& $sender)
     }	
     
   	$mc_info_rs_CC->UsuarioUltMod->SetValue(CCGetUserLogin());
-  	$mc_info_rs_CC->FechaUltMod->SetValue(date('Y-m-d G:i:s',mktime(date('H'),date('i'),date('s'),date('n'),date('j'),date('Y'))));
+  	$mc_info_rs_CC->FechaUltMod->SetValue(mktime(date("H"),date("i"),date("s"),date("n"),date("j"),date("Y")));                    
+  	//$mc_info_rs_CC->FechaUltMod->SetValue(date('Y-m-d G:i',mktime(date('H'),date('i'),date('s'),date('n'),date('j'),date('Y'))));
+  	
+  	
 	
 	$mc_info_rs_CC->mesMed->SetValue($mesmedicion);
 	$mc_info_rs_CC->anioMed->SetValue($aniomedicion);
-
-
     $db->close();
 
   		
@@ -293,6 +314,7 @@ function mc_info_rs_CC_ds_BeforeExecuteUpdate(& $sender)
 
 //Custom Code @170-2A29BDB7
 // -------------------------
+
 // -------------------------
 //End Custom Code
 
@@ -343,7 +365,7 @@ function mc_info_rs_CC_AfterInsert(& $sender)
 	
     $db->query($sSQL);
     $db->close();
-    echo($sSQL);
+
 
     // Write your own code here.
 // -------------------------
@@ -365,7 +387,9 @@ function mc_info_rs_CC_AfterUpdate(& $sender)
 
 //Custom Code @199-2A29BDB7
 // -------------------------
-    global $db;
+   global $db;
+
+ 
     $db= new clsDBcnDisenio;
     if ($mc_info_rs_CC->CumpleCalidadCod->GetValue() < 0 ) {
 	$sSQL = 'UPDATE  mc_calificacion_rs_mc SET CAL_COD = NULL WHERE IdUniverso =' . CCGetParam("Id");    	
@@ -375,6 +399,7 @@ function mc_info_rs_CC_AfterUpdate(& $sender)
     }
     $db->query($sSQL);
     $db->close();
+    
 
 // -------------------------
 //End Custom Code

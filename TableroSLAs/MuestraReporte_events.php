@@ -204,15 +204,24 @@ function Page_BeforeShow(& $sender)
 		global $lReportContent;
 		global $db;
 		$db= new clsDBcnDisenio;
-		$db->query("select nombrerdl from ReportesMyM where IdReporte=" . CCGetParam("IdReporte","0"));
+		$db->query("select nombrerdl,Descripcion from ReportesMyM where IdReporte=" . CCGetParam("IdReporte","0"));		
 		if($db->next_record()){
+			
 			global $PathToRoot;
-			if(CCGetSession("Rape","")==1 && CCGetSession("Nivel","")!=5){ //Sólo si es rape pero no administrador
-				$lReportContent->SetValue("<iframe  id='rep_metri'  style='overflow:auto; width:1160px; height:700px;' frameborder=0 src=" . $PathToRoot . "reportviewer/VerReporte2.aspx?urlreporte=" . $db->f(0) . "&fullscreen=" . CCGetParam("fullscreen",0) ."&Admon=".CCGetSession("AdministracionRape","")."></iframe>");
-  			} else {
-				$lReportContent->SetValue("<iframe  id='rep_metri'  style='overflow:auto; width:1160px; height:700px;' frameborder=0 src=" . $PathToRoot . "reportviewer/VerReporte.aspx?urlreporte=" . $db->f(0) . "&fullscreen=" . CCGetParam("fullscreen",0) ."></iframe>");  			
-  			}
-		}
+			
+	//		if($db->f(1)=='Permanencia de paquetes en AVL'){
+	//			$administracion = CCGetSession("Rape","")==1 && CCGetSession("Nivel","")!=5 ? CCGetSession("AdministracionRape","") : "Gral";
+	//			$lReportContent->SetValue("<iframe  id='rep_metri'  style='overflow:auto; width:1160px; height:700px;' frameborder=0 src=" . $PathToRoot . "reportviewer/VerReporte2.aspx?urlreporte=" . $db->f(0) . "&fullscreen=" . CCGetParam("fullscreen",0) ."&Admon=".$administracion."></iframe>");
+	//		}	
+	//		else {
+					if(CCGetSession("Rape","")==1 && CCGetSession("Nivel","")!=5){ //Sólo si es rape pero no administrador
+						$lReportContent->SetValue("<iframe  id='rep_metri'  style='overflow:auto; width:1160px; height:700px;' frameborder=0 src=" . $PathToRoot . "reportviewer/VerReporte2.aspx?urlreporte=" . $db->f(0) . "&fullscreen=" . CCGetParam("fullscreen",0) ."&Admon=".CCGetSession("AdministracionRape","")."></iframe>");
+		  			} else {
+						$lReportContent->SetValue("<iframe  id='rep_metri'  style='overflow:auto; width:1160px; height:700px;' frameborder=0 src=" . $PathToRoot . "reportviewer/VerReporte.aspx?urlreporte=" . $db->f(0) . "&fullscreen=" . CCGetParam("fullscreen",0) ."></iframe>");  			
+					}
+	//		}
+			
+		}		
 		$db->close();
 	} else {
 		if(CCGetParam("frame","")==1){

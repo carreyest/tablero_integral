@@ -22,7 +22,7 @@
 		<Report id="30" secured="False" enablePrint="False" showMode="Web" sourceType="SQL" returnValueType="Number" linesPerWebPage="50" linesPerPhysicalPage="10" name="ReportesMyM" connection="cnDisenio" dataSource="SELECT IdReporte, Nombre, Grupo, usuario_reporteMyM.activo AS Perm_activo 
 FROM ReportesMyM INNER JOIN usuario_reporteMyM ON
 ReportesMyM.IdReporte = usuario_reporteMyM.id_reporte
-WHERE (Grupo &lt;&gt; '{Expr0}' OR '{grupovaloracion}' =  'CAPC' )
+WHERE (Grupo &lt;&gt; '{Expr0}' OR '{grupovaloracion}' =  'CAPC')
 AND ReportesMyM.activo = {Expr1}
 AND id_usuario = {MyMUserID} " pageSizeLimit="100" wizardCaption="Reportes" changedCaptionReport="True" wizardLayoutType="GroupLeftAbove" wizardGridPaging="Centered" wizardHideDetail="False" wizardPercentForSums="False" wizardEnablePrintMode="False" wizardReportSeparator="False" wizardReportAddTotalRecords="False" wizardReportAddPageNumbers="False" wizardReportAddNbsp="False" wizardReportAddDateTime="False" wizardReportDateTimeAs="CurrentDate" wizardReportAddRowNumber="False" wizardReportRowNumberResetAt="Report" wizardUseSearch="False" wizardNoRecords="No hay registros" wizardUseInterVariables="False" wizardThemeApplyTo="Page" reportAddTemplatePanel="False" editableComponentTypeString="Report">
 			<Components>
@@ -131,12 +131,12 @@ AND id_usuario = {MyMUserID} " pageSizeLimit="100" wizardCaption="Reportes" chan
 				</Section>
 			</Components>
 			<Events>
-<Event name="BeforeSelect" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="82"/>
-</Actions>
-</Event>
-</Events>
+				<Event name="BeforeSelect" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="82"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters>
 			</TableParameters>
 			<JoinTables>
@@ -148,11 +148,11 @@ AND id_usuario = {MyMUserID} " pageSizeLimit="100" wizardCaption="Reportes" chan
 			<PKFields/>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="78" dataType="Text" designDefaultValue="SLAS" parameterSource="'SLAs'" parameterType="Expression" variable="Expr0"/>
-				<SQLParameter id="79" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="1" parameterType="Expression" variable="Expr1"/>
-				<SQLParameter id="80" dataType="Integer" defaultValue="0" designDefaultValue="53" parameterSource="MyMUserID" parameterType="Session" variable="MyMUserID"/>
-				<SQLParameter id="81" dataType="Text" designDefaultValue="SLAS" parameterSource="GrupoValoracion" parameterType="Session" variable="grupovaloracion"/>
-			</SQLParameters>
+				<SQLParameter id="83" dataType="Text" designDefaultValue="SLAS" parameterSource="'SLAs'" parameterType="Expression" variable="Expr0"/>
+<SQLParameter id="84" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="1" parameterType="Expression" variable="Expr1"/>
+<SQLParameter id="85" dataType="Integer" defaultValue="0" designDefaultValue="53" parameterSource="MyMUserID" parameterType="Session" variable="MyMUserID"/>
+<SQLParameter id="86" dataType="Text" designDefaultValue="SLAS" parameterSource="GrupoValoracion" parameterType="Session" variable="grupovaloracion"/>
+</SQLParameters>
 			<ReportGroups>
 				<ReportGroup id="55" name="Grupo" field="Grupo" sortOrder="asc" sqlField="ReportesMyM.Grupo"/>
 			</ReportGroups>

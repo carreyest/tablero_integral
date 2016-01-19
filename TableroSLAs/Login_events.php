@@ -36,6 +36,7 @@ function Login1_Button_DoLogin_OnClick(& $sender)
         $db = new  clsDBcnDisenio();
         $sGrupoValoracion = CCDLookUp("Grupo","mc_c_usuarios","id= " . CCGetUserID() , $db);
 		CCSetSession("GrupoValoracion",$sGrupoValoracion); 
+		CCSetSession("capc_cds","CAPC"); 
 		$sCDSPreferido  = CCDLookUp("CDSDefault","mc_c_usuarios","id= " . CCGetUserID() , $db);
 		CCSetSession("CDSPreferido",$sCDSPreferido); 
         $sAdministracion = CCDLookUp("Administracion_rape","mc_c_usuarios","id= " . CCGetUserID() , $db);

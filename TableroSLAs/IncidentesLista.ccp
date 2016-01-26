@@ -85,21 +85,21 @@
 					<Components/>
 					<Events/>
 					<TableParameters>
-						<TableParameter id="197" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Nivel" logicOperator="Or" parameterSource="&quot;3&quot;" parameterType="Expression" searchConditionType="Equal"/>
-<TableParameter id="198" conditionType="Parameter" useIsNull="False" dataType="Text" field="Usuario" logicOperator="Or" parameterSource="rramos" parameterType="Expression" searchConditionType="Equal"/>
-<TableParameter id="199" conditionType="Parameter" useIsNull="False" dataType="Text" field="Usuario" logicOperator="Or" parameterSource="ldominguez" parameterType="Expression" searchConditionType="Equal"/>
+						<TableParameter id="203" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Nivel" logicOperator="Or" parameterSource="&quot;3&quot;" parameterType="Expression" searchConditionType="Equal"/>
+<TableParameter id="204" conditionType="Parameter" useIsNull="False" dataType="Text" field="Usuario" logicOperator="Or" parameterSource="&quot;rramos&quot;" parameterType="Expression" searchConditionType="Equal"/>
+<TableParameter id="205" conditionType="Parameter" useIsNull="False" dataType="Text" field="Usuario" logicOperator="Or" parameterSource="&quot;ldominguez&quot;" parameterType="Expression" searchConditionType="Equal"/>
 </TableParameters>
 					<SPParameters/>
 					<SQLParameters/>
 					<JoinTables>
-						<JoinTable id="196" posHeight="180" posLeft="10" posTop="10" posWidth="153" tableName="mc_c_usuarios"/>
+						<JoinTable id="202" posHeight="180" posLeft="10" posTop="10" posWidth="153" tableName="mc_c_usuarios"/>
 </JoinTables>
 					<JoinLinks/>
 					<Fields>
-						<Field id="200" fieldName="*"/>
+						<Field id="206" fieldName="*"/>
 </Fields>
 					<PKFields>
-						<PKField id="201" dataType="Integer" fieldName="Id" tableName="mc_c_usuarios"/>
+						<PKField id="207" dataType="Integer" fieldName="Id" tableName="mc_c_usuarios"/>
 </PKFields>
 					<Attributes/>
 					<Features/>

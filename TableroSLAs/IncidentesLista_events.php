@@ -1,5 +1,5 @@
 <?php
-//BindEvents Method @1-AF6BB387
+//BindEvents Method @1-AF8E8E7E
 function BindEvents()
 {
     global $mc_info_incidentesSearch;
@@ -10,6 +10,7 @@ function BindEvents()
     $mc_info_incidentes->Id_incidente->CCSEvents["BeforeShow"] = "mc_info_incidentes_Id_incidente_BeforeShow";
     $mc_info_incidentes->lblRegistros->CCSEvents["BeforeShow"] = "mc_info_incidentes_lblRegistros_BeforeShow";
     $mc_info_incidentes->CCSEvents["BeforeShow"] = "mc_info_incidentes_BeforeShow";
+    $mc_info_incidentes->CCSEvents["BeforeShowRow"] = "mc_info_incidentes_BeforeShowRow";
     $CCSEvents["BeforeShow"] = "Page_BeforeShow";
 }
 //End BindEvents Method
@@ -140,6 +141,26 @@ $_SESSION['SQL']= serialize($miArray); //$mc_info_incidentes->DataSource->SQL;
     return $mc_info_incidentes_BeforeShow;
 }
 //End Close mc_info_incidentes_BeforeShow
+
+//mc_info_incidentes_BeforeShowRow @26-EA447497
+function mc_info_incidentes_BeforeShowRow(& $sender)
+{
+    $mc_info_incidentes_BeforeShowRow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $mc_info_incidentes; //Compatibility
+//End mc_info_incidentes_BeforeShowRow
+
+//Custom Code @208-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
+//Close mc_info_incidentes_BeforeShowRow @26-9B24BC81
+    return $mc_info_incidentes_BeforeShowRow;
+}
+//End Close mc_info_incidentes_BeforeShowRow
 
 //Page_BeforeShow @1-E4231228
 function Page_BeforeShow(& $sender)

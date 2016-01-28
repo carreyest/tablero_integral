@@ -1,4 +1,4 @@
-<Page id="1" templateExtension="html" relativePath="." fullRelativePath="." secured="True" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="{CCS_Style}" wizardThemeVersion="3.0" useDesign="False" needGeneration="0">
+<Page id="1" templateExtension="html" relativePath="." fullRelativePath="." secured="True" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="Austere4" wizardThemeVersion="3.0" useDesign="False" needGeneration="0">
 	<Components>
 		<Grid id="68" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="10" name="mc_detalle_incidente_avl" connection="cnDisenio" dataSource="select 	det.ClaveMovimiento, det.DescMovimiento , det.FechaInicioMov, det.FechaFinMov, det.Paquete    
 	, dbo.ufDiffFechasMCSec(i.FechaEnCurso,i.FechaResuelto) TiempoSolucionRmdy
@@ -179,7 +179,7 @@ where i.id_incidente = '{Id_incidente}'
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="345" dataType="Text" designDefaultValue="INC000003376478" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
-</SQLParameters>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -793,7 +793,7 @@ WHERE Id_incidente = '{Id_incidente}' " errorSummator="Error" allowCancel="False
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="346" dataType="Text" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
-</SQLParameters>
+			</SQLParameters>
 			<JoinTables>
 			</JoinTables>
 			<JoinLinks/>
@@ -980,7 +980,13 @@ WHERE mi.Id_incidente = '{Id_incidente}' " errorSummator="Error" allowCancel="Fa
 					<Features/>
 				</Label>
 			</Components>
-			<Events/>
+			<Events>
+				<Event name="BeforeShow" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="379"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters/>
 			<SPParameters/>
 			<SQLParameters>
@@ -1122,6 +1128,180 @@ WHERE mi.Id_incidente = '{Id_incidente}' " errorSummator="Error" allowCancel="Fa
 			<ISPParameters/>
 			<ISQLParameters/>
 			<IFormElements/>
+			<USPParameters/>
+			<USQLParameters/>
+			<UConditions/>
+			<UFormElements/>
+			<DSPParameters/>
+			<DSQLParameters/>
+			<DConditions/>
+			<SecurityGroups/>
+			<Attributes/>
+			<Features/>
+		</Record>
+		<Record id="347" sourceType="Table" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="mc_incidentes_reasignacio" connection="cnDisenio" dataSource="mc_incidentes_reasignaciones" errorSummator="Error" allowCancel="True" recordDeleteConfirmation="True" buttonsType="button" wizardRecordKey="id" encryptPasswordField="False" wizardUseInterVariables="False" pkIsAutoincrement="True" wizardCaption="Agregar/Editar Mc Incidentes Reasignaciones " wizardThemeApplyTo="Page" wizardFormMethod="post" wizardType="Record" changedCaptionRecord="False" recordDirection="Vertical" recordAddTemplatePanel="False" PathID="mc_incidentes_reasignacio">
+			<Components>
+				<Button id="349" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Agregar" PathID="mc_incidentes_reasignacioButton_Insert">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+				<Button id="350" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Update" operation="Update" wizardCaption="Enviar" PathID="mc_incidentes_reasignacioButton_Update">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+				<Button id="351" urlType="Relative" enableValidation="False" isDefault="False" name="Button_Delete" operation="Delete" wizardCaption="Borrar" PathID="mc_incidentes_reasignacioButton_Delete">
+					<Components/>
+					<Events>
+						<Event name="OnClick" type="Client">
+							<Actions>
+								<Action actionName="Confirmation Message" actionCategory="General" id="352" message="Borrar registro?"/>
+							</Actions>
+						</Event>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
+				<Button id="353" urlType="Relative" enableValidation="False" isDefault="False" name="Button_Cancel" operation="Cancel" wizardCaption="Cancelar" PathID="mc_incidentes_reasignacioButton_Cancel">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+				<Label id="355" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="id_incidente" fieldSource="id_incidente" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Id Incidente" wizardAddNbsp="True" PathID="mc_incidentes_reasignacioid_incidente" defaultValue="CCGetParam(&quot;Id_incidente&quot;)">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="356" fieldSourceType="DBColumn" dataType="Integer" html="False" generateSpan="False" name="mes" fieldSource="mes" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Mes" wizardAddNbsp="True" PathID="mc_incidentes_reasignaciomes" defaultValue="CCGetParam(&quot;s_mes_param&quot;)">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="357" fieldSourceType="DBColumn" dataType="Integer" html="False" generateSpan="False" name="anio" fieldSource="anio" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Anio" wizardAddNbsp="True" PathID="mc_incidentes_reasignacioanio" defaultValue="CCGetParam(&quot;s_anio_param&quot;)">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<TextBox id="358" visible="Yes" fieldSourceType="DBColumn" dataType="Date" name="primera_fecha_asignacion" fieldSource="primera_fecha_asignacion" wizardIsPassword="False" wizardUseTemplateBlock="False" features="(assigned)" wizardCaption="Primera Fecha Asignacion" caption="Primera Fecha Asignacion" required="True" format="dd/mm/yyyy HH:nn:ss" unique="False" wizardSize="8" wizardMaxLength="100" PathID="mc_incidentes_reasignacioprimera_fecha_asignacion" DBFormat="yyyy-mm-dd HH:nn:ss.S">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features>
+						<JDateTimePicker id="359" show_weekend="True" name="InlineDatePicker1" category="jQuery" enabled="True">
+							<Components/>
+							<Events/>
+							<TableParameters/>
+							<SPParameters/>
+							<SQLParameters/>
+							<JoinTables/>
+							<JoinLinks/>
+							<Fields/>
+							<Features/>
+						</JDateTimePicker>
+					</Features>
+				</TextBox>
+				<TextBox id="360" visible="Yes" fieldSourceType="DBColumn" dataType="Date" name="primera_fecha_encurso" fieldSource="primera_fecha_encurso" wizardIsPassword="False" wizardUseTemplateBlock="False" features="(assigned)" wizardCaption="Primera Fecha Encurso" caption="Primera Fecha Encurso" required="True" format="dd/mm/yyyy HH:nn:ss" unique="False" wizardSize="8" wizardMaxLength="100" PathID="mc_incidentes_reasignacioprimera_fecha_encurso" DBFormat="yyyy-mm-dd HH:nn:ss.S">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features>
+						<JDateTimePicker id="361" show_weekend="True" name="InlineDatePicker2" category="jQuery" enabled="True">
+							<Components/>
+							<Events/>
+							<TableParameters/>
+							<SPParameters/>
+							<SQLParameters/>
+							<JoinTables/>
+							<JoinLinks/>
+							<Fields/>
+							<Features/>
+						</JDateTimePicker>
+					</Features>
+				</TextBox>
+				<Label id="362" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="horas_invertidas" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Horas Invertidas" caption="Horas Invertidas" required="False" unique="False" wizardSize="20" wizardMaxLength="20" PathID="mc_incidentes_reasignaciohoras_invertidas" html="False">
+					<Components/>
+					<Events>
+						<Event name="BeforeShow" type="Server">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="367"/>
+							</Actions>
+						</Event>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Hidden id="363" fieldSourceType="DBColumn" dataType="Text" name="H_id_incidente" PathID="mc_incidentes_reasignacioH_id_incidente" fieldSource="id_incidente" defaultValue="CCGetParam(&quot;Id_incidente&quot;)">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="364" fieldSourceType="DBColumn" dataType="Text" name="H_mes" PathID="mc_incidentes_reasignacioH_mes" defaultValue="CCGetParam(&quot;s_mes_param&quot;)" fieldSource="mes">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="365" fieldSourceType="DBColumn" dataType="Text" name="H_anio" PathID="mc_incidentes_reasignacioH_anio" fieldSource="anio" defaultValue="CCGetParam(&quot;s_anio_param&quot;)">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="366" fieldSourceType="DBColumn" dataType="Float" name="H_horas_invertidas" PathID="mc_incidentes_reasignacioH_horas_invertidas" fieldSource="horas_invertidas">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+			</Components>
+			<Events>
+				<Event name="AfterExecuteInsert" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="377"/>
+					</Actions>
+				</Event>
+				<Event name="BeforeShow" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="378"/>
+					</Actions>
+				</Event>
+				<Event name="AfterUpdate" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="380"/>
+					</Actions>
+				</Event>
+			</Events>
+			<TableParameters>
+				<TableParameter id="375" conditionType="Parameter" useIsNull="False" dataType="Text" field="id_incidente" logicOperator="And" orderNumber="1" parameterSource="Id_incidente" parameterType="URL" searchConditionType="Equal"/>
+			</TableParameters>
+			<SPParameters/>
+			<SQLParameters/>
+			<JoinTables>
+				<JoinTable id="374" posHeight="168" posLeft="10" posTop="10" posWidth="160" tableName="mc_incidentes_reasignaciones"/>
+			</JoinTables>
+			<JoinLinks/>
+			<Fields>
+				<Field id="376" fieldName="*"/>
+			</Fields>
+			<PKFields/>
+			<ISPParameters/>
+			<ISQLParameters/>
+			<IFormElements>
+				<CustomParameter id="368" field="primera_fecha_asignacion" dataType="Date" parameterType="Control" parameterSource="primera_fecha_asignacion" format="dd/mm/yyyy HH:nn" DBFormat="yyyy-mm-dd HH:nn:ss.S"/>
+				<CustomParameter id="369" field="primera_fecha_encurso" dataType="Date" parameterType="Control" parameterSource="primera_fecha_encurso" format="dd/mm/yyyy HH:nn" DBFormat="yyyy-mm-dd HH:nn:ss.S"/>
+				<CustomParameter id="370" field="id_incidente" dataType="Text" parameterType="Control" parameterSource="H_id_incidente"/>
+				<CustomParameter id="371" field="mes" dataType="Text" parameterType="Control" parameterSource="H_mes"/>
+				<CustomParameter id="372" field="anio" dataType="Text" parameterType="Control" parameterSource="H_anio"/>
+				<CustomParameter id="373" field="horas_invertidas" dataType="Float" parameterType="Control" parameterSource="H_horas_invertidas"/>
+			</IFormElements>
 			<USPParameters/>
 			<USQLParameters/>
 			<UConditions/>

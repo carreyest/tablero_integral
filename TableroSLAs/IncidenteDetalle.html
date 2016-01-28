@@ -277,8 +277,10 @@ function validaModificacion(obj)
 <script type="text/javascript">
 //End Include Common JSFunctions
 
-//Include User Scripts @1-A87AC9EE
+//Include User Scripts @1-6B493E1E
 </script>
+<link rel="stylesheet" type="text/css" href="Styles/Austere4/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="Styles/Austere4/ccs-jquery-ui-calendar.css">
 {page:scriptIncludes}
 <script type="text/javascript">
 //End Include User Scripts
@@ -290,8 +292,61 @@ jQuery(function ($) {
     var params = { };
 //End Common Script Start
 
-//Plugin Calls @1-5B4617FD
+//Controls Selecting @1-74A42C38
+    $('body').ccsBind(function() {
+        features["mc_incidentes_reasignacioprimera_fecha_asignacionInlineDatePicker1"] = $('*:ccsControl(mc_incidentes_reasignacio, primera_fecha_asignacion)');
+        features["mc_incidentes_reasignacioprimera_fecha_encursoInlineDatePicker2"] = $('*:ccsControl(mc_incidentes_reasignacio, primera_fecha_encurso)');
+    });
+//End Controls Selecting
+
+//Feature Parameters @1-982A3605
+    params["mc_incidentes_reasignacioprimera_fecha_asignacionInlineDatePicker1"] = { 
+        dateFormat: "dd/MM/yyyy HH:mm:ss",
+        isWeekend: true
+    };
+    params["mc_incidentes_reasignacioprimera_fecha_encursoInlineDatePicker2"] = { 
+        dateFormat: "dd/MM/yyyy HH:mm:ss",
+        isWeekend: true
+    };
+//End Feature Parameters
+
+//Feature Init @1-A6355655
+    features["mc_incidentes_reasignacioprimera_fecha_asignacionInlineDatePicker1"].ccsBind(function() {
+        this.ccsDateTimePicker(params["mc_incidentes_reasignacioprimera_fecha_asignacionInlineDatePicker1"]);
+    });
+    features["mc_incidentes_reasignacioprimera_fecha_encursoInlineDatePicker2"].ccsBind(function() {
+        this.ccsDateTimePicker(params["mc_incidentes_reasignacioprimera_fecha_encursoInlineDatePicker2"]);
+    });
+//End Feature Init
+
+//mc_incidentes_reasignacioButton_DeleteOnClick Event Start @-AF0C7950
+    actions["mc_incidentes_reasignacioButton_DeleteOnClick"] = function (eventType, parameters) {
+        var result = true;
+//End mc_incidentes_reasignacioButton_DeleteOnClick Event Start
+
+//Confirmation Message @352-BED55CD3
+        return confirm('Borrar registro?');
+//End Confirmation Message
+
+//mc_incidentes_reasignacioButton_DeleteOnClick Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_incidentes_reasignacioButton_DeleteOnClick Event End
+
+//Event Binding @1-21C352B2
+    $('*:ccsControl(mc_incidentes_reasignacio, Button_Delete)').ccsBind(function() {
+        this.bind("click", actions["mc_incidentes_reasignacioButton_DeleteOnClick"]);
+    });
+//End Event Binding
+
+//Plugin Calls @1-E902FAC2
     $('*:ccsControl(mc_calificacion_incidente, Cancelar)').ccsBind(function() {
+        this.bind("click", function(){ $("body").data("disableValidation", true); });
+    });
+    $('*:ccsControl(mc_incidentes_reasignacio, Button_Delete)').ccsBind(function() {
+        this.bind("click", function(){ $("body").data("disableValidation", true); });
+    });
+    $('*:ccsControl(mc_incidentes_reasignacio, Button_Cancel)').ccsBind(function() {
         this.bind("click", function(){ $("body").data("disableValidation", true); });
     });
 //End Plugin Calls
@@ -302,8 +357,8 @@ jQuery(function ($) {
 
 //End CCS script
 </script>
-<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
-<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="Styles/Austere4/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="Styles/Austere4/jquery-ui.css">
 </head>
 <body onload="ayudaValidaciones('','')">
 <p>&nbsp;&nbsp;&nbsp;{Header}</p>
@@ -540,7 +595,70 @@ jQuery(function ($) {
           </td>
         </tr>
       </table>
-      <!-- END Grid mc_incidentes_relacionado --></td>
+      <!-- END Grid mc_incidentes_relacionado -->
+      <!-- BEGIN Record mc_incidentes_reasignacio -->
+      <form id="mc_incidentes_reasignacio" method="post" name="{HTMLFormName}" action="{Action}">
+        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>Cambio a primera asignación</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr id="ErrorBlock" class="Error">
+                  <td colspan="2">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th">Id Incidente</td> 
+                  <td>{id_incidente}<input type="hidden" id="mc_incidentes_reasignacioH_id_incidente" value="{H_id_incidente}" name="{H_id_incidente_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Mes</td> 
+                  <td>{mes}<input type="hidden" id="mc_incidentes_reasignacioH_mes" value="{H_mes}" name="{H_mes_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Anio</td> 
+                  <td>{anio}<input type="hidden" id="mc_incidentes_reasignacioH_anio" value="{H_anio}" name="{H_anio_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_incidentes_reasignacioprimera_fecha_asignacion">Primera Fecha Asignacion</label></td> 
+                  <td><input type="text" style="WIDTH: 169px; HEIGHT: 22px" id="mc_incidentes_reasignacioprimera_fecha_asignacion" value="{primera_fecha_asignacion}" maxlength="100" size="18" name="{primera_fecha_asignacion_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_incidentes_reasignacioprimera_fecha_encurso">Primera Fecha Encurso</label></td> 
+                  <td><input type="text" style="WIDTH: 169px; HEIGHT: 22px" id="mc_incidentes_reasignacioprimera_fecha_encurso" value="{primera_fecha_encurso}" maxlength="100" size="18" name="{primera_fecha_encurso_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_incidentes_reasignaciohoras_invertidas">Horas Invertidas</label></td> 
+                  <td>{horas_invertidas}<input type="hidden" id="mc_incidentes_reasignacioH_horas_invertidas" value="{H_horas_invertidas}" name="{H_horas_invertidas_Name}"></td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td style="TEXT-ALIGN: right" colspan="2">
+                    <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_incidentes_reasignacioButton_Insert" class="Button" value="Agregar" alt="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input type="submit" id="mc_incidentes_reasignacioButton_Update" class="Button" value="Recalcular/Actualizar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Update -->
+                    <!-- BEGIN Button Button_Delete --><input type="submit" id="mc_incidentes_reasignacioButton_Delete" class="Button" value="Borrar" alt="Borrar" name="{Button_Name}"><!-- END Button Button_Delete -->
+                    <!-- BEGIN Button Button_Cancel --><input type="submit" id="mc_incidentes_reasignacioButton_Cancel" class="Button" value="Cancelar" alt="Cancelar" name="{Button_Name}"><!-- END Button Button_Cancel --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record mc_incidentes_reasignacio --><br>
+    </td>
   </tr>
  
   <tr>

@@ -231,7 +231,7 @@ function mc_info_incidentes_BeforeShowRow(& $sender)
 //Custom Code @200-2A29BDB7
 // -------------------------
 
-
+    $mc_info_incidentes->Id_incidente->SetLink(str_replace('&amp;','&',$mc_info_incidentes->Id_incidente->GetLink())."&s_mes_param=".CCGetParam("s_MesReporte")."&s_anio_param=".CCGetParam("s_AnioReporte"));
 	switch (CCGetParam("s_id_proveedor")){
 	//case 1 : $sProveedor = 'Evidencia_CAPC';break;
 	case 2 : $sProveedor = 'Evidencias_CDS1y3';break;

@@ -645,16 +645,18 @@ class clsmc_info_incidentesDataSource extends clsDBcnDisenio {  //mc_info_incide
     }
 //End Prepare Method
 
-//Open Method @26-62C7A68B
+//Open Method @26-895217C0
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (select mci.Id_incidente ,mci.ServicioNegocio ,mci.Aplicacion ,mci.FechaNuevo ,mci.FechaAsignado ,mci.FechaEnCurso ,mci.FechaPendiente ,mci.FechaResuelto ,mci.FechaCerrado, mc.severidad ,\n" .
+        $this->CountSQL = "SELECT COUNT(*) FROM (select mci.Id_incidente ,mci.ServicioNegocio ,mci.Aplicacion ,mci.FechaNuevo ,case when new.primera_fecha_asignacion IS NOT NULL THEN  new.primera_fecha_asignacion  ELSE  mci.FechaAsignado END as FechaAsignado , \n" .
+        "case when new.primera_fecha_encurso IS NOT NULL THEN  new.primera_fecha_encurso  ELSE  mci.FechaEnCurso END as FechaEnCurso  ,mci.FechaPendiente ,mci.FechaResuelto ,mci.FechaCerrado, mc.severidad ,\n" .
         "(select top 1 FechaInicioMov from mc_detalle_incidente_avl where Id_Incidente=mci.Id_incidente order by paquete,clavemovimiento ) as RegistroAVL,\n" .
         "Cumple_Inc_TiempoAsignacion ,Cumple_Inc_TiempoSolucion ,Cumple_DISP_SOPORTE ,mc.Obs_Manuales , mci.Estado, mcu.analista \n" .
         "from mc_universo_cds mcu inner join  mc_info_incidentes mci\n" .
         "on mci.id_incidente=mcu.Numero and month(mci.FechaCarga) = mcu.mes and YEAR(mci.FechaCarga )= mcu.anio \n" .
-        "inner join mc_calificacion_incidentes_MC mc on mc.id_incidente =mci.Id_incidente  \n" .
+        "inner join mc_calificacion_incidentes_MC mc on mc.id_incidente =mci.Id_incidente \n" .
+        "left join mc_incidentes_reasignaciones new on new.id_incidente=mci.Id_incidente \n" .
         "where mcu.tipo='IN'\n" .
         "and mcu.mes=" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
         "and mcu.anio=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "\n" .
@@ -662,12 +664,14 @@ class clsmc_info_incidentesDataSource extends clsDBcnDisenio {  //mc_info_incide
         "and ((mcu.id_proveedor=" . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . ") or (" . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "=0))\n" .
         "and mci.Id_incidente like '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
         ") cnt";
-        $this->SQL = "select TOP {SqlParam_endRecord} mci.Id_incidente ,mci.ServicioNegocio ,mci.Aplicacion ,mci.FechaNuevo ,mci.FechaAsignado ,mci.FechaEnCurso ,mci.FechaPendiente ,mci.FechaResuelto ,mci.FechaCerrado, mc.severidad ,\n" .
+        $this->SQL = "select TOP {SqlParam_endRecord} mci.Id_incidente ,mci.ServicioNegocio ,mci.Aplicacion ,mci.FechaNuevo ,case when new.primera_fecha_asignacion IS NOT NULL THEN  new.primera_fecha_asignacion  ELSE  mci.FechaAsignado END as FechaAsignado , \n" .
+        "case when new.primera_fecha_encurso IS NOT NULL THEN  new.primera_fecha_encurso  ELSE  mci.FechaEnCurso END as FechaEnCurso  ,mci.FechaPendiente ,mci.FechaResuelto ,mci.FechaCerrado, mc.severidad ,\n" .
         "(select top 1 FechaInicioMov from mc_detalle_incidente_avl where Id_Incidente=mci.Id_incidente order by paquete,clavemovimiento ) as RegistroAVL,\n" .
         "Cumple_Inc_TiempoAsignacion ,Cumple_Inc_TiempoSolucion ,Cumple_DISP_SOPORTE ,mc.Obs_Manuales , mci.Estado, mcu.analista \n" .
         "from mc_universo_cds mcu inner join  mc_info_incidentes mci\n" .
         "on mci.id_incidente=mcu.Numero and month(mci.FechaCarga) = mcu.mes and YEAR(mci.FechaCarga )= mcu.anio \n" .
-        "inner join mc_calificacion_incidentes_MC mc on mc.id_incidente =mci.Id_incidente  \n" .
+        "inner join mc_calificacion_incidentes_MC mc on mc.id_incidente =mci.Id_incidente \n" .
+        "left join mc_incidentes_reasignaciones new on new.id_incidente=mci.Id_incidente \n" .
         "where mcu.tipo='IN'\n" .
         "and mcu.mes=" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
         "and mcu.anio=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "\n" .

@@ -1,5 +1,5 @@
 <?php
-//BindEvents Method @1-4523D2D2
+//BindEvents Method @1-7C6F9B2F
 function BindEvents()
 {
     global $mc_detalle_incidente_avl;
@@ -12,6 +12,7 @@ function BindEvents()
     global $mc_info_incidentes1;
     global $mc_info_incidentes2;
     global $Final;
+    global $mc_incidentes_reasignacio;
     global $CCSEvents;
     $mc_detalle_incidente_avl->Horas->CCSEvents["BeforeShow"] = "mc_detalle_incidente_avl_Horas_BeforeShow";
     $mc_detalle_incidente_avl->Paquete->CCSEvents["BeforeShow"] = "mc_detalle_incidente_avl_Paquete_BeforeShow";
@@ -46,11 +47,18 @@ function BindEvents()
     $mc_info_incidentes1->HorasInvertidas->CCSEvents["BeforeShow"] = "mc_info_incidentes1_HorasInvertidas_BeforeShow";
     $mc_info_incidentes1->CCSEvents["BeforeShow"] = "mc_info_incidentes1_BeforeShow";
     $mc_info_incidentes2->HorasInvertidas->CCSEvents["BeforeShow"] = "mc_info_incidentes2_HorasInvertidas_BeforeShow";
+    $mc_info_incidentes2->CCSEvents["BeforeShow"] = "mc_info_incidentes2_BeforeShow";
     $Final->TotalHorasSolucion->CCSEvents["BeforeShow"] = "Final_TotalHorasSolucion_BeforeShow";
     $Final->ImageLink1->CCSEvents["BeforeShow"] = "Final_ImageLink1_BeforeShow";
     $Final->HorasCursoAResuelto->CCSEvents["BeforeShow"] = "Final_HorasCursoAResuelto_BeforeShow";
     $Final->CCSEvents["OnValidate"] = "Final_OnValidate";
     $Final->CCSEvents["BeforeShow"] = "Final_BeforeShow";
+    $mc_incidentes_reasignacio->primera_fecha_asignacion->CCSEvents["BeforeShow"] = "mc_incidentes_reasignacio_primera_fecha_asignacion_BeforeShow";
+    $mc_incidentes_reasignacio->primera_fecha_encurso->CCSEvents["BeforeShow"] = "mc_incidentes_reasignacio_primera_fecha_encurso_BeforeShow";
+    $mc_incidentes_reasignacio->horas_invertidas->CCSEvents["BeforeShow"] = "mc_incidentes_reasignacio_horas_invertidas_BeforeShow";
+    $mc_incidentes_reasignacio->ds->CCSEvents["AfterExecuteInsert"] = "mc_incidentes_reasignacio_ds_AfterExecuteInsert";
+    $mc_incidentes_reasignacio->CCSEvents["BeforeShow"] = "mc_incidentes_reasignacio_BeforeShow";
+    $mc_incidentes_reasignacio->CCSEvents["AfterUpdate"] = "mc_incidentes_reasignacio_AfterUpdate";
     $CCSEvents["BeforeShow"] = "Page_BeforeShow";
     $CCSEvents["OnInitializeView"] = "Page_OnInitializeView";
     $CCSEvents["AfterInitialize"] = "Page_AfterInitialize";
@@ -413,6 +421,15 @@ function mc_info_incidentes_BeforeShow(& $sender)
 
 //Custom Code @317-2A29BDB7
 // -------------------------
+    global $existe_actualizacion_asignacion;	
+	if ($existe_actualizacion_asignacion > 0){
+		global $nueva_fecha_asignacion;
+		global $nueva_fecha_encurso;
+		$mc_info_incidentes->FechaAsignado->SetValue(CCParseDate($nueva_fecha_asignacion,array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")));
+		$mc_info_incidentes->FechaEnCurso->SetValue(CCParseDate($nueva_fecha_encurso,array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")));
+	
+	}
+
     // Write your own code here.
 // -------------------------
 //End Custom Code
@@ -1239,9 +1256,18 @@ function mc_info_incidentes4_BeforeShow(& $sender)
 	global $MinutosF;
 
 
-
 	$mc_info_incidentes4->FechaResuelto->SetValue(CCFormatDate(CCParseDate($FechaResuelto,array("yyyy","/","mm","/","dd"," ","HH",":","nn",":","ss")),array("dd","/","mm","/","yyyy"," ","H",":","nn",":","ss")));
-	$mc_info_incidentes4->FechaEnCurso->SetValue(CCFormatDate(CCParseDate($FechaenCurso,array("yyyy","/","mm","/","dd"," ","HH",":","nn",":","ss")),array("dd","/","mm","/","yyyy"," ","H",":","nn",":","ss")));
+	
+	global $existe_actualizacion_asignacion;	
+    global $mc_incidentes_reasignacio;
+    global $nueva_fecha_encurso;
+	if ($existe_actualizacion_asignacion > 0){
+		
+		$mc_info_incidentes4->FechaEnCurso->SetValue(CCFormatDate(CCParseDate($nueva_fecha_encurso,array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")),array("dd","/","mm","/","yyyy"," ","H",":","nn",":","ss")));
+		$FechaenCurso=CCFormatDate(CCParseDate($mc_info_incidentes4->FechaEnCurso->GetValue(),array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")), array("yyyy","/","mm","/","dd"," ","HH",":","nn",":","ss"));
+	} else {
+		$mc_info_incidentes4->FechaEnCurso->SetValue(CCFormatDate(CCParseDate($FechaenCurso,array("yyyy","/","mm","/","dd"," ","HH",":","nn",":","ss")),array("dd","/","mm","/","yyyy"," ","H",":","nn",":","ss")));
+	}
 	
 	$DBcnDisenio->query("SELECT dbo.ufDiffFechasMCSec('".$FechaenCurso."','".$FechaResuelto."') as Minutos");
 	if($DBcnDisenio->next_record()){
@@ -1395,6 +1421,18 @@ function mc_info_incidentes1_BeforeShow(& $sender)
 	}
 	$DBcnDisenio->close();
 
+
+    global $existe_actualizacion_asignacion;	
+    global $mc_incidentes_reasignacio;
+	if ($existe_actualizacion_asignacion > 0){
+		global $nueva_fecha_asignacion;
+		global $nueva_fecha_encurso;
+		global $nuevas_horas_invertidas;
+		$mc_info_incidentes1->FechaAsignado->SetValue(CCFormatDate(CCParseDate($nueva_fecha_asignacion,array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")),array("dd","/","mm","/","yyyy"," ","H",":","nn",":","ss")));
+		$mc_info_incidentes1->FechaEnCurso->SetValue(CCFormatDate(CCParseDate($nueva_fecha_encurso,array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")),array("dd","/","mm","/","yyyy"," ","H",":","nn",":","ss")));
+		$mc_info_incidentes1->HorasInvertidas->SetValue($nuevas_horas_invertidas);
+	}
+
 		 
     // Write your own code here.
 // -------------------------
@@ -1483,6 +1521,38 @@ function mc_info_incidentes2_HorasInvertidas_BeforeShow(& $sender)
     return $mc_info_incidentes2_HorasInvertidas_BeforeShow;
 }
 //End Close mc_info_incidentes2_HorasInvertidas_BeforeShow
+
+//mc_info_incidentes2_BeforeShow @56-E27A2E5C
+function mc_info_incidentes2_BeforeShow(& $sender)
+{
+    $mc_info_incidentes2_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $mc_info_incidentes2; //Compatibility
+//End mc_info_incidentes2_BeforeShow
+
+//Custom Code @379-2A29BDB7
+// -------------------------
+    global $existe_actualizacion_asignacion;	
+    global $DBcnDisenio;
+	if ($existe_actualizacion_asignacion > 0){
+		global $nueva_fecha_encurso;
+		global $nuevas_horas_invertidas;
+		$mc_info_incidentes2->FechaEnCurso->SetValue(CCParseDate($nueva_fecha_encurso,array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")));
+		$nuevaFechaEnCurso=str_replace('-','/',CCDLookUp("convert(varchar(30),primera_fecha_encurso,120)","mc_incidentes_reasignaciones"," id_incidente='".CCGetParam("Id_incidente",0)."' and mes=".CCGetParam("s_mes_param",0)." and anio=".CCGetParam("s_anio_param",0), $DBcnDisenio));	
+		//$nuevaFechaEnCurso = CCFormatDate(CCParseDate($nueva_fecha_encurso,array("yyyy","/","mm","/","dd"," ","HH",":","nn",":","ss")),array("yyyy","/","mm","/","dd"," ","HH",":","nn",":","ss"));
+		
+		$fechainicioavl=CCFormatDate($mc_info_incidentes2->lblRegistroAVL->GetValue(),array("yyyy","/","mm","/","dd"," ","HH",":","nn",":","ss"));
+		$calculo_tiempo=CCDLookUp("top 1 dbo.ufDiffFechasMCSec('".$nuevaFechaEnCurso."','".$fechainicioavl."')","mc_incidentes_reasignaciones"," 1=1", $DBcnDisenio);
+		$mc_info_incidentes2->HorasInvertidas->SetValue($calculo_tiempo);
+	}
+// -------------------------
+//End Custom Code
+
+//Close mc_info_incidentes2_BeforeShow @56-AC7D53E3
+    return $mc_info_incidentes2_BeforeShow;
+}
+//End Close mc_info_incidentes2_BeforeShow
 
 //Final_TotalHorasSolucion_BeforeShow @229-B78AD150
 function Final_TotalHorasSolucion_BeforeShow(& $sender)
@@ -1827,6 +1897,174 @@ function Final_BeforeShow(& $sender)
 }
 //End Close Final_BeforeShow
 
+//mc_incidentes_reasignacio_primera_fecha_asignacion_BeforeShow @358-661E3EC9
+function mc_incidentes_reasignacio_primera_fecha_asignacion_BeforeShow(& $sender)
+{
+    $mc_incidentes_reasignacio_primera_fecha_asignacion_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $mc_incidentes_reasignacio; //Compatibility
+//End mc_incidentes_reasignacio_primera_fecha_asignacion_BeforeShow
+
+//Close mc_incidentes_reasignacio_primera_fecha_asignacion_BeforeShow @358-1F00F56A
+    return $mc_incidentes_reasignacio_primera_fecha_asignacion_BeforeShow;
+}
+//End Close mc_incidentes_reasignacio_primera_fecha_asignacion_BeforeShow
+
+//mc_incidentes_reasignacio_primera_fecha_encurso_BeforeShow @360-1670BEB9
+function mc_incidentes_reasignacio_primera_fecha_encurso_BeforeShow(& $sender)
+{
+    $mc_incidentes_reasignacio_primera_fecha_encurso_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $mc_incidentes_reasignacio; //Compatibility
+//End mc_incidentes_reasignacio_primera_fecha_encurso_BeforeShow
+
+//Close mc_incidentes_reasignacio_primera_fecha_encurso_BeforeShow @360-79CBAA51
+    return $mc_incidentes_reasignacio_primera_fecha_encurso_BeforeShow;
+}
+//End Close mc_incidentes_reasignacio_primera_fecha_encurso_BeforeShow
+
+//mc_incidentes_reasignacio_horas_invertidas_BeforeShow @362-A4224D50
+function mc_incidentes_reasignacio_horas_invertidas_BeforeShow(& $sender)
+{
+    $mc_incidentes_reasignacio_horas_invertidas_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $mc_incidentes_reasignacio; //Compatibility
+//End mc_incidentes_reasignacio_horas_invertidas_BeforeShow
+
+//Custom Code @367-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
+//Close mc_incidentes_reasignacio_horas_invertidas_BeforeShow @362-2F6C092A
+    return $mc_incidentes_reasignacio_horas_invertidas_BeforeShow;
+}
+//End Close mc_incidentes_reasignacio_horas_invertidas_BeforeShow
+
+//mc_incidentes_reasignacio_ds_AfterExecuteInsert @347-E7167F6C
+function mc_incidentes_reasignacio_ds_AfterExecuteInsert(& $sender)
+{
+    $mc_incidentes_reasignacio_ds_AfterExecuteInsert = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $mc_incidentes_reasignacio; //Compatibility
+//End mc_incidentes_reasignacio_ds_AfterExecuteInsert
+
+//Custom Code @377-2A29BDB7
+// -------------------------
+  	global $id_insertado;
+  	global $fech_ini;
+  	global $fech_fin;
+  	global $calculo_tiempo;
+  	global $DBcnDisenio;
+  	
+  	$id_insertado=CCDLookUp("max(id)","mc_incidentes_reasignaciones"," 1=1 ", $DBcnDisenio);
+  	$fecha_ini=CCDLookUp("primera_fecha_asignacion","mc_incidentes_reasignaciones"," id=".$id_insertado, $DBcnDisenio);
+  	$fecha_fin=CCDLookUp("primera_fecha_encurso","mc_incidentes_reasignaciones"," id=".$id_insertado, $DBcnDisenio);
+  	$calculo_tiempo_seg=CCDLookUp("top 1 dbo.ufDiffFechasMCSec('".$fecha_ini."','".$fecha_fin."')","mc_incidentes_reasignaciones"," 1=1", $DBcnDisenio);
+  
+  	$DBcnDisenio->query("UPDATE mc_incidentes_reasignaciones set horas_invertidas = " . $calculo_tiempo_seg . " where id=".$id_insertado);
+  
+  	$mc_incidentes_reasignacio->horas_invertidas->SetValue(sec_to_time($mc_incidentes_reasignacio->H_horas_invertidas->GetValue()));
+
+// -------------------------
+//End Custom Code
+
+//Close mc_incidentes_reasignacio_ds_AfterExecuteInsert @347-53DE6FE6
+    return $mc_incidentes_reasignacio_ds_AfterExecuteInsert;
+}
+//End Close mc_incidentes_reasignacio_ds_AfterExecuteInsert
+
+//mc_incidentes_reasignacio_BeforeShow @347-36DEE836
+function mc_incidentes_reasignacio_BeforeShow(& $sender)
+{
+    $mc_incidentes_reasignacio_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $mc_incidentes_reasignacio; //Compatibility
+//End mc_incidentes_reasignacio_BeforeShow
+
+//Custom Code @378-2A29BDB7
+// -------------------------
+	global $mc_info_incidentes2;
+	global $existe_actualizacion_asignacion;	
+	$mc_incidentes_reasignacio->Visible=$existe_actualizacion_asignacion < 1 && $mc_info_incidentes2->HorasInvertidas->GetValue()!='N/A Incumplimiento a Proceso' ? false : true;
+	$mc_incidentes_reasignacio->horas_invertidas->SetValue(sec_to_time($mc_incidentes_reasignacio->H_horas_invertidas->GetValue()));	
+
+   
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
+//Close mc_incidentes_reasignacio_BeforeShow @347-E452A13F
+    return $mc_incidentes_reasignacio_BeforeShow;
+}
+//End Close mc_incidentes_reasignacio_BeforeShow
+
+//mc_incidentes_reasignacio_AfterUpdate @347-FDC2C17A
+function mc_incidentes_reasignacio_AfterUpdate(& $sender)
+{
+    $mc_incidentes_reasignacio_AfterUpdate = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $mc_incidentes_reasignacio; //Compatibility
+//End mc_incidentes_reasignacio_AfterUpdate
+
+//Custom Code @380-2A29BDB7
+// -------------------------
+	global $DBcnDisenio;
+  	//echo("  id_incidente =".CCGetParam("Id_incidente",0). " and mes =". CCGetParam("s_mes_param",0). " and anio ". CCGetParam("s_anio_param",0)); die;
+  	//$fecha_ini=CCDLookUp("primera_fecha_asignacion","mc_incidentes_reasignaciones","  id_incidente ='".CCGetParam("Id_incidente",0). "' and mes =". CCGetParam("s_mes_param",0). " and anio ". CCGetParam("s_anio_param",0), $DBcnDisenio);
+  	//echo("fecha_ini=>".$fecha_ini."<br>");
+  	//$fecha_fin=CCDLookUp("primera_fecha_encurso","mc_incidentes_reasignaciones","  id_incidente ='".CCGetParam("Id_incidente",0). "' and mes =". CCGetParam("s_mes_param",0). " and anio ". CCGetParam("s_anio_param",0), $DBcnDisenio);
+  	//echo("fecha_fin=>".$fecha_fin."<br>");
+  	//$calculo_tiempo_seg=CCDLookUp("top 1 dbo.ufDiffFechasMCSec('".$fecha_ini."','".$fecha_fin."')","mc_incidentes_reasignaciones"," 1=1", $DBcnDisenio);
+  	//echo("=>".$calculo_tiempo_seg);die;
+  	//echo($fecha_ini);
+	//echo("UPDATE mc_incidentes_reasignaciones set horas_invertidas = dbo.ufDiffFechasMCSec(primera_fecha_asignacion,primera_fecha_encurso) where id_incidente='".CCGetParam("Id_incidente",0). "' and mes =". CCGetParam("s_mes_param",0). " and anio ". CCGetParam("s_anio_param",0));  	
+  	//die;
+  	$DBcnDisenio->query("UPDATE mc_incidentes_reasignaciones set horas_invertidas = dbo.ufDiffFechasMCSec(primera_fecha_asignacion,primera_fecha_encurso) where id_incidente='".CCGetParam("Id_incidente",0). "' and mes =". CCGetParam("s_mes_param",0). " and anio =". CCGetParam("s_anio_param",0));
+	//echo("UPDATE mc_incidentes_reasignaciones set horas_invertidas = " . $calculo_tiempo_seg . " where id_incidente=".CCGetParam("Id_incidente",0). " and mes =". CCGetParam("s_mes_param",0). " and anio ". CCGetParam("s_anio_param",0));die;
+  
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
+//Close mc_incidentes_reasignacio_AfterUpdate @347-000684DC
+    return $mc_incidentes_reasignacio_AfterUpdate;
+}
+//End Close mc_incidentes_reasignacio_AfterUpdate
+
+//DEL  // -------------------------
+//DEL  	$mc_incidentes_reasignacio->horas_invertidas->SetValue(sec_to_time($mc_incidentes_reasignacio->H_horas_invertidas->GetValue()));
+//DEL      // Write your own code here.
+//DEL  // -------------------------
+
+//DEL  // -------------------------
+//DEL  	global $id_insertado;
+//DEL  	global $fech_ini;
+//DEL  	global $fech_fin;
+//DEL  	global $calculo_tiempo;
+//DEL  	global $DBcnDisenio;
+//DEL  	
+//DEL  	$id_insertado=CCDLookUp("max(id)","mc_incidentes_reasignaciones"," 1=1 ", $DBcnDisenio);
+//DEL  	$fecha_ini=CCDLookUp("primera_fecha_asignacion","mc_incidentes_reasignaciones"," id=".$id_insertado, $DBcnDisenio);
+//DEL  	$fecha_fin=CCDLookUp("primera_fecha_encurso","mc_incidentes_reasignaciones"," id=".$id_insertado, $DBcnDisenio);
+//DEL  	$calculo_tiempo_seg=CCDLookUp("top 1 dbo.ufDiffFechasMCSec('".$fecha_ini."','".$fecha_fin."')","mc_incidentes_reasignaciones"," 1=1", $DBcnDisenio);
+//DEL  
+//DEL  	$DBcnDisenio->query("UPDATE mc_incidentes_reasignaciones set horas_invertidas = " . $calculo_tiempo_seg );
+//DEL  
+//DEL  // -------------------------
+
+//DEL  // -------------------------
+//DEL  	$mc_incidentes_reasignacio->horas_invertidas->SetValue(sec_to_time($mc_incidentes_reasignacio->H_horas_invertidas->GetValue()));
+//DEL      // Write your own code here.
+//DEL  // -------------------------
+
 //Page_BeforeInitialize @1-5C1E5C56
 function Page_BeforeInitialize(& $sender)
 {
@@ -1870,7 +2108,23 @@ function Page_BeforeInitialize(& $sender)
   	
   	$miArray = unserialize($_SESSION['SQL']);   //array();
 
+	global $existe_actualizacion_asignacion;
+	global $nueva_fecha_asignacion;
+	global $nueva_fecha_encurso;
+	global $nuevas_horas_invertidas;
 
+	global $DBcnDisenio;
+	$DBcnDisenio = new clsDBcnDisenio;
+	$existe_actualizacion_asignacion=0;
+	$existe_actualizacion_asignacion=CCDLookUp("count(*)","mc_incidentes_reasignaciones"," id_incidente='".CCGetParam("Id_incidente",0)."' and mes=".CCGetParam("s_mes_param",0)." and anio=".CCGetParam("s_anio_param",0), $DBcnDisenio);
+	if ($existe_actualizacion_asignacion > 0){
+		$nueva_fecha_asignacion=CCDLookUp("convert(varchar(30),primera_fecha_asignacion,103) + ' ' + convert(varchar(30),primera_fecha_asignacion,108)","mc_incidentes_reasignaciones"," id_incidente='".CCGetParam("Id_incidente",0)."' and mes=".CCGetParam("s_mes_param",0)." and anio=".CCGetParam("s_anio_param",0), $DBcnDisenio);
+		$nueva_fecha_encurso=CCDLookUp("convert(varchar(30),primera_fecha_encurso,103) + ' ' + convert(varchar(30),primera_fecha_encurso,108)","mc_incidentes_reasignaciones"," id_incidente='".CCGetParam("Id_incidente",0)."' and mes=".CCGetParam("s_mes_param",0)." and anio=".CCGetParam("s_anio_param",0), $DBcnDisenio);	
+		$nuevas_horas_invertidas=CCDLookUp("horas_invertidas","mc_incidentes_reasignaciones"," id_incidente='".CCGetParam("Id_incidente",0)."' and mes=".CCGetParam("s_mes_param",0)." and anio=".CCGetParam("s_anio_param",0), $DBcnDisenio);			
+	}	
+	
+    $DBcnDisenio->close();
+	
     // Write your own code here.
 // -------------------------
 //End Custom Code
@@ -1928,6 +2182,13 @@ function Page_BeforeShow(& $sender)
 			}
 		}
 	}
+
+    
+
+
+
+
+
 // -------------------------
 //End Custom Code
 
@@ -1976,5 +2237,25 @@ function Page_AfterInitialize(& $sender)
 }
 //End Close Page_AfterInitialize
 
+function sec_to_time($tiempo_en_segundos){
+	if ($tiempo_en_segundos > 0) {
+		$horas = floor($tiempo_en_segundos / 3600);
+		$minutos = floor(($tiempo_en_segundos - ($horas * 3600)) / 60);
+		$segundos = $tiempo_en_segundos - ($horas * 3600) - ($minutos * 60);
+		$horas = $horas < 10 ? '0'.$horas:$horas;
+		$minutos = $minutos < 10 ? '0'.$minutos:$minutos;
+		$segundos = $segundos < 10 ? '0'.$segundos:$segundos;
+		
+		return $horas . ':' . $minutos . ":" . $segundos;		
+	} 
+	else {
+		if ($tiempo_en_segundos < 0){
+		 return 'N/A';	
+		}
+		else {
+		 return '00:00:00';				
+		}	
+	}
+}	
 
 ?>

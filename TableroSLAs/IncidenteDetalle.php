@@ -2949,13 +2949,558 @@ class clsRecordFinal { //Final Class @227-3764C1F9
 
 } //End Final Class @227-FCB6E20C
 
+class clsRecordmc_incidentes_reasignacio { //mc_incidentes_reasignacio Class @347-9672665D
+
+//Variables @347-9E315808
+
+    // Public variables
+    public $ComponentType = "Record";
+    public $ComponentName;
+    public $Parent;
+    public $HTMLFormAction;
+    public $PressedButton;
+    public $Errors;
+    public $ErrorBlock;
+    public $FormSubmitted;
+    public $FormEnctype;
+    public $Visible;
+    public $IsEmpty;
+
+    public $CCSEvents = "";
+    public $CCSEventResult;
+
+    public $RelativePath = "";
+
+    public $InsertAllowed = false;
+    public $UpdateAllowed = false;
+    public $DeleteAllowed = false;
+    public $ReadAllowed   = false;
+    public $EditMode      = false;
+    public $ds;
+    public $DataSource;
+    public $ValidatingControls;
+    public $Controls;
+    public $Attributes;
+
+    // Class variables
+//End Variables
+
+//Class_Initialize Event @347-1B919760
+    function clsRecordmc_incidentes_reasignacio($RelativePath, & $Parent)
+    {
+
+        global $FileName;
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->Visible = true;
+        $this->Parent = & $Parent;
+        $this->RelativePath = $RelativePath;
+        $this->Errors = new clsErrors();
+        $this->ErrorBlock = "Record mc_incidentes_reasignacio/Error";
+        $this->DataSource = new clsmc_incidentes_reasignacioDataSource($this);
+        $this->ds = & $this->DataSource;
+        $this->InsertAllowed = true;
+        $this->UpdateAllowed = true;
+        $this->DeleteAllowed = true;
+        $this->ReadAllowed = true;
+        if($this->Visible)
+        {
+            $this->ComponentName = "mc_incidentes_reasignacio";
+            $this->Attributes = new clsAttributes($this->ComponentName . ":");
+            $CCSForm = explode(":", CCGetFromGet("ccsForm", ""), 2);
+            if(sizeof($CCSForm) == 1)
+                $CCSForm[1] = "";
+            list($FormName, $FormMethod) = $CCSForm;
+            $this->EditMode = ($FormMethod == "Edit");
+            $this->FormEnctype = "application/x-www-form-urlencoded";
+            $this->FormSubmitted = ($FormName == $this->ComponentName);
+            $Method = $this->FormSubmitted ? ccsPost : ccsGet;
+            $this->Button_Insert = new clsButton("Button_Insert", $Method, $this);
+            $this->Button_Update = new clsButton("Button_Update", $Method, $this);
+            $this->Button_Delete = new clsButton("Button_Delete", $Method, $this);
+            $this->Button_Cancel = new clsButton("Button_Cancel", $Method, $this);
+            $this->id_incidente = new clsControl(ccsLabel, "id_incidente", "id_incidente", ccsText, "", CCGetRequestParam("id_incidente", $Method, NULL), $this);
+            $this->mes = new clsControl(ccsLabel, "mes", "mes", ccsInteger, "", CCGetRequestParam("mes", $Method, NULL), $this);
+            $this->anio = new clsControl(ccsLabel, "anio", "anio", ccsInteger, "", CCGetRequestParam("anio", $Method, NULL), $this);
+            $this->primera_fecha_asignacion = new clsControl(ccsTextBox, "primera_fecha_asignacion", "Primera Fecha Asignacion", ccsDate, array("dd", "/", "mm", "/", "yyyy", " ", "HH", ":", "nn", ":", "ss"), CCGetRequestParam("primera_fecha_asignacion", $Method, NULL), $this);
+            $this->primera_fecha_asignacion->Required = true;
+            $this->primera_fecha_encurso = new clsControl(ccsTextBox, "primera_fecha_encurso", "Primera Fecha Encurso", ccsDate, array("dd", "/", "mm", "/", "yyyy", " ", "HH", ":", "nn", ":", "ss"), CCGetRequestParam("primera_fecha_encurso", $Method, NULL), $this);
+            $this->primera_fecha_encurso->Required = true;
+            $this->horas_invertidas = new clsControl(ccsLabel, "horas_invertidas", "Horas Invertidas", ccsText, "", CCGetRequestParam("horas_invertidas", $Method, NULL), $this);
+            $this->H_id_incidente = new clsControl(ccsHidden, "H_id_incidente", "H_id_incidente", ccsText, "", CCGetRequestParam("H_id_incidente", $Method, NULL), $this);
+            $this->H_mes = new clsControl(ccsHidden, "H_mes", "H_mes", ccsText, "", CCGetRequestParam("H_mes", $Method, NULL), $this);
+            $this->H_anio = new clsControl(ccsHidden, "H_anio", "H_anio", ccsText, "", CCGetRequestParam("H_anio", $Method, NULL), $this);
+            $this->H_horas_invertidas = new clsControl(ccsHidden, "H_horas_invertidas", "H_horas_invertidas", ccsFloat, "", CCGetRequestParam("H_horas_invertidas", $Method, NULL), $this);
+            if(!$this->FormSubmitted) {
+                if(!is_array($this->H_id_incidente->Value) && !strlen($this->H_id_incidente->Value) && $this->H_id_incidente->Value !== false)
+                    $this->H_id_incidente->SetText(CCGetParam("Id_incidente"));
+                if(!is_array($this->H_mes->Value) && !strlen($this->H_mes->Value) && $this->H_mes->Value !== false)
+                    $this->H_mes->SetText(CCGetParam("s_mes_param"));
+                if(!is_array($this->H_anio->Value) && !strlen($this->H_anio->Value) && $this->H_anio->Value !== false)
+                    $this->H_anio->SetText(CCGetParam("s_anio_param"));
+            }
+            if(!is_array($this->id_incidente->Value) && !strlen($this->id_incidente->Value) && $this->id_incidente->Value !== false)
+                $this->id_incidente->SetText(CCGetParam("Id_incidente"));
+            if(!is_array($this->mes->Value) && !strlen($this->mes->Value) && $this->mes->Value !== false)
+                $this->mes->SetText(CCGetParam("s_mes_param"));
+            if(!is_array($this->anio->Value) && !strlen($this->anio->Value) && $this->anio->Value !== false)
+                $this->anio->SetText(CCGetParam("s_anio_param"));
+        }
+    }
+//End Class_Initialize Event
+
+//Initialize Method @347-3E703885
+    function Initialize()
+    {
+
+        if(!$this->Visible)
+            return;
+
+        $this->DataSource->Parameters["urlId_incidente"] = CCGetFromGet("Id_incidente", NULL);
+    }
+//End Initialize Method
+
+//Validate Method @347-B4D060AF
+    function Validate()
+    {
+        global $CCSLocales;
+        $Validation = true;
+        $Where = "";
+        $Validation = ($this->primera_fecha_asignacion->Validate() && $Validation);
+        $Validation = ($this->primera_fecha_encurso->Validate() && $Validation);
+        $Validation = ($this->H_id_incidente->Validate() && $Validation);
+        $Validation = ($this->H_mes->Validate() && $Validation);
+        $Validation = ($this->H_anio->Validate() && $Validation);
+        $Validation = ($this->H_horas_invertidas->Validate() && $Validation);
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
+        $Validation =  $Validation && ($this->primera_fecha_asignacion->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->primera_fecha_encurso->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->H_id_incidente->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->H_mes->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->H_anio->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->H_horas_invertidas->Errors->Count() == 0);
+        return (($this->Errors->Count() == 0) && $Validation);
+    }
+//End Validate Method
+
+//CheckErrors Method @347-EB2075D9
+    function CheckErrors()
+    {
+        $errors = false;
+        $errors = ($errors || $this->id_incidente->Errors->Count());
+        $errors = ($errors || $this->mes->Errors->Count());
+        $errors = ($errors || $this->anio->Errors->Count());
+        $errors = ($errors || $this->primera_fecha_asignacion->Errors->Count());
+        $errors = ($errors || $this->primera_fecha_encurso->Errors->Count());
+        $errors = ($errors || $this->horas_invertidas->Errors->Count());
+        $errors = ($errors || $this->H_id_incidente->Errors->Count());
+        $errors = ($errors || $this->H_mes->Errors->Count());
+        $errors = ($errors || $this->H_anio->Errors->Count());
+        $errors = ($errors || $this->H_horas_invertidas->Errors->Count());
+        $errors = ($errors || $this->Errors->Count());
+        $errors = ($errors || $this->DataSource->Errors->Count());
+        return $errors;
+    }
+//End CheckErrors Method
+
+//Operation Method @347-288F0419
+    function Operation()
+    {
+        if(!$this->Visible)
+            return;
+
+        global $Redirect;
+        global $FileName;
+
+        $this->DataSource->Prepare();
+        if(!$this->FormSubmitted) {
+            $this->EditMode = $this->DataSource->AllParametersSet;
+            return;
+        }
+
+        if($this->FormSubmitted) {
+            $this->PressedButton = $this->EditMode ? "Button_Update" : "Button_Insert";
+            if($this->Button_Insert->Pressed) {
+                $this->PressedButton = "Button_Insert";
+            } else if($this->Button_Update->Pressed) {
+                $this->PressedButton = "Button_Update";
+            } else if($this->Button_Delete->Pressed) {
+                $this->PressedButton = "Button_Delete";
+            } else if($this->Button_Cancel->Pressed) {
+                $this->PressedButton = "Button_Cancel";
+            }
+        }
+        $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
+        if($this->PressedButton == "Button_Delete") {
+            if(!CCGetEvent($this->Button_Delete->CCSEvents, "OnClick", $this->Button_Delete) || !$this->DeleteRow()) {
+                $Redirect = "";
+            }
+        } else if($this->PressedButton == "Button_Cancel") {
+            if(!CCGetEvent($this->Button_Cancel->CCSEvents, "OnClick", $this->Button_Cancel)) {
+                $Redirect = "";
+            }
+        } else if($this->Validate()) {
+            if($this->PressedButton == "Button_Insert") {
+                if(!CCGetEvent($this->Button_Insert->CCSEvents, "OnClick", $this->Button_Insert) || !$this->InsertRow()) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button_Update") {
+                if(!CCGetEvent($this->Button_Update->CCSEvents, "OnClick", $this->Button_Update) || !$this->UpdateRow()) {
+                    $Redirect = "";
+                }
+            }
+        } else {
+            $Redirect = "";
+        }
+        if ($Redirect)
+            $this->DataSource->close();
+    }
+//End Operation Method
+
+//InsertRow Method @347-CB7E3A6F
+    function InsertRow()
+    {
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
+        if(!$this->InsertAllowed) return false;
+        $this->DataSource->id_incidente->SetValue($this->id_incidente->GetValue(true));
+        $this->DataSource->mes->SetValue($this->mes->GetValue(true));
+        $this->DataSource->anio->SetValue($this->anio->GetValue(true));
+        $this->DataSource->primera_fecha_asignacion->SetValue($this->primera_fecha_asignacion->GetValue(true));
+        $this->DataSource->primera_fecha_encurso->SetValue($this->primera_fecha_encurso->GetValue(true));
+        $this->DataSource->horas_invertidas->SetValue($this->horas_invertidas->GetValue(true));
+        $this->DataSource->H_id_incidente->SetValue($this->H_id_incidente->GetValue(true));
+        $this->DataSource->H_mes->SetValue($this->H_mes->GetValue(true));
+        $this->DataSource->H_anio->SetValue($this->H_anio->GetValue(true));
+        $this->DataSource->H_horas_invertidas->SetValue($this->H_horas_invertidas->GetValue(true));
+        $this->DataSource->Insert();
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterInsert", $this);
+        return (!$this->CheckErrors());
+    }
+//End InsertRow Method
+
+//UpdateRow Method @347-1330B912
+    function UpdateRow()
+    {
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
+        if(!$this->UpdateAllowed) return false;
+        $this->DataSource->id_incidente->SetValue($this->id_incidente->GetValue(true));
+        $this->DataSource->mes->SetValue($this->mes->GetValue(true));
+        $this->DataSource->anio->SetValue($this->anio->GetValue(true));
+        $this->DataSource->primera_fecha_asignacion->SetValue($this->primera_fecha_asignacion->GetValue(true));
+        $this->DataSource->primera_fecha_encurso->SetValue($this->primera_fecha_encurso->GetValue(true));
+        $this->DataSource->horas_invertidas->SetValue($this->horas_invertidas->GetValue(true));
+        $this->DataSource->H_id_incidente->SetValue($this->H_id_incidente->GetValue(true));
+        $this->DataSource->H_mes->SetValue($this->H_mes->GetValue(true));
+        $this->DataSource->H_anio->SetValue($this->H_anio->GetValue(true));
+        $this->DataSource->H_horas_invertidas->SetValue($this->H_horas_invertidas->GetValue(true));
+        $this->DataSource->Update();
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
+        return (!$this->CheckErrors());
+    }
+//End UpdateRow Method
+
+//DeleteRow Method @347-299D98C3
+    function DeleteRow()
+    {
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeDelete", $this);
+        if(!$this->DeleteAllowed) return false;
+        $this->DataSource->Delete();
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterDelete", $this);
+        return (!$this->CheckErrors());
+    }
+//End DeleteRow Method
+
+//Show Method @347-715E79FD
+    function Show()
+    {
+        global $CCSUseAmp;
+        $Tpl = CCGetTemplate($this);
+        global $FileName;
+        global $CCSLocales;
+        $Error = "";
+
+        if(!$this->Visible)
+            return;
+
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
+
+
+        $RecordBlock = "Record " . $this->ComponentName;
+        $ParentPath = $Tpl->block_path;
+        $Tpl->block_path = $ParentPath . "/" . $RecordBlock;
+        $this->EditMode = $this->EditMode && $this->ReadAllowed;
+        if($this->EditMode) {
+            if($this->DataSource->Errors->Count()){
+                $this->Errors->AddErrors($this->DataSource->Errors);
+                $this->DataSource->Errors->clear();
+            }
+            $this->DataSource->Open();
+            if($this->DataSource->Errors->Count() == 0 && $this->DataSource->next_record()) {
+                $this->DataSource->SetValues();
+                $this->id_incidente->SetValue($this->DataSource->id_incidente->GetValue());
+                $this->mes->SetValue($this->DataSource->mes->GetValue());
+                $this->anio->SetValue($this->DataSource->anio->GetValue());
+                if(!$this->FormSubmitted){
+                    $this->primera_fecha_asignacion->SetValue($this->DataSource->primera_fecha_asignacion->GetValue());
+                    $this->primera_fecha_encurso->SetValue($this->DataSource->primera_fecha_encurso->GetValue());
+                    $this->H_id_incidente->SetValue($this->DataSource->H_id_incidente->GetValue());
+                    $this->H_mes->SetValue($this->DataSource->H_mes->GetValue());
+                    $this->H_anio->SetValue($this->DataSource->H_anio->GetValue());
+                    $this->H_horas_invertidas->SetValue($this->DataSource->H_horas_invertidas->GetValue());
+                }
+            } else {
+                $this->EditMode = false;
+            }
+        }
+
+        if($this->FormSubmitted || $this->CheckErrors()) {
+            $Error = "";
+            $Error = ComposeStrings($Error, $this->id_incidente->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->mes->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->anio->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->primera_fecha_asignacion->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->primera_fecha_encurso->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->horas_invertidas->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->H_id_incidente->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->H_mes->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->H_anio->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->H_horas_invertidas->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
+            $Tpl->SetVar("Error", $Error);
+            $Tpl->Parse("Error", false);
+        }
+        $CCSForm = $this->EditMode ? $this->ComponentName . ":" . "Edit" : $this->ComponentName;
+        $this->HTMLFormAction = $FileName . "?" . CCAddParam(CCGetQueryString("QueryString", ""), "ccsForm", $CCSForm);
+        $Tpl->SetVar("Action", !$CCSUseAmp ? $this->HTMLFormAction : str_replace("&", "&amp;", $this->HTMLFormAction));
+        $Tpl->SetVar("HTMLFormName", $this->ComponentName);
+        $Tpl->SetVar("HTMLFormEnctype", $this->FormEnctype);
+        $this->Button_Insert->Visible = !$this->EditMode && $this->InsertAllowed;
+        $this->Button_Update->Visible = $this->EditMode && $this->UpdateAllowed;
+        $this->Button_Delete->Visible = $this->EditMode && $this->DeleteAllowed;
+
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShow", $this);
+        $this->Attributes->Show();
+        if(!$this->Visible) {
+            $Tpl->block_path = $ParentPath;
+            return;
+        }
+
+        $this->Button_Insert->Show();
+        $this->Button_Update->Show();
+        $this->Button_Delete->Show();
+        $this->Button_Cancel->Show();
+        $this->id_incidente->Show();
+        $this->mes->Show();
+        $this->anio->Show();
+        $this->primera_fecha_asignacion->Show();
+        $this->primera_fecha_encurso->Show();
+        $this->horas_invertidas->Show();
+        $this->H_id_incidente->Show();
+        $this->H_mes->Show();
+        $this->H_anio->Show();
+        $this->H_horas_invertidas->Show();
+        $Tpl->parse();
+        $Tpl->block_path = $ParentPath;
+        $this->DataSource->close();
+    }
+//End Show Method
+
+} //End mc_incidentes_reasignacio Class @347-FCB6E20C
+
+class clsmc_incidentes_reasignacioDataSource extends clsDBcnDisenio {  //mc_incidentes_reasignacioDataSource Class @347-5A6F6ECF
+
+//DataSource Variables @347-4DDC2895
+    public $Parent = "";
+    public $CCSEvents = "";
+    public $CCSEventResult;
+    public $ErrorBlock;
+    public $CmdExecution;
+
+    public $InsertParameters;
+    public $UpdateParameters;
+    public $DeleteParameters;
+    public $wp;
+    public $AllParametersSet;
+
+    public $InsertFields = array();
+    public $UpdateFields = array();
+
+    // Datasource fields
+    public $id_incidente;
+    public $mes;
+    public $anio;
+    public $primera_fecha_asignacion;
+    public $primera_fecha_encurso;
+    public $horas_invertidas;
+    public $H_id_incidente;
+    public $H_mes;
+    public $H_anio;
+    public $H_horas_invertidas;
+//End DataSource Variables
+
+//DataSourceClass_Initialize Event @347-E7BBC786
+    function clsmc_incidentes_reasignacioDataSource(& $Parent)
+    {
+        $this->Parent = & $Parent;
+        $this->ErrorBlock = "Record mc_incidentes_reasignacio/Error";
+        $this->Initialize();
+        $this->id_incidente = new clsField("id_incidente", ccsText, "");
+        
+        $this->mes = new clsField("mes", ccsInteger, "");
+        
+        $this->anio = new clsField("anio", ccsInteger, "");
+        
+        $this->primera_fecha_asignacion = new clsField("primera_fecha_asignacion", ccsDate, array("yyyy", "-", "mm", "-", "dd", " ", "HH", ":", "nn", ":", "ss", ".", "S"));
+        
+        $this->primera_fecha_encurso = new clsField("primera_fecha_encurso", ccsDate, array("yyyy", "-", "mm", "-", "dd", " ", "HH", ":", "nn", ":", "ss", ".", "S"));
+        
+        $this->horas_invertidas = new clsField("horas_invertidas", ccsText, "");
+        
+        $this->H_id_incidente = new clsField("H_id_incidente", ccsText, "");
+        
+        $this->H_mes = new clsField("H_mes", ccsText, "");
+        
+        $this->H_anio = new clsField("H_anio", ccsText, "");
+        
+        $this->H_horas_invertidas = new clsField("H_horas_invertidas", ccsFloat, "");
+        
+
+        $this->InsertFields["primera_fecha_asignacion"] = array("Name" => "primera_fecha_asignacion", "Value" => "", "DataType" => ccsDate, "OmitIfEmpty" => 1);
+        $this->InsertFields["primera_fecha_encurso"] = array("Name" => "primera_fecha_encurso", "Value" => "", "DataType" => ccsDate, "OmitIfEmpty" => 1);
+        $this->InsertFields["id_incidente"] = array("Name" => "id_incidente", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->InsertFields["mes"] = array("Name" => "mes", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->InsertFields["anio"] = array("Name" => "anio", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->InsertFields["horas_invertidas"] = array("Name" => "horas_invertidas", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
+        $this->UpdateFields["primera_fecha_asignacion"] = array("Name" => "primera_fecha_asignacion", "Value" => "", "DataType" => ccsDate, "OmitIfEmpty" => 1);
+        $this->UpdateFields["primera_fecha_encurso"] = array("Name" => "primera_fecha_encurso", "Value" => "", "DataType" => ccsDate, "OmitIfEmpty" => 1);
+        $this->UpdateFields["id_incidente"] = array("Name" => "id_incidente", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["mes"] = array("Name" => "mes", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["anio"] = array("Name" => "anio", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["horas_invertidas"] = array("Name" => "horas_invertidas", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
+    }
+//End DataSourceClass_Initialize Event
+
+//Prepare Method @347-D654A9F8
+    function Prepare()
+    {
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->wp = new clsSQLParameters($this->ErrorBlock);
+        $this->wp->AddParameter("1", "urlId_incidente", ccsText, "", "", $this->Parameters["urlId_incidente"], "", false);
+        $this->AllParametersSet = $this->wp->AllParamsSet();
+        $this->wp->Criterion[1] = $this->wp->Operation(opEqual, "id_incidente", $this->wp->GetDBValue("1"), $this->ToSQL($this->wp->GetDBValue("1"), ccsText),false);
+        $this->Where = 
+             $this->wp->Criterion[1];
+    }
+//End Prepare Method
+
+//Open Method @347-DCD5DF82
+    function Open()
+    {
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
+        $this->SQL = "SELECT * \n\n" .
+        "FROM mc_incidentes_reasignaciones {SQL_Where} {SQL_OrderBy}";
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
+        $this->query(CCBuildSQL($this->SQL, $this->Where, $this->Order));
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteSelect", $this->Parent);
+    }
+//End Open Method
+
+//SetValues Method @347-98349A6C
+    function SetValues()
+    {
+        $this->id_incidente->SetDBValue($this->f("id_incidente"));
+        $this->mes->SetDBValue(trim($this->f("mes")));
+        $this->anio->SetDBValue(trim($this->f("anio")));
+        $this->primera_fecha_asignacion->SetDBValue(trim($this->f("primera_fecha_asignacion")));
+        $this->primera_fecha_encurso->SetDBValue(trim($this->f("primera_fecha_encurso")));
+        $this->H_id_incidente->SetDBValue($this->f("id_incidente"));
+        $this->H_mes->SetDBValue($this->f("mes"));
+        $this->H_anio->SetDBValue($this->f("anio"));
+        $this->H_horas_invertidas->SetDBValue(trim($this->f("horas_invertidas")));
+    }
+//End SetValues Method
+
+//Insert Method @347-05046EE8
+    function Insert()
+    {
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->CmdExecution = true;
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildInsert", $this->Parent);
+        $this->InsertFields["primera_fecha_asignacion"]["Value"] = $this->primera_fecha_asignacion->GetDBValue(true);
+        $this->InsertFields["primera_fecha_encurso"]["Value"] = $this->primera_fecha_encurso->GetDBValue(true);
+        $this->InsertFields["id_incidente"]["Value"] = $this->H_id_incidente->GetDBValue(true);
+        $this->InsertFields["mes"]["Value"] = $this->H_mes->GetDBValue(true);
+        $this->InsertFields["anio"]["Value"] = $this->H_anio->GetDBValue(true);
+        $this->InsertFields["horas_invertidas"]["Value"] = $this->H_horas_invertidas->GetDBValue(true);
+        $this->SQL = CCBuildInsert("mc_incidentes_reasignaciones", $this->InsertFields, $this);
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
+        if($this->Errors->Count() == 0 && $this->CmdExecution) {
+            $this->query($this->SQL);
+            $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteInsert", $this->Parent);
+        }
+    }
+//End Insert Method
+
+//Update Method @347-4FFCF01D
+    function Update()
+    {
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->CmdExecution = true;
+        $Where = "";
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
+        $this->UpdateFields["primera_fecha_asignacion"]["Value"] = $this->primera_fecha_asignacion->GetDBValue(true);
+        $this->UpdateFields["primera_fecha_encurso"]["Value"] = $this->primera_fecha_encurso->GetDBValue(true);
+        $this->UpdateFields["id_incidente"]["Value"] = $this->H_id_incidente->GetDBValue(true);
+        $this->UpdateFields["mes"]["Value"] = $this->H_mes->GetDBValue(true);
+        $this->UpdateFields["anio"]["Value"] = $this->H_anio->GetDBValue(true);
+        $this->UpdateFields["horas_invertidas"]["Value"] = $this->H_horas_invertidas->GetDBValue(true);
+        $this->SQL = CCBuildUpdate("mc_incidentes_reasignaciones", $this->UpdateFields, $this);
+        $this->SQL .= strlen($this->Where) ? " WHERE " . $this->Where : $this->Where;
+        if (!strlen($this->Where) && $this->Errors->Count() == 0) 
+            $this->Errors->addError($CCSLocales->GetText("CCS_CustomOperationError_MissingParameters"));
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
+        if($this->Errors->Count() == 0 && $this->CmdExecution) {
+            $this->query($this->SQL);
+            $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteUpdate", $this->Parent);
+        }
+    }
+//End Update Method
+
+//Delete Method @347-BC0F2D7B
+    function Delete()
+    {
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->CmdExecution = true;
+        $Where = "";
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildDelete", $this->Parent);
+        $this->SQL = "DELETE FROM mc_incidentes_reasignaciones";
+        $this->SQL = CCBuildSQL($this->SQL, $this->Where, "");
+        if (!strlen($this->Where) && $this->Errors->Count() == 0) 
+            $this->Errors->addError($CCSLocales->GetText("CCS_CustomOperationError_MissingParameters"));
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteDelete", $this->Parent);
+        if($this->Errors->Count() == 0 && $this->CmdExecution) {
+            $this->query($this->SQL);
+            $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteDelete", $this->Parent);
+        }
+    }
+//End Delete Method
+
+} //End mc_incidentes_reasignacioDataSource Class @347-FCB6E20C
 
 
 
 
 
 
-//Initialize Page @1-32AB6C42
+
+
+
+//Initialize Page @1-1EA3AB04
 // Variables
 $FileName = "";
 $Redirect = "";
@@ -2978,7 +3523,7 @@ $TemplateEncoding = "CP1252";
 $ContentType = "text/html";
 $PathToRoot = "./";
 $PathToRootOpt = "";
-$Scripts = "|js/jquery/jquery.js|js/jquery/event-manager.js|js/jquery/selectors.js|";
+$Scripts = "|js/jquery/jquery.js|js/jquery/event-manager.js|js/jquery/selectors.js|js/jquery/ui/jquery.ui.core.js|js/jquery/ui/jquery.ui.widget.js|js/jquery/ui/jquery.ui.datepicker.js|js/jquery/datepicker/ccs-date-timepicker.js|";
 $Charset = $Charset ? $Charset : "windows-1252";
 //End Initialize Page
 
@@ -2998,7 +3543,7 @@ $CCSEvents["BeforeInitialize"] = "Page_BeforeInitialize";
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-476084C3
+//Initialize Objects @1-21A6CB3E
 $DBcnDisenio = new clsDBcnDisenio();
 $MainPage->Connections["cnDisenio"] = & $DBcnDisenio;
 $Attributes = new clsAttributes("page:");
@@ -3023,6 +3568,7 @@ $mc_info_incidentes1 = new clsRecordmc_info_incidentes1("", $MainPage);
 $mc_info_incidentes2 = new clsRecordmc_info_incidentes2("", $MainPage);
 $mc_incidentes_relacionado = new clsGridmc_incidentes_relacionado("", $MainPage);
 $Final = new clsRecordFinal("", $MainPage);
+$mc_incidentes_reasignacio = new clsRecordmc_incidentes_reasignacio("", $MainPage);
 $MainPage->mc_detalle_incidente_avl = & $mc_detalle_incidente_avl;
 $MainPage->slAnterior = & $slAnterior;
 $MainPage->slSiguiente = & $slSiguiente;
@@ -3035,12 +3581,14 @@ $MainPage->mc_info_incidentes1 = & $mc_info_incidentes1;
 $MainPage->mc_info_incidentes2 = & $mc_info_incidentes2;
 $MainPage->mc_incidentes_relacionado = & $mc_incidentes_relacionado;
 $MainPage->Final = & $Final;
+$MainPage->mc_incidentes_reasignacio = & $mc_incidentes_reasignacio;
 $mc_detalle_incidente_avl->Initialize();
 $mc_info_incidentes->Initialize();
 $mc_calificacion_incidente->Initialize();
 $mc_info_incidentes3->Initialize();
 $mc_info_incidentes2->Initialize();
 $mc_incidentes_relacionado->Initialize();
+$mc_incidentes_reasignacio->Initialize();
 $ScriptIncludes = "";
 $SList = explode("|", $Scripts);
 foreach ($SList as $Script) {
@@ -3074,7 +3622,8 @@ $Attributes->SetValue("pathToRoot", "");
 $Attributes->Show();
 //End Initialize HTML Template
 
-//Execute Components @1-269DE492
+//Execute Components @1-717FC1F3
+$mc_incidentes_reasignacio->Operation();
 $Final->Operation();
 $mc_info_incidentes2->Operation();
 $mc_info_incidentes1->Operation();
@@ -3085,7 +3634,7 @@ $mc_calificacion_incidente->Operation();
 $mc_info_incidentes->Operation();
 //End Execute Components
 
-//Go to destination page @1-1CF6693F
+//Go to destination page @1-AF62E11B
 if($Redirect)
 {
     $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
@@ -3102,12 +3651,13 @@ if($Redirect)
     unset($mc_info_incidentes2);
     unset($mc_incidentes_relacionado);
     unset($Final);
+    unset($mc_incidentes_reasignacio);
     unset($Tpl);
     exit;
 }
 //End Go to destination page
 
-//Show Page @1-EB389BD5
+//Show Page @1-97BEEF49
 $mc_detalle_incidente_avl->Show();
 $mc_info_incidentes->Show();
 $mc_calificacion_incidente->Show();
@@ -3118,6 +3668,7 @@ $mc_info_incidentes1->Show();
 $mc_info_incidentes2->Show();
 $mc_incidentes_relacionado->Show();
 $Final->Show();
+$mc_incidentes_reasignacio->Show();
 $slAnterior->Show();
 $slSiguiente->Show();
 $Tpl->block_path = "";
@@ -3127,7 +3678,7 @@ $CCSEventResult = CCGetEvent($CCSEvents, "BeforeOutput", $MainPage);
 if ($CCSEventResult) echo $main_block;
 //End Show Page
 
-//Unload Page @1-9A93C83C
+//Unload Page @1-3DD7A7D3
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
 $DBcnDisenio->close();
 unset($mc_detalle_incidente_avl);
@@ -3141,6 +3692,7 @@ unset($mc_info_incidentes1);
 unset($mc_info_incidentes2);
 unset($mc_incidentes_relacionado);
 unset($Final);
+unset($mc_incidentes_reasignacio);
 unset($Tpl);
 //End Unload Page
 

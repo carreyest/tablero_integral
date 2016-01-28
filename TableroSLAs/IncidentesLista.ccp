@@ -86,21 +86,21 @@
 					<Events/>
 					<TableParameters>
 						<TableParameter id="203" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Nivel" logicOperator="Or" parameterSource="&quot;3&quot;" parameterType="Expression" searchConditionType="Equal"/>
-<TableParameter id="204" conditionType="Parameter" useIsNull="False" dataType="Text" field="Usuario" logicOperator="Or" parameterSource="&quot;rramos&quot;" parameterType="Expression" searchConditionType="Equal"/>
-<TableParameter id="205" conditionType="Parameter" useIsNull="False" dataType="Text" field="Usuario" logicOperator="Or" parameterSource="&quot;ldominguez&quot;" parameterType="Expression" searchConditionType="Equal"/>
-</TableParameters>
+						<TableParameter id="204" conditionType="Parameter" useIsNull="False" dataType="Text" field="Usuario" logicOperator="Or" parameterSource="&quot;rramos&quot;" parameterType="Expression" searchConditionType="Equal"/>
+						<TableParameter id="205" conditionType="Parameter" useIsNull="False" dataType="Text" field="Usuario" logicOperator="Or" parameterSource="&quot;ldominguez&quot;" parameterType="Expression" searchConditionType="Equal"/>
+					</TableParameters>
 					<SPParameters/>
 					<SQLParameters/>
 					<JoinTables>
 						<JoinTable id="202" posHeight="180" posLeft="10" posTop="10" posWidth="153" tableName="mc_c_usuarios"/>
-</JoinTables>
+					</JoinTables>
 					<JoinLinks/>
 					<Fields>
 						<Field id="206" fieldName="*"/>
-</Fields>
+					</Fields>
 					<PKFields>
 						<PKField id="207" dataType="Integer" fieldName="Id" tableName="mc_c_usuarios"/>
-</PKFields>
+					</PKFields>
 					<Attributes/>
 					<Features/>
 				</ListBox>
@@ -164,17 +164,19 @@
 			<Attributes/>
 			<Features/>
 		</Record>
-		<Grid id="26" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="20" name="mc_info_incidentes" connection="cnDisenio" dataSource="select mci.Id_incidente ,mci.ServicioNegocio ,mci.Aplicacion ,mci.FechaNuevo ,mci.FechaAsignado ,mci.FechaEnCurso ,mci.FechaPendiente ,mci.FechaResuelto ,mci.FechaCerrado, mcu.analista,
+		<Grid id="26" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="20" name="mc_info_incidentes" connection="cnDisenio" dataSource="select mci.Id_incidente ,mci.ServicioNegocio ,mci.Aplicacion ,mci.FechaNuevo ,case when new.primera_fecha_asignacion IS NOT NULL THEN  new.primera_fecha_asignacion  ELSE  mci.FechaAsignado END as FechaAsignado , 
+case when new.primera_fecha_encurso IS NOT NULL THEN  new.primera_fecha_encurso  ELSE  mci.FechaEnCurso END as FechaEnCurso  ,mci.FechaPendiente ,mci.FechaResuelto ,mci.FechaCerrado, mcu.analista,
 (CASE WHEN (SELECT COUNT(id_incidente) from  mc_calificacion_incidentes_MC where id_incidente = mcu.Numero and MesReporte=mcu.mes and Anioreporte=mcu.anio and id_proveedor=mcu.Id_Proveedor)&gt;0 THEN 'Calificado' ELSE 'No Calificado' END  ) as Estado,
 mcu.mes, mcu.anio 
 from mc_universo_cds mcu 
 	inner join  mc_info_incidentes mci on mci.id_incidente=mcu.Numero  and month(mci.FechaCarga)= mcu.mes and YEAR(mci.FechaCarga ) = mcu.anio
+	 left join mc_incidentes_reasignaciones new on new.id_incidente=mci.Id_incidente
 where mcu.tipo='IN'
 and (id_proveedor={s_cds_param} OR {s_cds_param}=0  )
-and (mes={s_mes_param} or 0={s_mes_param})
-and anio={s_anio_param}
+and (mcu.mes={s_mes_param} or 0={s_mes_param})
+and mcu.anio={s_anio_param}
 and (mcu.analista='{s_analista_param1}' OR '{s_analista_param1}'=''  ) 
-and Id_incidente like '%{s_Id_incidente_param}%'
+and mci.Id_incidente like '%{s_Id_incidente_param}%'
 and ((CASE WHEN (SELECT COUNT(id_incidente) from  mc_calificacion_incidentes_MC where id_incidente = mcu.Numero and MesReporte=mcu.mes and Anioreporte=mcu.anio and id_proveedor=mcu.Id_Proveedor)&gt;0 THEN 'Calificado' ELSE 'No Calificado' END  )='{s_estado_param}' or '{s_estado_param}'='' )
 " pageSizeLimit="100" pageSize="True" wizardCaption="Grid1" wizardThemeApplyTo="Page" wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No records" wizardGridPagingType="Simple" wizardUseSearch="False" wizardAddNbsp="True" gridTotalRecords="False" wizardAddPanels="False" wizardType="Grid" wizardUseInterVariables="False" addTemplatePanel="False" changedCaptionGrid="False" gridExtendedHTML="False" PathID="mc_info_incidentes" wizardAllowSorting="True">
 			<Components>
@@ -346,7 +348,12 @@ and ((CASE WHEN (SELECT COUNT(id_incidente) from  mc_calificacion_incidentes_MC 
 						<Action actionName="Custom Code" actionCategory="General" id="68"/>
 					</Actions>
 				</Event>
-			</Events>
+				<Event name="BeforeShowRow" type="Server">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="208"/>
+</Actions>
+</Event>
+</Events>
 			<TableParameters/>
 			<JoinTables/>
 			<JoinLinks/>
@@ -354,13 +361,13 @@ and ((CASE WHEN (SELECT COUNT(id_incidente) from  mc_calificacion_incidentes_MC 
 			<PKFields/>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="180" dataType="Text" parameterSource="s_Id_incidente_param" parameterType="URL" variable="s_Id_incidente_param"/>
-				<SQLParameter id="181" dataType="Integer" defaultValue="0" designDefaultValue="3" parameterSource="s_cds_param" parameterType="URL" variable="s_cds_param"/>
-				<SQLParameter id="182" dataType="Integer" defaultValue="date(&quot;m&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="11" parameterSource="s_mes_param" parameterType="URL" variable="s_mes_param"/>
-				<SQLParameter id="183" dataType="Text" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;)-1,date(&quot;d&quot;),date(&quot;Y&quot;)))" designDefaultValue="2013" parameterSource="s_anio_param" parameterType="URL" variable="s_anio_param"/>
-				<SQLParameter id="184" dataType="Text" designDefaultValue="'gestrada'" parameterSource="s_analista_param1" parameterType="URL" variable="s_analista_param1"/>
-				<SQLParameter id="185" dataType="Text" designDefaultValue="'Calificado'" parameterSource="s_estado_param" parameterType="URL" variable="s_estado_param"/>
-			</SQLParameters>
+				<SQLParameter id="209" dataType="Text" parameterSource="s_Id_incidente_param" parameterType="URL" variable="s_Id_incidente_param"/>
+<SQLParameter id="210" dataType="Integer" defaultValue="0" designDefaultValue="3" parameterSource="s_cds_param" parameterType="URL" variable="s_cds_param"/>
+<SQLParameter id="211" dataType="Integer" defaultValue="date(&quot;m&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="11" parameterSource="s_mes_param" parameterType="URL" variable="s_mes_param"/>
+<SQLParameter id="212" dataType="Text" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;)-1,date(&quot;d&quot;),date(&quot;Y&quot;)))" designDefaultValue="2013" parameterSource="s_anio_param" parameterType="URL" variable="s_anio_param"/>
+<SQLParameter id="213" dataType="Text" designDefaultValue="'gestrada'" parameterSource="s_analista_param1" parameterType="URL" variable="s_analista_param1"/>
+<SQLParameter id="214" dataType="Text" designDefaultValue="'Calificado'" parameterSource="s_estado_param" parameterType="URL" variable="s_estado_param"/>
+</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>

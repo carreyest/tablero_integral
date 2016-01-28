@@ -45,7 +45,7 @@ class clsRecordmc_info_incidentesSearch { //mc_info_incidentesSearch Class @2-A8
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-0582E237
+//Class_Initialize Event @2-FF26808B
     function clsRecordmc_info_incidentesSearch($RelativePath, & $Parent)
     {
 
@@ -111,13 +111,13 @@ class clsRecordmc_info_incidentesSearch { //mc_info_incidentesSearch Class @2-A8
             $this->s_analista_param1->DataSource->SQL = "SELECT * \n" .
 "FROM mc_c_usuarios {SQL_Where} {SQL_OrderBy}";
             list($this->s_analista_param1->BoundColumn, $this->s_analista_param1->TextColumn, $this->s_analista_param1->DBFormat) = array("Usuario", "Usuario", "");
-            $this->s_analista_param1->DataSource->Parameters["expr197"] = "3";
-            $this->s_analista_param1->DataSource->Parameters["expr198"] = rramos;
-            $this->s_analista_param1->DataSource->Parameters["expr199"] = ldominguez;
+            $this->s_analista_param1->DataSource->Parameters["expr203"] = "3";
+            $this->s_analista_param1->DataSource->Parameters["expr204"] = "rramos";
+            $this->s_analista_param1->DataSource->Parameters["expr205"] = "ldominguez";
             $this->s_analista_param1->DataSource->wp = new clsSQLParameters();
-            $this->s_analista_param1->DataSource->wp->AddParameter("1", "expr197", ccsInteger, "", "", $this->s_analista_param1->DataSource->Parameters["expr197"], "", false);
-            $this->s_analista_param1->DataSource->wp->AddParameter("2", "expr198", ccsText, "", "", $this->s_analista_param1->DataSource->Parameters["expr198"], "", false);
-            $this->s_analista_param1->DataSource->wp->AddParameter("3", "expr199", ccsText, "", "", $this->s_analista_param1->DataSource->Parameters["expr199"], "", false);
+            $this->s_analista_param1->DataSource->wp->AddParameter("1", "expr203", ccsInteger, "", "", $this->s_analista_param1->DataSource->Parameters["expr203"], "", false);
+            $this->s_analista_param1->DataSource->wp->AddParameter("2", "expr204", ccsText, "", "", $this->s_analista_param1->DataSource->Parameters["expr204"], "", false);
+            $this->s_analista_param1->DataSource->wp->AddParameter("3", "expr205", ccsText, "", "", $this->s_analista_param1->DataSource->Parameters["expr205"], "", false);
             $this->s_analista_param1->DataSource->wp->Criterion[1] = $this->s_analista_param1->DataSource->wp->Operation(opEqual, "[Nivel]", $this->s_analista_param1->DataSource->wp->GetDBValue("1"), $this->s_analista_param1->DataSource->ToSQL($this->s_analista_param1->DataSource->wp->GetDBValue("1"), ccsInteger),false);
             $this->s_analista_param1->DataSource->wp->Criterion[2] = $this->s_analista_param1->DataSource->wp->Operation(opEqual, "[Usuario]", $this->s_analista_param1->DataSource->wp->GetDBValue("2"), $this->s_analista_param1->DataSource->ToSQL($this->s_analista_param1->DataSource->wp->GetDBValue("2"), ccsText),false);
             $this->s_analista_param1->DataSource->wp->Criterion[3] = $this->s_analista_param1->DataSource->wp->Operation(opEqual, "[Usuario]", $this->s_analista_param1->DataSource->wp->GetDBValue("3"), $this->s_analista_param1->DataSource->ToSQL($this->s_analista_param1->DataSource->wp->GetDBValue("3"), ccsText),false);
@@ -653,34 +653,38 @@ class clsmc_info_incidentesDataSource extends clsDBcnDisenio {  //mc_info_incide
     }
 //End Prepare Method
 
-//Open Method @26-66B0EC6C
+//Open Method @26-1D520E4A
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (select mci.Id_incidente ,mci.ServicioNegocio ,mci.Aplicacion ,mci.FechaNuevo ,mci.FechaAsignado ,mci.FechaEnCurso ,mci.FechaPendiente ,mci.FechaResuelto ,mci.FechaCerrado, mcu.analista,\n" .
+        $this->CountSQL = "SELECT COUNT(*) FROM (select mci.Id_incidente ,mci.ServicioNegocio ,mci.Aplicacion ,mci.FechaNuevo ,case when new.primera_fecha_asignacion IS NOT NULL THEN  new.primera_fecha_asignacion  ELSE  mci.FechaAsignado END as FechaAsignado , \n" .
+        "case when new.primera_fecha_encurso IS NOT NULL THEN  new.primera_fecha_encurso  ELSE  mci.FechaEnCurso END as FechaEnCurso  ,mci.FechaPendiente ,mci.FechaResuelto ,mci.FechaCerrado, mcu.analista,\n" .
         "(CASE WHEN (SELECT COUNT(id_incidente) from  mc_calificacion_incidentes_MC where id_incidente = mcu.Numero and MesReporte=mcu.mes and Anioreporte=mcu.anio and id_proveedor=mcu.Id_Proveedor)>0 THEN 'Calificado' ELSE 'No Calificado' END  ) as Estado,\n" .
         "mcu.mes, mcu.anio \n" .
         "from mc_universo_cds mcu \n" .
         "	inner join  mc_info_incidentes mci on mci.id_incidente=mcu.Numero  and month(mci.FechaCarga)= mcu.mes and YEAR(mci.FechaCarga ) = mcu.anio\n" .
+        "	 left join mc_incidentes_reasignaciones new on new.id_incidente=mci.Id_incidente\n" .
         "where mcu.tipo='IN'\n" .
         "and (id_proveedor=" . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . " OR " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "=0  )\n" .
-        "and (mes=" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " or 0=" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . ")\n" .
-        "and anio=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "\n" .
+        "and (mcu.mes=" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " or 0=" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . ")\n" .
+        "and mcu.anio=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "\n" .
         "and (mcu.analista='" . $this->SQLValue($this->wp->GetDBValue("5"), ccsText) . "' OR '" . $this->SQLValue($this->wp->GetDBValue("5"), ccsText) . "'=''  ) \n" .
-        "and Id_incidente like '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
+        "and mci.Id_incidente like '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
         "and ((CASE WHEN (SELECT COUNT(id_incidente) from  mc_calificacion_incidentes_MC where id_incidente = mcu.Numero and MesReporte=mcu.mes and Anioreporte=mcu.anio and id_proveedor=mcu.Id_Proveedor)>0 THEN 'Calificado' ELSE 'No Calificado' END  )='" . $this->SQLValue($this->wp->GetDBValue("6"), ccsText) . "' or '" . $this->SQLValue($this->wp->GetDBValue("6"), ccsText) . "'='' )\n" .
         ") cnt";
-        $this->SQL = "select mci.Id_incidente ,mci.ServicioNegocio ,mci.Aplicacion ,mci.FechaNuevo ,mci.FechaAsignado ,mci.FechaEnCurso ,mci.FechaPendiente ,mci.FechaResuelto ,mci.FechaCerrado, mcu.analista,\n" .
+        $this->SQL = "select mci.Id_incidente ,mci.ServicioNegocio ,mci.Aplicacion ,mci.FechaNuevo ,case when new.primera_fecha_asignacion IS NOT NULL THEN  new.primera_fecha_asignacion  ELSE  mci.FechaAsignado END as FechaAsignado , \n" .
+        "case when new.primera_fecha_encurso IS NOT NULL THEN  new.primera_fecha_encurso  ELSE  mci.FechaEnCurso END as FechaEnCurso  ,mci.FechaPendiente ,mci.FechaResuelto ,mci.FechaCerrado, mcu.analista,\n" .
         "(CASE WHEN (SELECT COUNT(id_incidente) from  mc_calificacion_incidentes_MC where id_incidente = mcu.Numero and MesReporte=mcu.mes and Anioreporte=mcu.anio and id_proveedor=mcu.Id_Proveedor)>0 THEN 'Calificado' ELSE 'No Calificado' END  ) as Estado,\n" .
         "mcu.mes, mcu.anio \n" .
         "from mc_universo_cds mcu \n" .
         "	inner join  mc_info_incidentes mci on mci.id_incidente=mcu.Numero  and month(mci.FechaCarga)= mcu.mes and YEAR(mci.FechaCarga ) = mcu.anio\n" .
+        "	 left join mc_incidentes_reasignaciones new on new.id_incidente=mci.Id_incidente\n" .
         "where mcu.tipo='IN'\n" .
         "and (id_proveedor=" . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . " OR " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "=0  )\n" .
-        "and (mes=" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " or 0=" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . ")\n" .
-        "and anio=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "\n" .
+        "and (mcu.mes=" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " or 0=" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . ")\n" .
+        "and mcu.anio=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "\n" .
         "and (mcu.analista='" . $this->SQLValue($this->wp->GetDBValue("5"), ccsText) . "' OR '" . $this->SQLValue($this->wp->GetDBValue("5"), ccsText) . "'=''  ) \n" .
-        "and Id_incidente like '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
+        "and mci.Id_incidente like '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
         "and ((CASE WHEN (SELECT COUNT(id_incidente) from  mc_calificacion_incidentes_MC where id_incidente = mcu.Numero and MesReporte=mcu.mes and Anioreporte=mcu.anio and id_proveedor=mcu.Id_Proveedor)>0 THEN 'Calificado' ELSE 'No Calificado' END  )='" . $this->SQLValue($this->wp->GetDBValue("6"), ccsText) . "' or '" . $this->SQLValue($this->wp->GetDBValue("6"), ccsText) . "'='' )\n" .
         "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);

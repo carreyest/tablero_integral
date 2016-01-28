@@ -117,12 +117,14 @@
 			<Attributes/>
 			<Features/>
 		</Record>
-		<Grid id="26" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="20" name="mc_info_incidentes" connection="cnDisenio" dataSource="select mci.Id_incidente ,mci.ServicioNegocio ,mci.Aplicacion ,mci.FechaNuevo ,mci.FechaAsignado ,mci.FechaEnCurso ,mci.FechaPendiente ,mci.FechaResuelto ,mci.FechaCerrado, mc.severidad ,
+		<Grid id="26" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="20" name="mc_info_incidentes" connection="cnDisenio" dataSource="select mci.Id_incidente ,mci.ServicioNegocio ,mci.Aplicacion ,mci.FechaNuevo ,case when new.primera_fecha_asignacion IS NOT NULL THEN  new.primera_fecha_asignacion  ELSE  mci.FechaAsignado END as FechaAsignado , 
+case when new.primera_fecha_encurso IS NOT NULL THEN  new.primera_fecha_encurso  ELSE  mci.FechaEnCurso END as FechaEnCurso  ,mci.FechaPendiente ,mci.FechaResuelto ,mci.FechaCerrado, mc.severidad ,
 (select top 1 FechaInicioMov from mc_detalle_incidente_avl where Id_Incidente=mci.Id_incidente order by paquete,clavemovimiento ) as RegistroAVL,
 Cumple_Inc_TiempoAsignacion ,Cumple_Inc_TiempoSolucion ,Cumple_DISP_SOPORTE ,mc.Obs_Manuales , mci.Estado, mcu.analista 
 from mc_universo_cds mcu inner join  mc_info_incidentes mci
 on mci.id_incidente=mcu.Numero and month(mci.FechaCarga) = mcu.mes and YEAR(mci.FechaCarga )= mcu.anio 
-inner join mc_calificacion_incidentes_MC mc on mc.id_incidente =mci.Id_incidente  
+inner join mc_calificacion_incidentes_MC mc on mc.id_incidente =mci.Id_incidente 
+left join mc_incidentes_reasignaciones new on new.id_incidente=mci.Id_incidente 
 where mcu.tipo='IN'
 and mcu.mes={s_mes_param}
 and mcu.anio={s_anio_param}

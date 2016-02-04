@@ -221,7 +221,7 @@
 			<SQLParameters/>
 			<JoinTables>
 				<JoinTable id="213" tableName="mc_info_rs_CC"/>
-</JoinTables>
+			</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="208" fieldName="*"/>

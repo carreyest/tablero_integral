@@ -314,7 +314,6 @@ function mc_info_rs_CC_ds_BeforeExecuteUpdate(& $sender)
 
 //Custom Code @170-2A29BDB7
 // -------------------------
-
 // -------------------------
 //End Custom Code
 
@@ -398,8 +397,12 @@ function mc_info_rs_CC_AfterUpdate(& $sender)
     			' WHERE IdUniverso =' . CCGetParam("Id");
     }
     $db->query($sSQL);
-    $db->close();
     
+    if (strlen($mc_info_rs_CC->Observaciones->Value)==0){
+    $cSQL = "UPDATE  mc_info_rs_CC SET Observaciones = '' WHERE IdUniverso =" . CCGetParam("Id");    	    
+    }
+    $db->query($cSQL);    
+    $db->close();
 
 // -------------------------
 //End Custom Code

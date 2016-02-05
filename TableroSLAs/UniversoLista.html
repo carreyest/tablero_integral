@@ -43,15 +43,15 @@ jQuery(function ($) {
 </head>
 <body>
 {Header}&nbsp; <strong></strong><strong></strong><strong></strong>
-<table border="0" width="100%">
+<table width="100%" border="0">
   <tr>
     <td colspan="2">
       <!-- BEGIN Record grdFiltra -->
       <form id="grdFiltra" method="post" name="{HTMLFormName}" action="{Action}">
-        <table border="0" cellspacing="0" cellpadding="0">
+        <table cellspacing="0" cellpadding="0" border="0">
           <tr>
             <td valign="top">
-              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td class="HeaderLeft"><img border="0" alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Filtrar</strong></td> 
@@ -101,7 +101,7 @@ jQuery(function ($) {
  
                 <tr class="Bottom">
                   <td colspan="11" align="right">
-                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="grdFiltraButton_DoSearch" class="Button" value="Buscar" alt="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="grdFiltraButton_DoSearch" class="Button" alt="Buscar" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                 </tr>
               </table>
             </td>
@@ -115,14 +115,14 @@ jQuery(function ($) {
   <tr>
     <td colspan="2"><strong></strong><strong></strong><strong></strong><strong></strong>
       <!-- BEGIN Panel Panel2 -->
-      <table class="Header" border="0" cellspacing="0" cellpadding="0" width="50%">
+      <table class="Header" cellspacing="0" cellpadding="0" width="50%" border="0">
         <tr>
-          <td style="WIDTH: 300px" class="th"><a href="{Link3_Src}" id="Panel2Link3">Incidentes relacionados</a></td> 
-          <td style="WIDTH: 300px" class="th">
+          <td class="th" style="WIDTH: 300px"><a href="{Link3_Src}" id="Panel2Link3">Incidentes relacionados</a></td> 
+          <td class="th" style="WIDTH: 300px">
             <!-- BEGIN Link lkCargaMultiple --><a href="{lkCargaMultiple_Src}" id="Panel2lkCargaMultiple">Cargar multiples claves</a><!-- END Link lkCargaMultiple --></td> 
-          <td style="WIDTH: 300px" class="th">&nbsp; 
+          <td class="th" style="WIDTH: 300px">&nbsp; 
             <!-- BEGIN Link Link1 --><a href="{Link1_Src}" id="Panel2Link1">Calcular universo</a><!-- END Link Link1 --></td> 
-          <td style="WIDTH: 300px" class="th"><a href="{Link2_Src}" id="Panel2Link2">Distribuir universo</a></td>
+          <td class="th" style="WIDTH: 300px"><a href="{Link2_Src}" id="Panel2Link2">Distribuir universo</a></td>
         </tr>
       </table>
       <!-- END Panel Panel2 --><strong></strong></td>
@@ -131,10 +131,10 @@ jQuery(function ($) {
   <tr style="VERTICAL-ALIGN: top">
     <td width="40%"><strong></strong>
       <!-- BEGIN Grid grdUniverso -->
-      <table border="0" cellspacing="0" cellpadding="0">
+      <table cellspacing="0" cellpadding="0" border="0">
         <tr>
           <td valign="top">
-            <table class="Header" border="0" cellspacing="0" cellpadding="0">
+            <table class="Header" cellspacing="0" cellpadding="0" border="0">
               <tr>
                 <td class="HeaderLeft"><img border="0" alt="" src="data:image/png;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="></td> 
                 <td class="th"><strong>Universo de medición</strong></td> 
@@ -221,10 +221,10 @@ jQuery(function ($) {
       <!-- BEGIN Panel Panel1 -->
       <!-- BEGIN Record universo_cds -->
       <form id="Panel1universo_cds" method="post" name="{HTMLFormName}" action="{Action}">
-        <table border="0" cellspacing="0" cellpadding="0">
+        <table cellspacing="0" cellpadding="0" border="0">
           <tr>
             <td valign="top">
-              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td class="HeaderLeft"><img border="0" alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Agregar/Editar </strong></td> 
@@ -250,7 +250,7 @@ jQuery(function ($) {
  
                 <tr class="Controls">
                   <td class="th"><label for="Panel1universo_cdsnumero">Número</label></td> 
-                  <td><input type="text" id="Panel1universo_cdsnumero" value="{numero}" maxlength="25" size="25" name="{numero_Name}"></td>
+                  <td><input type="text" id="Panel1universo_cdsnumero" maxlength="25" size="25" value="{numero}" name="{numero_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
@@ -316,7 +316,7 @@ jQuery(function ($) {
  
                 <tr class="Controls">
                   <td class="th">Comentario</td> 
-                  <td><input type="text" id="Panel1universo_cdsnotas_manual" value="{notas_manual}" maxlength="125" size="75" name="{notas_manual_Name}"></td>
+                  <td><input type="text" id="Panel1universo_cdsnotas_manual" maxlength="125" size="75" value="{notas_manual}" name="{notas_manual_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
@@ -327,9 +327,9 @@ jQuery(function ($) {
                 <tr class="Bottom">
                   <td style="BORDER-RIGHT: medium none"><a href="{Link1_Src}" id="Panel1universo_cdsLink1">Limpiar Campos</a></td> 
                   <td align="right">
-                    <!-- BEGIN Button Button_Insert --><input type="submit" id="Panel1universo_cdsButton_Insert" class="Button" value="Insertar" alt="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
-                    <!-- BEGIN Button Button_Update --><input type="submit" id="Panel1universo_cdsButton_Update" class="Button" value="Grabar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Update -->
-                    <!-- BEGIN Button Button_Delete --><input type="submit" id="Panel1universo_cdsButton_Delete" class="Button" value="Borrar" alt="Borrar" name="{Button_Name}"><!-- END Button Button_Delete --></td>
+                    <!-- BEGIN Button Button_Insert --><input type="submit" id="Panel1universo_cdsButton_Insert" class="Button" alt="Agregar" value="Insertar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input type="submit" id="Panel1universo_cdsButton_Update" class="Button" alt="Enviar" value="Grabar" name="{Button_Name}"><!-- END Button Button_Update -->
+                    <!-- BEGIN Button Button_Delete --><input type="submit" id="Panel1universo_cdsButton_Delete" class="Button" alt="Borrar" value="Borrar" name="{Button_Name}"><!-- END Button Button_Delete --></td>
                 </tr>
               </table>
             </td>
@@ -345,10 +345,10 @@ jQuery(function ($) {
     <td>
       <!-- BEGIN Record mc_universo_cds -->
       <form id="mc_universo_cds" method="post" name="{HTMLFormName}" action="{Action}">
-        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
           <tr>
             <td valign="top">
-              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Editar requerimiento técnico</strong></td> 
@@ -379,7 +379,7 @@ jQuery(function ($) {
  
                 <tr class="Bottom">
                   <td style="TEXT-ALIGN: right" colspan="2">
-                    <!-- BEGIN Button Button_Update --><input type="submit" id="mc_universo_cdsButton_Update" class="Button" value="Enviar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Update --></td>
+                    <!-- BEGIN Button Button_Update --><input type="submit" id="mc_universo_cdsButton_Update" class="Button" alt="Enviar" value="Enviar" name="{Button_Name}"><!-- END Button Button_Update --></td>
                 </tr>
               </table>
             </td>

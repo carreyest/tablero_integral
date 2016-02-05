@@ -292,7 +292,7 @@ class clsRecorduniverso_cds { //universo_cds Class @31-1D17A04F
     // Class variables
 //End Variables
 
-//Class_Initialize Event @31-6CAEE211
+//Class_Initialize Event @31-5EAF1355
     function clsRecorduniverso_cds($RelativePath, & $Parent)
     {
 
@@ -355,7 +355,7 @@ class clsRecorduniverso_cds { //universo_cds Class @31-1D17A04F
             $this->mes->Required = true;
             $this->anio = new clsControl(ccsListBox, "anio", "Año", ccsInteger, "", CCGetRequestParam("anio", $Method, NULL), $this);
             $this->anio->DSType = dsListOfValues;
-            $this->anio->Values = array(array("2012", "2012"), array("2013", "2013"), array("2014", "2014"), array("2015", "2015"));
+            $this->anio->Values = array(array("2012", "2012"), array("2013", "2013"), array("2014", "2014"), array("2015", "2015"), array("2016", "2016"), array("2017", "2017"));
             $this->anio->Required = true;
             $this->chkDescartar = new clsControl(ccsCheckBox, "chkDescartar", "chkDescartar", ccsInteger, "", CCGetRequestParam("chkDescartar", $Method, NULL), $this);
             $this->chkDescartar->CheckedValue = $this->chkDescartar->GetParsedValue(1);

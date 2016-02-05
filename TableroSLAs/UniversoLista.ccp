@@ -270,7 +270,7 @@
 							<PKFields>
 							</PKFields>
 						</ListBox>
-						<ListBox id="40" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Integer" returnValueType="Number" name="anio" fieldSource="anio" required="True" caption="Año" wizardCaption="Anio" wizardSize="10" wizardMaxLength="10" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardEmptyCaption="Seleccionar Valor" PathID="Panel1universo_cdsanio" connection="cnDisenio" dataSource="2012;2012;2013;2013;2014;2014;2015;2015" defaultValue="CCGetParam(&quot;s_anio&quot;)">
+						<ListBox id="40" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Integer" returnValueType="Number" name="anio" fieldSource="anio" required="True" caption="Año" wizardCaption="Anio" wizardSize="10" wizardMaxLength="10" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardEmptyCaption="Seleccionar Valor" PathID="Panel1universo_cdsanio" connection="cnDisenio" dataSource="2012;2012;2013;2013;2014;2014;2015;2015;2016;2016;2017;2017" defaultValue="CCGetParam(&quot;s_anio&quot;)">
 							<Components/>
 							<Events/>
 							<TableParameters/>

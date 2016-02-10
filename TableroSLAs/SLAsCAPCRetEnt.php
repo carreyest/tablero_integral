@@ -803,38 +803,53 @@ class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificac
 
 } //End mc_calificacion_capcDataSource Class @3-FCB6E20C
 
-class clsGridmc_info_capc_cr_RE_Artefa { //mc_info_capc_cr_RE_Artefa class @77-3AD43B5E
+class clsEditableGridmc_info_rs_cr_RE_RC_Artef { //mc_info_rs_cr_RE_RC_Artef Class @134-F3D1EB83
 
-//Variables @77-D7CB6747
+//Variables @134-7CAFBB74
 
     // Public variables
-    public $ComponentType = "Grid";
+    public $ComponentType = "EditableGrid";
     public $ComponentName;
-    public $Visible;
+    public $HTMLFormAction;
+    public $PressedButton;
     public $Errors;
     public $ErrorBlock;
+    public $FormSubmitted;
+    public $FormParameters;
+    public $FormState;
+    public $FormEnctype;
+    public $CachedColumns;
+    public $TotalRows;
+    public $UpdatedRows;
+    public $EmptyRows;
+    public $Visible;
+    public $RowsErrors;
     public $ds;
     public $DataSource;
     public $PageSize;
     public $IsEmpty;
-    public $ForceIteration = false;
-    public $HasRecord = false;
     public $SorterName = "";
     public $SorterDirection = "";
     public $PageNumber;
-    public $RowNumber;
     public $ControlsVisible = array();
 
     public $CCSEvents = "";
     public $CCSEventResult;
 
     public $RelativePath = "";
+
+    public $InsertAllowed = false;
+    public $UpdateAllowed = false;
+    public $DeleteAllowed = false;
+    public $ReadAllowed   = false;
+    public $EditMode;
+    public $ValidatingControls;
+    public $Controls;
+    public $ControlsErrors;
+    public $RowNumber;
     public $Attributes;
 
-    // Grid Controls
-    public $StaticControls;
-    public $RowControls;
-    public $Sorter_Id;
+    // Class variables
     public $Sorter_Nombre;
     public $Sorter_Descripcion;
     public $Sorter_Formato;
@@ -843,24 +858,27 @@ class clsGridmc_info_capc_cr_RE_Artefa { //mc_info_capc_cr_RE_Artefa class @77-3
     public $Sorter_FechaEntrega;
     public $Sorter_DiasHabilesDesviacion;
     public $Sorter_DiasNaturalesDesviacion;
-    public $Sorter_DiasHabilesReales;
     public $Sorter_PctDeductiva;
+    public $Sorter_Comentarios;
 //End Variables
 
-//Class_Initialize Event @77-B77F4EC8
-    function clsGridmc_info_capc_cr_RE_Artefa($RelativePath, & $Parent)
+//Class_Initialize Event @134-A140EA5D
+    function clsEditableGridmc_info_rs_cr_RE_RC_Artef($RelativePath, & $Parent)
     {
+
         global $FileName;
         global $CCSLocales;
         global $DefaultDateFormat;
-        $this->ComponentName = "mc_info_capc_cr_RE_Artefa";
-        $this->Visible = True;
+        $this->Visible = true;
         $this->Parent = & $Parent;
         $this->RelativePath = $RelativePath;
         $this->Errors = new clsErrors();
-        $this->ErrorBlock = "Grid mc_info_capc_cr_RE_Artefa";
+        $this->ErrorBlock = "EditableGrid mc_info_rs_cr_RE_RC_Artef/Error";
+        $this->ControlsErrors = array();
+        $this->ComponentName = "mc_info_rs_cr_RE_RC_Artef";
         $this->Attributes = new clsAttributes($this->ComponentName . ":");
-        $this->DataSource = new clsmc_info_capc_cr_RE_ArtefaDataSource($this);
+        $this->CachedColumns["Id"][0] = "Id";
+        $this->DataSource = new clsmc_info_rs_cr_RE_RC_ArtefDataSource($this);
         $this->ds = & $this->DataSource;
         $this->PageSize = CCGetParam($this->ComponentName . "PageSize", "");
         if(!is_numeric($this->PageSize) || !strlen($this->PageSize))
@@ -870,25 +888,29 @@ class clsGridmc_info_capc_cr_RE_Artefa { //mc_info_capc_cr_RE_Artefa class @77-3
         if ($this->PageSize > 100)
             $this->PageSize = 100;
         if($this->PageSize == 0)
-            $this->Errors->addError("<p>Form: Grid " . $this->ComponentName . "<BR>Error: (CCS06) Invalid page size.</p>");
+            $this->Errors->addError("<p>Form: EditableGrid " . $this->ComponentName . "<BR>Error: (CCS06) Invalid page size.</p>");
         $this->PageNumber = intval(CCGetParam($this->ComponentName . "Page", 1));
         if ($this->PageNumber <= 0) $this->PageNumber = 1;
-        $this->SorterName = CCGetParam("mc_info_capc_cr_RE_ArtefaOrder", "");
-        $this->SorterDirection = CCGetParam("mc_info_capc_cr_RE_ArtefaDir", "");
 
-        $this->Id = new clsControl(ccsLabel, "Id", "Id", ccsInteger, "", CCGetRequestParam("Id", ccsGet, NULL), $this);
-        $this->Nombre = new clsControl(ccsLabel, "Nombre", "Nombre", ccsText, "", CCGetRequestParam("Nombre", ccsGet, NULL), $this);
-        $this->Descripcion = new clsControl(ccsLabel, "Descripcion", "Descripcion", ccsText, "", CCGetRequestParam("Descripcion", ccsGet, NULL), $this);
-        $this->Formato = new clsControl(ccsLabel, "Formato", "Formato", ccsText, "", CCGetRequestParam("Formato", ccsGet, NULL), $this);
-        $this->NombreConHerramienta = new clsControl(ccsLabel, "NombreConHerramienta", "NombreConHerramienta", ccsText, "", CCGetRequestParam("NombreConHerramienta", ccsGet, NULL), $this);
-        $this->FechaEstFin = new clsControl(ccsLabel, "FechaEstFin", "FechaEstFin", ccsDate, array("ShortDate"), CCGetRequestParam("FechaEstFin", ccsGet, NULL), $this);
-        $this->FechaEntrega = new clsControl(ccsLabel, "FechaEntrega", "FechaEntrega", ccsDate, array("ShortDate"), CCGetRequestParam("FechaEntrega", ccsGet, NULL), $this);
-        $this->DiasHabilesDesviacion = new clsControl(ccsLabel, "DiasHabilesDesviacion", "DiasHabilesDesviacion", ccsInteger, "", CCGetRequestParam("DiasHabilesDesviacion", ccsGet, NULL), $this);
-        $this->DiasNaturalesDesviacion = new clsControl(ccsLabel, "DiasNaturalesDesviacion", "DiasNaturalesDesviacion", ccsInteger, "", CCGetRequestParam("DiasNaturalesDesviacion", ccsGet, NULL), $this);
-        $this->Comentarios = new clsControl(ccsLabel, "Comentarios", "Comentarios", ccsMemo, "", CCGetRequestParam("Comentarios", ccsGet, NULL), $this);
-        $this->DiasHabilesReales = new clsControl(ccsLabel, "DiasHabilesReales", "DiasHabilesReales", ccsInteger, "", CCGetRequestParam("DiasHabilesReales", ccsGet, NULL), $this);
-        $this->PctDeductiva = new clsControl(ccsLabel, "PctDeductiva", "PctDeductiva", ccsFloat, "", CCGetRequestParam("PctDeductiva", ccsGet, NULL), $this);
-        $this->Sorter_Id = new clsSorter($this->ComponentName, "Sorter_Id", $FileName, $this);
+        $this->EmptyRows = 0;
+        $this->DeleteAllowed = true;
+        $this->ReadAllowed = true;
+        if(!$this->Visible) return;
+
+        $CCSForm = CCGetFromGet("ccsForm", "");
+        $this->FormEnctype = "application/x-www-form-urlencoded";
+        $this->FormSubmitted = ($CCSForm == $this->ComponentName);
+        if($this->FormSubmitted) {
+            $this->FormState = CCGetFromPost("FormState", "");
+            $this->SetFormState($this->FormState);
+        } else {
+            $this->FormState = "";
+        }
+        $Method = $this->FormSubmitted ? ccsPost : ccsGet;
+
+        $this->SorterName = CCGetParam("mc_info_rs_cr_RE_RC_ArtefOrder", "");
+        $this->SorterDirection = CCGetParam("mc_info_rs_cr_RE_RC_ArtefDir", "");
+
         $this->Sorter_Nombre = new clsSorter($this->ComponentName, "Sorter_Nombre", $FileName, $this);
         $this->Sorter_Descripcion = new clsSorter($this->ComponentName, "Sorter_Descripcion", $FileName, $this);
         $this->Sorter_Formato = new clsSorter($this->ComponentName, "Sorter_Formato", $FileName, $this);
@@ -897,14 +919,30 @@ class clsGridmc_info_capc_cr_RE_Artefa { //mc_info_capc_cr_RE_Artefa class @77-3
         $this->Sorter_FechaEntrega = new clsSorter($this->ComponentName, "Sorter_FechaEntrega", $FileName, $this);
         $this->Sorter_DiasHabilesDesviacion = new clsSorter($this->ComponentName, "Sorter_DiasHabilesDesviacion", $FileName, $this);
         $this->Sorter_DiasNaturalesDesviacion = new clsSorter($this->ComponentName, "Sorter_DiasNaturalesDesviacion", $FileName, $this);
-        $this->Sorter_DiasHabilesReales = new clsSorter($this->ComponentName, "Sorter_DiasHabilesReales", $FileName, $this);
         $this->Sorter_PctDeductiva = new clsSorter($this->ComponentName, "Sorter_PctDeductiva", $FileName, $this);
-        $this->Navigator = new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
+        $this->Sorter_Comentarios = new clsSorter($this->ComponentName, "Sorter_Comentarios", $FileName, $this);
+        $this->Nombre = new clsControl(ccsLabel, "Nombre", "Nombre", ccsText, "", NULL, $this);
+        $this->Descripcion = new clsControl(ccsLabel, "Descripcion", "Descripcion", ccsText, "", NULL, $this);
+        $this->Formato = new clsControl(ccsLabel, "Formato", "Formato", ccsText, "", NULL, $this);
+        $this->NombreConHerramienta = new clsControl(ccsLabel, "NombreConHerramienta", "NombreConHerramienta", ccsText, "", NULL, $this);
+        $this->FechaEstFin = new clsControl(ccsLabel, "FechaEstFin", "FechaEstFin", ccsDate, array("ShortDate"), NULL, $this);
+        $this->FechaEntrega = new clsControl(ccsLabel, "FechaEntrega", "FechaEntrega", ccsDate, array("ShortDate"), NULL, $this);
+        $this->DiasHabilesDesviacion = new clsControl(ccsLabel, "DiasHabilesDesviacion", "DiasHabilesDesviacion", ccsInteger, "", NULL, $this);
+        $this->DiasNaturalesDesviacion = new clsControl(ccsLabel, "DiasNaturalesDesviacion", "DiasNaturalesDesviacion", ccsInteger, "", NULL, $this);
+        $this->PctDeductiva = new clsControl(ccsLabel, "PctDeductiva", "PctDeductiva", ccsFloat, "", NULL, $this);
+        $this->Comentarios = new clsControl(ccsLabel, "Comentarios", "Comentarios", ccsText, "", NULL, $this);
+        $this->CheckBox_Delete_Panel = new clsPanel("CheckBox_Delete_Panel", $this);
+        $this->CheckBox_Delete = new clsControl(ccsCheckBox, "CheckBox_Delete", "CheckBox_Delete", ccsBoolean, $CCSLocales->GetFormatInfo("BooleanFormat"), NULL, $this);
+        $this->CheckBox_Delete->CheckedValue = true;
+        $this->CheckBox_Delete->UncheckedValue = false;
+        $this->Navigator = new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpSimple, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
+        $this->Button_Submit = new clsButton("Button_Submit", $Method, $this);
+        $this->CheckBox_Delete_Panel->AddComponent("CheckBox_Delete", $this->CheckBox_Delete);
     }
 //End Class_Initialize Event
 
-//Initialize Method @77-90E704C5
+//Initialize Method @134-48BE527E
     function Initialize()
     {
         if(!$this->Visible) return;
@@ -912,100 +950,367 @@ class clsGridmc_info_capc_cr_RE_Artefa { //mc_info_capc_cr_RE_Artefa class @77-3
         $this->DataSource->PageSize = & $this->PageSize;
         $this->DataSource->AbsolutePage = & $this->PageNumber;
         $this->DataSource->SetOrder($this->SorterName, $this->SorterDirection);
+
+        $this->DataSource->Parameters["urlid"] = CCGetFromGet("id", NULL);
     }
 //End Initialize Method
 
-//Show Method @77-85DE9E6C
+//GetFormParameters Method @134-5BC48FB4
+    function GetFormParameters()
+    {
+        for($RowNumber = 1; $RowNumber <= $this->TotalRows; $RowNumber++)
+        {
+            $this->FormParameters["CheckBox_Delete"][$RowNumber] = CCGetFromPost("CheckBox_Delete_" . $RowNumber, NULL);
+        }
+    }
+//End GetFormParameters Method
+
+//Validate Method @134-340A7A45
+    function Validate()
+    {
+        $Validation = true;
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
+
+        for($this->RowNumber = 1; $this->RowNumber <= $this->TotalRows; $this->RowNumber++)
+        {
+            $this->DataSource->CachedColumns["Id"] = $this->CachedColumns["Id"][$this->RowNumber];
+            $this->DataSource->CurrentRow = $this->RowNumber;
+            $this->CheckBox_Delete->SetText($this->FormParameters["CheckBox_Delete"][$this->RowNumber], $this->RowNumber);
+            if ($this->UpdatedRows >= $this->RowNumber) {
+                if(!$this->CheckBox_Delete->Value)
+                    $Validation = ($this->ValidateRow() && $Validation);
+            }
+            else if($this->CheckInsert())
+            {
+                $Validation = ($this->ValidateRow() && $Validation);
+            }
+        }
+        return (($this->Errors->Count() == 0) && $Validation);
+    }
+//End Validate Method
+
+//ValidateRow Method @134-213646E1
+    function ValidateRow()
+    {
+        global $CCSLocales;
+        $this->CheckBox_Delete->Validate();
+        $this->RowErrors = new clsErrors();
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidateRow", $this);
+        $errors = "";
+        $errors = ComposeStrings($errors, $this->CheckBox_Delete->Errors->ToString());
+        $this->CheckBox_Delete->Errors->Clear();
+        $errors = ComposeStrings($errors, $this->RowErrors->ToString());
+        $this->RowsErrors[$this->RowNumber] = $errors;
+        return $errors != "" ? 0 : 1;
+    }
+//End ValidateRow Method
+
+//CheckInsert Method @134-FC0A7F41
+    function CheckInsert()
+    {
+        $filed = false;
+        return $filed;
+    }
+//End CheckInsert Method
+
+//CheckErrors Method @134-F5A3B433
+    function CheckErrors()
+    {
+        $errors = false;
+        $errors = ($errors || $this->Errors->Count());
+        $errors = ($errors || $this->DataSource->Errors->Count());
+        return $errors;
+    }
+//End CheckErrors Method
+
+//Operation Method @134-909F269B
+    function Operation()
+    {
+        if(!$this->Visible)
+            return;
+
+        global $Redirect;
+        global $FileName;
+
+        $this->DataSource->Prepare();
+        if(!$this->FormSubmitted)
+            return;
+
+        $this->GetFormParameters();
+        $this->PressedButton = "Button_Submit";
+        if($this->Button_Submit->Pressed) {
+            $this->PressedButton = "Button_Submit";
+        }
+
+        $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
+        if($this->PressedButton == "Button_Submit") {
+            if(!CCGetEvent($this->Button_Submit->CCSEvents, "OnClick", $this->Button_Submit) || !$this->UpdateGrid()) {
+                $Redirect = "";
+            }
+        } else {
+            $Redirect = "";
+        }
+        if ($Redirect)
+            $this->DataSource->close();
+    }
+//End Operation Method
+
+//UpdateGrid Method @134-9482BF9F
+    function UpdateGrid()
+    {
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSubmit", $this);
+        if(!$this->Validate()) return;
+        $Validation = true;
+        for($this->RowNumber = 1; $this->RowNumber <= $this->TotalRows; $this->RowNumber++)
+        {
+            $this->DataSource->CachedColumns["Id"] = $this->CachedColumns["Id"][$this->RowNumber];
+            $this->DataSource->CurrentRow = $this->RowNumber;
+            $this->CheckBox_Delete->SetText($this->FormParameters["CheckBox_Delete"][$this->RowNumber], $this->RowNumber);
+            if ($this->UpdatedRows >= $this->RowNumber) {
+                if($this->CheckBox_Delete->Value) {
+                    if($this->DeleteAllowed) { $Validation = ($this->DeleteRow() && $Validation); }
+                } else if($this->UpdateAllowed) {
+                    $Validation = ($this->UpdateRow() && $Validation);
+                }
+            }
+            else if($this->CheckInsert() && $this->InsertAllowed)
+            {
+                $Validation = ($Validation && $this->InsertRow());
+            }
+        }
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterSubmit", $this);
+        if ($this->Errors->Count() == 0 && $Validation){
+            $this->DataSource->close();
+            return true;
+        }
+        return false;
+    }
+//End UpdateGrid Method
+
+//DeleteRow Method @134-A4A656F6
+    function DeleteRow()
+    {
+        if(!$this->DeleteAllowed) return false;
+        $this->DataSource->Delete();
+        $errors = "";
+        if($this->DataSource->Errors->Count() > 0) {
+            $errors = $this->DataSource->Errors->ToString();
+            $this->RowsErrors[$this->RowNumber] = $errors;
+            $this->DataSource->Errors->Clear();
+        }
+        return (($this->Errors->Count() == 0) && !strlen($errors));
+    }
+//End DeleteRow Method
+
+//FormScript Method @134-59800DB5
+    function FormScript($TotalRows)
+    {
+        $script = "";
+        return $script;
+    }
+//End FormScript Method
+
+//SetFormState Method @134-4EB6C0EF
+    function SetFormState($FormState)
+    {
+        if(strlen($FormState)) {
+            $FormState = str_replace("\\\\", "\\" . ord("\\"), $FormState);
+            $FormState = str_replace("\\;", "\\" . ord(";"), $FormState);
+            $pieces = explode(";", $FormState);
+            $this->UpdatedRows = $pieces[0];
+            $this->EmptyRows   = $pieces[1];
+            $this->TotalRows = $this->UpdatedRows + $this->EmptyRows;
+            $RowNumber = 0;
+            for($i = 2; $i < sizeof($pieces); $i = $i + 1)  {
+                $piece = $pieces[$i + 0];
+                $piece = str_replace("\\" . ord("\\"), "\\", $piece);
+                $piece = str_replace("\\" . ord(";"), ";", $piece);
+                $this->CachedColumns["Id"][$RowNumber] = $piece;
+                $RowNumber++;
+            }
+
+            if(!$RowNumber) { $RowNumber = 1; }
+            for($i = 1; $i <= $this->EmptyRows; $i++) {
+                $this->CachedColumns["Id"][$RowNumber] = "";
+                $RowNumber++;
+            }
+        }
+    }
+//End SetFormState Method
+
+//GetFormState Method @134-D936D85E
+    function GetFormState($NonEmptyRows)
+    {
+        if(!$this->FormSubmitted) {
+            $this->FormState  = $NonEmptyRows . ";";
+            $this->FormState .= $this->InsertAllowed ? $this->EmptyRows : "0";
+            if($NonEmptyRows) {
+                for($i = 0; $i <= $NonEmptyRows; $i++) {
+                    $this->FormState .= ";" . str_replace(";", "\\;", str_replace("\\", "\\\\", $this->CachedColumns["Id"][$i]));
+                }
+            }
+        }
+        return $this->FormState;
+    }
+//End GetFormState Method
+
+//Show Method @134-61003A4C
     function Show()
     {
         $Tpl = CCGetTemplate($this);
+        global $FileName;
         global $CCSLocales;
-        if(!$this->Visible) return;
+        global $CCSUseAmp;
+        $Error = "";
 
-        $this->RowNumber = 0;
-
-        $this->DataSource->Parameters["urlid"] = CCGetFromGet("id", NULL);
+        if(!$this->Visible) { return; }
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
 
-        $this->DataSource->Prepare();
-        $this->DataSource->Open();
-        $this->HasRecord = $this->DataSource->has_next_record();
-        $this->IsEmpty = ! $this->HasRecord;
-        $this->Attributes->Show();
+        $this->DataSource->open();
+        $is_next_record = ($this->ReadAllowed && $this->DataSource->next_record());
+        $this->IsEmpty = ! $is_next_record;
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShow", $this);
-        if(!$this->Visible) return;
+        if(!$this->Visible) { return; }
 
-        $GridBlock = "Grid " . $this->ComponentName;
+        $this->Attributes->Show();
+        $this->Button_Submit->Visible = $this->Button_Submit->Visible && ($this->InsertAllowed || $this->UpdateAllowed || $this->DeleteAllowed);
         $ParentPath = $Tpl->block_path;
-        $Tpl->block_path = $ParentPath . "/" . $GridBlock;
-
-
-        if (!$this->IsEmpty) {
-            $this->ControlsVisible["Id"] = $this->Id->Visible;
-            $this->ControlsVisible["Nombre"] = $this->Nombre->Visible;
-            $this->ControlsVisible["Descripcion"] = $this->Descripcion->Visible;
-            $this->ControlsVisible["Formato"] = $this->Formato->Visible;
-            $this->ControlsVisible["NombreConHerramienta"] = $this->NombreConHerramienta->Visible;
-            $this->ControlsVisible["FechaEstFin"] = $this->FechaEstFin->Visible;
-            $this->ControlsVisible["FechaEntrega"] = $this->FechaEntrega->Visible;
-            $this->ControlsVisible["DiasHabilesDesviacion"] = $this->DiasHabilesDesviacion->Visible;
-            $this->ControlsVisible["DiasNaturalesDesviacion"] = $this->DiasNaturalesDesviacion->Visible;
-            $this->ControlsVisible["Comentarios"] = $this->Comentarios->Visible;
-            $this->ControlsVisible["DiasHabilesReales"] = $this->DiasHabilesReales->Visible;
-            $this->ControlsVisible["PctDeductiva"] = $this->PctDeductiva->Visible;
-            while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
+        $EditableGridPath = $ParentPath . "/EditableGrid " . $this->ComponentName;
+        $EditableGridRowPath = $ParentPath . "/EditableGrid " . $this->ComponentName . "/Row";
+        $Tpl->block_path = $EditableGridRowPath;
+        $this->RowNumber = 0;
+        $NonEmptyRows = 0;
+        $EmptyRowsLeft = $this->EmptyRows;
+        $this->ControlsVisible["Nombre"] = $this->Nombre->Visible;
+        $this->ControlsVisible["Descripcion"] = $this->Descripcion->Visible;
+        $this->ControlsVisible["Formato"] = $this->Formato->Visible;
+        $this->ControlsVisible["NombreConHerramienta"] = $this->NombreConHerramienta->Visible;
+        $this->ControlsVisible["FechaEstFin"] = $this->FechaEstFin->Visible;
+        $this->ControlsVisible["FechaEntrega"] = $this->FechaEntrega->Visible;
+        $this->ControlsVisible["DiasHabilesDesviacion"] = $this->DiasHabilesDesviacion->Visible;
+        $this->ControlsVisible["DiasNaturalesDesviacion"] = $this->DiasNaturalesDesviacion->Visible;
+        $this->ControlsVisible["PctDeductiva"] = $this->PctDeductiva->Visible;
+        $this->ControlsVisible["Comentarios"] = $this->Comentarios->Visible;
+        $this->ControlsVisible["CheckBox_Delete_Panel"] = $this->CheckBox_Delete_Panel->Visible;
+        $this->ControlsVisible["CheckBox_Delete"] = $this->CheckBox_Delete->Visible;
+        if ($is_next_record || ($EmptyRowsLeft && $this->InsertAllowed)) {
+            do {
                 $this->RowNumber++;
-                if ($this->HasRecord) {
-                    $this->DataSource->next_record();
+                if($is_next_record) {
+                    $NonEmptyRows++;
                     $this->DataSource->SetValues();
                 }
-                $Tpl->block_path = $ParentPath . "/" . $GridBlock . "/Row";
-                $this->Id->SetValue($this->DataSource->Id->GetValue());
-                $this->Nombre->SetValue($this->DataSource->Nombre->GetValue());
-                $this->Descripcion->SetValue($this->DataSource->Descripcion->GetValue());
-                $this->Formato->SetValue($this->DataSource->Formato->GetValue());
-                $this->NombreConHerramienta->SetValue($this->DataSource->NombreConHerramienta->GetValue());
-                $this->FechaEstFin->SetValue($this->DataSource->FechaEstFin->GetValue());
-                $this->FechaEntrega->SetValue($this->DataSource->FechaEntrega->GetValue());
-                $this->DiasHabilesDesviacion->SetValue($this->DataSource->DiasHabilesDesviacion->GetValue());
-                $this->DiasNaturalesDesviacion->SetValue($this->DataSource->DiasNaturalesDesviacion->GetValue());
-                $this->Comentarios->SetValue($this->DataSource->Comentarios->GetValue());
-                $this->DiasHabilesReales->SetValue($this->DataSource->DiasHabilesReales->GetValue());
-                $this->PctDeductiva->SetValue($this->DataSource->PctDeductiva->GetValue());
+                if (!($is_next_record) || !($this->DeleteAllowed)) {
+                    $this->CheckBox_Delete->Visible = false;
+                    $this->CheckBox_Delete_Panel->Visible = false;
+                }
+                if (!($this->FormSubmitted) && $is_next_record) {
+                    $this->CachedColumns["Id"][$this->RowNumber] = $this->DataSource->CachedColumns["Id"];
+                    $this->CheckBox_Delete->SetValue(false);
+                    $this->Nombre->SetValue($this->DataSource->Nombre->GetValue());
+                    $this->Descripcion->SetValue($this->DataSource->Descripcion->GetValue());
+                    $this->Formato->SetValue($this->DataSource->Formato->GetValue());
+                    $this->NombreConHerramienta->SetValue($this->DataSource->NombreConHerramienta->GetValue());
+                    $this->FechaEstFin->SetValue($this->DataSource->FechaEstFin->GetValue());
+                    $this->FechaEntrega->SetValue($this->DataSource->FechaEntrega->GetValue());
+                    $this->DiasHabilesDesviacion->SetValue($this->DataSource->DiasHabilesDesviacion->GetValue());
+                    $this->DiasNaturalesDesviacion->SetValue($this->DataSource->DiasNaturalesDesviacion->GetValue());
+                    $this->PctDeductiva->SetValue($this->DataSource->PctDeductiva->GetValue());
+                    $this->Comentarios->SetValue($this->DataSource->Comentarios->GetValue());
+                } elseif ($this->FormSubmitted && $is_next_record) {
+                    $this->Nombre->SetText("");
+                    $this->Descripcion->SetText("");
+                    $this->Formato->SetText("");
+                    $this->NombreConHerramienta->SetText("");
+                    $this->FechaEstFin->SetText("");
+                    $this->FechaEntrega->SetText("");
+                    $this->DiasHabilesDesviacion->SetText("");
+                    $this->DiasNaturalesDesviacion->SetText("");
+                    $this->PctDeductiva->SetText("");
+                    $this->Comentarios->SetText("");
+                    $this->Nombre->SetValue($this->DataSource->Nombre->GetValue());
+                    $this->Descripcion->SetValue($this->DataSource->Descripcion->GetValue());
+                    $this->Formato->SetValue($this->DataSource->Formato->GetValue());
+                    $this->NombreConHerramienta->SetValue($this->DataSource->NombreConHerramienta->GetValue());
+                    $this->FechaEstFin->SetValue($this->DataSource->FechaEstFin->GetValue());
+                    $this->FechaEntrega->SetValue($this->DataSource->FechaEntrega->GetValue());
+                    $this->DiasHabilesDesviacion->SetValue($this->DataSource->DiasHabilesDesviacion->GetValue());
+                    $this->DiasNaturalesDesviacion->SetValue($this->DataSource->DiasNaturalesDesviacion->GetValue());
+                    $this->PctDeductiva->SetValue($this->DataSource->PctDeductiva->GetValue());
+                    $this->Comentarios->SetValue($this->DataSource->Comentarios->GetValue());
+                    $this->CheckBox_Delete->SetText($this->FormParameters["CheckBox_Delete"][$this->RowNumber], $this->RowNumber);
+                } elseif (!$this->FormSubmitted) {
+                    $this->CachedColumns["Id"][$this->RowNumber] = "";
+                    $this->Nombre->SetText("");
+                    $this->Descripcion->SetText("");
+                    $this->Formato->SetText("");
+                    $this->NombreConHerramienta->SetText("");
+                    $this->FechaEstFin->SetText("");
+                    $this->FechaEntrega->SetText("");
+                    $this->DiasHabilesDesviacion->SetText("");
+                    $this->DiasNaturalesDesviacion->SetText("");
+                    $this->PctDeductiva->SetText("");
+                    $this->Comentarios->SetText("");
+                } else {
+                    $this->Nombre->SetText("");
+                    $this->Descripcion->SetText("");
+                    $this->Formato->SetText("");
+                    $this->NombreConHerramienta->SetText("");
+                    $this->FechaEstFin->SetText("");
+                    $this->FechaEntrega->SetText("");
+                    $this->DiasHabilesDesviacion->SetText("");
+                    $this->DiasNaturalesDesviacion->SetText("");
+                    $this->PctDeductiva->SetText("");
+                    $this->Comentarios->SetText("");
+                    $this->CheckBox_Delete->SetText($this->FormParameters["CheckBox_Delete"][$this->RowNumber], $this->RowNumber);
+                }
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
-                $this->Id->Show();
-                $this->Nombre->Show();
-                $this->Descripcion->Show();
-                $this->Formato->Show();
-                $this->NombreConHerramienta->Show();
-                $this->FechaEstFin->Show();
-                $this->FechaEntrega->Show();
-                $this->DiasHabilesDesviacion->Show();
-                $this->DiasNaturalesDesviacion->Show();
-                $this->Comentarios->Show();
-                $this->DiasHabilesReales->Show();
-                $this->PctDeductiva->Show();
-                $Tpl->block_path = $ParentPath . "/" . $GridBlock;
-                $Tpl->parse("Row", true);
-            }
-        }
-        else { // Show NoRecords block if no records are found
+                $this->Nombre->Show($this->RowNumber);
+                $this->Descripcion->Show($this->RowNumber);
+                $this->Formato->Show($this->RowNumber);
+                $this->NombreConHerramienta->Show($this->RowNumber);
+                $this->FechaEstFin->Show($this->RowNumber);
+                $this->FechaEntrega->Show($this->RowNumber);
+                $this->DiasHabilesDesviacion->Show($this->RowNumber);
+                $this->DiasNaturalesDesviacion->Show($this->RowNumber);
+                $this->PctDeductiva->Show($this->RowNumber);
+                $this->Comentarios->Show($this->RowNumber);
+                $this->CheckBox_Delete_Panel->Show($this->RowNumber);
+                if (isset($this->RowsErrors[$this->RowNumber]) && ($this->RowsErrors[$this->RowNumber] != "")) {
+                    $Tpl->setblockvar("RowError", "");
+                    $Tpl->setvar("Error", $this->RowsErrors[$this->RowNumber]);
+                    $this->Attributes->Show();
+                    $Tpl->parse("RowError", false);
+                } else {
+                    $Tpl->setblockvar("RowError", "");
+                }
+                $Tpl->setvar("FormScript", $this->FormScript($this->RowNumber));
+                $Tpl->parse();
+                if ($is_next_record) {
+                    if ($this->FormSubmitted) {
+                        $is_next_record = $this->RowNumber < $this->UpdatedRows;
+                        if (($this->DataSource->CachedColumns["Id"] == $this->CachedColumns["Id"][$this->RowNumber])) {
+                            if ($this->ReadAllowed) $this->DataSource->next_record();
+                        }
+                    }else{
+                        $is_next_record = ($this->RowNumber < $this->PageSize) &&  $this->ReadAllowed && $this->DataSource->next_record();
+                    }
+                } else { 
+                    $EmptyRowsLeft--;
+                }
+            } while($is_next_record || ($EmptyRowsLeft && $this->InsertAllowed));
+        } else {
+            $Tpl->block_path = $EditableGridPath;
             $this->Attributes->Show();
             $Tpl->parse("NoRecords", false);
         }
 
-        $errors = $this->GetErrors();
-        if(strlen($errors))
-        {
-            $Tpl->replaceblock("", $errors);
-            $Tpl->block_path = $ParentPath;
-            return;
-        }
+        $Tpl->block_path = $EditableGridPath;
         $this->Navigator->PageNumber = $this->DataSource->AbsolutePage;
         $this->Navigator->PageSize = $this->PageSize;
         if ($this->DataSource->RecordsCount == "CCS not counted")
@@ -1015,7 +1320,6 @@ class clsGridmc_info_capc_cr_RE_Artefa { //mc_info_capc_cr_RE_Artefa class @77-3
         if (($this->Navigator->TotalPages <= 1 && $this->Navigator->PageNumber == 1) || $this->Navigator->PageSize == "") {
             $this->Navigator->Visible = false;
         }
-        $this->Sorter_Id->Show();
         $this->Sorter_Nombre->Show();
         $this->Sorter_Descripcion->Show();
         $this->Sorter_Formato->Show();
@@ -1024,54 +1328,54 @@ class clsGridmc_info_capc_cr_RE_Artefa { //mc_info_capc_cr_RE_Artefa class @77-3
         $this->Sorter_FechaEntrega->Show();
         $this->Sorter_DiasHabilesDesviacion->Show();
         $this->Sorter_DiasNaturalesDesviacion->Show();
-        $this->Sorter_DiasHabilesReales->Show();
         $this->Sorter_PctDeductiva->Show();
+        $this->Sorter_Comentarios->Show();
         $this->Navigator->Show();
+        $this->Button_Submit->Show();
+
+        if($this->CheckErrors()) {
+            $Error = ComposeStrings($Error, $this->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
+            $Tpl->SetVar("Error", $Error);
+            $Tpl->Parse("Error", false);
+        }
+        $CCSForm = $this->ComponentName;
+        $this->HTMLFormAction = $FileName . "?" . CCAddParam(CCGetQueryString("QueryString", ""), "ccsForm", $CCSForm);
+        $Tpl->SetVar("Action", !$CCSUseAmp ? $this->HTMLFormAction : str_replace("&", "&amp;", $this->HTMLFormAction));
+        $Tpl->SetVar("HTMLFormName", $this->ComponentName);
+        $Tpl->SetVar("HTMLFormEnctype", $this->FormEnctype);
+        if (!$CCSUseAmp) {
+            $Tpl->SetVar("HTMLFormProperties", "method=\"POST\" action=\"" . $this->HTMLFormAction . "\" name=\"" . $this->ComponentName . "\"");
+        } else {
+            $Tpl->SetVar("HTMLFormProperties", "method=\"post\" action=\"" . str_replace("&", "&amp;", $this->HTMLFormAction) . "\" id=\"" . $this->ComponentName . "\"");
+        }
+        $Tpl->SetVar("FormState", CCToHTML($this->GetFormState($NonEmptyRows)));
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
     }
 //End Show Method
 
-//GetErrors Method @77-499818C1
-    function GetErrors()
-    {
-        $errors = "";
-        $errors = ComposeStrings($errors, $this->Id->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->Nombre->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->Descripcion->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->Formato->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->NombreConHerramienta->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->FechaEstFin->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->FechaEntrega->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->DiasHabilesDesviacion->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->DiasNaturalesDesviacion->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->Comentarios->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->DiasHabilesReales->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->PctDeductiva->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
-        return $errors;
-    }
-//End GetErrors Method
+} //End mc_info_rs_cr_RE_RC_Artef Class @134-FCB6E20C
 
-} //End mc_info_capc_cr_RE_Artefa Class @77-FCB6E20C
+class clsmc_info_rs_cr_RE_RC_ArtefDataSource extends clsDBcnDisenio {  //mc_info_rs_cr_RE_RC_ArtefDataSource Class @134-47A98511
 
-class clsmc_info_capc_cr_RE_ArtefaDataSource extends clsDBcnDisenio {  //mc_info_capc_cr_RE_ArtefaDataSource Class @77-6058CA3B
-
-//DataSource Variables @77-5B5B33AE
+//DataSource Variables @134-D0BA55B9
     public $Parent = "";
     public $CCSEvents = "";
     public $CCSEventResult;
     public $ErrorBlock;
     public $CmdExecution;
 
+    public $DeleteParameters;
     public $CountSQL;
     public $wp;
+    public $AllParametersSet;
 
+    public $CachedColumns;
+    public $CurrentRow;
 
     // Datasource fields
-    public $Id;
     public $Nombre;
     public $Descripcion;
     public $Formato;
@@ -1080,19 +1384,17 @@ class clsmc_info_capc_cr_RE_ArtefaDataSource extends clsDBcnDisenio {  //mc_info
     public $FechaEntrega;
     public $DiasHabilesDesviacion;
     public $DiasNaturalesDesviacion;
-    public $Comentarios;
-    public $DiasHabilesReales;
     public $PctDeductiva;
+    public $Comentarios;
+    public $CheckBox_Delete;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @77-9EDFA00E
-    function clsmc_info_capc_cr_RE_ArtefaDataSource(& $Parent)
+//DataSourceClass_Initialize Event @134-8EB6CEDD
+    function clsmc_info_rs_cr_RE_RC_ArtefDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
-        $this->ErrorBlock = "Grid mc_info_capc_cr_RE_Artefa";
+        $this->ErrorBlock = "EditableGrid mc_info_rs_cr_RE_RC_Artef/Error";
         $this->Initialize();
-        $this->Id = new clsField("Id", ccsInteger, "");
-        
         $this->Nombre = new clsField("Nombre", ccsText, "");
         
         $this->Descripcion = new clsField("Descripcion", ccsText, "");
@@ -1109,23 +1411,22 @@ class clsmc_info_capc_cr_RE_ArtefaDataSource extends clsDBcnDisenio {  //mc_info
         
         $this->DiasNaturalesDesviacion = new clsField("DiasNaturalesDesviacion", ccsInteger, "");
         
-        $this->Comentarios = new clsField("Comentarios", ccsMemo, "");
-        
-        $this->DiasHabilesReales = new clsField("DiasHabilesReales", ccsInteger, "");
-        
         $this->PctDeductiva = new clsField("PctDeductiva", ccsFloat, "");
+        
+        $this->Comentarios = new clsField("Comentarios", ccsText, "");
+        
+        $this->CheckBox_Delete = new clsField("CheckBox_Delete", ccsBoolean, $this->BooleanFormat);
         
 
     }
 //End DataSourceClass_Initialize Event
 
-//SetOrder Method @77-E0E019B3
+//SetOrder Method @134-11A41A51
     function SetOrder($SorterName, $SorterDirection)
     {
         $this->Order = "";
         $this->Order = CCGetOrder($this->Order, $SorterName, $SorterDirection, 
-            array("Sorter_Id" => array("Id", ""), 
-            "Sorter_Nombre" => array("Nombre", ""), 
+            array("Sorter_Nombre" => array("Nombre", ""), 
             "Sorter_Descripcion" => array("Descripcion", ""), 
             "Sorter_Formato" => array("Formato", ""), 
             "Sorter_NombreConHerramienta" => array("NombreConHerramienta", ""), 
@@ -1133,25 +1434,26 @@ class clsmc_info_capc_cr_RE_ArtefaDataSource extends clsDBcnDisenio {  //mc_info
             "Sorter_FechaEntrega" => array("FechaEntrega", ""), 
             "Sorter_DiasHabilesDesviacion" => array("DiasHabilesDesviacion", ""), 
             "Sorter_DiasNaturalesDesviacion" => array("DiasNaturalesDesviacion", ""), 
-            "Sorter_DiasHabilesReales" => array("DiasHabilesReales", ""), 
-            "Sorter_PctDeductiva" => array("PctDeductiva", "")));
+            "Sorter_PctDeductiva" => array("PctDeductiva", ""), 
+            "Sorter_Comentarios" => array("Comentarios", "")));
     }
 //End SetOrder Method
 
-//Prepare Method @77-3CAF2A5D
+//Prepare Method @134-1D55D31A
     function Prepare()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->wp = new clsSQLParameters($this->ErrorBlock);
         $this->wp->AddParameter("1", "urlid", ccsInteger, "", "", $this->Parameters["urlid"], "", false);
+        $this->AllParametersSet = $this->wp->AllParamsSet();
         $this->wp->Criterion[1] = $this->wp->Operation(opEqual, "[Id_Padre]", $this->wp->GetDBValue("1"), $this->ToSQL($this->wp->GetDBValue("1"), ccsInteger),false);
         $this->Where = 
              $this->wp->Criterion[1];
     }
 //End Prepare Method
 
-//Open Method @77-052A4ED2
+//Open Method @134-052A4ED2
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -1170,10 +1472,10 @@ class clsmc_info_capc_cr_RE_ArtefaDataSource extends clsDBcnDisenio {  //mc_info
     }
 //End Open Method
 
-//SetValues Method @77-AA4E3BD0
+//SetValues Method @134-A188454F
     function SetValues()
     {
-        $this->Id->SetDBValue(trim($this->f("Id")));
+        $this->CachedColumns["Id"] = $this->f("Id");
         $this->Nombre->SetDBValue($this->f("Nombre"));
         $this->Descripcion->SetDBValue($this->f("Descripcion"));
         $this->Formato->SetDBValue($this->f("Formato"));
@@ -1182,13 +1484,35 @@ class clsmc_info_capc_cr_RE_ArtefaDataSource extends clsDBcnDisenio {  //mc_info
         $this->FechaEntrega->SetDBValue(trim($this->f("FechaEntrega")));
         $this->DiasHabilesDesviacion->SetDBValue(trim($this->f("DiasHabilesDesviacion")));
         $this->DiasNaturalesDesviacion->SetDBValue(trim($this->f("DiasNaturalesDesviacion")));
-        $this->Comentarios->SetDBValue($this->f("Comentarios"));
-        $this->DiasHabilesReales->SetDBValue(trim($this->f("DiasHabilesReales")));
         $this->PctDeductiva->SetDBValue(trim($this->f("PctDeductiva")));
+        $this->Comentarios->SetDBValue($this->f("Comentarios"));
     }
 //End SetValues Method
 
-} //End mc_info_capc_cr_RE_ArtefaDataSource Class @77-FCB6E20C
+//Delete Method @134-224BFCA2
+    function Delete()
+    {
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->CmdExecution = true;
+        $Where = "";
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildDelete", $this->Parent);
+        $SelectWhere = $this->Where;
+        $this->Where = "Id=" . $this->ToSQL($this->CachedColumns["Id"], ccsInteger);
+        $this->SQL = "DELETE FROM [mc_info_rs_cr_RE_RC_Artefacto_CAPC]";
+        $this->SQL = CCBuildSQL($this->SQL, $this->Where, "");
+        if (!strlen($this->Where) && $this->Errors->Count() == 0) 
+            $this->Errors->addError($CCSLocales->GetText("CCS_CustomOperationError_MissingParameters"));
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteDelete", $this->Parent);
+        if($this->Errors->Count() == 0 && $this->CmdExecution) {
+            $this->query($this->SQL);
+            $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteDelete", $this->Parent);
+        }
+        $this->Where = $SelectWhere;
+    }
+//End Delete Method
+
+} //End mc_info_rs_cr_RE_RC_ArtefDataSource Class @134-FCB6E20C
 
 //Initialize Page @1-FD70CF26
 // Variables
@@ -1229,7 +1553,7 @@ include_once("./SLAsCAPCRetEnt_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-625B27F7
+//Initialize Objects @1-DB5C2E2D
 $DBcnDisenio = new clsDBcnDisenio();
 $MainPage->Connections["cnDisenio"] = & $DBcnDisenio;
 $Attributes = new clsAttributes("page:");
@@ -1240,7 +1564,6 @@ $MainPage->Attributes = & $Attributes;
 $Header = new clsHeader("", "Header", $MainPage);
 $Header->Initialize();
 $mc_calificacion_capc = new clsRecordmc_calificacion_capc("", $MainPage);
-$mc_info_capc_cr_RE_Artefa = new clsGridmc_info_capc_cr_RE_Artefa("", $MainPage);
 $Panel1 = new clsPanel("Panel1", $MainPage);
 $lErrores = new clsControl(ccsLabel, "lErrores", "lErrores", ccsText, "", CCGetRequestParam("lErrores", ccsGet, NULL), $MainPage);
 $lkAnterior = new clsControl(ccsLink, "lkAnterior", "lkAnterior", ccsText, "", CCGetRequestParam("lkAnterior", ccsGet, NULL), $MainPage);
@@ -1256,9 +1579,9 @@ $lkCalidad->Page = "PPMCsCrbCalidadCAPC.php";
 $lkDeductiva = new clsControl(ccsLink, "lkDeductiva", "lkDeductiva", ccsText, "", CCGetRequestParam("lkDeductiva", ccsGet, NULL), $MainPage);
 $lkDeductiva->Parameters = CCAddParam($lkDeductiva->Parameters, "id", CCGetFromGet("id", NULL));
 $lkDeductiva->Page = "SLAsCAPCDetalle.php";
+$mc_info_rs_cr_RE_RC_Artef = new clsEditableGridmc_info_rs_cr_RE_RC_Artef("", $MainPage);
 $MainPage->Header = & $Header;
 $MainPage->mc_calificacion_capc = & $mc_calificacion_capc;
-$MainPage->mc_info_capc_cr_RE_Artefa = & $mc_info_capc_cr_RE_Artefa;
 $MainPage->Panel1 = & $Panel1;
 $MainPage->lErrores = & $lErrores;
 $MainPage->lkAnterior = & $lkAnterior;
@@ -1266,8 +1589,9 @@ $MainPage->lkSiguiente = & $lkSiguiente;
 $MainPage->lkCumplimiento = & $lkCumplimiento;
 $MainPage->lkCalidad = & $lkCalidad;
 $MainPage->lkDeductiva = & $lkDeductiva;
+$MainPage->mc_info_rs_cr_RE_RC_Artef = & $mc_info_rs_cr_RE_RC_Artef;
 $mc_calificacion_capc->Initialize();
-$mc_info_capc_cr_RE_Artefa->Initialize();
+$mc_info_rs_cr_RE_RC_Artef->Initialize();
 $ScriptIncludes = "";
 $SList = explode("|", $Scripts);
 foreach ($SList as $Script) {
@@ -1301,12 +1625,13 @@ $Attributes->SetValue("pathToRoot", "");
 $Attributes->Show();
 //End Initialize HTML Template
 
-//Execute Components @1-773E28D8
+//Execute Components @1-FAFA167C
+$mc_info_rs_cr_RE_RC_Artef->Operation();
 $mc_calificacion_capc->Operation();
 $Header->Operations();
 //End Execute Components
 
-//Go to destination page @1-59457102
+//Go to destination page @1-89BEAE41
 if($Redirect)
 {
     $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
@@ -1315,16 +1640,16 @@ if($Redirect)
     $Header->Class_Terminate();
     unset($Header);
     unset($mc_calificacion_capc);
-    unset($mc_info_capc_cr_RE_Artefa);
+    unset($mc_info_rs_cr_RE_RC_Artef);
     unset($Tpl);
     exit;
 }
 //End Go to destination page
 
-//Show Page @1-F9E56B12
+//Show Page @1-1AB678D8
 $Header->Show();
 $mc_calificacion_capc->Show();
-$mc_info_capc_cr_RE_Artefa->Show();
+$mc_info_rs_cr_RE_RC_Artef->Show();
 $Panel1->Show();
 $lErrores->Show();
 $lkAnterior->Show();
@@ -1339,13 +1664,13 @@ $CCSEventResult = CCGetEvent($CCSEvents, "BeforeOutput", $MainPage);
 if ($CCSEventResult) echo $main_block;
 //End Show Page
 
-//Unload Page @1-9CB6A13F
+//Unload Page @1-790C9280
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
 $DBcnDisenio->close();
 $Header->Class_Terminate();
 unset($Header);
 unset($mc_calificacion_capc);
-unset($mc_info_capc_cr_RE_Artefa);
+unset($mc_info_rs_cr_RE_RC_Artef);
 unset($Tpl);
 //End Unload Page
 

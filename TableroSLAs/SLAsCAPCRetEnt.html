@@ -15,12 +15,12 @@
                         document.getElementById("trRevColegas2").style.display='none';
                 }
         }
-		function calificaReq(){
-	        if(document.getElementById("mc_calificacion_capcPctMaximo").value>=1 || !document.getElementById("mc_info_rs_ap_ECCAPFirmada").checked || !document.getElementById("mc_info_rs_ap_ECTPaquetes").checked){
+                function calificaReq(){
+                if(document.getElementById("mc_calificacion_capcPctMaximo").value>=1 || !document.getElementById("mc_info_rs_ap_ECCAPFirmada").checked || !document.getElementById("mc_info_rs_ap_ECTPaquetes").checked){
                 document.getElementById("mc_info_rs_ap_ECCumplioHE").selectedIndex=0;
             }
-		} 
-		
+                } 
+                
 
         function CalculaDefectos(){
                 var vHallSinSev = 0;
@@ -161,13 +161,13 @@ jQuery(function ($) {
 
 //End CCS script
 </script>
-<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
-<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="Styles/Austere4/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="Styles/Austere4/jquery-ui.css">
 </head>
 <body onload="calificaReq();">
 <p>{Header}</p>
 <p>
-<table border="0" cellspacing="0" cellpadding="0" width="90%">
+<table cellspacing="0" cellpadding="0" width="90%" border="0">
   <tr>
     <td></td> 
     <td><a href="{lkAnterior_Src}" id="lkAnterior">{lkAnterior}</a></td> 
@@ -203,14 +203,14 @@ jQuery(function ($) {
     <td>
       <!-- BEGIN Record mc_calificacion_capc -->
       <form id="mc_calificacion_capc" method="post" name="{HTMLFormName}" action="{Action}">
-        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
           <tr>
             <td valign="top">
-              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
                 <tr>
-                  <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="HeaderLeft"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Detalle SLAs del CAPC</strong></td> 
-                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                  <td class="HeaderRight"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td>
                 </tr>
               </table>
  
@@ -222,26 +222,26 @@ jQuery(function ($) {
                 <!-- END Error -->
                 <tr class="Controls">
                   <td class="th"><label for="mc_calificacion_capcnumero">Requerimiento</label></td> 
-                  <td><input type="text" id="mc_calificacion_capcnumero" value="{numero}" maxlength="6" size="6" name="{numero_Name}"></td> 
+                  <td><input type="text" id="mc_calificacion_capcnumero" maxlength="6" size="6" value="{numero}" name="{numero_Name}"></td> 
                   <td><label for="mc_calificacion_capcSLO" style="display: inline;">SLO</label><input type="checkbox" id="mc_calificacion_capcSLO" value="1" name="{SLO_Name}" {SLO}></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">Id estimación</td> 
-                  <td><input type="text" id="mc_calificacion_capcIdEstimacion" value="{IdEstimacion}" maxlength="6" size="6" name="{IdEstimacion_Name}"></td> 
+                  <td><input type="text" id="mc_calificacion_capcIdEstimacion" maxlength="6" size="6" value="{IdEstimacion}" name="{IdEstimacion_Name}"></td> 
                   <td>&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">Rubro</td> 
-                  <td><input type="text" id="mc_calificacion_capcAgrupador" value="{Agrupador}" maxlength="75" size="50" name="{Agrupador_Name}"></td> 
+                  <td><input type="text" id="mc_calificacion_capcAgrupador" maxlength="75" size="50" value="{Agrupador}" name="{Agrupador_Name}"></td> 
                   <td>&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_calificacion_capcid_serviciocont">Servicio</label></td> 
                   <td>
-                    <select id="mc_calificacion_capcid_serviciocont"  name="{id_serviciocont_Name}">
+                    <select id="mc_calificacion_capcid_serviciocont" name="{id_serviciocont_Name}">
                       {id_serviciocont_Options}
                     </select>
  </td> 
@@ -261,7 +261,7 @@ jQuery(function ($) {
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_calificacion_capcDescripcion">Descripción</label></td> 
-                  <td colspan="2"><input type="text" id="mc_calificacion_capcDescripcion" value="{Descripcion}" maxlength="350" size="75" name="{Descripcion_Name}"></td>
+                  <td colspan="2"><input type="text" id="mc_calificacion_capcDescripcion" maxlength="350" size="75" value="{Descripcion}" name="{Descripcion_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
@@ -291,20 +291,20 @@ jQuery(function ($) {
                     <div id="divRetrasoE">
                       <table>
                         <tr>
-                          <td style="BACKGROUND-COLOR: rgb(216,216,216)" class="th">
+                          <td class="th" style="BACKGROUND-COLOR: rgb(216,216,216)">
                             <!--<p align="center"><label for="mc_calificacion_capcRETR_ENTREGABLE"><font size="3">Calificar Retraso en Entregables</font></label></p>-->
-                            <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                            <table class="Header" cellspacing="0" cellpadding="0" border="0">
                               <tr>
-                                <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                                <td class="HeaderLeft"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td> 
                                 <td class="th"><strong><font color="#ffffff" size="3">Calificar retraso en entregables</font></strong></td> 
-                                <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                                <td class="HeaderRight"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td>
                               </tr>
                             </table>
                           </td>
                           <!--<td style="BACKGROUND-COLOR: rgb(216,216,216)">&nbsp;</td> -->
                           <tr class="Controls">
                             <td>
-                              <table style="BORDER-RIGHT-WIDTH: 0px; BORDER-COLLAPSE: collapse; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; border-image: none" id="tblRetEnt" cellspacing="0" cellpadding="0" width="100%">
+                              <table id="tblRetEnt" style="BORDER-LEFT-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-COLLAPSE: collapse; BORDER-TOP-WIDTH: 0px; border-image: none" cellspacing="0" cellpadding="0" width="100%">
                                 <tr>
                                   <td><label for="mc_calificacion_capcCAPFirmada" style="display: inline;">CAP firmada</label><input type="checkbox" id="mc_calificacion_capcCAPFirmada" value="1" name="{CAPFirmada_Name}" {CAPFirmada}></td> 
                                   <td colspan="2"><label for="mc_calificacion_capcFechaFirmaCAES" style="display: inline;">Fecha firma CAES</label></td> 
@@ -322,19 +322,19 @@ jQuery(function ($) {
  
                                 <tr class="Controls">
                                   <td><label for="mc_calificacion_capcDiasPlaneados" style="display: inline;">Días hábiles planeados</label></td> 
-                                  <td><input type="text" id="mc_calificacion_capcDiasPlaneados" onchange="CalculaRetraso()" value="{DiasPlaneados}" maxlength="4" size="4" name="{DiasPlaneados_Name}"></td> 
+                                  <td><input type="text" onchange="CalculaRetraso()" id="mc_calificacion_capcDiasPlaneados" maxlength="4" size="4" value="{DiasPlaneados}" name="{DiasPlaneados_Name}"></td> 
                                   <td><label for="mc_calificacion_capcDiasReales" style="display: inline;">&nbsp;</label></td> 
                                   <td>
-                                    <!-- BEGIN TextBox DiasReales --><input type="text" id="mc_calificacion_capcDiasReales" onchange="CalculaRetraso()" value="{DiasReales}" maxlength="4" size="4" name="{DiasReales_Name}"><!-- END TextBox DiasReales --></td> 
+                                    <!-- BEGIN TextBox DiasReales --><input type="text" onchange="CalculaRetraso()" id="mc_calificacion_capcDiasReales" maxlength="4" size="4" value="{DiasReales}" name="{DiasReales_Name}"><!-- END TextBox DiasReales --></td> 
                                   <td><label for="mc_calificacion_capcDiasRetrasoHabiles" style="display: inline;">Máximo&nbsp;días de retraso&nbsp;hábiles</label></td> 
-                                  <td><input type="text" id="mc_calificacion_capcDiasRetrasoHabiles" onchange="CalculaRetraso()" value="{DiasRetrasoHabiles}" maxlength="5" size="5" name="{DiasRetrasoHabiles_Name}"></td> 
+                                  <td><input type="text" onchange="CalculaRetraso()" id="mc_calificacion_capcDiasRetrasoHabiles" maxlength="5" size="5" value="{DiasRetrasoHabiles}" name="{DiasRetrasoHabiles_Name}"></td> 
                                   <td><label for="mc_calificacion_capcDiasRetrasoNaturales" style="display: inline;"><label for="mc_calificacion_capcDiasRetrasoHabiles" style="display: inline;">Máximo&nbsp;días de retraso&nbsp;naturales</label></label></td> 
-                                  <td><input type="text" id="mc_calificacion_capcDiasRetrasoNaturales" onchange="CalculaRetraso()" value="{DiasRetrasoNaturales}" maxlength="5" size="5" name="{DiasRetrasoNaturales_Name}"></td>
+                                  <td><input type="text" onchange="CalculaRetraso()" id="mc_calificacion_capcDiasRetrasoNaturales" maxlength="5" size="5" value="{DiasRetrasoNaturales}" name="{DiasRetrasoNaturales_Name}"></td>
                                 </tr>
  
                                 <tr class="Controls">
                                   <td><label for="mc_calificacion_capcPctMaximo" style="display: inline;">%&nbsp;Máximo </label></td> 
-                                  <td><input type="text" id="mc_calificacion_capcPctMaximo" value="{PctMaximo}" maxlength="5" size="4" name="{PctMaximo_Name}"></td> 
+                                  <td><input type="text" id="mc_calificacion_capcPctMaximo" maxlength="5" size="4" value="{PctMaximo}" name="{PctMaximo_Name}"></td> 
                                   <td></td> 
                                   <td></td> 
                                   <td></td> 
@@ -365,9 +365,9 @@ jQuery(function ($) {
  
                   <tr class="Bottom">
                     <td style="TEXT-ALIGN: right" colspan="3">
-                      <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_calificacion_capcButton_Insert" class="Button" value="Guardar" alt="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
-                      <!-- BEGIN Button Button_Update --><input type="submit" id="mc_calificacion_capcButton_Update" class="Button" value="Enviar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Update -->
-                      <!-- BEGIN Button btnCalcular --><input type="submit" id="mc_calificacion_capcbtnCalcular" class="Button" value="Recalcular" alt="Button1" name="{Button_Name}"><!-- END Button btnCalcular --><input type="hidden" id="mc_calificacion_capcid_proveedor" value="{id_proveedor}" name="{id_proveedor_Name}"></td>
+                      <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_calificacion_capcButton_Insert" class="Button" alt="Agregar" value="Guardar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input type="submit" id="mc_calificacion_capcButton_Update" class="Button" alt="Enviar" value="Enviar" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button btnCalcular --><input type="submit" id="mc_calificacion_capcbtnCalcular" class="Button" alt="Button1" value="Recalcular" name="{Button_Name}"><!-- END Button btnCalcular --><input type="hidden" id="mc_calificacion_capcid_proveedor" value="{id_proveedor}" name="{id_proveedor_Name}"></td>
                   </tr>
                 </table>
               </td>
@@ -381,124 +381,135 @@ jQuery(function ($) {
     <tr>
       <td>&nbsp;</td> 
       <td>
-        <!-- BEGIN Grid mc_info_capc_cr_RE_Artefa -->
-        <table id="mc_info_capc_cr_RE_Artefa" class="MainTable" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td valign="top">
-              <table class="Header" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                  <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
-                  <td class="th"><strong>Lista de Artefactos </strong></td> 
-                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
-                </tr>
-              </table>
+        <p>&nbsp;</p>
  
-              <table class="Grid" cellspacing="0" cellpadding="0">
-                <tr class="Caption">
-                  <th scope="col">
-                  <!-- BEGIN Sorter Sorter_Id --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_Id">Id</a> 
-                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
-                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Id --></th>
+        <p>
+        <!-- BEGIN EditableGrid mc_info_rs_cr_RE_RC_Artef -->
+        <form id="mc_info_rs_cr_RE_RC_Artef" method="post" name="{HTMLFormName}" action="{Action}">
+          <input type="hidden" value="{FormState}" name="FormState">{FormScript} 
+          <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td valign="top">
+                <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td class="HeaderLeft"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td> 
+                    <td class="th"><strong>Lista de Artefactos</strong></td> 
+                    <td class="HeaderRight"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td>
+                  </tr>
+                </table>
  
-                  <th scope="col">
-                  <!-- BEGIN Sorter Sorter_Nombre --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_Nombre">Nombre</a> 
-                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
-                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Nombre --></th>
+                <table class="Grid" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="11">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Caption">
+                    <th scope="col">
+                    <!-- BEGIN Sorter Sorter_Nombre --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_rs_cr_RE_RC_ArtefSorter_Nombre">Nombre</a> 
+                    <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                    <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Nombre --></th>
  
-                  <th scope="col">
-                  <!-- BEGIN Sorter Sorter_Descripcion --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_Descripcion">Descripción</a> 
-                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
-                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Descripcion --></th>
+                    <th scope="col">
+                    <!-- BEGIN Sorter Sorter_Descripcion --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_rs_cr_RE_RC_ArtefSorter_Descripcion">Descripcion</a> 
+                    <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                    <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Descripcion --></th>
  
-                  <th scope="col">
-                  <!-- BEGIN Sorter Sorter_Formato --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_Formato">Formato</a> 
-                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
-                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Formato --></th>
+                    <th scope="col">
+                    <!-- BEGIN Sorter Sorter_Formato --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_rs_cr_RE_RC_ArtefSorter_Formato">Formato</a> 
+                    <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                    <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Formato --></th>
  
-                  <th scope="col">
-                  <!-- BEGIN Sorter Sorter_NombreConHerramienta --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_NombreConHerramienta">Nombre con herramienta</a> 
-                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
-                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_NombreConHerramienta --></th>
+                    <th scope="col">
+                    <!-- BEGIN Sorter Sorter_NombreConHerramienta --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_rs_cr_RE_RC_ArtefSorter_NombreConHerramienta">Nombre Con Herramienta</a> 
+                    <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                    <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_NombreConHerramienta --></th>
  
-                  <th scope="col">
-                  <!-- BEGIN Sorter Sorter_FechaEstFin --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_FechaEstFin">Fecha est fin</a> 
-                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
-                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_FechaEstFin --></th>
+                    <th scope="col">
+                    <!-- BEGIN Sorter Sorter_FechaEstFin --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_rs_cr_RE_RC_ArtefSorter_FechaEstFin">Fecha Est Fin</a> 
+                    <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                    <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_FechaEstFin --></th>
  
-                  <th scope="col">
-                  <!-- BEGIN Sorter Sorter_FechaEntrega --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_FechaEntrega">Fecha entrega</a> 
-                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
-                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_FechaEntrega --></th>
+                    <th scope="col">
+                    <!-- BEGIN Sorter Sorter_FechaEntrega --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_rs_cr_RE_RC_ArtefSorter_FechaEntrega">Fecha Entrega</a> 
+                    <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                    <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_FechaEntrega --></th>
  
-                  <th scope="col">
-                  <!-- BEGIN Sorter Sorter_DiasHabilesDesviacion --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_DiasHabilesDesviacion">Días habiles desviacion</a> 
-                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
-                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_DiasHabilesDesviacion --></th>
+                    <th scope="col">
+                    <!-- BEGIN Sorter Sorter_DiasHabilesDesviacion --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_rs_cr_RE_RC_ArtefSorter_DiasHabilesDesviacion">Dias Habiles Desviacion</a> 
+                    <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                    <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_DiasHabilesDesviacion --></th>
  
-                  <th scope="col">
-                  <!-- BEGIN Sorter Sorter_DiasNaturalesDesviacion --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_DiasNaturalesDesviacion">Días naturales desviacion</a> 
-                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
-                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_DiasNaturalesDesviacion --></th>
+                    <th scope="col">
+                    <!-- BEGIN Sorter Sorter_DiasNaturalesDesviacion --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_rs_cr_RE_RC_ArtefSorter_DiasNaturalesDesviacion">Dias Naturales Desviacion</a> 
+                    <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                    <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_DiasNaturalesDesviacion --></th>
  
-                  <th scope="col">Comentarios</th>
+                    <th scope="col">
+                    <!-- BEGIN Sorter Sorter_PctDeductiva --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_rs_cr_RE_RC_ArtefSorter_PctDeductiva">Pct Deductiva</a> 
+                    <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                    <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_PctDeductiva --></th>
  
-                  <th scope="col">
-                  <!-- BEGIN Sorter Sorter_DiasHabilesReales --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_DiasHabilesReales">Días hábiles reales</a> 
-                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
-                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_DiasHabilesReales --></th>
+                    <th scope="col">
+                    <!-- BEGIN Sorter Sorter_Comentarios --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_rs_cr_RE_RC_ArtefSorter_Comentarios">Comentarios</a> 
+                    <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                    <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Comentarios --></th>
  
-                  <th scope="col">
-                  <!-- BEGIN Sorter Sorter_PctDeductiva --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_capc_cr_RE_ArtefaSorter_PctDeductiva">Pct deductiva</a> 
-                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
-                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_PctDeductiva --></th>
-                </tr>
+                    <th scope="col">Borrar</th>
+                  </tr>
  
-                <!-- BEGIN Row -->
-                <tr class="Row">
-                  <td style="TEXT-ALIGN: right">{Id}&nbsp;</td> 
-                  <td>{Nombre}&nbsp;</td> 
-                  <td>{Descripcion}&nbsp;</td> 
-                  <td>{Formato}&nbsp;</td> 
-                  <td>{NombreConHerramienta}&nbsp;</td> 
-                  <td>{FechaEstFin}&nbsp;</td> 
-                  <td>{FechaEntrega}&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right">{DiasHabilesDesviacion}&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right">{DiasNaturalesDesviacion}&nbsp;</td> 
-                  <td>{Comentarios}&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right">{DiasHabilesReales}&nbsp;</td> 
-                  <td>{PctDeductiva}&nbsp;</td>
-                </tr>
+                  <!-- BEGIN Row -->
+                  <!-- BEGIN RowError -->
+                  <tr class="Error">
+                    <td colspan="11">{Error}</td>
+                  </tr>
+                  <!-- END RowError -->
+                  <tr class="Row">
+                    <td>{Nombre}</td> 
+                    <td>{Descripcion}</td> 
+                    <td>{Formato}</td> 
+                    <td>{NombreConHerramienta}</td> 
+                    <td>{FechaEstFin}</td> 
+                    <td>{FechaEntrega}</td> 
+                    <td>{DiasHabilesDesviacion}</td> 
+                    <td>{DiasNaturalesDesviacion}</td> 
+                    <td>{PctDeductiva}</td> 
+                    <td>{Comentarios}</td> 
+                    <td>
+                      <!-- BEGIN Panel CheckBox_Delete_Panel --><label for="mc_info_rs_cr_RE_RC_ArtefCheckBox_Delete_PanelCheckBox_Delete_{mc_info_rs_cr_RE_RC_Artef:rowNumber}" style="display: none;">Borrar</label> 
+                      <!-- BEGIN CheckBox CheckBox_Delete --><input type="checkbox" id="mc_info_rs_cr_RE_RC_ArtefCheckBox_Delete_PanelCheckBox_Delete_{mc_info_rs_cr_RE_RC_Artef:rowNumber}" value="1" name="{CheckBox_Delete_Name}" {CheckBox_Delete}><!-- END CheckBox CheckBox_Delete --><!-- END Panel CheckBox_Delete_Panel -->&nbsp;</td>
+                  </tr>
  <!-- END Row -->
-                <!-- BEGIN NoRecords -->
-                <tr class="NoRecords">
-                  <td colspan="12">No hay registros</td>
-                </tr>
-                <!-- END NoRecords -->
-                <tr class="Footer">
-                  <td colspan="12">
-                    <!-- BEGIN Navigator Navigator --><span class="Navigator">Registros por página: 
-                    <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
-                      <option selected value="">-</option>
+                  <!-- BEGIN NoRecords -->
+                  <tr class="NoRecords">
+                    <td colspan="11">No hay registros</td>
+                  </tr>
+                  <!-- END NoRecords -->
+                  <tr class="Footer">
+                    <td style="TEXT-ALIGN: right" colspan="11">
+                      <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+                      <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+                        <option selected value="">-</option>
  {PageSize_Options}
-                    </select>
+                      </select>
  
-                    <!-- BEGIN First_On --><a href="{First_URL}">Inicio</a> <!-- END First_On -->
-                    <!-- BEGIN First_Off -->Inicio <!-- END First_Off -->
-                    <!-- BEGIN Prev_On --><a href="{Prev_URL}">Anterior</a> <!-- END Prev_On -->
-                    <!-- BEGIN Prev_Off -->Anterior <!-- END Prev_Off -->&nbsp; 
-                    <!-- BEGIN Pages -->
-                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
-                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de &nbsp;{Total_Pages}&nbsp; 
-                    <!-- BEGIN Next_On --><a href="{Next_URL}">Siguiente</a> <!-- END Next_On -->
-                    <!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
-                    <!-- BEGIN Last_On --><a href="{Last_URL}">Final</a> <!-- END Last_On -->
-                    <!-- BEGIN Last_Off -->Final <!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-        </table>
-        <!-- END Grid mc_info_capc_cr_RE_Artefa --><br>
+                      <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/Austere4/Images/First.gif"></a> <!-- END First_On -->
+                      <!-- BEGIN First_Off --><img alt="{First_URL}" src="Styles/Austere4/Images/FirstOff.gif"><!-- END First_Off -->
+                      <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="Styles/Austere4/Images/Prev.gif"></a> <!-- END Prev_On -->
+                      <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="Styles/Austere4/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+                      <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/Austere4/Images/Next.gif"></a> <!-- END Next_On -->
+                      <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/Austere4/Images/NextOff.gif"><!-- END Next_Off -->
+                      <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/Austere4/Images/Last.gif"></a> <!-- END Last_On -->
+                      <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/Austere4/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->
+                      <!-- BEGIN Button Button_Submit --><input type="submit" id="mc_info_rs_cr_RE_RC_ArtefButton_Submit" class="Button" alt="Enviar" value="Enviar" name="{Button_Name}"><!-- END Button Button_Submit --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END EditableGrid mc_info_rs_cr_RE_RC_Artef --><br>
+        </p>
       </td> 
       <td>&nbsp;</td>
     </tr>

@@ -1,0 +1,1101 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>PPMCsApbDetalle</title>
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-2504AB44
+</script>
+<script src="ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-FA240378
+</script>
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/ccs-jquery-ui-calendar.css">
+{page:scriptIncludes}
+<script type="text/javascript">
+//End Include User Scripts
+
+function CalculaChecks(){
+                CalculaTiempoDeEspera();                        
+    if(document.getElementById("mc_info_rs_ap_ECIDsCorrectos").checked){
+        document.getElementById("mc_info_rs_ap_ECCumplioHE").value="0";
+        document.getElementById("mc_info_rs_ap_ECCumplioRS").value="0";
+    } else {
+        calculaSLA();
+        //document.getElementById("mc_info_rs_ap_ECCumplioRS").value="1";
+        if(document.getElementById("mc_info_rs_ap_ECformatoEvidencia").checked || document.getElementById("mc_info_rs_ap_ECURLEvidencia").checked || document.getElementById("mc_info_rs_ap_ECSinEvidencia").checked){
+            //si no cumple con la URL de la evidencia no cumple el SLA de uso de una hta, excepto si el proveedor es Softtek
+            if(document.getElementById("Id_Proveedor").innerHTML.indexOf("ofttek")== -1 ){
+                document.getElementById("mc_info_rs_ap_ECCumplioHE").value="0";
+            }
+        }else {
+            //calculaSLA();
+        }
+    }
+}
+
+
+function CalculaTiempoDeEspera() {
+                
+        if (document.getElementById("mc_info_rs_ap_ECDHoraSAT").value!=null && document.getElementById("mc_info_rs_ap_ECDHoraSAT").value!=0) {        
+                        TotHoras = document.getElementById("mc_info_rs_ap_ECDHoraSAT").value;
+        } else {
+                TotHoras = 0;
+        }       
+        if (document.getElementById("mc_info_rs_ap_ECDMinSAT").value!=null && document.getElementById("mc_info_rs_ap_ECDMinSAT").value!=0) {        
+                 TotMinutos = document.getElementById("mc_info_rs_ap_ECDMinSAT").value/60;
+        } else {
+                 TotMinutos = 0;
+        }       
+            if (document.getElementById("mc_info_rs_ap_ECDSegSAT").value!=null && document.getElementById("mc_info_rs_ap_ECDSegSAT").value!=0) {        
+                 TotSegundos = document.getElementById("mc_info_rs_ap_ECDSegSAT").value/3600;
+        } else {
+                 TotSegundos = 0;
+        }       
+                Ttotal = parseFloat(TotHoras) + parseFloat(TotMinutos) + parseFloat(TotSegundos);
+        document.getElementById("mc_info_rs_ap_ECHorasSAT").value =  Ttotal;       
+
+        
+}
+
+
+function calculaDiasPropuesta(){
+        var iTipoReq = document.getElementById("mc_info_rs_ap_ECsTipoRequerimiento").value;
+        var iHrsPropuesta = document.getElementById("mc_info_rs_ap_ECsHorasManuales").value;
+        // se calculan los días para la propuesta
+        switch(iTipoReq){
+            case '1': //control de cambios
+                   if(iHrsPropuesta.valueOf() < 51){
+                    document.getElementById("mc_info_rs_ap_ECsDiasPropuesta").value = 1;
+                } else {
+                    if(iHrsPropuesta.valueOf() > 100){
+                        if(iHrsPropuesta.valueOf()>400 && document.getElementById("mc_info_rs_ap_ECUDX").value>0){
+                                document.getElementById("mc_info_rs_ap_ECsDiasPropuesta").value = 5;
+                        }else{
+                                document.getElementById("mc_info_rs_ap_ECsDiasPropuesta").value = 3;
+                        }
+                    } else {
+                        document.getElementById("mc_info_rs_ap_ECsDiasPropuesta").value = 2;
+                    }
+                }
+                break;
+            case '2': //Mantenimiento Mayor
+                document.getElementById("mc_info_rs_ap_ECsDiasPropuesta").value = 5;
+                break;
+            case '3': //Mantenimiento Menor
+                if(iHrsPropuesta.valueOf() < 51){
+                    document.getElementById("mc_info_rs_ap_ECsDiasPropuesta").value = 1;
+                } else {
+                    if(iHrsPropuesta.valueOf() > 100){
+                        document.getElementById("mc_info_rs_ap_ECsDiasPropuesta").value = 3;
+                    } else {
+                        document.getElementById("mc_info_rs_ap_ECsDiasPropuesta").value = 2;
+                    }
+                }
+                break;
+            case '4': //Nuevo Desarrollo
+                document.getElementById("mc_info_rs_ap_ECsDiasPropuesta").value = 5;
+                break;
+            case '5': //Soporte
+                break;
+            case '6': //Servicios Comunes
+                if(iHrsPropuesta.valueOf() < 51){
+                    document.getElementById("mc_info_rs_ap_ECsDiasPropuesta").value = 1;
+                } else {
+                    if(iHrsPropuesta.valueOf() > 100){
+                        document.getElementById("mc_info_rs_ap_ECsDiasPropuesta").value = 3;
+                    } else {
+                        document.getElementById("mc_info_rs_ap_ECsDiasPropuesta").value = 2;
+                    }
+                }
+                break;
+            }
+        calculaSLAInicial();
+        }
+
+function calculaSLAInicial(){
+        var boton=document.getElementById("mc_info_rs_ap_ECbtnCalcular");
+        if(boton == null){
+            CalculaChecks();
+        }
+}
+
+
+function calculaSLA(){
+        sAsignacion = document.getElementById("mc_info_rs_ap_ECFechaAsignacion").value;
+        sPropuesta = document.getElementById("mc_info_rs_ap_ECFechaEntregaPropuesta").value;
+
+        iDias = document.getElementById("mc_info_rs_ap_ECsDiasPropuesta").value;
+        
+        sAsignacionHrs= sAsignacion.substr(sAsignacion.indexOf(" ")+1);
+        aAsignacionHrs = sAsignacionHrs.split(":");
+        sPropuestaHrs= sPropuesta.substr(sPropuesta.indexOf(" ")+1);
+        aPropuestaHrs = sPropuestaHrs.split(":");
+                                    
+        sAsignacion = sAsignacion.substr(0,sAsignacion.indexOf(" "));
+        sPropuesta = sPropuesta.substr(0,sPropuesta.indexOf(" "));
+
+        aAsignacion = sAsignacion.split("/");
+        aPropuesta = sPropuesta.split("/");
+                
+
+        var dAsignacion  = new Date(aAsignacion[2].valueOf(),aAsignacion[1].valueOf()-1,aAsignacion[0].valueOf(),aAsignacionHrs[0].valueOf(),aAsignacionHrs[1].valueOf(),0);
+        var dAsignacion2 = new Date(aAsignacion[2].valueOf(),aAsignacion[1].valueOf()-1,aAsignacion[0].valueOf(),aAsignacionHrs[0].valueOf(),aAsignacionHrs[1].valueOf(),0);
+
+        //si se asignó después de las 6 pm se manda al siguiente día hábil a las 9 am
+        //Ajuste en los criterios de medición SDMA4 a partir de enero 2016
+        if(aAsignacionHrs[0]>=18){
+            if(dAsignacion2.getDay()==5) {//si es viernes lo manda hasta el lunes
+                 dAsignacion2.setDate(dAsignacion2.getDate() + 3);
+            }else {
+                 dAsignacion2.setDate(dAsignacion2.getDate() + 1);
+            }
+            dAsignacion2.setHours(9);
+            dAsignacion2.setMinutes(00);
+        }
+
+		//Si la hora de asignación es antes de las nueve am , se pasa al inicio de la ventana de tiempo permitida que es 9:00 am        
+        if(aAsignacionHrs[0]<9){
+            dAsignacion2.setHours(9);
+            dAsignacion2.setMinutes(00);
+        }
+
+
+        var dPropuesta = new Date(aPropuesta[2].valueOf(),aPropuesta[1].valueOf()-1,aPropuesta[0].valueOf(),aPropuestaHrs[0].valueOf(),aPropuestaHrs[1].valueOf(),0);
+        var dPropuesta2= new Date(aPropuesta[2].valueOf(),aPropuesta[1].valueOf()-1,aPropuesta[0].valueOf(),aPropuestaHrs[0].valueOf(),aPropuestaHrs[1].valueOf(),0);
+        var dPropuesta3= new Date(aPropuesta[2].valueOf(),aPropuesta[1].valueOf()-1,aPropuesta[0].valueOf(),aPropuestaHrs[0].valueOf(),aPropuestaHrs[1].valueOf(),0);
+
+
+//si la propuesta es entregada en fin de semana la regresa al viernes a las 18:00
+        if(dPropuesta3.getDay()==6) {///si es sábado
+            dPropuesta3.setDate(dPropuesta3.getDate() - 1);
+            dPropuesta3.setHours(18);
+            dPropuesta3.setMinutes(00);
+                }
+        if(dPropuesta3.getDay()==7) {///si es domingo
+                dPropuesta3.setDate(dPropuesta3.getDate() - 2);
+                        dPropuesta3.setHours(18);
+            dPropuesta3.setMinutes(00);
+        }
+
+        //si la propuesta se recibio después de las 6 pm se ajusta la hora a las 6:00 pm
+        //Ajuste en los criterios de medición SDMA4 a partir de enero 2016
+        if(aPropuestaHrs[0]>=18){
+            dPropuesta3.setHours(18);
+            dPropuesta3.setMinutes(00);
+        }
+
+
+
+        var daysDiffRound = Math.round(Math.abs((dAsignacion2-dPropuesta3)/86400000));
+        var HrsDiff  = Math.abs((dAsignacion2-dPropuesta3)/3600000);
+        var MinsDiff = Math.abs((dAsignacion2-dPropuesta3)/60000);
+        var diasInhabiles = 0;
+
+                
+
+
+        //Obtención de los días inhabiles dentro del periódo
+            var sNoHabiles="{lbNoHabiles}"; 
+            var aNoHabiles=sNoHabiles.split(","); 
+            var iNoHabiles=0; 
+            for(i=1;i<aNoHabiles.length;i++){ 
+                var sNoHabil = aNoHabiles[i].split("-");
+                var dNoHabil = new Date(sNoHabil[0].valueOf(), sNoHabil[1].valueOf()-1,sNoHabil[2].valueOf() )
+                if(dNoHabil >= dAsignacion && dNoHabil <= dPropuesta ){
+                    iNoHabiles = iNoHabiles+1; 
+                }
+            }
+        //Obtención de los días del fin de semana dentro del periódo
+        var diasFinSemana = 0;
+        for (var i=0; i<=daysDiffRound; i++) {
+            if((dAsignacion2.getDay()==0) || (dAsignacion2.getDay()==6) ){
+                diasFinSemana = diasFinSemana + 1;
+            }
+            dAsignacion2.setDate(dAsignacion2.getDate() + 1);
+        }
+
+        //se obtiene los dias inhabiles sumando fines de semana y festivos
+        diasInhabiles = diasFinSemana+iNoHabiles;
+
+     
+        var iTiempoSAT = document.getElementById("mc_info_rs_ap_ECHorasSAT").value ;
+        if(iTiempoSAT<=2){
+                iTiempoSAT=0;
+        }
+
+        if(iDias*9*60 >= ( (MinsDiff-(diasInhabiles*9*60)-(iTiempoSAT.valueOf()*60))-(15*60*daysDiffRound) ) ){//se verifica si rebasa los días que tenía para entregar la propuesta tomando 9 horas x dia como nuevo requerimiento
+            document.getElementById("mc_info_rs_ap_ECCumplioRS").value="1";
+        } else {
+            document.getElementById("mc_info_rs_ap_ECCumplioRS").value="0";
+        }
+
+
+        //si la propuesta esta antes de la asignación se marca como rebasado
+        if(dPropuesta < dAsignacion  ){
+                document.getElementById("mc_info_rs_ap_ECCumplioRS").value="0";
+        }        
+                
+        if(document.getElementById("mc_info_rs_ap_ECsHorasManuales").value!=0){
+            sEvidencia = document.getElementById("mc_info_rs_ap_ECFechaEntregaEvidencia").value;
+            sEvidenciaHrs = sEvidencia.substr(sEvidencia.indexOf(" ")+1);
+            aEvidenciaHrs = sEvidenciaHrs.split(":");
+            sEvidencia = sEvidencia.substr(0,sEvidencia.indexOf(" "));
+            aEvidencia = sEvidencia.split("/");
+                        
+            //si no tiene fecha de evidencia se marca como que no cumple
+            if(document.getElementById("mc_info_rs_ap_ECFechaEntregaEvidencia").value==""){
+                document.getElementById("mc_info_rs_ap_ECCumplioHE").value="0";
+            }else{
+                var dEvidencia = new Date(aEvidencia[2].valueOf(),aEvidencia[1].valueOf()-1,aEvidencia[0].valueOf(),aEvidenciaHrs[0].valueOf(),aEvidenciaHrs[1].valueOf(),0);
+                if(document.getElementById("mc_info_rs_ap_ECFechaEntregaHerramienta").value!=""){
+                    sHerramienta = document.getElementById("mc_info_rs_ap_ECFechaEntregaHerramienta").value;
+                    sHerramientaHrs= sHerramienta.substr(sHerramienta.indexOf(" ")+1);
+                    aHerramientaHrs = sHerramientaHrs.split(":");
+                    sHerramienta = sHerramienta.substr(0,sHerramienta.indexOf(" "));
+                    aHerramienta = sHerramienta.split("/");
+                    var dHerramienta= new Date(aHerramienta[2].valueOf(),aHerramienta[1].valueOf()-1,aHerramienta[0].valueOf(),aHerramientaHrs[0].valueOf(),aHerramientaHrs[1].valueOf(),0);
+                    if(( dEvidencia.getTime() > dPropuesta.getTime()) || (dHerramienta.getTime() > dPropuesta.getTime() )){//se valida si entrego antes la evidencia que la pruesta
+                        document.getElementById("mc_info_rs_ap_ECCumplioHE").value="0";
+                    } else {
+                        document.getElementById("mc_info_rs_ap_ECCumplioHE").value="1";
+                    }
+                } else {
+                    if(dEvidencia.getTime() > dPropuesta.getTime() ){//se valida si la pruesta es posterior a la evidencia de herramienta
+                        document.getElementById("mc_info_rs_ap_ECCumplioHE").value="0";
+                    } else {
+                        document.getElementById("mc_info_rs_ap_ECCumplioHE").value="1";
+                    }
+                }
+            }
+        }else {
+            document.getElementById("mc_info_rs_ap_ECCumplioHE").value="";
+        }
+                
+       //si es menor y tiene más de 400Hrs No Cumple 
+       if(document.getElementById("mc_info_rs_ap_ECsTipoRequerimiento").value == 3){
+            if(document.getElementById("mc_info_rs_ap_ECsHorasManuales").value > 400){
+                document.getElementById("mc_info_rs_ap_ECCumplioHE").value="0";
+                document.getElementById("mc_info_rs_ap_ECCumplioRS").value="0";
+                }
+        }
+       
+                //si es mayor y tiene menos de 400Hrs No Cumple 
+       if(document.getElementById("mc_info_rs_ap_ECsTipoRequerimiento").value == 2){
+            if(document.getElementById("mc_info_rs_ap_ECsHorasManuales").value < 400){
+                document.getElementById("mc_info_rs_ap_ECCumplioHE").value="0";
+                document.getElementById("mc_info_rs_ap_ECCumplioRS").value="0";
+                }
+        }
+       
+       /*
+        if(document.getElementById("mc_info_rs_ap_ECsTipoRequerimiento").value == 1){//Si es control de cambios y no esta cerrado marca todo como rebasado
+            if(document.getElementById("mc_info_rs_ap_EChdEstado").value!="Cerrado"){
+                if(document.getElementById("mc_info_rs_ap_ECsHorasManuales").value==0){
+                    document.getElementById("mc_info_rs_ap_ECCumplioHE").value="";
+                } else {
+                    document.getElementById("mc_info_rs_ap_ECCumplioHE").value="0";
+                }
+                document.getElementById("mc_info_rs_ap_ECCumplioRS").value="0";
+            }
+        }
+        */
+        addObservaciones();
+}
+
+function addObservaciones(){
+    sObservaciones = "Nivel de servicio: Uso de una Herramienta de Estimación. El nivel de servicio se reporta como ";
+    switch(document.getElementById("mc_info_rs_ap_ECCumplioHE").value){
+        case "0":
+            sObservaciones= sObservaciones + "rebasado. ";
+                break;
+        case "1":
+            sObservaciones= sObservaciones + "cumplido. ";
+                break;
+        default:
+            sObservaciones= sObservaciones + "no aplica. Ya que así fué autorizado por el MG para este caso en particular";
+    }
+        
+        sObservaciones = sObservaciones +  " la propuesta se carga el " + document.getElementById("mc_info_rs_ap_ECFechaEntregaPropuesta").value;
+        sObservaciones = sObservaciones +  " y la evidencia se carga el día  " + document.getElementById("mc_info_rs_ap_ECFechaEntregaEvidencia").value;
+    
+        sPropuesta = document.getElementById("mc_info_rs_ap_ECFechaEntregaPropuesta").value;
+        sEvidencia = document.getElementById("mc_info_rs_ap_ECFechaEntregaEvidencia").value;
+        
+        //se convierte en fecha la propuesta para poder comparar        
+        sPropuestaHrs= sPropuesta.substr(sPropuesta.indexOf(" ")+1);
+        aPropuestaHrs = sPropuestaHrs.split(":");
+        sPropuesta = sPropuesta.substr(0,sPropuesta.indexOf(" "));
+        aPropuesta = sPropuesta.split("/");
+        var dPropuesta = new Date(aPropuesta[2].valueOf(),aPropuesta[1].valueOf()-1,aPropuesta[0].valueOf(),aPropuestaHrs[0].valueOf(),aPropuestaHrs[1].valueOf(),0);
+        var dPropuesta2 = new Date(aPropuesta[2].valueOf(),aPropuesta[1].valueOf()-1,aPropuesta[0].valueOf(),aPropuestaHrs[0].valueOf(),aPropuestaHrs[1].valueOf(),0);
+        //si la propuesta es entregada en fin de semana la regresa al viernes a las 18:00
+        if(dPropuesta2.getDay()==6) {///si es sábado
+            dPropuesta2.setDate(dPropuesta2.getDate() - 1);
+            dPropuesta2.setHours(18);
+            dPropuesta2.setMinutes(00);
+                }
+        if(dPropuesta2.getDay()==7) {///si es domingo
+            dPropuesta2.setDate(dPropuesta2.getDate() - 2);
+            dPropuesta2.setHours(18);
+            dPropuesta2.setMinutes(00);
+        }
+        
+        //si la propuesta se recibio después de las 6 pm se ajusta la hora a las 6:00 pm
+        //Ajuste en los criterios de medición SDMA4 a partir de enero 2016
+        if(aPropuestaHrs[0]>=18){
+            dPropuesta2.setHours(18);
+            dPropuesta2.setMinutes(00);
+        }
+
+
+        
+        //se convierte en fecha la evidencia para poder comparar        
+        sEvidencia = document.getElementById("mc_info_rs_ap_ECFechaEntregaEvidencia").value;
+        sEvidenciaHrs = sEvidencia.substr(sEvidencia.indexOf(" ")+1);
+        aEvidenciaHrs = sEvidenciaHrs.split(":");
+        sEvidencia = sEvidencia.substr(0,sEvidencia.indexOf(" "));
+        aEvidencia = sEvidencia.split("/");
+        var dEvidencia = new Date(aEvidencia[2].valueOf(),aEvidencia[1].valueOf()-1,aEvidencia[0].valueOf(),aEvidenciaHrs[0].valueOf(),aEvidenciaHrs[1].valueOf(),0);
+
+        if(dPropuesta > dEvidencia){
+                sObservaciones = sObservaciones  + " de forma previa a la propuesta. ";
+                } else {
+                        if(dPropuesta < dEvidencia){
+                        sObservaciones = sObservaciones  + " de forma posterior a la propuesta. ";
+                } else {
+                sObservaciones = sObservaciones  + " a la misma hora que la propuesta. ";
+           }
+        }
+    /*    
+    if(document.getElementById("mc_info_rs_ap_ECCumplioHE").checked){
+                sObservaciones = sObservaciones  + "Dicha evidencia no cumple ";
+    } else {
+                sObservaciones = sObservaciones  + "Dicha evidencia cumple ";
+    }
+    sObservaciones = sObservaciones  + " con los lineamientos establecidos por MG para el documento de evidencia. \n\n";
+    */
+    // se agregan las observaciones del SLA de Requisitos de Servicio
+    sObservaciones = sObservaciones  + "Nivel de servicio: Requisitos del Servicio. El nivel de servicio se reporta como ";
+    switch(document.getElementById("mc_info_rs_ap_ECCumplioRS").value){
+        case "0":
+            sObservaciones= sObservaciones + "rebasado. ";
+                break;
+        case "1":
+            sObservaciones= sObservaciones + "cumplido. ";
+                break;
+        default:
+            sObservaciones= sObservaciones + "no aplica. Ya que así fué autorizado por el MG para este caso en particular";
+    }
+    sObservaciones= sObservaciones + " La estimación se asigna el " + document.getElementById("mc_info_rs_ap_ECFechaAsignacion").value;
+        sObservaciones= sObservaciones + " y la propuesta se entrega el día " +document.getElementById("mc_info_rs_ap_ECFechaEntregaPropuesta").value; 
+        
+        //se convierte en fecha la asignacon para poder comparar        
+        sAsignacion = document.getElementById("mc_info_rs_ap_ECFechaAsignacion").value;
+        sAsignacionHrs = sAsignacion.substr(sAsignacion.indexOf(" ")+1);
+        sAsignacionHrs = sAsignacionHrs.split(":");
+        sAsignacion = sAsignacion.substr(0,sAsignacion.indexOf(" "));
+        aAsignacion = sAsignacion.split("/");
+        
+        var dAsignacion =  new Date(aAsignacion[2].valueOf(),aAsignacion[1].valueOf()-1,aAsignacion[0].valueOf(),aAsignacionHrs[0].valueOf(),aAsignacionHrs[1].valueOf(),0);
+        var dAsignacion2 = new Date(aAsignacion[2].valueOf(),aAsignacion[1].valueOf()-1,aAsignacion[0].valueOf(),aAsignacionHrs[0].valueOf(),aAsignacionHrs[1].valueOf(),0);
+        //si se asignó después de las 18 hrs se manda al siguiente día hábil a las 9 am
+        //Ajuste en los criterios de medición SDMA4  a partir de enero 2016
+        if(aAsignacionHrs[0]>=18 ){
+            if(dAsignacion.getDay()==5) {//si es viernes lo manda hasta el lunes
+                dAsignacion.setDate(dAsignacion.getDate() + 3);
+                }else {
+                        dAsignacion.setDate(dAsignacion.getDate() + 1);
+                }
+            dAsignacion.setHours(9);
+            dAsignacion.setMinutes(00);
+        }
+        
+		//Si la hora de asignación es antes de las nueve am , se pasa al inicio de la ventana de tiempo permitida que es 9:00 am        
+        if(aAsignacionHrs[0]<9){
+            dAsignacion.setHours(9);
+            dAsignacion.setMinutes(00);
+        }
+        
+        
+        var daysDiffRound = Math.round(Math.abs((dAsignacion-dPropuesta2)/86400000));
+        var HrsDiff = Math.abs((dAsignacion-dPropuesta2) /3600000);
+        var MinsDiff = Math.abs((dAsignacion-dPropuesta2)/60000);
+        var HrsTotal = document.getElementById("mc_info_rs_ap_ECsDiasPropuesta").value*9;
+                var diasInhabiles = 0;
+
+
+        if(dAsignacion>dPropuesta){
+                sObservaciones= sObservaciones + "es decir, de forma previa a la asignación de la estimación, lo cual es inconsistente con el proceso y se identifica como una desviación del nivel de servicio";
+        }
+        //Obtención de los días inhabiles dentro del periódo
+            var sNoHabiles="{lbNoHabiles}"; 
+            var aNoHabiles=sNoHabiles.split(","); 
+            var iNoHabiles=0; 
+            for(i=1;i<aNoHabiles.length;i++){ 
+                var sNoHabil=aNoHabiles[i].split("-");
+                var dNoHabil= new Date(sNoHabil[0].valueOf(), sNoHabil[1].valueOf()-1,sNoHabil[2].valueOf() )
+                if(dNoHabil >= dAsignacion && dNoHabil <= dPropuesta ){
+                    iNoHabiles=iNoHabiles+1; 
+                }
+            }
+        //Obtención de los días de fin de seman dentro del periódo
+        var diasFinSemana = 0;
+        for (var i=0; i<=daysDiffRound; i++) {
+            if((dAsignacion.getDay()==0) || (dAsignacion.getDay()==6) ){
+                diasFinSemana = diasFinSemana + 1;
+            }
+            dAsignacion.setDate(dAsignacion.getDate() + 1);
+        }
+
+        //se obtiene los dias inhabiles sumando fines de semana y festivos
+        diasInhabiles = diasFinSemana+iNoHabiles;
+
+        var iTiempoSAT = document.getElementById("mc_info_rs_ap_ECHorasSAT").value;
+        if(iTiempoSAT<=2){
+                iTiempoSAT=0;
+        }
+                
+           if(HrsTotal*60 >= ((MinsDiff - (diasInhabiles*60*9)-(iTiempoSAT.valueOf()*60))-(15*60*daysDiffRound)) ){//se verifica si rebasa los días que tenía para entregar la propuesta
+               sObservaciones= sObservaciones + " dentro de "  
+           } else {
+               sObservaciones= sObservaciones + " de forma posterior a " 
+           }
+
+                        
+//              }
+                        
+        var lstTipo = document.getElementById("mc_info_rs_ap_ECsTipoRequerimiento").selectedIndex;
+        var lstTipoPPMC = document.getElementById("mc_info_rs_ap_ECsTipoRequerimiento").options;
+//        var diffNeta = (HrsDiff  -(iTiempoSAT.valueOf())-(diasHabiles*9));
+                var diffNeta2 = ( ( MinsDiff - (daysDiffRound*15*60) - (diasInhabiles*60*9)-(iTiempoSAT.valueOf()*60) ) /60);
+
+                var horaDiffNeta2 =Math.floor(diffNeta2);
+                var minDiffNeta2 =Math.floor((diffNeta2-horaDiffNeta2)*60);
+                var segDiffNeta2 =Math.floor((((diffNeta2-horaDiffNeta2)*60)-minDiffNeta2)*60);
+        sObservaciones= sObservaciones + "los " + document.getElementById("mc_info_rs_ap_ECsDiasPropuesta").value + " días permitidos según tipo de propuesta de " +  lstTipoPPMC[lstTipo].text;
+        sObservaciones= sObservaciones + " y las " + document.getElementById("mc_info_rs_ap_ECsHorasManuales").value + " horas estimadas. ";
+                if (horaDiffNeta2 < 10) {
+                        sObservaciones= sObservaciones + " El total de horas invertidas en el proceso fue de "  + ("0" + horaDiffNeta2).slice (-2)  + ":" + ("0" + minDiffNeta2).slice (-2)  + ":" + ("0" + segDiffNeta2).slice (-2)  + ", que";
+                } else {
+                        sObservaciones= sObservaciones + " El total de horas invertidas en el proceso fue de "  +  horaDiffNeta2  + ":" + ("0" + minDiffNeta2).slice (-2)  + ":" + ("0" + segDiffNeta2).slice (-2)  + ", que";
+                }
+//              sObservaciones= sObservaciones + " El total de horas invertidas en el proceso fue de "  + horaDiffNeta2  + ":" +  minDiffNeta2  + ":" + segDiffNeta2  + ", que";
+        
+        if(diffNeta2 < HrsTotal){
+                sObservaciones= sObservaciones + " está por debajo ";
+                } else {
+                                if(diffNeta2 == HrsTotal){
+                                       sObservaciones= sObservaciones + " es igual al ";
+                                }else{
+                           sObservaciones= sObservaciones + " está por arriba ";                                
+                                }
+
+        }
+        sObservaciones= sObservaciones + " de las " + HrsTotal + " permitidas.";
+                
+                if(document.getElementById("mc_info_rs_ap_ECsTipoRequerimiento").value == 1){//Si es control de cambios y no esta cerrado marca todo como rebasado
+            if(document.getElementById("mc_info_rs_ap_EChdEstado").value!="Cerrado"){
+                if(document.getElementById("mc_info_rs_ap_ECsHorasManuales").value!=0){
+                    //sObservaciones= sObservaciones + "\nEl nivel de servicio se reporta como rebasado por que el control de cambio no cuenta con el estado de cierre que corresponde";
+                } 
+            }
+        }
+        //document.getElementById("mc_info_rs_ap_ECObservaciones").value = document.getElementById("mc_info_rs_ap_ECObservaciones").value + '\n' + sObservaciones;
+        document.getElementById("mc_info_rs_ap_ECObservaciones").value =  sObservaciones;
+}
+
+
+//Common Script Start @1-8BFA436B
+jQuery(function ($) {
+    var features = { };
+    var actions = { };
+    var params = { };
+//End Common Script Start
+
+//Controls Selecting @1-1AB7E763
+    $('body').ccsBind(function() {
+        features["mc_info_rs_ap_ECFechaAsignacionInlineDatePicker1"] = $('*:ccsControl(mc_info_rs_ap_EC, FechaAsignacion)');
+        features["mc_info_rs_ap_ECFechaEntregaPropuestaInlineDatePicker2"] = $('*:ccsControl(mc_info_rs_ap_EC, FechaEntregaPropuesta)');
+        features["mc_info_rs_ap_ECFechaEntregaEvidenciaInlineDatePicker3"] = $('*:ccsControl(mc_info_rs_ap_EC, FechaEntregaEvidencia)');
+        features["mc_info_rs_ap_ECFechaAceptacionPropuestaInlineDatePicker4"] = $('*:ccsControl(mc_info_rs_ap_EC, FechaAceptacionPropuesta)');
+        features["mc_info_rs_ap_ECFechaEntregaHerramientaInlineDatePicker5"] = $('*:ccsControl(mc_info_rs_ap_EC, FechaEntregaHerramienta)');
+        features["mc_info_rs_ap_ECDHoraSATNumericUpDown1"] = $('*:ccsControl(mc_info_rs_ap_EC, DHoraSAT)');
+        features["mc_info_rs_ap_ECDMinSATNumericUpDown2"] = $('*:ccsControl(mc_info_rs_ap_EC, DMinSAT)');
+        features["mc_info_rs_ap_ECDSegSATNumericUpDown3"] = $('*:ccsControl(mc_info_rs_ap_EC, DSegSAT)');
+    });
+//End Controls Selecting
+
+//Feature Parameters @1-CB3B10C1
+    params["mc_info_rs_ap_ECFechaAsignacionInlineDatePicker1"] = { 
+        dateFormat: "dd/MM/yyyy HH:mm",
+        isWeekend: true
+    };
+    params["mc_info_rs_ap_ECFechaEntregaPropuestaInlineDatePicker2"] = { 
+        dateFormat: "dd/MM/yyyy HH:mm",
+        isWeekend: true
+    };
+    params["mc_info_rs_ap_ECFechaEntregaEvidenciaInlineDatePicker3"] = { 
+        dateFormat: "dd/MM/yyyy HH:mm",
+        isWeekend: true
+    };
+    params["mc_info_rs_ap_ECFechaAceptacionPropuestaInlineDatePicker4"] = { 
+        dateFormat: "dd/MM/yyyy HH:mm",
+        isWeekend: true
+    };
+    params["mc_info_rs_ap_ECFechaEntregaHerramientaInlineDatePicker5"] = { 
+        dateFormat: "dd/MM/yyyy HH:mm",
+        isWeekend: true
+    };
+    params["mc_info_rs_ap_ECDHoraSATNumericUpDown1"] = { 
+        sourceType: "Numeric",
+        min: 0,
+        max: 1000,
+        step: 1, 
+        altStep: 1
+    };
+    params["mc_info_rs_ap_ECDMinSATNumericUpDown2"] = { 
+        sourceType: "Numeric",
+        min: 0,
+        max: 59,
+        step: 1, 
+        altStep: 1
+    };
+    params["mc_info_rs_ap_ECDSegSATNumericUpDown3"] = { 
+        sourceType: "Numeric",
+        min: 0,
+        max: 59,
+        step: 1, 
+        altStep: 1
+    };
+//End Feature Parameters
+
+//Feature Init @1-973CDAC6
+    features["mc_info_rs_ap_ECFechaAsignacionInlineDatePicker1"].ccsBind(function() {
+        this.ccsDateTimePicker(params["mc_info_rs_ap_ECFechaAsignacionInlineDatePicker1"]);
+    });
+    features["mc_info_rs_ap_ECFechaEntregaPropuestaInlineDatePicker2"].ccsBind(function() {
+        this.ccsDateTimePicker(params["mc_info_rs_ap_ECFechaEntregaPropuestaInlineDatePicker2"]);
+    });
+    features["mc_info_rs_ap_ECFechaEntregaEvidenciaInlineDatePicker3"].ccsBind(function() {
+        this.ccsDateTimePicker(params["mc_info_rs_ap_ECFechaEntregaEvidenciaInlineDatePicker3"]);
+    });
+    features["mc_info_rs_ap_ECFechaAceptacionPropuestaInlineDatePicker4"].ccsBind(function() {
+        this.ccsDateTimePicker(params["mc_info_rs_ap_ECFechaAceptacionPropuestaInlineDatePicker4"]);
+    });
+    features["mc_info_rs_ap_ECFechaEntregaHerramientaInlineDatePicker5"].ccsBind(function() {
+        this.ccsDateTimePicker(params["mc_info_rs_ap_ECFechaEntregaHerramientaInlineDatePicker5"]);
+    });
+    features["mc_info_rs_ap_ECDHoraSATNumericUpDown1"].ccsBind(function() {
+        this.ccsNumericUpDown(params["mc_info_rs_ap_ECDHoraSATNumericUpDown1"]);
+    });
+    features["mc_info_rs_ap_ECDMinSATNumericUpDown2"].ccsBind(function() {
+        this.ccsNumericUpDown(params["mc_info_rs_ap_ECDMinSATNumericUpDown2"]);
+    });
+    features["mc_info_rs_ap_ECDSegSATNumericUpDown3"].ccsBind(function() {
+        this.ccsNumericUpDown(params["mc_info_rs_ap_ECDSegSATNumericUpDown3"]);
+    });
+//End Feature Init
+
+//mc_info_rs_ap_ECButton_InsertOnClick Event Start @-973690A0
+    actions["mc_info_rs_ap_ECButton_InsertOnClick"] = function (eventType, parameters) {
+        var result = true;
+//End mc_info_rs_ap_ECButton_InsertOnClick Event Start
+
+//Custom Code @141-2A29BDB7
+        // -------------------------
+
+        // -------------------------
+//End Custom Code
+
+//mc_info_rs_ap_ECButton_InsertOnClick Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_info_rs_ap_ECButton_InsertOnClick Event End
+
+//mc_info_rs_ap_ECFechaEntregaPropuestaOnChange Event Start @-C7ECAAB3
+    actions["mc_info_rs_ap_ECFechaEntregaPropuestaOnChange"] = function (eventType, parameters) {
+        var result = true;
+//End mc_info_rs_ap_ECFechaEntregaPropuestaOnChange Event Start
+
+//Custom Code @59-2A29BDB7
+        // -------------------------
+        calculaDiasPropuesta();
+        // -------------------------
+//End Custom Code
+
+//mc_info_rs_ap_ECFechaEntregaPropuestaOnChange Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_info_rs_ap_ECFechaEntregaPropuestaOnChange Event End
+
+//mc_info_rs_ap_ECsTipoRequerimientoOnChange Event Start @-1BA04ECE
+    actions["mc_info_rs_ap_ECsTipoRequerimientoOnChange"] = function (eventType, parameters) {
+        var result = true;
+//End mc_info_rs_ap_ECsTipoRequerimientoOnChange Event Start
+
+//Custom Code @65-2A29BDB7
+        // -------------------------
+        calculaDiasPropuesta();
+        // -------------------------
+//End Custom Code
+
+//mc_info_rs_ap_ECsTipoRequerimientoOnChange Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_info_rs_ap_ECsTipoRequerimientoOnChange Event End
+
+//mc_info_rs_ap_ECURLEvidenciaOnClick Event Start @-A947CA49
+    actions["mc_info_rs_ap_ECURLEvidenciaOnClick"] = function (eventType, parameters) {
+        var result = true;
+//End mc_info_rs_ap_ECURLEvidenciaOnClick Event Start
+
+//Custom Code @137-2A29BDB7
+        // -------------------------
+        CalculaChecks();
+        // -------------------------
+//End Custom Code
+
+//mc_info_rs_ap_ECURLEvidenciaOnClick Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_info_rs_ap_ECURLEvidenciaOnClick Event End
+
+//mc_info_rs_ap_ECformatoEvidenciaOnClick Event Start @-26C5E834
+    actions["mc_info_rs_ap_ECformatoEvidenciaOnClick"] = function (eventType, parameters) {
+        var result = true;
+//End mc_info_rs_ap_ECformatoEvidenciaOnClick Event Start
+
+//Custom Code @138-2A29BDB7
+        // -------------------------
+        CalculaChecks();
+        // -------------------------
+//End Custom Code
+
+//mc_info_rs_ap_ECformatoEvidenciaOnClick Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_info_rs_ap_ECformatoEvidenciaOnClick Event End
+
+//mc_info_rs_ap_ECIDsCorrectosOnClick Event Start @-8EE0F125
+    actions["mc_info_rs_ap_ECIDsCorrectosOnClick"] = function (eventType, parameters) {
+        var result = true;
+//End mc_info_rs_ap_ECIDsCorrectosOnClick Event Start
+
+//Custom Code @139-2A29BDB7
+        // -------------------------
+        CalculaChecks();
+        // -------------------------
+//End Custom Code
+
+//mc_info_rs_ap_ECIDsCorrectosOnClick Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_info_rs_ap_ECIDsCorrectosOnClick Event End
+
+//mc_info_rs_ap_ECbtnCalcularOnClick Event Start @-CEE3AFFD
+    actions["mc_info_rs_ap_ECbtnCalcularOnClick"] = function (eventType, parameters) {
+        var result = true;
+//End mc_info_rs_ap_ECbtnCalcularOnClick Event Start
+
+//Custom Code @142-2A29BDB7
+        // -------------------------
+        CalculaChecks();
+        // -------------------------
+//End Custom Code
+
+//mc_info_rs_ap_ECbtnCalcularOnClick Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_info_rs_ap_ECbtnCalcularOnClick Event End
+
+//mc_info_rs_ap_ECSinEvidenciaOnClick Event Start @-D99FECEF
+    actions["mc_info_rs_ap_ECSinEvidenciaOnClick"] = function (eventType, parameters) {
+        var result = true;
+//End mc_info_rs_ap_ECSinEvidenciaOnClick Event Start
+
+//Custom Code @164-2A29BDB7
+        // -------------------------
+        CalculaChecks();
+        // -------------------------
+//End Custom Code
+
+//mc_info_rs_ap_ECSinEvidenciaOnClick Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_info_rs_ap_ECSinEvidenciaOnClick Event End
+
+//mc_info_rs_ap_ECDHoraSATOnChange Event Start @-08F722AA
+    actions["mc_info_rs_ap_ECDHoraSATOnChange"] = function (eventType, parameters) {
+        var result = true;
+//End mc_info_rs_ap_ECDHoraSATOnChange Event Start
+
+//Custom Code @193-2A29BDB7
+        // -------------------------
+                        CalculaTiempoDeEspera();
+                        calculaSLA();
+        // -------------------------
+//End Custom Code
+
+//mc_info_rs_ap_ECDHoraSATOnChange Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_info_rs_ap_ECDHoraSATOnChange Event End
+
+//mc_info_rs_ap_ECDMinSATOnChange Event Start @-4FEBA10E
+    actions["mc_info_rs_ap_ECDMinSATOnChange"] = function (eventType, parameters) {
+        var result = true;
+//End mc_info_rs_ap_ECDMinSATOnChange Event Start
+
+//Custom Code @194-2A29BDB7
+        // -------------------------
+            CalculaTiempoDeEspera();
+            calculaSLA();
+        // -------------------------
+//End Custom Code
+
+//mc_info_rs_ap_ECDMinSATOnChange Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_info_rs_ap_ECDMinSATOnChange Event End
+
+//mc_info_rs_ap_ECDSegSATOnChange Event Start @-B46988A2
+    actions["mc_info_rs_ap_ECDSegSATOnChange"] = function (eventType, parameters) {
+        var result = true;
+//End mc_info_rs_ap_ECDSegSATOnChange Event Start
+
+//Custom Code @195-2A29BDB7
+        // -------------------------
+                        CalculaTiempoDeEspera();
+                        calculaSLA();
+                // -------------------------
+//End Custom Code
+
+//mc_info_rs_ap_ECDSegSATOnChange Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_info_rs_ap_ECDSegSATOnChange Event End
+
+//DEL          // -------------------------
+//DEL          calculaSLA();
+//DEL          // -------------------------
+
+//Event Binding @1-BFAAD377
+    $('*:ccsControl(mc_info_rs_ap_EC, Button_Insert)').ccsBind(function() {
+        this.bind("click", actions["mc_info_rs_ap_ECButton_InsertOnClick"]);
+    });
+    $('*:ccsControl(mc_info_rs_ap_EC, FechaEntregaPropuesta)').ccsBind(function() {
+        this.bind("change", actions["mc_info_rs_ap_ECFechaEntregaPropuestaOnChange"]);
+    });
+    $('*:ccsControl(mc_info_rs_ap_EC, sTipoRequerimiento)').ccsBind(function() {
+        this.bind("change", actions["mc_info_rs_ap_ECsTipoRequerimientoOnChange"]);
+    });
+    $('*:ccsControl(mc_info_rs_ap_EC, URLEvidencia)').ccsBind(function() {
+        this.bind("click", actions["mc_info_rs_ap_ECURLEvidenciaOnClick"]);
+    });
+    $('*:ccsControl(mc_info_rs_ap_EC, formatoEvidencia)').ccsBind(function() {
+        this.bind("click", actions["mc_info_rs_ap_ECformatoEvidenciaOnClick"]);
+    });
+    $('*:ccsControl(mc_info_rs_ap_EC, IDsCorrectos)').ccsBind(function() {
+        this.bind("click", actions["mc_info_rs_ap_ECIDsCorrectosOnClick"]);
+    });
+    $('*:ccsControl(mc_info_rs_ap_EC, btnCalcular)').ccsBind(function() {
+        this.bind("click", actions["mc_info_rs_ap_ECbtnCalcularOnClick"]);
+    });
+    $('*:ccsControl(mc_info_rs_ap_EC, SinEvidencia)').ccsBind(function() {
+        this.bind("click", actions["mc_info_rs_ap_ECSinEvidenciaOnClick"]);
+    });
+    $('*:ccsControl(mc_info_rs_ap_EC, DHoraSAT)').ccsBind(function() {
+        this.bind("change", actions["mc_info_rs_ap_ECDHoraSATOnChange"]);
+    });
+    $('*:ccsControl(mc_info_rs_ap_EC, DMinSAT)').ccsBind(function() {
+        this.bind("change", actions["mc_info_rs_ap_ECDMinSATOnChange"]);
+    });
+    $('*:ccsControl(mc_info_rs_ap_EC, DSegSAT)').ccsBind(function() {
+        this.bind("change", actions["mc_info_rs_ap_ECDSegSATOnChange"]);
+    });
+//End Event Binding
+
+//Plugin Calls @1-56F2E460
+    $('*:ccsControl(mc_info_rs_ap_EC, Button_Delete)').ccsBind(function() {
+        this.bind("click", function(){ $("body").data("disableValidation", true); });
+    });
+//End Plugin Calls
+
+//Common Script End @1-562554DE
+});
+//End Common Script End
+
+//End CCS script
+</script>
+</head>
+<body>
+<p>{Header}&nbsp;&nbsp;</p>
+<table cellspacing="0" cellpadding="0" width="600" border="0">
+  <tr>
+    <td>&nbsp;</td> 
+    <td><a href="{lkAnterior_Src}" id="lkAnterior">{lkAnterior}</a></td> 
+    <td style="TEXT-ALIGN: right">&nbsp;<a href="{lkSiguiente_Src}" id="lkSiguiente">{lkSiguiente}</a></td>
+  </tr>
+ 
+  <tr>
+    <td></td> 
+    <td>
+      <div style="WIDTH: 680px">
+      </div>
+    </td> 
+    <td>&nbsp; </td>
+  </tr>
+ 
+  <tr>
+    <td></td> 
+    <td valign="top">
+      <!-- BEGIN Record mc_info_rs_ap_EC -->
+      <form id="mc_info_rs_ap_EC" method="post" name="{HTMLFormName}" action="{Action}">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="th">Calificar Requerimiento&nbsp;&nbsp;&nbsp; {sIdPPMC}</td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr id="ErrorBlock" class="Error">
+                  <td colspan="2">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th">Nombre Proyecto</td> 
+                  <td>{sNombreProyecto}<input type="hidden" id="mc_info_rs_ap_EChdNombreProyecto" value="{hdNombreProyecto}" name="{hdNombreProyecto_Name}">&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Servicio de Negocio</td> 
+                  <td>
+                    <select id="mc_info_rs_ap_ECsServicioNegocio" name="{sServicioNegocio_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {sServicioNegocio_Options}
+                    </select>
+ <br>
+                    {lServNegocio} </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Servicio Contractual</td> 
+                  <td>
+                    <select id="mc_info_rs_ap_EClstServContractual" name="{lstServContractual_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {lstServContractual_Options}
+                    </select>
+ <br>
+                    {lServContractual} </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Tipo Requerimiento</td> 
+                  <td>
+                    <select id="mc_info_rs_ap_ECsTipoRequerimiento" name="{sTipoRequerimiento_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {sTipoRequerimiento_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_info_rs_ap_ECId_Proveedor">Proveedor</label></td> 
+                  <td>
+                    <div id="Id_Proveedor">
+                      {Id_Proveedor} 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Estado</td> 
+                  <td>{sEstadoPPMC}<input type="hidden" id="mc_info_rs_ap_EChdEstado" value="{hdEstado}" name="{hdEstado_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">ID de Estimación</td> 
+                  <td>{sIDEstimacion}</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Unidades PPMC</td> 
+                  <td>{sUnidades}</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Cantidad de Unidades Aprobadas</td> 
+                  <td><input type="text" id="mc_info_rs_ap_ECsUnidadesManuales" maxlength="9" size="9" value="{sUnidadesManuales}" name="{sUnidadesManuales_Name}">UCOs<br>
+                    <input type="text" onblur="calculaDiasPropuesta()" id="mc_info_rs_ap_ECUDX" maxlength="9" size="9" value="{UDX}" name="{UDX_Name}">UDX<br>
+                    <input type="text" id="mc_info_rs_ap_ECUDA" maxlength="9" size="9" value="{UDA}" name="{UDA_Name}">UDA<br>
+                    <input type="text" id="mc_info_rs_ap_ECUSP" maxlength="9" size="9" value="{USP}" name="{USP_Name}">USP<br>
+                    <input type="text" id="mc_info_rs_ap_ECUST" maxlength="9" size="9" value="{UST}" name="{UST_Name}">UST<br>
+                    <input type="text" id="mc_info_rs_ap_ECUPL" maxlength="9" size="9" value="{UPL}" name="{UPL_Name}">UPL</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">PPMC&nbsp;Padre</td> 
+                  <td><label for="mc_info_rs_ap_ECsDatosPadre" style="display: inline;">PPMC Padre&nbsp;&nbsp; </label><input type="text" id="mc_info_rs_ap_ECsDatosPadre" maxlength="7" size="7" value="{sDatosPadre}" name="{sDatosPadre_Name}">&nbsp;&nbsp;&nbsp;<label for="mc_info_rs_ap_ECTipoPadre" style="display: inline;">Tipo Padre:</label> 
+                    <select id="mc_info_rs_ap_ECTipoPadre" name="{TipoPadre_Name}">
+                      <option selected value="">Seleccionar Valor</option>
+                      {TipoPadre_Options}
+                    </select>
+ &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Horas PPMC</td> 
+                  <td>{sHrsPropuesta}</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Horas estimadas</td> 
+                  <td><input type="text" onblur="calculaDiasPropuesta()" id="mc_info_rs_ap_ECsHorasManuales" maxlength="7" size="7" value="{sHorasManuales}" name="{sHorasManuales_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Días para Propuesta</td> 
+                  <td><input type="text" id="mc_info_rs_ap_ECsDiasPropuesta" maxlength="5" size="5" value="{sDiasPropuesta}" name="{sDiasPropuesta_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">RAPE</td> 
+                  <td>{sRAPE}</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">&nbsp;</td> 
+                  <td><label for="mc_info_rs_ap_ECURLEvidencia" style="display: inline;">La URL de la evidencia de la herramienta de estimación es incorrecta</label><input type="checkbox" id="mc_info_rs_ap_ECURLEvidencia" value="1" name="{URLEvidencia_Name}" {URLEvidencia}></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">&nbsp;</td> 
+                  <td><label for="mc_info_rs_ap_ECformatoEvidencia" style="display: inline;">El formato de la evidencia de la herramienta de estimación es incorrecto</label><input type="checkbox" id="mc_info_rs_ap_ECformatoEvidencia" value="1" name="{formatoEvidencia_Name}" {formatoEvidencia}>&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">&nbsp;</td> 
+                  <td><label for="mc_info_rs_ap_ECIDsCorrectos" style="display: inline;">Es&nbsp;incorrecto el Id PPMC en la evidencia de la herramienta de estimación</label><input type="checkbox" id="mc_info_rs_ap_ECIDsCorrectos" value="1" name="{IDsCorrectos_Name}" {IDsCorrectos}></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">&nbsp;</td> 
+                  <td>Sin evidencia de uso de herramienta de estimación&nbsp;<label for="mc_info_rs_ap_ECSinEvidencia" style="display: none;">CheckBox1</label><input type="checkbox" id="mc_info_rs_ap_ECSinEvidencia" value="1" name="{SinEvidencia_Name}" {SinEvidencia}></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_info_rs_ap_ECURLReferencia">URL Referencia</label></td> 
+                  <td><textarea id="mc_info_rs_ap_ECURLReferencia" rows="3" cols="50" name="{URLReferencia_Name}">{URLReferencia}</textarea></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_info_rs_ap_ECFechaAsignacion">Fecha Asignación</label></td> 
+                  <td><input type="text" onblur="calculaSLAInicial()" id="mc_info_rs_ap_ECFechaAsignacion" maxlength="20" size="16" value="{FechaAsignacion}" name="{FechaAsignacion_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_info_rs_ap_ECFechaEntregaPropuesta">Fecha Entrega Propuesta</label></td> 
+                  <td><input type="text" onblur="calculaSLAInicial()" id="mc_info_rs_ap_ECFechaEntregaPropuesta" maxlength="20" size="16" value="{FechaEntregaPropuesta}" name="{FechaEntregaPropuesta_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_info_rs_ap_ECFechaEntregaEvidencia">Fecha Entrega Evidencia Herramienta</label></td> 
+                  <td><input type="text" onblur="calculaSLAInicial()" id="mc_info_rs_ap_ECFechaEntregaEvidencia" maxlength="20" size="16" value="{FechaEntregaEvidencia}" name="{FechaEntregaEvidencia_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Fecha Entrega Herramienta Estimación</td> 
+                  <td>
+                    <!-- BEGIN TextBox FechaEntregaHerramienta --><input type="text" id="mc_info_rs_ap_ECFechaEntregaHerramienta" maxlength="20" size="16" value="{FechaEntregaHerramienta}" name="{FechaEntregaHerramienta_Name}"><!-- END TextBox FechaEntregaHerramienta --></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_info_rs_ap_ECFechaAceptacionPropuesta">Fecha Aceptación Propuesta</label></td> 
+                  <td><input type="text" onblur="calculaSLAInicial()" id="mc_info_rs_ap_ECFechaAceptacionPropuesta" maxlength="20" size="16" value="{FechaAceptacionPropuesta}" name="{FechaAceptacionPropuesta_Name}"><input type="hidden" id="mc_info_rs_ap_EChIDPPMC" value="{hIDPPMC}" name="{hIDPPMC_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Tiempo en espera de información</td> 
+                  <td>&nbsp;<label for="mc_info_rs_ap_ECDHoraSAT" style="display: none;">TextBox1</label><input type="text" id="mc_info_rs_ap_ECDHoraSAT" style="HEIGHT: 22px; WIDTH: 32px" size="1" value="{DHoraSAT}" name="{DHoraSAT_Name}">:<label for="mc_info_rs_ap_ECDMinSAT" style="display: none;">TextBox2</label><input type="text" id="mc_info_rs_ap_ECDMinSAT" style="HEIGHT: 22px; WIDTH: 32px" size="1" value="{DMinSAT}" name="{DMinSAT_Name}">:<label for="mc_info_rs_ap_ECDSegSAT" style="display: none;">TextBox3</label><input type="text" id="mc_info_rs_ap_ECDSegSAT" style="HEIGHT: 22px; WIDTH: 32px" size="1" value="{DSegSAT}" name="{DSegSAT_Name}"><input type="hidden" id="mc_info_rs_ap_ECHorasSAT" value="{HorasSAT}" name="{HorasSAT_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_info_rs_ap_ECObservaciones">Observaciones</label></td> 
+                  <td><textarea id="mc_info_rs_ap_ECObservaciones" rows="6" cols="50" name="{Observaciones_Name}">{Observaciones}</textarea></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Uso de una Herramienta de Estimación</td> 
+                  <td>
+                    <select id="mc_info_rs_ap_ECCumplioHE" name="{CumplioHE_Name}">
+                      <option selected value="">No Aplica</option>
+                      {CumplioHE_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="mc_info_rs_ap_ECCumplioRS">Requisitos de Servicio</label></td> 
+                  <td>
+                    <select id="mc_info_rs_ap_ECCumplioRS" name="{CumplioRS_Name}">
+                      <option selected value="">No Aplica</option>
+                      {CumplioRS_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">URL de Evidencia de medición</td> 
+                  <td><label for="mc_info_rs_ap_ECURLEvidenciaMed" style="display: none;">TextBox1</label><input type="text" id="mc_info_rs_ap_ECURLEvidenciaMed" size="50" value="{URLEvidenciaMed}" name="{URLEvidenciaMed_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">&nbsp;</td> 
+                  <td>&nbsp;<input type="hidden" id="mc_info_rs_ap_EChdUsrUltMod" value="{hdUsrUltMod}" name="{hdUsrUltMod_Name}"><label for="mc_info_rs_ap_EChdFechaUltMod" style="display: none;">hdFechaUltMod</label><input type="hidden" id="mc_info_rs_ap_EChdFechaUltMod" value="{hdFechaUltMod}" name="{hdFechaUltMod_Name}"></td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td><input type="hidden" id="mc_info_rs_ap_ECsID" value="{sID}" name="{sID_Name}"><input type="hidden" id="mc_info_rs_ap_EChdUsrAlta" value="{hdUsrAlta}" name="{hdUsrAlta_Name}">
+                    <!-- BEGIN Button btnCalcular --><input type="button" id="mc_info_rs_ap_ECbtnCalcular" class="Button" alt="Calcular" value="Calcular" name="{Button_Name}"><!-- END Button btnCalcular -->{DatosUltMod}</td> 
+                  <td style="TEXT-ALIGN: right">
+                    <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_info_rs_ap_ECButton_Insert" class="Button" alt="Agregar" value="Agregar" name="{Button_Name}" size="20"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input type="submit" id="mc_info_rs_ap_ECButton_Update" class="Button" alt="Enviar" value="Guardar" name="{Button_Name}" size="20"><!-- END Button Button_Update -->
+                    <!-- BEGIN Button Button_Delete --><input type="submit" id="mc_info_rs_ap_ECButton_Delete" class="Button" alt="Borrar" value="Borrar" name="{Button_Name}"><!-- END Button Button_Delete --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record mc_info_rs_ap_EC --><br>
+    </td> 
+    <td valign="top">
+      <div style="WIDTH: 460px; MARGIN-LEFT: 20px">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+            <td class="th">Documentos en el Repositorio</td> 
+            <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+        {lDocs} 
+      </div>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

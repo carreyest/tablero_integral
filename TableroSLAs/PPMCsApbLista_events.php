@@ -25,6 +25,18 @@ function grdReqsApertura_BeforeShowRow(& $sender)
 // -------------------------
     global $aPPMCsAPbIds;
     global $aPPMCsAPbValues;
+    global $grsBusca;
+    //Modificación para llamar a un segundo detalle para aplicar solicitud a partir de enero 2016; 
+    //si la fecha de asignación es despues de las 18:00 la fecha se cambia al siguiente día habil a las 9:00 am
+    
+    $mesCons = $grsBusca->s_mesparam->GetValue();
+    $anioCons = $grsBusca->s_anioparam->GetValue();
+    if ($anioCons>=2016){
+    	$temp =  $grdReqsApertura->ID_PPMC->GetLink();
+    	$temp = str_replace("&amp;","&",$temp);
+		$grdReqsApertura->ID_PPMC->SetLink(str_replace('PPMCsApbDetalle.php','PPMCsApbDetalle2.php',$temp));
+    }
+    
   	array_push($aPPMCsAPbIds,$grdReqsApertura->ds->f("Id"));
   	array_push($aPPMCsAPbValues,$grdReqsApertura->ds->f("ID_PPMC"));
 	$grdReqsApertura->imgCumpleHE->Visible=true;

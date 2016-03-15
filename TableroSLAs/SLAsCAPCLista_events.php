@@ -25,7 +25,8 @@ function mc_c_ServContractual_mc_c_BeforeShowRow(& $sender)
 
     global $aPPMCsAPbIdsCAPC;
     global $aPPMCsAPbValuesCAPC;
-
+    global $mc_calificacion_capc;
+																																									
     array_push($aPPMCsAPbIdsCAPC,$mc_c_ServContractual_mc_c->DataSource->f("id"));
     array_push($aPPMCsAPbValuesCAPC,$mc_c_ServContractual_mc_c->DataSource->f("numero"));
 
@@ -38,15 +39,28 @@ function mc_c_ServContractual_mc_c_BeforeShowRow(& $sender)
 		
 	}
 	
+    //Modificación para llamar a un segundo detalle para aplicar solicitud a partir de enero 2016; 
+    //si la fecha de asignación es despues de las 18:00 la fecha se cambia al siguiente día habil a las 9:00 am
+	$anioCons = $mc_calificacion_capc->s_anio->GetValue();
+  	$temp =  $mc_c_ServContractual_mc_c->numero->GetLink();
+   	$temp = str_replace("&amp;","&",$temp);    	
+
 	if($mc_c_ServContractual_mc_c->DataSource->f("TipoMedicion")=="PC"){
-		$mc_c_ServContractual_mc_c->numero->SetLink('SLAsCapcDetalle.php?'. CCAddParam("","id",$mc_c_ServContractual_mc_c->DataSource->f("id")) );
+			$mc_c_ServContractual_mc_c->numero->SetLink('SLAsCapcDetalle.php?'. CCAddParam("","id",$mc_c_ServContractual_mc_c->DataSource->f("id")) );		
 	} else
 	{
-		//$mc_c_ServContractual_mc_c->numero->SetLink('SLAsCapcApbDetalle.php?'. CCAddParam(CCAddParam(CCAddParam("","id",$mc_c_ServContractual_mc_c->DataSource->f("id")),"s_numero",$mc_c_ServContractual_mc_c->DataSource->f("numero"))),"s_mes",$mc_calificacion_capc->s_mes->GetValue());
+		if ($anioCons>=2016) {
+		$mc_c_ServContractual_mc_c->numero->SetLink('SLAsCapcApbDetalle2.php?s_mes='.$mc_calificacion_capc->s_mes->GetValue().'&s_anio='.$mc_calificacion_capc->s_anio->GetValue().'&'. CCAddParam(CCAddParam("","sID",$mc_c_ServContractual_mc_c->DataSource->f("id")),"s_numero",$mc_c_ServContractual_mc_c->DataSource->f("numero")));
+
+		} else {
 		$mc_c_ServContractual_mc_c->numero->SetLink('SLAsCapcApbDetalle.php?s_mes='.$mc_calificacion_capc->s_mes->GetValue().'&s_anio='.$mc_calificacion_capc->s_anio->GetValue().'&'. CCAddParam(CCAddParam("","sID",$mc_c_ServContractual_mc_c->DataSource->f("id")),"s_numero",$mc_c_ServContractual_mc_c->DataSource->f("numero")));
+
+		}
+
+		
 	}
 	
-	
+
     if($mc_c_ServContractual_mc_c->CALIDAD_PROD_TERM->GetValue()!=""){
 		$mc_c_ServContractual_mc_c->Img_CALIDAD_PROD_TERM->Visible=true;
 		$mc_c_ServContractual_mc_c->CALIDAD_PROD_TERM->Visible=false;	

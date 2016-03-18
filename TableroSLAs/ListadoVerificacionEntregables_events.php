@@ -142,7 +142,7 @@ function GenList_OnValidate(& $sender)
   		' anio_corte = ' . $VAnio . 
   		' and mes_corte = ' . $VMes .
   		' and id_proveedor = ' . $VProveedor;
-  		
+  	
   	$db = new clsDBCnDisenio;
   	$db->query($sSQL);
   	$db->next_record();

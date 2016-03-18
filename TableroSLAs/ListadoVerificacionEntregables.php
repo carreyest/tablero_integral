@@ -1252,7 +1252,7 @@ class clsGenListDataSource extends clsDBcnDisenio {  //GenListDataSource Class @
     }
 //End SetValues Method
 
-//Insert Method @44-CE9FB5A7
+//Insert Method @44-028A75F1
     function Insert()
     {
         global $CCSLocales;
@@ -1279,7 +1279,7 @@ class clsGenListDataSource extends clsDBcnDisenio {  //GenListDataSource Class @
         "FROM mc_c_entregables_periodicos c \n" .
         "LEFT JOIN entregables_periodicos_smda4 e ON e.id_entregable = c.id_entregable\n" .
         "LEFT JOIN mc_c_proveedor p ON p.id_proveedor = e.id_proveedor\n" .
-        "WHERE e.mes_corte=(select MAX(mes_corte) from entregables_periodicos_smda4 where id_proveedor=" . $this->SQLValue($this->cp["Genproveedor"]->GetDBValue(), ccsInteger) . ") \n" .
+        "WHERE e.mes_corte=(select MAX(mes_corte) from entregables_periodicos_smda4 where id_proveedor=" . $this->SQLValue($this->cp["Genproveedor"]->GetDBValue(), ccsInteger) . " and anio_corte = ( select MAX(anio_corte) from entregables_periodicos_smda4 where id_proveedor=" . $this->SQLValue($this->cp["Genproveedor"]->GetDBValue(), ccsInteger) . ")) \n" .
         "AND e.anio_corte =(select MAX(anio_corte) from entregables_periodicos_smda4 where id_proveedor=" . $this->SQLValue($this->cp["Genproveedor"]->GetDBValue(), ccsInteger) . ")\n" .
         "AND e.id_proveedor = " . $this->SQLValue($this->cp["Genproveedor"]->GetDBValue(), ccsInteger) . "\n" .
         "AND (c.proveedor = 'CDS Y CAPC'\n" .

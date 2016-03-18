@@ -219,10 +219,10 @@ WHERE e.mes_corte = {MesReporte} and e.anio_corte = {anioreporte} AND e.id_prove
 			<TableParameters/>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="134" dataType="Integer" defaultValue="1" parameterSource="MesReporte" parameterType="URL" variable="MesReporte"/>
-				<SQLParameter id="135" dataType="Integer" defaultValue="2015" parameterSource="anioreporte" parameterType="URL" variable="anioreporte"/>
-				<SQLParameter id="136" dataType="Integer" defaultValue="1" parameterSource="busqproveedor" parameterType="URL" variable="busqproveedor"/>
-			</SQLParameters>
+				<SQLParameter id="142" dataType="Integer" defaultValue="1" parameterSource="MesReporte" parameterType="URL" variable="MesReporte"/>
+<SQLParameter id="143" dataType="Integer" defaultValue="2015" parameterSource="anioreporte" parameterType="URL" variable="anioreporte"/>
+<SQLParameter id="144" dataType="Integer" defaultValue="1" parameterSource="busqproveedor" parameterType="URL" variable="busqproveedor"/>
+</SQLParameters>
 			<JoinTables/>
 			<JoinLinks/>
 			<Fields/>
@@ -263,11 +263,11 @@ SELECT e.entregado ,NULL, {AnioGenCorte}, {MesGenCorte}, c.id_entregable, {Genpr
 FROM mc_c_entregables_periodicos c 
 LEFT JOIN entregables_periodicos_smda4 e ON e.id_entregable = c.id_entregable
 LEFT JOIN mc_c_proveedor p ON p.id_proveedor = e.id_proveedor
-WHERE e.mes_corte=(select MAX(mes_corte) from entregables_periodicos_smda4 where id_proveedor={Genproveedor}) 
+WHERE e.mes_corte=(select MAX(mes_corte) from entregables_periodicos_smda4 where id_proveedor={Genproveedor} and anio_corte = ( select MAX(anio_corte) from entregables_periodicos_smda4 where id_proveedor={Genproveedor})) 
 AND e.anio_corte =(select MAX(anio_corte) from entregables_periodicos_smda4 where id_proveedor={Genproveedor})
 AND e.id_proveedor = {Genproveedor}
 AND (c.proveedor = 'CDS Y CAPC'
-OR c.proveedor = p.descripcion)" PathID="GenList">
+OR c.proveedor = p.descripcion)" PathID="GenList" parameterTypeListName="ParameterTypeList" activeCollection="ISQLParameters">
 			<Components>
 				<Button id="46" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Generar" operation="Insert" PathID="GenListButton_Generar">
 					<Components/>
@@ -364,11 +364,11 @@ OR c.proveedor = p.descripcion)" PathID="GenList">
 			<Features/>
 		</Record>
 		<IncludePage id="141" name="MenuTablero1" PathID="MenuTablero1" page="MenuTablero.ccp">
-<Components/>
-<Events/>
-<Features/>
-</IncludePage>
-</Components>
+			<Components/>
+			<Events/>
+			<Features/>
+		</IncludePage>
+	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="ListadoVerificacionEntregables_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="ListadoVerificacionEntregables.php" forShow="True" url="ListadoVerificacionEntregables.php" comment="//" codePage="windows-1252"/>

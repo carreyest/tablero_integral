@@ -238,7 +238,7 @@ function grdDetalleRS_BeforeShowRow(& $sender)
 	} else {
 		$sMes = CCGetParam("s_MesReporte");
 	}
-	
+/*	
 	if($grdDetalleRS->HERR_EST_COST->GetValue()!="" || $grdDetalleRS->REQ_SERV->GetValue()!="") {
 		$grdDetalleRS->lkEvidencia->SetLink("http://satportal.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos compartidos/Operación del Servicio/Itera/" . CCGetParam("s_AnioReporte","") . $sMes . "/EntregablesPeriódicos/NivelesServicio/". $sProveedor ."/");
 		// . $grdDetalleRS->id_ppmc->GetValue() . "_A.doc");
@@ -246,10 +246,24 @@ function grdDetalleRS_BeforeShowRow(& $sender)
 		$grdDetalleRS->lkEvidencia->SetLink("http://satportal.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos compartidos/Operación del Servicio/Itera/" . CCGetParam("s_AnioReporte","") . $sMes . "/EntregablesPeriódicos/NivelesServicio/". $sProveedor ."/");		
 		//. $grdDetalleRS->id_ppmc->GetValue() . "_C.doc");
 	}
+*/
+	if(CCGetParam("s_AnioReporte",0)>=2016 ||(CCGetParam("s_AnioReporte",0)==2015 && CCGetParam("s_MesReporte") >= 10 )){
+											 
+		$grdDetalleRS->lkEvidencia->SetLink("http://satportal.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos%20compartidos/Forms/AllItems.aspx?RootFolder=%2Fagcti%2FSDMA4-Admvo%2FDocumentos%20compartidos%2FOperaci%C3%B3n%20del%20Servicio%2FItera%2F201510%2FNivelesServicio");		
+				
+	} else {
+		$grdDetalleRS->lkEvidencia->SetLink("http://satportal.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos compartidos/Operación del Servicio/Itera/" . CCGetParam("s_AnioReporte","") . $sMes . "/EntregablesPeriódicos/NivelesServicio/". $sProveedor ."/");		
+	}
+
+
 	
 	if(CCGetParam("s_AnioReporte",0)<2014){
 		$grdDetalleRS->id_ppmc->SetLink($grdDetalleRS->lkEvidencia->GetLink());
 	}
+	
+	
+	
+	
 	
 	if($grdDetalleRS->DataSource->f("medido")==1 || CCGetSession("GrupoValoracion")=="CAPC" || CCGetParam("s_AnioReporte",0)<2014){
    		$grdDetalleRS->Panel1->Visible=true;

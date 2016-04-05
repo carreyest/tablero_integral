@@ -103,7 +103,7 @@
 						</JDateTimePicker>
 					</Features>
 				</TextBox>
-				<TextBox id="17" visible="Yes" fieldSourceType="DBColumn" dataType="Date" name="FechaAceptacionPropuesta" fieldSource="FechaAceptacionPropuesta" wizardIsPassword="False" wizardUseTemplateBlock="False" features="(assigned)" wizardCaption="Fecha Aceptacion Propuesta" caption="Fecha Aceptacion Propuesta" required="True" format="dd/mm/yyyy HH:nn" unique="False" wizardSize="8" wizardMaxLength="100" PathID="mc_info_rs_ap_ECFechaAceptacionPropuesta" DBFormat="yyyy-mm-dd HH:nn:ss.S">
+				<TextBox id="17" visible="Yes" fieldSourceType="DBColumn" dataType="Date" name="FechaAceptacionPropuesta" fieldSource="FechaAceptacionPropuesta" wizardIsPassword="False" wizardUseTemplateBlock="False" features="(assigned)" wizardCaption="Fecha Aceptacion Propuesta" caption="Fecha Aceptacion Propuesta" format="dd/mm/yyyy HH:nn" unique="False" wizardSize="8" wizardMaxLength="100" PathID="mc_info_rs_ap_ECFechaAceptacionPropuesta" DBFormat="yyyy-mm-dd HH:nn:ss.S">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -538,7 +538,43 @@ order by nombre
 					<Attributes/>
 					<Features/>
 				</Hidden>
-			</Components>
+				<CheckBox id="224" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="SinHerramienta" PathID="mc_info_rs_ap_ECSinHerramienta" fieldSource="SinHerramienta" checkedValue="1" uncheckedValue="0">
+<Components/>
+<Events>
+<Event name="OnClick" type="Client">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="227"/>
+</Actions>
+</Event>
+</Events>
+<Attributes/>
+<Features/>
+</CheckBox>
+<CheckBox id="225" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="PPMMalCatalogado" PathID="mc_info_rs_ap_ECPPMMalCatalogado" fieldSource="PPMMalCatalogado" checkedValue="1" uncheckedValue="0">
+<Components/>
+<Events>
+<Event name="OnClick" type="Client">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="228"/>
+</Actions>
+</Event>
+</Events>
+<Attributes/>
+<Features/>
+</CheckBox>
+<CheckBox id="226" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="EstNoAprobada" PathID="mc_info_rs_ap_ECEstNoAprobada" fieldSource="EstNoAprobada" checkedValue="1" uncheckedValue="0">
+<Components/>
+<Events>
+<Event name="OnClick" type="Client">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="229"/>
+</Actions>
+</Event>
+</Events>
+<Attributes/>
+<Features/>
+</CheckBox>
+</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>
@@ -553,6 +589,7 @@ order by nombre
 				<Event name="BeforeBuildInsert" type="Server">
 					<Actions>
 						<Action actionName="Custom Code" actionCategory="General" id="31"/>
+
 					</Actions>
 				</Event>
 				<Event name="BeforeInsert" type="Server">

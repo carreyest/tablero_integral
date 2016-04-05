@@ -24,13 +24,13 @@
 
 function CalculaChecks(){
                 CalculaTiempoDeEspera();                        
-    if(document.getElementById("mc_info_rs_ap_ECIDsCorrectos").checked){
+    if(document.getElementById("mc_info_rs_ap_ECIDsCorrectos").checked || document.getElementById("mc_info_rs_ap_ECPPMMalCatalogado").checked){
         document.getElementById("mc_info_rs_ap_ECCumplioHE").value="0";
         document.getElementById("mc_info_rs_ap_ECCumplioRS").value="0";
     } else {
         calculaSLA();
         //document.getElementById("mc_info_rs_ap_ECCumplioRS").value="1";
-        if(document.getElementById("mc_info_rs_ap_ECformatoEvidencia").checked || document.getElementById("mc_info_rs_ap_ECURLEvidencia").checked || document.getElementById("mc_info_rs_ap_ECSinEvidencia").checked){
+        if(document.getElementById("mc_info_rs_ap_ECformatoEvidencia").checked || document.getElementById("mc_info_rs_ap_ECURLEvidencia").checked || document.getElementById("mc_info_rs_ap_ECSinEvidencia").checked || document.getElementById("mc_info_rs_ap_ECSinHerramienta").checked){
             //si no cumple con la URL de la evidencia no cumple el SLA de uso de una hta, excepto si el proveedor es Softtek
             if(document.getElementById("Id_Proveedor").innerHTML.indexOf("ofttek")== -1 ){
                 document.getElementById("mc_info_rs_ap_ECCumplioHE").value="0";
@@ -161,7 +161,7 @@ function calculaSLA(){
             dAsignacion2.setMinutes(00);
         }
 
-		//Si la hora de asignación es antes de las nueve am , se pasa al inicio de la ventana de tiempo permitida que es 9:00 am        
+                //Si la hora de asignación es antes de las nueve am , se pasa al inicio de la ventana de tiempo permitida que es 9:00 am        
         if(aAsignacionHrs[0]<9){
             dAsignacion2.setHours(9);
             dAsignacion2.setMinutes(00);
@@ -314,10 +314,10 @@ function addObservaciones(){
     sObservaciones = "Nivel de servicio: Uso de una Herramienta de Estimación. El nivel de servicio se reporta como ";
     switch(document.getElementById("mc_info_rs_ap_ECCumplioHE").value){
         case "0":
-            sObservaciones= sObservaciones + "rebasado. ";
+            sObservaciones= sObservaciones + "No Cumple. ";
                 break;
         case "1":
-            sObservaciones= sObservaciones + "cumplido. ";
+            sObservaciones= sObservaciones + "Cumple. ";
                 break;
         default:
             sObservaciones= sObservaciones + "no aplica. Ya que así fué autorizado por el MG para este caso en particular";
@@ -386,10 +386,10 @@ function addObservaciones(){
     sObservaciones = sObservaciones  + "Nivel de servicio: Requisitos del Servicio. El nivel de servicio se reporta como ";
     switch(document.getElementById("mc_info_rs_ap_ECCumplioRS").value){
         case "0":
-            sObservaciones= sObservaciones + "rebasado. ";
+            sObservaciones= sObservaciones + "No Cumple. ";
                 break;
         case "1":
-            sObservaciones= sObservaciones + "cumplido. ";
+            sObservaciones= sObservaciones + "Cumple. ";
                 break;
         default:
             sObservaciones= sObservaciones + "no aplica. Ya que así fué autorizado por el MG para este caso en particular";
@@ -418,7 +418,7 @@ function addObservaciones(){
             dAsignacion.setMinutes(00);
         }
         
-		//Si la hora de asignación es antes de las nueve am , se pasa al inicio de la ventana de tiempo permitida que es 9:00 am        
+                //Si la hora de asignación es antes de las nueve am , se pasa al inicio de la ventana de tiempo permitida que es 9:00 am        
         if(aAsignacionHrs[0]<9){
             dAsignacion.setHours(9);
             dAsignacion.setMinutes(00);
@@ -783,11 +783,59 @@ jQuery(function ($) {
     };
 //End mc_info_rs_ap_ECDSegSATOnChange Event End
 
+//mc_info_rs_ap_ECSinHerramientaOnClick Event Start @-83FB742C
+    actions["mc_info_rs_ap_ECSinHerramientaOnClick"] = function (eventType, parameters) {
+        var result = true;
+//End mc_info_rs_ap_ECSinHerramientaOnClick Event Start
+
+//Custom Code @202-2A29BDB7
+        // -------------------------
+        CalculaChecks();
+        // -------------------------
+//End Custom Code
+
+//mc_info_rs_ap_ECSinHerramientaOnClick Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_info_rs_ap_ECSinHerramientaOnClick Event End
+
+//mc_info_rs_ap_ECPPMMalCatalogadoOnClick Event Start @-C6E8F6DD
+    actions["mc_info_rs_ap_ECPPMMalCatalogadoOnClick"] = function (eventType, parameters) {
+        var result = true;
+//End mc_info_rs_ap_ECPPMMalCatalogadoOnClick Event Start
+
+//Custom Code @201-2A29BDB7
+        // -------------------------
+        CalculaChecks();
+        // -------------------------
+//End Custom Code
+
+//mc_info_rs_ap_ECPPMMalCatalogadoOnClick Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_info_rs_ap_ECPPMMalCatalogadoOnClick Event End
+
+//mc_info_rs_ap_ECEstNoAprobadaOnClick Event Start @-AC728DA1
+    actions["mc_info_rs_ap_ECEstNoAprobadaOnClick"] = function (eventType, parameters) {
+        var result = true;
+//End mc_info_rs_ap_ECEstNoAprobadaOnClick Event Start
+
+//Custom Code @203-2A29BDB7
+        // -------------------------
+        CalculaChecks();
+        // -------------------------
+//End Custom Code
+
+//mc_info_rs_ap_ECEstNoAprobadaOnClick Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_info_rs_ap_ECEstNoAprobadaOnClick Event End
+
 //DEL          // -------------------------
 //DEL          calculaSLA();
 //DEL          // -------------------------
 
-//Event Binding @1-BFAAD377
+//Event Binding @1-8351FB0B
     $('*:ccsControl(mc_info_rs_ap_EC, Button_Insert)').ccsBind(function() {
         this.bind("click", actions["mc_info_rs_ap_ECButton_InsertOnClick"]);
     });
@@ -821,6 +869,15 @@ jQuery(function ($) {
     $('*:ccsControl(mc_info_rs_ap_EC, DSegSAT)').ccsBind(function() {
         this.bind("change", actions["mc_info_rs_ap_ECDSegSATOnChange"]);
     });
+    $('*:ccsControl(mc_info_rs_ap_EC, SinHerramienta)').ccsBind(function() {
+        this.bind("click", actions["mc_info_rs_ap_ECSinHerramientaOnClick"]);
+    });
+    $('*:ccsControl(mc_info_rs_ap_EC, PPMMalCatalogado)').ccsBind(function() {
+        this.bind("click", actions["mc_info_rs_ap_ECPPMMalCatalogadoOnClick"]);
+    });
+    $('*:ccsControl(mc_info_rs_ap_EC, EstNoAprobada)').ccsBind(function() {
+        this.bind("click", actions["mc_info_rs_ap_ECEstNoAprobadaOnClick"]);
+    });
 //End Event Binding
 
 //Plugin Calls @1-56F2E460
@@ -837,7 +894,7 @@ jQuery(function ($) {
 </script>
 </head>
 <body>
-<p>{Header}&nbsp;&nbsp;</p>
+<p>1{Header}&nbsp;&nbsp;</p>
 <table cellspacing="0" cellpadding="0" width="600" border="0">
   <tr>
     <td>&nbsp;</td> 
@@ -995,6 +1052,21 @@ jQuery(function ($) {
                 <tr class="Controls">
                   <td class="th">&nbsp;</td> 
                   <td>Sin evidencia de uso de herramienta de estimación&nbsp;<label for="mc_info_rs_ap_ECSinEvidencia" style="display: none;">CheckBox1</label><input type="checkbox" id="mc_info_rs_ap_ECSinEvidencia" value="1" name="{SinEvidencia_Name}" {SinEvidencia}></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">&nbsp;</td> 
+                  <td>Sin herramienta de Estimación<label for="mc_info_rs_ap_ECSinHerramienta" style="display: none;">CheckBox1</label><input type="checkbox" id="mc_info_rs_ap_ECSinHerramienta" value="1" name="{SinHerramienta_Name}" {SinHerramienta}></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">&nbsp;</td> 
+                  <td>&nbsp;PPM mal catálogado<label for="mc_info_rs_ap_ECPPMMalCatalogado" style="display: none;">CheckBox1</label><input type="checkbox" id="mc_info_rs_ap_ECPPMMalCatalogado" value="1" name="{PPMMalCatalogado_Name}" {PPMMalCatalogado}></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">&nbsp;</td> 
+                  <td>&nbsp;Estimación no aprobada<label for="mc_info_rs_ap_ECEstNoAprobada" style="display: none;">CheckBox1</label><input type="checkbox" id="mc_info_rs_ap_ECEstNoAprobada" value="1" name="{EstNoAprobada_Name}" {EstNoAprobada}></td>
                 </tr>
  
                 <tr class="Controls">

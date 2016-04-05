@@ -2107,7 +2107,6 @@ function Page_BeforeInitialize(& $sender)
   
   	
   	$miArray = unserialize($_SESSION['SQL']);   //array();
-
 	global $existe_actualizacion_asignacion;
 	global $nueva_fecha_asignacion;
 	global $nueva_fecha_encurso;

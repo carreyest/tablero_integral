@@ -643,6 +643,12 @@ function mc_info_rs_ap_EC_OnValidate(& $sender)
     	if($mc_info_rs_ap_EC->FechaEntregaEvidencia->GetValue()==""){
     		$mc_info_rs_ap_EC->Errors->addError("Debe especificar la fecha de entrega de la evidencia de la herramienta de estimación");	
     		}
+    }
+    //valida si debe tener fecha de aceptación propuesta
+    if($mc_info_rs_ap_EC->EstNoAprobada->GetValue()==0){
+    	if($mc_info_rs_ap_EC->FechaAceptacionPropuesta->GetValue()==""){
+    		$mc_info_rs_ap_EC->Errors->addError("Debe especificar la fecha de aceptación de la propuesta de la herramienta de estimación");	
+    		}
     	}
 // -------------------------
 //End Custom Code

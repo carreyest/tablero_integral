@@ -51,7 +51,7 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-F558A1F5
+//Class_Initialize Event @3-AB891057
     function clsRecordmc_info_rs_ap_EC($RelativePath, & $Parent)
     {
 
@@ -91,7 +91,6 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
             $this->FechaEntregaPropuesta->Required = true;
             $this->FechaEntregaEvidencia = new clsControl(ccsTextBox, "FechaEntregaEvidencia", "Fecha Entrega Evidencia", ccsDate, array("dd", "/", "mm", "/", "yyyy", " ", "HH", ":", "nn"), CCGetRequestParam("FechaEntregaEvidencia", $Method, NULL), $this);
             $this->FechaAceptacionPropuesta = new clsControl(ccsTextBox, "FechaAceptacionPropuesta", "Fecha Aceptacion Propuesta", ccsDate, array("dd", "/", "mm", "/", "yyyy", " ", "HH", ":", "nn"), CCGetRequestParam("FechaAceptacionPropuesta", $Method, NULL), $this);
-            $this->FechaAceptacionPropuesta->Required = true;
             $this->Observaciones = new clsControl(ccsTextArea, "Observaciones", "Observaciones", ccsMemo, "", CCGetRequestParam("Observaciones", $Method, NULL), $this);
             $this->CumplioRS = new clsControl(ccsListBox, "CumplioRS", "CumplioRS", ccsInteger, "", CCGetRequestParam("CumplioRS", $Method, NULL), $this);
             $this->CumplioRS->DSType = dsListOfValues;
@@ -190,6 +189,15 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
             $this->DMinSAT = new clsControl(ccsTextBox, "DMinSAT", "DMinSAT", ccsInteger, "", CCGetRequestParam("DMinSAT", $Method, NULL), $this);
             $this->DSegSAT = new clsControl(ccsTextBox, "DSegSAT", "DSegSAT", ccsInteger, "", CCGetRequestParam("DSegSAT", $Method, NULL), $this);
             $this->HorasSAT = new clsControl(ccsHidden, "HorasSAT", "HorasSAT", ccsFloat, "", CCGetRequestParam("HorasSAT", $Method, NULL), $this);
+            $this->SinHerramienta = new clsControl(ccsCheckBox, "SinHerramienta", "SinHerramienta", ccsBoolean, $CCSLocales->GetFormatInfo("BooleanFormat"), CCGetRequestParam("SinHerramienta", $Method, NULL), $this);
+            $this->SinHerramienta->CheckedValue = true;
+            $this->SinHerramienta->UncheckedValue = false;
+            $this->PPMMalCatalogado = new clsControl(ccsCheckBox, "PPMMalCatalogado", "PPMMalCatalogado", ccsBoolean, $CCSLocales->GetFormatInfo("BooleanFormat"), CCGetRequestParam("PPMMalCatalogado", $Method, NULL), $this);
+            $this->PPMMalCatalogado->CheckedValue = true;
+            $this->PPMMalCatalogado->UncheckedValue = false;
+            $this->EstNoAprobada = new clsControl(ccsCheckBox, "EstNoAprobada", "EstNoAprobada", ccsBoolean, $CCSLocales->GetFormatInfo("BooleanFormat"), CCGetRequestParam("EstNoAprobada", $Method, NULL), $this);
+            $this->EstNoAprobada->CheckedValue = true;
+            $this->EstNoAprobada->UncheckedValue = false;
             if(!$this->FormSubmitted) {
                 if(!is_array($this->URLEvidencia->Value) && !strlen($this->URLEvidencia->Value) && $this->URLEvidencia->Value !== false)
                     $this->URLEvidencia->SetValue(false);
@@ -203,6 +211,12 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
                     $this->SinEvidencia->SetValue(false);
                 if(!is_array($this->SLO->Value) && !strlen($this->SLO->Value) && $this->SLO->Value !== false)
                     $this->SLO->SetValue(false);
+                if(!is_array($this->SinHerramienta->Value) && !strlen($this->SinHerramienta->Value) && $this->SinHerramienta->Value !== false)
+                    $this->SinHerramienta->SetValue(false);
+                if(!is_array($this->PPMMalCatalogado->Value) && !strlen($this->PPMMalCatalogado->Value) && $this->PPMMalCatalogado->Value !== false)
+                    $this->PPMMalCatalogado->SetValue(false);
+                if(!is_array($this->EstNoAprobada->Value) && !strlen($this->EstNoAprobada->Value) && $this->EstNoAprobada->Value !== false)
+                    $this->EstNoAprobada->SetValue(false);
             }
             if(!is_array($this->sIdPPMC->Value) && !strlen($this->sIdPPMC->Value) && $this->sIdPPMC->Value !== false)
                 $this->sIdPPMC->SetText(CCGetParam("ID_PPMC"));
@@ -221,7 +235,7 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
     }
 //End Initialize Method
 
-//Validate Method @3-98F0B221
+//Validate Method @3-F07618DB
     function Validate()
     {
         global $CCSLocales;
@@ -265,6 +279,9 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
         $Validation = ($this->DMinSAT->Validate() && $Validation);
         $Validation = ($this->DSegSAT->Validate() && $Validation);
         $Validation = ($this->HorasSAT->Validate() && $Validation);
+        $Validation = ($this->SinHerramienta->Validate() && $Validation);
+        $Validation = ($this->PPMMalCatalogado->Validate() && $Validation);
+        $Validation = ($this->EstNoAprobada->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->URLReferencia->Errors->Count() == 0);
         $Validation =  $Validation && ($this->FechaAsignacion->Errors->Count() == 0);
@@ -304,11 +321,14 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
         $Validation =  $Validation && ($this->DMinSAT->Errors->Count() == 0);
         $Validation =  $Validation && ($this->DSegSAT->Errors->Count() == 0);
         $Validation =  $Validation && ($this->HorasSAT->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->SinHerramienta->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->PPMMalCatalogado->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->EstNoAprobada->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-9DBFD4EC
+//CheckErrors Method @3-9365CD57
     function CheckErrors()
     {
         $errors = false;
@@ -361,6 +381,9 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
         $errors = ($errors || $this->DMinSAT->Errors->Count());
         $errors = ($errors || $this->DSegSAT->Errors->Count());
         $errors = ($errors || $this->HorasSAT->Errors->Count());
+        $errors = ($errors || $this->SinHerramienta->Errors->Count());
+        $errors = ($errors || $this->PPMMalCatalogado->Errors->Count());
+        $errors = ($errors || $this->EstNoAprobada->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -421,7 +444,7 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
     }
 //End Operation Method
 
-//InsertRow Method @3-5BE1A64D
+//InsertRow Method @3-B9384D99
     function InsertRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
@@ -474,13 +497,16 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
         $this->DataSource->DMinSAT->SetValue($this->DMinSAT->GetValue(true));
         $this->DataSource->DSegSAT->SetValue($this->DSegSAT->GetValue(true));
         $this->DataSource->HorasSAT->SetValue($this->HorasSAT->GetValue(true));
+        $this->DataSource->SinHerramienta->SetValue($this->SinHerramienta->GetValue(true));
+        $this->DataSource->PPMMalCatalogado->SetValue($this->PPMMalCatalogado->GetValue(true));
+        $this->DataSource->EstNoAprobada->SetValue($this->EstNoAprobada->GetValue(true));
         $this->DataSource->Insert();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterInsert", $this);
         return (!$this->CheckErrors());
     }
 //End InsertRow Method
 
-//UpdateRow Method @3-436235E8
+//UpdateRow Method @3-2B0155DC
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
@@ -533,13 +559,16 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
         $this->DataSource->DMinSAT->SetValue($this->DMinSAT->GetValue(true));
         $this->DataSource->DSegSAT->SetValue($this->DSegSAT->GetValue(true));
         $this->DataSource->HorasSAT->SetValue($this->HorasSAT->GetValue(true));
+        $this->DataSource->SinHerramienta->SetValue($this->SinHerramienta->GetValue(true));
+        $this->DataSource->PPMMalCatalogado->SetValue($this->PPMMalCatalogado->GetValue(true));
+        $this->DataSource->EstNoAprobada->SetValue($this->EstNoAprobada->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
         return (!$this->CheckErrors());
     }
 //End UpdateRow Method
 
-//Show Method @3-58CB9623
+//Show Method @3-3755800D
     function Show()
     {
         global $CCSUseAmp;
@@ -607,6 +636,9 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
                     $this->UST->SetValue($this->DataSource->UST->GetValue());
                     $this->SLO->SetValue($this->DataSource->SLO->GetValue());
                     $this->HorasSAT->SetValue($this->DataSource->HorasSAT->GetValue());
+                    $this->SinHerramienta->SetValue($this->DataSource->SinHerramienta->GetValue());
+                    $this->PPMMalCatalogado->SetValue($this->DataSource->PPMMalCatalogado->GetValue());
+                    $this->EstNoAprobada->SetValue($this->DataSource->EstNoAprobada->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -678,6 +710,9 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
             $Error = ComposeStrings($Error, $this->DMinSAT->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DSegSAT->Errors->ToString());
             $Error = ComposeStrings($Error, $this->HorasSAT->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->SinHerramienta->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->PPMMalCatalogado->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->EstNoAprobada->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -752,6 +787,9 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
         $this->DMinSAT->Show();
         $this->DSegSAT->Show();
         $this->HorasSAT->Show();
+        $this->SinHerramienta->Show();
+        $this->PPMMalCatalogado->Show();
+        $this->EstNoAprobada->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -762,7 +800,7 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
 
 class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_ECDataSource Class @3-9CE83123
 
-//DataSource Variables @3-953026FB
+//DataSource Variables @3-D9F22370
     public $Parent = "";
     public $CCSEvents = "";
     public $CCSEventResult;
@@ -827,9 +865,12 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
     public $DMinSAT;
     public $DSegSAT;
     public $HorasSAT;
+    public $SinHerramienta;
+    public $PPMMalCatalogado;
+    public $EstNoAprobada;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @3-E4E1D796
+//DataSourceClass_Initialize Event @3-E3C34307
     function clsmc_info_rs_ap_ECDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -933,6 +974,12 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
         
         $this->HorasSAT = new clsField("HorasSAT", ccsFloat, "");
         
+        $this->SinHerramienta = new clsField("SinHerramienta", ccsBoolean, $this->BooleanFormat);
+        
+        $this->PPMMalCatalogado = new clsField("PPMMalCatalogado", ccsBoolean, $this->BooleanFormat);
+        
+        $this->EstNoAprobada = new clsField("EstNoAprobada", ccsBoolean, $this->BooleanFormat);
+        
 
         $this->InsertFields["URLReferencia"] = array("Name" => "[URLReferencia]", "Value" => "", "DataType" => ccsMemo, "OmitIfEmpty" => 1);
         $this->InsertFields["FechaAsignacion"] = array("Name" => "[FechaAsignacion]", "Value" => "", "DataType" => ccsDate, "OmitIfEmpty" => 1);
@@ -967,6 +1014,9 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
         $this->InsertFields["UST"] = array("Name" => "UST", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
         $this->InsertFields["SLO"] = array("Name" => "SLO", "Value" => "", "DataType" => ccsInteger);
         $this->InsertFields["HorasSAT"] = array("Name" => "[HorasSAT]", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
+        $this->InsertFields["SinHerramienta"] = array("Name" => "[SinHerramienta]", "Value" => "", "DataType" => ccsBoolean);
+        $this->InsertFields["PPMMalCatalogado"] = array("Name" => "[PPMMalCatalogado]", "Value" => "", "DataType" => ccsBoolean);
+        $this->InsertFields["EstNoAprobada"] = array("Name" => "[EstNoAprobada]", "Value" => "", "DataType" => ccsBoolean);
         $this->UpdateFields["URLReferencia"] = array("Name" => "[URLReferencia]", "Value" => "", "DataType" => ccsMemo, "OmitIfEmpty" => 1);
         $this->UpdateFields["FechaAsignacion"] = array("Name" => "[FechaAsignacion]", "Value" => "", "DataType" => ccsDate, "OmitIfEmpty" => 1);
         $this->UpdateFields["FechaEntregaPropuesta"] = array("Name" => "[FechaEntregaPropuesta]", "Value" => "", "DataType" => ccsDate, "OmitIfEmpty" => 1);
@@ -1000,6 +1050,9 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
         $this->UpdateFields["UST"] = array("Name" => "UST", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
         $this->UpdateFields["SLO"] = array("Name" => "SLO", "Value" => "", "DataType" => ccsInteger);
         $this->UpdateFields["HorasSAT"] = array("Name" => "[HorasSAT]", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
+        $this->UpdateFields["SinHerramienta"] = array("Name" => "[SinHerramienta]", "Value" => "", "DataType" => ccsBoolean);
+        $this->UpdateFields["PPMMalCatalogado"] = array("Name" => "[PPMMalCatalogado]", "Value" => "", "DataType" => ccsBoolean);
+        $this->UpdateFields["EstNoAprobada"] = array("Name" => "[EstNoAprobada]", "Value" => "", "DataType" => ccsBoolean);
     }
 //End DataSourceClass_Initialize Event
 
@@ -1029,7 +1082,7 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
     }
 //End Open Method
 
-//SetValues Method @3-1FE83FA6
+//SetValues Method @3-562DB017
     function SetValues()
     {
         $this->Id_Proveedor->SetDBValue(trim($this->f("Id_Proveedor")));
@@ -1066,10 +1119,13 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
         $this->UST->SetDBValue(trim($this->f("UST")));
         $this->SLO->SetDBValue(trim($this->f("SLO")));
         $this->HorasSAT->SetDBValue(trim($this->f("HorasSAT")));
+        $this->SinHerramienta->SetDBValue(trim($this->f("SinHerramienta")));
+        $this->PPMMalCatalogado->SetDBValue(trim($this->f("PPMMalCatalogado")));
+        $this->EstNoAprobada->SetDBValue(trim($this->f("EstNoAprobada")));
     }
 //End SetValues Method
 
-//Insert Method @3-80C777FD
+//Insert Method @3-EFAE7AE5
     function Insert()
     {
         global $CCSLocales;
@@ -1109,6 +1165,9 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
         $this->InsertFields["UST"]["Value"] = $this->UST->GetDBValue(true);
         $this->InsertFields["SLO"]["Value"] = $this->SLO->GetDBValue(true);
         $this->InsertFields["HorasSAT"]["Value"] = $this->HorasSAT->GetDBValue(true);
+        $this->InsertFields["SinHerramienta"]["Value"] = $this->SinHerramienta->GetDBValue(true);
+        $this->InsertFields["PPMMalCatalogado"]["Value"] = $this->PPMMalCatalogado->GetDBValue(true);
+        $this->InsertFields["EstNoAprobada"]["Value"] = $this->EstNoAprobada->GetDBValue(true);
         $this->SQL = CCBuildInsert("mc_info_capc_ap", $this->InsertFields, $this);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
@@ -1118,7 +1177,7 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
     }
 //End Insert Method
 
-//Update Method @3-CC2F8F14
+//Update Method @3-434B1F6A
     function Update()
     {
         global $CCSLocales;
@@ -1159,6 +1218,9 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
         $this->UpdateFields["UST"]["Value"] = $this->UST->GetDBValue(true);
         $this->UpdateFields["SLO"]["Value"] = $this->SLO->GetDBValue(true);
         $this->UpdateFields["HorasSAT"]["Value"] = $this->HorasSAT->GetDBValue(true);
+        $this->UpdateFields["SinHerramienta"]["Value"] = $this->SinHerramienta->GetDBValue(true);
+        $this->UpdateFields["PPMMalCatalogado"]["Value"] = $this->PPMMalCatalogado->GetDBValue(true);
+        $this->UpdateFields["EstNoAprobada"]["Value"] = $this->EstNoAprobada->GetDBValue(true);
         $this->SQL = CCBuildUpdate("mc_info_capc_ap", $this->UpdateFields, $this);
         $this->SQL .= strlen($this->Where) ? " WHERE " . $this->Where : $this->Where;
         if (!strlen($this->Where) && $this->Errors->Count() == 0) 

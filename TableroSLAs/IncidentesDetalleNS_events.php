@@ -188,27 +188,6 @@ function mc_info_incidentes_BeforeShow(& $sender)
 		 }  
  		 }
 
-/*
-	global $DBcnDisenio;
-	global $miArray;
-  	$miArray = array();
-  	
-  	
-  	$DBcnDisenio->query($mc_info_incidentes->DataSource->SQL);
-  	while ($DBcnDisenio->has_next_record())
-  	{
-
-  		array_push($miArray,$DBcnDisenio->f(0));
-  		$DBcnDisenio->next_record();
-
-  
-  	}
-	array_push($miArray,$DBcnDisenio->f(0);
-	array_push($miArray,"");
-
-
-$_SESSION['SQL']= serialize($miArray); //$mc_info_incidentes->DataSource->SQL;
-*/
 
     // Write your own code here.
 // -------------------------
@@ -301,8 +280,32 @@ function Page_BeforeShow(& $sender)
 
 //Custom Code @70-2A29BDB7
 // -------------------------
+    global $mc_info_incidentes;
     global $mc_info_incidentesSearch;
-    $mc_info_incidentesSearch->Visible =(CCGetSession("GrupoValoracion")=="CAPC" || CCGetSession("GrupoValoracion")=="SAT");
+    //$mc_info_incidentesSearch->Visible =(CCGetSession("GrupoValoracion")=="CAPC" || CCGetSession("GrupoValoracion")=="SAT");
+	$mc_info_incidentesSearch->Visible =True;
+
+	global $DBcnDisenio;
+	$DBcnDisenio= new clsDBcnDisenio;
+	global $miArray;
+  	$miArray = array();
+  	
+  	
+  	$DBcnDisenio->query($mc_info_incidentes->DataSource->SQL);
+  	while ($DBcnDisenio->has_next_record())
+  	{
+
+  		array_push($miArray,$DBcnDisenio->f(0));
+  		$DBcnDisenio->next_record();
+
+  
+  	}
+	array_push($miArray,$DBcnDisenio->f(0));
+	array_push($miArray,"");
+
+
+$_SESSION['SQL']= serialize($miArray); //$mc_info_incidentes->DataSource->SQL;
+
 
 
 // -------------------------

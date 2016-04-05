@@ -24,13 +24,13 @@
 
 function CalculaChecks(){
                 CalculaTiempoDeEspera();                        
-    if(document.getElementById("mc_info_rs_ap_ECIDsCorrectos").checked){
+    if(document.getElementById("mc_info_rs_ap_ECIDsCorrectos").checked || document.getElementById("mc_info_rs_ap_ECPPMMalCatalogado").checked){
         document.getElementById("mc_info_rs_ap_ECCumplioHE").value="0";
         document.getElementById("mc_info_rs_ap_ECCumplioRS").value="0";
     } else {
         calculaSLA();
         //document.getElementById("mc_info_rs_ap_ECCumplioRS").value="1";
-        if(document.getElementById("mc_info_rs_ap_ECformatoEvidencia").checked || document.getElementById("mc_info_rs_ap_ECURLEvidencia").checked || document.getElementById("mc_info_rs_ap_ECSinEvidencia").checked){
+        if(document.getElementById("mc_info_rs_ap_ECformatoEvidencia").checked || document.getElementById("mc_info_rs_ap_ECURLEvidencia").checked || document.getElementById("mc_info_rs_ap_ECSinEvidencia").checked || document.getElementById("mc_info_rs_ap_ECSinHerramienta").checked){
             //si no cumple con la URL de la evidencia no cumple el SLA de uso de una hta, excepto si el proveedor es Softtek
             if(document.getElementById("Id_Proveedor").innerHTML.indexOf("ofttek")== -1 ){
                 document.getElementById("mc_info_rs_ap_ECCumplioHE").value="0";
@@ -158,7 +158,7 @@ function calculaSLA(){
             dAsignacion2.setHours(9);
             dAsignacion2.setMinutes(00);
         }
-		//Si la hora de asignación es antes de las nueve am , se pasa al inicio de la ventana de tiempo permitida que es 9:00 am        
+                //Si la hora de asignación es antes de las nueve am , se pasa al inicio de la ventana de tiempo permitida que es 9:00 am        
         if(aAsignacionHrs[0]<9){
             dAsignacion2.setHours(9);
             dAsignacion2.setMinutes(00);
@@ -310,10 +310,10 @@ function addObservaciones(){
     sObservaciones = "Nivel de servicio: Uso de una Herramienta de Estimación. El nivel de servicio se reporta como ";
     switch(document.getElementById("mc_info_rs_ap_ECCumplioHE").value){
         case "0":
-            sObservaciones= sObservaciones + "rebasado. ";
+            sObservaciones= sObservaciones + "No Cumple. ";
                 break;
         case "1":
-            sObservaciones= sObservaciones + "cumplido. ";
+            sObservaciones= sObservaciones + "Cumple. ";
                 break;
         default:
             sObservaciones= sObservaciones + "no aplica. Ya que así fué autorizado por el MG para este caso en particular";
@@ -382,10 +382,10 @@ function addObservaciones(){
     sObservaciones = sObservaciones  + "Nivel de servicio: Requisitos del Servicio. El nivel de servicio se reporta como ";
     switch(document.getElementById("mc_info_rs_ap_ECCumplioRS").value){
         case "0":
-            sObservaciones= sObservaciones + "rebasado. ";
+            sObservaciones= sObservaciones + "No Cumple. ";
                 break;
         case "1":
-            sObservaciones= sObservaciones + "cumplido. ";
+            sObservaciones= sObservaciones + "Cumple. ";
                 break;
         default:
             sObservaciones= sObservaciones + "no aplica. Ya que así fué autorizado por el MG para este caso en particular";
@@ -413,7 +413,7 @@ function addObservaciones(){
             dAsignacion.setHours(9);
             dAsignacion.setMinutes(00);
         }
-		//Si la hora de asignación es antes de las nueve am , se pasa al inicio de la ventana de tiempo permitida que es 9:00 am
+                //Si la hora de asignación es antes de las nueve am , se pasa al inicio de la ventana de tiempo permitida que es 9:00 am
         if(aAsignacionHrs[0]<9){
             dAsignacion.setHours(9);
             dAsignacion.setMinutes(00);
@@ -497,7 +497,7 @@ function addObservaciones(){
                 if(document.getElementById("mc_info_rs_ap_ECsTipoRequerimiento").value == 1){//Si es control de cambios y no esta cerrado marca todo como rebasado
             if(document.getElementById("mc_info_rs_ap_EChdEstado").value!="Cerrado"){
                 if(document.getElementById("mc_info_rs_ap_ECsHorasManuales").value!=0){
-                    sObservaciones= sObservaciones + "\nEl nivel de servicio se reporta como rebasado por que el control de cambio no cuenta con el estado de cierre que corresponde";
+                    sObservaciones= sObservaciones + "\nEl nivel de servicio se reporta como No Cumple por que el control de cambio no cuenta con el estado de cierre que corresponde";
                 } 
             }
         }
@@ -779,11 +779,59 @@ jQuery(function ($) {
     };
 //End mc_info_rs_ap_ECDSegSATOnChange Event End
 
+//mc_info_rs_ap_ECSinHerramientaOnClick Event Start @-83FB742C
+    actions["mc_info_rs_ap_ECSinHerramientaOnClick"] = function (eventType, parameters) {
+        var result = true;
+//End mc_info_rs_ap_ECSinHerramientaOnClick Event Start
+
+//Custom Code @227-2A29BDB7
+        // -------------------------
+        CalculaChecks();
+        // -------------------------
+//End Custom Code
+
+//mc_info_rs_ap_ECSinHerramientaOnClick Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_info_rs_ap_ECSinHerramientaOnClick Event End
+
+//mc_info_rs_ap_ECPPMMalCatalogadoOnClick Event Start @-C6E8F6DD
+    actions["mc_info_rs_ap_ECPPMMalCatalogadoOnClick"] = function (eventType, parameters) {
+        var result = true;
+//End mc_info_rs_ap_ECPPMMalCatalogadoOnClick Event Start
+
+//Custom Code @228-2A29BDB7
+        // -------------------------
+        CalculaChecks();
+        // -------------------------
+//End Custom Code
+
+//mc_info_rs_ap_ECPPMMalCatalogadoOnClick Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_info_rs_ap_ECPPMMalCatalogadoOnClick Event End
+
+//mc_info_rs_ap_ECEstNoAprobadaOnClick Event Start @-AC728DA1
+    actions["mc_info_rs_ap_ECEstNoAprobadaOnClick"] = function (eventType, parameters) {
+        var result = true;
+//End mc_info_rs_ap_ECEstNoAprobadaOnClick Event Start
+
+//Custom Code @229-2A29BDB7
+        // -------------------------
+        CalculaChecks();
+        // -------------------------
+//End Custom Code
+
+//mc_info_rs_ap_ECEstNoAprobadaOnClick Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_info_rs_ap_ECEstNoAprobadaOnClick Event End
+
 //DEL          // -------------------------
 //DEL          calculaSLA();
 //DEL          // -------------------------
 
-//Event Binding @1-BFAAD377
+//Event Binding @1-8351FB0B
     $('*:ccsControl(mc_info_rs_ap_EC, Button_Insert)').ccsBind(function() {
         this.bind("click", actions["mc_info_rs_ap_ECButton_InsertOnClick"]);
     });
@@ -816,6 +864,15 @@ jQuery(function ($) {
     });
     $('*:ccsControl(mc_info_rs_ap_EC, DSegSAT)').ccsBind(function() {
         this.bind("change", actions["mc_info_rs_ap_ECDSegSATOnChange"]);
+    });
+    $('*:ccsControl(mc_info_rs_ap_EC, SinHerramienta)').ccsBind(function() {
+        this.bind("click", actions["mc_info_rs_ap_ECSinHerramientaOnClick"]);
+    });
+    $('*:ccsControl(mc_info_rs_ap_EC, PPMMalCatalogado)').ccsBind(function() {
+        this.bind("click", actions["mc_info_rs_ap_ECPPMMalCatalogadoOnClick"]);
+    });
+    $('*:ccsControl(mc_info_rs_ap_EC, EstNoAprobada)').ccsBind(function() {
+        this.bind("click", actions["mc_info_rs_ap_ECEstNoAprobadaOnClick"]);
     });
 //End Event Binding
 
@@ -908,7 +965,7 @@ jQuery(function ($) {
  
                 <tr class="Controls">
                   <td class="th">&nbsp;SLO</td> 
-                  <td><label for="mc_info_rs_ap_ECSLO" style="display: none;">CheckBox1</label><input type="checkbox" id="mc_info_rs_ap_ECSLO" value="1" name="{SLO_Name}" {SLO}>&nbsp;</td>
+                  <td><label style="display: none;" for="mc_info_rs_ap_ECSLO">CheckBox1</label><input type="checkbox" id="mc_info_rs_ap_ECSLO" value="1" name="{SLO_Name}" {SLO}>&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
@@ -947,7 +1004,7 @@ jQuery(function ($) {
  
                 <tr class="Controls">
                   <td class="th">PPMC&nbsp;padre</td> 
-                  <td><label for="mc_info_rs_ap_ECsDatosPadre" style="display: inline;">PPMC padre&nbsp;&nbsp; </label><input type="text" id="mc_info_rs_ap_ECsDatosPadre" maxlength="7" size="7" value="{sDatosPadre}" name="{sDatosPadre_Name}">&nbsp;&nbsp;&nbsp;<label for="mc_info_rs_ap_ECTipoPadre" style="display: inline;">Tipo padre:</label> 
+                  <td><label style="display: inline;" for="mc_info_rs_ap_ECsDatosPadre">PPMC padre&nbsp;&nbsp; </label><input type="text" id="mc_info_rs_ap_ECsDatosPadre" maxlength="7" size="7" value="{sDatosPadre}" name="{sDatosPadre_Name}">&nbsp;&nbsp;&nbsp;<label style="display: inline;" for="mc_info_rs_ap_ECTipoPadre">Tipo padre:</label> 
                     <select id="mc_info_rs_ap_ECTipoPadre" name="{TipoPadre_Name}">
                       <option selected value="">Seleccionar valor</option>
                       {TipoPadre_Options}
@@ -977,22 +1034,37 @@ jQuery(function ($) {
  
                 <tr class="Controls">
                   <td class="th">&nbsp;</td> 
-                  <td><label for="mc_info_rs_ap_ECURLEvidencia" style="display: inline;">La URL de la evidencia de la herramienta de estimación es incorrecta</label><input type="checkbox" id="mc_info_rs_ap_ECURLEvidencia" value="1" name="{URLEvidencia_Name}" {URLEvidencia}></td>
+                  <td><label style="display: inline;" for="mc_info_rs_ap_ECURLEvidencia">La URL de la evidencia de la herramienta de estimación es incorrecta</label><input type="checkbox" id="mc_info_rs_ap_ECURLEvidencia" value="1" name="{URLEvidencia_Name}" {URLEvidencia}></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">&nbsp;</td> 
-                  <td><label for="mc_info_rs_ap_ECformatoEvidencia" style="display: inline;">El formato de la evidencia de la herramienta de estimación es incorrecto</label><input type="checkbox" id="mc_info_rs_ap_ECformatoEvidencia" value="1" name="{formatoEvidencia_Name}" {formatoEvidencia}>&nbsp;</td>
+                  <td><label style="display: inline;" for="mc_info_rs_ap_ECformatoEvidencia">El formato de la evidencia de la herramienta de estimación es incorrecto</label><input type="checkbox" id="mc_info_rs_ap_ECformatoEvidencia" value="1" name="{formatoEvidencia_Name}" {formatoEvidencia}>&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">&nbsp;</td> 
-                  <td><label for="mc_info_rs_ap_ECIDsCorrectos" style="display: inline;">Es&nbsp;incorrecto el Id PPMC en la evidencia de la herramienta de estimación</label><input type="checkbox" id="mc_info_rs_ap_ECIDsCorrectos" value="1" name="{IDsCorrectos_Name}" {IDsCorrectos}></td>
+                  <td><label style="display: inline;" for="mc_info_rs_ap_ECIDsCorrectos">Es&nbsp;incorrecto el Id PPMC en la evidencia de la herramienta de estimación</label><input type="checkbox" id="mc_info_rs_ap_ECIDsCorrectos" value="1" name="{IDsCorrectos_Name}" {IDsCorrectos}></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">&nbsp;</td> 
-                  <td>Sin evidencia de uso de herramienta de estimación&nbsp;<label for="mc_info_rs_ap_ECSinEvidencia" style="display: none;">CheckBox1</label><input type="checkbox" id="mc_info_rs_ap_ECSinEvidencia" value="1" name="{SinEvidencia_Name}" {SinEvidencia}></td>
+                  <td>Sin evidencia de uso de herramienta de estimación&nbsp;<label style="display: none;" for="mc_info_rs_ap_ECSinEvidencia">CheckBox1</label><input type="checkbox" id="mc_info_rs_ap_ECSinEvidencia" value="1" name="{SinEvidencia_Name}" {SinEvidencia}></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">&nbsp;</td> 
+                  <td>&nbsp;Sin Herramienta de estimación<label style="display: none;" for="mc_info_rs_ap_ECSinHerramienta">CheckBox1</label><input type="checkbox" id="mc_info_rs_ap_ECSinHerramienta" value="1" name="{SinHerramienta_Name}" {SinHerramienta}></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">&nbsp;</td> 
+                  <td>&nbsp;PPM Mal catálogado<label style="display: none;" for="mc_info_rs_ap_ECPPMMalCatalogado">CheckBox1</label><input type="checkbox" id="mc_info_rs_ap_ECPPMMalCatalogado" value="1" name="{PPMMalCatalogado_Name}" {PPMMalCatalogado}></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">&nbsp;</td> 
+                  <td>&nbsp;Estimación no aprobada<label style="display: none;" for="mc_info_rs_ap_ECEstNoAprobada">CheckBox1</label><input type="checkbox" id="mc_info_rs_ap_ECEstNoAprobada" value="1" name="{EstNoAprobada_Name}" {EstNoAprobada}></td>
                 </tr>
  
                 <tr class="Controls">
@@ -1028,7 +1100,7 @@ jQuery(function ($) {
  
                 <tr class="Controls">
                   <td class="th">Tiempo en espera de información</td> 
-                  <td>&nbsp;<label for="mc_info_rs_ap_ECDHoraSAT" style="display: none;">TextBox1</label><input type="text" id="mc_info_rs_ap_ECDHoraSAT" style="HEIGHT: 22px; WIDTH: 39px" size="1" value="{DHoraSAT}" name="{DHoraSAT_Name}"><label for="mc_info_rs_ap_ECDMinSAT" style="display: none;">TextBox2</label><input type="text" id="mc_info_rs_ap_ECDMinSAT" style="HEIGHT: 22px; WIDTH: 37px" size="1" value="{DMinSAT}" name="{DMinSAT_Name}"><label for="mc_info_rs_ap_ECDSegSAT" style="display: none;">TextBox3</label><input type="text" id="mc_info_rs_ap_ECDSegSAT" style="HEIGHT: 22px; WIDTH: 37px" size="1" value="{DSegSAT}" name="{DSegSAT_Name}"><input type="hidden" id="mc_info_rs_ap_ECHorasSAT" value="{HorasSAT}" name="{HorasSAT_Name}"></td>
+                  <td>&nbsp;<label style="display: none;" for="mc_info_rs_ap_ECDHoraSAT">TextBox1</label><input type="text" id="mc_info_rs_ap_ECDHoraSAT" style="HEIGHT: 22px; WIDTH: 39px" size="1" value="{DHoraSAT}" name="{DHoraSAT_Name}"><label style="display: none;" for="mc_info_rs_ap_ECDMinSAT">TextBox2</label><input type="text" id="mc_info_rs_ap_ECDMinSAT" style="HEIGHT: 22px; WIDTH: 37px" size="1" value="{DMinSAT}" name="{DMinSAT_Name}"><label style="display: none;" for="mc_info_rs_ap_ECDSegSAT">TextBox3</label><input type="text" id="mc_info_rs_ap_ECDSegSAT" style="HEIGHT: 22px; WIDTH: 37px" size="1" value="{DSegSAT}" name="{DSegSAT_Name}"><input type="hidden" id="mc_info_rs_ap_ECHorasSAT" value="{HorasSAT}" name="{HorasSAT_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
@@ -1058,12 +1130,12 @@ jQuery(function ($) {
  
                 <tr class="Controls">
                   <td class="th">URL de evidencia de medición</td> 
-                  <td><label for="mc_info_rs_ap_ECURLEvidenciaMed" style="display: none;">TextBox1</label><input type="text" id="mc_info_rs_ap_ECURLEvidenciaMed" size="50" value="{URLEvidenciaMed}" name="{URLEvidenciaMed_Name}"></td>
+                  <td><label style="display: none;" for="mc_info_rs_ap_ECURLEvidenciaMed">TextBox1</label><input type="text" id="mc_info_rs_ap_ECURLEvidenciaMed" size="50" value="{URLEvidenciaMed}" name="{URLEvidenciaMed_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">&nbsp;</td> 
-                  <td>&nbsp;<input type="hidden" id="mc_info_rs_ap_EChdUsrUltMod" value="{hdUsrUltMod}" name="{hdUsrUltMod_Name}"><label for="mc_info_rs_ap_EChdFechaUltMod" style="display: none;">hdFechaUltMod</label><input type="hidden" id="mc_info_rs_ap_EChdFechaUltMod" value="{hdFechaUltMod}" name="{hdFechaUltMod_Name}"></td>
+                  <td>&nbsp;<input type="hidden" id="mc_info_rs_ap_EChdUsrUltMod" value="{hdUsrUltMod}" name="{hdUsrUltMod_Name}"><label style="display: none;" for="mc_info_rs_ap_EChdFechaUltMod">hdFechaUltMod</label><input type="hidden" id="mc_info_rs_ap_EChdFechaUltMod" value="{hdFechaUltMod}" name="{hdFechaUltMod_Name}"></td>
                 </tr>
  
                 <tr class="Bottom">

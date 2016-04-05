@@ -514,7 +514,8 @@ function Page_BeforeShow(& $sender)
 //Custom Code @121-2A29BDB7
 // -------------------------
     global $grdDetalleRS1;
-    $grdDetalleRS1->Visible =(CCGetSession("GrupoValoracion")=="CAPC" || CCGetSession("GrupoValoracion")=="SAT");
+    //$grdDetalleRS1->Visible =(CCGetSession("GrupoValoracion")=="CAPC" || CCGetSession("GrupoValoracion")=="SAT");
+    $grdDetalleRS1->Visible = True;
 
 // -------------------------
 //End Custom Code

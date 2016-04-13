@@ -220,8 +220,8 @@
 			<SPParameters/>
 			<SQLParameters/>
 			<JoinTables>
-				<JoinTable id="213" tableName="mc_info_rs_CC"/>
-			</JoinTables>
+				<JoinTable id="212" tableName="mc_info_rs_CC"/>
+</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="208" fieldName="*"/>

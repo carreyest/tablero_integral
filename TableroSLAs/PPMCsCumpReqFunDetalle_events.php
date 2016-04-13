@@ -59,6 +59,7 @@ function mc_info_rs_cr_RF_BeforeShow(& $sender)
 			" UNIDADES_RESULTANTES, TIPO_UNIDAD, ESFUERZO, PROVEEDOR, ESTADO_REQ_ESTIM,   u.mes, u.anio, m.Mes NomMes  " .
 			" from mc_universo_cds u  inner join mc_c_mes m on m.IdMes = u.mes  LEFT JOIN PPMC_ESTIMACION on " . 
 			" PPMC_ESTIMACION.ID_PPMC = u.numero  where month(fecha_carga)=u.mes and YEAR(FECHA_CARGA) = u.anio " .
+			" AND PPMC_ESTIMACION.ESTADO_REQ_ESTIM like '%Aprob%' " .
 			" AND u.id = " . CCGetParam("Id");
     $db->query($sql);
     if($db->next_record()){ // si tiene registro de estimacion

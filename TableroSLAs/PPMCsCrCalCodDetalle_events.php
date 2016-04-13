@@ -131,9 +131,9 @@ function mc_info_rs_CC_Id_PPMC_BeforeShow(& $sender)
 					FROM mc_universo_cds u , PPMC_ESTIMACION e
 					WHERE u.numero = e.ID_PPMC 
 					AND u.id=". CCGetParam("Id"). "
+					AND e.ESTADO_REQ_ESTIM like '%Aprob%'
 					AND month(e.fecha_carga)=u.mes 
 					AND YEAR(e.FECHA_CARGA) = u.anio";
-
 //					AND e.ESTADO_REQ_ESTIM = 'Estimación Aprobada' 
 //					AND e.RESULTADO_ESTIMACION <> 'Rechazada'";
 					
@@ -174,8 +174,11 @@ function mc_info_rs_CC_Id_PPMC_BeforeShow(& $sender)
 	    if($db->next_record()){
 			  	$CalMet = $db->f("calMet");  
 		}
-	   
-		$cumple = ($CalMet < 90 || $CalReg < 90) ? 0 : 1;
+	    if (is_int($CalMet) && is_int($CalMet)) {	    	
+			$cumple = ($CalMet < 90 || $CalReg < 90) ? 0 : 1;
+	    } else {
+	    	$cumple = -1;
+	    }
 	  	$mc_info_rs_CC->Id_PPMC->SetValue($IdPPMC);
 	  	$mc_info_rs_CC->Id_PPMC_HID->SetValue($IdPPMC);
 	  	$mc_info_rs_CC->ID_Estimacion->SetValue($IdEstimacion);

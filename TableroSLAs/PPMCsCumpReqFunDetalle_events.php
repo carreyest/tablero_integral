@@ -221,6 +221,7 @@ function mc_info_rs_cr_RF_ds_BeforeExecuteInsert(& $sender)
 //Custom Code @52-2A29BDB7
 // -------------------------
     global $db;
+    
     $db= new clsDBcnDisenio;
     $sSQL = "SELECT Id_Proveedor, Numero, Mes, Anio FROM mc_universo_cds WHERE Id=" . CCGetParam("Id") ;
     $db->query($sSQL);

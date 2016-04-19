@@ -127,6 +127,7 @@ function mc_info_rs_CC_Id_PPMC_BeforeShow(& $sender)
   	  	
     //$sqlGetPPMC="SELECT numero, IdEstimacion FROM mc_universo_cds WHERE id=" . CCGetParam("Id");
     
+
     $sqlGetPPMC="	SELECT u.numero as numero , e.ESTIMACION_ID as IdEstimacion,  u.mes as mes , u.anio as anio
 					FROM mc_universo_cds u , PPMC_ESTIMACION e
 					WHERE u.numero = e.ID_PPMC 

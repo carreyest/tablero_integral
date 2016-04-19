@@ -305,7 +305,7 @@ jQuery(function ($) {
           <!-- END Error -->
           <tr class="Controls">
             <td class="th">&nbsp;Id PPMC</td> 
-            <td>{sId_PPMC}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Id Estimación&nbsp;{sID_Estimacion} <input type="hidden" id="mc_info_rs_cr_RFhdMes" value="{hdMes}" name="{hdMes_Name}"><input type="hidden" id="mc_info_rs_cr_RFhdAnio" value="{hdAnio}" name="{hdAnio_Name}"></td>
+            <td>{sId_PPMC}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Id Estimación&nbsp;{sID_Estimacion} <input type="hidden" id="mc_info_rs_cr_RFhdMes" value="{hdMes}" name="{hdMes_Name}"><input type="hidden" id="mc_info_rs_cr_RFhdAnio" value="{hdAnio}" name="{hdAnio_Name}">&nbsp;</td>
           </tr>
  
           <tr class="Controls">
@@ -319,11 +319,11 @@ jQuery(function ($) {
           </tr>
  
           <tr class="Controls">
-            <td colspan="2"><label style="display: inline;" for="mc_info_rs_cr_RFTienePonderacion">Los requisitos están ponderados </label><input type="checkbox" id="mc_info_rs_cr_RFTienePonderacion" value="1" name="{TienePonderacion_Name}" {TienePonderacion}><input type="hidden" id="mc_info_rs_cr_RFTotalRequisitos" value="{TotalRequisitos}" name="{TotalRequisitos_Name}"></td>
+            <td colspan="2"><label for="mc_info_rs_cr_RFTienePonderacion" style="display: inline;">Los requisitos están ponderados </label><input type="checkbox" id="mc_info_rs_cr_RFTienePonderacion" value="1" name="{TienePonderacion_Name}" {TienePonderacion}><input type="hidden" id="mc_info_rs_cr_RFTotalRequisitos" value="{TotalRequisitos}" name="{TotalRequisitos_Name}"></td>
           </tr>
  
           <tr class="Controls">
-            <td colspan="2"><label style="display: inline;" for="mc_info_rs_cr_RFTieneCalificacion">Los requisitos están calificados&nbsp;&nbsp;&nbsp;</label><input type="checkbox" id="mc_info_rs_cr_RFTieneCalificacion" value="1" name="{TieneCalificacion_Name}" {TieneCalificacion}>&nbsp;</td>
+            <td colspan="2"><label for="mc_info_rs_cr_RFTieneCalificacion" style="display: inline;">Los requisitos están calificados&nbsp;&nbsp;&nbsp;</label><input type="checkbox" id="mc_info_rs_cr_RFTieneCalificacion" value="1" name="{TieneCalificacion_Name}" {TieneCalificacion}>&nbsp;</td>
           </tr>
  
           <tr class="Controls">
@@ -340,18 +340,18 @@ jQuery(function ($) {
             <td class="th"><label for="mc_info_rs_cr_RFFechaSubida">Fecha de liberación</label></td> 
             <td><input type="text" onblur="muestraCheck()" id="mc_info_rs_cr_RFFechaSubida" maxlength="100" size="10" value="{FechaSubida}" name="{FechaSubida_Name}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
               <div id="ListaPDF">
-                <label style="display: inline;" for="mc_info_rs_cr_RFListaenPDF">Lista de requisitos en PDF </label><input type="checkbox" id="mc_info_rs_cr_RFListaenPDF" value="1" name="{ListaenPDF_Name}" {ListaenPDF}>
+                <label for="mc_info_rs_cr_RFListaenPDF" style="display: inline;">Lista de requisitos en PDF </label><input type="checkbox" id="mc_info_rs_cr_RFListaenPDF" value="1" name="{ListaenPDF_Name}" {ListaenPDF}>
               </div>
  
               <div id="ListaCAES">
-                <label style="display: inline;" for="mc_info_rs_cr_RFListaenCAES">Lista de requisitos en CAES</label><input type="checkbox" id="mc_info_rs_cr_RFListaenCAES" value="1" name="{ListaenCAES_Name}" {ListaenCAES}>
+                <label for="mc_info_rs_cr_RFListaenCAES" style="display: inline;">Lista de requisitos en CAES </label><input type="checkbox" id="mc_info_rs_cr_RFListaenCAES" value="1" name="{ListaenCAES_Name}" {ListaenCAES}>
               </div>
             </td>
           </tr>
  
           <tr class="Controls">
             <td class="th">Publicación de la CAES</td> 
-            <td><input type="text" onblur="calculaCumplimiento()" id="mc_info_rs_cr_RFPublicacionCAES" value="{PublicacionCAES}" name="{PublicacionCAES_Name}"></td>
+            <td><input type="text" onblur="calculaCumplimiento()" id="mc_info_rs_cr_RFPublicacionCAES" size="21" value="{PublicacionCAES}" name="{PublicacionCAES_Name}"></td>
           </tr>
  
           <tr class="Controls">
@@ -367,7 +367,9 @@ jQuery(function ($) {
  
           <tr class="Controls">
             <td class="th"><label for="mc_info_rs_cr_RFObservaciones">Observaciones</label></td> 
-            <td><textarea id="mc_info_rs_cr_RFObservaciones" rows="3" cols="50" name="{Observaciones_Name}">{Observaciones}</textarea></td>
+            <td>
+              <p><textarea id="mc_info_rs_cr_RFObservaciones" rows="3" cols="50" name="{Observaciones_Name}">{Observaciones}</textarea></p>
+            </td>
           </tr>
  
           <tr class="Bottom">

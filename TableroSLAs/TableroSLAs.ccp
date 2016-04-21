@@ -687,10 +687,10 @@ group by
 					<SPParameters/>
 					<SQLParameters>
 						<SQLParameter id="594" dataType="Integer" defaultValue="date('m')-2" designDefaultValue="8" old_temp_id="346" parameterSource="s_MesReporte" parameterType="URL" variable="sMes"/>
-<SQLParameter id="595" dataType="Integer" defaultValue="date('Y')" designDefaultValue="2015" old_temp_id="347" parameterSource="s_AnioReporte" parameterType="URL" variable="sAnio"/>
-<SQLParameter id="596" dataType="Integer" defaultValue="0" designDefaultValue="1" old_temp_id="348" parameterSource="s_id_proveedor" parameterType="URL" variable="sProveedor"/>
-<SQLParameter id="597" dataType="Integer" defaultValue="0" designDefaultValue="0" old_temp_id="349" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
-</SQLParameters>
+						<SQLParameter id="595" dataType="Integer" defaultValue="date('Y')" designDefaultValue="2015" old_temp_id="347" parameterSource="s_AnioReporte" parameterType="URL" variable="sAnio"/>
+						<SQLParameter id="596" dataType="Integer" defaultValue="0" designDefaultValue="1" old_temp_id="348" parameterSource="s_id_proveedor" parameterType="URL" variable="sProveedor"/>
+						<SQLParameter id="597" dataType="Integer" defaultValue="0" designDefaultValue="0" old_temp_id="349" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
+					</SQLParameters>
 					<SecurityGroups/>
 					<Attributes/>
 					<Features/>
@@ -1605,10 +1605,10 @@ order by sc.orden" pageSizeLimit="100" pageSize="True" wizardCaption="Niveles de
 					<SPParameters/>
 					<SQLParameters>
 						<SQLParameter id="590" dataType="Integer" defaultValue="date('m')-2" designDefaultValue="1" old_temp_id="346" parameterSource="s_MesReporte" parameterType="URL" variable="sMes"/>
-<SQLParameter id="591" dataType="Integer" defaultValue="date('Y')" designDefaultValue="2014" old_temp_id="347" parameterSource="s_AnioReporte" parameterType="URL" variable="sAnio"/>
-<SQLParameter id="592" dataType="Integer" defaultValue="0" designDefaultValue="3" old_temp_id="348" parameterSource="s_id_proveedor" parameterType="URL" variable="sProveedor"/>
-<SQLParameter id="593" dataType="Integer" defaultValue="0" designDefaultValue="1" old_temp_id="349" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
-</SQLParameters>
+						<SQLParameter id="591" dataType="Integer" defaultValue="date('Y')" designDefaultValue="2014" old_temp_id="347" parameterSource="s_AnioReporte" parameterType="URL" variable="sAnio"/>
+						<SQLParameter id="592" dataType="Integer" defaultValue="0" designDefaultValue="3" old_temp_id="348" parameterSource="s_id_proveedor" parameterType="URL" variable="sProveedor"/>
+						<SQLParameter id="593" dataType="Integer" defaultValue="0" designDefaultValue="1" old_temp_id="349" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
+					</SQLParameters>
 					<SecurityGroups/>
 					<Attributes/>
 					<Features/>

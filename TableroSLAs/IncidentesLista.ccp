@@ -169,8 +169,8 @@ case when new.primera_fecha_encurso IS NOT NULL THEN  new.primera_fecha_encurso 
 (CASE WHEN (SELECT COUNT(id_incidente) from  mc_calificacion_incidentes_MC where id_incidente = mcu.Numero and MesReporte=mcu.mes and Anioreporte=mcu.anio and id_proveedor=mcu.Id_Proveedor)&gt;0 THEN 'Calificado' ELSE 'No Calificado' END  ) as Estado,
 mcu.mes, mcu.anio 
 from mc_universo_cds mcu 
-	inner join  mc_info_incidentes mci on mci.id_incidente=mcu.Numero  and month(mci.FechaCarga)= mcu.mes and YEAR(mci.FechaCarga ) = mcu.anio
-	 left join mc_incidentes_reasignaciones new on new.id_incidente=mci.Id_incidente
+	inner join  mc_info_incidentes mci on mci.id_incidente=mcu.Numero  and month(mci.FechaCarga)= mcu.mes and YEAR(mci.FechaCarga ) = mcu.anio and (mci.FechaCerrado is not null)
+	left join mc_incidentes_reasignaciones new on new.id_incidente=mci.Id_incidente
 where mcu.tipo='IN'
 and (id_proveedor={s_cds_param} OR {s_cds_param}=0  )
 and (mcu.mes={s_mes_param} or 0={s_mes_param})
@@ -349,11 +349,11 @@ and ((CASE WHEN (SELECT COUNT(id_incidente) from  mc_calificacion_incidentes_MC 
 					</Actions>
 				</Event>
 				<Event name="BeforeShowRow" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="208"/>
-</Actions>
-</Event>
-</Events>
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="208"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters/>
 			<JoinTables/>
 			<JoinLinks/>

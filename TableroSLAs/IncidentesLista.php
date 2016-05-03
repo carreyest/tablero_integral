@@ -653,7 +653,7 @@ class clsmc_info_incidentesDataSource extends clsDBcnDisenio {  //mc_info_incide
     }
 //End Prepare Method
 
-//Open Method @26-1D520E4A
+//Open Method @26-1B6959F9
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -662,8 +662,8 @@ class clsmc_info_incidentesDataSource extends clsDBcnDisenio {  //mc_info_incide
         "(CASE WHEN (SELECT COUNT(id_incidente) from  mc_calificacion_incidentes_MC where id_incidente = mcu.Numero and MesReporte=mcu.mes and Anioreporte=mcu.anio and id_proveedor=mcu.Id_Proveedor)>0 THEN 'Calificado' ELSE 'No Calificado' END  ) as Estado,\n" .
         "mcu.mes, mcu.anio \n" .
         "from mc_universo_cds mcu \n" .
-        "	inner join  mc_info_incidentes mci on mci.id_incidente=mcu.Numero  and month(mci.FechaCarga)= mcu.mes and YEAR(mci.FechaCarga ) = mcu.anio\n" .
-        "	 left join mc_incidentes_reasignaciones new on new.id_incidente=mci.Id_incidente\n" .
+        "	inner join  mc_info_incidentes mci on mci.id_incidente=mcu.Numero  and month(mci.FechaCarga)= mcu.mes and YEAR(mci.FechaCarga ) = mcu.anio and (mci.FechaCerrado is not null)\n" .
+        "	left join mc_incidentes_reasignaciones new on new.id_incidente=mci.Id_incidente\n" .
         "where mcu.tipo='IN'\n" .
         "and (id_proveedor=" . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . " OR " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "=0  )\n" .
         "and (mcu.mes=" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " or 0=" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . ")\n" .
@@ -677,8 +677,8 @@ class clsmc_info_incidentesDataSource extends clsDBcnDisenio {  //mc_info_incide
         "(CASE WHEN (SELECT COUNT(id_incidente) from  mc_calificacion_incidentes_MC where id_incidente = mcu.Numero and MesReporte=mcu.mes and Anioreporte=mcu.anio and id_proveedor=mcu.Id_Proveedor)>0 THEN 'Calificado' ELSE 'No Calificado' END  ) as Estado,\n" .
         "mcu.mes, mcu.anio \n" .
         "from mc_universo_cds mcu \n" .
-        "	inner join  mc_info_incidentes mci on mci.id_incidente=mcu.Numero  and month(mci.FechaCarga)= mcu.mes and YEAR(mci.FechaCarga ) = mcu.anio\n" .
-        "	 left join mc_incidentes_reasignaciones new on new.id_incidente=mci.Id_incidente\n" .
+        "	inner join  mc_info_incidentes mci on mci.id_incidente=mcu.Numero  and month(mci.FechaCarga)= mcu.mes and YEAR(mci.FechaCarga ) = mcu.anio and (mci.FechaCerrado is not null)\n" .
+        "	left join mc_incidentes_reasignaciones new on new.id_incidente=mci.Id_incidente\n" .
         "where mcu.tipo='IN'\n" .
         "and (id_proveedor=" . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . " OR " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "=0  )\n" .
         "and (mcu.mes=" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " or 0=" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . ")\n" .

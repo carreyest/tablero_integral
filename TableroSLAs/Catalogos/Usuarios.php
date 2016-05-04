@@ -541,7 +541,7 @@ class clsRecordmc_c_usuarios1 { //mc_c_usuarios1 Class @28-F7AA8C5C
     // Class variables
 //End Variables
 
-//Class_Initialize Event @28-16E1034D
+//Class_Initialize Event @28-B4A74AD5
     function clsRecordmc_c_usuarios1($RelativePath, & $Parent)
     {
 
@@ -601,7 +601,7 @@ class clsRecordmc_c_usuarios1 { //mc_c_usuarios1 Class @28-F7AA8C5C
             $this->CheckBox2->UncheckedValue = false;
             $this->ListBox1 = new clsControl(ccsListBox, "ListBox1", "ListBox1", ccsText, "", CCGetRequestParam("ListBox1", $Method, NULL), $this);
             $this->ListBox1->DSType = dsListOfValues;
-            $this->ListBox1->Values = array(array("AMCI", "AMCI"), array("APE1", "APE1"), array("APE2", "APE2"), array("APE3", "APE3"), array("APE4", "APE4"), array("APE5", "APE5"), array("AVL", "AVL"), array("APESAyCO", "APESAyCO"));
+            $this->ListBox1->Values = array(array("AMCI", "AMCI"), array("APE1", "APE1"), array("APE2", "APE2"), array("APE3", "APE3"), array("APE4", "APE4"), array("APE5", "APE5"), array("AVL", "AVL"), array("APESAyCO", "APESAyCO"), array("ACPT", "ACPT"));
             if(!$this->FormSubmitted) {
                 if(!is_array($this->CDSDefault->Value) && !strlen($this->CDSDefault->Value) && $this->CDSDefault->Value !== false)
                     $this->CDSDefault->SetText(0);

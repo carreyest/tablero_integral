@@ -272,7 +272,7 @@
 					<Attributes/>
 					<Features/>
 				</CheckBox>
-				<ListBox id="120" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox1" wizardEmptyCaption="Seleccionar Valor" PathID="mc_c_usuarios1ListBox1" dataSource="AMCI;AMCI;APE1;APE1;APE2;APE2;APE3;APE3;APE4;APE4;APE5;APE5;AVL;AVL;APESAyCO;APESAyCO" fieldSource="Administracion_rape">
+				<ListBox id="120" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox1" wizardEmptyCaption="Seleccionar Valor" PathID="mc_c_usuarios1ListBox1" dataSource="AMCI;AMCI;APE1;APE1;APE2;APE2;APE3;APE3;APE4;APE4;APE5;APE5;AVL;AVL;APESAyCO;APESAyCO;ACPT;ACPT" fieldSource="Administracion_rape">
 					<Components/>
 					<Events/>
 					<TableParameters/>
@@ -498,12 +498,12 @@
 			<Features/>
 		</Record>
 		<Panel id="189" visible="True" generateDiv="False" name="Panel1" PathID="Panel1">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Panel>
-</Components>
+			<Components/>
+			<Events/>
+			<Attributes/>
+			<Features/>
+		</Panel>
+	</Components>
 	<CodeFiles>
 		<CodeFile id="Code" language="PHPTemplates" name="Usuarios.php" forShow="True" url="Usuarios.php" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Events" language="PHPTemplates" name="Usuarios_events.php" forShow="False" comment="//" codePage="windows-1252"/>

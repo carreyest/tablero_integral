@@ -19,7 +19,7 @@
 					<Attributes/>
 					<Features/>
 				</Button>
-				<Button id="6" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Update" operation="Update" wizardCaption="Enviar" PathID="mc_info_rs_ap_ECButton_Update">
+				<Button id="6" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Update" operation="Update" wizardCaption="Enviar" PathID="mc_info_rs_ap_ECButton_Update" returnPage="PPMCsCrbDetalle.ccp">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -49,7 +49,7 @@
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Hidden id="26" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="sServicioNegocio" PathID="mc_info_rs_ap_ECsServicioNegocio" visible="Yes" sourceType="SQL" connection="cnDisenio" dataSource="
+				<Hidden id="26" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="sServicioNegocio" PathID="mc_info_rs_ap_ECsServicioNegocio" visible="Yes" sourceType="SQL" connection="con_xls" dataSource="
 select id_servicio, nombre
 from mc_c_servicio where id_tipo_servicio=2
 order by nombre
@@ -103,7 +103,7 @@ order by nombre
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<Hidden id="51" visible="Yes" fieldSourceType="DBColumn" sourceType="Table" dataType="Text" returnValueType="Number" name="lstServContractual" wizardEmptyCaption="Seleccionar Valor" PathID="mc_info_rs_ap_EClstServContractual" connection="cnDisenio" dataSource="mc_c_ServContractual" boundColumn="Id" textColumn="Descripcion" caption="Servicio Contractual" required="True" fieldSource="id_servicio_cont">
+				<Hidden id="51" visible="Yes" fieldSourceType="DBColumn" sourceType="Table" dataType="Text" returnValueType="Number" name="lstServContractual" wizardEmptyCaption="Seleccionar Valor" PathID="mc_info_rs_ap_EClstServContractual" connection="con_xls" dataSource="mc_c_ServContractual" boundColumn="Id" textColumn="Descripcion" caption="Servicio Contractual" required="True" fieldSource="id_servicio_cont">
 					<Components/>
 					<Events>
 						<Event name="BeforeShow" type="Server">
@@ -199,7 +199,6 @@ order by nombre
 					<TableParameters/>
 					<SPParameters/>
 					<SQLParameters/>
-
 					<JoinTables/>
 					<JoinLinks/>
 					<Fields/>
@@ -272,7 +271,7 @@ order by nombre
 					<Attributes/>
 					<Features/>
 				</ListBox>
-				<ListBox id="264" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="CumplioHE" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Seleccionar Valor" PathID="mc_info_rs_ap_ECCumplioHE" fieldSource="CumplioRE" dataSource=";No Aplica;1;Cumplio;0;No Cumplio">
+				<ListBox id="264" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="CumplioHE" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Seleccionar Valor" PathID="mc_info_rs_ap_ECCumplioHE" fieldSource="CumplioRE" dataSource=";No Aplica;1;Cumple;0;No Cumple">
 					<Components/>
 					<Events/>
 					<TableParameters/>

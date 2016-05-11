@@ -51,7 +51,7 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-52C3CBA6
+//Class_Initialize Event @3-5E824A7D
     function clsRecordmc_info_rs_ap_EC($RelativePath, & $Parent)
     {
 
@@ -124,7 +124,7 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
             $this->CumplioRS->Values = array(array("", "No Aplica"), array("1", "Cumplio"), array("0", "No Cumplio"));
             $this->CumplioHE = new clsControl(ccsListBox, "CumplioHE", "CumplioHE", ccsText, "", CCGetRequestParam("CumplioHE", $Method, NULL), $this);
             $this->CumplioHE->DSType = dsListOfValues;
-            $this->CumplioHE->Values = array(array("", "No Aplica"), array("1", "Cumplio"), array("0", "No Cumplio"));
+            $this->CumplioHE->Values = array(array("", "No Aplica"), array("1", "Cumple"), array("0", "No Cumple"));
             $this->hIDPPMC = new clsControl(ccsHidden, "hIDPPMC", "hIDPPMC", ccsInteger, "", CCGetRequestParam("hIDPPMC", $Method, NULL), $this);
             $this->hIDPPMC->Required = true;
             $this->Observaciones = new clsControl(ccsTextArea, "Observaciones", "Observaciones", ccsMemo, "", CCGetRequestParam("Observaciones", $Method, NULL), $this);
@@ -275,7 +275,7 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
     }
 //End CheckErrors Method
 
-//Operation Method @3-84C1A219
+//Operation Method @3-91A2AF96
     function Operation()
     {
         if(!$this->Visible)
@@ -313,6 +313,7 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
                     $Redirect = "";
                 }
             } else if($this->PressedButton == "Button_Update") {
+                $Redirect = "PPMCsCrbDetalle.php" . "?" . CCGetQueryString("QueryString", array("ccsForm"));
                 if(!CCGetEvent($this->Button_Update->CCSEvents, "OnClick", $this->Button_Update) || !$this->UpdateRow()) {
                     $Redirect = "";
                 }

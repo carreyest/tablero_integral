@@ -25,6 +25,7 @@ from mc_info_incidentes i
 				group by id_incidente, FechaCarga  
 	) as s on s.Id_Incidente = det.Id_Incidente and MONTH(s.FechaCarga )= u.mes and YEAR(s.FechaCarga )= u.anio 
 where i.id_incidente = '{Id_incidente}'
+	and i.Estado = 'Closed'
 	order by Paquete, FechaInicioMov " pageSizeLimit="100" pageSize="True" wizardCaption="List of Mc Detalle Incidente Avl " wizardThemeApplyTo="Page" wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No records" wizardGridPagingType="Simple" wizardUseSearch="False" wizardAddNbsp="True" gridTotalRecords="False" wizardAddPanels="False" wizardType="Grid" wizardUseInterVariables="False" addTemplatePanel="False" changedCaptionGrid="False" gridExtendedHTML="False" PathID="mc_detalle_incidente_avl">
 			<Components>
 				<Sorter id="69" visible="True" name="Sorter_ClaveMovimiento" column="ClaveMovimiento" wizardCaption="Clave Movimiento" wizardSortingType="SimpleDir" wizardControl="ClaveMovimiento" wizardAddNbsp="False" PathID="mc_detalle_incidente_avlSorter_ClaveMovimiento">
@@ -178,8 +179,8 @@ where i.id_incidente = '{Id_incidente}'
 			</PKFields>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="345" dataType="Text" designDefaultValue="INC000003376478" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
-			</SQLParameters>
+				<SQLParameter id="381" dataType="Text" designDefaultValue="INC000003376478" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
+</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>

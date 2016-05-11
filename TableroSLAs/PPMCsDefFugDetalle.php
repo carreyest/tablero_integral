@@ -207,7 +207,7 @@ class clsRecordmc_info_rs_cr_deffug { //mc_info_rs_cr_deffug Class @3-B56FF5B4
     }
 //End CheckErrors Method
 
-//Operation Method @3-0F56D743
+//Operation Method @3-EE59AB09
     function Operation()
     {
         if(!$this->Visible)
@@ -235,10 +235,12 @@ class clsRecordmc_info_rs_cr_deffug { //mc_info_rs_cr_deffug Class @3-B56FF5B4
         $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
         if($this->Validate()) {
             if($this->PressedButton == "Button_Insert") {
+                $Redirect = "PPMCsDefFugDetalle.php" . "?" . CCGetQueryString("QueryString", array("ccsForm"));
                 if(!CCGetEvent($this->Button_Insert->CCSEvents, "OnClick", $this->Button_Insert) || !$this->InsertRow()) {
                     $Redirect = "";
                 }
             } else if($this->PressedButton == "Button_Update") {
+                $Redirect = "PPMCsDefFugDetalle.php" . "?" . CCGetQueryString("QueryString", array("ccsForm"));
                 if(!CCGetEvent($this->Button_Update->CCSEvents, "OnClick", $this->Button_Update) || !$this->UpdateRow()) {
                     $Redirect = "";
                 }

@@ -540,42 +540,42 @@ order by nombre
 					<Features/>
 				</Hidden>
 				<CheckBox id="198" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="SinHerramienta" PathID="mc_info_rs_ap_ECSinHerramienta" fieldSource="SinHerramienta" checkedValue="1" uncheckedValue="0">
-<Components/>
-<Events>
-<Event name="OnClick" type="Client">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="202"/>
-</Actions>
-</Event>
-</Events>
-<Attributes/>
-<Features/>
-</CheckBox>
-<CheckBox id="199" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="PPMMalCatalogado" PathID="mc_info_rs_ap_ECPPMMalCatalogado" fieldSource="PPMMalCatalogado" checkedValue="1" uncheckedValue="0">
-<Components/>
-<Events>
-<Event name="OnClick" type="Client">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="201"/>
-</Actions>
-</Event>
-</Events>
-<Attributes/>
-<Features/>
-</CheckBox>
-<CheckBox id="200" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="EstNoAprobada" PathID="mc_info_rs_ap_ECEstNoAprobada" checkedValue="1" uncheckedValue="0" fieldSource="EstNoAprobada">
-<Components/>
-<Events>
-<Event name="OnClick" type="Client">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="203"/>
-</Actions>
-</Event>
-</Events>
-<Attributes/>
-<Features/>
-</CheckBox>
-</Components>
+					<Components/>
+					<Events>
+						<Event name="OnClick" type="Client">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="202"/>
+							</Actions>
+						</Event>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</CheckBox>
+				<CheckBox id="199" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="PPMMalCatalogado" PathID="mc_info_rs_ap_ECPPMMalCatalogado" fieldSource="PPMMalCatalogado" checkedValue="1" uncheckedValue="0">
+					<Components/>
+					<Events>
+						<Event name="OnClick" type="Client">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="201"/>
+							</Actions>
+						</Event>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</CheckBox>
+				<CheckBox id="200" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="EstNoAprobada" PathID="mc_info_rs_ap_ECEstNoAprobada" checkedValue="1" uncheckedValue="0" fieldSource="EstNoAprobada">
+					<Components/>
+					<Events>
+						<Event name="OnClick" type="Client">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="203"/>
+							</Actions>
+						</Event>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</CheckBox>
+			</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>

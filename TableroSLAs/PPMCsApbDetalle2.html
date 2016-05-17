@@ -197,9 +197,8 @@ function calculaSLA(){
         var daysDiffRound = Math.round(Math.abs((dAsignacion2-dPropuesta3)/86400000));
         var HrsDiff  = Math.abs((dAsignacion2-dPropuesta3)/3600000);
         var MinsDiff = Math.abs((dAsignacion2-dPropuesta3)/60000);
-        var diasInhabiles = 0;
+		var diasInhabiles = 0;
 
-                
 
 
         //Obtención de los días inhabiles dentro del periódo
@@ -213,6 +212,8 @@ function calculaSLA(){
                     iNoHabiles = iNoHabiles+1; 
                 }
             }
+
+
         //Obtención de los días del fin de semana dentro del periódo
         var diasFinSemana = 0;
         for (var i=0; i<=daysDiffRound; i++) {
@@ -222,9 +223,8 @@ function calculaSLA(){
             dAsignacion2.setDate(dAsignacion2.getDate() + 1);
         }
 
-        //se obtiene los dias inhabiles sumando fines de semana y festivos
+         //se obtiene los dias inhabiles sumando fines de semana y festivos
         diasInhabiles = diasFinSemana+iNoHabiles;
-
      
         var iTiempoSAT = document.getElementById("mc_info_rs_ap_ECHorasSAT").value ;
         if(iTiempoSAT<=2){
@@ -431,10 +431,12 @@ function addObservaciones(){
         var HrsTotal = document.getElementById("mc_info_rs_ap_ECsDiasPropuesta").value*9;
                 var diasInhabiles = 0;
 
-
         if(dAsignacion>dPropuesta){
                 sObservaciones= sObservaciones + "es decir, de forma previa a la asignación de la estimación, lo cual es inconsistente con el proceso y se identifica como una desviación del nivel de servicio";
         }
+
+
+
         //Obtención de los días inhabiles dentro del periódo
             var sNoHabiles="{lbNoHabiles}"; 
             var aNoHabiles=sNoHabiles.split(","); 
@@ -442,10 +444,13 @@ function addObservaciones(){
             for(i=1;i<aNoHabiles.length;i++){ 
                 var sNoHabil=aNoHabiles[i].split("-");
                 var dNoHabil= new Date(sNoHabil[0].valueOf(), sNoHabil[1].valueOf()-1,sNoHabil[2].valueOf() )
-                if(dNoHabil >= dAsignacion && dNoHabil <= dPropuesta ){
+                if(dNoHabil >= dAsignacion2 && dNoHabil <= dPropuesta ){
                     iNoHabiles=iNoHabiles+1; 
                 }
             }
+            
+      
+            
         //Obtención de los días de fin de seman dentro del periódo
         var diasFinSemana = 0;
         for (var i=0; i<=daysDiffRound; i++) {
@@ -454,7 +459,7 @@ function addObservaciones(){
             }
             dAsignacion.setDate(dAsignacion.getDate() + 1);
         }
-
+	
         //se obtiene los dias inhabiles sumando fines de semana y festivos
         diasInhabiles = diasFinSemana+iNoHabiles;
 
@@ -476,7 +481,6 @@ function addObservaciones(){
         var lstTipoPPMC = document.getElementById("mc_info_rs_ap_ECsTipoRequerimiento").options;
 //        var diffNeta = (HrsDiff  -(iTiempoSAT.valueOf())-(diasHabiles*9));
                 var diffNeta2 = ( ( MinsDiff - (daysDiffRound*15*60) - (diasInhabiles*60*9)-(iTiempoSAT.valueOf()*60) ) /60);
-
                 var horaDiffNeta2 =Math.floor(diffNeta2);
                 var minDiffNeta2 =Math.floor((diffNeta2-horaDiffNeta2)*60);
                 var segDiffNeta2 =Math.floor((((diffNeta2-horaDiffNeta2)*60)-minDiffNeta2)*60);

@@ -313,7 +313,7 @@ class clsmc_detalle_incidente_avlDataSource extends clsDBcnDisenio {  //mc_detal
     }
 //End Prepare Method
 
-//Open Method @68-82698E62
+//Open Method @68-C96BFCC6
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -341,7 +341,8 @@ class clsmc_detalle_incidente_avlDataSource extends clsDBcnDisenio {  //mc_detal
         "				inner join mc_c_movimiento mov on mov.ClaveMovimiento = dett.ClaveMovimiento  and mov.issolucion=1 \n" .
         "				group by id_incidente, FechaCarga  \n" .
         "	) as s on s.Id_Incidente = det.Id_Incidente and MONTH(s.FechaCarga )= u.mes and YEAR(s.FechaCarga )= u.anio \n" .
-        "where i.id_incidente = '" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "') cnt";
+        "where i.id_incidente = '" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "'\n" .
+        "	and i.Estado = 'Closed') cnt";
         $this->SQL = "select TOP {SqlParam_endRecord} 	det.ClaveMovimiento, det.DescMovimiento , det.FechaInicioMov, det.FechaFinMov, det.Paquete    \n" .
         "	, dbo.ufDiffFechasMCSec(i.FechaEnCurso,i.FechaResuelto) TiempoSolucionRmdy\n" .
         "	, r.LiberacionAVL , r.CountPaquete, t.TotalSecPaquete , s.TotalHoras  \n" .
@@ -367,6 +368,7 @@ class clsmc_detalle_incidente_avlDataSource extends clsDBcnDisenio {  //mc_detal
         "				group by id_incidente, FechaCarga  \n" .
         "	) as s on s.Id_Incidente = det.Id_Incidente and MONTH(s.FechaCarga )= u.mes and YEAR(s.FechaCarga )= u.anio \n" .
         "where i.id_incidente = '" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "'\n" .
+        "	and i.Estado = 'Closed'\n" .
         "	 {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
@@ -768,7 +770,7 @@ class clsmc_info_incidentesDataSource extends clsDBcnDisenio {  //mc_info_incide
     }
 //End Prepare Method
 
-//Open Method @20-D298FD57
+//Open Method @20-B913A1C5
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -785,7 +787,8 @@ class clsmc_info_incidentesDataSource extends clsDBcnDisenio {  //mc_info_incide
         " 	left join mc_c_aplicacion a on rtrim(i.Aplicacion)=rtrim(a.Descripcion)\n" .
         " 	left join mc_c_mes m on m.IdMes = u.mes \n" .
         "where u.tipo ='IN'\n" .
-        "AND i.Id_incidente = '" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "' ";
+        "AND i.Id_incidente = '" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "' \n" .
+        "AND i.estado = 'Closed'";
         $this->Order = "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         $this->query(CCBuildSQL($this->SQL, $this->Where, $this->Order));

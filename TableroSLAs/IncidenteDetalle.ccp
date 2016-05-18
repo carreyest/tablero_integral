@@ -180,7 +180,7 @@ where i.id_incidente = '{Id_incidente}'
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="381" dataType="Text" designDefaultValue="INC000003376478" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
-</SQLParameters>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -224,7 +224,8 @@ where i.id_incidente = '{Id_incidente}'
  	left join mc_c_aplicacion a on rtrim(i.Aplicacion)=rtrim(a.Descripcion)
  	left join mc_c_mes m on m.IdMes = u.mes 
 where u.tipo ='IN'
-AND i.Id_incidente = '{Id_incidente}' ">
+AND i.Id_incidente = '{Id_incidente}' 
+AND i.estado = 'Closed'">
 			<Components>
 				<Label id="29" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Id_incidente" fieldSource="Id_incidente" PathID="mc_info_incidentesId_incidente">
 					<Components/>
@@ -353,8 +354,8 @@ AND i.Id_incidente = '{Id_incidente}' ">
 			</TableParameters>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="334" dataType="Text" designDefaultValue="INC000003620123" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
-			</SQLParameters>
+				<SQLParameter id="382" dataType="Text" designDefaultValue="INC000003620123" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
+</SQLParameters>
 			<JoinTables>
 			</JoinTables>
 			<JoinLinks>
@@ -599,6 +600,7 @@ AND i.Id_incidente = '{Id_incidente}' ">
 					<Events/>
 					<Attributes/>
 					<Features/>
+
 				</Hidden>
 				<Hidden id="269" fieldSourceType="DBColumn" dataType="Integer" name="shTiempoSoporte" PathID="mc_calificacion_incidenteshTiempoSoporte" fieldSource="Med_Sop_Mod">
 					<Components/>

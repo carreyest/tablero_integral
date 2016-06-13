@@ -519,6 +519,7 @@ function Page_BeforeShow(& $sender)
 			$UrlCDS->SetValue("");
 			$UrlCDS->SetLink('');
 		} else {
+		    CCSetSession("id_proveedor",CCGetParam('s_id_proveedor',0));
 			$UrlCDS->SetValue(CCDLookUp("UrlTableroCDS","mc_c_proveedor","id_proveedor = " . $db->ToSQL(CCGetParam('s_id_proveedor',0),ccsInteger),$db));
 			$UrlCDS->SetLink(CCDLookUp("UrlTableroCDS","mc_c_proveedor","id_proveedor = " . $db->ToSQL(CCGetParam('s_id_proveedor',0),ccsInteger),$db));
 		}

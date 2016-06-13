@@ -1147,7 +1147,7 @@ class clsGrid2DataSource extends clsDBcnDisenio {  //Grid2DataSource Class @52-C
     }
 //End Prepare Method
 
-//Open Method @52-D5E1880D
+//Open Method @52-ECF3510A
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -1287,7 +1287,28 @@ class clsGrid2DataSource extends clsDBcnDisenio {  //Grid2DataSource Class @52-C
         "					or (4=4 and MesReporte<=2 and anioreporte <2014 ) or 0=4)\n" .
         "	group by id_proveedor  \n" .
         ") c\n" .
-        "where acronimo ='EFIC_PRESUP') cnt";
+        "where acronimo ='EFIC_PRESUP'\n" .
+        "\n" .
+        "union all\n" .
+        "select mc_c_metrica.nombre, c.SumaApb,  c.CAL_COD,  mc_c_metrica.Meta, mc_c_metrica.pena   \n" .
+        "from mc_c_metrica \n" .
+        "CROSS JOIN \n" .
+        "(select id_proveedor,\n" .
+        "	COUNT(CAL_COD) SumaApb,\n" .
+        "	sum(cast(~CAL_COD as int)) CAL_COD\n" .
+        "	from mc_calificacion_rs_mc\n" .
+        "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
+        "	and IdUniverso  in (select id from mc_universo_cds where SLO=0 and tipo <> 'IN')\n" .
+        "	and IdUniverso not in (select id from mc_universo_cds where revision=2  )\n" .
+        "	group by id_proveedor  \n" .
+        ") c\n" .
+        "where acronimo ='CAL_COD'\n" .
+        "\n" .
+        "\n" .
+        "\n" .
+        "	) cnt";
         $this->SQL = "select mc_c_metrica.nombre, c.SumaApb,  c.HERR_EST_COST,  mc_c_metrica.Meta,  mc_c_metrica.pena   \n" .
         "from mc_c_metrica \n" .
         "CROSS JOIN \n" .
@@ -1424,7 +1445,28 @@ class clsGrid2DataSource extends clsDBcnDisenio {  //Grid2DataSource Class @52-C
         "					or (4=4 and MesReporte<=2 and anioreporte <2014 ) or 0=4)\n" .
         "	group by id_proveedor  \n" .
         ") c\n" .
-        "where acronimo ='EFIC_PRESUP'";
+        "where acronimo ='EFIC_PRESUP'\n" .
+        "\n" .
+        "union all\n" .
+        "select mc_c_metrica.nombre, c.SumaApb,  c.CAL_COD,  mc_c_metrica.Meta, mc_c_metrica.pena   \n" .
+        "from mc_c_metrica \n" .
+        "CROSS JOIN \n" .
+        "(select id_proveedor,\n" .
+        "	COUNT(CAL_COD) SumaApb,\n" .
+        "	sum(cast(~CAL_COD as int)) CAL_COD\n" .
+        "	from mc_calificacion_rs_mc\n" .
+        "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
+        "	and IdUniverso  in (select id from mc_universo_cds where SLO=0 and tipo <> 'IN')\n" .
+        "	and IdUniverso not in (select id from mc_universo_cds where revision=2  )\n" .
+        "	group by id_proveedor  \n" .
+        ") c\n" .
+        "where acronimo ='CAL_COD'\n" .
+        "\n" .
+        "\n" .
+        "\n" .
+        "	";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);

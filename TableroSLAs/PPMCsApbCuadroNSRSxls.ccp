@@ -272,10 +272,10 @@ where acronimo ='CAL_COD'
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="138" dataType="Integer" defaultValue="0" designDefaultValue="2" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
-<SQLParameter id="139" dataType="Integer" defaultValue="date('m')-2" designDefaultValue="1" parameterSource="s_MesReporte" parameterType="URL" variable="s_MesReporte"/>
-<SQLParameter id="140" dataType="Integer" defaultValue="date('Y')" designDefaultValue="2014" parameterSource="s_AnioReporte" parameterType="URL" variable="s_AnioReporte"/>
-<SQLParameter id="141" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
-</SQLParameters>
+				<SQLParameter id="139" dataType="Integer" defaultValue="date('m')-2" designDefaultValue="1" parameterSource="s_MesReporte" parameterType="URL" variable="s_MesReporte"/>
+				<SQLParameter id="140" dataType="Integer" defaultValue="date('Y')" designDefaultValue="2014" parameterSource="s_AnioReporte" parameterType="URL" variable="s_AnioReporte"/>
+				<SQLParameter id="141" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -509,7 +509,28 @@ CROSS JOIN
 					or (4=4 and MesReporte&lt;=2 and anioreporte &lt;2014 ) or 0=4)
 	group by id_proveedor  
 ) c
-where acronimo ='EFIC_PRESUP'" pageSizeLimit="100" pageSize="True" wizardCaption="Cuadro NS RSs" wizardThemeApplyTo="Page" wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No hay registros" wizardGridPagingType="Simple" wizardUseSearch="False" wizardAddNbsp="True" gridTotalRecords="False" wizardAddPanels="False" wizardType="Grid" wizardUseInterVariables="False" addTemplatePanel="False" changedCaptionGrid="True" gridExtendedHTML="False" PathID="Grid2">
+where acronimo ='EFIC_PRESUP'
+
+union all
+select mc_c_metrica.nombre, c.SumaApb,  c.CAL_COD,  mc_c_metrica.Meta, mc_c_metrica.pena   
+from mc_c_metrica 
+CROSS JOIN 
+(select id_proveedor,
+	COUNT(CAL_COD) SumaApb,
+	sum(cast(~CAL_COD as int)) CAL_COD
+	from mc_calificacion_rs_mc
+	where id_proveedor= {s_id_proveedor}
+	and mesreporte= {s_MesReporte}
+	and AnioReporte = {s_AnioReporte}
+	and IdUniverso  in (select id from mc_universo_cds where SLO=0 and tipo &lt;&gt; 'IN')
+	and IdUniverso not in (select id from mc_universo_cds where revision=2  )
+	group by id_proveedor  
+) c
+where acronimo ='CAL_COD'
+
+
+
+	" pageSizeLimit="100" pageSize="True" wizardCaption="Cuadro NS RSs" wizardThemeApplyTo="Page" wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No hay registros" wizardGridPagingType="Simple" wizardUseSearch="False" wizardAddNbsp="True" gridTotalRecords="False" wizardAddPanels="False" wizardType="Grid" wizardUseInterVariables="False" addTemplatePanel="False" changedCaptionGrid="True" gridExtendedHTML="False" PathID="Grid2">
 			<Components>
 				<Sorter id="53" visible="True" name="Sorter_nombre" column="nombre" wizardCaption="Nombre" wizardSortingType="SimpleDir" wizardControl="nombre" wizardAddNbsp="False" PathID="Grid2Sorter_nombre">
 					<Components/>
@@ -609,10 +630,10 @@ where acronimo ='EFIC_PRESUP'" pageSizeLimit="100" pageSize="True" wizardCaption
 			<PKFields/>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="87" dataType="Integer" defaultValue="0" designDefaultValue="2" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
-				<SQLParameter id="88" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="s_MesReporte" parameterType="URL" variable="s_MesReporte"/>
-				<SQLParameter id="89" dataType="Integer" defaultValue="0" designDefaultValue="2014" parameterSource="s_AnioReporte" parameterType="URL" variable="s_AnioReporte"/>
-			</SQLParameters>
+				<SQLParameter id="145" dataType="Integer" defaultValue="0" designDefaultValue="2" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
+<SQLParameter id="146" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="s_MesReporte" parameterType="URL" variable="s_MesReporte"/>
+<SQLParameter id="147" dataType="Integer" defaultValue="0" designDefaultValue="2014" parameterSource="s_AnioReporte" parameterType="URL" variable="s_AnioReporte"/>
+</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -819,9 +840,9 @@ WHERE (i.Mes is NULL or i.Mes= {s_MesReporte} )
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="142" dataType="Integer" defaultValue="date('m')-1" designDefaultValue="1" parameterSource="s_MesReporte" parameterType="URL" variable="s_MesReporte"/>
-<SQLParameter id="143" dataType="Integer" defaultValue="date('Y')" designDefaultValue="2014" parameterSource="s_AnioReporte" parameterType="URL" variable="s_AnioReporte"/>
-<SQLParameter id="144" dataType="Integer" defaultValue="0" designDefaultValue="0" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
-</SQLParameters>
+				<SQLParameter id="143" dataType="Integer" defaultValue="date('Y')" designDefaultValue="2014" parameterSource="s_AnioReporte" parameterType="URL" variable="s_AnioReporte"/>
+				<SQLParameter id="144" dataType="Integer" defaultValue="0" designDefaultValue="0" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>

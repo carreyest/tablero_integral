@@ -149,10 +149,10 @@ AND id_usuario = {MyMUserID} " pageSizeLimit="100" wizardCaption="Reportes" chan
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="83" dataType="Text" designDefaultValue="SLAS" parameterSource="'SLAs'" parameterType="Expression" variable="Expr0"/>
-<SQLParameter id="84" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="1" parameterType="Expression" variable="Expr1"/>
-<SQLParameter id="85" dataType="Integer" defaultValue="0" designDefaultValue="53" parameterSource="MyMUserID" parameterType="Session" variable="MyMUserID"/>
-<SQLParameter id="86" dataType="Text" designDefaultValue="SLAS" parameterSource="GrupoValoracion" parameterType="Session" variable="grupovaloracion"/>
-</SQLParameters>
+				<SQLParameter id="84" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="1" parameterType="Expression" variable="Expr1"/>
+				<SQLParameter id="85" dataType="Integer" defaultValue="0" designDefaultValue="53" parameterSource="MyMUserID" parameterType="Session" variable="MyMUserID"/>
+				<SQLParameter id="86" dataType="Text" designDefaultValue="SLAS" parameterSource="GrupoValoracion" parameterType="Session" variable="grupovaloracion"/>
+			</SQLParameters>
 			<ReportGroups>
 				<ReportGroup id="55" name="Grupo" field="Grupo" sortOrder="asc" sqlField="ReportesMyM.Grupo"/>
 			</ReportGroups>

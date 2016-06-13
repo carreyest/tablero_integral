@@ -355,7 +355,7 @@ AND i.estado = 'Closed'">
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="382" dataType="Text" designDefaultValue="INC000003620123" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
-</SQLParameters>
+			</SQLParameters>
 			<JoinTables>
 			</JoinTables>
 			<JoinLinks>
@@ -385,6 +385,7 @@ AND i.estado = 'Closed'">
 					<Events/>
 					<Attributes/>
 					<Features/>
+
 				</Button>
 				<Button id="146" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Update" operation="Update" wizardCaption="{res:CCS_Update}" PathID="mc_calificacion_incidenteButton_Update">
 					<Components/>
@@ -404,7 +405,7 @@ AND i.estado = 'Closed'">
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<ListBox id="150" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" name="Cumple_Inc_TiempoAsignacion" fieldSource="Cumple_Inc_TiempoAsignacion" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="{res:Cumple_Inc_TiempoAsignacion}" caption="{res:Cumple_Inc_TiempoAsignacion}" required="False" unique="False" wizardSize="10" wizardMaxLength="10" PathID="mc_calificacion_incidenteCumple_Inc_TiempoAsignacion" sourceType="ListOfValues" dataSource=";No Aplica;1;Cumplio;0;No Cumplio">
+				<ListBox id="150" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" name="Cumple_Inc_TiempoAsignacion" fieldSource="Cumple_Inc_TiempoAsignacion" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="{res:Cumple_Inc_TiempoAsignacion}" caption="{res:Cumple_Inc_TiempoAsignacion}" required="False" unique="False" wizardSize="10" wizardMaxLength="10" PathID="mc_calificacion_incidenteCumple_Inc_TiempoAsignacion" sourceType="ListOfValues" dataSource="1;Cumplio;0;No Cumplio">
 					<Components/>
 					<Events>
 						<Event name="BeforeShow" type="Server">
@@ -423,7 +424,7 @@ AND i.estado = 'Closed'">
 					<Fields/>
 					<PKFields/>
 				</ListBox>
-				<ListBox id="151" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" name="Cumple_Inc_TiempoSolucion" fieldSource="Cumple_Inc_TiempoSolucion" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="{res:Cumple_Inc_TiempoSolucion}" caption="{res:Cumple_Inc_TiempoSolucion}" required="False" unique="False" wizardSize="10" wizardMaxLength="10" PathID="mc_calificacion_incidenteCumple_Inc_TiempoSolucion" sourceType="ListOfValues" dataSource=";No Aplica;1;Cumplio;0;No Cumplio">
+				<ListBox id="151" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" name="Cumple_Inc_TiempoSolucion" fieldSource="Cumple_Inc_TiempoSolucion" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="{res:Cumple_Inc_TiempoSolucion}" caption="{res:Cumple_Inc_TiempoSolucion}" required="False" unique="False" wizardSize="10" wizardMaxLength="10" PathID="mc_calificacion_incidenteCumple_Inc_TiempoSolucion" sourceType="ListOfValues" dataSource="1;Cumplio;0;No Cumplio">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -600,7 +601,6 @@ AND i.estado = 'Closed'">
 					<Events/>
 					<Attributes/>
 					<Features/>
-
 				</Hidden>
 				<Hidden id="269" fieldSourceType="DBColumn" dataType="Integer" name="shTiempoSoporte" PathID="mc_calificacion_incidenteshTiempoSoporte" fieldSource="Med_Sop_Mod">
 					<Components/>

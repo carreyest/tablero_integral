@@ -31,30 +31,29 @@ document.getElementById("encabezado").style.display = "inline";
 }
 
 </script>
+
 <link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
 <link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
-</head>
-<body onload="{func_pantalla}">
-<p id="encabezado">{Header} </p>
-<div style="DISPLAY: none" id="opt_mostrar" align="left" border="0">
+</head><body><p id="encabezado">{Header} </p>
+<div id="opt_mostrar" style="DISPLAY: none" align="left" border="0">
   <!--<input type="image" id="ImageButton2" alt="" src="images/cierra_verde.jpg" height="25" name="ImageButton2" whidth="25">-->
-<a href="{ImageLink2}" id="ImageLink2"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt="{ImageLink2}" src="images/cierra_verde.jpg" height="25" whidth="25"><font style="FONT-SIZE: 12px; font-color: green">Ver pantalla normal</font></a> 
+<a href="{ImageLink2}" id="ImageLink2"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" alt="{ImageLink2}" src="images/cierra_verde.jpg" height="25" whidth="25"><font style="FONT-SIZE: 12px; font-color: green">Ver pantalla normal</font></a> 
 </div>
 <br>
 <div id="opt_ocultar">
   <!--<input type="image" id="img_ocultar" alt="" src="images/abre_verde.jpg" height="25" name="ImageButton1" whidth="25">-->
 </div>
-<table id="tabla_rep" border="0" width="100%">
+<table id="tabla_rep" width="100%" border="0">
   <tr>
     <td style="VERTICAL-ALIGN: top" width="240"><br>
       <div>
         <!-- BEGIN Report ReportesMyM -->
-        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
           <tr>
             <td valign="top">
-              <div style="DISPLAY: inline" id="mnu_rep" border="1">
+              <div id="mnu_rep" style="DISPLAY: inline" border="1">
                 <br>
-                <table class="Header" border="0" cellspacing="0" cellpadding="0">
+                <table class="Header" cellspacing="0" cellpadding="0" border="0">
                   <tr>
                     <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                     <td class="th"><strong>Reportes</strong></td> 
@@ -95,7 +94,7 @@ document.getElementById("encabezado").style.display = "inline";
  <!-- END Section Grupo_Header -->
                   <!-- BEGIN Section Detail -->
                   <tr class="Row">
-                    <td style="BACKGROUND-COLOR: {vbgcolor}"><input type="hidden" id="ReportesMyMDetailIdReporte_{Detail:rowNumber}" value="{IdReporte}" name="{IdReporte_Name}">
+                    <td style="style="BACKGROUND-COLOR: {vbgcolor}"><input id="ReportesMyMDetailIdReporte_{Detail:rowNumber}" type="hidden" value="{IdReporte}" name="{IdReporte_Name}" ccsserviceable="true" ccstype="Component" ccsname="IdReporte" ccsid="36" />
                       <!-- BEGIN Link Nombre --><a href="{Nombre_Src}" id="ReportesMyMDetailNombre_{Detail:rowNumber}"><font color="{vfontcolor}">{Nombre}</font></a><!-- END Link Nombre -->{ReportLabel1} {activo} </td> 
                     <td>&nbsp; </td>
                   </tr>

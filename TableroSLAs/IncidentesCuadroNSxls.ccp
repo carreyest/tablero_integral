@@ -162,10 +162,10 @@ where acronimo ='Inc_TiempoSolucion'" pageSizeLimit="100" pageSize="True" wizard
 			<PKFields/>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="75" dataType="Integer" defaultValue="0" designDefaultValue="3" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
-				<SQLParameter id="76" dataType="Integer" defaultValue="date(&quot;m&quot;)" designDefaultValue="1" parameterSource="s_MesReporte" parameterType="URL" variable="s_MesReporte"/>
-				<SQLParameter id="77" dataType="Integer" defaultValue="date(&quot;Y&quot;)" designDefaultValue="2014" parameterSource="s_AnioReporte" parameterType="URL" variable="s_AnioReporte"/>
-			</SQLParameters>
+				<SQLParameter id="82" dataType="Integer" defaultValue="0" designDefaultValue="3" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
+<SQLParameter id="83" dataType="Integer" defaultValue="date(&quot;m&quot;)" designDefaultValue="1" parameterSource="s_MesReporte" parameterType="URL" variable="s_MesReporte"/>
+<SQLParameter id="84" dataType="Integer" defaultValue="date(&quot;Y&quot;)" designDefaultValue="2014" parameterSource="s_AnioReporte" parameterType="URL" variable="s_AnioReporte"/>
+</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -235,12 +235,12 @@ where acronimo ='Inc_TiempoSolucion'" pageSizeLimit="100" pageSize="True" wizard
 				</ListBox>
 			</Components>
 			<Events>
-<Event name="BeforeShow" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="81"/>
-</Actions>
-</Event>
-</Events>
+				<Event name="BeforeShow" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="81"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters/>
 			<SPParameters/>
 			<SQLParameters/>

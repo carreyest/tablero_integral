@@ -858,7 +858,7 @@ class clsRecordmc_calificacion_incidente { //mc_calificacion_incidente Class @14
     // Class variables
 //End Variables
 
-//Class_Initialize Event @143-D5CF6298
+//Class_Initialize Event @143-6641DDD9
     function clsRecordmc_calificacion_incidente($RelativePath, & $Parent)
     {
 
@@ -892,10 +892,10 @@ class clsRecordmc_calificacion_incidente { //mc_calificacion_incidente Class @14
             $this->id_servicio = new clsControl(ccsHidden, "id_servicio", $CCSLocales->GetText("id_servicio"), ccsInteger, "", CCGetRequestParam("id_servicio", $Method, NULL), $this);
             $this->Cumple_Inc_TiempoAsignacion = new clsControl(ccsListBox, "Cumple_Inc_TiempoAsignacion", $CCSLocales->GetText("Cumple_Inc_TiempoAsignacion"), ccsInteger, "", CCGetRequestParam("Cumple_Inc_TiempoAsignacion", $Method, NULL), $this);
             $this->Cumple_Inc_TiempoAsignacion->DSType = dsListOfValues;
-            $this->Cumple_Inc_TiempoAsignacion->Values = array(array("", "No Aplica"), array("1", "Cumplio"), array("0", "No Cumplio"));
+            $this->Cumple_Inc_TiempoAsignacion->Values = array(array("1", "Cumplio"), array("0", "No Cumplio"));
             $this->Cumple_Inc_TiempoSolucion = new clsControl(ccsListBox, "Cumple_Inc_TiempoSolucion", $CCSLocales->GetText("Cumple_Inc_TiempoSolucion"), ccsInteger, "", CCGetRequestParam("Cumple_Inc_TiempoSolucion", $Method, NULL), $this);
             $this->Cumple_Inc_TiempoSolucion->DSType = dsListOfValues;
-            $this->Cumple_Inc_TiempoSolucion->Values = array(array("", "No Aplica"), array("1", "Cumplio"), array("0", "No Cumplio"));
+            $this->Cumple_Inc_TiempoSolucion->Values = array(array("1", "Cumplio"), array("0", "No Cumplio"));
             $this->Cumple_DISP_SOPORTE = new clsControl(ccsHidden, "Cumple_DISP_SOPORTE", $CCSLocales->GetText("Cumple_DISP_SOPORTE"), ccsInteger, "", CCGetRequestParam("Cumple_DISP_SOPORTE", $Method, NULL), $this);
             $this->Obs_Manuales = new clsControl(ccsTextArea, "Obs_Manuales", $CCSLocales->GetText("Obs_Manuales"), ccsText, "", CCGetRequestParam("Obs_Manuales", $Method, NULL), $this);
             $this->Aplicacion = new clsControl(ccsLabel, "Aplicacion", "Aplicacion", ccsText, "", CCGetRequestParam("Aplicacion", $Method, NULL), $this);

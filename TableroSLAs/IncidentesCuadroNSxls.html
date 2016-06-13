@@ -17,7 +17,11 @@
 {page:scriptIncludes}
 <script type="text/javascript">
 //End Include User Scripts
-
+$(document).ready(function()
+	{
+$('#grdIncCuadroNS .Grid').find('.Row').eq(4).after('<tr class="Row"><td colspan="10"><hr style="border-width: 6px;border-style: inset"></td></tr>');
+$('#grdIncCuadroNS1 .Grid').find('.Row').eq(4).after('<tr class="Row"><td colspan="10"><hr style="border-width: 6px;border-style: inset"></td></tr>');
+});
 //End CCS script
 </script>
 <link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
@@ -31,10 +35,10 @@
     <td>&nbsp; 
       <!-- BEGIN Record mc_calificacion_incidente -->
       <form id="mc_calificacion_incidente" method="post" name="{HTMLFormName}" action="{Action}">
-        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
           <tr>
             <td valign="top">
-              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Buscar</strong></td> 
@@ -72,7 +76,7 @@
  
                 <tr class="Bottom">
                   <td style="TEXT-ALIGN: right" colspan="6">
-                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="mc_calificacion_incidenteButton_DoSearch" class="Button" value="Buscar" alt="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="mc_calificacion_incidenteButton_DoSearch" class="Button" alt="Buscar" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                 </tr>
               </table>
             </td>
@@ -88,10 +92,10 @@
   <tr>
     <td>
       <!-- BEGIN Grid grdIncCuadroNS -->
-      <table id="grdIncCuadroNS" class="MainTable" border="0" cellspacing="0" cellpadding="0">
+      <table id="grdIncCuadroNS" class="MainTable" cellspacing="0" cellpadding="0" border="0">
         <tr>
           <td valign="top">
-            <table class="Header" border="0" cellspacing="0" cellpadding="0">
+            <table class="Header" cellspacing="0" cellpadding="0" border="0">
               <tr>
                 <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                 <td class="th"><strong>Cuadro NS incidentes&nbsp; del CAPC</strong></td> 
@@ -187,10 +191,10 @@
   <tr>
     <td>
       <!-- BEGIN Grid grdIncCuadroNS1 -->
-      <table id="grdIncCuadroNS1" class="MainTable" border="0" cellspacing="0" cellpadding="0">
+      <table id="grdIncCuadroNS1" class="MainTable" cellspacing="0" cellpadding="0" border="0">
         <tr>
           <td valign="top">
-            <table class="Header" border="0" cellspacing="0" cellpadding="0">
+            <table class="Header" cellspacing="0" cellpadding="0" border="0">
               <tr>
                 <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                 <td class="th"><strong>Cuadro NS incidentes de Modelo de Gobierno</strong></td> 

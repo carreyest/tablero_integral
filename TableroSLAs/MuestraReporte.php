@@ -307,7 +307,7 @@ class clsReportReportesMyM { //ReportesMyM Class @30-846FA4A6
     public $Grupo_HeaderControls, $Grupo_FooterControls;
 //End ReportesMyM Variables
 
-//Class_Initialize Event @30-A9C6E282
+//Class_Initialize Event @30-27B803DF
     function clsReportReportesMyM($RelativePath = "", & $Parent)
     {
         global $FileName;
@@ -343,7 +343,7 @@ class clsReportReportesMyM { //ReportesMyM Class @30-846FA4A6
             $this->PageSize = $PageSize;
         } else {
             if (!is_numeric($PageSize) || $PageSize < 0)
-                $this->PageSize = 50;
+                $this->PageSize = 100;
              else if ($PageSize == "0")
                 $this->PageSize = 100;
              else 

@@ -986,7 +986,7 @@ class clsgrdSLAsCAPCDataSource extends clsDBcnDisenio {  //grdSLAsCAPCDataSource
 
 class clsGridgrdTableroSLAsMG { //grdTableroSLAsMG class @498-E973D7A2
 
-//Variables @498-EA3446B9
+//Variables @498-7BDF187F
 
     // Public variables
     public $ComponentType = "Grid";
@@ -1025,9 +1025,10 @@ class clsGridgrdTableroSLAsMG { //grdTableroSLAsMG class @498-E973D7A2
     public $Sorter_REQ_SERV;
     public $Sorter_HERR_EST_COST;
     public $Sorter_descripcion;
+    public $Sorter_TotCAL_COD;
 //End Variables
 
-//Class_Initialize Event @498-F4A36683
+//Class_Initialize Event @498-833DAF8C
     function clsGridgrdTableroSLAsMG($RelativePath, & $Parent)
     {
         global $FileName;
@@ -1102,6 +1103,11 @@ class clsGridgrdTableroSLAsMG { //grdTableroSLAsMG class @498-E973D7A2
         $this->Img_HERR_EST_COST_MG = new clsControl(ccsImage, "Img_HERR_EST_COST_MG", "Img_HERR_EST_COST_MG", ccsText, "", CCGetRequestParam("Img_HERR_EST_COST_MG", ccsGet, NULL), $this);
         $this->descripcion = new clsControl(ccsLabel, "descripcion", "descripcion", ccsText, "", CCGetRequestParam("descripcion", ccsGet, NULL), $this);
         $this->CumplenEFIC_PRESUP_MG = new clsControl(ccsLabel, "CumplenEFIC_PRESUP_MG", "CumplenEFIC_PRESUP_MG", ccsInteger, "", CCGetRequestParam("CumplenEFIC_PRESUP_MG", ccsGet, NULL), $this);
+        $this->Img_CAL_COD_MG = new clsControl(ccsImage, "Img_CAL_COD_MG", "Img_CAL_COD_MG", ccsText, "", CCGetRequestParam("Img_CAL_COD_MG", ccsGet, NULL), $this);
+        $this->CumplenCAL_COD_MG = new clsControl(ccsLabel, "CumplenCAL_COD_MG", "CumplenCAL_COD_MG", ccsInteger, "", CCGetRequestParam("CumplenCAL_COD_MG", ccsGet, NULL), $this);
+        $this->CAL_COD_MG = new clsControl(ccsLabel, "CAL_COD_MG", "CAL_COD_MG", ccsInteger, "", CCGetRequestParam("CAL_COD_MG", ccsGet, NULL), $this);
+        $this->CAL_COD_MG->HTML = true;
+        $this->TotCAL_COD_MG = new clsControl(ccsLabel, "TotCAL_COD_MG", "TotCAL_COD_MG", ccsInteger, "", CCGetRequestParam("TotCAL_COD_MG", ccsGet, NULL), $this);
         $this->Navigator = new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpSimple, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
         $this->Sorter_EFIC_PRESUP = new clsSorter($this->ComponentName, "Sorter_EFIC_PRESUP", $FileName, $this);
@@ -1114,6 +1120,7 @@ class clsGridgrdTableroSLAsMG { //grdTableroSLAsMG class @498-E973D7A2
         $this->Sorter_REQ_SERV = new clsSorter($this->ComponentName, "Sorter_REQ_SERV", $FileName, $this);
         $this->Sorter_HERR_EST_COST = new clsSorter($this->ComponentName, "Sorter_HERR_EST_COST", $FileName, $this);
         $this->Sorter_descripcion = new clsSorter($this->ComponentName, "Sorter_descripcion", $FileName, $this);
+        $this->Sorter_TotCAL_COD = new clsSorter($this->ComponentName, "Sorter_TotCAL_COD", $FileName, $this);
     }
 //End Class_Initialize Event
 
@@ -1128,7 +1135,7 @@ class clsGridgrdTableroSLAsMG { //grdTableroSLAsMG class @498-E973D7A2
     }
 //End Initialize Method
 
-//Show Method @498-A0F84039
+//Show Method @498-3F1BA46D
     function Show()
     {
         $Tpl = CCGetTemplate($this);
@@ -1197,6 +1204,10 @@ class clsGridgrdTableroSLAsMG { //grdTableroSLAsMG class @498-E973D7A2
             $this->ControlsVisible["Img_HERR_EST_COST_MG"] = $this->Img_HERR_EST_COST_MG->Visible;
             $this->ControlsVisible["descripcion"] = $this->descripcion->Visible;
             $this->ControlsVisible["CumplenEFIC_PRESUP_MG"] = $this->CumplenEFIC_PRESUP_MG->Visible;
+            $this->ControlsVisible["Img_CAL_COD_MG"] = $this->Img_CAL_COD_MG->Visible;
+            $this->ControlsVisible["CumplenCAL_COD_MG"] = $this->CumplenCAL_COD_MG->Visible;
+            $this->ControlsVisible["CAL_COD_MG"] = $this->CAL_COD_MG->Visible;
+            $this->ControlsVisible["TotCAL_COD_MG"] = $this->TotCAL_COD_MG->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -1232,6 +1243,9 @@ class clsGridgrdTableroSLAsMG { //grdTableroSLAsMG class @498-E973D7A2
                 $this->CumplenHERR_EST_COST_MG->SetValue($this->DataSource->CumplenHERR_EST_COST_MG->GetValue());
                 $this->descripcion->SetValue($this->DataSource->descripcion->GetValue());
                 $this->CumplenEFIC_PRESUP_MG->SetValue($this->DataSource->CumplenEFIC_PRESUP_MG->GetValue());
+                $this->CumplenCAL_COD_MG->SetValue($this->DataSource->CumplenCAL_COD_MG->GetValue());
+                $this->CAL_COD_MG->SetValue($this->DataSource->CAL_COD_MG->GetValue());
+                $this->TotCAL_COD_MG->SetValue($this->DataSource->TotCAL_COD_MG->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -1272,6 +1286,10 @@ class clsGridgrdTableroSLAsMG { //grdTableroSLAsMG class @498-E973D7A2
                 $this->Img_HERR_EST_COST_MG->Show();
                 $this->descripcion->Show();
                 $this->CumplenEFIC_PRESUP_MG->Show();
+                $this->Img_CAL_COD_MG->Show();
+                $this->CumplenCAL_COD_MG->Show();
+                $this->CAL_COD_MG->Show();
+                $this->TotCAL_COD_MG->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -1308,13 +1326,14 @@ class clsGridgrdTableroSLAsMG { //grdTableroSLAsMG class @498-E973D7A2
         $this->Sorter_REQ_SERV->Show();
         $this->Sorter_HERR_EST_COST->Show();
         $this->Sorter_descripcion->Show();
+        $this->Sorter_TotCAL_COD->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
     }
 //End Show Method
 
-//GetErrors Method @498-01882FAD
+//GetErrors Method @498-0195C710
     function GetErrors()
     {
         $errors = "";
@@ -1355,6 +1374,10 @@ class clsGridgrdTableroSLAsMG { //grdTableroSLAsMG class @498-E973D7A2
         $errors = ComposeStrings($errors, $this->Img_HERR_EST_COST_MG->Errors->ToString());
         $errors = ComposeStrings($errors, $this->descripcion->Errors->ToString());
         $errors = ComposeStrings($errors, $this->CumplenEFIC_PRESUP_MG->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->Img_CAL_COD_MG->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->CumplenCAL_COD_MG->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->CAL_COD_MG->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->TotCAL_COD_MG->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -1365,7 +1388,7 @@ class clsGridgrdTableroSLAsMG { //grdTableroSLAsMG class @498-E973D7A2
 
 class clsgrdTableroSLAsMGDataSource extends clsDBcnDisenio {  //grdTableroSLAsMGDataSource Class @498-00A80E89
 
-//DataSource Variables @498-6F357494
+//DataSource Variables @498-9A862CFF
     public $Parent = "";
     public $CCSEvents = "";
     public $CCSEventResult;
@@ -1405,9 +1428,12 @@ class clsgrdTableroSLAsMGDataSource extends clsDBcnDisenio {  //grdTableroSLAsMG
     public $CumplenHERR_EST_COST_MG;
     public $descripcion;
     public $CumplenEFIC_PRESUP_MG;
+    public $CumplenCAL_COD_MG;
+    public $CAL_COD_MG;
+    public $TotCAL_COD_MG;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @498-4779E3DB
+//DataSourceClass_Initialize Event @498-516AEE1D
     function clsgrdTableroSLAsMGDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1469,11 +1495,17 @@ class clsgrdTableroSLAsMGDataSource extends clsDBcnDisenio {  //grdTableroSLAsMG
         
         $this->CumplenEFIC_PRESUP_MG = new clsField("CumplenEFIC_PRESUP_MG", ccsInteger, "");
         
+        $this->CumplenCAL_COD_MG = new clsField("CumplenCAL_COD_MG", ccsInteger, "");
+        
+        $this->CAL_COD_MG = new clsField("CAL_COD_MG", ccsInteger, "");
+        
+        $this->TotCAL_COD_MG = new clsField("TotCAL_COD_MG", ccsInteger, "");
+        
 
     }
 //End DataSourceClass_Initialize Event
 
-//SetOrder Method @498-CB65CB1D
+//SetOrder Method @498-750FAB2D
     function SetOrder($SorterName, $SorterDirection)
     {
         $this->Order = "sc.orden";
@@ -1487,7 +1519,8 @@ class clsgrdTableroSLAsMGDataSource extends clsDBcnDisenio {  //grdTableroSLAsMG
             "Sorter_CUMPL_REQ_FUNC" => array("CUMPL_REQ_FUNC", ""), 
             "Sorter_REQ_SERV" => array("REQ_SERV", ""), 
             "Sorter_HERR_EST_COST" => array("HERR_EST_COST", ""), 
-            "Sorter_descripcion" => array("descripcion", "")));
+            "Sorter_descripcion" => array("descripcion", ""), 
+            "Sorter_TotCAL_COD" => array("TotCAL_COD", "")));
     }
 //End SetOrder Method
 
@@ -1504,7 +1537,7 @@ class clsgrdTableroSLAsMGDataSource extends clsDBcnDisenio {  //grdTableroSLAsMG
     }
 //End Prepare Method
 
-//Open Method @498-CAF23138
+//Open Method @498-98D5D2A9
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -1523,6 +1556,7 @@ class clsgrdTableroSLAsMGDataSource extends clsDBcnDisenio {  //grdTableroSLAsMG
         "	 (Select Meta from mc_c_metrica where acronimo='RETR_ENTREGABLE') as Meta_RETR_ENTREGABLE,\n" .
         "	 COUNT(COMPL_RUTA_CRITICA) TotCOMPL_RUTA_CRITICA, SUM(cast(COMPL_RUTA_CRITICA as int)) CumplenCOMPL_RUTA_CRITICA, SUM(cast(COMPL_RUTA_CRITICA as float))/COUNT(COMPL_RUTA_CRITICA)*100 COMPL_RUTA_CRITICA,\n" .
         "	 (Select Meta from mc_c_metrica where acronimo='COMPL_RUTA_CRITICA') as Meta_COMPL_RUTA_CRITICA,	 \n" .
+        "	 COUNT(CAL_COD) TotCAL_COD, SUM(cast(CAL_COD as int)) CumplenCAL_COD, SUM(cast(CAL_COD as float))/COUNT(CAL_COD)*100 CAL_COD,\n" .
         "	 (Select Meta from mc_c_metrica where acronimo='EST_PROY') as Meta_EST_PROY,\n" .
         "	 COUNT(DEF_FUG_AMB_PROD) TotDEF_FUG_AMB_PROD, SUM(cast(DEF_FUG_AMB_PROD as int)) CumplenDEF_FUG_AMB_PROD, SUM(cast(DEF_FUG_AMB_PROD as float))/COUNT(DEF_FUG_AMB_PROD)*100  DEF_FUG_AMB_PROD,\n" .
         "	 (Select Meta from mc_c_metrica where acronimo='DEF_FUG_AMB_PROD') as Meta_DEF_FUG_AMB_PROD,\n" .
@@ -1573,6 +1607,7 @@ class clsgrdTableroSLAsMGDataSource extends clsDBcnDisenio {  //grdTableroSLAsMG
         "	 (Select Meta from mc_c_metrica where acronimo='RETR_ENTREGABLE') as Meta_RETR_ENTREGABLE,\n" .
         "	 COUNT(COMPL_RUTA_CRITICA) TotCOMPL_RUTA_CRITICA, SUM(cast(COMPL_RUTA_CRITICA as int)) CumplenCOMPL_RUTA_CRITICA, SUM(cast(COMPL_RUTA_CRITICA as float))/COUNT(COMPL_RUTA_CRITICA)*100 COMPL_RUTA_CRITICA,\n" .
         "	 (Select Meta from mc_c_metrica where acronimo='COMPL_RUTA_CRITICA') as Meta_COMPL_RUTA_CRITICA,	 \n" .
+        "	 COUNT(CAL_COD) TotCAL_COD, SUM(cast(CAL_COD as int)) CumplenCAL_COD, SUM(cast(CAL_COD as float))/COUNT(CAL_COD)*100 CAL_COD,\n" .
         "	 (Select Meta from mc_c_metrica where acronimo='EST_PROY') as Meta_EST_PROY,\n" .
         "	 COUNT(DEF_FUG_AMB_PROD) TotDEF_FUG_AMB_PROD, SUM(cast(DEF_FUG_AMB_PROD as int)) CumplenDEF_FUG_AMB_PROD, SUM(cast(DEF_FUG_AMB_PROD as float))/COUNT(DEF_FUG_AMB_PROD)*100  DEF_FUG_AMB_PROD,\n" .
         "	 (Select Meta from mc_c_metrica where acronimo='DEF_FUG_AMB_PROD') as Meta_DEF_FUG_AMB_PROD,\n" .
@@ -1619,7 +1654,7 @@ class clsgrdTableroSLAsMGDataSource extends clsDBcnDisenio {  //grdTableroSLAsMG
     }
 //End Open Method
 
-//SetValues Method @498-BD11CA11
+//SetValues Method @498-32B3F406
     function SetValues()
     {
         $this->EFIC_PRESUP_MG->SetDBValue(trim($this->f("EFIC_PRESUP")));
@@ -1650,6 +1685,9 @@ class clsgrdTableroSLAsMGDataSource extends clsDBcnDisenio {  //grdTableroSLAsMG
         $this->CumplenHERR_EST_COST_MG->SetDBValue(trim($this->f("CumplenHERR_EST_COST")));
         $this->descripcion->SetDBValue($this->f("descripcion"));
         $this->CumplenEFIC_PRESUP_MG->SetDBValue(trim($this->f("Cumple_EF")));
+        $this->CumplenCAL_COD_MG->SetDBValue(trim($this->f("CumplenCAL_COD")));
+        $this->CAL_COD_MG->SetDBValue(trim($this->f("CAL_COD")));
+        $this->TotCAL_COD_MG->SetDBValue(trim($this->f("TotCAL_COD")));
     }
 //End SetValues Method
 

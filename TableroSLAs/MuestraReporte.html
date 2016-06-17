@@ -31,10 +31,12 @@ document.getElementById("encabezado").style.display = "inline";
 }
 
 </script>
-
 <link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
-<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
-</head><body><p id="encabezado">{Header} </p>
+<link rel="stylesheet" type="text/css" href="Styles/Austere4/Style_Components_doctype.css">
+<link rel="stylesheet" type="text/css" href="Styles/Austere4/jquery-ui.css">
+</head>
+<body>
+<p id="encabezado">{Header} </p>
 <div id="opt_mostrar" style="DISPLAY: none" align="left" border="0">
   <!--<input type="image" id="ImageButton2" alt="" src="images/cierra_verde.jpg" height="25" name="ImageButton2" whidth="25">-->
 <a href="{ImageLink2}" id="ImageLink2"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" alt="{ImageLink2}" src="images/cierra_verde.jpg" height="25" whidth="25"><font style="FONT-SIZE: 12px; font-color: green">Ver pantalla normal</font></a> 
@@ -53,25 +55,27 @@ document.getElementById("encabezado").style.display = "inline";
             <td valign="top">
               <div id="mnu_rep" style="DISPLAY: inline" border="1">
                 <br>
-                <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <table class="HeaderAustere4" cellspacing="0" cellpadding="0" border="0">
                   <tr>
-                    <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
-                    <td class="th"><strong>Reportes</strong></td> 
-                    <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                    <td class="HeaderLeftAustere4"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td> 
+                    <td class="thAustere4"><strong>Reportes</strong></td> 
+                    <td class="HeaderRightAustere4"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td> 
                   </tr>
+ 
                 </table>
  
-                <table class="Grid" cellspacing="0" cellpadding="0">
+                <table class="GridAustere4" cellspacing="0" cellpadding="0">
                   <!-- BEGIN Section Report_Header --><!-- END Section Report_Header -->
                   <!-- BEGIN Section Page_Header -->
-                  <tr class="Caption">
+                  <tr class="CaptionAustere4">
                     <th scope="col">Grupo&nbsp;</th>
  
                     <th scope="col">Nombre</th>
+ 
                   </tr>
  <!-- END Section Page_Header -->
                   <!-- BEGIN Section Page_Footer -->
-                  <tr class="Footer">
+                  <tr class="FooterAustere4">
                     <td colspan="2">
                       <!-- BEGIN Navigator Navigator --><span class="Navigator">
                       <!-- BEGIN First_On --><a href="{First_URL}">Inicio</a> <!-- END First_On -->
@@ -84,41 +88,44 @@ document.getElementById("encabezado").style.display = "inline";
                       <!-- BEGIN Next_On --><a href="{Next_URL}">Siguiente</a> <!-- END Next_On -->
                       <!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
                       <!-- BEGIN Last_On --><a href="{Last_URL}">Final</a> <!-- END Last_On -->
-                      <!-- BEGIN Last_Off -->Final <!-- END Last_Off --></span><!-- END Navigator Navigator --></td>
+                      <!-- BEGIN Last_Off -->Final <!-- END Last_Off --></span><!-- END Navigator Navigator --></td> 
                   </tr>
  <!-- END Section Page_Footer -->
                   <!-- BEGIN Section Grupo_Header -->
-                  <tr class="GroupCaption">
+                  <tr class="GroupCaptionAustere4">
                     <th colspan="2" scope="col">{Grupo} </th>
+ 
                   </tr>
  <!-- END Section Grupo_Header -->
                   <!-- BEGIN Section Detail -->
-                  <tr class="Row">
-                    <td style="style="BACKGROUND-COLOR: {vbgcolor}"><input id="ReportesMyMDetailIdReporte_{Detail:rowNumber}" type="hidden" value="{IdReporte}" name="{IdReporte_Name}" ccsserviceable="true" ccstype="Component" ccsname="IdReporte" ccsid="36" />
+                  <tr class="RowAustere4">
+                    <td style="style=&quot;BACKGROUND-COLOR: {vbgcolor}"><input id="ReportesMyMDetailIdReporte_{Detail:rowNumber}" type="hidden" value="{IdReporte}" name="{IdReporte_Name}" ccsserviceable="true" ccstype="Component" ccsname="IdReporte" ccsid="36" />
                       <!-- BEGIN Link Nombre --><a href="{Nombre_Src}" id="ReportesMyMDetailNombre_{Detail:rowNumber}"><font color="{vfontcolor}">{Nombre}</font></a><!-- END Link Nombre -->{ReportLabel1} {activo} </td> 
-                    <td>&nbsp; </td>
+                    <td>&nbsp; </td> 
                   </tr>
  <!-- END Section Detail -->
                   <!-- BEGIN Section Grupo_Footer --><!-- END Section Grupo_Footer -->
                   <!-- BEGIN Section Report_Footer -->
                   <!-- BEGIN Panel NoRecords -->
-                  <tr class="NoRecords">
-                    <td colspan="2">No hay registros</td>
+                  <tr class="NoRecordsAustere4">
+                    <td colspan="2">No hay registros</td> 
                   </tr>
  <!-- END Panel NoRecords --><!-- END Section Report_Footer -->
                 </table>
+ 
               </div>
-            </td>
+ </td> 
           </tr>
+ 
         </table>
-        <!-- END Report ReportesMyM -->
+ <!-- END Report ReportesMyM -->
       </div>
-    </td> 
+ </td> 
     <td style="VERTICAL-ALIGN: top">
       <div id="ppal_rep">
         {lReportContent} 
       </div>
-    </td>
+ </td> 
   </tr>
 </table>
 <p>&nbsp;</p>

@@ -1,4 +1,4 @@
-<Page id="1" templateExtension="html" relativePath="." fullRelativePath="." secured="True" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="{CCS_Style}" wizardThemeVersion="3.0" useDesign="False" needGeneration="0" accessDeniedPage="UniversoLista.ccp">
+<Page id="1" templateExtension="html" relativePath="." fullRelativePath="." secured="True" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="{CCS_Style}" wizardThemeVersion="3.0" useDesign="False" needGeneration="0" accessDeniedPage="UniversoLista.ccp" wizardSortingType="SimpleDir">
 	<Components>
 		<IncludePage id="2" name="Header" PathID="Header" page="Header.ccp">
 			<Components/>
@@ -84,20 +84,20 @@
 					<Events/>
 					<TableParameters>
 						<TableParameter id="149" conditionType="Parameter" useIsNull="False" dataType="Text" defaultValue="'CAPC'" field="Grupo" logicOperator="And" parameterSource="Grupo" parameterType="URL" searchConditionType="Equal"/>
-<TableParameter id="150" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Activo" logicOperator="And" parameterSource="1" parameterType="Expression" searchConditionType="Equal"/>
-</TableParameters>
+						<TableParameter id="150" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Activo" logicOperator="And" parameterSource="1" parameterType="Expression" searchConditionType="Equal"/>
+					</TableParameters>
 					<SPParameters/>
 					<SQLParameters/>
 					<JoinTables>
-						<JoinTable id="148" posHeight="180" posLeft="10" posTop="10" posWidth="118" tableName="mc_c_usuarios"/>
-</JoinTables>
+						<JoinTable id="157" tableName="mc_c_usuarios"/>
+					</JoinTables>
 					<JoinLinks/>
 					<Fields>
 						<Field id="151" fieldName="*"/>
-</Fields>
+					</Fields>
 					<PKFields>
 						<PKField id="152" dataType="Integer" fieldName="Id" tableName="mc_c_usuarios"/>
-</PKFields>
+					</PKFields>
 					<Attributes/>
 					<Features/>
 				</ListBox>
@@ -230,10 +230,10 @@ AND Activo = {Expr0}
 					<SPParameters/>
 					<SQLParameters>
 						<SQLParameter id="144" dataType="Text" defaultValue="'CAPC'" parameterSource="Grupo" parameterType="URL" variable="Grupo"/>
-<SQLParameter id="145" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="1" parameterType="Expression" variable="Expr0"/>
-<SQLParameter id="146" dataType="Integer" defaultValue="0" designDefaultValue="5" parameterSource="s_mes" parameterType="URL" variable="sMes"/>
-<SQLParameter id="147" dataType="Integer" defaultValue="0" designDefaultValue="2014" parameterSource="s_anio" parameterType="URL" variable="sAnio"/>
-</SQLParameters>
+						<SQLParameter id="145" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="1" parameterType="Expression" variable="Expr0"/>
+						<SQLParameter id="146" dataType="Integer" defaultValue="0" designDefaultValue="5" parameterSource="s_mes" parameterType="URL" variable="sMes"/>
+						<SQLParameter id="147" dataType="Integer" defaultValue="0" designDefaultValue="2014" parameterSource="s_anio" parameterType="URL" variable="sAnio"/>
+					</SQLParameters>
 					<JoinTables>
 					</JoinTables>
 					<JoinLinks/>
@@ -361,7 +361,7 @@ where (mc_universo_cds.id_proveedor={s_id_proveedor} or 0={s_id_proveedor})
 	and (mc_universo_cds.mes = {s_mes} or 0={s_mes})
 	and (mc_universo_cds.tipo like '%{s_tipo}%')
 	and (mc_universo_cds.numero like '%{s_numero}%')
-	and (mc_universo_cds.tipo not like 'IN')" pageSizeLimit="100" wizardGridPageSize="True" wizardUseSearch="False" allowCancel="False" wizardSubmitConfirmation="False" wizardCaption="Distribucion Universo" wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAltRecord="False" wizardRecordSeparator="False" wizardNoRecords="No hay registros" wizardGridKey="id" wizardGridPaging="Simple" wizardAddNbsp="False" wizardTotalRecords="False" wizardButtonsType="button" changedCaptionEditableGrid="True" wizardUseInterVariables="False" pkIsAutoincrement="True" wizardType="EditableGrid" wizardThemeApplyTo="Page" addTemplatePanel="False" PathID="mc_universo_cds1" customUpdateType="Table" customUpdate="mc_universo_cds" activeCollection="UFormElements" activeTableType="mc_universo_cds">
+	and (mc_universo_cds.tipo not like 'IN')" pageSizeLimit="100" wizardGridPageSize="True" wizardUseSearch="False" allowCancel="False" wizardSubmitConfirmation="False" wizardCaption="Distribucion Universo" wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAltRecord="False" wizardRecordSeparator="False" wizardNoRecords="No hay registros" wizardGridKey="id" wizardGridPaging="Simple" wizardAddNbsp="False" wizardTotalRecords="False" wizardButtonsType="button" changedCaptionEditableGrid="True" wizardUseInterVariables="False" pkIsAutoincrement="True" wizardType="EditableGrid" wizardThemeApplyTo="Page" addTemplatePanel="False" PathID="mc_universo_cds1" customUpdateType="Table" customUpdate="mc_universo_cds" activeCollection="UFormElements" activeTableType="mc_universo_cds" wizardAllowSorting="True">
 			<Components>
 				<Sorter id="58" visible="True" name="Sorter_id" column="id" wizardCaption="Id" wizardSortingType="SimpleDir" wizardControl="id" wizardAddNbsp="False" PathID="mc_universo_cds1Sorter_id">
 					<Components/>
@@ -456,10 +456,10 @@ where mes = {sMes} and anio = {sAnio})" boundColumn="Usuario" textColumn="Usuari
 					<SPParameters/>
 					<SQLParameters>
 						<SQLParameter id="153" dataType="Text" defaultValue="'CAPC'" parameterSource="Grupo" parameterType="URL" variable="Grupo"/>
-<SQLParameter id="154" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="1" parameterType="Expression" variable="Expr0"/>
-<SQLParameter id="155" dataType="Integer" defaultValue="0" designDefaultValue="5" parameterSource="s_mes" parameterType="URL" variable="sMes"/>
-<SQLParameter id="156" dataType="Integer" defaultValue="0" designDefaultValue="2014" parameterSource="s_anio" parameterType="URL" variable="sAnio"/>
-</SQLParameters>
+						<SQLParameter id="154" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="1" parameterType="Expression" variable="Expr0"/>
+						<SQLParameter id="155" dataType="Integer" defaultValue="0" designDefaultValue="5" parameterSource="s_mes" parameterType="URL" variable="sMes"/>
+						<SQLParameter id="156" dataType="Integer" defaultValue="0" designDefaultValue="2014" parameterSource="s_anio" parameterType="URL" variable="sAnio"/>
+					</SQLParameters>
 					<JoinTables>
 					</JoinTables>
 					<JoinLinks/>
@@ -536,7 +536,19 @@ where mes = {sMes} and anio = {sAnio})" boundColumn="Usuario" textColumn="Usuari
 					<Attributes/>
 					<Features/>
 				</Button>
-			</Components>
+				<Sorter id="158" visible="True" name="Sorter_IdEstimacion" wizardSortingType="SimpleDir" PathID="mc_universo_cds1Sorter_IdEstimacion" wizardCaption="Estimación" column="IdEstimacion">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Sorter>
+<Label id="159" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="IdEstimacion" PathID="mc_universo_cds1IdEstimacion" fieldSource="IdEstimacion">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Label>
+</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>

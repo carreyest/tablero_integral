@@ -98,9 +98,12 @@ function grdSLAsCAPC_BeforeShowRow(& $sender)
 //	$db->query("SELECT att.Activo , m.Acronimo  FROM mc_c_metrica m LEFT JOIN mc_metrica_atributo att " .
 // 				" ON att.id_ver_metrica = m.id_ver_metrica  AND att.nombre = 'Aplica_Servicio' AND valor=" . $grdSLAsCAPC->DataSource->f("id_serviciocont") .
 // 				" where  Acronimo is not null and Acronimo not in ('CAL_COD','DEF_FUG_AMB_PROD','Inc_TiempoAsignacion','Inc_TiempoSolucion','EFIC_PRESUP')");
+//	$db->query("SELECT att.Activo , m.Acronimo  FROM mc_c_metrica m LEFT JOIN mc_metrica_atributo att " .
+// 				" ON att.id_ver_metrica = m.id_ver_metrica  AND att.nombre = 'Aplica_Servicio' AND valor in (select idOld from mc_c_ServContractual where Aplica='CAPC') " .
+// 				" where  Acronimo is not null and Acronimo not in ('CAL_COD','DEF_FUG_AMB_PROD','Inc_TiempoAsignacion','Inc_TiempoSolucion','EFIC_PRESUP')");
 	$db->query("SELECT att.Activo , m.Acronimo  FROM mc_c_metrica m LEFT JOIN mc_metrica_atributo att " .
  				" ON att.id_ver_metrica = m.id_ver_metrica  AND att.nombre = 'Aplica_Servicio' AND valor in (select idOld from mc_c_ServContractual where Aplica='CAPC') " .
- 				" where  Acronimo is not null and Acronimo not in ('CAL_COD','DEF_FUG_AMB_PROD','Inc_TiempoAsignacion','Inc_TiempoSolucion','EFIC_PRESUP')");
+ 				" where  Acronimo is not null and Acronimo not in ('DEF_FUG_AMB_PROD','Inc_TiempoAsignacion','Inc_TiempoSolucion','EFIC_PRESUP')");
 
 
 //	$db->query("select EsSLA, Acronimo from mc_c_metrica where id_ver_metrica in (1,2,3,5,6,13)");	
@@ -250,9 +253,14 @@ function grdTableroSLAsMG_BeforeShowRow(& $sender)
 	un prefijo seguido del acronimo del SLA 
 	*/
 	
-	$db->query("SELECT att.Activo , m.Acronimo  FROM mc_c_metrica m LEFT JOIN mc_metrica_atributo att " .
+/*	$db->query("SELECT att.Activo , m.Acronimo  FROM mc_c_metrica m LEFT JOIN mc_metrica_atributo att " .
  				" ON att.id_ver_metrica = m.id_ver_metrica  AND att.nombre = 'Aplica_Servicio' AND valor=" . $grdTableroSLAsMG->DataSource->f("IdOld") .
  				" where  Acronimo is not null and Acronimo <> 'DEDUC_OMISION' And Acronimo <> 'CAL_COD'");
+*/
+	$db->query("SELECT att.Activo , m.Acronimo  FROM mc_c_metrica m LEFT JOIN mc_metrica_atributo att " .
+ 				" ON att.id_ver_metrica = m.id_ver_metrica  AND att.nombre = 'Aplica_Servicio' AND valor=" . $grdTableroSLAsMG->DataSource->f("IdOld") .
+ 				" where  Acronimo is not null and Acronimo <> 'DEDUC_OMISION'");
+
 	while($db->next_record()){
 		$sAcronimoMG= $db->f(1)."_MG";
 		$sImgMG= "Img_" . $sAcronimoMG; //se asocia la imagen al acronimo

@@ -33,10 +33,10 @@
     <td colspan="2">
       <!-- BEGIN Record mc_c_proveedor_mc_EfPresu -->
       <form id="mc_c_proveedor_mc_EfPresu" method="post" name="{HTMLFormName}" action="{Action}">
-        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
           <tr>
             <td valign="top">
-              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Buscar</strong></td> 
@@ -59,7 +59,7 @@
                     </select>
  </td> 
                   <td class="th"><label for="mc_c_proveedor_mc_EfPresus_numero">Número</label></td> 
-                  <td><input type="text" id="mc_c_proveedor_mc_EfPresus_numero" value="{s_numero}" maxlength="25" size="25" name="{s_numero_Name}"></td> 
+                  <td><input type="text" id="mc_c_proveedor_mc_EfPresus_numero" maxlength="25" size="25" value="{s_numero}" name="{s_numero_Name}"></td> 
                   <td class="th"><label for="mc_c_proveedor_mc_EfPresus_tipo">Tipo</label></td> 
                   <td>
                     <select id="mc_c_proveedor_mc_EfPresus_tipo" name="{s_tipo_Name}">
@@ -92,7 +92,7 @@
  
                 <tr class="Bottom">
                   <td style="TEXT-ALIGN: right" colspan="12">
-                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="mc_c_proveedor_mc_EfPresuButton_DoSearch" class="Button" value="Buscar" alt="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="mc_c_proveedor_mc_EfPresuButton_DoSearch" class="Button" alt="Buscar" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                 </tr>
               </table>
             </td>
@@ -107,10 +107,10 @@
       <!-- BEGIN EditableGrid mc_universo_cds -->
       <form id="mc_universo_cds" method="post" name="{HTMLFormName}" action="{Action}">
         <input type="hidden" value="{FormState}" name="FormState">{FormScript} 
-        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
           <tr>
             <td valign="top">
-              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Distribucion universo de incidentes</strong></td> 
@@ -208,7 +208,7 @@
                 <!-- END NoRecords -->
                 <tr class="Footer">
                   <td colspan="2">
-                    <!-- BEGIN Button Button1 --><input type="submit" id="mc_universo_cdsButton1" class="Button" value="Cerrar Medicion Incidentes" alt="Button1" name="{Button_Name}"><!-- END Button Button1 --></td> 
+                    <!-- BEGIN Button Button1 --><input type="submit" id="mc_universo_cdsButton1" class="Button" alt="Button1" value="Cerrar Medicion Incidentes" name="{Button_Name}"><!-- END Button Button1 --></td> 
                   <td style="TEXT-ALIGN: right" colspan="8">
                     <!-- BEGIN Navigator Navigator --><span class="Navigator">Registros por página: 
                     <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
@@ -224,7 +224,7 @@
                     <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
                     <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
                     <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->
-                    <!-- BEGIN Button Button_Submit --><input type="submit" id="mc_universo_cdsButton_Submit" class="Button" value="Guardar" alt="Enviar" name="{Button_Name}" size="20"><!-- END Button Button_Submit --></td>
+                    <!-- BEGIN Button Button_Submit --><input type="submit" id="mc_universo_cdsButton_Submit" class="Button" alt="Enviar" value="Guardar" name="{Button_Name}" size="20"><!-- END Button Button_Submit --></td>
                 </tr>
               </table>
             </td>
@@ -236,10 +236,10 @@
       <!-- BEGIN EditableGrid mc_universo_cds1 -->
       <form id="mc_universo_cds1" method="post" name="{HTMLFormName}" action="{Action}">
         <input type="hidden" value="{FormState}" name="FormState">{FormScript} 
-        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
           <tr>
             <td valign="top">
-              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Distribucion universo de requerimientos</strong></td> 
@@ -250,11 +250,11 @@
               <table class="Grid" cellspacing="0" cellpadding="0">
                 <!-- BEGIN Error -->
                 <tr class="Error">
-                  <td colspan="10">{Error}</td>
+                  <td colspan="101">{Error}</td>
                 </tr>
                 <!-- END Error -->
                 <tr class="Row">
-                  <td colspan="10">Total de Registros:&nbsp;{TotalRecords}</td>
+                  <td colspan="101">Total de Registros:&nbsp;{TotalRecords}</td>
                 </tr>
  
                 <tr class="Caption">
@@ -264,6 +264,11 @@
                   <!-- BEGIN Sorter Sorter_id --><span class="Sorter"><a href="{Sort_URL}" id="mc_universo_cds1Sorter_id">Id</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_id --></th>
+ 
+                  <th scope="col">&nbsp; 
+                  <!-- BEGIN Sorter Sorter_IdEstimacion --><span class="Sorter"><a href="{Sort_URL}" id="mc_universo_cds1Sorter_IdEstimacion">Estimación</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_IdEstimacion --></th>
  
                   <th scope="col">
                   <!-- BEGIN Sorter Sorter_id_proveedor --><span class="Sorter"><a href="{Sort_URL}" id="mc_universo_cds1Sorter_id_proveedor">Proveedor</a> 
@@ -297,18 +302,19 @@
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_analista --></th>
  
-                  <th scope="col">Medición Cerrada</th>
+                  <th colspan="91" scope="col">Medición Cerrada</th>
                 </tr>
  
                 <!-- BEGIN Row -->
                 <!-- BEGIN RowError -->
                 <tr class="Error">
-                  <td colspan="100">{Error}</td>
+                  <td colspan="101">{Error}</td>
                 </tr>
                 <!-- END RowError -->
                 <tr class="Row">
                   <td>{NumFila}</td> 
-                  <td>{id}<input type="hidden" id="mc_universo_cds1hdID_{mc_universo_cds1:rowNumber}" value="{hdID}" name="{hdID_Name}"></td> 
+                  <td>{id}<input type="hidden" id="mc_universo_cds1hdID_{mc_universo_cds1:rowNumber}" style="HEIGHT: 22px; WIDTH: 23px" size="1" value="{hdID}" name="{hdID_Name}"></td> 
+                  <td>&nbsp;{IdEstimacion}</td> 
                   <td>{id_proveedor}</td> 
                   <td>{numero}</td> 
                   <td>{tipo}</td> 
@@ -321,7 +327,7 @@
                       {analista_Options}
                     </select>
  </td> 
-                  <td style="TEXT-ALIGN: center">
+                  <td style="TEXT-ALIGN: center" colspan="91">
                     <div name="Checkbox_Seleccionar">
                       <input type="checkbox" id="mc_universo_cds1Medido_{mc_universo_cds1:rowNumber}" value="1" name="{Medido_Name}" {Medido}>
                     </div>
@@ -329,19 +335,19 @@
                 </tr>
  
                 <tr class="Row">
-                  <td colspan="9">&nbsp;{notas_manual}</td> 
-                  <td>&nbsp;</td>
+                  <td colspan="10">&nbsp;{notas_manual}</td> 
+                  <td colspan="91">&nbsp;</td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="10">No hay registros</td>
+                  <td colspan="101">No hay registros</td>
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
                   <td colspan="2">
-                    <!-- BEGIN Button Button1 --><input type="submit" id="mc_universo_cds1Button1" class="Button" value="Cerrar Medición Requerimientos" alt="Button1" name="{Button_Name}"><!-- END Button Button1 --></td> 
-                  <td style="TEXT-ALIGN: right" colspan="8">
+                    <!-- BEGIN Button Button1 --><input type="submit" id="mc_universo_cds1Button1" class="Button" alt="Button1" value="Cerrar Medición Requerimientos" name="{Button_Name}"><!-- END Button Button1 --></td> 
+                  <td style="TEXT-ALIGN: right" colspan="99">
                     <!-- BEGIN Navigator Navigator --><span class="Navigator">Registros por página: 
                     <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
                       <option selected value="">-</option>
@@ -356,7 +362,7 @@
                     <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
                     <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
                     <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->
-                    <!-- BEGIN Button Button_Submit --><input type="submit" id="mc_universo_cds1Button_Submit" class="Button" value="Grabar" alt="Enviar" name="{Button_Name}" size="20"><!-- END Button Button_Submit --></td>
+                    <!-- BEGIN Button Button_Submit --><input type="submit" id="mc_universo_cds1Button_Submit" class="Button" alt="Enviar" value="Grabar" name="{Button_Name}" size="20"><!-- END Button Button_Submit --></td>
                 </tr>
               </table>
             </td>

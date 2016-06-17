@@ -19,28 +19,28 @@
 			<Attributes/>
 			<Features/>
 		</ImageLink>
-		<Report id="30" secured="False" enablePrint="False" showMode="Web" sourceType="SQL" returnValueType="Number" linesPerWebPage="50" linesPerPhysicalPage="10" name="ReportesMyM" connection="cnDisenio" dataSource="SELECT IdReporte, Nombre, Grupo, usuario_reporteMyM.activo AS Perm_activo 
+		<Report id="30" secured="False" enablePrint="False" showMode="Web" sourceType="SQL" returnValueType="Number" linesPerWebPage="100" linesPerPhysicalPage="10" name="ReportesMyM" connection="cnDisenio" dataSource="SELECT IdReporte, Nombre, Grupo, usuario_reporteMyM.activo AS Perm_activo 
 FROM ReportesMyM INNER JOIN usuario_reporteMyM ON
 ReportesMyM.IdReporte = usuario_reporteMyM.id_reporte
 WHERE (Grupo &lt;&gt; '{Expr0}' OR '{grupovaloracion}' =  'CAPC')
 AND ReportesMyM.activo = {Expr1}
-AND id_usuario = {MyMUserID} " pageSizeLimit="100" wizardCaption="Reportes" changedCaptionReport="True" wizardLayoutType="GroupLeftAbove" wizardGridPaging="Centered" wizardHideDetail="False" wizardPercentForSums="False" wizardEnablePrintMode="False" wizardReportSeparator="False" wizardReportAddTotalRecords="False" wizardReportAddPageNumbers="False" wizardReportAddNbsp="False" wizardReportAddDateTime="False" wizardReportDateTimeAs="CurrentDate" wizardReportAddRowNumber="False" wizardReportRowNumberResetAt="Report" wizardUseSearch="False" wizardNoRecords="No hay registros" wizardUseInterVariables="False" wizardThemeApplyTo="Page" reportAddTemplatePanel="False" editableComponentTypeString="Report">
+AND id_usuario = {MyMUserID} " pageSizeLimit="100" wizardCaption="Reportes" changedCaptionReport="True" wizardLayoutType="GroupLeftAbove" wizardGridPaging="Centered" wizardHideDetail="False" wizardPercentForSums="False" wizardEnablePrintMode="False" wizardReportSeparator="False" wizardReportAddTotalRecords="False" wizardReportAddPageNumbers="False" wizardReportAddNbsp="False" wizardReportAddDateTime="False" wizardReportDateTimeAs="CurrentDate" wizardReportAddRowNumber="False" wizardReportRowNumberResetAt="Report" wizardUseSearch="False" wizardNoRecords="No hay registros" wizardUseInterVariables="False" wizardThemeApplyTo="Page" reportAddTemplatePanel="False" editableComponentTypeString="Report" wizardTheme="Austere4" wizardThemeVersion="3.0">
 			<Components>
-				<Section id="31" visible="True" lines="0" name="Report_Header" wizardSectionType="ReportHeader">
+				<Section id="31" visible="True" lines="0" name="Report_Header" wizardSectionType="ReportHeader" wizardTheme="Austere4" wizardThemeVersion="3.0">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Section>
-				<Section id="32" visible="False" lines="1" name="Page_Header" wizardSectionType="PageHeader">
+				<Section id="32" visible="False" lines="1" name="Page_Header" wizardSectionType="PageHeader" wizardTheme="Austere4" wizardThemeVersion="3.0">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Section>
-				<Section id="33" visible="True" lines="1" name="Grupo_Header">
+				<Section id="33" visible="True" lines="1" name="Grupo_Header" wizardTheme="Austere4" wizardThemeVersion="3.0">
 					<Components>
-						<ReportLabel id="34" fieldSourceType="DBColumn" dataType="Text" html="False" hideDuplicates="False" resetAt="Report" name="Grupo" fieldSource="Grupo" wizardCaption="Grupo" wizardIsPassword="False" visible="Yes" wizardUseTemplateBlock="False" wizardAddNbsp="False" PathID="ReportesMyMGrupo_HeaderGrupo">
+						<ReportLabel id="34" fieldSourceType="DBColumn" dataType="Text" html="False" hideDuplicates="False" resetAt="Report" name="Grupo" fieldSource="Grupo" wizardCaption="Grupo" wizardIsPassword="False" visible="Yes" wizardUseTemplateBlock="False" wizardAddNbsp="False" PathID="ReportesMyMGrupo_HeaderGrupo" wizardTheme="Austere4" wizardThemeVersion="3.0">
 							<Components/>
 							<Events/>
 							<Attributes/>
@@ -51,9 +51,9 @@ AND id_usuario = {MyMUserID} " pageSizeLimit="100" wizardCaption="Reportes" chan
 					<Attributes/>
 					<Features/>
 				</Section>
-				<Section id="35" visible="True" lines="1" name="Detail">
+				<Section id="35" visible="True" lines="1" name="Detail" wizardTheme="Austere4" wizardThemeVersion="3.0">
 					<Components>
-						<Link id="37" fieldSourceType="DBColumn" dataType="Text" html="False" hideDuplicates="False" resetAt="Report" name="Nombre" fieldSource="Nombre" wizardCaption="Nombre" wizardIsPassword="False" visible="Dynamic" wizardUseTemplateBlock="False" wizardAddNbsp="False" PathID="ReportesMyMDetailNombre" hrefType="Page" urlType="Relative" preserveParameters="GET" linkProperties="{&quot;textSource&quot;:&quot;&quot;,&quot;textSourceDB&quot;:&quot;Nombre&quot;,&quot;hrefSource&quot;:&quot;&quot;,&quot;hrefSourceDB&quot;:&quot;&quot;,&quot;title&quot;:&quot;&quot;,&quot;target&quot;:&quot;&quot;,&quot;name&quot;:&quot;&quot;,&quot;linkParameters&quot;:{&quot;0&quot;:{&quot;sourceType&quot;:&quot;DataField&quot;,&quot;parameterSource&quot;:&quot;IdReporte&quot;,&quot;parameterName&quot;:&quot;IdReporte&quot;},&quot;1&quot;:{&quot;sourceType&quot;:&quot;DataField&quot;,&quot;parameterSource&quot;:&quot;IdReporte&quot;,&quot;parameterName&quot;:&quot;IdReporte&quot;},&quot;2&quot;:{&quot;sourceType&quot;:&quot;DataField&quot;,&quot;parameterSource&quot;:&quot;IdReporte&quot;,&quot;parameterName&quot;:&quot;IdReporte&quot;},&quot;length&quot;:3,&quot;objectType&quot;:&quot;linkParameters&quot;}}">
+						<Link id="37" fieldSourceType="DBColumn" dataType="Text" html="False" hideDuplicates="False" resetAt="Report" name="Nombre" fieldSource="Nombre" wizardCaption="Nombre" wizardIsPassword="False" visible="Dynamic" wizardUseTemplateBlock="False" wizardAddNbsp="False" PathID="ReportesMyMDetailNombre" hrefType="Page" urlType="Relative" preserveParameters="GET" linkProperties="{&quot;textSource&quot;:&quot;&quot;,&quot;textSourceDB&quot;:&quot;Nombre&quot;,&quot;hrefSource&quot;:&quot;&quot;,&quot;hrefSourceDB&quot;:&quot;&quot;,&quot;title&quot;:&quot;&quot;,&quot;target&quot;:&quot;&quot;,&quot;name&quot;:&quot;&quot;,&quot;linkParameters&quot;:{&quot;0&quot;:{&quot;sourceType&quot;:&quot;DataField&quot;,&quot;parameterSource&quot;:&quot;IdReporte&quot;,&quot;parameterName&quot;:&quot;IdReporte&quot;},&quot;1&quot;:{&quot;sourceType&quot;:&quot;DataField&quot;,&quot;parameterSource&quot;:&quot;IdReporte&quot;,&quot;parameterName&quot;:&quot;IdReporte&quot;},&quot;2&quot;:{&quot;sourceType&quot;:&quot;DataField&quot;,&quot;parameterSource&quot;:&quot;IdReporte&quot;,&quot;parameterName&quot;:&quot;IdReporte&quot;},&quot;length&quot;:3,&quot;objectType&quot;:&quot;linkParameters&quot;}}" wizardTheme="Austere4" wizardThemeVersion="3.0">
 							<Components/>
 							<Events>
 								<Event name="BeforeShow" type="Server">
@@ -68,19 +68,19 @@ AND id_usuario = {MyMUserID} " pageSizeLimit="100" wizardCaption="Reportes" chan
 								<LinkParameter id="39" sourceType="DataField" name="IdReporte" source="IdReporte"/>
 							</LinkParameters>
 						</Link>
-						<ReportLabel id="76" fieldSourceType="DBColumn" dataType="Text" html="False" hideDuplicates="False" resetAt="Report" name="ReportLabel1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="ReportesMyMDetailReportLabel1">
+						<ReportLabel id="76" fieldSourceType="DBColumn" dataType="Text" html="False" hideDuplicates="False" resetAt="Report" name="ReportLabel1" wizardTheme="Austere4" wizardThemeVersion="3.0" PathID="ReportesMyMDetailReportLabel1">
 							<Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
 						</ReportLabel>
-						<Hidden id="36" fieldSourceType="DBColumn" dataType="Integer" html="False" hideDuplicates="False" resetAt="Report" name="IdReporte" fieldSource="IdReporte" wizardCaption="Id Reporte" wizardIsPassword="False" visible="Yes" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardAlign="right" PathID="ReportesMyMDetailIdReporte">
+						<Hidden id="36" fieldSourceType="DBColumn" dataType="Integer" html="False" hideDuplicates="False" resetAt="Report" name="IdReporte" fieldSource="IdReporte" wizardCaption="Id Reporte" wizardIsPassword="False" visible="Yes" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardAlign="right" PathID="ReportesMyMDetailIdReporte" wizardTheme="Austere4" wizardThemeVersion="3.0">
 							<Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
 						</Hidden>
-						<ReportLabel id="40" fieldSourceType="DBColumn" dataType="Integer" html="False" hideDuplicates="False" resetAt="Report" name="activo" fieldSource="Perm_activo" wizardCaption="Activo" wizardIsPassword="False" visible="Yes" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardAlign="right" PathID="ReportesMyMDetailactivo">
+						<ReportLabel id="40" fieldSourceType="DBColumn" dataType="Integer" html="False" hideDuplicates="False" resetAt="Report" name="activo" fieldSource="Perm_activo" wizardCaption="Activo" wizardIsPassword="False" visible="Yes" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardAlign="right" PathID="ReportesMyMDetailactivo" wizardTheme="Austere4" wizardThemeVersion="3.0">
 							<Components/>
 							<Events/>
 							<Attributes/>
@@ -97,15 +97,15 @@ AND id_usuario = {MyMUserID} " pageSizeLimit="100" wizardCaption="Reportes" chan
 					<Attributes/>
 					<Features/>
 				</Section>
-				<Section id="41" visible="True" lines="0" name="Grupo_Footer">
+				<Section id="41" visible="True" lines="0" name="Grupo_Footer" wizardTheme="Austere4" wizardThemeVersion="3.0">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Section>
-				<Section id="42" visible="True" lines="0" name="Report_Footer" wizardSectionType="ReportFooter">
+				<Section id="42" visible="True" lines="0" name="Report_Footer" wizardSectionType="ReportFooter" wizardTheme="Austere4" wizardThemeVersion="3.0">
 					<Components>
-						<Panel id="43" visible="True" generateDiv="False" name="NoRecords" wizardNoRecords="No hay registros">
+						<Panel id="43" visible="True" generateDiv="False" name="NoRecords" wizardNoRecords="No hay registros" wizardTheme="Austere4" wizardThemeVersion="3.0">
 							<Components/>
 							<Events/>
 							<Attributes/>
@@ -116,9 +116,9 @@ AND id_usuario = {MyMUserID} " pageSizeLimit="100" wizardCaption="Reportes" chan
 					<Attributes/>
 					<Features/>
 				</Section>
-				<Section id="44" visible="True" lines="1" name="Page_Footer" wizardSectionType="PageFooter" pageBreakAfter="True">
+				<Section id="44" visible="True" lines="1" name="Page_Footer" wizardSectionType="PageFooter" pageBreakAfter="True" wizardTheme="Austere4" wizardThemeVersion="3.0">
 					<Components>
-						<Navigator id="45" size="10" type="Centered" pageSizes="1;5;10;25;50" name="Navigator" wizardPagingType="Centered" wizardFirst="True" wizardFirstText="Inicio" wizardPrev="True" wizardPrevText="Anterior" wizardNext="True" wizardNextText="Siguiente" wizardLast="True" wizardLastText="Final" wizardPageNumbers="Centered" wizardSize="10" wizardTotalPages="True" wizardHideDisabled="False" wizardOfText="de" wizardImagesScheme="{ccs_style}">
+						<Navigator id="45" size="10" type="Centered" pageSizes="1;5;10;25;50" name="Navigator" wizardPagingType="Centered" wizardFirst="True" wizardFirstText="Inicio" wizardPrev="True" wizardPrevText="Anterior" wizardNext="True" wizardNextText="Siguiente" wizardLast="True" wizardLastText="Final" wizardPageNumbers="Centered" wizardSize="10" wizardTotalPages="True" wizardHideDisabled="False" wizardOfText="de" wizardImagesScheme="{ccs_style}" wizardTheme="Austere4" wizardThemeVersion="3.0">
 							<Components/>
 							<Events/>
 							<Attributes/>

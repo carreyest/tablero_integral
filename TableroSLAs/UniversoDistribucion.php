@@ -1042,7 +1042,7 @@ class clsmc_universo_cdsDataSource extends clsDBcnDisenio {  //mc_universo_cdsDa
 
 class clsEditableGridmc_universo_cds1 { //mc_universo_cds1 Class @57-7CB7EFFB
 
-//Variables @57-18531F0E
+//Variables @57-AACFB217
 
     // Public variables
     public $ComponentType = "EditableGrid";
@@ -1094,9 +1094,10 @@ class clsEditableGridmc_universo_cds1 { //mc_universo_cds1 Class @57-7CB7EFFB
     public $Sorter_mes;
     public $Sorter_anio;
     public $Sorter_analista;
+    public $Sorter_IdEstimacion;
 //End Variables
 
-//Class_Initialize Event @57-D58ECE87
+//Class_Initialize Event @57-E2AB96C7
     function clsEditableGridmc_universo_cds1($RelativePath, & $Parent)
     {
 
@@ -1192,6 +1193,8 @@ class clsEditableGridmc_universo_cds1 { //mc_universo_cds1 Class @57-7CB7EFFB
         $this->Medido->CheckedValue = $this->Medido->GetParsedValue(1);
         $this->Medido->UncheckedValue = $this->Medido->GetParsedValue(0);
         $this->Button1 = new clsButton("Button1", $Method, $this);
+        $this->Sorter_IdEstimacion = new clsSorter($this->ComponentName, "Sorter_IdEstimacion", $FileName, $this);
+        $this->IdEstimacion = new clsControl(ccsLabel, "IdEstimacion", "IdEstimacion", ccsText, "", NULL, $this);
     }
 //End Class_Initialize Event
 
@@ -1423,7 +1426,7 @@ class clsEditableGridmc_universo_cds1 { //mc_universo_cds1 Class @57-7CB7EFFB
     }
 //End GetFormState Method
 
-//Show Method @57-79C397E2
+//Show Method @57-1729012E
     function Show()
     {
         $Tpl = CCGetTemplate($this);
@@ -1466,6 +1469,7 @@ class clsEditableGridmc_universo_cds1 { //mc_universo_cds1 Class @57-7CB7EFFB
         $this->ControlsVisible["NumFila"] = $this->NumFila->Visible;
         $this->ControlsVisible["notas_manual"] = $this->notas_manual->Visible;
         $this->ControlsVisible["Medido"] = $this->Medido->Visible;
+        $this->ControlsVisible["IdEstimacion"] = $this->IdEstimacion->Visible;
         if ($is_next_record || ($EmptyRowsLeft && $this->InsertAllowed)) {
             do {
                 $this->RowNumber++;
@@ -1486,6 +1490,7 @@ class clsEditableGridmc_universo_cds1 { //mc_universo_cds1 Class @57-7CB7EFFB
                     $this->descartar_manual->SetValue($this->DataSource->descartar_manual->GetValue());
                     $this->notas_manual->SetValue($this->DataSource->notas_manual->GetValue());
                     $this->Medido->SetValue($this->DataSource->Medido->GetValue());
+                    $this->IdEstimacion->SetValue($this->DataSource->IdEstimacion->GetValue());
                 } elseif ($this->FormSubmitted && $is_next_record) {
                     $this->id->SetText("");
                     $this->id_proveedor->SetText("");
@@ -1496,6 +1501,7 @@ class clsEditableGridmc_universo_cds1 { //mc_universo_cds1 Class @57-7CB7EFFB
                     $this->descartar_manual->SetText("");
                     $this->NumFila->SetText("");
                     $this->notas_manual->SetText("");
+                    $this->IdEstimacion->SetText("");
                     $this->id->SetValue($this->DataSource->id->GetValue());
                     $this->id_proveedor->SetValue($this->DataSource->id_proveedor->GetValue());
                     $this->numero->SetValue($this->DataSource->numero->GetValue());
@@ -1504,6 +1510,7 @@ class clsEditableGridmc_universo_cds1 { //mc_universo_cds1 Class @57-7CB7EFFB
                     $this->anio->SetValue($this->DataSource->anio->GetValue());
                     $this->descartar_manual->SetValue($this->DataSource->descartar_manual->GetValue());
                     $this->notas_manual->SetValue($this->DataSource->notas_manual->GetValue());
+                    $this->IdEstimacion->SetValue($this->DataSource->IdEstimacion->GetValue());
                     $this->analista->SetText($this->FormParameters["analista"][$this->RowNumber], $this->RowNumber);
                     $this->hdID->SetText($this->FormParameters["hdID"][$this->RowNumber], $this->RowNumber);
                     $this->Medido->SetText($this->FormParameters["Medido"][$this->RowNumber], $this->RowNumber);
@@ -1520,6 +1527,7 @@ class clsEditableGridmc_universo_cds1 { //mc_universo_cds1 Class @57-7CB7EFFB
                     $this->NumFila->SetText("");
                     $this->notas_manual->SetText("");
                     $this->Medido->SetValue(false);
+                    $this->IdEstimacion->SetText("");
                 } else {
                     $this->id->SetText("");
                     $this->id_proveedor->SetText("");
@@ -1530,6 +1538,7 @@ class clsEditableGridmc_universo_cds1 { //mc_universo_cds1 Class @57-7CB7EFFB
                     $this->descartar_manual->SetText("");
                     $this->NumFila->SetText("");
                     $this->notas_manual->SetText("");
+                    $this->IdEstimacion->SetText("");
                     $this->analista->SetText($this->FormParameters["analista"][$this->RowNumber], $this->RowNumber);
                     $this->hdID->SetText($this->FormParameters["hdID"][$this->RowNumber], $this->RowNumber);
                     $this->Medido->SetText($this->FormParameters["Medido"][$this->RowNumber], $this->RowNumber);
@@ -1549,6 +1558,7 @@ class clsEditableGridmc_universo_cds1 { //mc_universo_cds1 Class @57-7CB7EFFB
                 $this->NumFila->Show($this->RowNumber);
                 $this->notas_manual->Show($this->RowNumber);
                 $this->Medido->Show($this->RowNumber);
+                $this->IdEstimacion->Show($this->RowNumber);
                 if (isset($this->RowsErrors[$this->RowNumber]) && ($this->RowsErrors[$this->RowNumber] != "")) {
                     $Tpl->setblockvar("RowError", "");
                     $Tpl->setvar("Error", $this->RowsErrors[$this->RowNumber]);
@@ -1596,6 +1606,7 @@ class clsEditableGridmc_universo_cds1 { //mc_universo_cds1 Class @57-7CB7EFFB
         $this->Button_Submit->Show();
         $this->TotalRecords->Show();
         $this->Button1->Show();
+        $this->Sorter_IdEstimacion->Show();
 
         if($this->CheckErrors()) {
             $Error = ComposeStrings($Error, $this->Errors->ToString());
@@ -1624,7 +1635,7 @@ class clsEditableGridmc_universo_cds1 { //mc_universo_cds1 Class @57-7CB7EFFB
 
 class clsmc_universo_cds1DataSource extends clsDBcnDisenio {  //mc_universo_cds1DataSource Class @57-14C1BB14
 
-//DataSource Variables @57-7BF6E58E
+//DataSource Variables @57-9512F298
     public $Parent = "";
     public $CCSEvents = "";
     public $CCSEventResult;
@@ -1652,9 +1663,10 @@ class clsmc_universo_cds1DataSource extends clsDBcnDisenio {  //mc_universo_cds1
     public $NumFila;
     public $notas_manual;
     public $Medido;
+    public $IdEstimacion;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @57-86C29BB4
+//DataSourceClass_Initialize Event @57-361A3478
     function clsmc_universo_cds1DataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1684,13 +1696,15 @@ class clsmc_universo_cds1DataSource extends clsDBcnDisenio {  //mc_universo_cds1
         
         $this->Medido = new clsField("Medido", ccsInteger, "");
         
+        $this->IdEstimacion = new clsField("IdEstimacion", ccsText, "");
+        
 
         $this->UpdateFields["analista"] = array("Name" => "analista", "Value" => "", "DataType" => ccsText);
         $this->UpdateFields["Medido"] = array("Name" => "[Medido]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
     }
 //End DataSourceClass_Initialize Event
 
-//SetOrder Method @57-1E3C6494
+//SetOrder Method @57-AC60159D
     function SetOrder($SorterName, $SorterDirection)
     {
         $this->Order = "";
@@ -1701,7 +1715,8 @@ class clsmc_universo_cds1DataSource extends clsDBcnDisenio {  //mc_universo_cds1
             "Sorter_tipo" => array("tipo", ""), 
             "Sorter_mes" => array("mes", ""), 
             "Sorter_anio" => array("anio", ""), 
-            "Sorter_analista" => array("analista", "")));
+            "Sorter_analista" => array("analista", ""), 
+            "Sorter_IdEstimacion" => array("IdEstimacion", "")));
     }
 //End SetOrder Method
 
@@ -1758,7 +1773,7 @@ class clsmc_universo_cds1DataSource extends clsDBcnDisenio {  //mc_universo_cds1
     }
 //End Open Method
 
-//SetValues Method @57-1F6AE72F
+//SetValues Method @57-60021E68
     function SetValues()
     {
         $this->id->SetDBValue(trim($this->f("id")));
@@ -1772,6 +1787,7 @@ class clsmc_universo_cds1DataSource extends clsDBcnDisenio {  //mc_universo_cds1
         $this->descartar_manual->SetDBValue($this->f("descartar_manual"));
         $this->notas_manual->SetDBValue($this->f("notas_manual"));
         $this->Medido->SetDBValue(trim($this->f("Medido")));
+        $this->IdEstimacion->SetDBValue($this->f("IdEstimacion"));
     }
 //End SetValues Method
 

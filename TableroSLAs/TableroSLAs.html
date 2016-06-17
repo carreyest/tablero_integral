@@ -256,7 +256,7 @@
     <td colspan="2">&nbsp; 
       <!-- BEGIN Grid grdTableroSLAsMG -->
       <div style="display:{iTableroSLAsCAPC_MG}">
-        <table id="grdTableroSLAsMG" class="MainTable" cellspacing="0" cellpadding="0" width="90%" border="0">
+        <table id="grdTableroSLAsMG" class="MainTable" cellspacing="0" cellpadding="0" width="84%" border="0">
           <tr>
             <td valign="top">
               <table class="Header" cellspacing="0" cellpadding="0" border="0">
@@ -274,7 +274,7 @@
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_descripcion --></th>
  
-                  <th scope="col">
+                  <th  scope="col">
                   <!-- BEGIN Sorter Sorter_HERR_EST_COST --><span class="Sorter"><a href="{Sort_URL}" id="grdTableroSLAsMGSorter_HERR_EST_COST">Uso de una<br>
                   herramienta<br>
                   para estimación<br>
@@ -308,6 +308,12 @@
                   entregables</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_RETR_ENTREGABLE --></th>
+ 
+                  <th scope="col">&nbsp; 
+                  <!-- BEGIN Sorter Sorter_TotCAL_COD --><span class="Sorter"><a href="{Sort_URL}" id="grdTableroSLAsMGSorter_TotCAL_COD">Calidad<br>
+                  de código</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_TotCAL_COD -->&nbsp;</th>
  
                   <th scope="col">
                   <!-- BEGIN Sorter Sorter_DEF_FUG_AMB_PROD --><span class="Sorter"><a href="{Sort_URL}" id="grdTableroSLAsMGSorter_DEF_FUG_AMB_PROD">Defectos Fugados<br>
@@ -352,6 +358,8 @@
                     {CumplenCALIDAD_PROD_TERM_MG}{TotCALIDAD_PROD_TERM_MG}{CALIDAD_PROD_TERM_MG} </td> 
                   <td style="TEXT-ALIGN: center"><img id="grdTableroSLAsMGImg_RETR_ENTREGABLE_MG_{grdTableroSLAsMG:rowNumber}" alt="" src="{Img_RETR_ENTREGABLE_MG}"><br>
                     {CumplenRETR_ENTREGABLE_MG}{TotRETR_ENTREGABLE_MG}{RETR_ENTREGABLE_MG} </td> 
+                  <td style="TEXT-ALIGN: center"><img id="grdTableroSLAsMGImg_CAL_COD_MG_{grdTableroSLAsMG:rowNumber}" alt="" src="{Img_CAL_COD_MG}"><br>
+                    {CumplenCAL_COD_MG}{TotCAL_COD_MG}{CAL_COD_MG}</td> 
                   <td style="TEXT-ALIGN: center"><img id="grdTableroSLAsMGImg_DEF_FUG_AMB_PROD_MG_{grdTableroSLAsMG:rowNumber}" alt="" src="{Img_DEF_FUG_AMB_PROD_MG}"><br>
                     {CumplenDEF_FUG_AMB_PROD_MG}{TotDEF_FUG_AMB_PROD_MG}{DEF_FUG_AMB_PROD_MG} </td> 
                   <td style="TEXT-ALIGN: center"><img id="grdTableroSLAsMGImg_Inc_TiempoAsignacion_MG_{grdTableroSLAsMG:rowNumber}" alt="" src="{Img_Inc_TiempoAsignacion_MG}"><br>
@@ -364,11 +372,11 @@
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="10">No hay registros</td>
+                  <td colspan="11">No hay registros</td>
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
-                  <td colspan="10">
+                  <td colspan="11">
                     <!-- BEGIN Navigator Navigator --><span class="Navigator">Registros por página: 
                     <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
                       <option selected value="">-</option>

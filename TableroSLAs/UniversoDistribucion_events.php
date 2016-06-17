@@ -142,11 +142,11 @@ function mc_universo_cds1_Button1_OnClick(& $sender)
     $sSQL = "INSERT INTO mc_calificacion_rs_SAT " .
 			" 	([id_ppmc],[id_proveedor],[id_servicio_cont],[id_servicio_negocio],[id_tipo],[descripción],[HERR_EST_COST] " .
       		" 	,[REQ_SERV],[CUMPL_REQ_FUNC],[CALIDAD_PROD_TERM],[RETR_ENTREGABLE],[COMPL_RUTA_CRITICA],[EST_PROY] " .
-      		" 	,[DEF_FUG_AMB_PROD],[Obs_manuales],[MesReporte],[AnioReporte],[ppmc_adicional],[ACSI],[descartar] " .
+      		" 	,[DEF_FUG_AMB_PROD],[CAL_COD],[Obs_manuales],[MesReporte],[AnioReporte],[ppmc_adicional],[ACSI],[descartar] " .
       		" 	,[UrlEvidencia],[Unidades],[TipoUnidades],[IdUniverso],[Id]) " .
 			" SELECT [id_ppmc],[id_proveedor],[id_servicio_cont],[id_servicio_negocio],[id_tipo],[descripción],[HERR_EST_COST] " .
       		" 	,[REQ_SERV],[CUMPL_REQ_FUNC],[CALIDAD_PROD_TERM],[RETR_ENTREGABLE],[COMPL_RUTA_CRITICA],[EST_PROY] " .
-      		" 	,[DEF_FUG_AMB_PROD],[Obs_manuales],[MesReporte],[AnioReporte],[ppmc_adicional],[ACSI],[descartar] " .
+      		" 	,[DEF_FUG_AMB_PROD],[CAL_COD],[Obs_manuales],[MesReporte],[AnioReporte],[ppmc_adicional],[ACSI],[descartar] " .
       		" 	,[UrlEvidencia],[Unidades],[TipoUnidades],[Iduniverso],[Id] " .
 			" FROM mc_calificacion_rs_MC " .
 			" WHERE MesReporte = " . CCGetParam("s_mes", date("m")-2) . " and AnioReporte = " . CCGetparam("s_anio",date("Y")) .

@@ -715,6 +715,7 @@ select
 	 (Select Meta from mc_c_metrica where acronimo='RETR_ENTREGABLE') as Meta_RETR_ENTREGABLE,
 	 COUNT(COMPL_RUTA_CRITICA) TotCOMPL_RUTA_CRITICA, SUM(cast(COMPL_RUTA_CRITICA as int)) CumplenCOMPL_RUTA_CRITICA, SUM(cast(COMPL_RUTA_CRITICA as float))/COUNT(COMPL_RUTA_CRITICA)*100 COMPL_RUTA_CRITICA,
 	 (Select Meta from mc_c_metrica where acronimo='COMPL_RUTA_CRITICA') as Meta_COMPL_RUTA_CRITICA,	 
+	 COUNT(CAL_COD) TotCAL_COD, SUM(cast(CAL_COD as int)) CumplenCAL_COD, SUM(cast(CAL_COD as float))/COUNT(CAL_COD)*100 CAL_COD,
 	 (Select Meta from mc_c_metrica where acronimo='EST_PROY') as Meta_EST_PROY,
 	 COUNT(DEF_FUG_AMB_PROD) TotDEF_FUG_AMB_PROD, SUM(cast(DEF_FUG_AMB_PROD as int)) CumplenDEF_FUG_AMB_PROD, SUM(cast(DEF_FUG_AMB_PROD as float))/COUNT(DEF_FUG_AMB_PROD)*100  DEF_FUG_AMB_PROD,
 	 (Select Meta from mc_c_metrica where acronimo='DEF_FUG_AMB_PROD') as Meta_DEF_FUG_AMB_PROD,
@@ -1040,7 +1041,37 @@ order by sc.orden" pageSizeLimit="100" pageSize="True" wizardCaption="Niveles de
 					<Attributes/>
 					<Features/>
 				</Label>
-			</Components>
+				<Sorter id="598" visible="True" name="Sorter_TotCAL_COD" column="TotCAL_COD" wizardCaption="Tot EST PROY" wizardSortingType="SimpleDir" wizardControl="TotEST_PROY" wizardAddNbsp="False" PathID="grdTableroSLAsMGSorter_TotCAL_COD">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+<Image id="599" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Img_CAL_COD_MG" PathID="grdTableroSLAsMGImg_CAL_COD_MG">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Image>
+<Label id="601" fieldSourceType="DBColumn" dataType="Integer" html="False" generateSpan="False" name="CumplenCAL_COD_MG" PathID="grdTableroSLAsMGCumplenCAL_COD_MG" fieldSource="CumplenCAL_COD">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Label>
+<Label id="603" fieldSourceType="DBColumn" dataType="Integer" html="True" generateSpan="False" name="CAL_COD_MG" PathID="grdTableroSLAsMGCAL_COD_MG" fieldSource="CAL_COD">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Label>
+<Label id="600" fieldSourceType="DBColumn" dataType="Integer" html="False" generateSpan="False" name="TotCAL_COD_MG" PathID="grdTableroSLAsMGTotCAL_COD_MG" fieldSource="TotCAL_COD">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Label>
+</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>
@@ -1060,11 +1091,11 @@ order by sc.orden" pageSizeLimit="100" pageSize="True" wizardCaption="Niveles de
 			<PKFields/>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="582" dataType="Integer" defaultValue="0" designDefaultValue="0" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
-				<SQLParameter id="583" dataType="Integer" defaultValue="0" designDefaultValue="2" parameterSource="s_id_proveedor" parameterType="URL" variable="sProveedor"/>
-				<SQLParameter id="584" dataType="Integer" defaultValue="date('m')-2" designDefaultValue="7" parameterSource="s_MesReporte" parameterType="URL" variable="sMes"/>
-				<SQLParameter id="585" dataType="Integer" defaultValue="date('Y')" designDefaultValue="2015" parameterSource="s_AnioReporte" parameterType="URL" variable="sAnio"/>
-			</SQLParameters>
+				<SQLParameter id="604" dataType="Integer" defaultValue="0" designDefaultValue="0" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
+<SQLParameter id="605" dataType="Integer" defaultValue="0" designDefaultValue="2" parameterSource="s_id_proveedor" parameterType="URL" variable="sProveedor"/>
+<SQLParameter id="606" dataType="Integer" defaultValue="date('m')-2" designDefaultValue="7" parameterSource="s_MesReporte" parameterType="URL" variable="sMes"/>
+<SQLParameter id="607" dataType="Integer" defaultValue="date('Y')" designDefaultValue="2015" parameterSource="s_AnioReporte" parameterType="URL" variable="sAnio"/>
+</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -1604,11 +1635,11 @@ order by sc.orden" pageSizeLimit="100" pageSize="True" wizardCaption="Niveles de
 					<PKFields/>
 					<SPParameters/>
 					<SQLParameters>
-						<SQLParameter id="590" dataType="Integer" defaultValue="date('m')-2" designDefaultValue="1" old_temp_id="346" parameterSource="s_MesReporte" parameterType="URL" variable="sMes"/>
-						<SQLParameter id="591" dataType="Integer" defaultValue="date('Y')" designDefaultValue="2014" old_temp_id="347" parameterSource="s_AnioReporte" parameterType="URL" variable="sAnio"/>
-						<SQLParameter id="592" dataType="Integer" defaultValue="0" designDefaultValue="3" old_temp_id="348" parameterSource="s_id_proveedor" parameterType="URL" variable="sProveedor"/>
-						<SQLParameter id="593" dataType="Integer" defaultValue="0" designDefaultValue="1" old_temp_id="349" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
-					</SQLParameters>
+						<SQLParameter id="608" dataType="Integer" defaultValue="date('m')-2" designDefaultValue="1" old_temp_id="346" parameterSource="s_MesReporte" parameterType="URL" variable="sMes"/>
+<SQLParameter id="609" dataType="Integer" defaultValue="date('Y')" designDefaultValue="2014" old_temp_id="347" parameterSource="s_AnioReporte" parameterType="URL" variable="sAnio"/>
+<SQLParameter id="610" dataType="Integer" defaultValue="0" designDefaultValue="3" old_temp_id="348" parameterSource="s_id_proveedor" parameterType="URL" variable="sProveedor"/>
+<SQLParameter id="611" dataType="Integer" defaultValue="0" designDefaultValue="1" old_temp_id="349" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
+</SQLParameters>
 					<SecurityGroups/>
 					<Attributes/>
 					<Features/>

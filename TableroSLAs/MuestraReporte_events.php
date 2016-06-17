@@ -117,7 +117,8 @@ function ReportesMyM_Detail_BeforeShow(& $sender)
    if($ReportesMyM->IdReporte->GetValue()==CCGetParam("IdReporte"))
  	{
  		$Tpl->SetVar("vbgcolor","rgb(59,148,55)");
-   	 	$Tpl->SetVar("vfontcolor","white"); 
+   	 	//$Tpl->SetVar("vfontcolor","white"); 
+   	 	$Tpl->SetVar("vfontcolor","green"); 
 	}
    else{
     	$Tpl->SetVar("vbgcolor","rgb(244,244,244)");

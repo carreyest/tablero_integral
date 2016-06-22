@@ -456,7 +456,7 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
     }
 //End Prepare Method
 
-//Open Method @3-B83794DC
+//Open Method @3-00C40E77
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -464,7 +464,7 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
         "	ISNULL(sn.nombre , DatosPPMC.SERVICIO_NEGOCIO) SERVICIO_NEGOCIO, \n" .
         "	isnull(t.Descripcion,DatosPPMC.TIPO_REQUERIMIENTO) TIPO_REQUERIMIENTO,\n" .
         "	p.nombre, ISNULL(c.IdEstimacion,u.IdEstimacion) IdEstimacion, u.Id, c.RETR_ENTREGABLE  , c.COMPL_RUTA_CRITICA,c.CUMPL_REQ_FUNC, C.EST_PROY , C.CALIDAD_PROD_TERM ,c.DEF_FUG_AMB_PROD, c.CAL_COD,\n" .
-        "	i.FechaFirmaCAES, i.IdTipoReq, i.id_servicio_cont, i.id RetEnt, u.analista , df.id DefFug, rf.id ReqFun, ca.id Calidad, u.MesTransicion, u.EsReqTecnico, u.Revision\n" .
+        "	i.FechaFirmaCAES, i.IdTipoReq, i.id_servicio_cont, i.id RetEnt, u.analista , df.id DefFug, rf.id ReqFun, ca.id Calidad, u.MesTransicion, u.EsReqTecnico, u.Revision, cal.id calcod\n" .
         "from mc_universo_cds u inner join \n" .
         "	(\n" .
         "SELECT DISTINCT  REQUEST_ID ID_PPMC, NAME, SERVICIO_NEGOCIO, TIPO_REQUERIMIENTO, FECHA_CARGA, 0 PPMC_Relacionado, slo\n" .
@@ -487,6 +487,7 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
         "left join mc_info_rs_cr_RF rf on  rf.id = c.iduniverso\n" .
         "left join mc_info_rs_cr_calidad ca on ca.id = c.Iduniverso \n" .
         "left join mc_c_servicio sn on sn.id_servicio = c.id_servicio_negocio \n" .
+        "left join mc_info_rs_CC cal on cal.idUniverso = c.Iduniverso\n" .
         "where  isnull(descartar_manual,0)=0 and tipo='PC'\n" .
         "	and (mes = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " or 0=" . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . ")\n" .
         "	and anio = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
@@ -498,7 +499,7 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
         "	ISNULL(sn.nombre , DatosPPMC.SERVICIO_NEGOCIO) SERVICIO_NEGOCIO, \n" .
         "	isnull(t.Descripcion,DatosPPMC.TIPO_REQUERIMIENTO) TIPO_REQUERIMIENTO,\n" .
         "	p.nombre, ISNULL(c.IdEstimacion,u.IdEstimacion) IdEstimacion, u.Id, c.RETR_ENTREGABLE  , c.COMPL_RUTA_CRITICA,c.CUMPL_REQ_FUNC, C.EST_PROY , C.CALIDAD_PROD_TERM ,c.DEF_FUG_AMB_PROD, c.CAL_COD,\n" .
-        "	i.FechaFirmaCAES, i.IdTipoReq, i.id_servicio_cont, i.id RetEnt, u.analista , df.id DefFug, rf.id ReqFun, ca.id Calidad, u.MesTransicion, u.EsReqTecnico, u.Revision\n" .
+        "	i.FechaFirmaCAES, i.IdTipoReq, i.id_servicio_cont, i.id RetEnt, u.analista , df.id DefFug, rf.id ReqFun, ca.id Calidad, u.MesTransicion, u.EsReqTecnico, u.Revision, cal.id calcod\n" .
         "from mc_universo_cds u inner join \n" .
         "	(\n" .
         "SELECT DISTINCT  REQUEST_ID ID_PPMC, NAME, SERVICIO_NEGOCIO, TIPO_REQUERIMIENTO, FECHA_CARGA, 0 PPMC_Relacionado, slo\n" .
@@ -521,6 +522,7 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
         "left join mc_info_rs_cr_RF rf on  rf.id = c.iduniverso\n" .
         "left join mc_info_rs_cr_calidad ca on ca.id = c.Iduniverso \n" .
         "left join mc_c_servicio sn on sn.id_servicio = c.id_servicio_negocio \n" .
+        "left join mc_info_rs_CC cal on cal.idUniverso = c.Iduniverso\n" .
         "where  isnull(descartar_manual,0)=0 and tipo='PC'\n" .
         "	and (mes = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " or 0=" . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . ")\n" .
         "	and anio = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .

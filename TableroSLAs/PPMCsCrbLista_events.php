@@ -103,17 +103,17 @@ function Grid1_BeforeShowRow(& $sender)
 	//Calidad de Codigo
 	$Grid1->CAL_COD->Visible=false;
 	if($Grid1->CAL_COD->GetValue()==""){
-		if($Grid1->DataSource->f("ReqFun")==""){
-			$Grid1->lkCAL_COD->Visible = True;	
+		if($Grid1->DataSource->f("calcod")==""){
+			$Grid1->lkCumpleCC->Visible = True;	
 			$Grid1->imgCumpleCC->Visible=false;
 		} else {
-			$Grid1->imgCumpleCCC->Visible=true;
-			$Grid1->lkCAL_COD->Visible = False;	
+			$Grid1->imgCumpleCC->Visible=true;
+			$Grid1->lkCumpleCC->Visible = False;	
 			$Grid1->imgCumpleCC->SetValue("images/NoAplica.png");
 		}
 	} else {
-		$Grid1->lkCAL_COD->Visible = false;
-		$Grid1->imgCumpleCC->Visible=true;	
+		$Grid1->lkCumpleCC->Visible = false;
+		$Grid1->imgCumpleCC->Visible=($Grid1->CAL_COD->GetValue()!="");	
 		if($Grid1->CAL_COD->GetValue()==1){
 			$Grid1->imgCumpleCC->SetValue("images/Cumple.png");
 		} else {

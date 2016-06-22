@@ -9,7 +9,7 @@
 	ISNULL(sn.nombre , DatosPPMC.SERVICIO_NEGOCIO) SERVICIO_NEGOCIO, 
 	isnull(t.Descripcion,DatosPPMC.TIPO_REQUERIMIENTO) TIPO_REQUERIMIENTO,
 	p.nombre, ISNULL(c.IdEstimacion,u.IdEstimacion) IdEstimacion, u.Id, c.RETR_ENTREGABLE  , c.COMPL_RUTA_CRITICA,c.CUMPL_REQ_FUNC, C.EST_PROY , C.CALIDAD_PROD_TERM ,c.DEF_FUG_AMB_PROD, c.CAL_COD,
-	i.FechaFirmaCAES, i.IdTipoReq, i.id_servicio_cont, i.id RetEnt, u.analista , df.id DefFug, rf.id ReqFun, ca.id Calidad, u.MesTransicion, u.EsReqTecnico, u.Revision
+	i.FechaFirmaCAES, i.IdTipoReq, i.id_servicio_cont, i.id RetEnt, u.analista , df.id DefFug, rf.id ReqFun, ca.id Calidad, u.MesTransicion, u.EsReqTecnico, u.Revision, cal.id calcod
 from mc_universo_cds u inner join 
 	(
 SELECT DISTINCT  REQUEST_ID ID_PPMC, NAME, SERVICIO_NEGOCIO, TIPO_REQUERIMIENTO, FECHA_CARGA, 0 PPMC_Relacionado, slo
@@ -32,6 +32,7 @@ left join mc_info_rs_cr_deffug df on df.id = c.iduniverso
 left join mc_info_rs_cr_RF rf on  rf.id = c.iduniverso
 left join mc_info_rs_cr_calidad ca on ca.id = c.Iduniverso 
 left join mc_c_servicio sn on sn.id_servicio = c.id_servicio_negocio 
+left join mc_info_rs_CC cal on cal.idUniverso = c.Iduniverso
 where  isnull(descartar_manual,0)=0 and tipo='PC'
 	and (mes = {s_mesparam} or 0={s_mesparam})
 	and anio = {s_anioparam}
@@ -288,13 +289,13 @@ where  isnull(descartar_manual,0)=0 and tipo='PC'
 			<PKFields/>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="208" dataType="Integer" defaultValue="date(&quot;m&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="11" parameterSource="s_mesparam" parameterType="URL" variable="s_mesparam"/>
-				<SQLParameter id="209" dataType="Integer" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;)-1,date(&quot;d&quot;),date(&quot;Y&quot;)))" designDefaultValue="2013" parameterSource="s_anioparam" parameterType="URL" variable="s_anioparam"/>
-				<SQLParameter id="210" dataType="Integer" defaultValue="CCGetSession(&quot;CDSPreferido&quot;)" designDefaultValue="0" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
-				<SQLParameter id="211" dataType="Text" designDefaultValue="eminero" parameterSource="sAnalista" parameterType="URL" variable="sAnalista"/>
-				<SQLParameter id="212" dataType="Text" designDefaultValue="0" parameterSource="s_numero" parameterType="URL" variable="s_numero"/>
-				<SQLParameter id="213" dataType="Integer" defaultValue="0" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
-			</SQLParameters>
+				<SQLParameter id="224" dataType="Integer" defaultValue="date(&quot;m&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="11" parameterSource="s_mesparam" parameterType="URL" variable="s_mesparam"/>
+<SQLParameter id="225" dataType="Integer" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;)-1,date(&quot;d&quot;),date(&quot;Y&quot;)))" designDefaultValue="2013" parameterSource="s_anioparam" parameterType="URL" variable="s_anioparam"/>
+<SQLParameter id="226" dataType="Integer" defaultValue="CCGetSession(&quot;CDSPreferido&quot;)" designDefaultValue="0" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
+<SQLParameter id="227" dataType="Text" designDefaultValue="eminero" parameterSource="sAnalista" parameterType="URL" variable="sAnalista"/>
+<SQLParameter id="228" dataType="Text" designDefaultValue="0" parameterSource="s_numero" parameterType="URL" variable="s_numero"/>
+<SQLParameter id="229" dataType="Integer" defaultValue="0" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
+</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -385,20 +386,20 @@ where  isnull(descartar_manual,0)=0 and tipo='PC'
 					<Events/>
 					<TableParameters>
 						<TableParameter id="220" conditionType="Parameter" useIsNull="False" dataType="Text" defaultValue="'CAPC'" field="Grupo" logicOperator="And" parameterSource="Grupo" parameterType="URL" searchConditionType="Equal"/>
-<TableParameter id="221" conditionType="Parameter" useIsNull="False" dataType="Text" field="Grupo" logicOperator="And" parameterSource="'CAPC'" parameterType="Expression" searchConditionType="Equal"/>
-</TableParameters>
+						<TableParameter id="221" conditionType="Parameter" useIsNull="False" dataType="Text" field="Grupo" logicOperator="And" parameterSource="'CAPC'" parameterType="Expression" searchConditionType="Equal"/>
+					</TableParameters>
 					<SPParameters/>
 					<SQLParameters/>
 					<JoinTables>
 						<JoinTable id="219" posHeight="180" posLeft="10" posTop="10" posWidth="118" tableName="mc_c_usuarios"/>
-</JoinTables>
+					</JoinTables>
 					<JoinLinks/>
 					<Fields>
 						<Field id="222" fieldName="*"/>
-</Fields>
+					</Fields>
 					<PKFields>
 						<PKField id="223" dataType="Integer" fieldName="Id" tableName="mc_c_usuarios"/>
-</PKFields>
+					</PKFields>
 					<Attributes/>
 					<Features/>
 				</ListBox>

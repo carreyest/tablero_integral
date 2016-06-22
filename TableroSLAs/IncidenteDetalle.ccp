@@ -9,7 +9,7 @@ from mc_info_incidentes i
 	inner join mc_detalle_incidente_avl det on (det.Id_Incidente = i.Id_incidente or det.Id_Incidente = i.IncPadre )
 		and month(det.FechaCarga ) = u.mes and YEAR(det.fechacarga)= u.anio 
 	inner join mc_c_movimiento m on m.ClaveMovimiento = det.ClaveMovimiento 
-	left join (select id_incidente, paquete, FechaCarga, Min(FechaFinMov) LiberacionAVL, count(FechaFinMov)  CountPaquete
+	left join (select id_incidente, paquete, FechaCarga, Max(FechaFinMov) LiberacionAVL, count(FechaFinMov)  CountPaquete
 			from mc_detalle_incidente_avl det 
 				where ClaveMovimiento ='38' OR ClaveMovimiento ='49' OR ClaveMovimiento ='36' OR ClaveMovimiento ='47'
 				group by id_incidente, Paquete, FechaCarga  
@@ -179,8 +179,8 @@ where i.id_incidente = '{Id_incidente}'
 			</PKFields>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="381" dataType="Text" designDefaultValue="INC000003376478" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
-			</SQLParameters>
+				<SQLParameter id="383" dataType="Text" designDefaultValue="INC000003376478" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
+</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -385,7 +385,6 @@ AND i.estado = 'Closed'">
 					<Events/>
 					<Attributes/>
 					<Features/>
-
 				</Button>
 				<Button id="146" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Update" operation="Update" wizardCaption="{res:CCS_Update}" PathID="mc_calificacion_incidenteButton_Update">
 					<Components/>

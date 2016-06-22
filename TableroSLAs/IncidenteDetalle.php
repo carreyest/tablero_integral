@@ -313,7 +313,7 @@ class clsmc_detalle_incidente_avlDataSource extends clsDBcnDisenio {  //mc_detal
     }
 //End Prepare Method
 
-//Open Method @68-C96BFCC6
+//Open Method @68-BCCECB91
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -326,7 +326,7 @@ class clsmc_detalle_incidente_avlDataSource extends clsDBcnDisenio {  //mc_detal
         "	inner join mc_detalle_incidente_avl det on (det.Id_Incidente = i.Id_incidente or det.Id_Incidente = i.IncPadre )\n" .
         "		and month(det.FechaCarga ) = u.mes and YEAR(det.fechacarga)= u.anio \n" .
         "	inner join mc_c_movimiento m on m.ClaveMovimiento = det.ClaveMovimiento \n" .
-        "	left join (select id_incidente, paquete, FechaCarga, Min(FechaFinMov) LiberacionAVL, count(FechaFinMov)  CountPaquete\n" .
+        "	left join (select id_incidente, paquete, FechaCarga, Max(FechaFinMov) LiberacionAVL, count(FechaFinMov)  CountPaquete\n" .
         "			from mc_detalle_incidente_avl det \n" .
         "				where ClaveMovimiento ='38' OR ClaveMovimiento ='49' OR ClaveMovimiento ='36' OR ClaveMovimiento ='47'\n" .
         "				group by id_incidente, Paquete, FechaCarga  \n" .
@@ -352,7 +352,7 @@ class clsmc_detalle_incidente_avlDataSource extends clsDBcnDisenio {  //mc_detal
         "	inner join mc_detalle_incidente_avl det on (det.Id_Incidente = i.Id_incidente or det.Id_Incidente = i.IncPadre )\n" .
         "		and month(det.FechaCarga ) = u.mes and YEAR(det.fechacarga)= u.anio \n" .
         "	inner join mc_c_movimiento m on m.ClaveMovimiento = det.ClaveMovimiento \n" .
-        "	left join (select id_incidente, paquete, FechaCarga, Min(FechaFinMov) LiberacionAVL, count(FechaFinMov)  CountPaquete\n" .
+        "	left join (select id_incidente, paquete, FechaCarga, Max(FechaFinMov) LiberacionAVL, count(FechaFinMov)  CountPaquete\n" .
         "			from mc_detalle_incidente_avl det \n" .
         "				where ClaveMovimiento ='38' OR ClaveMovimiento ='49' OR ClaveMovimiento ='36' OR ClaveMovimiento ='47'\n" .
         "				group by id_incidente, Paquete, FechaCarga  \n" .

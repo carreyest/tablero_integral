@@ -94,7 +94,8 @@ function mc_info_rs_cr_calidad_capc_BeforeShow(& $sender)
 	global $sTipoReq;
 	global $lDocs;
 	global $sServNegocio;
-
+    global $mes_num;
+    global $anio_num;
 	//se va por la información de la estimación
 /*	$DBcnDisenio->query('SELECT e.estimacion_id, sum(CAST(replace(e.esfuerzo,\',\',\'.\') AS FLOAT)) esfuerzo, e.tipo_unidad, sum(cast(replace(e.unidades_resultantes,\',\',\'.\') AS FLOAT)) unidades_resultantes, ' .
 			' e.requerimiento_relacionado, e.solicitante, max(e.fecha_asignacion) fecha_asignacion, e.ID_PPMC, e.Proveedor, max(e.FECHA_APROBACION) FECHA_APROBACION, u.id_proveedor, max(m.Mes) NomMes ' .
@@ -104,7 +105,7 @@ function mc_info_rs_cr_calidad_capc_BeforeShow(& $sender)
 				' group by e.estimacion_id, e.tipo_unidad, unidades_resultantes,   e.requerimiento_relacionado, e.solicitante, e.ID_PPMC, e.Proveedor, u.id_proveedor ');
 */				
 	$DBcnDisenio->query('SELECT e.estimacion_id, sum(CAST(replace(e.esfuerzo,\',\',\'.\') AS FLOAT)) esfuerzo, e.tipo_unidad, sum(cast(replace(e.unidades_resultantes,\',\',\'.\') AS FLOAT)) unidades_resultantes, ' .
-			' e.requerimiento_relacionado, e.solicitante, max(e.fecha_asignacion) fecha_asignacion, e.ID_PPMC, e.Proveedor, max(e.FECHA_APROBACION) FECHA_APROBACION, u.id_proveedor, max(m.Mes) NomMes ' .
+			' e.requerimiento_relacionado, e.solicitante, max(e.fecha_asignacion) fecha_asignacion, e.ID_PPMC, e.Proveedor, max(e.FECHA_APROBACION) FECHA_APROBACION, u.id_proveedor, max(m.Mes) NomMes,max(u.mes) mes,max(u.anio) anio' .
 			' FROM mc_calificacion_capc u inner join mc_c_mes m on m.IdMes = u.mes  LEFT JOIN PPMC_ESTIMACION e  ON e.Id_PPMC = u.numero ' .
 			' WHERE u.id = ' . CCGetParam("Id",0) . ' and month(e.fecha_carga)=u.mes and YEAR(e.FECHA_CARGA) = u.anio ' .
 				' and e.ESTADO_REQ_ESTIM = \'Estimación Aprobada\' and e.RESULTADO_ESTIMACION <> \'Rechazada\' '  . 
@@ -115,6 +116,8 @@ function mc_info_rs_cr_calidad_capc_BeforeShow(& $sender)
 		$mc_info_rs_cr_calidad_capc->id_estimacion->Setvalue($DBcnDisenio->f("estimacion_id"));
 		$mc_info_rs_cr_calidad_capc->lbIdEstimacion->Setvalue($DBcnDisenio->f("estimacion_id"));
 		$mc_info_rs_cr_calidad_capc->lbIdPPMC->Setvalue($DBcnDisenio->f("ID_PPMC"));
+		$mes_num=$DBcnDisenio->f("mes");
+		$anio_num=$DBcnDisenio->f("anio");
 		$mc_info_rs_cr_calidad_capc->lReportado->Setvalue( " - Reportado en " . $DBcnDisenio->f("NomMes"));
 		$sPPMC = $DBcnDisenio->f("ID_PPMC");
 		$sProveedor= $DBcnDisenio->f("Proveedor");
@@ -148,7 +151,7 @@ function mc_info_rs_cr_calidad_capc_BeforeShow(& $sender)
 			" from mc_universo_cds u inner join mc_c_mes m on m.IdMes = u.mes  LEFT JOIN vw_PPMC_Proy_RO_CC on " . 
 			" vw_PPMC_Proy_RO_CC.ID_PPMC = u.numero  where month(fecha_carga)=u.mes and YEAR(FECHA_CARGA) = u.anio " .
 			" AND u.id = " . CCGetParam("Id");*/
-		$sql="SELECT ID_PPMC, NAME, SERVICIO_NEGOCIO, TIPO_REQUERIMIENTO, FECHA_CARGA,  Proveedor, u.mes, u.anio, m.mes NomMes " .
+		$sql="SELECT ID_PPMC, NAME, SERVICIO_NEGOCIO, TIPO_REQUERIMIENTO, FECHA_CARGA,  Proveedor, u.mes , u.anio, m.mes NomMes " .
 			" from mc_calificacion_capc u inner join mc_c_mes m on m.IdMes = u.mes  LEFT JOIN vw_PPMC_Proy_RO_CC on " . 
 			" vw_PPMC_Proy_RO_CC.ID_PPMC = u.numero  where month(fecha_carga)=u.mes and YEAR(FECHA_CARGA) = u.anio " .
 			" AND u.id = " . CCGetParam("Id");
@@ -164,6 +167,8 @@ function mc_info_rs_cr_calidad_capc_BeforeShow(& $sender)
 			$mc_info_rs_cr_calidad_capc->sNombreProyecto->SetValue($db->f("NAME"));
 			$mc_info_rs_cr_calidad_capc->sTipoRequerimiento->SetValue($db->f("TIPO_REQUERIMIENTO"));
 			$mc_info_rs_cr_calidad_capc->lsServNegocio->SetValue($db->f("SERVICIO_NEGOCIO"));
+			$mes_num=$db->f("mes"); 
+			$anio_num=$db->f("anio");
 			$mc_info_rs_cr_calidad_capc->lReportado->Setvalue( " - Reportado en " . $db->f("NomMes"));
 		}
 	}
@@ -276,7 +281,35 @@ function mc_info_rs_cr_calidad_capc_BeforeShow(& $sender)
 	    
 		
 		$db->close();
-		if(!$mc_info_rs_cr_calidad_capc->EditMode){			
+	
+		if(!$mc_info_rs_cr_calidad_capc->EditMode){
+			//Cuando aún no se califica trae valores cargados por archivo excel QC 08/07/2016 (nueva carga para mediciones junio)
+			$sql = 'select c.hallazgo, t.num_hallazgos' .
+			' from mc_c_hallazgos_capc c ' .
+			' left join ( ' .
+			' 		select hallazgo_defecto nombre, count(hallazgo_defecto) num_hallazgos  ' .
+			' 		from  mc_QC_DefecHallazCalProdCAPC ' .
+			' 		where id_ppmc=' . $sPPMC .
+			' 		and month(fecha_de_carga)=' . $mes_num .
+			' 		and YEAR(fecha_de_carga)=' . $anio_num .
+			' 		group by hallazgo_defecto ) t on t.nombre=c.hallazgo ' ;
+			//echo($sql);	
+  			$db->query($sql);
+  			$ind_hallazgo=1;
+  			while($db->next_record()){
+  			   $cont_hallazgos=$db->f("num_hallazgos") > 0 ? $db->f("num_hallazgos"):0;
+  			   switch($ind_hallazgo) {  			   	
+  			   	  case(1): $mc_info_rs_cr_calidad_capc->hallazgo_errores_ort->SetValue($cont_hallazgos);
+  			   	  case(2): $mc_info_rs_cr_calidad_capc->hallazgo_formato_incorrecto->SetValue($cont_hallazgos);
+  			   	  case(3): $mc_info_rs_cr_calidad_capc->hallazgo_falta_vinculo->SetValue($cont_hallazgos);
+  			   	  case(4): $mc_info_rs_cr_calidad_capc->hallazgo_incumpl_acept->SetValue($cont_hallazgos);
+  			   	  case(5): $mc_info_rs_cr_calidad_capc->hallazgo_doc_incorrecta->SetValue($cont_hallazgos);
+  			   }
+			  $ind_hallazgo++; 
+  			}
+  			$db->close();
+		 	
+						
 			if($tipoMedicion!="PC" ){
 				$mc_info_rs_cr_calidad_capc->btnCalcula->Visible = false;
 			} else {

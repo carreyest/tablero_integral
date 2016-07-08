@@ -93,7 +93,7 @@
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<Hidden id="158" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="lsServNegocio" wizardEmptyCaption="Seleccionar Valor" PathID="mc_info_rs_cr_calidad_capclsServNegocio" fieldSource="Id_Serv_Negocio" connection="cnDisenio" dataSource="select id_servicio, nombre
+				<Hidden id="158" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="lsServNegocio" wizardEmptyCaption="Seleccionar Valor" PathID="mc_info_rs_cr_calidad_capclsServNegocio" fieldSource="Id_Serv_Negocio" connection="con_xls" dataSource="select id_servicio, nombre
 from mc_c_servicio where id_tipo_servicio=2
 order by nombre" boundColumn="id_servicio" textColumn="nombre" required="True" caption="Servicio de Negocio">
 					<Components/>
@@ -108,7 +108,7 @@ order by nombre" boundColumn="id_servicio" textColumn="nombre" required="True" c
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<Hidden id="159" visible="Yes" fieldSourceType="DBColumn" sourceType="Table" dataType="Text" returnValueType="Number" name="lsServContractual" wizardEmptyCaption="Seleccionar Valor" PathID="mc_info_rs_cr_calidad_capclsServContractual" fieldSource="Id_Serv_Contractual" connection="cnDisenio" dataSource="mc_c_ServContractual" boundColumn="Id" textColumn="Descripcion" required="True" caption="Servicio Contractual">
+				<Hidden id="159" visible="Yes" fieldSourceType="DBColumn" sourceType="Table" dataType="Text" returnValueType="Number" name="lsServContractual" wizardEmptyCaption="Seleccionar Valor" PathID="mc_info_rs_cr_calidad_capclsServContractual" fieldSource="Id_Serv_Contractual" connection="con_xls" dataSource="mc_c_ServContractual" boundColumn="Id" textColumn="Descripcion" required="True" caption="Servicio Contractual">
 					<Components/>
 					<Events/>
 					<TableParameters>
@@ -334,7 +334,7 @@ order by nombre" boundColumn="id_servicio" textColumn="nombre" required="True" c
 			<Attributes/>
 			<Features/>
 		</Link>
-<Link id="85" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkCalidad" PathID="lkCalidad" hrefSource="SLAsCAPCDetalle.php" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Deductivas por Omisión','textSourceDB':'','hrefSource':'SLAsCAPCDetalle.php','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'1':{'sourceType':'URL','parameterSource':'Id','parameterName':'sID'},'2':{'sourceType':'URL','parameterSource':'Id','parameterName':'sID'},'3':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'length':11,'objectType':'linkParameters','4':{'sourceType':'URL','parameterSource':'sID','parameterName':'id'},'5':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'6':{'sourceType':'URL','parameterSource':'id','parameterName':'id'},'7':{'sourceType':'URL','parameterSource':'Id','parameterName':'id'},'8':{'sourceType':'URL','parameterSource':'id','parameterName':'Id'},'9':{'sourceType':'URL','parameterSource':'id','parameterName':'Id'},'10':{'sourceType':'URL','parameterSource':'Id','parameterName':'id'}}}"><Components/>
+		<Link id="85" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkCalidad" PathID="lkCalidad" hrefSource="SLAsCAPCDetalle.php" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Deductivas por Omisión','textSourceDB':'','hrefSource':'SLAsCAPCDetalle.php','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'1':{'sourceType':'URL','parameterSource':'Id','parameterName':'sID'},'2':{'sourceType':'URL','parameterSource':'Id','parameterName':'sID'},'3':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'length':11,'objectType':'linkParameters','4':{'sourceType':'URL','parameterSource':'sID','parameterName':'id'},'5':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'6':{'sourceType':'URL','parameterSource':'id','parameterName':'id'},'7':{'sourceType':'URL','parameterSource':'Id','parameterName':'id'},'8':{'sourceType':'URL','parameterSource':'id','parameterName':'Id'},'9':{'sourceType':'URL','parameterSource':'id','parameterName':'Id'},'10':{'sourceType':'URL','parameterSource':'Id','parameterName':'id'}}}"><Components/>
 			<Events/>
 			<LinkParameters>
 				<LinkParameter id="347" sourceType="URL" format="yyyy-mm-dd" name="id" source="Id"/>
@@ -342,7 +342,7 @@ order by nombre" boundColumn="id_servicio" textColumn="nombre" required="True" c
 			<Attributes/>
 			<Features/>
 		</Link>
-<Link id="89" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkRetraso" PathID="lkRetraso" hrefSource="SLAsCAPCRetEnt.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Retraso en entregables','textSourceDB':'','hrefSource':'SLAsCAPCRetEnt.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'1':{'sourceType':'URL','parameterSource':'sID','parameterName':'Id'},'2':{'sourceType':'URL','parameterSource':'sID','parameterName':'Id'},'length':8,'objectType':'linkParameters','3':{'sourceType':'URL','parameterSource':'sID','parameterName':'id'},'4':{'sourceType':'URL','parameterSource':'id','parameterName':'Id'},'5':{'sourceType':'URL','parameterSource':'Id','parameterName':'id'},'6':{'sourceType':'URL','parameterSource':'id','parameterName':'id'},'7':{'sourceType':'URL','parameterSource':'Id','parameterName':'id'}}}"><Components/>
+		<Link id="89" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkRetraso" PathID="lkRetraso" hrefSource="SLAsCAPCRetEnt.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Retraso en entregables','textSourceDB':'','hrefSource':'SLAsCAPCRetEnt.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'1':{'sourceType':'URL','parameterSource':'sID','parameterName':'Id'},'2':{'sourceType':'URL','parameterSource':'sID','parameterName':'Id'},'length':8,'objectType':'linkParameters','3':{'sourceType':'URL','parameterSource':'sID','parameterName':'id'},'4':{'sourceType':'URL','parameterSource':'id','parameterName':'Id'},'5':{'sourceType':'URL','parameterSource':'Id','parameterName':'id'},'6':{'sourceType':'URL','parameterSource':'id','parameterName':'id'},'7':{'sourceType':'URL','parameterSource':'Id','parameterName':'id'}}}"><Components/>
 			<Events/>
 			<LinkParameters>
 				<LinkParameter id="350" sourceType="URL" format="yyyy-mm-dd" name="id" source="Id"/>
@@ -350,7 +350,7 @@ order by nombre" boundColumn="id_servicio" textColumn="nombre" required="True" c
 			<Attributes/>
 			<Features/>
 		</Link>
-</Components>
+	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="PPMCsCrbCalidadCAPC_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="PPMCsCrbCalidadCAPC.php" forShow="True" url="PPMCsCrbCalidadCAPC.php" comment="//" codePage="windows-1252"/>

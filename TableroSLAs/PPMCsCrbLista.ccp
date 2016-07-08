@@ -8,7 +8,7 @@
 		<Grid id="3" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="20" name="Grid1" connection="cnDisenio" dataSource="select cast(DatosPPMC.ID_PPMC as integer) ID_PPMC, DatosPPMC.NAME, 
 	ISNULL(sn.nombre , DatosPPMC.SERVICIO_NEGOCIO) SERVICIO_NEGOCIO, 
 	isnull(t.Descripcion,DatosPPMC.TIPO_REQUERIMIENTO) TIPO_REQUERIMIENTO,
-	p.nombre, ISNULL(c.IdEstimacion,u.IdEstimacion) IdEstimacion, u.Id, c.RETR_ENTREGABLE  , c.COMPL_RUTA_CRITICA,c.CUMPL_REQ_FUNC, C.EST_PROY , C.CALIDAD_PROD_TERM ,c.DEF_FUG_AMB_PROD, c.CAL_COD,
+	p.nombre, ISNULL(u.IdEstimacion,c.IdEstimacion) IdEstimacion, u.Id, c.RETR_ENTREGABLE  , c.COMPL_RUTA_CRITICA,c.CUMPL_REQ_FUNC, C.EST_PROY , C.CALIDAD_PROD_TERM ,c.DEF_FUG_AMB_PROD, c.CAL_COD,
 	i.FechaFirmaCAES, i.IdTipoReq, i.id_servicio_cont, i.id RetEnt, u.analista , df.id DefFug, rf.id ReqFun, ca.id Calidad, u.MesTransicion, u.EsReqTecnico, u.Revision, cal.id calcod
 from mc_universo_cds u inner join 
 	(

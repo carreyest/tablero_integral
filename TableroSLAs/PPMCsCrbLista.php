@@ -456,14 +456,14 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
     }
 //End Prepare Method
 
-//Open Method @3-00C40E77
+//Open Method @3-15106255
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->CountSQL = "SELECT COUNT(*) FROM (select cast(DatosPPMC.ID_PPMC as integer) ID_PPMC, DatosPPMC.NAME, \n" .
         "	ISNULL(sn.nombre , DatosPPMC.SERVICIO_NEGOCIO) SERVICIO_NEGOCIO, \n" .
         "	isnull(t.Descripcion,DatosPPMC.TIPO_REQUERIMIENTO) TIPO_REQUERIMIENTO,\n" .
-        "	p.nombre, ISNULL(c.IdEstimacion,u.IdEstimacion) IdEstimacion, u.Id, c.RETR_ENTREGABLE  , c.COMPL_RUTA_CRITICA,c.CUMPL_REQ_FUNC, C.EST_PROY , C.CALIDAD_PROD_TERM ,c.DEF_FUG_AMB_PROD, c.CAL_COD,\n" .
+        "	p.nombre, ISNULL(u.IdEstimacion,c.IdEstimacion) IdEstimacion, u.Id, c.RETR_ENTREGABLE  , c.COMPL_RUTA_CRITICA,c.CUMPL_REQ_FUNC, C.EST_PROY , C.CALIDAD_PROD_TERM ,c.DEF_FUG_AMB_PROD, c.CAL_COD,\n" .
         "	i.FechaFirmaCAES, i.IdTipoReq, i.id_servicio_cont, i.id RetEnt, u.analista , df.id DefFug, rf.id ReqFun, ca.id Calidad, u.MesTransicion, u.EsReqTecnico, u.Revision, cal.id calcod\n" .
         "from mc_universo_cds u inner join \n" .
         "	(\n" .
@@ -498,7 +498,7 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @3-9B
         $this->SQL = "select cast(DatosPPMC.ID_PPMC as integer) ID_PPMC, DatosPPMC.NAME, \n" .
         "	ISNULL(sn.nombre , DatosPPMC.SERVICIO_NEGOCIO) SERVICIO_NEGOCIO, \n" .
         "	isnull(t.Descripcion,DatosPPMC.TIPO_REQUERIMIENTO) TIPO_REQUERIMIENTO,\n" .
-        "	p.nombre, ISNULL(c.IdEstimacion,u.IdEstimacion) IdEstimacion, u.Id, c.RETR_ENTREGABLE  , c.COMPL_RUTA_CRITICA,c.CUMPL_REQ_FUNC, C.EST_PROY , C.CALIDAD_PROD_TERM ,c.DEF_FUG_AMB_PROD, c.CAL_COD,\n" .
+        "	p.nombre, ISNULL(u.IdEstimacion,c.IdEstimacion) IdEstimacion, u.Id, c.RETR_ENTREGABLE  , c.COMPL_RUTA_CRITICA,c.CUMPL_REQ_FUNC, C.EST_PROY , C.CALIDAD_PROD_TERM ,c.DEF_FUG_AMB_PROD, c.CAL_COD,\n" .
         "	i.FechaFirmaCAES, i.IdTipoReq, i.id_servicio_cont, i.id RetEnt, u.analista , df.id DefFug, rf.id ReqFun, ca.id Calidad, u.MesTransicion, u.EsReqTecnico, u.Revision, cal.id calcod\n" .
         "from mc_universo_cds u inner join \n" .
         "	(\n" .

@@ -56,11 +56,20 @@ function mc_info_rs_CC_Button_Insert_BeforeShow(& $sender)
 	
 	
  // verifica si existe el PPMC en la tabla de calificación
+/*
 		$sSQL="
     		SELECT count(*) 
     		FROM mc_info_rs_CC 
     		WHERE Id_PPMC=".$IdPPMC. " 
     		AND ID_Estimacion=".$IdEstimacion;
+*/
+		$sSQL="
+    		SELECT count(*) 
+    		FROM mc_info_rs_CC 
+    		WHERE Id_PPMC=".$IdPPMC. " 
+    		AND IdUniverso=".CCGetParam("Id");
+
+
         $db->query($sSQL);
 	    if($db->next_record()){
 	  		$countReg = $db->f(0); 
@@ -146,12 +155,20 @@ function mc_info_rs_CC_Id_PPMC_BeforeShow(& $sender)
   		$mesmedicion = $db->f("mes");
   		$aniomedicion = $db->f("anio");
     }
-    
+/*    
     $sSQL="
     		SELECT count(*) 
     		FROM mc_info_rs_CC 
     		WHERE Id_PPMC=".$IdPPMC. " 
     		AND ID_Estimacion=".$IdEstimacion;
+*/
+    $sSQL="
+    		SELECT count(*) 
+    		FROM mc_info_rs_CC 
+    		WHERE Id_PPMC=".$IdPPMC. " 
+    		AND IdUniverso=".CCGetParam("Id");
+
+
 	$db->query($sSQL);
 	if($db->next_record()){
 	  		$countReg = $db->f(0); 
@@ -189,10 +206,17 @@ function mc_info_rs_CC_Id_PPMC_BeforeShow(& $sender)
 	  	$mc_info_rs_CC->CumpleCalidadCod->SetValue($cumple);
 
     } else { //si ya se capturo
+/*
     $sSQL = "SELECT Id_PPMC, ID_Estimacion, PctReglas, PctMetricas, CumpleCalidadCod,UsuarioUltMod,FechaUltMod,Observaciones
     		 FROM mc_info_rs_CC
      		 WHERE Id_PPMC=".$IdPPMC. " 
     		 AND ID_Estimacion=".$IdEstimacion;
+*/
+    $sSQL = "SELECT Id_PPMC, ID_Estimacion, PctReglas, PctMetricas, CumpleCalidadCod,UsuarioUltMod,FechaUltMod,Observaciones
+    		 FROM mc_info_rs_CC
+     		 WHERE Id_PPMC=".$IdPPMC. " 
+    		 AND IdUniverso=".CCGetParam("Id");
+
 
 		  	$db->query($sSQL);
 			if($db->next_record()){

@@ -167,7 +167,6 @@ function calculaSLA(){
             dAsignacion2.setMinutes(00);
         }
 
-
         var dPropuesta = new Date(aPropuesta[2].valueOf(),aPropuesta[1].valueOf()-1,aPropuesta[0].valueOf(),aPropuestaHrs[0].valueOf(),aPropuestaHrs[1].valueOf(),0);
         var dPropuesta2= new Date(aPropuesta[2].valueOf(),aPropuesta[1].valueOf()-1,aPropuesta[0].valueOf(),aPropuestaHrs[0].valueOf(),aPropuestaHrs[1].valueOf(),0);
         var dPropuesta3= new Date(aPropuesta[2].valueOf(),aPropuesta[1].valueOf()-1,aPropuesta[0].valueOf(),aPropuestaHrs[0].valueOf(),aPropuestaHrs[1].valueOf(),0);
@@ -192,7 +191,11 @@ function calculaSLA(){
             dPropuesta3.setMinutes(00);
         }
 
-
+                //Si la hora de propuesta es antes de las nueve am , se pasa al inicio de la ventana de tiempo permitida que es 9:00 am        
+        if(aPropuestaHrs[0]<9){
+            dPropuesta3.setHours(9);
+            dPropuesta3.setMinutes(00);
+        }
 
         var daysDiffRound = Math.round(Math.abs((dAsignacion2-dPropuesta3)/86400000));
         var HrsDiff  = Math.abs((dAsignacion2-dPropuesta3)/3600000);
@@ -225,12 +228,12 @@ function calculaSLA(){
 
          //se obtiene los dias inhabiles sumando fines de semana y festivos
         diasInhabiles = diasFinSemana+iNoHabiles;
-     
+		
         var iTiempoSAT = document.getElementById("mc_info_rs_ap_ECHorasSAT").value ;
         if(iTiempoSAT<=2){
                 iTiempoSAT=0;
         }
-
+		
         if(iDias*9*60 >= ( (MinsDiff-(diasInhabiles*9*60)-(iTiempoSAT.valueOf()*60))-(15*60*daysDiffRound) ) ){//se verifica si rebasa los días que tenía para entregar la propuesta tomando 9 horas x dia como nuevo requerimiento
             document.getElementById("mc_info_rs_ap_ECCumplioRS").value="1";
         } else {
@@ -307,6 +310,7 @@ function calculaSLA(){
             }
         }
         */
+
         addObservaciones();
 }
 
@@ -355,6 +359,11 @@ function addObservaciones(){
             dPropuesta2.setMinutes(00);
         }
 
+        //Si la hora de propuesta es antes de las nueve am , se pasa al inicio de la ventana de tiempo permitida que es 9:00 am        
+        if(aPropuestaHrs[0]<9){
+            dPropuesta2.setHours(9);
+            dPropuesta2.setMinutes(00);
+        }
 
         
         //se convierte en fecha la evidencia para poder comparar        
@@ -898,7 +907,7 @@ jQuery(function ($) {
 </script>
 </head>
 <body>
-<p>1{Header}&nbsp;&nbsp;</p>
+<p>{Header}&nbsp;&nbsp;</p>
 <table cellspacing="0" cellpadding="0" width="600" border="0">
   <tr>
     <td>&nbsp;</td> 

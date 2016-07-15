@@ -11,7 +11,7 @@ from mc_info_incidentes i
 	inner join mc_c_movimiento m on m.ClaveMovimiento = det.ClaveMovimiento 
 	left join (select id_incidente, paquete, FechaCarga, Max(FechaFinMov) LiberacionAVL, count(FechaFinMov)  CountPaquete
 			from mc_detalle_incidente_avl det 
-				where ClaveMovimiento ='38' OR ClaveMovimiento ='49' OR ClaveMovimiento ='36' OR ClaveMovimiento ='47'
+				where ClaveMovimiento ='38' OR ClaveMovimiento ='49' OR ClaveMovimiento ='36' OR ClaveMovimiento ='47' OR ClaveMovimiento ='40'
 				group by id_incidente, Paquete, FechaCarga  
 	) as r on r.Id_Incidente = det.Id_Incidente and r.Paquete = det.Paquete and MONTH(r.FechaCarga )= u.mes  and YEAR(r.FechaCarga )= u.anio 
 	left join (select id_incidente, paquete, FechaCarga, SUM(dbo.ufDiffFechasMCSec(FechaInicioMov,FechaFinMov)) TotalSecPaquete

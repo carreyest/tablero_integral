@@ -225,7 +225,19 @@ function mc_info_incidentes_BeforeShowRow(& $sender)
 		$sMes = CCGetParam("s_MesReporte");
 	}
 	
-	$mc_info_incidentes->lkEvidencia->SetLink("http://satportal.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos compartidos/Operación del Servicio/Itera/" . CCGetParam("s_AnioReporte","") . $sMes . "/EntregablesPeriódicos/NivelesServicio/". $sProveedor ."/");
+	//$mc_info_incidentes->lkEvidencia->SetLink("http://satportal.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos compartidos/Operación del Servicio/Itera/" . CCGetParam("s_AnioReporte","") . $sMes . "/EntregablesPeriódicos/NivelesServicio/". $sProveedor ."/");
+	if(CCGetParam("s_AnioReporte",0)>=2016 ||(CCGetParam("s_AnioReporte",0)==2015 && CCGetParam("s_MesReporte") >= 10 )){
+		$mc_info_incidentes->lkEvidencia->SetLink("http://satportal.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos%20compartidos/Forms/AllItems.aspx?RootFolder=%2Fagcti%2FSDMA4-Admvo%2FDocumentos%20compartidos%2FOperaci%C3%B3n%20del%20Servicio%2FItera%2F" . CCGetParam("s_AnioReporte","") . $sMes . "%2FNivelesServicio%2F". $sProveedor ."&InitialTabId=Ribbon%2EDocument&VisibilityContext=WSSTabPersistence");											 
+		
+				
+	} elseif (CCGetParam("s_AnioReporte",0)==2015 && CCGetParam("s_MesReporte") == 9) {
+		$mc_info_incidentes->lkEvidencia->SetLink("http://satportal.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos%20compartidos/Forms/AllItems.aspx?RootFolder=%2Fagcti%2FSDMA4-Admvo%2FDocumentos%20compartidos%2FOperaci%C3%B3n%20del%20Servicio%2FItera%2F" . CCGetParam("s_AnioReporte","") . $sMes . "%2FEntregablesPeri%C3%B3dicos%2FNivelesServicio&InitialTabId=Ribbon%2EDocument&VisibilityContext=WSSTabPersistence");				
+	}
+	
+	else {
+		$mc_info_incidentes->lkEvidencia->SetLink("http://satportal.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos%20compartidos/Forms/AllItems.aspx?RootFolder=%2Fagcti%2FSDMA4-Admvo%2FDocumentos%20compartidos%2FOperaci%C3%B3n%20del%20Servicio%2FItera%2F" . CCGetParam("s_AnioReporte","") . $sMes . "%2FEntregablesPeri%C3%B3dicos%2FNivelesServicio%2F". $sProveedor ."&InitialTabId=Ribbon%2EDocument&VisibilityContext=WSSTabPersistence");				
+		                                    
+	}
 
 
 /*    
@@ -240,7 +252,7 @@ function mc_info_incidentes_BeforeShowRow(& $sender)
 		$sMes = CCGetParam("s_MesReporte");
 	}
 
-	$mc_info_incidentes->lkEvidencia->SetLink("http://satportal.dssat.sat.gob.mx/agcti/CAPC_ITERA/SDMA3/AdmonContrato/CAPC/Entregables_C/" . CCGetParam("s_AnioReporte","") . $sMes .  "/MC/Evidencia_CDS" . $sProveedor  . "/"); 
+	//$mc_info_incidentes->lkEvidencia->SetLink("http://satportal.dssat.sat.gob.mx/agcti/CAPC_ITERA/SDMA3/AdmonContrato/CAPC/Entregables_C/" . CCGetParam("s_AnioReporte","") . $sMes .  "/MC/Evidencia_CDS" . $sProveedor  . "/"); 
 */
 		// . $mc_info_incidentes->id_ppmc->GetValue() . "_A.doc");
 	

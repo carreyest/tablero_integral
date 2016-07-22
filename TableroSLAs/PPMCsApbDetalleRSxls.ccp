@@ -363,11 +363,11 @@ where c.id_proveedor = {s_id_proveedor}
 					</Actions>
 				</Event>
 				<Event name="BeforeShow" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="188"/>
-</Actions>
-</Event>
-</Events>
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="188"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters/>
 			<JoinTables/>
 			<JoinLinks/>
@@ -376,11 +376,11 @@ where c.id_proveedor = {s_id_proveedor}
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="189" dataType="Integer" defaultValue="0" designDefaultValue="3" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
-<SQLParameter id="190" dataType="Integer" defaultValue="0" designDefaultValue="4" parameterSource="s_MesReporte" parameterType="URL" variable="s_MesReporte"/>
-<SQLParameter id="191" dataType="Integer" defaultValue="0" designDefaultValue="2014" parameterSource="s_AnioReporte" parameterType="URL" variable="s_AnioReporte"/>
-<SQLParameter id="192" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
-<SQLParameter id="193" dataType="Text" parameterSource="s_PPMC" parameterType="URL" variable="s_PPMC"/>
-</SQLParameters>
+				<SQLParameter id="190" dataType="Integer" defaultValue="0" designDefaultValue="4" parameterSource="s_MesReporte" parameterType="URL" variable="s_MesReporte"/>
+				<SQLParameter id="191" dataType="Integer" defaultValue="0" designDefaultValue="2014" parameterSource="s_AnioReporte" parameterType="URL" variable="s_AnioReporte"/>
+				<SQLParameter id="192" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
+				<SQLParameter id="193" dataType="Text" parameterSource="s_PPMC" parameterType="URL" variable="s_PPMC"/>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -402,14 +402,14 @@ where c.id_proveedor = {s_id_proveedor}
 					<SQLParameters/>
 					<JoinTables>
 						<JoinTable id="185" posHeight="180" posLeft="10" posTop="10" posWidth="158" tableName="mc_c_proveedor"/>
-</JoinTables>
+					</JoinTables>
 					<JoinLinks/>
 					<Fields>
 						<Field id="186" fieldName="*"/>
-</Fields>
+					</Fields>
 					<PKFields>
 						<PKField id="187" dataType="Integer" fieldName="id_proveedor" tableName="mc_c_proveedor"/>
-</PKFields>
+					</PKFields>
 					<Attributes/>
 					<Features/>
 				</ListBox>
@@ -428,7 +428,7 @@ where c.id_proveedor = {s_id_proveedor}
 				</ListBox>
 				<ListBox id="32" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Integer" returnValueType="Number" name="s_AnioReporte" fieldSource="AnioReporte" wizardIsPassword="False" wizardEmptyCaption="Seleccionar Valor" wizardCaption="Anio Reporte" caption="Anio Reporte" required="False" unique="False" PathID="grdDetalleRS1s_AnioReporte" connection="cnDisenio" dataSource="SELECT * 
 FROM mc_c_anio 
-where ano &gt; 2013
+where ano &gt; 2013 
 order by ano" boundColumn="Ano" textColumn="Ano">
 					<Components/>
 					<Events/>
@@ -719,11 +719,11 @@ AND (anio = {s_anio} or {s_anio}=0)
 					</Actions>
 				</Event>
 				<Event name="BeforeShow" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="184"/>
-</Actions>
-</Event>
-</Events>
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="184"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters/>
 			<JoinTables/>
 			<JoinLinks/>

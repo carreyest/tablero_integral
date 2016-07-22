@@ -326,11 +326,11 @@ and (mcu.slo is null or mcu.slo =0)" pageSizeLimit="100" pageSize="True" wizardC
 			<Features/>
 		</IncludePage>
 		<IncludePage id="229" name="MenuTablero" page="MenuTablero.ccp">
-<Components/>
-<Events/>
-<Features/>
-</IncludePage>
-</Components>
+			<Components/>
+			<Events/>
+			<Features/>
+		</IncludePage>
+	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="IncidentesDetalleNS_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="IncidentesDetalleNS.php" forShow="True" url="IncidentesDetalleNS.php" comment="//" codePage="windows-1252"/>

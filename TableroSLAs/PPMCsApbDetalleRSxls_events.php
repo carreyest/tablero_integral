@@ -248,11 +248,16 @@ function grdDetalleRS_BeforeShowRow(& $sender)
 	}
 */
 	if(CCGetParam("s_AnioReporte",0)>=2016 ||(CCGetParam("s_AnioReporte",0)==2015 && CCGetParam("s_MesReporte") >= 10 )){
-											 
-		$grdDetalleRS->lkEvidencia->SetLink("http://satportal.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos%20compartidos/Forms/AllItems.aspx?RootFolder=%2Fagcti%2FSDMA4-Admvo%2FDocumentos%20compartidos%2FOperaci%C3%B3n%20del%20Servicio%2FItera%2F201510%2FNivelesServicio");		
+		$grdDetalleRS->lkEvidencia->SetLink("http://satportal.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos%20compartidos/Forms/AllItems.aspx?RootFolder=%2Fagcti%2FSDMA4-Admvo%2FDocumentos%20compartidos%2FOperaci%C3%B3n%20del%20Servicio%2FItera%2F" . CCGetParam("s_AnioReporte","") . $sMes . "%2FNivelesServicio%2F". $sProveedor ."&InitialTabId=Ribbon%2EDocument&VisibilityContext=WSSTabPersistence");											 
+		
 				
-	} else {
-		$grdDetalleRS->lkEvidencia->SetLink("http://satportal.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos compartidos/Operación del Servicio/Itera/" . CCGetParam("s_AnioReporte","") . $sMes . "/EntregablesPeriódicos/NivelesServicio/". $sProveedor ."/");		
+	} elseif (CCGetParam("s_AnioReporte",0)==2015 && CCGetParam("s_MesReporte") == 9) {
+		$grdDetalleRS->lkEvidencia->SetLink("http://satportal.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos%20compartidos/Forms/AllItems.aspx?RootFolder=%2Fagcti%2FSDMA4-Admvo%2FDocumentos%20compartidos%2FOperaci%C3%B3n%20del%20Servicio%2FItera%2F" . CCGetParam("s_AnioReporte","") . $sMes . "%2FEntregablesPeri%C3%B3dicos%2FNivelesServicio&InitialTabId=Ribbon%2EDocument&VisibilityContext=WSSTabPersistence");				
+	}
+	
+	else {
+		$grdDetalleRS->lkEvidencia->SetLink("http://satportal.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos%20compartidos/Forms/AllItems.aspx?RootFolder=%2Fagcti%2FSDMA4-Admvo%2FDocumentos%20compartidos%2FOperaci%C3%B3n%20del%20Servicio%2FItera%2F" . CCGetParam("s_AnioReporte","") . $sMes . "%2FEntregablesPeri%C3%B3dicos%2FNivelesServicio%2F". $sProveedor ."&InitialTabId=Ribbon%2EDocument&VisibilityContext=WSSTabPersistence");				
+		                                    
 	}
 
 

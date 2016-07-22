@@ -63,12 +63,6 @@
 					<Attributes/>
 					<Features/>
 				</ListBox>
-				<TextBox id="15" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Agrupador" fieldSource="Agrupador" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Agrupador" caption="Agrupador" required="False" unique="False" wizardSize="50" wizardMaxLength="75" PathID="mc_calificacion_capcAgrupador">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</TextBox>
 				<ListBox id="20" visible="Yes" fieldSourceType="DBColumn" sourceType="Table" dataType="Integer" returnValueType="Number" name="id_serviciocont" fieldSource="id_serviciocont" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Id Serviciocont" caption="Id Serviciocont" required="False" unique="False" connection="cnDisenio" wizardEmptyCaption="Seleccionar Valor" PathID="mc_calificacion_capcid_serviciocont" dataSource="mc_c_ServContractual" boundColumn="Id" textColumn="Descripcion">
 					<Components/>
 					<Events/>
@@ -133,12 +127,6 @@
 					<Features/>
 				</TextBox>
 				<TextBox id="67" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="PctMaximo" PathID="mc_calificacion_capcPctMaximo" fieldSource="PctMaximo">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</TextBox>
-				<TextBox id="35" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="DiasPlaneados" PathID="mc_calificacion_capcDiasPlaneados" fieldSource="DiasPlaneados" format="0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -304,184 +292,184 @@
 			<Features/>
 		</Link>
 		<EditableGrid id="134" urlType="Relative" secured="False" emptyRows="0" allowInsert="False" allowUpdate="False" allowDelete="True" validateData="True" preserveParameters="GET" sourceType="Table" defaultPageSize="10" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="mc_info_rs_cr_RE_RC_Artef" connection="cnDisenio" dataSource="mc_info_rs_cr_RE_RC_Artefacto_CAPC" pageSizeLimit="100" wizardGridPageSize="True" wizardUseSearch="False" allowCancel="False" wizardSubmitConfirmation="False" wizardCaption="Lista de Artefactos" wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAltRecord="False" wizardRecordSeparator="False" wizardNoRecords="No hay registros" wizardGridKey="Id" wizardGridPaging="Simple" wizardAddNbsp="False" wizardTotalRecords="False" wizardButtonsType="button" changedCaptionEditableGrid="True" wizardUseInterVariables="False" pkIsAutoincrement="True" wizardType="EditableGrid" wizardThemeApplyTo="Page" addTemplatePanel="False" PathID="mc_info_rs_cr_RE_RC_Artef" deleteControl="CheckBox_Delete">
-<Components>
-<Sorter id="137" visible="True" name="Sorter_Nombre" column="Nombre" wizardCaption="Nombre" wizardSortingType="SimpleDir" wizardControl="Nombre" wizardAddNbsp="False" PathID="mc_info_rs_cr_RE_RC_ArtefSorter_Nombre">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Sorter>
-<Sorter id="138" visible="True" name="Sorter_Descripcion" column="Descripcion" wizardCaption="Descripcion" wizardSortingType="SimpleDir" wizardControl="Descripcion" wizardAddNbsp="False" PathID="mc_info_rs_cr_RE_RC_ArtefSorter_Descripcion">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Sorter>
-<Sorter id="139" visible="True" name="Sorter_Formato" column="Formato" wizardCaption="Formato" wizardSortingType="SimpleDir" wizardControl="Formato" wizardAddNbsp="False" PathID="mc_info_rs_cr_RE_RC_ArtefSorter_Formato">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Sorter>
-<Sorter id="140" visible="True" name="Sorter_NombreConHerramienta" column="NombreConHerramienta" wizardCaption="Nombre Con Herramienta" wizardSortingType="SimpleDir" wizardControl="NombreConHerramienta" wizardAddNbsp="False" PathID="mc_info_rs_cr_RE_RC_ArtefSorter_NombreConHerramienta">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Sorter>
-<Sorter id="141" visible="True" name="Sorter_FechaEstFin" column="FechaEstFin" wizardCaption="Fecha Est Fin" wizardSortingType="SimpleDir" wizardControl="FechaEstFin" wizardAddNbsp="False" PathID="mc_info_rs_cr_RE_RC_ArtefSorter_FechaEstFin">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Sorter>
-<Sorter id="142" visible="True" name="Sorter_FechaEntrega" column="FechaEntrega" wizardCaption="Fecha Entrega" wizardSortingType="SimpleDir" wizardControl="FechaEntrega" wizardAddNbsp="False" PathID="mc_info_rs_cr_RE_RC_ArtefSorter_FechaEntrega">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Sorter>
-<Sorter id="143" visible="True" name="Sorter_DiasHabilesDesviacion" column="DiasHabilesDesviacion" wizardCaption="Dias Habiles Desviacion" wizardSortingType="SimpleDir" wizardControl="DiasHabilesDesviacion" wizardAddNbsp="False" PathID="mc_info_rs_cr_RE_RC_ArtefSorter_DiasHabilesDesviacion">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Sorter>
-<Sorter id="144" visible="True" name="Sorter_DiasNaturalesDesviacion" column="DiasNaturalesDesviacion" wizardCaption="Dias Naturales Desviacion" wizardSortingType="SimpleDir" wizardControl="DiasNaturalesDesviacion" wizardAddNbsp="False" PathID="mc_info_rs_cr_RE_RC_ArtefSorter_DiasNaturalesDesviacion">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Sorter>
-<Sorter id="145" visible="True" name="Sorter_PctDeductiva" column="PctDeductiva" wizardCaption="Pct Deductiva" wizardSortingType="SimpleDir" wizardControl="PctDeductiva" wizardAddNbsp="False" PathID="mc_info_rs_cr_RE_RC_ArtefSorter_PctDeductiva">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Sorter>
-<Sorter id="146" visible="True" name="Sorter_Comentarios" column="Comentarios" wizardCaption="Comentarios" wizardSortingType="SimpleDir" wizardControl="Comentarios" wizardAddNbsp="False" PathID="mc_info_rs_cr_RE_RC_ArtefSorter_Comentarios">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Sorter>
-<Label id="147" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Nombre" fieldSource="Nombre" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardCaption="Nombre" PathID="mc_info_rs_cr_RE_RC_ArtefNombre">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-<Label id="148" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Descripcion" fieldSource="Descripcion" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardCaption="Descripcion" PathID="mc_info_rs_cr_RE_RC_ArtefDescripcion">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-<Label id="149" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Formato" fieldSource="Formato" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardCaption="Formato" PathID="mc_info_rs_cr_RE_RC_ArtefFormato">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-<Label id="150" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="NombreConHerramienta" fieldSource="NombreConHerramienta" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardCaption="Nombre Con Herramienta" PathID="mc_info_rs_cr_RE_RC_ArtefNombreConHerramienta">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-<Label id="151" fieldSourceType="DBColumn" dataType="Date" html="False" generateSpan="False" name="FechaEstFin" fieldSource="FechaEstFin" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardCaption="Fecha Est Fin" format="ShortDate" PathID="mc_info_rs_cr_RE_RC_ArtefFechaEstFin" DBFormat="yyyy-mm-dd HH:nn:ss.S">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-<Label id="152" fieldSourceType="DBColumn" dataType="Date" html="False" generateSpan="False" name="FechaEntrega" fieldSource="FechaEntrega" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardCaption="Fecha Entrega" format="ShortDate" PathID="mc_info_rs_cr_RE_RC_ArtefFechaEntrega" DBFormat="yyyy-mm-dd HH:nn:ss.S">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-<Label id="153" fieldSourceType="DBColumn" dataType="Integer" html="False" generateSpan="False" name="DiasHabilesDesviacion" fieldSource="DiasHabilesDesviacion" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardCaption="Dias Habiles Desviacion" PathID="mc_info_rs_cr_RE_RC_ArtefDiasHabilesDesviacion">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-<Label id="154" fieldSourceType="DBColumn" dataType="Integer" html="False" generateSpan="False" name="DiasNaturalesDesviacion" fieldSource="DiasNaturalesDesviacion" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardCaption="Dias Naturales Desviacion" PathID="mc_info_rs_cr_RE_RC_ArtefDiasNaturalesDesviacion">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-<Label id="155" fieldSourceType="DBColumn" dataType="Float" html="False" generateSpan="False" name="PctDeductiva" fieldSource="PctDeductiva" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardCaption="Pct Deductiva" PathID="mc_info_rs_cr_RE_RC_ArtefPctDeductiva">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-<Label id="156" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Comentarios" fieldSource="Comentarios" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardCaption="Comentarios" PathID="mc_info_rs_cr_RE_RC_ArtefComentarios">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-<Panel id="157" visible="True" generateDiv="False" name="CheckBox_Delete_Panel">
-<Components>
-<CheckBox id="158" visible="Dynamic" fieldSourceType="CodeExpression" dataType="Boolean" defaultValue="Unchecked" name="CheckBox_Delete" checkedValue="true" uncheckedValue="false" wizardCaption="Borrar" wizardAddNbsp="True" PathID="mc_info_rs_cr_RE_RC_ArtefCheckBox_Delete_PanelCheckBox_Delete">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</CheckBox>
-</Components>
-<Events/>
-<Attributes/>
-<Features/>
-</Panel>
-<Navigator id="159" size="10" type="Simple" pageSizes="1;5;10;25;50" name="Navigator" wizardPagingType="Simple" wizardFirst="True" wizardFirstText="Inicio" wizardPrev="True" wizardPrevText="Anterior" wizardNext="True" wizardNextText="Siguiente" wizardLast="True" wizardLastText="Final" wizardImages="Images" wizardPageNumbers="Simple" wizardSize="10" wizardTotalPages="True" wizardHideDisabled="False" wizardPageSize="True" wizardImagesScheme="Austere4">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Navigator>
-<Button id="160" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Submit" operation="Submit" wizardCaption="Enviar" PathID="mc_info_rs_cr_RE_RC_ArtefButton_Submit">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Button>
-</Components>
-<Events/>
-<TableParameters>
-<TableParameter id="162" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Id_Padre" logicOperator="And" parameterSource="id" parameterType="URL" searchConditionType="Equal"/>
-</TableParameters>
-<SPParameters/>
-<SQLParameters/>
-<JoinTables>
-<JoinTable id="161" posHeight="180" posLeft="10" posTop="10" posWidth="160" tableName="mc_info_rs_cr_RE_RC_Artefacto_CAPC"/>
-</JoinTables>
-<JoinLinks/>
-<Fields>
-<Field id="163" fieldName="*"/>
-</Fields>
-<PKFields>
-<PKField id="164" dataType="Integer" fieldName="Id" tableName="mc_info_rs_cr_RE_RC_Artefacto_CAPC"/>
-</PKFields>
-<ISPParameters/>
-<ISQLParameters/>
-<IFormElements/>
-<USPParameters/>
-<USQLParameters/>
-<UConditions/>
-<UFormElements/>
-<DSPParameters/>
-<DSQLParameters/>
-<DConditions/>
-<SecurityGroups/>
-<Attributes/>
-<Features/>
-</EditableGrid>
-</Components>
+			<Components>
+				<Sorter id="137" visible="True" name="Sorter_Nombre" column="Nombre" wizardCaption="Nombre" wizardSortingType="SimpleDir" wizardControl="Nombre" wizardAddNbsp="False" PathID="mc_info_rs_cr_RE_RC_ArtefSorter_Nombre">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="138" visible="True" name="Sorter_Descripcion" column="Descripcion" wizardCaption="Descripcion" wizardSortingType="SimpleDir" wizardControl="Descripcion" wizardAddNbsp="False" PathID="mc_info_rs_cr_RE_RC_ArtefSorter_Descripcion">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="139" visible="True" name="Sorter_Formato" column="Formato" wizardCaption="Formato" wizardSortingType="SimpleDir" wizardControl="Formato" wizardAddNbsp="False" PathID="mc_info_rs_cr_RE_RC_ArtefSorter_Formato">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="140" visible="True" name="Sorter_NombreConHerramienta" column="NombreConHerramienta" wizardCaption="Nombre Con Herramienta" wizardSortingType="SimpleDir" wizardControl="NombreConHerramienta" wizardAddNbsp="False" PathID="mc_info_rs_cr_RE_RC_ArtefSorter_NombreConHerramienta">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="141" visible="True" name="Sorter_FechaEstFin" column="FechaEstFin" wizardCaption="Fecha Est Fin" wizardSortingType="SimpleDir" wizardControl="FechaEstFin" wizardAddNbsp="False" PathID="mc_info_rs_cr_RE_RC_ArtefSorter_FechaEstFin">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="142" visible="True" name="Sorter_FechaEntrega" column="FechaEntrega" wizardCaption="Fecha Entrega" wizardSortingType="SimpleDir" wizardControl="FechaEntrega" wizardAddNbsp="False" PathID="mc_info_rs_cr_RE_RC_ArtefSorter_FechaEntrega">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="143" visible="True" name="Sorter_DiasHabilesDesviacion" column="DiasHabilesDesviacion" wizardCaption="Dias Habiles Desviacion" wizardSortingType="SimpleDir" wizardControl="DiasHabilesDesviacion" wizardAddNbsp="False" PathID="mc_info_rs_cr_RE_RC_ArtefSorter_DiasHabilesDesviacion">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="144" visible="True" name="Sorter_DiasNaturalesDesviacion" column="DiasNaturalesDesviacion" wizardCaption="Dias Naturales Desviacion" wizardSortingType="SimpleDir" wizardControl="DiasNaturalesDesviacion" wizardAddNbsp="False" PathID="mc_info_rs_cr_RE_RC_ArtefSorter_DiasNaturalesDesviacion">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="145" visible="True" name="Sorter_PctDeductiva" column="PctDeductiva" wizardCaption="Pct Deductiva" wizardSortingType="SimpleDir" wizardControl="PctDeductiva" wizardAddNbsp="False" PathID="mc_info_rs_cr_RE_RC_ArtefSorter_PctDeductiva">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Sorter id="146" visible="True" name="Sorter_Comentarios" column="Comentarios" wizardCaption="Comentarios" wizardSortingType="SimpleDir" wizardControl="Comentarios" wizardAddNbsp="False" PathID="mc_info_rs_cr_RE_RC_ArtefSorter_Comentarios">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Label id="147" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Nombre" fieldSource="Nombre" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardCaption="Nombre" PathID="mc_info_rs_cr_RE_RC_ArtefNombre">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="148" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Descripcion" fieldSource="Descripcion" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardCaption="Descripcion" PathID="mc_info_rs_cr_RE_RC_ArtefDescripcion">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="149" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Formato" fieldSource="Formato" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardCaption="Formato" PathID="mc_info_rs_cr_RE_RC_ArtefFormato">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="150" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="NombreConHerramienta" fieldSource="NombreConHerramienta" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardCaption="Nombre Con Herramienta" PathID="mc_info_rs_cr_RE_RC_ArtefNombreConHerramienta">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="151" fieldSourceType="DBColumn" dataType="Date" html="False" generateSpan="False" name="FechaEstFin" fieldSource="FechaEstFin" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardCaption="Fecha Est Fin" format="ShortDate" PathID="mc_info_rs_cr_RE_RC_ArtefFechaEstFin" DBFormat="yyyy-mm-dd HH:nn:ss.S">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="152" fieldSourceType="DBColumn" dataType="Date" html="False" generateSpan="False" name="FechaEntrega" fieldSource="FechaEntrega" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardCaption="Fecha Entrega" format="ShortDate" PathID="mc_info_rs_cr_RE_RC_ArtefFechaEntrega" DBFormat="yyyy-mm-dd HH:nn:ss.S">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="153" fieldSourceType="DBColumn" dataType="Integer" html="False" generateSpan="False" name="DiasHabilesDesviacion" fieldSource="DiasHabilesDesviacion" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardCaption="Dias Habiles Desviacion" PathID="mc_info_rs_cr_RE_RC_ArtefDiasHabilesDesviacion">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="154" fieldSourceType="DBColumn" dataType="Integer" html="False" generateSpan="False" name="DiasNaturalesDesviacion" fieldSource="DiasNaturalesDesviacion" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardCaption="Dias Naturales Desviacion" PathID="mc_info_rs_cr_RE_RC_ArtefDiasNaturalesDesviacion">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="155" fieldSourceType="DBColumn" dataType="Float" html="False" generateSpan="False" name="PctDeductiva" fieldSource="PctDeductiva" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardCaption="Pct Deductiva" PathID="mc_info_rs_cr_RE_RC_ArtefPctDeductiva">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="156" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Comentarios" fieldSource="Comentarios" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="False" wizardCaption="Comentarios" PathID="mc_info_rs_cr_RE_RC_ArtefComentarios">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Panel id="157" visible="True" generateDiv="False" name="CheckBox_Delete_Panel">
+					<Components>
+						<CheckBox id="158" visible="Dynamic" fieldSourceType="CodeExpression" dataType="Boolean" defaultValue="Unchecked" name="CheckBox_Delete" checkedValue="true" uncheckedValue="false" wizardCaption="Borrar" wizardAddNbsp="True" PathID="mc_info_rs_cr_RE_RC_ArtefCheckBox_Delete_PanelCheckBox_Delete">
+							<Components/>
+							<Events/>
+							<Attributes/>
+							<Features/>
+						</CheckBox>
+					</Components>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Panel>
+				<Navigator id="159" size="10" type="Simple" pageSizes="1;5;10;25;50" name="Navigator" wizardPagingType="Simple" wizardFirst="True" wizardFirstText="Inicio" wizardPrev="True" wizardPrevText="Anterior" wizardNext="True" wizardNextText="Siguiente" wizardLast="True" wizardLastText="Final" wizardImages="Images" wizardPageNumbers="Simple" wizardSize="10" wizardTotalPages="True" wizardHideDisabled="False" wizardPageSize="True" wizardImagesScheme="Austere4">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Navigator>
+				<Button id="160" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Submit" operation="Submit" wizardCaption="Enviar" PathID="mc_info_rs_cr_RE_RC_ArtefButton_Submit">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+			</Components>
+			<Events/>
+			<TableParameters>
+				<TableParameter id="162" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Id_Padre" logicOperator="And" parameterSource="id" parameterType="URL" searchConditionType="Equal"/>
+			</TableParameters>
+			<SPParameters/>
+			<SQLParameters/>
+			<JoinTables>
+				<JoinTable id="161" posHeight="180" posLeft="10" posTop="10" posWidth="160" tableName="mc_info_rs_cr_RE_RC_Artefacto_CAPC"/>
+			</JoinTables>
+			<JoinLinks/>
+			<Fields>
+				<Field id="163" fieldName="*"/>
+			</Fields>
+			<PKFields>
+				<PKField id="164" dataType="Integer" fieldName="Id" tableName="mc_info_rs_cr_RE_RC_Artefacto_CAPC"/>
+			</PKFields>
+			<ISPParameters/>
+			<ISQLParameters/>
+			<IFormElements/>
+			<USPParameters/>
+			<USQLParameters/>
+			<UConditions/>
+			<UFormElements/>
+			<DSPParameters/>
+			<DSQLParameters/>
+			<DConditions/>
+			<SecurityGroups/>
+			<Attributes/>
+			<Features/>
+		</EditableGrid>
+	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="SLAsCAPCRetEnt_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="SLAsCAPCRetEnt.php" forShow="True" url="SLAsCAPCRetEnt.php" comment="//" codePage="windows-1252"/>

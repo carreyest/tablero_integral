@@ -1,10 +1,9 @@
 <?php
-//BindEvents Method @1-B1B01AF6
+//BindEvents Method @1-4C5746E4
 function BindEvents()
 {
     global $mc_info_rs_cr_RF;
     global $CCSEvents;
-    $mc_info_rs_cr_RF->FechaSubida->CCSEvents["BeforeShow"] = "mc_info_rs_cr_RF_FechaSubida_BeforeShow";
     $mc_info_rs_cr_RF->PublicacionCAES->CCSEvents["BeforeShow"] = "mc_info_rs_cr_RF_PublicacionCAES_BeforeShow";
     $mc_info_rs_cr_RF->CCSEvents["BeforeShow"] = "mc_info_rs_cr_RF_BeforeShow";
     $mc_info_rs_cr_RF->CCSEvents["OnValidate"] = "mc_info_rs_cr_RF_OnValidate";
@@ -13,20 +12,6 @@ function BindEvents()
     $CCSEvents["BeforeShow"] = "Page_BeforeShow";
 }
 //End BindEvents Method
-
-//mc_info_rs_cr_RF_FechaSubida_BeforeShow @13-1BBDEBA5
-function mc_info_rs_cr_RF_FechaSubida_BeforeShow(& $sender)
-{
-    $mc_info_rs_cr_RF_FechaSubida_BeforeShow = true;
-    $Component = & $sender;
-    $Container = & CCGetParentContainer($sender);
-    global $mc_info_rs_cr_RF; //Compatibility
-//End mc_info_rs_cr_RF_FechaSubida_BeforeShow
-
-//Close mc_info_rs_cr_RF_FechaSubida_BeforeShow @13-C9EFD41C
-    return $mc_info_rs_cr_RF_FechaSubida_BeforeShow;
-}
-//End Close mc_info_rs_cr_RF_FechaSubida_BeforeShow
 
 //mc_info_rs_cr_RF_PublicacionCAES_BeforeShow @42-4F29523E
 function mc_info_rs_cr_RF_PublicacionCAES_BeforeShow(& $sender)
@@ -96,6 +81,7 @@ function mc_info_rs_cr_RF_BeforeShow(& $sender)
 			$mc_info_rs_cr_RF->sNombreProyecto->SetValue($db->f(0));
 			$mc_info_rs_cr_RF->lTipoRequerimiento->SetValue($sTipoReq);
 		}
+/*		
 		switch($sTipoReq){
 		    case "Proyecto";
 			    $sql= 'SELECT FIN_REAL  FROM PPMC_FasesActivas F ' .
@@ -119,6 +105,7 @@ function mc_info_rs_cr_RF_BeforeShow(& $sender)
 			//convierte la fecha en en el formato de la db
 			$mc_info_rs_cr_RF->FechaSubida->SetValue(CCParseDate($db->f(0), array("yyyy","-","mm","-","dd"," ","HH",":","nn",":","ss",".","S")));
 		}
+*/		
     } else {// si no tiene registro de estimación 
     	$sql="SELECT ID_PPMC, NAME, SERVICIO_NEGOCIO, TIPO_REQUERIMIENTO, FECHA_CARGA,  u.mes, u.anio  " .
 			" from mc_universo_cds u  LEFT JOIN vw_PPMC_Proy_RO_CC on " . 
@@ -220,35 +207,48 @@ function mc_info_rs_cr_RF_ds_BeforeExecuteInsert(& $sender)
 
 //Custom Code @52-2A29BDB7
 // -------------------------
-    global $db;
-    
+    global $db;    
     $db= new clsDBcnDisenio;
-    $sSQL = "SELECT Id_Proveedor, Numero, Mes, Anio FROM mc_universo_cds WHERE Id=" . CCGetParam("Id") ;
-    $db->query($sSQL);
+    
+    
+	$sqlVerifInsert ="select count(*) from mc_info_rs_cr_RF where id " . CCGetParam("Id") ;
+    $db->query($sqlVerifInsert);
     if($db->next_record()){
-    	$sIdProveedor = $db->f(0);
-    	$sPPMC = $db->f(1);
-    	$sMes = $db->f(2);
-    	$sAnio = $db->f(3);
+    	$num_reg = $db->f(0);
     }
-    $sCumpleReqFun=$mc_info_rs_cr_RF->CumpleReqFun->GetValue();
-	if($sCumpleReqFun === ""){
-			$sCumpleReqFun="NULL";
-	}
-    // verifica si existe el PPMC en la tabla de calificación
-    $sSQL="select count(*) from mc_calificacion_rs_MC where IdUniverso= " . CCGetParam("Id");
-    $db->query($sSQL);
-    if($db->next_record()){ 
-    	if($db->f(0)==0){ // si no existe se inserta
-    		$sSQL='INSERT INTO mc_calificacion_rs_mc (id_ppmc, id_proveedor,id_servicio_cont , id_servicio_negocio , CUMPL_REQ_FUNC, IdUniverso, MesReporte, AnioReporte ) ' .  
-    			' VALUES (' . $sPPMC . ',' . $sIdProveedor . ',0,0,'.  $sCumpleReqFun . ',' .
-    			 CCGetparam("Id") . ',' . $sMes . ',' . $sAnio .')';
-    	} else { //si existe se actualiza
-    		$sSQL = 'UPDATE  mc_calificacion_rs_mc SET CUMPL_REQ_FUNC = ' . $sCumpleReqFun .
-    			' WHERE IdUniverso =' . CCGetParam("Id");
-    	}
+    //Validación que verifica si el insert se realizo con exito 19/07/2016 de ser asi se actualiza la tabla que lleva los semaforos
+    if ($num_reg>0){
+    
+    	$sSQL = "SELECT Id_Proveedor, Numero, Mes, Anio FROM mc_universo_cds WHERE Id=" . CCGetParam("Id") ;
     	$db->query($sSQL);
+    	if($db->next_record()){
+    		$sIdProveedor = $db->f(0);
+    		$sPPMC = $db->f(1);
+    		$sMes = $db->f(2);
+    		$sAnio = $db->f(3);
+    	}
+    	$sCumpleReqFun=$mc_info_rs_cr_RF->CumpleReqFun->GetValue();
+		if($sCumpleReqFun === ""){
+				$sCumpleReqFun="NULL";
+		}
+    	// verifica si existe el PPMC en la tabla de calificación
+    	$sSQL="select count(*) from mc_calificacion_rs_MC where IdUniverso= " . CCGetParam("Id");
+    	$db->query($sSQL);
+    	if($db->next_record()){ 
+    		if($db->f(0)==0){ // si no existe se inserta
+    			$sSQL='INSERT INTO mc_calificacion_rs_mc (id_ppmc, id_proveedor,id_servicio_cont , id_servicio_negocio , CUMPL_REQ_FUNC, IdUniverso, MesReporte, AnioReporte ) ' .  
+    				' VALUES (' . $sPPMC . ',' . $sIdProveedor . ',0,0,'.  $sCumpleReqFun . ',' .
+    				 CCGetparam("Id") . ',' . $sMes . ',' . $sAnio .')';
+    		} else { //si existe se actualiza
+    			$sSQL = 'UPDATE  mc_calificacion_rs_mc SET CUMPL_REQ_FUNC = ' . $sCumpleReqFun .
+    				' WHERE IdUniverso =' . CCGetParam("Id");
+    		}
+    		$db->query($sSQL);
+    	}
+    
     }
+    
+    
     $db->close();
 
 // -------------------------

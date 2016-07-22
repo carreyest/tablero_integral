@@ -222,12 +222,6 @@ order by nombre
 						</JDateTimePicker>
 					</Features>
 				</TextBox>
-				<TextBox id="146" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="txtDiasEstimados" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="mc_info_rs_ap_ECtxtDiasEstimados" fieldSource="DiasDesarrolloEst" required="True" defaultValue="0" caption="Días Planeados" format="0.000">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</TextBox>
 				<TextBox id="147" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="MaxDiasRetrasoNat" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="mc_info_rs_ap_ECMaxDiasRetrasoNat" fieldSource="MaxDiasRetrasoNat" required="False" defaultValue="0" format="0.000">
 					<Components/>
 					<Events>

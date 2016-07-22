@@ -49,30 +49,6 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="13" visible="Yes" fieldSourceType="DBColumn" dataType="Date" name="FechaSubida" fieldSource="FechaSubida" wizardIsPassword="False" wizardUseTemplateBlock="False" features="(assigned)" wizardCaption="Fecha Subida" caption="Fecha Subida" required="False" format="dd/mm/yyyy" unique="False" wizardSize="8" wizardMaxLength="100" PathID="mc_info_rs_cr_RFFechaSubida" DBFormat="yyyy-mm-dd HH:nn:ss.S" defaultValue="CurrentDate">
-					<Components/>
-					<Events>
-						<Event name="OnChange" type="Client">
-							<Actions>
-								<Action actionName="Custom Code" actionCategory="General" id="31"/>
-							</Actions>
-						</Event>
-					</Events>
-					<Attributes/>
-					<Features>
-						<JDateTimePicker id="14" show_weekend="True" name="InlineDatePicker1" category="jQuery" enabled="True">
-							<Components/>
-							<Events/>
-							<TableParameters/>
-							<SPParameters/>
-							<SQLParameters/>
-							<JoinTables/>
-							<JoinLinks/>
-							<Fields/>
-							<Features/>
-						</JDateTimePicker>
-					</Features>
-				</TextBox>
 				<ListBox id="15" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Integer" returnValueType="Number" name="CumpleReqFun" fieldSource="CumpleReqFun" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Cumple Req Fun" caption="Cumple Req Fun" required="False" unique="False" wizardEmptyCaption="Seleccionar Valor" PathID="mc_info_rs_cr_RFCumpleReqFun" dataSource="1;Cumple;0;No Cumple">
 					<Components/>
 					<Events/>

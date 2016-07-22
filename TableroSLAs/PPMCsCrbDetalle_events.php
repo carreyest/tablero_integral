@@ -619,11 +619,13 @@ function mc_info_rs_ap_EC_OnValidate(& $sender)
 
 //Custom Code @311-2A29BDB7
 // -------------------------
+/*
 	if ($mc_info_rs_ap_EC->lbSLA->GetValue()=="Completar Ruta Critica"){
 		if ($mc_info_rs_ap_EC->txtDiasEstimados->GetValue()==0){
 			$mc_info_rs_ap_EC->Errors->addError("El campo Días Planeados obligatorio");
 		}
 	}
+*/
 	global $Redirect;
 	global $PathToRoot;
 	//si es nuevo, se deja en la página.

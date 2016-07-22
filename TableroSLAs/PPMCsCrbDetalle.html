@@ -187,8 +187,9 @@ function mtoMenor(daysDiff,diasHabiles,DiasPlaneados){
         }                                       
         if ( document.getElementById("mc_info_rs_cr_RE_RC_Artef1DiasHabilesDesviacion").value >0){
                 document.getElementById("mc_info_rs_ap_ECCumplioHE").selectedIndex=3;                              
-                aDeductiva= (Math.abs(sDiasEstimados)) + ((daysDiff)-diasHabiles);
-                aDeductiva= ((aDeductiva- sDiasEstimados) / sDiasEstimados) * 100 ;                                                                                      
+				//aDeductiva= (Math.abs(sDiasEstimados)) + ((daysDiff)-diasHabiles);
+				aDeductiva=  ((daysDiff)-diasHabiles);
+				//aDeductiva= ((aDeductiva- sDiasEstimados) / sDiasEstimados) * 100 ;                
                 document.getElementById("mc_info_rs_cr_RE_RC_Artef1Pct").value= (diasHabiles) ;  //aDeductiva.toFixed(2);
                 if (document.getElementById("mc_info_rs_cr_RE_RC_Artef1DiasNaturalesDesviacion").value>=1 & document.getElementById("mc_info_rs_cr_RE_RC_Artef1DiasNaturalesDesviacion").value<=3){
                         document.getElementById("mc_info_rs_cr_RE_RC_Artef1lblDeductiva").value=2 ;
@@ -256,7 +257,7 @@ function calculaSLA(){
         } 
 
     sTipoSLA=document.getElementById("mc_info_rs_ap_EClbSLA").value;
-    sDiasEstimados=document.getElementById("mc_info_rs_ap_ECtxtDiasEstimados").value; 
+    //sDiasEstimados=document.getElementById("mc_info_rs_ap_ECtxtDiasEstimados").value; 
     sTipoRequerimiento=document.getElementById("mc_info_rs_ap_ECsTipoRequerimiento").value;
 
  
@@ -295,7 +296,8 @@ function calculaSLA(){
             } else {
                 document.getElementById("mc_info_rs_cr_RE_RC_Artef1DiasHabilesDesviacion").value=(daysDiff)-diasHabiles ;
                 document.getElementById("mc_info_rs_cr_RE_RC_Artef1DiasNaturalesDesviacion").value=(daysDiff) ;
-                document.getElementById("mc_info_rs_cr_RE_RC_Artef1DiasHabilesReales").value=(Math.abs(sDiasEstimados))+(daysDiff) ;
+				//document.getElementById("mc_info_rs_cr_RE_RC_Artef1DiasHabilesReales").value=(Math.abs(sDiasEstimados))+(daysDiff) ;
+				document.getElementById("mc_info_rs_cr_RE_RC_Artef1DiasHabilesReales").value=(daysDiff) ;
             }
         }             
     switch (sTipoSLA){                        
@@ -303,11 +305,13 @@ function calculaSLA(){
             switch (sTipoRequerimiento){
                 case "4": // NUEVO DESARROLLO                        
                 case "2": // SI ES MANTENIMIENTO MAYOR                                                                    
-                    mtoMayor(daysDiff,diasHabiles,sDiasEstimados);      
+					//mtoMayor(daysDiff,diasHabiles,sDiasEstimados);      
+                    mtoMayor(daysDiff,diasHabiles,0);      
                     break;                    
                 case "1": // SI ES CONTROL DE CAMBIOS        
                     //if (document.getElementById("mc_info_rs_ap_ECsTipoRequerimiento1").value=="2"){ // Mantenimiento Mayor 
-                        mtoMayor(daysDiff,diasHabiles,sDiasEstimados) ;     
+						//mtoMayor(daysDiff,diasHabiles,sDiasEstimados) ;
+                        mtoMayor(daysDiff,diasHabiles,0) ;     
                     //}
                     //if (document.getElementById("mc_info_rs_ap_ECsTipoRequerimiento1").value=="3"){ // Mantenimiento Menor                                   
                     //    mtoMenor(daysDiff,diasHabiles,sDiasEstimados) ;     
@@ -318,14 +322,16 @@ function calculaSLA(){
         case "1": //RETRASO EN ENTREGABLES
             switch (sTipoRequerimiento){                 
                 case "3": // SI ES MANTENIMIENTO MENOR            
-                    mtoMenor(daysDiff,diasHabiles,sDiasEstimados) ;     
+					//mtoMenor(daysDiff,diasHabiles,sDiasEstimados) ;     
+					mtoMenor(daysDiff,diasHabiles,0) ;
                     break;
                 case "1": // SI ES CONTROL DE CAMBIOS        
                     //if (document.getElementById("mc_info_rs_ap_ECsTipoRequerimiento1").value=="2"){ // Mantenimiento Mayor                                 
                     //    mtoMayor(daysDiff,diasHabiles,sDiasEstimados) ;     
                     //}
                     //if (document.getElementById("mc_info_rs_ap_ECsTipoRequerimiento1").value=="3"){ // Mantenimiento Menor                                   
-                        mtoMenor(daysDiff,diasHabiles,sDiasEstimados) ;     
+						//mtoMenor(daysDiff,diasHabiles,sDiasEstimados) ;
+						mtoMenor(daysDiff,diasHabiles,0) ;     
                     //}
                     break;
             }           
@@ -485,7 +491,7 @@ jQuery(function ($) {
 </head>
 <body onload="MostrarSLA(0)">
 <p>{Header}&nbsp;&nbsp;</p>
-<table border="0" cellspacing="0" cellpadding="0" width="600">
+<table cellspacing="0" cellpadding="0" width="600" border="0">
   <tr>
     <td>&nbsp;</td> 
     <td><a href="{lkAnterior_Src}" id="lkAnterior">{lkAnterior}</a></td> 
@@ -511,14 +517,14 @@ jQuery(function ($) {
 &nbsp; 
 <!-- BEGIN Record mc_info_rs_ap_EC -->
 <form id="mc_info_rs_ap_EC" method="post" name="{HTMLFormName}" action="{Action}">
-  <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+  <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
     <tr>
       <td valign="top">
-        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
           <tr>
             <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
             <td class="th">&nbsp; Calificar requerimiento&nbsp;&nbsp;&nbsp; {sIdPPMC} {lReportado}</td> 
-            <td class="HeaderRight"><img style="WIDTH: 32px; HEIGHT: 26px" id="mc_info_rs_ap_ECImage1" onclick="ayudaMostrar('divEncabezado')" alt="" src="{Image1}" height="6"></td>
+            <td class="HeaderRight"><img onclick="ayudaMostrar('divEncabezado')" id="mc_info_rs_ap_ECImage1" style="HEIGHT: 26px; WIDTH: 32px" alt="" src="{Image1}" height="6"></td>
           </tr>
         </table>
  
@@ -534,8 +540,8 @@ jQuery(function ($) {
             <!-- END Error -->
             <tr class="Controls">
               <td class="th">SLA a validar&nbsp;<input type="hidden" id="mc_info_rs_ap_EChExiste" value="{hExiste}" name="{hExiste_Name}"></td> 
-              <td><label style="display: none;" for="mc_info_rs_ap_EClbSLA">ListBox1</label> 
-                <select id="mc_info_rs_ap_EClbSLA" onchange="MostrarSLA(1)" name="{lbSLA_Name}">
+              <td><label for="mc_info_rs_ap_EClbSLA" style="display: none;">ListBox1</label> 
+                <select onchange="MostrarSLA(1)" id="mc_info_rs_ap_EClbSLA" name="{lbSLA_Name}">
                   <option selected value="1">Retraso en entregables</option>
                 </select>
  </td> 
@@ -543,9 +549,9 @@ jQuery(function ($) {
                 <table width="100%">
                   <tr>
                     <td>&nbsp;&nbsp;CAP firmada</td> 
-                    <td>&nbsp;<input type="checkbox" id="mc_info_rs_ap_ECCAPFirmada" onchange="calculaSLA()" value="1" name="{CAPFirmada_Name}" {CAPFirmada}></td> 
+                    <td>&nbsp;<input type="checkbox" onchange="calculaSLA()" id="mc_info_rs_ap_ECCAPFirmada" value="1" name="{CAPFirmada_Name}" {CAPFirmada}></td> 
                     <td>Todos los paquetes cerrados?&nbsp;</td> 
-                    <td>&nbsp;<input type="checkbox" id="mc_info_rs_ap_ECTPaquetes" onchange="calculaSLA()" value="1" name="{TPaquetes_Name}" {TPaquetes}></td>
+                    <td>&nbsp;<input type="checkbox" onchange="calculaSLA()" id="mc_info_rs_ap_ECTPaquetes" value="1" name="{TPaquetes_Name}" {TPaquetes}></td>
                   </tr>
                 </table>
               </td>
@@ -562,8 +568,8 @@ jQuery(function ($) {
             <tr class="Controls">
               <td class="th">Servicio de negocio</td> 
               <td><input type="hidden" id="mc_info_rs_ap_ECsServicioNegocio" value="{sServicioNegocio}" name="{sServicioNegocio_Name}">{lServNegocio} </td> 
-              <td>&nbsp;Días hábiles planeados</td> 
-              <td>&nbsp;<input type="text" onblur="calculaSLA()" id="mc_info_rs_ap_ECtxtDiasEstimados" value="{txtDiasEstimados}" name="{txtDiasEstimados_Name}"></td>
+              <td>&nbsp;</td> 
+              <td>&nbsp;</td>
             </tr>
  
             <tr class="Controls">
@@ -576,12 +582,12 @@ jQuery(function ($) {
             <tr class="Controls">
               <td class="th">Tipo requerimiento</td> 
               <td>
-                <select id="mc_info_rs_ap_ECsTipoRequerimiento" onchange="ayudaMostrar('divTipoRequerimiento')" name="{sTipoRequerimiento_Name}">
+                <select onchange="ayudaMostrar('divTipoRequerimiento')" id="mc_info_rs_ap_ECsTipoRequerimiento" name="{sTipoRequerimiento_Name}">
                   <option selected value="">Seleccionar valor</option>
                   {sTipoRequerimiento_Options}
                 </select>
  &nbsp; &nbsp; 
-                <div style="DISPLAY: none" id="divTipoRequerimiento">
+                <div id="divTipoRequerimiento" style="DISPLAY: none">
                   <p>Tipo Medición</p>
                   <select id="mc_info_rs_ap_ECsTipoRequerimiento1" name="{sTipoRequerimiento1_Name}">
                     <option selected value="">Seleccionar valor</option>
@@ -605,13 +611,13 @@ jQuery(function ($) {
               <td class="th">Estado</td> 
               <td>{sEstadoPPMC}<input type="hidden" id="mc_info_rs_ap_EChdEstado" value="{hdEstado}" name="{hdEstado_Name}"></td> 
               <td>&nbsp; 
-                <div style="DISPLAY: none" id="divCRClbl">
+                <div id="divCRClbl" style="DISPLAY: none">
                   Completar ruta critica 
                 </div>
               </td> 
               <td>&nbsp; 
-                <div style="DISPLAY: none" id="divCRC">
-                  <select id="mc_info_rs_ap_ECCumplioRS" onchange="validaModificacion()" name="{CumplioRS_Name}">
+                <div id="divCRC" style="DISPLAY: none">
+                  <select onchange="validaModificacion()" id="mc_info_rs_ap_ECCumplioRS" name="{CumplioRS_Name}">
                     <option selected value="">Seleccionar valor</option>
                     {CumplioRS_Options}
                   </select>
@@ -622,15 +628,15 @@ jQuery(function ($) {
  
             <tr class="Controls">
               <td class="th">&nbsp;<input type="hidden" id="mc_info_rs_ap_EChIDPPMC" value="{hIDPPMC}" name="{hIDPPMC_Name}"></td> 
-              <td>&nbsp;<label style="display: none;" for="mc_info_rs_ap_ECCAPFirmada">CheckBox1</label></td> 
+              <td>&nbsp;<label for="mc_info_rs_ap_ECCAPFirmada" style="display: none;">CheckBox1</label></td> 
               <td>&nbsp; 
-                <div style="DISPLAY: inline" id="divRElbl">
+                <div id="divRElbl" style="DISPLAY: inline">
                   Retraso en entregables 
                 </div>
               </td> 
               <td>&nbsp; 
-                <div style="DISPLAY: inline" id="divRE">
-                  <select id="mc_info_rs_ap_ECCumplioHE" onchange="validaModificacion()" name="{CumplioHE_Name}">
+                <div id="divRE" style="DISPLAY: inline">
+                  <select onchange="validaModificacion()" id="mc_info_rs_ap_ECCumplioHE" name="{CumplioHE_Name}">
                     <option selected value="">Seleccionar Valor</option>
                     {CumplioHE_Options}
                   </select>
@@ -641,14 +647,14 @@ jQuery(function ($) {
  
             <tr class="Controls">
               <td class="th"><label for="mc_info_rs_ap_ECURLReferencia">URLReferencia</label></td> 
-              <td><textarea style="WIDTH: 385px; HEIGHT: 64px" id="mc_info_rs_ap_ECURLReferencia" rows="3" cols="1" name="{URLReferencia_Name}">{URLReferencia}</textarea></td> 
+              <td><textarea id="mc_info_rs_ap_ECURLReferencia" style="HEIGHT: 64px; WIDTH: 385px" rows="3" cols="1" name="{URLReferencia_Name}">{URLReferencia}</textarea></td> 
               <td>&nbsp;<label for="mc_info_rs_ap_ECObservaciones">Observaciones</label></td> 
-              <td>&nbsp; <textarea style="WIDTH: 387px; HEIGHT: 82px" id="mc_info_rs_ap_ECObservaciones" rows="1" cols="34" name="{Observaciones_Name}">{Observaciones}</textarea></td>
+              <td>&nbsp; <textarea id="mc_info_rs_ap_ECObservaciones" style="HEIGHT: 82px; WIDTH: 387px" rows="1" cols="34" name="{Observaciones_Name}">{Observaciones}</textarea></td>
             </tr>
  
             <tr class="Controls">
               <td class="th">&nbsp;<input type="hidden" id="mc_info_rs_ap_ECsID" value="{sID}" name="{sID_Name}"></td> 
-              <td>&nbsp;<label style="display: none;" for="mc_info_rs_ap_EChdFechaUltMod">hdFechaUltMod</label><input type="hidden" id="mc_info_rs_ap_EChdFechaUltMod" value="{hdFechaUltMod}" name="{hdFechaUltMod_Name}"></td> 
+              <td>&nbsp;<label for="mc_info_rs_ap_EChdFechaUltMod" style="display: none;">hdFechaUltMod</label><input type="hidden" id="mc_info_rs_ap_EChdFechaUltMod" value="{hdFechaUltMod}" name="{hdFechaUltMod_Name}"></td> 
               <td>&nbsp;</td> 
               <td>&nbsp;</td>
             </tr>
@@ -656,12 +662,12 @@ jQuery(function ($) {
             <tr class="Bottom">
               <td><input type="hidden" id="mc_info_rs_ap_EChdUsrAlta" value="{hdUsrAlta}" name="{hdUsrAlta_Name}">{DatosUltMod}</td> 
               <td style="TEXT-ALIGN: right"><input type="hidden" id="mc_info_rs_ap_EChdUsrUltMod" value="{hdUsrUltMod}" name="{hdUsrUltMod_Name}">
-                <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_info_rs_ap_ECButton_Insert" class="Button" value="Agregar" alt="Agregar" name="{Button_Name}" size="20"><!-- END Button Button_Insert -->
-                <!-- BEGIN Button Button_Update --><input type="submit" id="mc_info_rs_ap_ECButton_Update" class="Button" value="Calificar" alt="Enviar" name="{Button_Name}" size="20"><!-- END Button Button_Update -->
-                <!-- BEGIN Button Button_Delete --><input type="submit" id="mc_info_rs_ap_ECButton_Delete" class="Button" value="Borrar" alt="Borrar" name="{Button_Name}"><!-- END Button Button_Delete --></td> 
+                <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_info_rs_ap_ECButton_Insert" class="Button" alt="Agregar" value="Agregar" name="{Button_Name}" size="20"><!-- END Button Button_Insert -->
+                <!-- BEGIN Button Button_Update --><input type="submit" id="mc_info_rs_ap_ECButton_Update" class="Button" alt="Enviar" value="Calificar" name="{Button_Name}" size="20"><!-- END Button Button_Update -->
+                <!-- BEGIN Button Button_Delete --><input type="submit" id="mc_info_rs_ap_ECButton_Delete" class="Button" alt="Borrar" value="Borrar" name="{Button_Name}"><!-- END Button Button_Delete --></td> 
               <td style="TEXT-ALIGN: right">&nbsp;</td> 
               <td style="TEXT-ALIGN: right">
-                <!-- BEGIN Button btnCalcular --><input type="submit" id="mc_info_rs_ap_ECbtnCalcular" class="Button" value="Recalcular" alt="Button1" name="{Button_Name}" size="20"><!-- END Button btnCalcular --></td>
+                <!-- BEGIN Button btnCalcular --><input type="submit" id="mc_info_rs_ap_ECbtnCalcular" class="Button" alt="Button1" value="Recalcular" name="{Button_Name}" size="20"><!-- END Button btnCalcular --></td>
             </tr>
           </table>
         </div>
@@ -677,10 +683,10 @@ jQuery(function ($) {
     <td>&nbsp; 
       <!-- BEGIN Record mc_info_rs_cr_RE_RC_Artef1 -->
       <form id="mc_info_rs_cr_RE_RC_Artef1" method="post" name="{HTMLFormName}" action="{Action}">
-        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
           <tr>
             <td valign="top">
-              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/Austere2/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Agregar/Editar artefacto </strong></td> 
@@ -688,7 +694,7 @@ jQuery(function ($) {
                 </tr>
               </table>
 <a name="final"></a> 
-              <div style="DISPLAY: inline" id="DetalleArtefacto">
+              <div id="DetalleArtefacto" style="DISPLAY: inline">
                 <table class="Record" cellspacing="0" cellpadding="0">
                   <!-- BEGIN Error -->
                   <tr id="ErrorBlock" class="Error">
@@ -697,33 +703,33 @@ jQuery(function ($) {
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="th">&nbsp;<label for="mc_info_rs_cr_RE_RC_Artef1Nombre">Nombre</label></td> 
-                    <td><input type="text" id="mc_info_rs_cr_RE_RC_Artef1Nombre" value="{Nombre}" maxlength="255" size="50" name="{Nombre_Name}"></td> 
+                    <td><input type="text" id="mc_info_rs_cr_RE_RC_Artef1Nombre" maxlength="255" size="50" value="{Nombre}" name="{Nombre_Name}"></td> 
                     <td><label for="mc_info_rs_cr_RE_RC_Artef1Descripcion">Descripción</label></td> 
                     <td>&nbsp; <textarea id="mc_info_rs_cr_RE_RC_Artef1Descripcion" rows="3" cols="50" name="{Descripcion_Name}">{Descripcion}</textarea></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="mc_info_rs_cr_RE_RC_Artef1Nombre"><label for="mc_info_rs_cr_RE_RC_Artef1Formato">Formato</label></label></td> 
-                    <td><input type="text" id="mc_info_rs_cr_RE_RC_Artef1Formato" value="{Formato}" maxlength="40" size="40" name="{Formato_Name}"></td> 
+                    <td><input type="text" id="mc_info_rs_cr_RE_RC_Artef1Formato" maxlength="40" size="40" value="{Formato}" name="{Formato_Name}"></td> 
                     <td><label for="mc_info_rs_cr_RE_RC_Artef1FechaEstFin"><label for="mc_info_rs_cr_RE_RC_Artef1NombreConHerramienta">Nombre&nbsp;en herramienta</label></label></td> 
-                    <td>&nbsp;<input type="text" style="WIDTH: 413px; HEIGHT: 22px" id="mc_info_rs_cr_RE_RC_Artef1NombreConHerramienta" value="{NombreConHerramienta}" maxlength="255" size="52" name="{NombreConHerramienta_Name}"></td>
+                    <td>&nbsp;<input type="text" id="mc_info_rs_cr_RE_RC_Artef1NombreConHerramienta" style="HEIGHT: 22px; WIDTH: 413px" maxlength="255" size="52" value="{NombreConHerramienta}" name="{NombreConHerramienta_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="mc_info_rs_cr_RE_RC_Artef1Descripcion"><label for="mc_info_rs_cr_RE_RC_Artef1FechaEstFin">Fecha <br>
                       Compromiso</label></label></td> 
-                    <td><input type="text" onblur="calculaSLA()" style="WIDTH: 146px; HEIGHT: 22px" id="mc_info_rs_cr_RE_RC_Artef1FechaEstFin" value="{FechaEstFin}" maxlength="100" size="10" name="{FechaEstFin_Name}"></td> 
+                    <td><input type="text" onblur="calculaSLA()" id="mc_info_rs_cr_RE_RC_Artef1FechaEstFin" style="HEIGHT: 22px; WIDTH: 146px" maxlength="100" size="10" value="{FechaEstFin}" name="{FechaEstFin_Name}"></td> 
                     <td><label for="mc_info_rs_cr_RE_RC_Artef1FechaEntrega">Fecha entrega</label></td> 
-                    <td>&nbsp;<input type="text" onblur="calculaSLA()" style="WIDTH: 132px; HEIGHT: 22px" id="mc_info_rs_cr_RE_RC_Artef1FechaEntrega" value="{FechaEntrega}" maxlength="100" size="10" name="{FechaEntrega_Name}"></td>
+                    <td>&nbsp;<input type="text" onblur="calculaSLA()" id="mc_info_rs_cr_RE_RC_Artef1FechaEntrega" style="HEIGHT: 22px; WIDTH: 132px" maxlength="100" size="10" value="{FechaEntrega}" name="{FechaEntrega_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="mc_info_rs_cr_RE_RC_Artef1Formato"><label for="mc_info_rs_cr_RE_RC_Artef1DiasHabilesDesviacion">Días hábiles<br>
                       de desviación</label></label></td> 
-                    <td><input type="text" style="WIDTH: 147px; HEIGHT: 22px" id="mc_info_rs_cr_RE_RC_Artef1DiasHabilesDesviacion" value="{DiasHabilesDesviacion}" maxlength="10" size="6" name="{DiasHabilesDesviacion_Name}"></td> 
+                    <td><input type="text" id="mc_info_rs_cr_RE_RC_Artef1DiasHabilesDesviacion" style="HEIGHT: 22px; WIDTH: 147px" maxlength="10" size="6" value="{DiasHabilesDesviacion}" name="{DiasHabilesDesviacion_Name}"></td> 
                     <td><label for="mc_info_rs_cr_RE_RC_Artef1DiasNaturalesDesviacion">Días naturales<br>
                       de desviación</label></td> 
-                    <td>&nbsp;<input type="text" style="WIDTH: 132px; HEIGHT: 22px" id="mc_info_rs_cr_RE_RC_Artef1DiasNaturalesDesviacion" value="{DiasNaturalesDesviacion}" maxlength="10" size="7" name="{DiasNaturalesDesviacion_Name}"></td>
+                    <td>&nbsp;<input type="text" id="mc_info_rs_cr_RE_RC_Artef1DiasNaturalesDesviacion" style="HEIGHT: 22px; WIDTH: 132px" maxlength="10" size="7" value="{DiasNaturalesDesviacion}" name="{DiasNaturalesDesviacion_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
@@ -732,7 +738,7 @@ jQuery(function ($) {
                       reales</label></label></p>
                     </td> 
                     <td>
-                      <p><input type="text" id="mc_info_rs_cr_RE_RC_Artef1DiasHabilesReales" value="{DiasHabilesReales}" maxlength="10" size="10" name="{DiasHabilesReales_Name}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="mc_info_rs_cr_RE_RC_Artef1lblDeductiva" value="{lblDeductiva}" name="{lblDeductiva_Name}">&nbsp;% Deductiva</p>
+                      <p><input type="text" id="mc_info_rs_cr_RE_RC_Artef1DiasHabilesReales" maxlength="10" size="10" value="{DiasHabilesReales}" name="{DiasHabilesReales_Name}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="mc_info_rs_cr_RE_RC_Artef1lblDeductiva" value="{lblDeductiva}" name="{lblDeductiva_Name}">&nbsp;% Deductiva</p>
                     </td> 
                     <td><label for="mc_info_rs_cr_RE_RC_Artef1Comentarios">Comentarios</label></td> 
                     <td>&nbsp; <textarea id="mc_info_rs_cr_RE_RC_Artef1Comentarios" rows="3" cols="50" name="{Comentarios_Name}">{Comentarios}</textarea></td>
@@ -740,16 +746,16 @@ jQuery(function ($) {
  
                   <tr class="Controls">
                     <td class="th"><label for="mc_info_rs_cr_RE_RC_Artef1FechaAlta">&nbsp;</label></td> 
-                    <td><label style="display: none;" for="mc_info_rs_cr_RE_RC_Artef1UsuarioAlta">Usuario alta</label><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1UsuarioAlta" value="{UsuarioAlta}" name="{UsuarioAlta_Name}"><label style="display: none;" for="mc_info_rs_cr_RE_RC_Artef1FechaUltMod">Fecha Ult Mod</label><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1FechaUltMod" value="{FechaUltMod}" name="{FechaUltMod_Name}"><label style="display: none;" for="mc_info_rs_cr_RE_RC_Artef1UsuarioUltMod">Usuario Ult Mod</label><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1UsuarioUltMod" value="{UsuarioUltMod}" name="{UsuarioUltMod_Name}"><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1Id_Padre" value="{Id_Padre}" name="{Id_Padre_Name}"></td> 
-                    <td>&nbsp;<label style="display: none;" for="mc_info_rs_cr_RE_RC_Artef1Pct">Pct</label><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1Pct" value="{Pct}" name="{Pct_Name}"><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1ID_PPMC" value="{ID_PPMC}" name="{ID_PPMC_Name}"></td> 
+                    <td><label for="mc_info_rs_cr_RE_RC_Artef1UsuarioAlta" style="display: none;">Usuario alta</label><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1UsuarioAlta" value="{UsuarioAlta}" name="{UsuarioAlta_Name}"><label for="mc_info_rs_cr_RE_RC_Artef1FechaUltMod" style="display: none;">Fecha Ult Mod</label><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1FechaUltMod" value="{FechaUltMod}" name="{FechaUltMod_Name}"><label for="mc_info_rs_cr_RE_RC_Artef1UsuarioUltMod" style="display: none;">Usuario Ult Mod</label><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1UsuarioUltMod" value="{UsuarioUltMod}" name="{UsuarioUltMod_Name}"><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1Id_Padre" value="{Id_Padre}" name="{Id_Padre_Name}"></td> 
+                    <td>&nbsp;<label for="mc_info_rs_cr_RE_RC_Artef1Pct" style="display: none;">Pct</label><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1Pct" value="{Pct}" name="{Pct_Name}"><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1ID_PPMC" value="{ID_PPMC}" name="{ID_PPMC_Name}"></td> 
                     <td>&nbsp;</td>
                   </tr>
  
                   <tr class="Bottom">
                     <td style="TEXT-ALIGN: right" colspan="4">
-                      <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_info_rs_cr_RE_RC_Artef1Button_Insert" class="Button" value="Agregar" alt="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
-                      <!-- BEGIN Button Button_Update --><input type="submit" id="mc_info_rs_cr_RE_RC_Artef1Button_Update" class="Button" value="Enviar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Update -->
-                      <!-- BEGIN Button Button_Delete --><input type="submit" id="mc_info_rs_cr_RE_RC_Artef1Button_Delete" class="Button" value="Borrar" alt="Borrar" name="{Button_Name}"><!-- END Button Button_Delete --></td>
+                      <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_info_rs_cr_RE_RC_Artef1Button_Insert" class="Button" alt="Agregar" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input type="submit" id="mc_info_rs_cr_RE_RC_Artef1Button_Update" class="Button" alt="Enviar" value="Enviar" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input type="submit" id="mc_info_rs_cr_RE_RC_Artef1Button_Delete" class="Button" alt="Borrar" value="Borrar" name="{Button_Name}"><!-- END Button Button_Delete --></td>
                   </tr>
                 </table>
               </div>
@@ -760,7 +766,7 @@ jQuery(function ($) {
       <!-- END Record mc_info_rs_cr_RE_RC_Artef1 --></td> 
     <td>&nbsp; 
       <div style="WIDTH: 460px; MARGIN-LEFT: 20px">
-        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
           <tr>
             <td class="HeaderLeft"><img alt="" src="Styles/Austere2/Images/Spacer.gif"></td> 
             <td class="th"><a href="{Link2_Src}" id="Link2" target="_blank">Documentos en el repositorio</a></td> 
@@ -777,10 +783,10 @@ jQuery(function ($) {
 <!-- BEGIN EditableGrid mc_info_rs_cr_RE_RC_Artef2 -->
 <form id="mc_info_rs_cr_RE_RC_Artef2" method="post" name="{HTMLFormName}" action="{Action}">
   <input type="hidden" value="{FormState}" name="FormState">{FormScript} 
-  <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+  <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
     <tr>
       <td valign="top">
-        <table class="Header" border="0" cellspacing="0" cellpadding="0">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
           <tr>
             <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
             <td class="th"><strong>Lista de artefactos</strong></td> 
@@ -869,7 +875,7 @@ jQuery(function ($) {
             <td style="TEXT-ALIGN: center">{PctDeductiva}</td> 
             <td style="TEXT-ALIGN: center">{Comentarios}</td> 
             <td>
-              <!-- BEGIN Panel CheckBox_Delete_Panel --><label style="display: none;" for="mc_info_rs_cr_RE_RC_Artef2CheckBox_Delete_PanelCheckBox_Delete_{mc_info_rs_cr_RE_RC_Artef2:rowNumber}">Borrar</label> 
+              <!-- BEGIN Panel CheckBox_Delete_Panel --><label for="mc_info_rs_cr_RE_RC_Artef2CheckBox_Delete_PanelCheckBox_Delete_{mc_info_rs_cr_RE_RC_Artef2:rowNumber}" style="display: none;">Borrar</label> 
               <!-- BEGIN CheckBox CheckBox_Delete --><input type="checkbox" id="mc_info_rs_cr_RE_RC_Artef2CheckBox_Delete_PanelCheckBox_Delete_{mc_info_rs_cr_RE_RC_Artef2:rowNumber}" value="1" name="{CheckBox_Delete_Name}" {CheckBox_Delete}><!-- END CheckBox CheckBox_Delete --><!-- END Panel CheckBox_Delete_Panel -->&nbsp;</td>
           </tr>
  <!-- END Row -->
@@ -894,7 +900,7 @@ jQuery(function ($) {
               <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
               <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
               <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->
-              <!-- BEGIN Button Button_Submit --><input type="submit" id="mc_info_rs_cr_RE_RC_Artef2Button_Submit" class="Button" value="Enviar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Submit --></td>
+              <!-- BEGIN Button Button_Submit --><input type="submit" id="mc_info_rs_cr_RE_RC_Artef2Button_Submit" class="Button" alt="Enviar" value="Enviar" name="{Button_Name}"><!-- END Button Button_Submit --></td>
           </tr>
         </table>
       </td>

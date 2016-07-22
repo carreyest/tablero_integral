@@ -49,7 +49,7 @@ class clsRecordmc_info_rs_cr_RF { //mc_info_rs_cr_RF Class @3-697396CF
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-8781B3BF
+//Class_Initialize Event @3-C1B39274
     function clsRecordmc_info_rs_cr_RF($RelativePath, & $Parent)
     {
 
@@ -86,7 +86,6 @@ class clsRecordmc_info_rs_cr_RF { //mc_info_rs_cr_RF Class @3-697396CF
             $this->ID_Estimacion->Required = true;
             $this->Puntuacion = new clsControl(ccsTextBox, "Puntuacion", "Puntuacion", ccsFloat, "", CCGetRequestParam("Puntuacion", $Method, NULL), $this);
             $this->URLRepositorio = new clsControl(ccsTextBox, "URLRepositorio", "URLRepositorio", ccsText, "", CCGetRequestParam("URLRepositorio", $Method, NULL), $this);
-            $this->FechaSubida = new clsControl(ccsTextBox, "FechaSubida", "Fecha Subida", ccsDate, array("dd", "/", "mm", "/", "yyyy"), CCGetRequestParam("FechaSubida", $Method, NULL), $this);
             $this->CumpleReqFun = new clsControl(ccsListBox, "CumpleReqFun", "Cumple Req Fun", ccsInteger, "", CCGetRequestParam("CumpleReqFun", $Method, NULL), $this);
             $this->CumpleReqFun->DSType = dsListOfValues;
             $this->CumpleReqFun->Values = array(array("1", "Cumple"), array("0", "No Cumple"));
@@ -116,8 +115,6 @@ class clsRecordmc_info_rs_cr_RF { //mc_info_rs_cr_RF Class @3-697396CF
             $this->TotalRequisitos = new clsControl(ccsHidden, "TotalRequisitos", "Total Requisitos", ccsInteger, "", CCGetRequestParam("TotalRequisitos", $Method, NULL), $this);
             $this->lReportado = new clsControl(ccsLabel, "lReportado", "lReportado", ccsText, "", CCGetRequestParam("lReportado", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
-                if(!is_array($this->FechaSubida->Value) && !strlen($this->FechaSubida->Value) && $this->FechaSubida->Value !== false)
-                    $this->FechaSubida->SetValue(time());
                 if(!is_array($this->TienePonderacion->Value) && !strlen($this->TienePonderacion->Value) && $this->TienePonderacion->Value !== false)
                     $this->TienePonderacion->SetValue(false);
                 if(!is_array($this->TieneCalificacion->Value) && !strlen($this->TieneCalificacion->Value) && $this->TieneCalificacion->Value !== false)
@@ -144,7 +141,7 @@ class clsRecordmc_info_rs_cr_RF { //mc_info_rs_cr_RF Class @3-697396CF
     }
 //End Initialize Method
 
-//Validate Method @3-10E0921B
+//Validate Method @3-354014A7
     function Validate()
     {
         global $CCSLocales;
@@ -154,7 +151,6 @@ class clsRecordmc_info_rs_cr_RF { //mc_info_rs_cr_RF Class @3-697396CF
         $Validation = ($this->ID_Estimacion->Validate() && $Validation);
         $Validation = ($this->Puntuacion->Validate() && $Validation);
         $Validation = ($this->URLRepositorio->Validate() && $Validation);
-        $Validation = ($this->FechaSubida->Validate() && $Validation);
         $Validation = ($this->CumpleReqFun->Validate() && $Validation);
         $Validation = ($this->Observaciones->Validate() && $Validation);
         $Validation = ($this->UsuarioUltMod->Validate() && $Validation);
@@ -173,7 +169,6 @@ class clsRecordmc_info_rs_cr_RF { //mc_info_rs_cr_RF Class @3-697396CF
         $Validation =  $Validation && ($this->ID_Estimacion->Errors->Count() == 0);
         $Validation =  $Validation && ($this->Puntuacion->Errors->Count() == 0);
         $Validation =  $Validation && ($this->URLRepositorio->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->FechaSubida->Errors->Count() == 0);
         $Validation =  $Validation && ($this->CumpleReqFun->Errors->Count() == 0);
         $Validation =  $Validation && ($this->Observaciones->Errors->Count() == 0);
         $Validation =  $Validation && ($this->UsuarioUltMod->Errors->Count() == 0);
@@ -191,7 +186,7 @@ class clsRecordmc_info_rs_cr_RF { //mc_info_rs_cr_RF Class @3-697396CF
     }
 //End Validate Method
 
-//CheckErrors Method @3-0B1E9470
+//CheckErrors Method @3-17F4B44B
     function CheckErrors()
     {
         $errors = false;
@@ -199,7 +194,6 @@ class clsRecordmc_info_rs_cr_RF { //mc_info_rs_cr_RF Class @3-697396CF
         $errors = ($errors || $this->ID_Estimacion->Errors->Count());
         $errors = ($errors || $this->Puntuacion->Errors->Count());
         $errors = ($errors || $this->URLRepositorio->Errors->Count());
-        $errors = ($errors || $this->FechaSubida->Errors->Count());
         $errors = ($errors || $this->CumpleReqFun->Errors->Count());
         $errors = ($errors || $this->Observaciones->Errors->Count());
         $errors = ($errors || $this->UsuarioUltMod->Errors->Count());
@@ -267,7 +261,7 @@ class clsRecordmc_info_rs_cr_RF { //mc_info_rs_cr_RF Class @3-697396CF
     }
 //End Operation Method
 
-//InsertRow Method @3-10B57A5E
+//InsertRow Method @3-8F8A9563
     function InsertRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
@@ -276,7 +270,6 @@ class clsRecordmc_info_rs_cr_RF { //mc_info_rs_cr_RF Class @3-697396CF
         $this->DataSource->ID_Estimacion->SetValue($this->ID_Estimacion->GetValue(true));
         $this->DataSource->Puntuacion->SetValue($this->Puntuacion->GetValue(true));
         $this->DataSource->URLRepositorio->SetValue($this->URLRepositorio->GetValue(true));
-        $this->DataSource->FechaSubida->SetValue($this->FechaSubida->GetValue(true));
         $this->DataSource->CumpleReqFun->SetValue($this->CumpleReqFun->GetValue(true));
         $this->DataSource->Observaciones->SetValue($this->Observaciones->GetValue(true));
         $this->DataSource->UsuarioUltMod->SetValue($this->UsuarioUltMod->GetValue(true));
@@ -301,7 +294,7 @@ class clsRecordmc_info_rs_cr_RF { //mc_info_rs_cr_RF Class @3-697396CF
     }
 //End InsertRow Method
 
-//UpdateRow Method @3-8052D887
+//UpdateRow Method @3-C440AB34
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
@@ -310,7 +303,6 @@ class clsRecordmc_info_rs_cr_RF { //mc_info_rs_cr_RF Class @3-697396CF
         $this->DataSource->ID_Estimacion->SetValue($this->ID_Estimacion->GetValue(true));
         $this->DataSource->Puntuacion->SetValue($this->Puntuacion->GetValue(true));
         $this->DataSource->URLRepositorio->SetValue($this->URLRepositorio->GetValue(true));
-        $this->DataSource->FechaSubida->SetValue($this->FechaSubida->GetValue(true));
         $this->DataSource->CumpleReqFun->SetValue($this->CumpleReqFun->GetValue(true));
         $this->DataSource->Observaciones->SetValue($this->Observaciones->GetValue(true));
         $this->DataSource->UsuarioUltMod->SetValue($this->UsuarioUltMod->GetValue(true));
@@ -335,7 +327,7 @@ class clsRecordmc_info_rs_cr_RF { //mc_info_rs_cr_RF Class @3-697396CF
     }
 //End UpdateRow Method
 
-//Show Method @3-9B585DFD
+//Show Method @3-40988526
     function Show()
     {
         global $CCSUseAmp;
@@ -368,7 +360,6 @@ class clsRecordmc_info_rs_cr_RF { //mc_info_rs_cr_RF Class @3-697396CF
                     $this->ID_Estimacion->SetValue($this->DataSource->ID_Estimacion->GetValue());
                     $this->Puntuacion->SetValue($this->DataSource->Puntuacion->GetValue());
                     $this->URLRepositorio->SetValue($this->DataSource->URLRepositorio->GetValue());
-                    $this->FechaSubida->SetValue($this->DataSource->FechaSubida->GetValue());
                     $this->CumpleReqFun->SetValue($this->DataSource->CumpleReqFun->GetValue());
                     $this->Observaciones->SetValue($this->DataSource->Observaciones->GetValue());
                     $this->UsuarioUltMod->SetValue($this->DataSource->UsuarioUltMod->GetValue());
@@ -394,7 +385,6 @@ class clsRecordmc_info_rs_cr_RF { //mc_info_rs_cr_RF Class @3-697396CF
             $Error = ComposeStrings($Error, $this->ID_Estimacion->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Puntuacion->Errors->ToString());
             $Error = ComposeStrings($Error, $this->URLRepositorio->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->FechaSubida->Errors->ToString());
             $Error = ComposeStrings($Error, $this->CumpleReqFun->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Observaciones->Errors->ToString());
             $Error = ComposeStrings($Error, $this->UsuarioUltMod->Errors->ToString());
@@ -439,7 +429,6 @@ class clsRecordmc_info_rs_cr_RF { //mc_info_rs_cr_RF Class @3-697396CF
         $this->ID_Estimacion->Show();
         $this->Puntuacion->Show();
         $this->URLRepositorio->Show();
-        $this->FechaSubida->Show();
         $this->CumpleReqFun->Show();
         $this->Observaciones->Show();
         $this->UsuarioUltMod->Show();
@@ -468,7 +457,7 @@ class clsRecordmc_info_rs_cr_RF { //mc_info_rs_cr_RF Class @3-697396CF
 
 class clsmc_info_rs_cr_RFDataSource extends clsDBcnDisenio {  //mc_info_rs_cr_RFDataSource Class @3-80E8CB29
 
-//DataSource Variables @3-E3CB34FE
+//DataSource Variables @3-C70978BB
     public $Parent = "";
     public $CCSEvents = "";
     public $CCSEventResult;
@@ -488,7 +477,6 @@ class clsmc_info_rs_cr_RFDataSource extends clsDBcnDisenio {  //mc_info_rs_cr_RF
     public $ID_Estimacion;
     public $Puntuacion;
     public $URLRepositorio;
-    public $FechaSubida;
     public $CumpleReqFun;
     public $Observaciones;
     public $UsuarioUltMod;
@@ -509,7 +497,7 @@ class clsmc_info_rs_cr_RFDataSource extends clsDBcnDisenio {  //mc_info_rs_cr_RF
     public $lReportado;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @3-FEEE758A
+//DataSourceClass_Initialize Event @3-D2B5EC1A
     function clsmc_info_rs_cr_RFDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -522,8 +510,6 @@ class clsmc_info_rs_cr_RFDataSource extends clsDBcnDisenio {  //mc_info_rs_cr_RF
         $this->Puntuacion = new clsField("Puntuacion", ccsFloat, "");
         
         $this->URLRepositorio = new clsField("URLRepositorio", ccsText, "");
-        
-        $this->FechaSubida = new clsField("FechaSubida", ccsDate, array("yyyy", "-", "mm", "-", "dd", " ", "HH", ":", "nn", ":", "ss", ".", "S"));
         
         $this->CumpleReqFun = new clsField("CumpleReqFun", ccsInteger, "");
         
@@ -566,7 +552,6 @@ class clsmc_info_rs_cr_RFDataSource extends clsDBcnDisenio {  //mc_info_rs_cr_RF
         $this->InsertFields["ID_Estimacion"] = array("Name" => "[ID_Estimacion]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->InsertFields["Puntuacion"] = array("Name" => "[Puntuacion]", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
         $this->InsertFields["URLRepositorio"] = array("Name" => "[URLRepositorio]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->InsertFields["FechaSubida"] = array("Name" => "[FechaSubida]", "Value" => "", "DataType" => ccsDate, "OmitIfEmpty" => 1);
         $this->InsertFields["CumpleReqFun"] = array("Name" => "[CumpleReqFun]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->InsertFields["Observaciones"] = array("Name" => "[Observaciones]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["UsuarioUltMod"] = array("Name" => "[UsuarioUltMod]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
@@ -582,7 +567,6 @@ class clsmc_info_rs_cr_RFDataSource extends clsDBcnDisenio {  //mc_info_rs_cr_RF
         $this->UpdateFields["ID_Estimacion"] = array("Name" => "[ID_Estimacion]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->UpdateFields["Puntuacion"] = array("Name" => "[Puntuacion]", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
         $this->UpdateFields["URLRepositorio"] = array("Name" => "[URLRepositorio]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->UpdateFields["FechaSubida"] = array("Name" => "[FechaSubida]", "Value" => "", "DataType" => ccsDate, "OmitIfEmpty" => 1);
         $this->UpdateFields["CumpleReqFun"] = array("Name" => "[CumpleReqFun]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->UpdateFields["Observaciones"] = array("Name" => "[Observaciones]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["UsuarioUltMod"] = array("Name" => "[UsuarioUltMod]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
@@ -623,14 +607,13 @@ class clsmc_info_rs_cr_RFDataSource extends clsDBcnDisenio {  //mc_info_rs_cr_RF
     }
 //End Open Method
 
-//SetValues Method @3-6971AA47
+//SetValues Method @3-B5A50AE8
     function SetValues()
     {
         $this->Id_PPMC->SetDBValue(trim($this->f("Id_PPMC")));
         $this->ID_Estimacion->SetDBValue(trim($this->f("ID_Estimacion")));
         $this->Puntuacion->SetDBValue(trim($this->f("Puntuacion")));
         $this->URLRepositorio->SetDBValue($this->f("URLRepositorio"));
-        $this->FechaSubida->SetDBValue(trim($this->f("FechaSubida")));
         $this->CumpleReqFun->SetDBValue(trim($this->f("CumpleReqFun")));
         $this->Observaciones->SetDBValue($this->f("Observaciones"));
         $this->UsuarioUltMod->SetDBValue($this->f("UsuarioUltMod"));
@@ -645,7 +628,7 @@ class clsmc_info_rs_cr_RFDataSource extends clsDBcnDisenio {  //mc_info_rs_cr_RF
     }
 //End SetValues Method
 
-//Insert Method @3-D3267EEB
+//Insert Method @3-7494BE6D
     function Insert()
     {
         global $CCSLocales;
@@ -656,7 +639,6 @@ class clsmc_info_rs_cr_RFDataSource extends clsDBcnDisenio {  //mc_info_rs_cr_RF
         $this->InsertFields["ID_Estimacion"]["Value"] = $this->ID_Estimacion->GetDBValue(true);
         $this->InsertFields["Puntuacion"]["Value"] = $this->Puntuacion->GetDBValue(true);
         $this->InsertFields["URLRepositorio"]["Value"] = $this->URLRepositorio->GetDBValue(true);
-        $this->InsertFields["FechaSubida"]["Value"] = $this->FechaSubida->GetDBValue(true);
         $this->InsertFields["CumpleReqFun"]["Value"] = $this->CumpleReqFun->GetDBValue(true);
         $this->InsertFields["Observaciones"]["Value"] = $this->Observaciones->GetDBValue(true);
         $this->InsertFields["UsuarioUltMod"]["Value"] = $this->UsuarioUltMod->GetDBValue(true);
@@ -677,7 +659,7 @@ class clsmc_info_rs_cr_RFDataSource extends clsDBcnDisenio {  //mc_info_rs_cr_RF
     }
 //End Insert Method
 
-//Update Method @3-3ADADEEE
+//Update Method @3-3B18CCCB
     function Update()
     {
         global $CCSLocales;
@@ -689,7 +671,6 @@ class clsmc_info_rs_cr_RFDataSource extends clsDBcnDisenio {  //mc_info_rs_cr_RF
         $this->UpdateFields["ID_Estimacion"]["Value"] = $this->ID_Estimacion->GetDBValue(true);
         $this->UpdateFields["Puntuacion"]["Value"] = $this->Puntuacion->GetDBValue(true);
         $this->UpdateFields["URLRepositorio"]["Value"] = $this->URLRepositorio->GetDBValue(true);
-        $this->UpdateFields["FechaSubida"]["Value"] = $this->FechaSubida->GetDBValue(true);
         $this->UpdateFields["CumpleReqFun"]["Value"] = $this->CumpleReqFun->GetDBValue(true);
         $this->UpdateFields["Observaciones"]["Value"] = $this->Observaciones->GetDBValue(true);
         $this->UpdateFields["UsuarioUltMod"]["Value"] = $this->UsuarioUltMod->GetDBValue(true);

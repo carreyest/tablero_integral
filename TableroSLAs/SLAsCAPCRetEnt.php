@@ -49,7 +49,7 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-76825763
+//Class_Initialize Event @3-694B32C8
     function clsRecordmc_calificacion_capc($RelativePath, & $Parent)
     {
 
@@ -102,7 +102,6 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
 "FROM mc_c_anio {SQL_Where} {SQL_OrderBy}";
             list($this->anio->BoundColumn, $this->anio->TextColumn, $this->anio->DBFormat) = array("Ano", "Ano", "");
             $this->anio->Required = true;
-            $this->Agrupador = new clsControl(ccsTextBox, "Agrupador", "Agrupador", ccsText, "", CCGetRequestParam("Agrupador", $Method, NULL), $this);
             $this->id_serviciocont = new clsControl(ccsListBox, "id_serviciocont", "Id Serviciocont", ccsInteger, "", CCGetRequestParam("id_serviciocont", $Method, NULL), $this);
             $this->id_serviciocont->DSType = dsTable;
             $this->id_serviciocont->DataSource = new clsDBcnDisenio();
@@ -124,7 +123,6 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
             $this->DiasRetrasoHabiles = new clsControl(ccsTextBox, "DiasRetrasoHabiles", "DiasRetrasoHabiles", ccsFloat, array(False, 2, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("DiasRetrasoHabiles", $Method, NULL), $this);
             $this->DiasRetrasoNaturales = new clsControl(ccsTextBox, "DiasRetrasoNaturales", "DiasRetrasoNaturales", ccsFloat, array(False, 2, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("DiasRetrasoNaturales", $Method, NULL), $this);
             $this->PctMaximo = new clsControl(ccsTextBox, "PctMaximo", "PctMaximo", ccsFloat, "", CCGetRequestParam("PctMaximo", $Method, NULL), $this);
-            $this->DiasPlaneados = new clsControl(ccsTextBox, "DiasPlaneados", "DiasPlaneados", ccsFloat, array(False, 2, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("DiasPlaneados", $Method, NULL), $this);
             $this->DiasReales = new clsControl(ccsTextBox, "DiasReales", "DiasReales", ccsFloat, array(False, 2, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("DiasReales", $Method, NULL), $this);
             $this->DiasReales->Visible = false;
             $this->Observaciones = new clsControl(ccsTextArea, "Observaciones", "Observaciones", ccsText, "", CCGetRequestParam("Observaciones", $Method, NULL), $this);
@@ -171,7 +169,7 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
     }
 //End Initialize Method
 
-//Validate Method @3-FE2ACC15
+//Validate Method @3-FC0CDADF
     function Validate()
     {
         global $CCSLocales;
@@ -182,7 +180,6 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
         $Validation = ($this->Descripcion->Validate() && $Validation);
         $Validation = ($this->mes->Validate() && $Validation);
         $Validation = ($this->anio->Validate() && $Validation);
-        $Validation = ($this->Agrupador->Validate() && $Validation);
         $Validation = ($this->id_serviciocont->Validate() && $Validation);
         $Validation = ($this->URLEntregables->Validate() && $Validation);
         $Validation = ($this->CAPFirmada->Validate() && $Validation);
@@ -190,7 +187,6 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
         $Validation = ($this->DiasRetrasoHabiles->Validate() && $Validation);
         $Validation = ($this->DiasRetrasoNaturales->Validate() && $Validation);
         $Validation = ($this->PctMaximo->Validate() && $Validation);
-        $Validation = ($this->DiasPlaneados->Validate() && $Validation);
         $Validation = ($this->DiasReales->Validate() && $Validation);
         $Validation = ($this->Observaciones->Validate() && $Validation);
         $Validation = ($this->IdEstimacion->Validate() && $Validation);
@@ -204,7 +200,6 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
         $Validation =  $Validation && ($this->Descripcion->Errors->Count() == 0);
         $Validation =  $Validation && ($this->mes->Errors->Count() == 0);
         $Validation =  $Validation && ($this->anio->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->Agrupador->Errors->Count() == 0);
         $Validation =  $Validation && ($this->id_serviciocont->Errors->Count() == 0);
         $Validation =  $Validation && ($this->URLEntregables->Errors->Count() == 0);
         $Validation =  $Validation && ($this->CAPFirmada->Errors->Count() == 0);
@@ -212,7 +207,6 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
         $Validation =  $Validation && ($this->DiasRetrasoHabiles->Errors->Count() == 0);
         $Validation =  $Validation && ($this->DiasRetrasoNaturales->Errors->Count() == 0);
         $Validation =  $Validation && ($this->PctMaximo->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->DiasPlaneados->Errors->Count() == 0);
         $Validation =  $Validation && ($this->DiasReales->Errors->Count() == 0);
         $Validation =  $Validation && ($this->Observaciones->Errors->Count() == 0);
         $Validation =  $Validation && ($this->IdEstimacion->Errors->Count() == 0);
@@ -224,7 +218,7 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
     }
 //End Validate Method
 
-//CheckErrors Method @3-19126359
+//CheckErrors Method @3-295351E5
     function CheckErrors()
     {
         $errors = false;
@@ -233,7 +227,6 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
         $errors = ($errors || $this->Descripcion->Errors->Count());
         $errors = ($errors || $this->mes->Errors->Count());
         $errors = ($errors || $this->anio->Errors->Count());
-        $errors = ($errors || $this->Agrupador->Errors->Count());
         $errors = ($errors || $this->id_serviciocont->Errors->Count());
         $errors = ($errors || $this->URLEntregables->Errors->Count());
         $errors = ($errors || $this->CAPFirmada->Errors->Count());
@@ -241,7 +234,6 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
         $errors = ($errors || $this->DiasRetrasoHabiles->Errors->Count());
         $errors = ($errors || $this->DiasRetrasoNaturales->Errors->Count());
         $errors = ($errors || $this->PctMaximo->Errors->Count());
-        $errors = ($errors || $this->DiasPlaneados->Errors->Count());
         $errors = ($errors || $this->DiasReales->Errors->Count());
         $errors = ($errors || $this->Observaciones->Errors->Count());
         $errors = ($errors || $this->IdEstimacion->Errors->Count());
@@ -304,7 +296,7 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
     }
 //End Operation Method
 
-//InsertRow Method @3-EC29A8FF
+//InsertRow Method @3-99445062
     function InsertRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
@@ -314,7 +306,6 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
         $this->DataSource->Descripcion->SetValue($this->Descripcion->GetValue(true));
         $this->DataSource->mes->SetValue($this->mes->GetValue(true));
         $this->DataSource->anio->SetValue($this->anio->GetValue(true));
-        $this->DataSource->Agrupador->SetValue($this->Agrupador->GetValue(true));
         $this->DataSource->id_serviciocont->SetValue($this->id_serviciocont->GetValue(true));
         $this->DataSource->URLEntregables->SetValue($this->URLEntregables->GetValue(true));
         $this->DataSource->CAPFirmada->SetValue($this->CAPFirmada->GetValue(true));
@@ -322,7 +313,6 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
         $this->DataSource->DiasRetrasoHabiles->SetValue($this->DiasRetrasoHabiles->GetValue(true));
         $this->DataSource->DiasRetrasoNaturales->SetValue($this->DiasRetrasoNaturales->GetValue(true));
         $this->DataSource->PctMaximo->SetValue($this->PctMaximo->GetValue(true));
-        $this->DataSource->DiasPlaneados->SetValue($this->DiasPlaneados->GetValue(true));
         $this->DataSource->DiasReales->SetValue($this->DiasReales->GetValue(true));
         $this->DataSource->Observaciones->SetValue($this->Observaciones->GetValue(true));
         $this->DataSource->IdEstimacion->SetValue($this->IdEstimacion->GetValue(true));
@@ -336,7 +326,7 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
     }
 //End InsertRow Method
 
-//UpdateRow Method @3-29810C4F
+//UpdateRow Method @3-A6014926
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
@@ -346,7 +336,6 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
         $this->DataSource->Descripcion->SetValue($this->Descripcion->GetValue(true));
         $this->DataSource->mes->SetValue($this->mes->GetValue(true));
         $this->DataSource->anio->SetValue($this->anio->GetValue(true));
-        $this->DataSource->Agrupador->SetValue($this->Agrupador->GetValue(true));
         $this->DataSource->id_serviciocont->SetValue($this->id_serviciocont->GetValue(true));
         $this->DataSource->URLEntregables->SetValue($this->URLEntregables->GetValue(true));
         $this->DataSource->CAPFirmada->SetValue($this->CAPFirmada->GetValue(true));
@@ -354,7 +343,6 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
         $this->DataSource->DiasRetrasoHabiles->SetValue($this->DiasRetrasoHabiles->GetValue(true));
         $this->DataSource->DiasRetrasoNaturales->SetValue($this->DiasRetrasoNaturales->GetValue(true));
         $this->DataSource->PctMaximo->SetValue($this->PctMaximo->GetValue(true));
-        $this->DataSource->DiasPlaneados->SetValue($this->DiasPlaneados->GetValue(true));
         $this->DataSource->DiasReales->SetValue($this->DiasReales->GetValue(true));
         $this->DataSource->Observaciones->SetValue($this->Observaciones->GetValue(true));
         $this->DataSource->IdEstimacion->SetValue($this->IdEstimacion->GetValue(true));
@@ -379,7 +367,7 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
     }
 //End DeleteRow Method
 
-//Show Method @3-4A7D32FA
+//Show Method @3-C97A706B
     function Show()
     {
         global $CCSUseAmp;
@@ -417,7 +405,6 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
                     $this->Descripcion->SetValue($this->DataSource->Descripcion->GetValue());
                     $this->mes->SetValue($this->DataSource->mes->GetValue());
                     $this->anio->SetValue($this->DataSource->anio->GetValue());
-                    $this->Agrupador->SetValue($this->DataSource->Agrupador->GetValue());
                     $this->id_serviciocont->SetValue($this->DataSource->id_serviciocont->GetValue());
                     $this->URLEntregables->SetValue($this->DataSource->URLEntregables->GetValue());
                     $this->CAPFirmada->SetValue($this->DataSource->CAPFirmada->GetValue());
@@ -425,7 +412,6 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
                     $this->DiasRetrasoHabiles->SetValue($this->DataSource->DiasRetrasoHabiles->GetValue());
                     $this->DiasRetrasoNaturales->SetValue($this->DataSource->DiasRetrasoNaturales->GetValue());
                     $this->PctMaximo->SetValue($this->DataSource->PctMaximo->GetValue());
-                    $this->DiasPlaneados->SetValue($this->DataSource->DiasPlaneados->GetValue());
                     $this->DiasReales->SetValue($this->DataSource->DiasReales->GetValue());
                     $this->Observaciones->SetValue($this->DataSource->Observaciones->GetValue());
                     $this->IdEstimacion->SetValue($this->DataSource->IdEstimacion->GetValue());
@@ -446,7 +432,6 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
             $Error = ComposeStrings($Error, $this->Descripcion->Errors->ToString());
             $Error = ComposeStrings($Error, $this->mes->Errors->ToString());
             $Error = ComposeStrings($Error, $this->anio->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->Agrupador->Errors->ToString());
             $Error = ComposeStrings($Error, $this->id_serviciocont->Errors->ToString());
             $Error = ComposeStrings($Error, $this->URLEntregables->Errors->ToString());
             $Error = ComposeStrings($Error, $this->CAPFirmada->Errors->ToString());
@@ -454,7 +439,6 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
             $Error = ComposeStrings($Error, $this->DiasRetrasoHabiles->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DiasRetrasoNaturales->Errors->ToString());
             $Error = ComposeStrings($Error, $this->PctMaximo->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->DiasPlaneados->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DiasReales->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Observaciones->Errors->ToString());
             $Error = ComposeStrings($Error, $this->IdEstimacion->Errors->ToString());
@@ -489,7 +473,6 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
         $this->Descripcion->Show();
         $this->mes->Show();
         $this->anio->Show();
-        $this->Agrupador->Show();
         $this->id_serviciocont->Show();
         $this->URLEntregables->Show();
         $this->CAPFirmada->Show();
@@ -497,7 +480,6 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
         $this->DiasRetrasoHabiles->Show();
         $this->DiasRetrasoNaturales->Show();
         $this->PctMaximo->Show();
-        $this->DiasPlaneados->Show();
         $this->DiasReales->Show();
         $this->Observaciones->Show();
         $this->IdEstimacion->Show();
@@ -516,7 +498,7 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
 
 class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificacion_capcDataSource Class @3-68AE7315
 
-//DataSource Variables @3-22D6ED00
+//DataSource Variables @3-0B8EF128
     public $Parent = "";
     public $CCSEvents = "";
     public $CCSEventResult;
@@ -538,7 +520,6 @@ class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificac
     public $Descripcion;
     public $mes;
     public $anio;
-    public $Agrupador;
     public $id_serviciocont;
     public $URLEntregables;
     public $CAPFirmada;
@@ -546,7 +527,6 @@ class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificac
     public $DiasRetrasoHabiles;
     public $DiasRetrasoNaturales;
     public $PctMaximo;
-    public $DiasPlaneados;
     public $DiasReales;
     public $Observaciones;
     public $IdEstimacion;
@@ -556,7 +536,7 @@ class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificac
     public $RETR_ENTREGABLE;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @3-5A4C2943
+//DataSourceClass_Initialize Event @3-6964FA4F
     function clsmc_calificacion_capcDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -572,8 +552,6 @@ class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificac
         
         $this->anio = new clsField("anio", ccsInteger, "");
         
-        $this->Agrupador = new clsField("Agrupador", ccsText, "");
-        
         $this->id_serviciocont = new clsField("id_serviciocont", ccsInteger, "");
         
         $this->URLEntregables = new clsField("URLEntregables", ccsText, "");
@@ -587,8 +565,6 @@ class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificac
         $this->DiasRetrasoNaturales = new clsField("DiasRetrasoNaturales", ccsFloat, "");
         
         $this->PctMaximo = new clsField("PctMaximo", ccsFloat, "");
-        
-        $this->DiasPlaneados = new clsField("DiasPlaneados", ccsFloat, "");
         
         $this->DiasReales = new clsField("DiasReales", ccsFloat, "");
         
@@ -610,7 +586,6 @@ class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificac
         $this->InsertFields["Descripcion"] = array("Name" => "[Descripcion]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["mes"] = array("Name" => "mes", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->InsertFields["anio"] = array("Name" => "anio", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
-        $this->InsertFields["Agrupador"] = array("Name" => "[Agrupador]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["id_serviciocont"] = array("Name" => "id_serviciocont", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->InsertFields["urlentregables"] = array("Name" => "urlentregables", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["CAPFirmada"] = array("Name" => "[CAPFirmada]", "Value" => "", "DataType" => ccsBoolean);
@@ -618,7 +593,6 @@ class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificac
         $this->InsertFields["DiasRetrasoHabiles"] = array("Name" => "[DiasRetrasoHabiles]", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
         $this->InsertFields["DiasRetrasoNaturales"] = array("Name" => "[DiasRetrasoNaturales]", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
         $this->InsertFields["PctMaximo"] = array("Name" => "[PctMaximo]", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
-        $this->InsertFields["DiasPlaneados"] = array("Name" => "[DiasPlaneados]", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
         $this->InsertFields["DiasReales"] = array("Name" => "[DiasReales]", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
         $this->InsertFields["Observaciones"] = array("Name" => "[Observaciones]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["IdEstimacion"] = array("Name" => "[IdEstimacion]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
@@ -631,7 +605,6 @@ class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificac
         $this->UpdateFields["Descripcion"] = array("Name" => "[Descripcion]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["mes"] = array("Name" => "mes", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->UpdateFields["anio"] = array("Name" => "anio", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
-        $this->UpdateFields["Agrupador"] = array("Name" => "[Agrupador]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["id_serviciocont"] = array("Name" => "id_serviciocont", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->UpdateFields["urlentregables"] = array("Name" => "urlentregables", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["CAPFirmada"] = array("Name" => "[CAPFirmada]", "Value" => "", "DataType" => ccsBoolean);
@@ -639,7 +612,6 @@ class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificac
         $this->UpdateFields["DiasRetrasoHabiles"] = array("Name" => "[DiasRetrasoHabiles]", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
         $this->UpdateFields["DiasRetrasoNaturales"] = array("Name" => "[DiasRetrasoNaturales]", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
         $this->UpdateFields["PctMaximo"] = array("Name" => "[PctMaximo]", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
-        $this->UpdateFields["DiasPlaneados"] = array("Name" => "[DiasPlaneados]", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
         $this->UpdateFields["DiasReales"] = array("Name" => "[DiasReales]", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
         $this->UpdateFields["Observaciones"] = array("Name" => "[Observaciones]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["IdEstimacion"] = array("Name" => "[IdEstimacion]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
@@ -676,7 +648,7 @@ class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificac
     }
 //End Open Method
 
-//SetValues Method @3-452D8695
+//SetValues Method @3-7815E14A
     function SetValues()
     {
         $this->id_proveedor->SetDBValue(trim($this->f("id_proveedor")));
@@ -684,7 +656,6 @@ class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificac
         $this->Descripcion->SetDBValue($this->f("Descripcion"));
         $this->mes->SetDBValue(trim($this->f("mes")));
         $this->anio->SetDBValue(trim($this->f("anio")));
-        $this->Agrupador->SetDBValue($this->f("Agrupador"));
         $this->id_serviciocont->SetDBValue(trim($this->f("id_serviciocont")));
         $this->URLEntregables->SetDBValue($this->f("urlentregables"));
         $this->CAPFirmada->SetDBValue(trim($this->f("CAPFirmada")));
@@ -692,7 +663,6 @@ class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificac
         $this->DiasRetrasoHabiles->SetDBValue(trim($this->f("DiasRetrasoHabiles")));
         $this->DiasRetrasoNaturales->SetDBValue(trim($this->f("DiasRetrasoNaturales")));
         $this->PctMaximo->SetDBValue(trim($this->f("PctMaximo")));
-        $this->DiasPlaneados->SetDBValue(trim($this->f("DiasPlaneados")));
         $this->DiasReales->SetDBValue(trim($this->f("DiasReales")));
         $this->Observaciones->SetDBValue($this->f("Observaciones"));
         $this->IdEstimacion->SetDBValue($this->f("IdEstimacion"));
@@ -703,7 +673,7 @@ class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificac
     }
 //End SetValues Method
 
-//Insert Method @3-07BF41FC
+//Insert Method @3-E7D1F4DB
     function Insert()
     {
         global $CCSLocales;
@@ -715,7 +685,6 @@ class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificac
         $this->InsertFields["Descripcion"]["Value"] = $this->Descripcion->GetDBValue(true);
         $this->InsertFields["mes"]["Value"] = $this->mes->GetDBValue(true);
         $this->InsertFields["anio"]["Value"] = $this->anio->GetDBValue(true);
-        $this->InsertFields["Agrupador"]["Value"] = $this->Agrupador->GetDBValue(true);
         $this->InsertFields["id_serviciocont"]["Value"] = $this->id_serviciocont->GetDBValue(true);
         $this->InsertFields["urlentregables"]["Value"] = $this->URLEntregables->GetDBValue(true);
         $this->InsertFields["CAPFirmada"]["Value"] = $this->CAPFirmada->GetDBValue(true);
@@ -723,7 +692,6 @@ class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificac
         $this->InsertFields["DiasRetrasoHabiles"]["Value"] = $this->DiasRetrasoHabiles->GetDBValue(true);
         $this->InsertFields["DiasRetrasoNaturales"]["Value"] = $this->DiasRetrasoNaturales->GetDBValue(true);
         $this->InsertFields["PctMaximo"]["Value"] = $this->PctMaximo->GetDBValue(true);
-        $this->InsertFields["DiasPlaneados"]["Value"] = $this->DiasPlaneados->GetDBValue(true);
         $this->InsertFields["DiasReales"]["Value"] = $this->DiasReales->GetDBValue(true);
         $this->InsertFields["Observaciones"]["Value"] = $this->Observaciones->GetDBValue(true);
         $this->InsertFields["IdEstimacion"]["Value"] = $this->IdEstimacion->GetDBValue(true);
@@ -740,7 +708,7 @@ class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificac
     }
 //End Insert Method
 
-//Update Method @3-3769A627
+//Update Method @3-2DC6949C
     function Update()
     {
         global $CCSLocales;
@@ -753,7 +721,6 @@ class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificac
         $this->UpdateFields["Descripcion"]["Value"] = $this->Descripcion->GetDBValue(true);
         $this->UpdateFields["mes"]["Value"] = $this->mes->GetDBValue(true);
         $this->UpdateFields["anio"]["Value"] = $this->anio->GetDBValue(true);
-        $this->UpdateFields["Agrupador"]["Value"] = $this->Agrupador->GetDBValue(true);
         $this->UpdateFields["id_serviciocont"]["Value"] = $this->id_serviciocont->GetDBValue(true);
         $this->UpdateFields["urlentregables"]["Value"] = $this->URLEntregables->GetDBValue(true);
         $this->UpdateFields["CAPFirmada"]["Value"] = $this->CAPFirmada->GetDBValue(true);
@@ -761,7 +728,6 @@ class clsmc_calificacion_capcDataSource extends clsDBcnDisenio {  //mc_calificac
         $this->UpdateFields["DiasRetrasoHabiles"]["Value"] = $this->DiasRetrasoHabiles->GetDBValue(true);
         $this->UpdateFields["DiasRetrasoNaturales"]["Value"] = $this->DiasRetrasoNaturales->GetDBValue(true);
         $this->UpdateFields["PctMaximo"]["Value"] = $this->PctMaximo->GetDBValue(true);
-        $this->UpdateFields["DiasPlaneados"]["Value"] = $this->DiasPlaneados->GetDBValue(true);
         $this->UpdateFields["DiasReales"]["Value"] = $this->DiasReales->GetDBValue(true);
         $this->UpdateFields["Observaciones"]["Value"] = $this->Observaciones->GetDBValue(true);
         $this->UpdateFields["IdEstimacion"]["Value"] = $this->IdEstimacion->GetDBValue(true);

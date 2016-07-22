@@ -16,7 +16,8 @@
                 }
         }
                 function calificaReq(){
-                if(document.getElementById("mc_calificacion_capcPctMaximo").value>=1 || !document.getElementById("mc_info_rs_ap_ECCAPFirmada").checked || !document.getElementById("mc_info_rs_ap_ECTPaquetes").checked){
+                //if(document.getElementById("mc_calificacion_capcPctMaximo").value>=1 || !document.getElementById("mc_info_rs_ap_ECCAPFirmada").checked || !document.getElementById("mc_info_rs_ap_ECTPaquetes").checked){
+                if(document.getElementById("mc_calificacion_capcPctMaximo").value>=1 ){
                 document.getElementById("mc_info_rs_ap_ECCumplioHE").selectedIndex=0;
             }
                 } 
@@ -83,15 +84,15 @@
         }
         
         function CalculaRetraso(){
-                var iDiasPlan = Number(document.getElementById("mc_calificacion_capcDiasPlaneados").value);
+                //var iDiasPlan = Number(document.getElementById("mc_calificacion_capcDiasPlaneados").value);
                 var iDiasReal= Number(document.getElementById("mc_calificacion_capcDiasReales").value);
                 var iDesviacion = document.getElementById("mc_calificacion_capcDiasRetrasoNaturales").value;
                         
-                        if(iDiasReal > iDiasPlan){
-                                iDesviacion =(iDiasReal - iDiasPlan);
-                        } else {
-                                iDesviacion = 0;
-                        }        
+                        //if(iDiasReal > iDiasPlan){
+                        //        iDesviacion =(iDiasReal - iDiasPlan);
+                        //} else {
+                        //        iDesviacion = 0;
+                        //}        
                         document.getElementById("mc_calificacion_capcDiasRetrasoNaturales").value= iDesviacion;
                         //dependiendo del retraso se calcula la deductiva
                         document.getElementById("mc_calificacion_capcPctMaximo").value=0;     
@@ -233,8 +234,8 @@ jQuery(function ($) {
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th">Rubro</td> 
-                  <td><input type="text" id="mc_calificacion_capcAgrupador" maxlength="75" size="50" value="{Agrupador}" name="{Agrupador_Name}"></td> 
+                  <td class="th"></td> 
+                  <td></td> 
                   <td>&nbsp;</td>
                 </tr>
  
@@ -321,8 +322,8 @@ jQuery(function ($) {
                                 </tr>
  
                                 <tr class="Controls">
-                                  <td><label for="mc_calificacion_capcDiasPlaneados" style="display: inline;">Días hábiles planeados</label></td> 
-                                  <td><input type="text" onchange="CalculaRetraso()" id="mc_calificacion_capcDiasPlaneados" maxlength="4" size="4" value="{DiasPlaneados}" name="{DiasPlaneados_Name}"></td> 
+                                  <td></td> 
+                                  <td></td> 
                                   <td><label for="mc_calificacion_capcDiasReales" style="display: inline;">&nbsp;</label></td> 
                                   <td>
                                     <!-- BEGIN TextBox DiasReales --><input type="text" onchange="CalculaRetraso()" id="mc_calificacion_capcDiasReales" maxlength="4" size="4" value="{DiasReales}" name="{DiasReales_Name}"><!-- END TextBox DiasReales --></td> 

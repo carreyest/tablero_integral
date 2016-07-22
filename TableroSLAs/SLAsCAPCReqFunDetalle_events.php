@@ -1,10 +1,9 @@
 <?php
-//BindEvents Method @1-B1B01AF6
+//BindEvents Method @1-4C5746E4
 function BindEvents()
 {
     global $mc_info_rs_cr_RF;
     global $CCSEvents;
-    $mc_info_rs_cr_RF->FechaSubida->CCSEvents["BeforeShow"] = "mc_info_rs_cr_RF_FechaSubida_BeforeShow";
     $mc_info_rs_cr_RF->PublicacionCAES->CCSEvents["BeforeShow"] = "mc_info_rs_cr_RF_PublicacionCAES_BeforeShow";
     $mc_info_rs_cr_RF->CCSEvents["BeforeShow"] = "mc_info_rs_cr_RF_BeforeShow";
     $mc_info_rs_cr_RF->CCSEvents["OnValidate"] = "mc_info_rs_cr_RF_OnValidate";
@@ -13,20 +12,6 @@ function BindEvents()
     $CCSEvents["BeforeShow"] = "Page_BeforeShow";
 }
 //End BindEvents Method
-
-//mc_info_rs_cr_RF_FechaSubida_BeforeShow @13-1BBDEBA5
-function mc_info_rs_cr_RF_FechaSubida_BeforeShow(& $sender)
-{
-    $mc_info_rs_cr_RF_FechaSubida_BeforeShow = true;
-    $Component = & $sender;
-    $Container = & CCGetParentContainer($sender);
-    global $mc_info_rs_cr_RF; //Compatibility
-//End mc_info_rs_cr_RF_FechaSubida_BeforeShow
-
-//Close mc_info_rs_cr_RF_FechaSubida_BeforeShow @13-C9EFD41C
-    return $mc_info_rs_cr_RF_FechaSubida_BeforeShow;
-}
-//End Close mc_info_rs_cr_RF_FechaSubida_BeforeShow
 
 //mc_info_rs_cr_RF_PublicacionCAES_BeforeShow @42-4F29523E
 function mc_info_rs_cr_RF_PublicacionCAES_BeforeShow(& $sender)
@@ -95,6 +80,7 @@ function mc_info_rs_cr_RF_BeforeShow(& $sender)
 			$mc_info_rs_cr_RF->sNombreProyecto->SetValue($db->f(0));
 			$mc_info_rs_cr_RF->lTipoRequerimiento->SetValue($sTipoReq);
 		}
+		/*
 		switch($sTipoReq){
 		    case "Proyecto";
 			    $sql= 'SELECT FIN_REAL  FROM PPMC_FasesActivas F ' .
@@ -112,12 +98,15 @@ function mc_info_rs_cr_RF_BeforeShow(& $sender)
 			case "Control de Cambios";
 				break;
 		}
+		*/
+		/*
 		$db->query($sql);
 		if(!$mc_info_rs_cr_RF->EditMode && $db->has_next_record() ){
 			$db->next_record();
 			//convierte la fecha en en el formato de la db
 			$mc_info_rs_cr_RF->FechaSubida->SetValue(CCParseDate($db->f(0), array("yyyy","-","mm","-","dd"," ","HH",":","nn",":","ss",".","S")));
 		}
+		*/
     } else {// si no tiene registro de estimación 
     	$sql="SELECT ID_PPMC, NAME, SERVICIO_NEGOCIO, TIPO_REQUERIMIENTO, FECHA_CARGA,  u.mes, u.anio  " .
 			" from mc_calificacion_capc u  LEFT JOIN vw_PPMC_Proy_RO_CC on " . 

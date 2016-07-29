@@ -619,13 +619,11 @@ function mc_info_rs_ap_EC_OnValidate(& $sender)
 
 //Custom Code @311-2A29BDB7
 // -------------------------
-/*
 	if ($mc_info_rs_ap_EC->lbSLA->GetValue()=="Completar Ruta Critica"){
 		if ($mc_info_rs_ap_EC->txtDiasEstimados->GetValue()==0){
 			$mc_info_rs_ap_EC->Errors->addError("El campo Días Planeados obligatorio");
 		}
 	}
-*/
 	global $Redirect;
 	global $PathToRoot;
 	//si es nuevo, se deja en la página.
@@ -644,6 +642,14 @@ function mc_info_rs_ap_EC_OnValidate(& $sender)
 }
 //End Close mc_info_rs_ap_EC_OnValidate
 
+//DEL  // -------------------------
+//DEL  /*
+//DEL  if (CCGetUserLogin()=='fjaime'){
+//DEL   $mc_info_rs_ap_EC->DataSource->SQL = "SELECT Id, ID_PPMC, URLReferencia, FechaFirmaCAES, CASE WHEN LEN(Observaciones)<3000 THEN Observaciones ELSE SUBSTRING(Observaciones,1,4000)+' .... (NOTA: OBSERVACION CON MAS CARACTERES DE LOS PERMITIDOS PARA VISUALIZAR)' END Observaciones, CumplioRE, CumplioRC, CAPFirmada, IdTipoReq, id_servicio_cont, id_servicio_negocio,DiasDesarrolloEst, MaxDiasRetrasoNat, MaxDiasRetrasoHab, FechaAlta, UsuarioAlta, FechaUltMod, UsuarioUltMod, TipoSLA, IdReqCC,PctMax, TPaquetes FROM mc_info_rs_cr_RE_RC";
+//DEL   
+//DEL  }
+//DEL  */
+//DEL  // -------------------------
 
 //mc_info_rs_cr_RE_RC_Artef1_FechaUltMod_BeforeShow @209-854CFEB6
 function mc_info_rs_cr_RE_RC_Artef1_FechaUltMod_BeforeShow(& $sender)
@@ -793,8 +799,7 @@ function mc_info_rs_cr_RE_RC_Artef1_BeforeUpdate(& $sender)
 //End Close mc_info_rs_cr_RE_RC_Artef1_BeforeUpdate
 
 //mc_info_rs_cr_RE_RC_Artef1_ds_BeforeExecuteInsert @190-FF38721F
-function 
-mc_info_rs_cr_RE_RC_Artef1_ds_BeforeExecuteInsert(& $sender)
+function mc_info_rs_cr_RE_RC_Artef1_ds_BeforeExecuteInsert(& $sender)
 {
     $mc_info_rs_cr_RE_RC_Artef1_ds_BeforeExecuteInsert = true;
     $Component = & $sender;

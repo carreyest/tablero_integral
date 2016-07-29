@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css" />
 <script language="JavaScript" type="text/javascript">
 //Begin CCS script
+
 //Include Common JSFunctions @1-2504AB44
 </script>
 <script src="ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
@@ -22,14 +23,12 @@
 <script type="text/javascript">
 //End Include User Scripts
 
-/*
 function muestraCheck(){
         sCAES = document.getElementById("mc_info_rs_cr_RFFechaSubida").value;
     if(sCAES!=""){
         aCAES = sCAES.split("/");
         var dCAES = new Date(aCAES[2].valueOf(),aCAES[1].valueOf()-1,aCAES[0].valueOf(),0,0,0);
         var dAgosto = new Date(2013,7,1,0,0,0);
-*/
         //si la caes es aterior al 1 de agosto
         /*
         if(dCAES < dAgosto){
@@ -43,20 +42,19 @@ function muestraCheck(){
                 document.getElementById("ListaCAES").style.display='block';
         }
         */
-//    }
-//}
+    }
+}
 
 
 function calculaCumplimiento(){
 
     //se convierte en fecha la asignacon para poder comparar    
-    //sCAES = document.getElementById("mc_info_rs_cr_RFFechaSubida").value;
-    //if(sCAES!=""){
-        //aCAES = sCAES.split("/");
-        //var dCAES = new Date(aCAES[2].valueOf(),aCAES[1].valueOf()-1,aCAES[0].valueOf(),0,0,0);
-        //var dAgosto = new Date(2013,7,1,0,0,0);
+    sCAES = document.getElementById("mc_info_rs_cr_RFFechaSubida").value;
+    if(sCAES!=""){
+        aCAES = sCAES.split("/");
+        var dCAES = new Date(aCAES[2].valueOf(),aCAES[1].valueOf()-1,aCAES[0].valueOf(),0,0,0);
+        var dAgosto = new Date(2013,7,1,0,0,0);
         //si la caes es aterior al 1 de agosto
- 		/*   
         if(dCAES < dAgosto){
             if(!document.getElementById("mc_info_rs_cr_RFListaenPDF").checked){
                 document.getElementById("mc_info_rs_cr_RFCumpleReqFun").value=0;
@@ -70,7 +68,6 @@ function calculaCumplimiento(){
                    document.getElementById("mc_info_rs_cr_RFCumpleReqFun").value=1;
                 }
         }
-		*/
         sPCAES = document.getElementById("mc_info_rs_cr_RFPublicacionCAES").value;
         if(sPCAES !=""){
                 aPCAES = sPCAES.split("/");
@@ -83,7 +80,7 @@ function calculaCumplimiento(){
                 }
         }
         
-    //}
+    }
     
     if(document.getElementById("mc_info_rs_cr_RFPuntuacion").value >= 4.5){
         if(document.getElementById("mc_info_rs_cr_RFCumpleReqFun").value==1){
@@ -111,20 +108,28 @@ jQuery(function ($) {
     var params = { };
 //End Common Script Start
 
-//Controls Selecting @1-1079E51A
+//Controls Selecting @1-508AC4BC
     $('body').ccsBind(function() {
+        features["mc_info_rs_cr_RFFechaSubidaInlineDatePicker1"] = $('*:ccsControl(mc_info_rs_cr_RF, FechaSubida)');
         features["mc_info_rs_cr_RFPublicacionCAESInlineDatePicker2"] = $('*:ccsControl(mc_info_rs_cr_RF, PublicacionCAES)');
     });
 //End Controls Selecting
 
-//Feature Parameters @1-F27B9943
+//Feature Parameters @1-12955695
+    params["mc_info_rs_cr_RFFechaSubidaInlineDatePicker1"] = { 
+        dateFormat: "dd/MM/yyyy",
+        isWeekend: true
+    };
     params["mc_info_rs_cr_RFPublicacionCAESInlineDatePicker2"] = { 
         dateFormat: "dd/MM/yyyy",
         isWeekend: true
     };
 //End Feature Parameters
 
-//Feature Init @1-676A53A5
+//Feature Init @1-11AFEEAF
+    features["mc_info_rs_cr_RFFechaSubidaInlineDatePicker1"].ccsBind(function() {
+        this.ccsDateTimePicker(params["mc_info_rs_cr_RFFechaSubidaInlineDatePicker1"]);
+    });
     features["mc_info_rs_cr_RFPublicacionCAESInlineDatePicker2"].ccsBind(function() {
         this.ccsDateTimePicker(params["mc_info_rs_cr_RFPublicacionCAESInlineDatePicker2"]);
     });
@@ -146,9 +151,21 @@ jQuery(function ($) {
     };
 //End mc_info_rs_cr_RFPuntuacionOnChange Event End
 
-//DEL          // -------------------------
-//DEL          calculaCumplimiento();
-//DEL          // -------------------------
+//mc_info_rs_cr_RFFechaSubidaOnChange Event Start @-B535F02D
+    actions["mc_info_rs_cr_RFFechaSubidaOnChange"] = function (eventType, parameters) {
+        var result = true;
+//End mc_info_rs_cr_RFFechaSubidaOnChange Event Start
+
+//Custom Code @31-2A29BDB7
+        // -------------------------
+        calculaCumplimiento();
+        // -------------------------
+//End Custom Code
+
+//mc_info_rs_cr_RFFechaSubidaOnChange Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_info_rs_cr_RFFechaSubidaOnChange Event End
 
 //mc_info_rs_cr_RFTienePonderacionOnClick Event Start @-C8634148
     actions["mc_info_rs_cr_RFTienePonderacionOnClick"] = function (eventType, parameters) {
@@ -214,9 +231,12 @@ jQuery(function ($) {
     };
 //End mc_info_rs_cr_RFListaenCAESOnClick Event End
 
-//Event Binding @1-BF47A643
+//Event Binding @1-842F2B6A
     $('*:ccsControl(mc_info_rs_cr_RF, Puntuacion)').ccsBind(function() {
         this.bind("change", actions["mc_info_rs_cr_RFPuntuacionOnChange"]);
+    });
+    $('*:ccsControl(mc_info_rs_cr_RF, FechaSubida)').ccsBind(function() {
+        this.bind("change", actions["mc_info_rs_cr_RFFechaSubidaOnChange"]);
     });
     $('*:ccsControl(mc_info_rs_cr_RF, TienePonderacion)').ccsBind(function() {
         this.bind("click", actions["mc_info_rs_cr_RFTienePonderacionOnClick"]);
@@ -301,11 +321,11 @@ jQuery(function ($) {
           </tr>
  
           <tr class="Controls">
-            <td colspan="2"><label for="mc_info_rs_cr_RFTienePonderacion" style="display: inline;">Los requisitos están ponderados </label><input type="checkbox" id="mc_info_rs_cr_RFTienePonderacion" value="1" name="{TienePonderacion_Name}" {TienePonderacion}><input type="hidden" id="mc_info_rs_cr_RFTotalRequisitos" value="{TotalRequisitos}" name="{TotalRequisitos_Name}"></td> 
+            <td colspan="2"><label style="display: inline;" for="mc_info_rs_cr_RFTienePonderacion">Los requisitos están ponderados </label><input type="checkbox" id="mc_info_rs_cr_RFTienePonderacion" value="1" name="{TienePonderacion_Name}" {TienePonderacion}><input type="hidden" id="mc_info_rs_cr_RFTotalRequisitos" value="{TotalRequisitos}" name="{TotalRequisitos_Name}"></td> 
           </tr>
  
           <tr class="Controls">
-            <td colspan="2"><label for="mc_info_rs_cr_RFTieneCalificacion" style="display: inline;">Los requisitos están calificados&nbsp;&nbsp;&nbsp;</label><input type="checkbox" id="mc_info_rs_cr_RFTieneCalificacion" value="1" name="{TieneCalificacion_Name}" {TieneCalificacion}>&nbsp;</td> 
+            <td colspan="2"><label style="display: inline;" for="mc_info_rs_cr_RFTieneCalificacion">Los requisitos están calificados&nbsp;&nbsp;&nbsp;</label><input type="checkbox" id="mc_info_rs_cr_RFTieneCalificacion" value="1" name="{TieneCalificacion_Name}" {TieneCalificacion}>&nbsp;</td> 
           </tr>
  
           <tr class="Controls">
@@ -319,14 +339,15 @@ jQuery(function ($) {
           </tr>
  
           <tr class="Controls">
-            <td class="th"></td> 
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            <td class="th"><label for="mc_info_rs_cr_RFFechaSubida">Fecha de liberación</label></td> 
+            <td>
+              <!-- BEGIN TextBox FechaSubida --><input type="text" onblur="muestraCheck()" id="mc_info_rs_cr_RFFechaSubida" maxlength="100" size="10" value="{FechaSubida}" name="{FechaSubida_Name}"><!-- END TextBox FechaSubida -->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
               <div id="ListaPDF">
-                <label for="mc_info_rs_cr_RFListaenPDF" style="display: inline;">Lista de requisitos en PDF </label><input type="checkbox" id="mc_info_rs_cr_RFListaenPDF" value="1" name="{ListaenPDF_Name}" {ListaenPDF}>
+                <label style="display: inline;" for="mc_info_rs_cr_RFListaenPDF">Lista de requisitos en PDF </label><input type="checkbox" id="mc_info_rs_cr_RFListaenPDF" value="1" name="{ListaenPDF_Name}" {ListaenPDF}>
               </div>
  
               <div id="ListaCAES">
-                <label for="mc_info_rs_cr_RFListaenCAES" style="display: inline;">Lista de requisitos en CAES </label><input type="checkbox" id="mc_info_rs_cr_RFListaenCAES" value="1" name="{ListaenCAES_Name}" {ListaenCAES}>
+                <label style="display: inline;" for="mc_info_rs_cr_RFListaenCAES">Lista de requisitos en CAES </label><input type="checkbox" id="mc_info_rs_cr_RFListaenCAES" value="1" name="{ListaenCAES_Name}" {ListaenCAES}>
               </div>
  </td> 
           </tr>

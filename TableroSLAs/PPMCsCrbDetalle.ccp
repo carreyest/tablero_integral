@@ -222,6 +222,12 @@ order by nombre
 						</JDateTimePicker>
 					</Features>
 				</TextBox>
+				<TextBox id="146" visible="No" fieldSourceType="DBColumn" dataType="Float" name="txtDiasEstimados" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="mc_info_rs_ap_ECtxtDiasEstimados" fieldSource="DiasDesarrolloEst" required="True" defaultValue="0" caption="Días Planeados" format="0.000">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
 				<TextBox id="147" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="MaxDiasRetrasoNat" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="mc_info_rs_ap_ECMaxDiasRetrasoNat" fieldSource="MaxDiasRetrasoNat" required="False" defaultValue="0" format="0.000">
 					<Components/>
 					<Events>
@@ -393,7 +399,8 @@ order by nombre
 			<SPParameters/>
 			<SQLParameters/>
 			<JoinTables>
-			</JoinTables>
+				<JoinTable id="410" tableName="mc_info_rs_cr_RE_RC"/>
+</JoinTables>
 			<JoinLinks/>
 			<Fields>
 			</Fields>
@@ -685,12 +692,6 @@ order by nombre
 			<Features/>
 		</Record>
 		<Label id="32" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="lDocs" PathID="lDocs">
-			<Components/>
-			<Events/>
-			<Attributes/>
-			<Features/>
-		</Label>
-		<Label id="312" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="lbNoHabiles" PathID="lbNoHabiles">
 			<Components/>
 			<Events/>
 			<Attributes/>

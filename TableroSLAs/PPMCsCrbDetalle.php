@@ -51,7 +51,7 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-0AB88679
+//Class_Initialize Event @3-BCE81A1A
     function clsRecordmc_info_rs_ap_EC($RelativePath, & $Parent)
     {
 
@@ -114,6 +114,9 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
             $this->sTipoRequerimiento1->DSType = dsListOfValues;
             $this->sTipoRequerimiento1->Values = array(array("2", "Mantenimiento Mayor"), array("3", "Mantenimiento Menor"));
             $this->FechaFirmaCAES = new clsControl(ccsTextBox, "FechaFirmaCAES", "FechaFirmaCAES", ccsDate, array("ShortDate"), CCGetRequestParam("FechaFirmaCAES", $Method, NULL), $this);
+            $this->txtDiasEstimados = new clsControl(ccsTextBox, "txtDiasEstimados", "Días Planeados", ccsFloat, array(False, 3, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("txtDiasEstimados", $Method, NULL), $this);
+            $this->txtDiasEstimados->Required = true;
+            $this->txtDiasEstimados->Visible = false;
             $this->MaxDiasRetrasoNat = new clsControl(ccsTextBox, "MaxDiasRetrasoNat", "MaxDiasRetrasoNat", ccsFloat, array(False, 3, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("MaxDiasRetrasoNat", $Method, NULL), $this);
             $this->MaxDiasRetrasoHab = new clsControl(ccsTextBox, "MaxDiasRetrasoHab", "MaxDiasRetrasoHab", ccsFloat, array(False, 3, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("MaxDiasRetrasoHab", $Method, NULL), $this);
             $this->PctMax = new clsControl(ccsTextBox, "PctMax", "PctMax", ccsFloat, array(False, 4, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("PctMax", $Method, NULL), $this);
@@ -141,6 +144,8 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
             if(!$this->FormSubmitted) {
                 if(!is_array($this->hdFechaUltMod->Value) && !strlen($this->hdFechaUltMod->Value) && $this->hdFechaUltMod->Value !== false)
                     $this->hdFechaUltMod->SetText(date("Y-m-d H:i"));
+                if(!is_array($this->txtDiasEstimados->Value) && !strlen($this->txtDiasEstimados->Value) && $this->txtDiasEstimados->Value !== false)
+                    $this->txtDiasEstimados->SetText(0);
                 if(!is_array($this->MaxDiasRetrasoNat->Value) && !strlen($this->MaxDiasRetrasoNat->Value) && $this->MaxDiasRetrasoNat->Value !== false)
                     $this->MaxDiasRetrasoNat->SetText(0);
                 if(!is_array($this->MaxDiasRetrasoHab->Value) && !strlen($this->MaxDiasRetrasoHab->Value) && $this->MaxDiasRetrasoHab->Value !== false)
@@ -169,7 +174,7 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
     }
 //End Initialize Method
 
-//Validate Method @3-FB8F63A4
+//Validate Method @3-22C72BC1
     function Validate()
     {
         global $CCSLocales;
@@ -186,6 +191,7 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
         $Validation = ($this->lbSLA->Validate() && $Validation);
         $Validation = ($this->sTipoRequerimiento1->Validate() && $Validation);
         $Validation = ($this->FechaFirmaCAES->Validate() && $Validation);
+        $Validation = ($this->txtDiasEstimados->Validate() && $Validation);
         $Validation = ($this->MaxDiasRetrasoNat->Validate() && $Validation);
         $Validation = ($this->MaxDiasRetrasoHab->Validate() && $Validation);
         $Validation = ($this->PctMax->Validate() && $Validation);
@@ -210,6 +216,7 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
         $Validation =  $Validation && ($this->lbSLA->Errors->Count() == 0);
         $Validation =  $Validation && ($this->sTipoRequerimiento1->Errors->Count() == 0);
         $Validation =  $Validation && ($this->FechaFirmaCAES->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->txtDiasEstimados->Errors->Count() == 0);
         $Validation =  $Validation && ($this->MaxDiasRetrasoNat->Errors->Count() == 0);
         $Validation =  $Validation && ($this->MaxDiasRetrasoHab->Errors->Count() == 0);
         $Validation =  $Validation && ($this->PctMax->Errors->Count() == 0);
@@ -226,7 +233,7 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
     }
 //End Validate Method
 
-//CheckErrors Method @3-472B7100
+//CheckErrors Method @3-9707F94C
     function CheckErrors()
     {
         $errors = false;
@@ -248,6 +255,7 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
         $errors = ($errors || $this->lbSLA->Errors->Count());
         $errors = ($errors || $this->sTipoRequerimiento1->Errors->Count());
         $errors = ($errors || $this->FechaFirmaCAES->Errors->Count());
+        $errors = ($errors || $this->txtDiasEstimados->Errors->Count());
         $errors = ($errors || $this->MaxDiasRetrasoNat->Errors->Count());
         $errors = ($errors || $this->MaxDiasRetrasoHab->Errors->Count());
         $errors = ($errors || $this->PctMax->Errors->Count());
@@ -324,7 +332,7 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
     }
 //End Operation Method
 
-//InsertRow Method @3-E87B9540
+//InsertRow Method @3-2AA6E325
     function InsertRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
@@ -346,6 +354,7 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
         $this->DataSource->lbSLA->SetValue($this->lbSLA->GetValue(true));
         $this->DataSource->sTipoRequerimiento1->SetValue($this->sTipoRequerimiento1->GetValue(true));
         $this->DataSource->FechaFirmaCAES->SetValue($this->FechaFirmaCAES->GetValue(true));
+        $this->DataSource->txtDiasEstimados->SetValue($this->txtDiasEstimados->GetValue(true));
         $this->DataSource->MaxDiasRetrasoNat->SetValue($this->MaxDiasRetrasoNat->GetValue(true));
         $this->DataSource->MaxDiasRetrasoHab->SetValue($this->MaxDiasRetrasoHab->GetValue(true));
         $this->DataSource->PctMax->SetValue($this->PctMax->GetValue(true));
@@ -366,7 +375,7 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
     }
 //End InsertRow Method
 
-//UpdateRow Method @3-D8D47702
+//UpdateRow Method @3-7CC87443
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
@@ -388,6 +397,7 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
         $this->DataSource->lbSLA->SetValue($this->lbSLA->GetValue(true));
         $this->DataSource->sTipoRequerimiento1->SetValue($this->sTipoRequerimiento1->GetValue(true));
         $this->DataSource->FechaFirmaCAES->SetValue($this->FechaFirmaCAES->GetValue(true));
+        $this->DataSource->txtDiasEstimados->SetValue($this->txtDiasEstimados->GetValue(true));
         $this->DataSource->MaxDiasRetrasoNat->SetValue($this->MaxDiasRetrasoNat->GetValue(true));
         $this->DataSource->MaxDiasRetrasoHab->SetValue($this->MaxDiasRetrasoHab->GetValue(true));
         $this->DataSource->PctMax->SetValue($this->PctMax->GetValue(true));
@@ -408,7 +418,7 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
     }
 //End UpdateRow Method
 
-//Show Method @3-89E6B97E
+//Show Method @3-3A06CCEC
     function Show()
     {
         global $CCSUseAmp;
@@ -451,6 +461,7 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
                     $this->lbSLA->SetValue($this->DataSource->lbSLA->GetValue());
                     $this->sTipoRequerimiento1->SetValue($this->DataSource->sTipoRequerimiento1->GetValue());
                     $this->FechaFirmaCAES->SetValue($this->DataSource->FechaFirmaCAES->GetValue());
+                    $this->txtDiasEstimados->SetValue($this->DataSource->txtDiasEstimados->GetValue());
                     $this->MaxDiasRetrasoNat->SetValue($this->DataSource->MaxDiasRetrasoNat->GetValue());
                     $this->MaxDiasRetrasoHab->SetValue($this->DataSource->MaxDiasRetrasoHab->GetValue());
                     $this->PctMax->SetValue($this->DataSource->PctMax->GetValue());
@@ -490,6 +501,7 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
             $Error = ComposeStrings($Error, $this->lbSLA->Errors->ToString());
             $Error = ComposeStrings($Error, $this->sTipoRequerimiento1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->FechaFirmaCAES->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->txtDiasEstimados->Errors->ToString());
             $Error = ComposeStrings($Error, $this->MaxDiasRetrasoNat->Errors->ToString());
             $Error = ComposeStrings($Error, $this->MaxDiasRetrasoHab->Errors->ToString());
             $Error = ComposeStrings($Error, $this->PctMax->Errors->ToString());
@@ -546,6 +558,7 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
         $this->lbSLA->Show();
         $this->sTipoRequerimiento1->Show();
         $this->FechaFirmaCAES->Show();
+        $this->txtDiasEstimados->Show();
         $this->MaxDiasRetrasoNat->Show();
         $this->MaxDiasRetrasoHab->Show();
         $this->PctMax->Show();
@@ -571,7 +584,7 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
 
 class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_ECDataSource Class @3-9CE83123
 
-//DataSource Variables @3-3255EFED
+//DataSource Variables @3-DA0FFC0D
     public $Parent = "";
     public $CCSEvents = "";
     public $CCSEventResult;
@@ -605,6 +618,7 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
     public $lbSLA;
     public $sTipoRequerimiento1;
     public $FechaFirmaCAES;
+    public $txtDiasEstimados;
     public $MaxDiasRetrasoNat;
     public $MaxDiasRetrasoHab;
     public $PctMax;
@@ -621,7 +635,7 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
     public $lReportado;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @3-1434A0B4
+//DataSourceClass_Initialize Event @3-BEA33032
     function clsmc_info_rs_ap_ECDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -663,6 +677,8 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
         
         $this->FechaFirmaCAES = new clsField("FechaFirmaCAES", ccsDate, array("yyyy", "-", "mm", "-", "dd", " ", "HH", ":", "nn", ":", "ss", ".", "S"));
         
+        $this->txtDiasEstimados = new clsField("txtDiasEstimados", ccsFloat, "");
+        
         $this->MaxDiasRetrasoNat = new clsField("MaxDiasRetrasoNat", ccsFloat, "");
         
         $this->MaxDiasRetrasoHab = new clsField("MaxDiasRetrasoHab", ccsFloat, "");
@@ -701,6 +717,7 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
         $this->InsertFields["TipoSLA"] = array("Name" => "[TipoSLA]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->InsertFields["IdReqCC"] = array("Name" => "[IdReqCC]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["FechaFirmaCAES"] = array("Name" => "[FechaFirmaCAES]", "Value" => "", "DataType" => ccsDate, "OmitIfEmpty" => 1);
+        $this->InsertFields["DiasDesarrolloEst"] = array("Name" => "[DiasDesarrolloEst]", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
         $this->InsertFields["MaxDiasRetrasoNat"] = array("Name" => "[MaxDiasRetrasoNat]", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
         $this->InsertFields["MaxDiasRetrasoHab"] = array("Name" => "[MaxDiasRetrasoHab]", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
         $this->InsertFields["PctMax"] = array("Name" => "[PctMax]", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
@@ -721,6 +738,7 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
         $this->UpdateFields["TipoSLA"] = array("Name" => "[TipoSLA]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->UpdateFields["IdReqCC"] = array("Name" => "[IdReqCC]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["FechaFirmaCAES"] = array("Name" => "[FechaFirmaCAES]", "Value" => "", "DataType" => ccsDate, "OmitIfEmpty" => 1);
+        $this->UpdateFields["DiasDesarrolloEst"] = array("Name" => "[DiasDesarrolloEst]", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
         $this->UpdateFields["MaxDiasRetrasoNat"] = array("Name" => "[MaxDiasRetrasoNat]", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
         $this->UpdateFields["MaxDiasRetrasoHab"] = array("Name" => "[MaxDiasRetrasoHab]", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
         $this->UpdateFields["PctMax"] = array("Name" => "[PctMax]", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
@@ -761,7 +779,7 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
     }
 //End Open Method
 
-//SetValues Method @3-EBEFEDAB
+//SetValues Method @3-E99CFCF2
     function SetValues()
     {
         $this->Id_Proveedor->SetDBValue(trim($this->f("Id_Proveedor")));
@@ -774,6 +792,7 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
         $this->lbSLA->SetDBValue(trim($this->f("TipoSLA")));
         $this->sTipoRequerimiento1->SetDBValue($this->f("IdReqCC"));
         $this->FechaFirmaCAES->SetDBValue(trim($this->f("FechaFirmaCAES")));
+        $this->txtDiasEstimados->SetDBValue(trim($this->f("DiasDesarrolloEst")));
         $this->MaxDiasRetrasoNat->SetDBValue(trim($this->f("MaxDiasRetrasoNat")));
         $this->MaxDiasRetrasoHab->SetDBValue(trim($this->f("MaxDiasRetrasoHab")));
         $this->PctMax->SetDBValue(trim($this->f("PctMax")));
@@ -788,7 +807,7 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
     }
 //End SetValues Method
 
-//Insert Method @3-40BCBB62
+//Insert Method @3-DB83D63A
     function Insert()
     {
         global $CCSLocales;
@@ -804,6 +823,7 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
         $this->InsertFields["TipoSLA"]["Value"] = $this->lbSLA->GetDBValue(true);
         $this->InsertFields["IdReqCC"]["Value"] = $this->sTipoRequerimiento1->GetDBValue(true);
         $this->InsertFields["FechaFirmaCAES"]["Value"] = $this->FechaFirmaCAES->GetDBValue(true);
+        $this->InsertFields["DiasDesarrolloEst"]["Value"] = $this->txtDiasEstimados->GetDBValue(true);
         $this->InsertFields["MaxDiasRetrasoNat"]["Value"] = $this->MaxDiasRetrasoNat->GetDBValue(true);
         $this->InsertFields["MaxDiasRetrasoHab"]["Value"] = $this->MaxDiasRetrasoHab->GetDBValue(true);
         $this->InsertFields["PctMax"]["Value"] = $this->PctMax->GetDBValue(true);
@@ -824,7 +844,7 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
     }
 //End Insert Method
 
-//Update Method @3-4C43F168
+//Update Method @3-9B6AFC27
     function Update()
     {
         global $CCSLocales;
@@ -841,6 +861,7 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
         $this->UpdateFields["TipoSLA"]["Value"] = $this->lbSLA->GetDBValue(true);
         $this->UpdateFields["IdReqCC"]["Value"] = $this->sTipoRequerimiento1->GetDBValue(true);
         $this->UpdateFields["FechaFirmaCAES"]["Value"] = $this->FechaFirmaCAES->GetDBValue(true);
+        $this->UpdateFields["DiasDesarrolloEst"]["Value"] = $this->txtDiasEstimados->GetDBValue(true);
         $this->UpdateFields["MaxDiasRetrasoNat"]["Value"] = $this->MaxDiasRetrasoNat->GetDBValue(true);
         $this->UpdateFields["MaxDiasRetrasoHab"]["Value"] = $this->MaxDiasRetrasoHab->GetDBValue(true);
         $this->UpdateFields["PctMax"]["Value"] = $this->PctMax->GetDBValue(true);
@@ -2321,7 +2342,7 @@ include_once("./PPMCsCrbDetalle_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-0BA26F33
+//Initialize Objects @1-634FC7FF
 $DBcnDisenio = new clsDBcnDisenio();
 $MainPage->Connections["cnDisenio"] = & $DBcnDisenio;
 $Attributes = new clsAttributes("page:");
@@ -2339,7 +2360,6 @@ $lkAnterior->Page = "PPMCsCrbDetalle.php";
 $mc_info_rs_cr_RE_RC_Artef1 = new clsRecordmc_info_rs_cr_RE_RC_Artef1("", $MainPage);
 $lDocs = new clsControl(ccsLabel, "lDocs", "lDocs", ccsText, "", CCGetRequestParam("lDocs", ccsGet, NULL), $MainPage);
 $lDocs->HTML = true;
-$lbNoHabiles = new clsControl(ccsLabel, "lbNoHabiles", "lbNoHabiles", ccsText, "", CCGetRequestParam("lbNoHabiles", ccsGet, NULL), $MainPage);
 $lErrores = new clsControl(ccsLabel, "lErrores", "lErrores", ccsText, "", CCGetRequestParam("lErrores", ccsGet, NULL), $MainPage);
 $lErrores->HTML = true;
 $lkReqFun = new clsControl(ccsLink, "lkReqFun", "lkReqFun", ccsText, "", CCGetRequestParam("lkReqFun", ccsGet, NULL), $MainPage);
@@ -2368,7 +2388,6 @@ $MainPage->lkSiguiente = & $lkSiguiente;
 $MainPage->lkAnterior = & $lkAnterior;
 $MainPage->mc_info_rs_cr_RE_RC_Artef1 = & $mc_info_rs_cr_RE_RC_Artef1;
 $MainPage->lDocs = & $lDocs;
-$MainPage->lbNoHabiles = & $lbNoHabiles;
 $MainPage->lErrores = & $lErrores;
 $MainPage->lkReqFun = & $lkReqFun;
 $MainPage->lkCalidad = & $lkCalidad;
@@ -2440,7 +2459,7 @@ if($Redirect)
 }
 //End Go to destination page
 
-//Show Page @1-BB605D5C
+//Show Page @1-D5703C48
 $Header->Show();
 $mc_info_rs_ap_EC->Show();
 $mc_info_rs_cr_RE_RC_Artef1->Show();
@@ -2448,7 +2467,6 @@ $mc_info_rs_cr_RE_RC_Artef2->Show();
 $lkSiguiente->Show();
 $lkAnterior->Show();
 $lDocs->Show();
-$lbNoHabiles->Show();
 $lErrores->Show();
 $lkReqFun->Show();
 $lkCalidad->Show();

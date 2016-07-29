@@ -63,6 +63,12 @@
 					<Attributes/>
 					<Features/>
 				</ListBox>
+				<TextBox id="15" visible="No" fieldSourceType="DBColumn" dataType="Text" name="Agrupador" fieldSource="Agrupador" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Agrupador" caption="Agrupador" required="False" unique="False" wizardSize="50" wizardMaxLength="75" PathID="mc_calificacion_capcAgrupador">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
 				<ListBox id="20" visible="Yes" fieldSourceType="DBColumn" sourceType="Table" dataType="Integer" returnValueType="Number" name="id_serviciocont" fieldSource="id_serviciocont" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Id Serviciocont" caption="Id Serviciocont" required="False" unique="False" connection="cnDisenio" wizardEmptyCaption="Seleccionar Valor" PathID="mc_calificacion_capcid_serviciocont" dataSource="mc_c_ServContractual" boundColumn="Id" textColumn="Descripcion">
 					<Components/>
 					<Events/>
@@ -127,6 +133,12 @@
 					<Features/>
 				</TextBox>
 				<TextBox id="67" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="PctMaximo" PathID="mc_calificacion_capcPctMaximo" fieldSource="PctMaximo">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="35" visible="No" fieldSourceType="DBColumn" dataType="Float" name="DiasPlaneados" PathID="mc_calificacion_capcDiasPlaneados" fieldSource="DiasPlaneados" format="0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>

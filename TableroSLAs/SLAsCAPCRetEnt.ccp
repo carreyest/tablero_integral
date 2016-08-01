@@ -138,7 +138,7 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="35" visible="No" fieldSourceType="DBColumn" dataType="Float" name="DiasPlaneados" PathID="mc_calificacion_capcDiasPlaneados" fieldSource="DiasPlaneados" format="0.00">
+				<TextBox id="35" visible="No" fieldSourceType="DBColumn" dataType="Float" name="DiasPlaneados" PathID="mc_calificacion_capcDiasPlaneados" fieldSource="DiasPlaneados" format="0.00" required="False">
 					<Components/>
 					<Events/>
 					<Attributes/>

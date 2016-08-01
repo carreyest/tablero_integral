@@ -51,7 +51,7 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-BCE81A1A
+//Class_Initialize Event @3-4C3A7009
     function clsRecordmc_info_rs_ap_EC($RelativePath, & $Parent)
     {
 
@@ -115,7 +115,6 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
             $this->sTipoRequerimiento1->Values = array(array("2", "Mantenimiento Mayor"), array("3", "Mantenimiento Menor"));
             $this->FechaFirmaCAES = new clsControl(ccsTextBox, "FechaFirmaCAES", "FechaFirmaCAES", ccsDate, array("ShortDate"), CCGetRequestParam("FechaFirmaCAES", $Method, NULL), $this);
             $this->txtDiasEstimados = new clsControl(ccsTextBox, "txtDiasEstimados", "Días Planeados", ccsFloat, array(False, 3, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("txtDiasEstimados", $Method, NULL), $this);
-            $this->txtDiasEstimados->Required = true;
             $this->txtDiasEstimados->Visible = false;
             $this->MaxDiasRetrasoNat = new clsControl(ccsTextBox, "MaxDiasRetrasoNat", "MaxDiasRetrasoNat", ccsFloat, array(False, 3, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("MaxDiasRetrasoNat", $Method, NULL), $this);
             $this->MaxDiasRetrasoHab = new clsControl(ccsTextBox, "MaxDiasRetrasoHab", "MaxDiasRetrasoHab", ccsFloat, array(False, 3, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("MaxDiasRetrasoHab", $Method, NULL), $this);

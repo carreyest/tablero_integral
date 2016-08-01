@@ -125,7 +125,7 @@
 
 //Include User Scripts @1-FA240378
 </script>
-<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/ccs-jquery-ui-calendar.css" />
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/ccs-jquery-ui-calendar.css">
 {page:scriptIncludes}
 <script type="text/javascript">
 //End Include User Scripts
@@ -163,16 +163,12 @@ jQuery(function ($) {
 
 
 //DEL  </script>
-//DEL 
-<link rel="stylesheet" type="text/css" href="Styles/Austere4/jquery-ui.css" />
-//DEL 
-<link rel="stylesheet" type="text/css" href="Styles/Austere4/ccs-jquery-ui-calendar.css" />
-//DEL {page:scriptIncludes} //DEL 
+{page:scriptIncludes}
 <script type="text/javascript">
 //End CCS script
 </script>
-<link rel="stylesheet" type="text/css" href="Styles/Austere4/Style_doctype.css" />
-<link rel="stylesheet" type="text/css" href="Styles/Austere4/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="Styles/Austere4/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="Styles/Austere4/jquery-ui.css">
 </head>
 <body onload="calificaReq();">
 <p>{Header}</p>
@@ -181,11 +177,11 @@ jQuery(function ($) {
   <tr>
     <td></td> 
     <td><a href="{lkAnterior_Src}" id="lkAnterior">{lkAnterior}</a></td> 
-    <td style="TEXT-ALIGN: right"><a href="{lkSiguiente_Src}" id="lkSiguiente">{lkSiguiente}</a></td> 
+    <td style="TEXT-ALIGN: right"><a href="{lkSiguiente_Src}" id="lkSiguiente">{lkSiguiente}</a></td>
   </tr>
  
   <tr>
-    <td colspan="3"></td> 
+    <td colspan="3"></td>
   </tr>
 </table>
 </p>
@@ -196,7 +192,7 @@ jQuery(function ($) {
       requisitos funcionales</a></td> 
     <td><a href="{lkCalidad_Src}" id="lkCalidad">Calidad de<br>
       productos terminados</a></td> 
-    <td><a href="{lkDeductiva_Src}" id="lkDeductiva">Deductivas por omisión</a></td> 
+    <td><a href="{lkDeductiva_Src}" id="lkDeductiva">Deductivas por omisión</a></td>
   </tr>
 </table>
 </p>
@@ -205,7 +201,7 @@ jQuery(function ($) {
   <tr>
     <td>&nbsp;</td> 
     <td></td> 
-    <td>&nbsp;</td> 
+    <td>&nbsp;</td>
   </tr>
  
   <tr>
@@ -220,44 +216,43 @@ jQuery(function ($) {
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Detalle SLAs del CAPC</strong></td> 
-                  <td class="HeaderRight"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td>
                 </tr>
- 
               </table>
  
               <table class="Record" cellspacing="0" cellpadding="0">
                 <!-- BEGIN Error -->
                 <tr id="ErrorBlock" class="Error">
-                  <td colspan="3">{Error}</td> 
+                  <td colspan="3">{Error}</td>
                 </tr>
- <!-- END Error -->
+                <!-- END Error -->
                 <tr class="Controls">
                   <td class="th"><label for="mc_calificacion_capcnumero">Requerimiento</label></td> 
                   <td><input type="text" id="mc_calificacion_capcnumero" maxlength="6" size="6" value="{numero}" name="{numero_Name}"></td> 
-                  <td><label for="mc_calificacion_capcSLO" style="display: inline;">SLO</label><input type="checkbox" id="mc_calificacion_capcSLO" value="1" name="{SLO_Name}" {SLO}></td> 
+                  <td><label for="mc_calificacion_capcSLO" style="display: inline;">SLO</label><input type="checkbox" id="mc_calificacion_capcSLO" value="1" name="{SLO_Name}" {SLO}></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">Id estimación</td> 
                   <td><input type="text" id="mc_calificacion_capcIdEstimacion" maxlength="6" size="6" value="{IdEstimacion}" name="{IdEstimacion_Name}"></td> 
-                  <td>&nbsp;</td> 
+                  <td>&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
-                  <td class="th">Rubro</td> 
+                  <td class="th"></td> 
                   <td>
                     <!-- BEGIN TextBox Agrupador --><input type="text" id="mc_calificacion_capcAgrupador" maxlength="75" size="50" value="{Agrupador}" name="{Agrupador_Name}"><!-- END TextBox Agrupador --></td> 
-                  <td>&nbsp;</td> 
+                  <td>&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_calificacion_capcid_serviciocont">Servicio</label></td> 
                   <td>
                     <select id="mc_calificacion_capcid_serviciocont" name="{id_serviciocont_Name}">
-                      {id_serviciocont_Options} 
+                      {id_serviciocont_Options}
                     </select>
  </td> 
-                  <td>&nbsp;</td> 
+                  <td>&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
@@ -265,15 +260,15 @@ jQuery(function ($) {
                   <td>
                     <select id="mc_calificacion_capcid_tipo" name="{id_tipo_Name}">
                       <option selected value="">Seleccionar valor</option>
- {id_tipo_Options} 
+                      {id_tipo_Options}
                     </select>
  </td> 
-                  <td>&nbsp;</td> 
+                  <td>&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_calificacion_capcDescripcion">Descripción</label></td> 
-                  <td colspan="2"><input type="text" id="mc_calificacion_capcDescripcion" maxlength="350" size="75" value="{Descripcion}" name="{Descripcion_Name}"></td> 
+                  <td colspan="2"><input type="text" id="mc_calificacion_capcDescripcion" maxlength="350" size="75" value="{Descripcion}" name="{Descripcion_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
@@ -281,10 +276,10 @@ jQuery(function ($) {
                   <td>
                     <select id="mc_calificacion_capcmes" name="{mes_Name}">
                       <option selected value="">Seleccionar valor</option>
- {mes_Options} 
+                      {mes_Options}
                     </select>
  </td> 
-                  <td>&nbsp;</td> 
+                  <td>&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
@@ -292,10 +287,10 @@ jQuery(function ($) {
                   <td>
                     <select id="mc_calificacion_capcanio" name="{anio_Name}">
                       <option selected value="">Seleccionar valor</option>
- {anio_Options} 
+                      {anio_Options}
                     </select>
  </td> 
-                  <td>&nbsp;</td> 
+                  <td>&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
@@ -309,11 +304,10 @@ jQuery(function ($) {
                               <tr>
                                 <td class="HeaderLeft"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td> 
                                 <td class="th"><strong><font color="#ffffff" size="3">Calificar retraso en entregables</font></strong></td> 
-                                <td class="HeaderRight"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td> 
+                                <td class="HeaderRight"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td>
                               </tr>
- 
                             </table>
- </td> 
+                          </td>
                           <!--<td style="BACKGROUND-COLOR: rgb(216,216,216)">&nbsp;</td> -->
                           <tr class="Controls">
                             <td>
@@ -324,17 +318,17 @@ jQuery(function ($) {
                                   <td colspan="2"><input type="text" id="mc_calificacion_capcFechaFirmaCAES" value="{FechaFirmaCAES}" name="{FechaFirmaCAES_Name}"></td> 
                                   <td>
                                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Todos los paquetes cerrados?<input type="checkbox" id="mc_calificacion_capcpaquetes_cerrados" value="1" name="{paquetes_cerrados_Name}" {paquetes_cerrados}></p>
- </td> 
+                                  </td> 
                                   <td>Retraso en entregables : 
                                     <select id="mc_calificacion_capcRETR_ENTREGABLE" name="{RETR_ENTREGABLE_Name}">
                                       <option selected value="">No Aplica</option>
- {RETR_ENTREGABLE_Options} 
+                                      {RETR_ENTREGABLE_Options}
                                     </select>
- </td> 
+ </td>
                                 </tr>
  
                                 <tr class="Controls">
-                                  <td><label for="mc_calificacion_capcDiasPlaneados" style="display: inline;">Días hábiles planeados</label></td> 
+                                  <td><label for="mc_calificacion_capcDiasPlaneados" style="display: inline;"></label></td> 
                                   <td>
                                     <!-- BEGIN TextBox DiasPlaneados --><input type="text" onchange="CalculaRetraso()" id="mc_calificacion_capcDiasPlaneados" maxlength="4" size="4" value="{DiasPlaneados}" name="{DiasPlaneados_Name}"><!-- END TextBox DiasPlaneados --></td> 
                                   <td><label for="mc_calificacion_capcDiasReales" style="display: inline;">&nbsp;</label></td> 
@@ -343,7 +337,7 @@ jQuery(function ($) {
                                   <td><label for="mc_calificacion_capcDiasRetrasoHabiles" style="display: inline;">Máximo&nbsp;días de retraso&nbsp;hábiles</label></td> 
                                   <td><input type="text" onchange="CalculaRetraso()" id="mc_calificacion_capcDiasRetrasoHabiles" maxlength="5" size="5" value="{DiasRetrasoHabiles}" name="{DiasRetrasoHabiles_Name}"></td> 
                                   <td><label for="mc_calificacion_capcDiasRetrasoNaturales" style="display: inline;"><label for="mc_calificacion_capcDiasRetrasoHabiles" style="display: inline;">Máximo&nbsp;días de retraso&nbsp;naturales</label></label></td> 
-                                  <td><input type="text" onchange="CalculaRetraso()" id="mc_calificacion_capcDiasRetrasoNaturales" maxlength="5" size="5" value="{DiasRetrasoNaturales}" name="{DiasRetrasoNaturales_Name}"></td> 
+                                  <td><input type="text" onchange="CalculaRetraso()" id="mc_calificacion_capcDiasRetrasoNaturales" maxlength="5" size="5" value="{DiasRetrasoNaturales}" name="{DiasRetrasoNaturales_Name}"></td>
                                 </tr>
  
                                 <tr class="Controls">
@@ -352,50 +346,44 @@ jQuery(function ($) {
                                   <td></td> 
                                   <td></td> 
                                   <td></td> 
-                                  <td></td> 
+                                  <td></td>
                                 </tr>
  
                                 <tr class="Controls">
                                   <td></td> 
-                                  <td></td> 
+                                  <td></td>
                                 </tr>
  
                                 <tr class="Controls">
                                   <td class="th">URL referencia</td> 
-                                  <td colspan="7"><textarea id="mc_calificacion_capcURLEntregables" rows="3" cols="62" name="{URLEntregables_Name}">{URLEntregables}</textarea></td> 
+                                  <td colspan="7"><textarea id="mc_calificacion_capcURLEntregables" rows="3" cols="62" name="{URLEntregables_Name}">{URLEntregables}</textarea></td>
                                 </tr>
  
                                 <tr class="Controls">
                                   <td class="th"><label for="mc_calificacion_capcObservaciones">Observaciones</label></td> 
-                                  <td colspan="7"><textarea id="mc_calificacion_capcObservaciones" rows="3" cols="62" name="{Observaciones_Name}">{Observaciones}</textarea></td> 
+                                  <td colspan="7"><textarea id="mc_calificacion_capcObservaciones" rows="3" cols="62" name="{Observaciones_Name}">{Observaciones}</textarea></td>
                                 </tr>
- 
                               </table>
- </td> 
+                            </td>
                           </tr>
- 
                         </table>
- 
                       </div>
- </td> 
+                    </td>
                   </tr>
  
                   <tr class="Bottom">
                     <td style="TEXT-ALIGN: right" colspan="3">
                       <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_calificacion_capcButton_Insert" class="Button" alt="Agregar" value="Guardar" name="{Button_Name}"><!-- END Button Button_Insert -->
                       <!-- BEGIN Button Button_Update --><input type="submit" id="mc_calificacion_capcButton_Update" class="Button" alt="Enviar" value="Enviar" name="{Button_Name}"><!-- END Button Button_Update -->
-                      <!-- BEGIN Button btnCalcular --><input type="submit" id="mc_calificacion_capcbtnCalcular" class="Button" alt="Button1" value="Recalcular" name="{Button_Name}"><!-- END Button btnCalcular --><input type="hidden" id="mc_calificacion_capcid_proveedor" value="{id_proveedor}" name="{id_proveedor_Name}"></td> 
+                      <!-- BEGIN Button btnCalcular --><input type="submit" id="mc_calificacion_capcbtnCalcular" class="Button" alt="Button1" value="Recalcular" name="{Button_Name}"><!-- END Button btnCalcular --><input type="hidden" id="mc_calificacion_capcid_proveedor" value="{id_proveedor}" name="{id_proveedor_Name}"></td>
                   </tr>
- 
                 </table>
- </td> 
+              </td>
             </tr>
- 
           </table>
- 
         </form>
- <!-- END Record mc_calificacion_capc --></td> 
-      <td>&nbsp;</td> 
+        <!-- END Record mc_calificacion_capc --></td> 
+      <td>&nbsp;</td>
     </tr>
  
     <tr>
@@ -414,17 +402,16 @@ jQuery(function ($) {
                   <tr>
                     <td class="HeaderLeft"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td> 
                     <td class="th"><strong>Lista de Artefactos</strong></td> 
-                    <td class="HeaderRight"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td> 
+                    <td class="HeaderRight"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td>
                   </tr>
- 
                 </table>
  
                 <table class="Grid" cellspacing="0" cellpadding="0">
                   <!-- BEGIN Error -->
                   <tr class="Error">
-                    <td colspan="11">{Error}</td> 
+                    <td colspan="11">{Error}</td>
                   </tr>
- <!-- END Error -->
+                  <!-- END Error -->
                   <tr class="Caption">
                     <th scope="col">
                     <!-- BEGIN Sorter Sorter_Nombre --><span class="Sorter"><a href="{Sort_URL}" id="mc_info_rs_cr_RE_RC_ArtefSorter_Nombre">Nombre</a> 
@@ -477,15 +464,14 @@ jQuery(function ($) {
                     <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Comentarios --></th>
  
                     <th scope="col">Borrar</th>
- 
                   </tr>
  
                   <!-- BEGIN Row -->
                   <!-- BEGIN RowError -->
                   <tr class="Error">
-                    <td colspan="11">{Error}</td> 
+                    <td colspan="11">{Error}</td>
                   </tr>
- <!-- END RowError -->
+                  <!-- END RowError -->
                   <tr class="Row">
                     <td>{Nombre}</td> 
                     <td>{Descripcion}</td> 
@@ -499,20 +485,20 @@ jQuery(function ($) {
                     <td>{Comentarios}</td> 
                     <td>
                       <!-- BEGIN Panel CheckBox_Delete_Panel --><label for="mc_info_rs_cr_RE_RC_ArtefCheckBox_Delete_PanelCheckBox_Delete_{mc_info_rs_cr_RE_RC_Artef:rowNumber}" style="display: none;">Borrar</label> 
-                      <!-- BEGIN CheckBox CheckBox_Delete --><input type="checkbox" id="mc_info_rs_cr_RE_RC_ArtefCheckBox_Delete_PanelCheckBox_Delete_{mc_info_rs_cr_RE_RC_Artef:rowNumber}" value="1" name="{CheckBox_Delete_Name}" {CheckBox_Delete}><!-- END CheckBox CheckBox_Delete --><!-- END Panel CheckBox_Delete_Panel -->&nbsp;</td> 
+                      <!-- BEGIN CheckBox CheckBox_Delete --><input type="checkbox" id="mc_info_rs_cr_RE_RC_ArtefCheckBox_Delete_PanelCheckBox_Delete_{mc_info_rs_cr_RE_RC_Artef:rowNumber}" value="1" name="{CheckBox_Delete_Name}" {CheckBox_Delete}><!-- END CheckBox CheckBox_Delete --><!-- END Panel CheckBox_Delete_Panel -->&nbsp;</td>
                   </tr>
  <!-- END Row -->
                   <!-- BEGIN NoRecords -->
                   <tr class="NoRecords">
-                    <td colspan="11">No hay registros</td> 
+                    <td colspan="11">No hay registros</td>
                   </tr>
- <!-- END NoRecords -->
+                  <!-- END NoRecords -->
                   <tr class="Footer">
                     <td style="TEXT-ALIGN: right" colspan="11">
                       <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
                       <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
                         <option selected value="">-</option>
- {PageSize_Options} 
+ {PageSize_Options}
                       </select>
  
                       <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/Austere4/Images/First.gif"></a> <!-- END First_On -->
@@ -523,20 +509,17 @@ jQuery(function ($) {
                       <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/Austere4/Images/NextOff.gif"><!-- END Next_Off -->
                       <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/Austere4/Images/Last.gif"></a> <!-- END Last_On -->
                       <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/Austere4/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->
-                      <!-- BEGIN Button Button_Submit --><input type="submit" id="mc_info_rs_cr_RE_RC_ArtefButton_Submit" class="Button" alt="Enviar" value="Enviar" name="{Button_Name}"><!-- END Button Button_Submit --></td> 
+                      <!-- BEGIN Button Button_Submit --><input type="submit" id="mc_info_rs_cr_RE_RC_ArtefButton_Submit" class="Button" alt="Enviar" value="Enviar" name="{Button_Name}"><!-- END Button Button_Submit --></td>
                   </tr>
- 
                 </table>
- </td> 
+              </td>
             </tr>
- 
           </table>
- 
         </form>
- <!-- END EditableGrid mc_info_rs_cr_RE_RC_Artef --><br>
+        <!-- END EditableGrid mc_info_rs_cr_RE_RC_Artef --><br>
         </p>
- </td> 
-      <td>&nbsp;</td> 
+      </td> 
+      <td>&nbsp;</td>
     </tr>
  
     <tr>
@@ -549,14 +532,10 @@ jQuery(function ($) {
           <b>Cargar artefactos de archivo: </b><br>
           <input type="file" accept="text/csv" name="userfile">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Procesar">
         </form>
- <!-- END Panel Panel1 --></td> 
-      <td>&nbsp;</td> 
+        <!-- END Panel Panel1 --></td> 
+      <td>&nbsp;</td>
     </tr>
- 
   </table>
- 
   <p></p>
- 
   </body>
- 
   </html>

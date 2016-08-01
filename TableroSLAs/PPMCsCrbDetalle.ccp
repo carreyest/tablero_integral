@@ -222,7 +222,7 @@ order by nombre
 						</JDateTimePicker>
 					</Features>
 				</TextBox>
-				<TextBox id="146" visible="No" fieldSourceType="DBColumn" dataType="Float" name="txtDiasEstimados" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="mc_info_rs_ap_ECtxtDiasEstimados" fieldSource="DiasDesarrolloEst" required="True" defaultValue="0" caption="Días Planeados" format="0.000">
+				<TextBox id="146" visible="No" fieldSourceType="DBColumn" dataType="Float" name="txtDiasEstimados" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="mc_info_rs_ap_ECtxtDiasEstimados" fieldSource="DiasDesarrolloEst" required="False" defaultValue="0" caption="Días Planeados" format="0.000">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -400,7 +400,7 @@ order by nombre
 			<SQLParameters/>
 			<JoinTables>
 				<JoinTable id="410" tableName="mc_info_rs_cr_RE_RC"/>
-</JoinTables>
+			</JoinTables>
 			<JoinLinks/>
 			<Fields>
 			</Fields>

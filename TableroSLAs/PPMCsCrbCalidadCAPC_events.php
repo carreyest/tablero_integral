@@ -287,15 +287,16 @@ function mc_info_rs_cr_calidad_capc_BeforeShow(& $sender)
 			$sql = 'select c.hallazgo, t.num_hallazgos' .
 			' from mc_c_hallazgos_capc c ' .
 			' left join ( ' .
-			' 		select hallazgo_defecto nombre, count(hallazgo_defecto) num_hallazgos  ' .
+			' 		select id_hallazgo_defecto , count(id_hallazgo_defecto) num_hallazgos  ' .
 			' 		from  mc_QC_DefecHallazCalProdCAPC ' .
 			' 		where id_ppmc=' . $sPPMC .
 			' 		and month(fecha_de_carga)=' . $mes_num .
 			' 		and YEAR(fecha_de_carga)=' . $anio_num .
-			' 		group by hallazgo_defecto ) t on t.nombre=c.hallazgo ' ;
+			' 		group by id_hallazgo_defecto ) t on t.id_hallazgo_defecto=c.id' ;
 			//echo($sql);	
   			$db->query($sql);
   			$ind_hallazgo=1;
+  			
   			while($db->next_record()){
   			   $cont_hallazgos=$db->f("num_hallazgos") > 0 ? $db->f("num_hallazgos"):0;
   			   switch($ind_hallazgo) {  			   	
@@ -307,6 +308,7 @@ function mc_info_rs_cr_calidad_capc_BeforeShow(& $sender)
   			   }
 			  $ind_hallazgo++; 
   			}
+  			
   			$db->close();
 		 	
 						

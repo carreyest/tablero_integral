@@ -16,9 +16,15 @@
                 }
         }
                 function calificaReq(){
-                if(document.getElementById("mc_calificacion_capcPctMaximo").value>=1 || !document.getElementById("mc_info_rs_ap_ECCAPFirmada").checked || !document.getElementById("mc_info_rs_ap_ECTPaquetes").checked){
-                document.getElementById("mc_info_rs_ap_ECCumplioHE").selectedIndex=0;
-            }
+                  sMax = document.getElementById("mc_calificacion_capcPctMaximo").value + document.getElementById("mc_calificacion_capcDiasRetrasoHabiles").value +
+                   document.getElementById("mc_calificacion_capcDiasRetrasoNaturales").value;
+        
+                                if (sMax>0){
+                                          document.getElementById("mc_calificacion_capcRETR_ENTREGABLE").value=0;
+                                    } else {
+                                          document.getElementById("mc_calificacion_capcRETR_ENTREGABLE").value=1;
+                                }
+        
                 } 
                 
 
@@ -155,6 +161,88 @@ jQuery(function ($) {
         this.ccsDateTimePicker(params["mc_calificacion_capcFechaFirmaCAESInlineDatePicker1"]);
     });
 //End Feature Init
+
+//mc_calificacion_capcDiasRetrasoHabilesOnChange Event Start @-7C1249D3
+    actions["mc_calificacion_capcDiasRetrasoHabilesOnChange"] = function (eventType, parameters) {
+        var result = true;
+//End mc_calificacion_capcDiasRetrasoHabilesOnChange Event Start
+
+//Custom Code @165-2A29BDB7
+        // -------------------------
+                  sMax = document.getElementById("mc_calificacion_capcPctMaximo").value + document.getElementById("mc_calificacion_capcDiasRetrasoHabiles").value +
+                   document.getElementById("mc_calificacion_capcDiasRetrasoNaturales").value;
+        
+                                if (sMax>0){
+                                          document.getElementById("mc_calificacion_capcRETR_ENTREGABLE").value=0;
+                                    } else {
+                                          document.getElementById("mc_calificacion_capcRETR_ENTREGABLE").value=1;
+                                }
+
+        // -------------------------
+//End Custom Code
+
+//mc_calificacion_capcDiasRetrasoHabilesOnChange Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_calificacion_capcDiasRetrasoHabilesOnChange Event End
+
+//mc_calificacion_capcDiasRetrasoNaturalesOnChange Event Start @-3AB14AE8
+    actions["mc_calificacion_capcDiasRetrasoNaturalesOnChange"] = function (eventType, parameters) {
+        var result = true;
+//End mc_calificacion_capcDiasRetrasoNaturalesOnChange Event Start
+
+//Custom Code @166-2A29BDB7
+        // -------------------------
+                  sMax = document.getElementById("mc_calificacion_capcPctMaximo").value + document.getElementById("mc_calificacion_capcDiasRetrasoHabiles").value +
+                   document.getElementById("mc_calificacion_capcDiasRetrasoNaturales").value;
+        
+                                if (sMax>0){
+                                          document.getElementById("mc_calificacion_capcRETR_ENTREGABLE").value=0;
+                                    } else {
+                                          document.getElementById("mc_calificacion_capcRETR_ENTREGABLE").value=1;
+                                }
+        // -------------------------
+//End Custom Code
+
+//mc_calificacion_capcDiasRetrasoNaturalesOnChange Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_calificacion_capcDiasRetrasoNaturalesOnChange Event End
+
+//mc_calificacion_capcPctMaximoOnChange Event Start @-C9007109
+    actions["mc_calificacion_capcPctMaximoOnChange"] = function (eventType, parameters) {
+        var result = true;
+//End mc_calificacion_capcPctMaximoOnChange Event Start
+
+//Custom Code @167-2A29BDB7
+        // -------------------------
+                  sMax = document.getElementById("mc_calificacion_capcPctMaximo").value + document.getElementById("mc_calificacion_capcDiasRetrasoHabiles").value +
+                   document.getElementById("mc_calificacion_capcDiasRetrasoNaturales").value;
+        
+                                if (sMax>0){
+                                          document.getElementById("mc_calificacion_capcRETR_ENTREGABLE").value=0;
+                                    } else {
+                                          document.getElementById("mc_calificacion_capcRETR_ENTREGABLE").value=1;
+                                }
+        // -------------------------
+//End Custom Code
+
+//mc_calificacion_capcPctMaximoOnChange Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_calificacion_capcPctMaximoOnChange Event End
+
+//Event Binding @1-8DFFC7A0
+    $('*:ccsControl(mc_calificacion_capc, DiasRetrasoHabiles)').ccsBind(function() {
+        this.bind("change", actions["mc_calificacion_capcDiasRetrasoHabilesOnChange"]);
+    });
+    $('*:ccsControl(mc_calificacion_capc, DiasRetrasoNaturales)').ccsBind(function() {
+        this.bind("change", actions["mc_calificacion_capcDiasRetrasoNaturalesOnChange"]);
+    });
+    $('*:ccsControl(mc_calificacion_capc, PctMaximo)').ccsBind(function() {
+        this.bind("change", actions["mc_calificacion_capcPctMaximoOnChange"]);
+    });
+//End Event Binding
 
 //Common Script End @1-562554DE
 });
@@ -328,7 +416,7 @@ jQuery(function ($) {
                                 </tr>
  
                                 <tr class="Controls">
-                                  <td><label for="mc_calificacion_capcDiasPlaneados" style="display: inline;"></label></td> 
+                                  <td><label for="mc_calificacion_capcDiasPlaneados" style="display: inline;">&nbsp;</label></td> 
                                   <td>
                                     <!-- BEGIN TextBox DiasPlaneados --><input type="text" onchange="CalculaRetraso()" id="mc_calificacion_capcDiasPlaneados" maxlength="4" size="4" value="{DiasPlaneados}" name="{DiasPlaneados_Name}"><!-- END TextBox DiasPlaneados --></td> 
                                   <td><label for="mc_calificacion_capcDiasReales" style="display: inline;">&nbsp;</label></td> 

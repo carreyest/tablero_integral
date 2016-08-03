@@ -236,13 +236,24 @@ order by nombre
 								<Action actionName="Custom Code" actionCategory="General" id="267" eventType="Server"/>
 							</Actions>
 						</Event>
-					</Events>
+						<Event name="OnChange" type="Client">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="411"/>
+</Actions>
+</Event>
+</Events>
 					<Attributes/>
 					<Features/>
 				</TextBox>
 				<TextBox id="148" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="MaxDiasRetrasoHab" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="mc_info_rs_ap_ECMaxDiasRetrasoHab" fieldSource="MaxDiasRetrasoHab" required="False" defaultValue="0" format="0.000">
 					<Components/>
-					<Events/>
+					<Events>
+<Event name="OnChange" type="Client">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="412"/>
+</Actions>
+</Event>
+</Events>
 					<Attributes/>
 					<Features/>
 				</TextBox>
@@ -254,7 +265,12 @@ order by nombre
 								<Action actionName="Custom Code" actionCategory="General" id="279" id_oncopy="279" eventType="Server"/>
 							</Actions>
 						</Event>
-					</Events>
+						<Event name="OnChange" type="Client">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="413"/>
+</Actions>
+</Event>
+</Events>
 					<Attributes/>
 					<Features/>
 				</TextBox>

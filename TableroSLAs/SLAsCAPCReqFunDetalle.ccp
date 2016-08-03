@@ -200,7 +200,19 @@
 					<Attributes/>
 					<Features/>
 				</Label>
-			</Components>
+				<CheckBox id="109" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="SinDatosParaMedir" PathID="mc_info_rs_cr_RFSinDatosParaMedir" fieldSource="SinDatosParaMedir">
+<Components/>
+<Events>
+<Event name="OnClick" type="Client">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="110"/>
+</Actions>
+</Event>
+</Events>
+<Attributes/>
+<Features/>
+</CheckBox>
+</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>

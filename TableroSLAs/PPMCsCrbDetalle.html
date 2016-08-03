@@ -155,6 +155,9 @@ function MostrarSLA(opt){
 }
 
 function calificaSLA(){
+        sMax = document.getElementById("mc_info_rs_ap_ECPctMax").value + document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoHab").value +
+                   document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoNat").value
+
     sPct = document.getElementById("mc_info_rs_ap_ECPctMax").value;
     sDiasHabiles =   document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoHab").value;
     switch (document.getElementById("mc_info_rs_ap_EClbSLA").selectedIndex){
@@ -179,6 +182,14 @@ function calificaSLA(){
             }
             break;
         }
+
+        if (sMax>0){
+			document.getElementById("mc_info_rs_ap_ECCumplioHE").value=0;
+        } else {
+			document.getElementById("mc_info_rs_ap_ECCumplioHE").value=1;
+        }
+
+
 }
 
 function mtoMenor(daysDiff,diasHabiles,DiasPlaneados){
@@ -437,6 +448,78 @@ jQuery(function ($) {
     };
 //End mc_info_rs_ap_ECsTipoRequerimiento1OnChange Event End
 
+//mc_info_rs_ap_ECMaxDiasRetrasoNatOnChange Event Start @-EB63EB86
+    actions["mc_info_rs_ap_ECMaxDiasRetrasoNatOnChange"] = function (eventType, parameters) {
+        var result = true;
+//End mc_info_rs_ap_ECMaxDiasRetrasoNatOnChange Event Start
+
+//Custom Code @411-2A29BDB7
+        // -------------------------
+        sMax = document.getElementById("mc_info_rs_ap_ECPctMax").value + document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoHab").value +
+                   document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoNat").value
+        
+        if (sMax>0){
+		  document.getElementById("mc_info_rs_ap_ECCumplioHE").value=0;
+	    } else {
+		  document.getElementById("mc_info_rs_ap_ECCumplioHE").value=1;
+        }
+
+        // -------------------------
+//End Custom Code
+
+//mc_info_rs_ap_ECMaxDiasRetrasoNatOnChange Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_info_rs_ap_ECMaxDiasRetrasoNatOnChange Event End
+
+//mc_info_rs_ap_ECMaxDiasRetrasoHabOnChange Event Start @-2AAC0DFA
+    actions["mc_info_rs_ap_ECMaxDiasRetrasoHabOnChange"] = function (eventType, parameters) {
+        var result = true;
+//End mc_info_rs_ap_ECMaxDiasRetrasoHabOnChange Event Start
+
+//Custom Code @412-2A29BDB7
+        // -------------------------
+        sMax = document.getElementById("mc_info_rs_ap_ECPctMax").value + document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoHab").value +
+                   document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoNat").value
+        
+        if (sMax>0){
+		  document.getElementById("mc_info_rs_ap_ECCumplioHE").value=0;
+	    } else {
+		  document.getElementById("mc_info_rs_ap_ECCumplioHE").value=1;
+        }
+
+        // -------------------------
+//End Custom Code
+
+//mc_info_rs_ap_ECMaxDiasRetrasoHabOnChange Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_info_rs_ap_ECMaxDiasRetrasoHabOnChange Event End
+
+//mc_info_rs_ap_ECPctMaxOnChange Event Start @-68F2F1B8
+    actions["mc_info_rs_ap_ECPctMaxOnChange"] = function (eventType, parameters) {
+        var result = true;
+//End mc_info_rs_ap_ECPctMaxOnChange Event Start
+
+//Custom Code @413-2A29BDB7
+        // -------------------------
+    sMax = document.getElementById("mc_info_rs_ap_ECPctMax").value + document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoHab").value +
+           document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoNat").value
+        
+        if (sMax>0){
+		  document.getElementById("mc_info_rs_ap_ECCumplioHE").value=0;
+	    } else {
+		  document.getElementById("mc_info_rs_ap_ECCumplioHE").value=1;
+        }
+
+        // -------------------------
+//End Custom Code
+
+//mc_info_rs_ap_ECPctMaxOnChange Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_info_rs_ap_ECPctMaxOnChange Event End
+
 //mc_info_rs_cr_RE_RC_Artef1Button_DeleteOnClick Event Start @-A94EAF85
     actions["mc_info_rs_cr_RE_RC_Artef1Button_DeleteOnClick"] = function (eventType, parameters) {
         var result = true;
@@ -451,7 +534,7 @@ jQuery(function ($) {
     };
 //End mc_info_rs_cr_RE_RC_Artef1Button_DeleteOnClick Event End
 
-//Event Binding @1-F676C3A4
+//Event Binding @1-29DF34E6
     $('*:ccsControl(mc_info_rs_ap_EC, Button_Insert)').ccsBind(function() {
         this.bind("click", actions["mc_info_rs_ap_ECButton_InsertOnClick"]);
     });
@@ -460,6 +543,15 @@ jQuery(function ($) {
     });
     $('*:ccsControl(mc_info_rs_ap_EC, sTipoRequerimiento1)').ccsBind(function() {
         this.bind("change", actions["mc_info_rs_ap_ECsTipoRequerimiento1OnChange"]);
+    });
+    $('*:ccsControl(mc_info_rs_ap_EC, MaxDiasRetrasoNat)').ccsBind(function() {
+        this.bind("change", actions["mc_info_rs_ap_ECMaxDiasRetrasoNatOnChange"]);
+    });
+    $('*:ccsControl(mc_info_rs_ap_EC, MaxDiasRetrasoHab)').ccsBind(function() {
+        this.bind("change", actions["mc_info_rs_ap_ECMaxDiasRetrasoHabOnChange"]);
+    });
+    $('*:ccsControl(mc_info_rs_ap_EC, PctMax)').ccsBind(function() {
+        this.bind("change", actions["mc_info_rs_ap_ECPctMaxOnChange"]);
     });
     $('*:ccsControl(mc_info_rs_cr_RE_RC_Artef1, Button_Delete)').ccsBind(function() {
         this.bind("click", actions["mc_info_rs_cr_RE_RC_Artef1Button_DeleteOnClick"]);
@@ -540,7 +632,7 @@ jQuery(function ($) {
             <!-- END Error -->
             <tr class="Controls">
               <td class="th">SLA a validar&nbsp;<input type="hidden" id="mc_info_rs_ap_EChExiste" value="{hExiste}" name="{hExiste_Name}"></td> 
-              <td><label for="mc_info_rs_ap_EClbSLA" style="display: none;">ListBox1</label> 
+              <td><label style="display: none;" for="mc_info_rs_ap_EClbSLA">ListBox1</label> 
                 <select onchange="MostrarSLA(1)" id="mc_info_rs_ap_EClbSLA" name="{lbSLA_Name}">
                   <option selected value="1">Retraso en entregables</option>
                 </select>
@@ -569,7 +661,7 @@ jQuery(function ($) {
               <td class="th">Servicio de negocio</td> 
               <td><input type="hidden" id="mc_info_rs_ap_ECsServicioNegocio" value="{sServicioNegocio}" name="{sServicioNegocio_Name}">{lServNegocio} </td> 
               <td>&nbsp;</td> 
-              <td>&nbsp;
+              <td>&nbsp; 
                 <!-- BEGIN TextBox txtDiasEstimados --><input type="text" onblur="calculaSLA()" id="mc_info_rs_ap_ECtxtDiasEstimados" value="{txtDiasEstimados}" name="{txtDiasEstimados_Name}"><!-- END TextBox txtDiasEstimados --></td>
             </tr>
  
@@ -629,7 +721,7 @@ jQuery(function ($) {
  
             <tr class="Controls">
               <td class="th">&nbsp;<input type="hidden" id="mc_info_rs_ap_EChIDPPMC" value="{hIDPPMC}" name="{hIDPPMC_Name}"></td> 
-              <td>&nbsp;<label for="mc_info_rs_ap_ECCAPFirmada" style="display: none;">CheckBox1</label></td> 
+              <td>&nbsp;<label style="display: none;" for="mc_info_rs_ap_ECCAPFirmada">CheckBox1</label></td> 
               <td>&nbsp; 
                 <div id="divRElbl" style="DISPLAY: inline">
                   Retraso en entregables 
@@ -655,7 +747,7 @@ jQuery(function ($) {
  
             <tr class="Controls">
               <td class="th">&nbsp;<input type="hidden" id="mc_info_rs_ap_ECsID" value="{sID}" name="{sID_Name}"></td> 
-              <td>&nbsp;<label for="mc_info_rs_ap_EChdFechaUltMod" style="display: none;">hdFechaUltMod</label><input type="hidden" id="mc_info_rs_ap_EChdFechaUltMod" value="{hdFechaUltMod}" name="{hdFechaUltMod_Name}"></td> 
+              <td>&nbsp;<label style="display: none;" for="mc_info_rs_ap_EChdFechaUltMod">hdFechaUltMod</label><input type="hidden" id="mc_info_rs_ap_EChdFechaUltMod" value="{hdFechaUltMod}" name="{hdFechaUltMod_Name}"></td> 
               <td>&nbsp;</td> 
               <td>&nbsp;</td>
             </tr>
@@ -747,8 +839,8 @@ jQuery(function ($) {
  
                   <tr class="Controls">
                     <td class="th"><label for="mc_info_rs_cr_RE_RC_Artef1FechaAlta">&nbsp;</label></td> 
-                    <td><label for="mc_info_rs_cr_RE_RC_Artef1UsuarioAlta" style="display: none;">Usuario alta</label><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1UsuarioAlta" value="{UsuarioAlta}" name="{UsuarioAlta_Name}"><label for="mc_info_rs_cr_RE_RC_Artef1FechaUltMod" style="display: none;">Fecha Ult Mod</label><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1FechaUltMod" value="{FechaUltMod}" name="{FechaUltMod_Name}"><label for="mc_info_rs_cr_RE_RC_Artef1UsuarioUltMod" style="display: none;">Usuario Ult Mod</label><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1UsuarioUltMod" value="{UsuarioUltMod}" name="{UsuarioUltMod_Name}"><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1Id_Padre" value="{Id_Padre}" name="{Id_Padre_Name}"></td> 
-                    <td>&nbsp;<label for="mc_info_rs_cr_RE_RC_Artef1Pct" style="display: none;">Pct</label><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1Pct" value="{Pct}" name="{Pct_Name}"><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1ID_PPMC" value="{ID_PPMC}" name="{ID_PPMC_Name}"></td> 
+                    <td><label style="display: none;" for="mc_info_rs_cr_RE_RC_Artef1UsuarioAlta">Usuario alta</label><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1UsuarioAlta" value="{UsuarioAlta}" name="{UsuarioAlta_Name}"><label style="display: none;" for="mc_info_rs_cr_RE_RC_Artef1FechaUltMod">Fecha Ult Mod</label><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1FechaUltMod" value="{FechaUltMod}" name="{FechaUltMod_Name}"><label style="display: none;" for="mc_info_rs_cr_RE_RC_Artef1UsuarioUltMod">Usuario Ult Mod</label><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1UsuarioUltMod" value="{UsuarioUltMod}" name="{UsuarioUltMod_Name}"><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1Id_Padre" value="{Id_Padre}" name="{Id_Padre_Name}"></td> 
+                    <td>&nbsp;<label style="display: none;" for="mc_info_rs_cr_RE_RC_Artef1Pct">Pct</label><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1Pct" value="{Pct}" name="{Pct_Name}"><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1ID_PPMC" value="{ID_PPMC}" name="{ID_PPMC_Name}"></td> 
                     <td>&nbsp;</td>
                   </tr>
  
@@ -876,7 +968,7 @@ jQuery(function ($) {
             <td style="TEXT-ALIGN: center">{PctDeductiva}</td> 
             <td style="TEXT-ALIGN: center">{Comentarios}</td> 
             <td>
-              <!-- BEGIN Panel CheckBox_Delete_Panel --><label for="mc_info_rs_cr_RE_RC_Artef2CheckBox_Delete_PanelCheckBox_Delete_{mc_info_rs_cr_RE_RC_Artef2:rowNumber}" style="display: none;">Borrar</label> 
+              <!-- BEGIN Panel CheckBox_Delete_Panel --><label style="display: none;" for="mc_info_rs_cr_RE_RC_Artef2CheckBox_Delete_PanelCheckBox_Delete_{mc_info_rs_cr_RE_RC_Artef2:rowNumber}">Borrar</label> 
               <!-- BEGIN CheckBox CheckBox_Delete --><input type="checkbox" id="mc_info_rs_cr_RE_RC_Artef2CheckBox_Delete_PanelCheckBox_Delete_{mc_info_rs_cr_RE_RC_Artef2:rowNumber}" value="1" name="{CheckBox_Delete_Name}" {CheckBox_Delete}><!-- END CheckBox CheckBox_Delete --><!-- END Panel CheckBox_Delete_Panel -->&nbsp;</td>
           </tr>
  <!-- END Row -->

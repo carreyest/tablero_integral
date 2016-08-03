@@ -122,19 +122,37 @@
 				</TextBox>
 				<TextBox id="65" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="DiasRetrasoHabiles" PathID="mc_calificacion_capcDiasRetrasoHabiles" fieldSource="DiasRetrasoHabiles" format="0.00">
 					<Components/>
-					<Events/>
+					<Events>
+<Event name="OnChange" type="Client">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="165"/>
+</Actions>
+</Event>
+</Events>
 					<Attributes/>
 					<Features/>
 				</TextBox>
 				<TextBox id="66" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="DiasRetrasoNaturales" PathID="mc_calificacion_capcDiasRetrasoNaturales" fieldSource="DiasRetrasoNaturales" format="0.00">
 					<Components/>
-					<Events/>
+					<Events>
+<Event name="OnChange" type="Client">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="166"/>
+</Actions>
+</Event>
+</Events>
 					<Attributes/>
 					<Features/>
 				</TextBox>
 				<TextBox id="67" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="PctMaximo" PathID="mc_calificacion_capcPctMaximo" fieldSource="PctMaximo">
 					<Components/>
-					<Events/>
+					<Events>
+<Event name="OnChange" type="Client">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="167"/>
+</Actions>
+</Event>
+</Events>
 					<Attributes/>
 					<Features/>
 				</TextBox>

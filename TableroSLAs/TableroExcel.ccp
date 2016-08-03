@@ -58,14 +58,14 @@
 					<SQLParameters/>
 					<JoinTables>
 						<JoinTable id="207" posHeight="180" posLeft="10" posTop="10" posWidth="158" tableName="mc_c_proveedor"/>
-</JoinTables>
+					</JoinTables>
 					<JoinLinks/>
 					<Fields>
 						<Field id="208" fieldName="*"/>
-</Fields>
+					</Fields>
 					<PKFields>
 						<PKField id="209" dataType="Integer" fieldName="id_proveedor" tableName="mc_c_proveedor"/>
-</PKFields>
+					</PKFields>
 					<Attributes/>
 					<Features/>
 				</ListBox>

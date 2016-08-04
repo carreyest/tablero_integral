@@ -130,7 +130,7 @@ where acronimo ='Inc_TiempoSolucion'" pageSizeLimit="100" pageSize="True" wizard
 					<Attributes/>
 					<Features/>
 				</Navigator>
-				<Label id="30" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="PctCumplimiento" PathID="grdIncCuadroNSPctCumplimiento" format="0%">
+				<Label id="30" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="PctCumplimiento" PathID="grdIncCuadroNSPctCumplimiento" format="0.0%">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -163,9 +163,9 @@ where acronimo ='Inc_TiempoSolucion'" pageSizeLimit="100" pageSize="True" wizard
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="82" dataType="Integer" defaultValue="0" designDefaultValue="3" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
-<SQLParameter id="83" dataType="Integer" defaultValue="date(&quot;m&quot;)" designDefaultValue="1" parameterSource="s_MesReporte" parameterType="URL" variable="s_MesReporte"/>
-<SQLParameter id="84" dataType="Integer" defaultValue="date(&quot;Y&quot;)" designDefaultValue="2014" parameterSource="s_AnioReporte" parameterType="URL" variable="s_AnioReporte"/>
-</SQLParameters>
+				<SQLParameter id="83" dataType="Integer" defaultValue="date(&quot;m&quot;)" designDefaultValue="1" parameterSource="s_MesReporte" parameterType="URL" variable="s_MesReporte"/>
+				<SQLParameter id="84" dataType="Integer" defaultValue="date(&quot;Y&quot;)" designDefaultValue="2014" parameterSource="s_AnioReporte" parameterType="URL" variable="s_AnioReporte"/>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -393,7 +393,7 @@ where acronimo ='Inc_TiempoSolucion'" pageSizeLimit="100" pageSize="True" wizard
 					<Attributes/>
 					<Features/>
 				</Navigator>
-				<Label id="54" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="PctCumplimiento" PathID="grdIncCuadroNS1PctCumplimiento" format="0%">
+				<Label id="54" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="PctCumplimiento" PathID="grdIncCuadroNS1PctCumplimiento" format="0.0%">
 					<Components/>
 					<Events/>
 					<Attributes/>

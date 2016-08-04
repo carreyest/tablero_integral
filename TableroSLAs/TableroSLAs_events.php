@@ -125,7 +125,7 @@ function grdSLAsCAPC_BeforeShowRow(& $sender)
 					} else{
 					    $valPct=0;
 					}
-					$grdSLAsCAPC->$sAcronimo->SetValue($grdSLAsCAPC->$sCumplen->GetValue() . "/" . $grdSLAsCAPC->$sTotal->GetValue() . " = " . $valPct . "%");
+					$grdSLAsCAPC->$sAcronimo->SetValue($grdSLAsCAPC->$sCumplen->GetValue() . "/" . $grdSLAsCAPC->$sTotal->GetValue() . " = " . number_format($valPct, 2, '.', '') . "%");
 					//if($grdSLAsCAPC->DataSource->f($db->f(1))<$grdSLAsCAPC->DataSource->f($sMeta)){
 					if($valPct<$grdSLAsCAPC->DataSource->f($sMeta)){
 						$grdSLAsCAPC->$sImg->SetValue("images/down.png");
@@ -274,7 +274,7 @@ function grdTableroSLAsMG_BeforeShowRow(& $sender)
 			$grdTableroSLAsMG->$sImgMG->SetValue("images/blank_SLA.png");
 			if (isset($grdTableroSLAsMG->$sImgMG)){
 				if($grdTableroSLAsMG->DataSource->f($db->f(1)) != ""){
-					$grdTableroSLAsMG->$sAcronimoMG->SetValue($grdTableroSLAsMG->$sCumplenMG->GetValue() . "/" . $grdTableroSLAsMG->$sTotalMG->GetValue() . " = " . $grdTableroSLAsMG->$sAcronimoMG->GetValue() . "%");
+					$grdTableroSLAsMG->$sAcronimoMG->SetValue($grdTableroSLAsMG->$sCumplenMG->GetValue() . "/" . $grdTableroSLAsMG->$sTotalMG->GetValue() . " = " . number_format($grdTableroSLAsMG->$sAcronimoMG->GetValue(), 2, '.', '') . "%");
 					if($grdTableroSLAsMG->DataSource->f($db->f(1))<$grdTableroSLAsMG->DataSource->f($sMetaMG)){
 						$grdTableroSLAsMG->$sImgMG->SetValue("images/down.png");
 					} else {
@@ -438,7 +438,7 @@ function grdTableroSLAs_BeforeShowRow(& $sender)
 			$grdTableroSLAs->$sImg->SetValue("images/blank_SLA.png");
 			if (isset($grdTableroSLAs->$sImg)){
 				if($grdTableroSLAs->DataSource->f($db->f(1)) != ""){
-					$grdTableroSLAs->$sAcronimo->SetValue($grdTableroSLAs->$sCumplen->GetValue() . "/" . $grdTableroSLAs->$sTotal->GetValue() . " = " . $grdTableroSLAs->$sAcronimo->GetValue() . "%");
+					$grdTableroSLAs->$sAcronimo->SetValue($grdTableroSLAs->$sCumplen->GetValue() . "/" . $grdTableroSLAs->$sTotal->GetValue() . " = " . number_format($grdTableroSLAs->$sAcronimo->GetValue(), 2, '.', '') . "%");
 					if($grdTableroSLAs->DataSource->f($db->f(1))<$grdTableroSLAs->DataSource->f($sMeta)){
 						$grdTableroSLAs->$sImg->SetValue("images/down.png");
 					} else {

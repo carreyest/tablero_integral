@@ -239,7 +239,7 @@ where acronimo ='CAL_COD'
 					<Attributes/>
 					<Features/>
 				</Navigator>
-				<Label id="17" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="Cumplimiento" PathID="Grid1Cumplimiento">
+				<Label id="17" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="Cumplimiento" PathID="Grid1Cumplimiento">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -598,7 +598,7 @@ where acronimo ='CAL_COD'
 					<Attributes/>
 					<Features/>
 				</Navigator>
-				<Label id="64" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="Cumplimiento" PathID="Grid2Cumplimiento">
+				<Label id="64" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="Cumplimiento" PathID="Grid2Cumplimiento">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -631,9 +631,9 @@ where acronimo ='CAL_COD'
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="145" dataType="Integer" defaultValue="0" designDefaultValue="2" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
-<SQLParameter id="146" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="s_MesReporte" parameterType="URL" variable="s_MesReporte"/>
-<SQLParameter id="147" dataType="Integer" defaultValue="0" designDefaultValue="2014" parameterSource="s_AnioReporte" parameterType="URL" variable="s_AnioReporte"/>
-</SQLParameters>
+				<SQLParameter id="146" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="s_MesReporte" parameterType="URL" variable="s_MesReporte"/>
+				<SQLParameter id="147" dataType="Integer" defaultValue="0" designDefaultValue="2014" parameterSource="s_AnioReporte" parameterType="URL" variable="s_AnioReporte"/>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -813,7 +813,7 @@ WHERE (i.Mes is NULL or i.Mes= {s_MesReporte} )
 					<Attributes/>
 					<Features/>
 				</Image>
-				<Label id="133" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="Cumplimiento" PathID="Grid3Cumplimiento">
+				<Label id="133" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="Cumplimiento" PathID="Grid3Cumplimiento">
 					<Components/>
 					<Events/>
 					<Attributes/>

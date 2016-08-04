@@ -52,7 +52,7 @@ class clsGridgrdIncCuadroNS { //grdIncCuadroNS class @3-21C5CCF3
     public $Sorter_pena;
 //End Variables
 
-//Class_Initialize Event @3-87E5F9CE
+//Class_Initialize Event @3-8D92615B
     function clsGridgrdIncCuadroNS($RelativePath, & $Parent)
     {
         global $FileName;
@@ -89,7 +89,7 @@ class clsGridgrdIncCuadroNS { //grdIncCuadroNS class @3-21C5CCF3
         $this->Cumplen->HTML = true;
         $this->Meta = new clsControl(ccsLabel, "Meta", "Meta", ccsFloat, "", CCGetRequestParam("Meta", ccsGet, NULL), $this);
         $this->pena = new clsControl(ccsLabel, "pena", "pena", ccsText, "", CCGetRequestParam("pena", ccsGet, NULL), $this);
-        $this->PctCumplimiento = new clsControl(ccsLabel, "PctCumplimiento", "PctCumplimiento", ccsFloat, array(False, 0, Null, "", False, "", "%", 100, True, ""), CCGetRequestParam("PctCumplimiento", ccsGet, NULL), $this);
+        $this->PctCumplimiento = new clsControl(ccsLabel, "PctCumplimiento", "PctCumplimiento", ccsFloat, array(False, 1, Null, "", False, "", "%", 100, True, ""), CCGetRequestParam("PctCumplimiento", ccsGet, NULL), $this);
         $this->PctCumplimiento->HTML = true;
         $this->ImgCumple = new clsControl(ccsImage, "ImgCumple", "ImgCumple", ccsText, "", CCGetRequestParam("ImgCumple", ccsGet, NULL), $this);
         $this->Sorter_nombre = new clsSorter($this->ComponentName, "Sorter_nombre", $FileName, $this);
@@ -639,7 +639,7 @@ class clsGridgrdIncCuadroNS1 { //grdIncCuadroNS1 class @40-3BD686DC
     public $Sorter_pena;
 //End Variables
 
-//Class_Initialize Event @40-7E2F1F62
+//Class_Initialize Event @40-745887F7
     function clsGridgrdIncCuadroNS1($RelativePath, & $Parent)
     {
         global $FileName;
@@ -676,7 +676,7 @@ class clsGridgrdIncCuadroNS1 { //grdIncCuadroNS1 class @40-3BD686DC
         $this->Cumplen->HTML = true;
         $this->Meta = new clsControl(ccsLabel, "Meta", "Meta", ccsFloat, "", CCGetRequestParam("Meta", ccsGet, NULL), $this);
         $this->pena = new clsControl(ccsLabel, "pena", "pena", ccsText, "", CCGetRequestParam("pena", ccsGet, NULL), $this);
-        $this->PctCumplimiento = new clsControl(ccsLabel, "PctCumplimiento", "PctCumplimiento", ccsFloat, array(False, 0, Null, "", False, "", "%", 100, True, ""), CCGetRequestParam("PctCumplimiento", ccsGet, NULL), $this);
+        $this->PctCumplimiento = new clsControl(ccsLabel, "PctCumplimiento", "PctCumplimiento", ccsFloat, array(False, 1, Null, "", False, "", "%", 100, True, ""), CCGetRequestParam("PctCumplimiento", ccsGet, NULL), $this);
         $this->PctCumplimiento->HTML = true;
         $this->ImgCumple = new clsControl(ccsImage, "ImgCumple", "ImgCumple", ccsText, "", CCGetRequestParam("ImgCumple", ccsGet, NULL), $this);
         $this->Sorter_nombre = new clsSorter($this->ComponentName, "Sorter_nombre", $FileName, $this);
@@ -892,57 +892,10 @@ class clsgrdIncCuadroNS1DataSource extends clsDBcnDisenio {  //grdIncCuadroNS1Da
     }
 //End Prepare Method
 
-//Open Method @40-189AB25E
+//Open Method @40-DC6CC287
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (\n" .
-        "select mc_c_metrica.nombre,  ''  DescSev, 0 severidad, c.Suma,  c.Cumplen,  mc_c_metrica.Meta,  mc_c_metrica.pena   \n" .
-        "from mc_c_metrica \n" .
-        "CROSS JOIN \n" .
-        "(select id_proveedor,\n" .
-        "	COUNT(Cumple_DISP_SOPORTE) Suma,\n" .
-        "	sum(cast(~Cast(Cumple_DISP_SOPORTE as bit) as int)) Cumplen\n" .
-        "	from mc_calificacion_incidentes_SAT mc\n" .
-        "	where id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
-        "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
-        "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
-        "	and id_incidente not in (select numero from mc_universo_cds where SLO=1 and revision =1)\n" .
-        "	group by id_proveedor \n" .
-        ") c\n" .
-        "where acronimo ='DISP_SOPORTE'\n" .
-        "union all\n" .
-        "select mc_c_metrica.nombre, 'Severidad', c.severidad, c.Suma,  c.Cumplen,  mc_c_metrica.Meta, mc_c_metrica.pena   \n" .
-        "from mc_c_metrica \n" .
-        "CROSS JOIN \n" .
-        "(select sv.severidad, id_proveedor,\n" .
-        "	COUNT(Cumple_Inc_TiempoAsignacion) Suma,\n" .
-        "	sum(cast(~CAST(Cumple_Inc_TiempoAsignacion as bit) as int)) Cumplen\n" .
-        "	from (select distinct severidad  from mc_c_aplicacion) sv left join  mc_calificacion_incidentes_SAT mc\n" .
-        "		on mc.severidad= sv.severidad\n" .
-        "	and id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
-        "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
-        "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
-        "	and id_incidente not in (select numero from mc_universo_cds where SLO=1 and revision =1)\n" .
-        "	group by id_proveedor, sv.severidad   \n" .
-        ") c\n" .
-        "where acronimo ='Inc_TiempoAsignacion'\n" .
-        "union all\n" .
-        "select mc_c_metrica.nombre, 'Severidad', c.severidad,  c.Suma,  c.Cumplen,  mc_c_metrica.Meta, mc_c_metrica.pena   \n" .
-        "from mc_c_metrica \n" .
-        "CROSS JOIN \n" .
-        "(select sv.severidad, id_proveedor,\n" .
-        "	COUNT(Cumple_Inc_TiempoSolucion) Suma,\n" .
-        "	sum(cast(~CAST(Cumple_Inc_TiempoSolucion as bit) as int)) Cumplen\n" .
-        "	from (select distinct severidad  from mc_c_aplicacion) sv left join  mc_calificacion_incidentes_SAt mc\n" .
-        "		on mc.severidad= sv.severidad\n" .
-        "	and id_proveedor= " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
-        "	and mesreporte= " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
-        "	and AnioReporte = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . "\n" .
-        "	and id_incidente not in (select numero from mc_universo_cds where SLO=1 and revision =1)\n" .
-        "	group by id_proveedor, sv.severidad   \n" .
-        ") c\n" .
-        "where acronimo ='Inc_TiempoSolucion') cnt";
         $this->SQL = "\n" .
         "select mc_c_metrica.nombre,  ''  DescSev, 0 severidad, c.Suma,  c.Cumplen,  mc_c_metrica.Meta,  mc_c_metrica.pena   \n" .
         "from mc_c_metrica \n" .

@@ -456,31 +456,31 @@ group by
 							<Attributes/>
 							<Features/>
 						</Label>
-						<Label id="440" fieldSourceType="DBColumn" dataType="Integer" html="True" generateSpan="False" name="HERR_EST_COST" PathID="pnlSLAsCAPCgrdSLAsCAPCHERR_EST_COST" fieldSource="HERR_EST_COST">
+						<Label id="440" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="HERR_EST_COST" PathID="pnlSLAsCAPCgrdSLAsCAPCHERR_EST_COST" fieldSource="HERR_EST_COST">
 							<Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
 						</Label>
-						<Label id="441" fieldSourceType="DBColumn" dataType="Integer" html="True" generateSpan="False" name="REQ_SERV" PathID="pnlSLAsCAPCgrdSLAsCAPCREQ_SERV" fieldSource="REQ_SERV">
+						<Label id="441" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="REQ_SERV" PathID="pnlSLAsCAPCgrdSLAsCAPCREQ_SERV" fieldSource="REQ_SERV">
 							<Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
 						</Label>
-						<Label id="442" fieldSourceType="DBColumn" dataType="Integer" html="True" generateSpan="False" name="CUMPL_REQ_FUNC" PathID="pnlSLAsCAPCgrdSLAsCAPCCUMPL_REQ_FUNC" fieldSource="CUMPL_REQ_FUNC">
+						<Label id="442" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="CUMPL_REQ_FUNC" PathID="pnlSLAsCAPCgrdSLAsCAPCCUMPL_REQ_FUNC" fieldSource="CUMPL_REQ_FUNC">
 							<Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
 						</Label>
-						<Label id="443" fieldSourceType="DBColumn" dataType="Integer" html="True" generateSpan="False" name="CALIDAD_PROD_TERM" PathID="pnlSLAsCAPCgrdSLAsCAPCCALIDAD_PROD_TERM" fieldSource="CALIDAD_PROD_TERM">
+						<Label id="443" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="CALIDAD_PROD_TERM" PathID="pnlSLAsCAPCgrdSLAsCAPCCALIDAD_PROD_TERM" fieldSource="CALIDAD_PROD_TERM">
 							<Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
 						</Label>
-						<Label id="444" fieldSourceType="DBColumn" dataType="Integer" html="True" generateSpan="False" name="RETR_ENTREGABLE" PathID="pnlSLAsCAPCgrdSLAsCAPCRETR_ENTREGABLE" fieldSource="RETR_ENTREGABLE">
+						<Label id="444" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="RETR_ENTREGABLE" PathID="pnlSLAsCAPCgrdSLAsCAPCRETR_ENTREGABLE" fieldSource="RETR_ENTREGABLE">
 							<Components/>
 							<Events/>
 							<Attributes/>
@@ -618,7 +618,7 @@ group by
 							<Attributes/>
 							<Features/>
 						</Image>
-						<Label id="483" fieldSourceType="DBColumn" dataType="Integer" html="True" generateSpan="False" name="DEDUC_OMISION" PathID="pnlSLAsCAPCgrdSLAsCAPCDEDUC_OMISION" fieldSource="DEDUC_OMISION">
+						<Label id="483" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="DEDUC_OMISION" PathID="pnlSLAsCAPCgrdSLAsCAPCDEDUC_OMISION" fieldSource="DEDUC_OMISION">
 							<Components/>
 							<Events/>
 							<Attributes/>
@@ -759,7 +759,7 @@ order by sc.orden" pageSizeLimit="100" pageSize="True" wizardCaption="Niveles de
 					<Attributes/>
 					<Features/>
 				</Navigator>
-				<Label id="522" fieldSourceType="DBColumn" dataType="Integer" html="True" generateSpan="False" name="EFIC_PRESUP_MG" fieldSource="EFIC_PRESUP" PathID="grdTableroSLAsMGEFIC_PRESUP_MG">
+				<Label id="522" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="EFIC_PRESUP_MG" fieldSource="EFIC_PRESUP" PathID="grdTableroSLAsMGEFIC_PRESUP_MG">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -777,7 +777,7 @@ order by sc.orden" pageSizeLimit="100" pageSize="True" wizardCaption="Niveles de
 					<Attributes/>
 					<Features/>
 				</Image>
-				<Label id="521" fieldSourceType="DBColumn" dataType="Integer" html="True" generateSpan="False" name="Inc_TiempoSolucion_MG" fieldSource="Inc_TiempoSolucion" PathID="grdTableroSLAsMGInc_TiempoSolucion_MG">
+				<Label id="521" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="Inc_TiempoSolucion_MG" fieldSource="Inc_TiempoSolucion" PathID="grdTableroSLAsMGInc_TiempoSolucion_MG">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -801,7 +801,7 @@ order by sc.orden" pageSizeLimit="100" pageSize="True" wizardCaption="Niveles de
 					<Attributes/>
 					<Features/>
 				</Image>
-				<Label id="520" fieldSourceType="DBColumn" dataType="Integer" html="True" generateSpan="False" name="Inc_TiempoAsignacion_MG" fieldSource="Inc_TiempoAsignacion" PathID="grdTableroSLAsMGInc_TiempoAsignacion_MG">
+				<Label id="520" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="Inc_TiempoAsignacion_MG" fieldSource="Inc_TiempoAsignacion" PathID="grdTableroSLAsMGInc_TiempoAsignacion_MG">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -825,7 +825,7 @@ order by sc.orden" pageSizeLimit="100" pageSize="True" wizardCaption="Niveles de
 					<Attributes/>
 					<Features/>
 				</Image>
-				<Label id="519" fieldSourceType="DBColumn" dataType="Integer" html="True" generateSpan="False" name="DEF_FUG_AMB_PROD_MG" fieldSource="DEF_FUG_AMB_PROD" PathID="grdTableroSLAsMGDEF_FUG_AMB_PROD_MG">
+				<Label id="519" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="DEF_FUG_AMB_PROD_MG" fieldSource="DEF_FUG_AMB_PROD" PathID="grdTableroSLAsMGDEF_FUG_AMB_PROD_MG">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -849,7 +849,7 @@ order by sc.orden" pageSizeLimit="100" pageSize="True" wizardCaption="Niveles de
 					<Attributes/>
 					<Features/>
 				</Image>
-				<Label id="518" fieldSourceType="DBColumn" dataType="Integer" html="True" generateSpan="False" name="RETR_ENTREGABLE_MG" fieldSource="RETR_ENTREGABLE" PathID="grdTableroSLAsMGRETR_ENTREGABLE_MG">
+				<Label id="518" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="RETR_ENTREGABLE_MG" fieldSource="RETR_ENTREGABLE" PathID="grdTableroSLAsMGRETR_ENTREGABLE_MG">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -873,7 +873,7 @@ order by sc.orden" pageSizeLimit="100" pageSize="True" wizardCaption="Niveles de
 					<Attributes/>
 					<Features/>
 				</Image>
-				<Label id="517" fieldSourceType="DBColumn" dataType="Integer" html="True" generateSpan="False" name="CALIDAD_PROD_TERM_MG" fieldSource="CALIDAD_PROD_TERM" PathID="grdTableroSLAsMGCALIDAD_PROD_TERM_MG">
+				<Label id="517" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="CALIDAD_PROD_TERM_MG" fieldSource="CALIDAD_PROD_TERM" PathID="grdTableroSLAsMGCALIDAD_PROD_TERM_MG">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -897,7 +897,7 @@ order by sc.orden" pageSizeLimit="100" pageSize="True" wizardCaption="Niveles de
 					<Attributes/>
 					<Features/>
 				</Image>
-				<Label id="516" fieldSourceType="DBColumn" dataType="Integer" html="True" generateSpan="False" name="CUMPL_REQ_FUNC_MG" fieldSource="CUMPL_REQ_FUNC" PathID="grdTableroSLAsMGCUMPL_REQ_FUNC_MG">
+				<Label id="516" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="CUMPL_REQ_FUNC_MG" fieldSource="CUMPL_REQ_FUNC" PathID="grdTableroSLAsMGCUMPL_REQ_FUNC_MG">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -921,7 +921,7 @@ order by sc.orden" pageSizeLimit="100" pageSize="True" wizardCaption="Niveles de
 					<Attributes/>
 					<Features/>
 				</Image>
-				<Label id="515" fieldSourceType="DBColumn" dataType="Integer" html="True" generateSpan="False" name="REQ_SERV_MG" fieldSource="REQ_SERV" PathID="grdTableroSLAsMGREQ_SERV_MG">
+				<Label id="515" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="REQ_SERV_MG" fieldSource="REQ_SERV" PathID="grdTableroSLAsMGREQ_SERV_MG">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -945,7 +945,7 @@ order by sc.orden" pageSizeLimit="100" pageSize="True" wizardCaption="Niveles de
 					<Attributes/>
 					<Features/>
 				</Image>
-				<Label id="514" fieldSourceType="DBColumn" dataType="Integer" html="True" generateSpan="False" name="HERR_EST_COST_MG" fieldSource="HERR_EST_COST" PathID="grdTableroSLAsMGHERR_EST_COST_MG">
+				<Label id="514" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="HERR_EST_COST_MG" fieldSource="HERR_EST_COST" PathID="grdTableroSLAsMGHERR_EST_COST_MG">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -1047,31 +1047,31 @@ order by sc.orden" pageSizeLimit="100" pageSize="True" wizardCaption="Niveles de
 					<Attributes/>
 					<Features/>
 				</Sorter>
-<Image id="599" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Img_CAL_COD_MG" PathID="grdTableroSLAsMGImg_CAL_COD_MG">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Image>
-<Label id="601" fieldSourceType="DBColumn" dataType="Integer" html="False" generateSpan="False" name="CumplenCAL_COD_MG" PathID="grdTableroSLAsMGCumplenCAL_COD_MG" fieldSource="CumplenCAL_COD">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-<Label id="603" fieldSourceType="DBColumn" dataType="Integer" html="True" generateSpan="False" name="CAL_COD_MG" PathID="grdTableroSLAsMGCAL_COD_MG" fieldSource="CAL_COD">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-<Label id="600" fieldSourceType="DBColumn" dataType="Integer" html="False" generateSpan="False" name="TotCAL_COD_MG" PathID="grdTableroSLAsMGTotCAL_COD_MG" fieldSource="TotCAL_COD">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-</Components>
+				<Image id="599" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Img_CAL_COD_MG" PathID="grdTableroSLAsMGImg_CAL_COD_MG">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Image>
+				<Label id="601" fieldSourceType="DBColumn" dataType="Integer" html="False" generateSpan="False" name="CumplenCAL_COD_MG" PathID="grdTableroSLAsMGCumplenCAL_COD_MG" fieldSource="CumplenCAL_COD">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="603" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="CAL_COD_MG" PathID="grdTableroSLAsMGCAL_COD_MG" fieldSource="CAL_COD">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="600" fieldSourceType="DBColumn" dataType="Integer" html="False" generateSpan="False" name="TotCAL_COD_MG" PathID="grdTableroSLAsMGTotCAL_COD_MG" fieldSource="TotCAL_COD">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+			</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>
@@ -1092,10 +1092,10 @@ order by sc.orden" pageSizeLimit="100" pageSize="True" wizardCaption="Niveles de
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="604" dataType="Integer" defaultValue="0" designDefaultValue="0" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
-<SQLParameter id="605" dataType="Integer" defaultValue="0" designDefaultValue="2" parameterSource="s_id_proveedor" parameterType="URL" variable="sProveedor"/>
-<SQLParameter id="606" dataType="Integer" defaultValue="date('m')-2" designDefaultValue="7" parameterSource="s_MesReporte" parameterType="URL" variable="sMes"/>
-<SQLParameter id="607" dataType="Integer" defaultValue="date('Y')" designDefaultValue="2015" parameterSource="s_AnioReporte" parameterType="URL" variable="sAnio"/>
-</SQLParameters>
+				<SQLParameter id="605" dataType="Integer" defaultValue="0" designDefaultValue="2" parameterSource="s_id_proveedor" parameterType="URL" variable="sProveedor"/>
+				<SQLParameter id="606" dataType="Integer" defaultValue="date('m')-2" designDefaultValue="7" parameterSource="s_MesReporte" parameterType="URL" variable="sMes"/>
+				<SQLParameter id="607" dataType="Integer" defaultValue="date('Y')" designDefaultValue="2015" parameterSource="s_AnioReporte" parameterType="URL" variable="sAnio"/>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -1459,55 +1459,55 @@ order by sc.orden" pageSizeLimit="100" pageSize="True" wizardCaption="Niveles de
 							<Attributes/>
 							<Features/>
 						</Label>
-						<Label id="67" fieldSourceType="DBColumn" dataType="Integer" html="True" generateSpan="False" name="HERR_EST_COST" PathID="pnlTableroSLAsgrdTableroSLAsHERR_EST_COST" fieldSource="HERR_EST_COST">
+						<Label id="67" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="HERR_EST_COST" PathID="pnlTableroSLAsgrdTableroSLAsHERR_EST_COST" fieldSource="HERR_EST_COST">
 							<Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
 						</Label>
-						<Label id="68" fieldSourceType="DBColumn" dataType="Integer" html="True" generateSpan="False" name="REQ_SERV" PathID="pnlTableroSLAsgrdTableroSLAsREQ_SERV" fieldSource="REQ_SERV">
+						<Label id="68" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="REQ_SERV" PathID="pnlTableroSLAsgrdTableroSLAsREQ_SERV" fieldSource="REQ_SERV">
 							<Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
 						</Label>
-						<Label id="69" fieldSourceType="DBColumn" dataType="Integer" html="True" generateSpan="False" name="CUMPL_REQ_FUNC" PathID="pnlTableroSLAsgrdTableroSLAsCUMPL_REQ_FUNC" fieldSource="CUMPL_REQ_FUNC">
+						<Label id="69" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="CUMPL_REQ_FUNC" PathID="pnlTableroSLAsgrdTableroSLAsCUMPL_REQ_FUNC" fieldSource="CUMPL_REQ_FUNC">
 							<Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
 						</Label>
-						<Label id="70" fieldSourceType="DBColumn" dataType="Integer" html="True" generateSpan="False" name="CALIDAD_PROD_TERM" PathID="pnlTableroSLAsgrdTableroSLAsCALIDAD_PROD_TERM" fieldSource="CALIDAD_PROD_TERM">
+						<Label id="70" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="CALIDAD_PROD_TERM" PathID="pnlTableroSLAsgrdTableroSLAsCALIDAD_PROD_TERM" fieldSource="CALIDAD_PROD_TERM">
 							<Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
 						</Label>
-						<Label id="71" fieldSourceType="DBColumn" dataType="Integer" html="True" generateSpan="False" name="RETR_ENTREGABLE" PathID="pnlTableroSLAsgrdTableroSLAsRETR_ENTREGABLE" fieldSource="RETR_ENTREGABLE">
+						<Label id="71" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="RETR_ENTREGABLE" PathID="pnlTableroSLAsgrdTableroSLAsRETR_ENTREGABLE" fieldSource="RETR_ENTREGABLE">
 							<Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
 						</Label>
-						<Label id="73" fieldSourceType="DBColumn" dataType="Integer" html="True" generateSpan="False" name="CAL_COD" PathID="pnlTableroSLAsgrdTableroSLAsCAL_COD" fieldSource="CAL_COD">
+						<Label id="73" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="CAL_COD" PathID="pnlTableroSLAsgrdTableroSLAsCAL_COD" fieldSource="CAL_COD">
 							<Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
 						</Label>
-						<Label id="74" fieldSourceType="DBColumn" dataType="Integer" html="True" generateSpan="False" name="DEF_FUG_AMB_PROD" PathID="pnlTableroSLAsgrdTableroSLAsDEF_FUG_AMB_PROD" fieldSource="DEF_FUG_AMB_PROD">
+						<Label id="74" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="DEF_FUG_AMB_PROD" PathID="pnlTableroSLAsgrdTableroSLAsDEF_FUG_AMB_PROD" fieldSource="DEF_FUG_AMB_PROD">
 							<Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
 						</Label>
-						<Label id="75" fieldSourceType="DBColumn" dataType="Integer" html="True" generateSpan="False" name="Inc_TiempoAsignacion" PathID="pnlTableroSLAsgrdTableroSLAsInc_TiempoAsignacion" fieldSource="Inc_TiempoAsignacion">
+						<Label id="75" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="Inc_TiempoAsignacion" PathID="pnlTableroSLAsgrdTableroSLAsInc_TiempoAsignacion" fieldSource="Inc_TiempoAsignacion">
 							<Components/>
 							<Events/>
 							<Attributes/>
 							<Features/>
 						</Label>
-						<Label id="76" fieldSourceType="DBColumn" dataType="Integer" html="True" generateSpan="False" name="Inc_TiempoSolucion" PathID="pnlTableroSLAsgrdTableroSLAsInc_TiempoSolucion" fieldSource="Inc_TiempoSolucion">
+						<Label id="76" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="Inc_TiempoSolucion" PathID="pnlTableroSLAsgrdTableroSLAsInc_TiempoSolucion" fieldSource="Inc_TiempoSolucion">
 							<Components/>
 							<Events/>
 							<Attributes/>
@@ -1579,7 +1579,7 @@ order by sc.orden" pageSizeLimit="100" pageSize="True" wizardCaption="Niveles de
 							<Attributes/>
 							<Features/>
 						</Label>
-						<Label id="112" fieldSourceType="DBColumn" dataType="Integer" html="True" generateSpan="False" name="EFIC_PRESUP" PathID="pnlTableroSLAsgrdTableroSLAsEFIC_PRESUP" fieldSource="EFIC_PRESUP">
+						<Label id="112" fieldSourceType="DBColumn" dataType="Float" html="True" generateSpan="False" name="EFIC_PRESUP" PathID="pnlTableroSLAsgrdTableroSLAsEFIC_PRESUP" fieldSource="EFIC_PRESUP">
 							<Components/>
 							<Events/>
 							<Attributes/>
@@ -1636,10 +1636,10 @@ order by sc.orden" pageSizeLimit="100" pageSize="True" wizardCaption="Niveles de
 					<SPParameters/>
 					<SQLParameters>
 						<SQLParameter id="608" dataType="Integer" defaultValue="date('m')-2" designDefaultValue="1" old_temp_id="346" parameterSource="s_MesReporte" parameterType="URL" variable="sMes"/>
-<SQLParameter id="609" dataType="Integer" defaultValue="date('Y')" designDefaultValue="2014" old_temp_id="347" parameterSource="s_AnioReporte" parameterType="URL" variable="sAnio"/>
-<SQLParameter id="610" dataType="Integer" defaultValue="0" designDefaultValue="3" old_temp_id="348" parameterSource="s_id_proveedor" parameterType="URL" variable="sProveedor"/>
-<SQLParameter id="611" dataType="Integer" defaultValue="0" designDefaultValue="1" old_temp_id="349" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
-</SQLParameters>
+						<SQLParameter id="609" dataType="Integer" defaultValue="date('Y')" designDefaultValue="2014" old_temp_id="347" parameterSource="s_AnioReporte" parameterType="URL" variable="sAnio"/>
+						<SQLParameter id="610" dataType="Integer" defaultValue="0" designDefaultValue="3" old_temp_id="348" parameterSource="s_id_proveedor" parameterType="URL" variable="sProveedor"/>
+						<SQLParameter id="611" dataType="Integer" defaultValue="0" designDefaultValue="1" old_temp_id="349" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
+					</SQLParameters>
 					<SecurityGroups/>
 					<Attributes/>
 					<Features/>

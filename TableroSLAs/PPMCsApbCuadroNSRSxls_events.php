@@ -30,7 +30,7 @@ function Grid1_BeforeShowRow(& $sender)
 //Custom Code @18-2A29BDB7
 // -------------------------
     if($Grid1->SumaApb->GetValue()>0){
-    	$Grid1->Cumplimiento->SetValue(number_format((($Grid1->SumaApb->GetValue()-$Grid1->incumplimientos->GetValue())/$Grid1->SumaApb->GetValue())*100 ),0)  ;
+    	$Grid1->Cumplimiento->SetValue(number_format((($Grid1->SumaApb->GetValue()-$Grid1->incumplimientos->GetValue())/$Grid1->SumaApb->GetValue())*100 , 2, '.', ''))  ;
     	if($Grid1->Cumplimiento->GetValue()<$Grid1->Meta->GetValue()){
 	    	$Grid1->Indicador->SetValue("images/NoCumple.png");
 	    } else {
@@ -140,7 +140,7 @@ function Grid2_BeforeShowRow(& $sender)
 //Custom Code @66-2A29BDB7
 // -------------------------
     if($Grid2->SumaApb->GetValue()>0){
-    	$Grid2->Cumplimiento->SetValue(number_format((($Grid2->SumaApb->GetValue()-$Grid2->incumplimientos->GetValue())/$Grid2->SumaApb->GetValue())*100 ),0)  ;
+    	$Grid2->Cumplimiento->SetValue(number_format((($Grid2->SumaApb->GetValue()-$Grid2->incumplimientos->GetValue())/$Grid2->SumaApb->GetValue())*100 , 2, '.', ''))  ;
     	if($Grid2->Cumplimiento->GetValue()<$Grid2->Meta->GetValue()){
 	    	$Grid2->Indicador->SetValue("images/NoCumple.png");
 	    } else {
@@ -198,7 +198,7 @@ function Grid3_BeforeShowRow(& $sender)
 //Custom Code @131-2A29BDB7
 // -------------------------
     if($Grid3->ReqAprob->GetValue()>0){
-    	$Grid3->Cumplimiento->SetValue(number_format((($Grid3->ReqAprob->GetValue()-$Grid3->Incumpl->GetValue())/$Grid3->ReqAprob->GetValue())*100 ),0)  ;
+    	$Grid3->Cumplimiento->SetValue(number_format((($Grid3->ReqAprob->GetValue()-$Grid3->Incumpl->GetValue())/$Grid3->ReqAprob->GetValue())*100 , 2, '.', ''))  ;
     	if($Grid3->Cumplimiento->GetValue()<$Grid3->ValorObj->GetValue()){
 	    	$Grid3->Indicador->SetValue("images/NoCumple.png");
 	    } else {

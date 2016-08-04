@@ -51,7 +51,7 @@ class clsGridGrid1 { //Grid1 class @3-E857A572
     public $Sorter_pena;
 //End Variables
 
-//Class_Initialize Event @3-9D9ECF45
+//Class_Initialize Event @3-EE987070
     function clsGridGrid1($RelativePath, & $Parent)
     {
         global $FileName;
@@ -87,7 +87,7 @@ class clsGridGrid1 { //Grid1 class @3-E857A572
         $this->incumplimientos->HTML = true;
         $this->Meta = new clsControl(ccsLabel, "Meta", "Meta", ccsFloat, "", CCGetRequestParam("Meta", ccsGet, NULL), $this);
         $this->pena = new clsControl(ccsLabel, "pena", "pena", ccsText, "", CCGetRequestParam("pena", ccsGet, NULL), $this);
-        $this->Cumplimiento = new clsControl(ccsLabel, "Cumplimiento", "Cumplimiento", ccsText, "", CCGetRequestParam("Cumplimiento", ccsGet, NULL), $this);
+        $this->Cumplimiento = new clsControl(ccsLabel, "Cumplimiento", "Cumplimiento", ccsFloat, "", CCGetRequestParam("Cumplimiento", ccsGet, NULL), $this);
         $this->Cumplimiento->HTML = true;
         $this->Indicador = new clsControl(ccsImage, "Indicador", "Indicador", ccsText, "", CCGetRequestParam("Indicador", ccsGet, NULL), $this);
         $this->Sorter_nombre = new clsSorter($this->ComponentName, "Sorter_nombre", $FileName, $this);
@@ -905,7 +905,7 @@ class clsGridGrid2 { //Grid2 class @52-C37AF6B1
     public $Sorter_pena;
 //End Variables
 
-//Class_Initialize Event @52-950CF038
+//Class_Initialize Event @52-C024EFCE
     function clsGridGrid2($RelativePath, & $Parent)
     {
         global $FileName;
@@ -941,7 +941,7 @@ class clsGridGrid2 { //Grid2 class @52-C37AF6B1
         $this->incumplimientos->HTML = true;
         $this->Meta = new clsControl(ccsLabel, "Meta", "Meta", ccsFloat, "", CCGetRequestParam("Meta", ccsGet, NULL), $this);
         $this->pena = new clsControl(ccsLabel, "pena", "pena", ccsText, "", CCGetRequestParam("pena", ccsGet, NULL), $this);
-        $this->Cumplimiento = new clsControl(ccsLabel, "Cumplimiento", "Cumplimiento", ccsText, "", CCGetRequestParam("Cumplimiento", ccsGet, NULL), $this);
+        $this->Cumplimiento = new clsControl(ccsLabel, "Cumplimiento", "Cumplimiento", ccsFloat, "", CCGetRequestParam("Cumplimiento", ccsGet, NULL), $this);
         $this->Cumplimiento->HTML = true;
         $this->Indicador = new clsControl(ccsImage, "Indicador", "Indicador", ccsText, "", CCGetRequestParam("Indicador", ccsGet, NULL), $this);
         $this->Sorter_nombre = new clsSorter($this->ComponentName, "Sorter_nombre", $FileName, $this);
@@ -1529,7 +1529,7 @@ class clsGridGrid3 { //Grid3 class @115-DA61C7F0
     public $Sorter_Penalizacion;
 //End Variables
 
-//Class_Initialize Event @115-A9E66EF9
+//Class_Initialize Event @115-FE02E46B
     function clsGridGrid3($RelativePath, & $Parent)
     {
         global $FileName;
@@ -1568,7 +1568,7 @@ class clsGridGrid3 { //Grid3 class @115-DA61C7F0
         $this->Penalizacion = new clsControl(ccsLabel, "Penalizacion", "Penalizacion", ccsText, "", CCGetRequestParam("Penalizacion", ccsGet, NULL), $this);
         $this->Penalizacion->HTML = true;
         $this->Indicador = new clsControl(ccsImage, "Indicador", "Indicador", ccsText, "", CCGetRequestParam("Indicador", ccsGet, NULL), $this);
-        $this->Cumplimiento = new clsControl(ccsLabel, "Cumplimiento", "Cumplimiento", ccsText, "", CCGetRequestParam("Cumplimiento", ccsGet, NULL), $this);
+        $this->Cumplimiento = new clsControl(ccsLabel, "Cumplimiento", "Cumplimiento", ccsFloat, "", CCGetRequestParam("Cumplimiento", ccsGet, NULL), $this);
         $this->Cumplimiento->HTML = true;
         $this->Sorter_SLA = new clsSorter($this->ComponentName, "Sorter_SLA", $FileName, $this);
         $this->Sorter_ReqAprob = new clsSorter($this->ComponentName, "Sorter_ReqAprob", $FileName, $this);

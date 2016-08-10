@@ -85,22 +85,23 @@
 					<Components/>
 					<Events/>
 					<TableParameters>
-						<TableParameter id="203" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Nivel" logicOperator="Or" parameterSource="&quot;3&quot;" parameterType="Expression" searchConditionType="Equal"/>
-						<TableParameter id="204" conditionType="Parameter" useIsNull="False" dataType="Text" field="Usuario" logicOperator="Or" parameterSource="&quot;rramos&quot;" parameterType="Expression" searchConditionType="Equal"/>
-						<TableParameter id="205" conditionType="Parameter" useIsNull="False" dataType="Text" field="Usuario" logicOperator="Or" parameterSource="&quot;ldominguez&quot;" parameterType="Expression" searchConditionType="Equal"/>
-					</TableParameters>
+						<TableParameter id="216" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Nivel" logicOperator="Or" parameterSource="&quot;3&quot;" parameterType="Expression" searchConditionType="Equal"/>
+<TableParameter id="217" conditionType="Parameter" useIsNull="False" dataType="Text" field="Usuario" logicOperator="Or" parameterSource="&quot;rramos&quot;" parameterType="Expression" searchConditionType="Equal"/>
+<TableParameter id="218" conditionType="Parameter" useIsNull="False" dataType="Text" field="Usuario" logicOperator="Or" parameterSource="&quot;ldominguez&quot;" parameterType="Expression" searchConditionType="Equal"/>
+<TableParameter id="219" conditionType="Parameter" useIsNull="False" dataType="Text" field="Usuario" logicOperator="Or" parameterSource="&quot;gcortes&quot;" parameterType="Expression" searchConditionType="Equal"/>
+</TableParameters>
 					<SPParameters/>
 					<SQLParameters/>
 					<JoinTables>
-						<JoinTable id="202" posHeight="180" posLeft="10" posTop="10" posWidth="153" tableName="mc_c_usuarios"/>
-					</JoinTables>
+						<JoinTable id="215" posHeight="180" posLeft="10" posTop="10" posWidth="153" tableName="mc_c_usuarios"/>
+</JoinTables>
 					<JoinLinks/>
 					<Fields>
-						<Field id="206" fieldName="*"/>
-					</Fields>
+						<Field id="220" fieldName="*"/>
+</Fields>
 					<PKFields>
-						<PKField id="207" dataType="Integer" fieldName="Id" tableName="mc_c_usuarios"/>
-					</PKFields>
+						<PKField id="221" dataType="Integer" fieldName="Id" tableName="mc_c_usuarios"/>
+</PKFields>
 					<Attributes/>
 					<Features/>
 				</ListBox>
@@ -319,6 +320,7 @@ and ((CASE WHEN (SELECT COUNT(id_incidente) from  mc_calificacion_incidentes_MC 
 				</Label>
 				<Label id="105" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="lblCalificado" PathID="mc_info_incidenteslblCalificado" fieldSource="Estado">
 					<Components/>
+
 					<Events/>
 					<Attributes/>
 					<Features/>
@@ -362,12 +364,12 @@ and ((CASE WHEN (SELECT COUNT(id_incidente) from  mc_calificacion_incidentes_MC 
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="209" dataType="Text" parameterSource="s_Id_incidente_param" parameterType="URL" variable="s_Id_incidente_param"/>
-<SQLParameter id="210" dataType="Integer" defaultValue="0" designDefaultValue="3" parameterSource="s_cds_param" parameterType="URL" variable="s_cds_param"/>
-<SQLParameter id="211" dataType="Integer" defaultValue="date(&quot;m&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="11" parameterSource="s_mes_param" parameterType="URL" variable="s_mes_param"/>
-<SQLParameter id="212" dataType="Text" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;)-1,date(&quot;d&quot;),date(&quot;Y&quot;)))" designDefaultValue="2013" parameterSource="s_anio_param" parameterType="URL" variable="s_anio_param"/>
-<SQLParameter id="213" dataType="Text" designDefaultValue="'gestrada'" parameterSource="s_analista_param1" parameterType="URL" variable="s_analista_param1"/>
-<SQLParameter id="214" dataType="Text" designDefaultValue="'Calificado'" parameterSource="s_estado_param" parameterType="URL" variable="s_estado_param"/>
-</SQLParameters>
+				<SQLParameter id="210" dataType="Integer" defaultValue="0" designDefaultValue="3" parameterSource="s_cds_param" parameterType="URL" variable="s_cds_param"/>
+				<SQLParameter id="211" dataType="Integer" defaultValue="date(&quot;m&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="11" parameterSource="s_mes_param" parameterType="URL" variable="s_mes_param"/>
+				<SQLParameter id="212" dataType="Text" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;)-1,date(&quot;d&quot;),date(&quot;Y&quot;)))" designDefaultValue="2013" parameterSource="s_anio_param" parameterType="URL" variable="s_anio_param"/>
+				<SQLParameter id="213" dataType="Text" designDefaultValue="'gestrada'" parameterSource="s_analista_param1" parameterType="URL" variable="s_analista_param1"/>
+				<SQLParameter id="214" dataType="Text" designDefaultValue="'Calificado'" parameterSource="s_estado_param" parameterType="URL" variable="s_estado_param"/>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>

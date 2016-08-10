@@ -718,7 +718,7 @@ function mc_calificacion_incidente_CheckBox1_TotalHorasSolucion_BeforeShow(& $se
 
 
   	}
-		  
+	  
 	if ($TienePaquetes == 0 && ($TiempoPaquetes<=0 || trim($TiempoPaquetes)=="")){
 			$Final->TotalHorasSolucion->SetValue($TiempoCursoaResuelto);
 	}	
@@ -1620,14 +1620,21 @@ function Final_TotalHorasSolucion_BeforeShow(& $sender)
 			$vFechaINI= $DBcnDisenio->f("FechaInicioMov");
 			$vFechaFIN= $DBcnDisenio->f("FechaFinMov");
 			$TienePaquetes = $TienePaquetes +1;	
+			$banDatAnt=1; //Bandera que valida el cambio del fechas anteriores, esto en caso de que existan mas de 2 datos con misma clave de movimiento 
 			if ($i==1){
 				$TiempoPaquetes=$TiempoPaquetes + $SEGUNDOS;
+				$banDatAnt=1;
+
 			} else {
+
 				if ($ClaveMov==$ClaveMovAnt){
+					
 					//si no se traslapa con el paquete toma el total de los segundos
 					if(($vFechaINI < $vFechaINIAnt && $vFechaFIN < $vFechaINIAnt) || ($vFechaFIN > $vFechaFINAnt && $vFechaINI > $vFechaFINAnt) ){
 						$TiempoPaquetes=$TiempoPaquetes+ $SEGUNDOS;	
+						$banDatAnt=1;
 					} else {
+											
 						if ($vFechaINI < $vFechaINIAnt && $vFechaFIN < $vFechaFINAnt && $vFechaFIN > $vFechaINIAnt  ) {
 							$sql="select dbo.ufDiffFechasMCSec('" . $vFechaINI . "','" . $vFechaINIAnt . "')";
 							$db->query($sql);
@@ -1638,21 +1645,27 @@ function Final_TotalHorasSolucion_BeforeShow(& $sender)
 						}
 						if($db->next_record()){
 							$TiempoPaquetes = $TiempoPaquetes + $db->f(0);
+							$banDatAnt=1;
+						} else {
+								$banDatAnt=0;
 						}
 						
 					}
 				} else {
 						$TiempoPaquetes=$TiempoPaquetes+ $SEGUNDOS;				
-				}
+						$banDatAnt=1;				}
 			}
 			$ClaveMovAnt=$DBcnDisenio->f("ClaveMovimiento");
 			$fechaINIAnt= CCFormatDate(CCParseDate($DBcnDisenio->f("FechaInicioMov"),array("yyyy","-","mm","-","dd"," ","HH",":","nn",":","ss",".","S")),array("dd","/","mm","/","yyyy"));//CCFormatDate((string)$DBcnDisenio->f("FechaInicioMov"),array("dd","/","mm","/","yyyy")); //CCFormatDate($DBcnDisenio->f("FechaInicioMov"),array("dd","/","mm","/","yyyy"));
 			$fechaFINAnt= CCFormatDate(CCParseDate($DBcnDisenio->f("FechaFinMov"),array("yyyy","-","mm","-","dd"," ","HH",":","nn",":","ss",".","S")),array("dd","/","mm","/","yyyy"));//CCFormatDate($DBcnDisenio->f("FechaFinMov"),array("dd","/","mm","/","yyyy"));
-			$vFechaINIAnt= $DBcnDisenio->f("FechaInicioMov");
-			$vFechaFINAnt= $DBcnDisenio->f("FechaFinMov");
+			if($banDatAnt==1){
+				$vFechaINIAnt= $DBcnDisenio->f("FechaInicioMov");
+				$vFechaFINAnt= $DBcnDisenio->f("FechaFinMov");				
+			}
+			//$vFechaINIAnt= $DBcnDisenio->f("FechaInicioMov");
+			//$vFechaFINAnt= $DBcnDisenio->f("FechaFinMov");
 			$i++;
 	  	}	
-
 	}	//fin calculo de tiempo ==1
 
 
@@ -1685,6 +1698,7 @@ function Final_TotalHorasSolucion_BeforeShow(& $sender)
 			if ($TiempoAtencion<0){$TiempoAtencion=0;}
 			if ($TiempoConcluidaResuelto<0){$TiempoConcluidaResuelto=0;}
 			
+
 			$Final->TotalHorasSolucion->SetValue($TiempoPaquetes+$TiempoConcluidaResuelto+$TiempoSolucion);
 		}	
 			

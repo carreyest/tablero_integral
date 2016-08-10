@@ -154,6 +154,11 @@ jQuery(function ($) {
                 <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="data:image/png;base64,R0lGODlhCwAHAIABACl4k62+wiH5BAEAAAEALAAAAAALAAcAAAIPjA2nCLnR4or00Auv3rEAADs="><!-- END Asc_On -->
                 <!-- BEGIN Desc_On --><img border="0" alt="Descendente" src="data:image/png;base64,R0lGODlhCwAHAIAAAK2+wil4kyH5BAEAAAAALAAAAAALAAcAAAIOjI+pAWsAF5xp2mMzswUAOw=="><!-- END Desc_On --><!-- END Sorter Sorter_numero --></th>
  
+                <th scope="col">&nbsp; 
+                <!-- BEGIN Sorter Sorter_IdEstimacion --><span class="Sorter"><a href="{Sort_URL}" id="grdUniversoSorter_IdEstimacion">Estimación</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascendente" src="data:image/png;base64,R0lGODlhCwAHAIABACl4k62+wiH5BAEAAAEALAAAAAALAAcAAAIPjA2nCLnR4or00Auv3rEAADs="><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descendente" src="data:image/png;base64,R0lGODlhCwAHAIAAAK2+wil4kyH5BAEAAAAALAAAAAALAAcAAAIOjI+pAWsAF5xp2mMzswUAOw=="><!-- END Desc_On --></span><!-- END Sorter Sorter_IdEstimacion --></th>
+ 
                 <th scope="col">
                 <!-- BEGIN Sorter Sorter_proveedor --><a href="{Sort_URL}" id="grdUniversoSorter_proveedor">Proveedor</a> 
                 <!-- BEGIN Asc_On --><img border="0" alt="Ascendente" src="data:image/png;base64,R0lGODlhCwAHAIABACl4k62+wiH5BAEAAAEALAAAAAALAAcAAAIPjA2nCLnR4or00Auv3rEAADs="><!-- END Asc_On -->
@@ -178,6 +183,7 @@ jQuery(function ($) {
               <tr class="Row">
                 <td>{tipo}&nbsp;</td> 
                 <td><a href="{hnumero_Src}" id="grdUniversohnumero_{grdUniverso:rowNumber}" target="_self">{hnumero}</a></td> 
+                <td>&nbsp;{IdEstimacion}</td> 
                 <td>{proveedor}&nbsp;</td> 
                 <td>{mes}&nbsp;</td> 
                 <td style="TEXT-ALIGN: right">{anio}&nbsp;</td> 
@@ -188,11 +194,11 @@ jQuery(function ($) {
  <!-- END Row -->
               <!-- BEGIN NoRecords -->
               <tr class="NoRecords">
-                <td colspan="7">No hay registros</td>
+                <td colspan="8">No hay registros</td>
               </tr>
               <!-- END NoRecords -->
               <tr class="Footer">
-                <td colspan="7">
+                <td colspan="8">
                   <!-- BEGIN Navigator Navigator -->
                   <!-- BEGIN Page_Parameter --><input type="hidden" value="{Value}" name="{Name}"><!-- END Page_Parameter -->Registros por página: 
                   <select onchange="CCChangeSize(this, '{FormName}')" name="{FormName}PageSize">

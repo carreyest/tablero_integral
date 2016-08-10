@@ -950,7 +950,7 @@ class clsuniverso_cdsDataSource extends clsDBcnDisenio {  //universo_cdsDataSour
 
 class clsGridgrdUniverso { //grdUniverso class @2-289C34FB
 
-//Variables @2-D2F8B1F9
+//Variables @2-7544DF4E
 
     // Public variables
     public $ComponentType = "Grid";
@@ -984,9 +984,10 @@ class clsGridgrdUniverso { //grdUniverso class @2-289C34FB
     public $Sorter_proveedor;
     public $Sorter_nombre;
     public $Sorter_anio;
+    public $Sorter_IdEstimacion;
 //End Variables
 
-//Class_Initialize Event @2-7FD80FEE
+//Class_Initialize Event @2-54770AFB
     function clsGridgrdUniverso($RelativePath, & $Parent)
     {
         global $FileName;
@@ -1028,6 +1029,7 @@ class clsGridgrdUniverso { //grdUniverso class @2-289C34FB
         $this->lbSLO_RT->Page = "ReqTecList.php";
         $this->Link1 = new clsControl(ccsLink, "Link1", "Link1", ccsText, "", CCGetRequestParam("Link1", ccsGet, NULL), $this);
         $this->Link1->Page = "";
+        $this->IdEstimacion = new clsControl(ccsLabel, "IdEstimacion", "IdEstimacion", ccsText, "", CCGetRequestParam("IdEstimacion", ccsGet, NULL), $this);
         $this->Sorter_tipo = new clsSorter($this->ComponentName, "Sorter_tipo", $FileName, $this);
         $this->Sorter_numero = new clsSorter($this->ComponentName, "Sorter_numero", $FileName, $this);
         $this->Sorter_proveedor = new clsSorter($this->ComponentName, "Sorter_proveedor", $FileName, $this);
@@ -1035,6 +1037,7 @@ class clsGridgrdUniverso { //grdUniverso class @2-289C34FB
         $this->Sorter_anio = new clsSorter($this->ComponentName, "Sorter_anio", $FileName, $this);
         $this->Navigator = new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
+        $this->Sorter_IdEstimacion = new clsSorter($this->ComponentName, "Sorter_IdEstimacion", $FileName, $this);
     }
 //End Class_Initialize Event
 
@@ -1049,7 +1052,7 @@ class clsGridgrdUniverso { //grdUniverso class @2-289C34FB
     }
 //End Initialize Method
 
-//Show Method @2-7AAC4B5D
+//Show Method @2-2CF8BD74
     function Show()
     {
         $Tpl = CCGetTemplate($this);
@@ -1091,6 +1094,7 @@ class clsGridgrdUniverso { //grdUniverso class @2-289C34FB
             $this->ControlsVisible["descartar_manual"] = $this->descartar_manual->Visible;
             $this->ControlsVisible["lbSLO_RT"] = $this->lbSLO_RT->Visible;
             $this->ControlsVisible["Link1"] = $this->Link1->Visible;
+            $this->ControlsVisible["IdEstimacion"] = $this->IdEstimacion->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -1106,6 +1110,7 @@ class clsGridgrdUniverso { //grdUniverso class @2-289C34FB
                 $this->descartar_manual->SetValue($this->DataSource->descartar_manual->GetValue());
                 $this->Link1->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
                 $this->Link1->Parameters = CCAddParam($this->Link1->Parameters, "id", $this->DataSource->f("id"));
+                $this->IdEstimacion->SetValue($this->DataSource->IdEstimacion->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -1117,6 +1122,7 @@ class clsGridgrdUniverso { //grdUniverso class @2-289C34FB
                 $this->descartar_manual->Show();
                 $this->lbSLO_RT->Show();
                 $this->Link1->Show();
+                $this->IdEstimacion->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -1148,13 +1154,14 @@ class clsGridgrdUniverso { //grdUniverso class @2-289C34FB
         $this->Sorter_nombre->Show();
         $this->Sorter_anio->Show();
         $this->Navigator->Show();
+        $this->Sorter_IdEstimacion->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
     }
 //End Show Method
 
-//GetErrors Method @2-3EFF828F
+//GetErrors Method @2-22451E85
     function GetErrors()
     {
         $errors = "";
@@ -1166,6 +1173,7 @@ class clsGridgrdUniverso { //grdUniverso class @2-289C34FB
         $errors = ComposeStrings($errors, $this->descartar_manual->Errors->ToString());
         $errors = ComposeStrings($errors, $this->lbSLO_RT->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Link1->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->IdEstimacion->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -1176,7 +1184,7 @@ class clsGridgrdUniverso { //grdUniverso class @2-289C34FB
 
 class clsgrdUniversoDataSource extends clsDBcnDisenio {  //grdUniversoDataSource Class @2-51B5B915
 
-//DataSource Variables @2-A15C4998
+//DataSource Variables @2-8EB4094D
     public $Parent = "";
     public $CCSEvents = "";
     public $CCSEventResult;
@@ -1194,9 +1202,10 @@ class clsgrdUniversoDataSource extends clsDBcnDisenio {  //grdUniversoDataSource
     public $mes;
     public $anio;
     public $descartar_manual;
+    public $IdEstimacion;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-070BC5F7
+//DataSourceClass_Initialize Event @2-2F28A1D7
     function clsgrdUniversoDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1214,11 +1223,13 @@ class clsgrdUniversoDataSource extends clsDBcnDisenio {  //grdUniversoDataSource
         
         $this->descartar_manual = new clsField("descartar_manual", ccsText, "");
         
+        $this->IdEstimacion = new clsField("IdEstimacion", ccsText, "");
+        
 
     }
 //End DataSourceClass_Initialize Event
 
-//SetOrder Method @2-348300B0
+//SetOrder Method @2-1FCB5EB9
     function SetOrder($SorterName, $SorterDirection)
     {
         $this->Order = "";
@@ -1227,7 +1238,8 @@ class clsgrdUniversoDataSource extends clsDBcnDisenio {  //grdUniversoDataSource
             "Sorter_numero" => array("numero", ""), 
             "Sorter_proveedor" => array("proveedor", ""), 
             "Sorter_nombre" => array("nombre", ""), 
-            "Sorter_anio" => array("anio", "")));
+            "Sorter_anio" => array("anio", ""), 
+            "Sorter_IdEstimacion" => array("IdEstimacion", "")));
     }
 //End SetOrder Method
 
@@ -1246,11 +1258,11 @@ class clsgrdUniversoDataSource extends clsDBcnDisenio {  //grdUniversoDataSource
     }
 //End Prepare Method
 
-//Open Method @2-A293EA10
+//Open Method @2-4D507C3A
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (select u.id, u.numero, p.nombre proveedor, m.mes, u.anio ,\n" .
+        $this->CountSQL = "SELECT COUNT(*) FROM (select u.id, u.numero,  u.IdEstimacion,p.nombre proveedor, m.mes, u.anio ,\n" .
         "	case when tipo ='IN' THEN 'Incidente'\n" .
         "		when tipo='PA' THEN 'Aprobación PPMC'\n" .
         "		when tipo='PC' THEN 'Cierre PPMC'\n" .
@@ -1268,7 +1280,7 @@ class clsgrdUniversoDataSource extends clsDBcnDisenio {  //grdUniversoDataSource
         "    --and (u.descartar_manual =0 or u.descartar_manual is null)\n" .
         "    and u.numero like '%" . $this->SQLValue($this->wp->GetDBValue("6"), ccsText) . "%'\n" .
         ") or (u.descartar_manual = " . $this->SQLValue($this->wp->GetDBValue("5"), ccsInteger) . " and  1=" . $this->SQLValue($this->wp->GetDBValue("5"), ccsInteger) . ")) cnt";
-        $this->SQL = "select u.id, u.numero, p.nombre proveedor, m.mes, u.anio ,\n" .
+        $this->SQL = "select u.id, u.numero,  u.IdEstimacion,p.nombre proveedor, m.mes, u.anio ,\n" .
         "	case when tipo ='IN' THEN 'Incidente'\n" .
         "		when tipo='PA' THEN 'Aprobación PPMC'\n" .
         "		when tipo='PC' THEN 'Cierre PPMC'\n" .
@@ -1297,7 +1309,7 @@ class clsgrdUniversoDataSource extends clsDBcnDisenio {  //grdUniversoDataSource
     }
 //End Open Method
 
-//SetValues Method @2-CE6D0D35
+//SetValues Method @2-43FAAEA7
     function SetValues()
     {
         $this->tipo->SetDBValue($this->f("desc_tipo"));
@@ -1306,6 +1318,7 @@ class clsgrdUniversoDataSource extends clsDBcnDisenio {  //grdUniversoDataSource
         $this->mes->SetDBValue($this->f("mes"));
         $this->anio->SetDBValue(trim($this->f("anio")));
         $this->descartar_manual->SetDBValue($this->f("descartar_manual"));
+        $this->IdEstimacion->SetDBValue($this->f("IdEstimacion"));
     }
 //End SetValues Method
 

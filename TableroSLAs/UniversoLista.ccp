@@ -1,4 +1,4 @@
-<Page id="1" templateExtension="html" relativePath="." fullRelativePath="." secured="True" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="{CCS_Style}" wizardThemeVersion="3.0" pasteActions="pasteActions" needGeneration="0" accessDeniedPage="Login.ccp">
+<Page id="1" templateExtension="html" relativePath="." fullRelativePath="." secured="True" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="{CCS_Style}" wizardThemeVersion="3.0" pasteActions="pasteActions" needGeneration="0" accessDeniedPage="Login.ccp" wizardSortingType="SimpleDir">
 	<Components>
 		<Record id="15" sourceType="Table" urlType="Relative" secured="False" allowInsert="False" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="None" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="grdFiltra" wizardCaption=" Grid1 Buscar" wizardOrientation="Horizontal" wizardFormMethod="post" returnPage="UniversoLista.ccp" PathID="grdFiltra">
 			<Components>
@@ -430,7 +430,7 @@
 			<Features>
 			</Features>
 		</Panel>
-		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="25" connection="cnDisenio" dataSource="select u.id, u.numero, p.nombre proveedor, m.mes, u.anio ,
+		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="25" connection="cnDisenio" dataSource="select u.id, u.numero,  u.IdEstimacion,p.nombre proveedor, m.mes, u.anio ,
 	case when tipo ='IN' THEN 'Incidente'
 		when tipo='PA' THEN 'Aprobación PPMC'
 		when tipo='PC' THEN 'Cierre PPMC'
@@ -447,7 +447,7 @@ where (
     and u.tipo like '%{s_tipo}%'
     --and (u.descartar_manual =0 or u.descartar_manual is null)
     and u.numero like '%{s_Numero}%'
-) or (u.descartar_manual = {sPendientes} and  1={sPendientes})" name="grdUniverso" pageSizeLimit="100" wizardCaption=" Grid1 Lista de" wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No hay registros" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" PathID="grdUniverso">
+) or (u.descartar_manual = {sPendientes} and  1={sPendientes})" name="grdUniverso" pageSizeLimit="100" wizardCaption=" Grid1 Lista de" wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No hay registros" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" PathID="grdUniverso" wizardAllowSorting="True">
 			<Components>
 				<Sorter id="3" visible="True" name="Sorter_tipo" column="tipo" wizardCaption="Tipo" wizardSortingType="SimpleDir" wizardControl="tipo" wizardAddNbsp="False" PathID="grdUniversoSorter_tipo">
 					<Components/>
@@ -537,7 +537,19 @@ where (
 					<Attributes/>
 					<Features/>
 				</Link>
-			</Components>
+				<Label id="199" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="IdEstimacion" PathID="grdUniversoIdEstimacion" fieldSource="IdEstimacion">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Label>
+<Sorter id="200" visible="True" name="Sorter_IdEstimacion" wizardSortingType="SimpleDir" PathID="grdUniversoSorter_IdEstimacion" wizardCaption="Estimación" column="IdEstimacion">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Sorter>
+</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
@@ -552,13 +564,13 @@ where (
 			<Fields/>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="185" dataType="Integer" defaultValue="0" designDefaultValue="0" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
-				<SQLParameter id="186" dataType="Integer" defaultValue="date(&quot;m&quot;,mktime(0,0,0,date(&quot;m&quot;)-1,date(&quot;d&quot;),date(&quot;Y&quot;)))" designDefaultValue="8" parameterSource="s_mes" parameterType="URL" variable="s_mes"/>
-				<SQLParameter id="187" dataType="Integer" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="2013" parameterSource="s_anio" parameterType="URL" variable="s_anio"/>
-				<SQLParameter id="188" dataType="Text" designDefaultValue="0" parameterSource="s_tipo" parameterType="URL" variable="s_tipo"/>
-				<SQLParameter id="189" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="sPendientes" parameterType="URL" variable="sPendientes"/>
-				<SQLParameter id="190" dataType="Text" parameterSource="s_Numero" parameterType="URL" variable="s_Numero"/>
-			</SQLParameters>
+				<SQLParameter id="193" dataType="Integer" defaultValue="0" designDefaultValue="0" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
+<SQLParameter id="194" dataType="Integer" defaultValue="date(&quot;m&quot;,mktime(0,0,0,date(&quot;m&quot;)-1,date(&quot;d&quot;),date(&quot;Y&quot;)))" designDefaultValue="8" parameterSource="s_mes" parameterType="URL" variable="s_mes"/>
+<SQLParameter id="195" dataType="Integer" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="2013" parameterSource="s_anio" parameterType="URL" variable="s_anio"/>
+<SQLParameter id="196" dataType="Text" designDefaultValue="0" parameterSource="s_tipo" parameterType="URL" variable="s_tipo"/>
+<SQLParameter id="197" dataType="Integer" defaultValue="0" designDefaultValue="1" parameterSource="sPendientes" parameterType="URL" variable="sPendientes"/>
+<SQLParameter id="198" dataType="Text" parameterSource="s_Numero" parameterType="URL" variable="s_Numero"/>
+</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>

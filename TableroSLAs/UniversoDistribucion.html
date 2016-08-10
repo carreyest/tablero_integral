@@ -265,11 +265,6 @@
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_id --></th>
  
-                  <th scope="col">&nbsp; 
-                  <!-- BEGIN Sorter Sorter_IdEstimacion --><span class="Sorter"><a href="{Sort_URL}" id="mc_universo_cds1Sorter_IdEstimacion">Estimación</a> 
-                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
-                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_IdEstimacion --></th>
- 
                   <th scope="col">
                   <!-- BEGIN Sorter Sorter_id_proveedor --><span class="Sorter"><a href="{Sort_URL}" id="mc_universo_cds1Sorter_id_proveedor">Proveedor</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
@@ -279,6 +274,11 @@
                   <!-- BEGIN Sorter Sorter_numero --><span class="Sorter"><a href="{Sort_URL}" id="mc_universo_cds1Sorter_numero">Número</a> 
                   <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
                   <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_numero --></th>
+ 
+                  <th scope="col">&nbsp; 
+                  <!-- BEGIN Sorter Sorter_IdEstimacion --><span class="Sorter"><a href="{Sort_URL}" id="mc_universo_cds1Sorter_IdEstimacion">Estimación</a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/{CCS_Style}/Images/Asc.gif"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_IdEstimacion --></th>
  
                   <th scope="col">
                   <!-- BEGIN Sorter Sorter_tipo --><span class="Sorter"><a href="{Sort_URL}" id="mc_universo_cds1Sorter_tipo">Tipo</a> 
@@ -314,9 +314,9 @@
                 <tr class="Row">
                   <td>{NumFila}</td> 
                   <td>{id}<input type="hidden" id="mc_universo_cds1hdID_{mc_universo_cds1:rowNumber}" style="HEIGHT: 22px; WIDTH: 23px" size="1" value="{hdID}" name="{hdID_Name}"></td> 
-                  <td>&nbsp;{IdEstimacion}</td> 
                   <td>{id_proveedor}</td> 
                   <td>{numero}</td> 
+                  <td>&nbsp;{IdEstimacion}</td> 
                   <td>{tipo}</td> 
                   <td>{mes}</td> 
                   <td>{anio}</td> 

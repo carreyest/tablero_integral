@@ -16,9 +16,9 @@
                 }
         }
                 function calificaReq(){
-                  sMax = document.getElementById("mc_calificacion_capcPctMaximo").value + document.getElementById("mc_calificacion_capcDiasRetrasoHabiles").value +
-                   document.getElementById("mc_calificacion_capcDiasRetrasoNaturales").value;
-        
+                  sMax = parseFloat(document.getElementById("mc_calificacion_capcPctMaximo").value) + parseFloat(document.getElementById("mc_calificacion_capcDiasRetrasoHabiles").value) +
+                   parseFloat(document.getElementById("mc_calificacion_capcDiasRetrasoNaturales").value);
+                                        
                                 if (sMax>0){
                                           document.getElementById("mc_calificacion_capcRETR_ENTREGABLE").value=0;
                                     } else {
@@ -89,15 +89,17 @@
         }
         
         function CalculaRetraso(){
-                var iDiasPlan = Number(document.getElementById("mc_calificacion_capcDiasPlaneados").value);
-                var iDiasReal= Number(document.getElementById("mc_calificacion_capcDiasReales").value);
+                //var iDiasPlan = Number(document.getElementById("mc_calificacion_capcDiasPlaneados").value);
+                        var iDiasPlan = 0;
+                //var iDiasReal= Number(document.getElementById("mc_calificacion_capcDiasReales").value);
+                        var iDiasReal= 0;
                 var iDesviacion = document.getElementById("mc_calificacion_capcDiasRetrasoNaturales").value;
                         
-                        if(iDiasReal > iDiasPlan){
-                                iDesviacion =(iDiasReal - iDiasPlan);
-                        } else {
-                                iDesviacion = 0;
-                        }        
+                        //if(iDiasReal > iDiasPlan){
+                        //        iDesviacion =(iDiasReal - iDiasPlan);
+                        //} else {
+                        //        iDesviacion = 0;
+                        //}        
                         document.getElementById("mc_calificacion_capcDiasRetrasoNaturales").value= iDesviacion;
                         //dependiendo del retraso se calcula la deductiva
                         document.getElementById("mc_calificacion_capcPctMaximo").value=0;     
@@ -114,8 +116,10 @@
                                 if(iDesviacion   > 35){
                                 //dDeductiva = 30 + ((dNatDesviacion -35)*0.143); 
                                 document.getElementById("mc_calificacion_capcPctMaximo").value= 30 + iDesviacion   *0.143; 
+
                                 } else {
-                                    document.getElementById("mc_calificacion_capcPctMaximo").value= iDesviacion   * ((iDesviacion   - 5)/10);
+        						//document.getElementById("mc_calificacion_capcPctMaximo").value= iDesviacion   * ((iDesviacion   - 5)/10);
+        						document.getElementById("mc_calificacion_capcPctMaximo").value=  iDesviacion   - 5;
                                 }
                         }
                 }
@@ -169,8 +173,8 @@ jQuery(function ($) {
 
 //Custom Code @165-2A29BDB7
         // -------------------------
-                  sMax = document.getElementById("mc_calificacion_capcPctMaximo").value + document.getElementById("mc_calificacion_capcDiasRetrasoHabiles").value +
-                   document.getElementById("mc_calificacion_capcDiasRetrasoNaturales").value;
+                  sMax = parseFloat(document.getElementById("mc_calificacion_capcPctMaximo").value) + parseFloat(document.getElementById("mc_calificacion_capcDiasRetrasoHabiles").value) +
+                   parseFloat(document.getElementById("mc_calificacion_capcDiasRetrasoNaturales").value);
         
                                 if (sMax>0){
                                           document.getElementById("mc_calificacion_capcRETR_ENTREGABLE").value=0;
@@ -193,8 +197,8 @@ jQuery(function ($) {
 
 //Custom Code @166-2A29BDB7
         // -------------------------
-                  sMax = document.getElementById("mc_calificacion_capcPctMaximo").value + document.getElementById("mc_calificacion_capcDiasRetrasoHabiles").value +
-                   document.getElementById("mc_calificacion_capcDiasRetrasoNaturales").value;
+                  sMax = parseFloat(document.getElementById("mc_calificacion_capcPctMaximo").value) + parseFloat(document.getElementById("mc_calificacion_capcDiasRetrasoHabiles").value) +
+                   parseFloat(document.getElementById("mc_calificacion_capcDiasRetrasoNaturales").value);
         
                                 if (sMax>0){
                                           document.getElementById("mc_calificacion_capcRETR_ENTREGABLE").value=0;
@@ -216,8 +220,8 @@ jQuery(function ($) {
 
 //Custom Code @167-2A29BDB7
         // -------------------------
-                  sMax = document.getElementById("mc_calificacion_capcPctMaximo").value + document.getElementById("mc_calificacion_capcDiasRetrasoHabiles").value +
-                   document.getElementById("mc_calificacion_capcDiasRetrasoNaturales").value;
+                  sMax = parseFloat(document.getElementById("mc_calificacion_capcPctMaximo").value) + parseFloat(document.getElementById("mc_calificacion_capcDiasRetrasoHabiles").value) +
+                   parseFloat(document.getElementById("mc_calificacion_capcDiasRetrasoNaturales").value);
         
                                 if (sMax>0){
                                           document.getElementById("mc_calificacion_capcRETR_ENTREGABLE").value=0;
@@ -422,8 +426,9 @@ jQuery(function ($) {
                                   <td><label for="mc_calificacion_capcDiasReales" style="display: inline;">&nbsp;</label></td> 
                                   <td>
                                     <!-- BEGIN TextBox DiasReales --><input type="text" onchange="CalculaRetraso()" id="mc_calificacion_capcDiasReales" maxlength="4" size="4" value="{DiasReales}" name="{DiasReales_Name}"><!-- END TextBox DiasReales --></td> 
-                                  <td><label for="mc_calificacion_capcDiasRetrasoHabiles" style="display: inline;">Máximo&nbsp;días de retraso&nbsp;hábiles</label></td> 
-                                  <td><input type="text" onchange="CalculaRetraso()" id="mc_calificacion_capcDiasRetrasoHabiles" maxlength="5" size="5" value="{DiasRetrasoHabiles}" name="{DiasRetrasoHabiles_Name}"></td> 
+                                  <td><label for="mc_calificacion_capcDiasRetrasoHabiles" style="display: inline;">&nbsp;</label></td> 
+                                  <td>
+                                    <!-- BEGIN TextBox DiasRetrasoHabiles --><input type="text" onchange="CalculaRetraso()" id="mc_calificacion_capcDiasRetrasoHabiles" maxlength="5" size="5" value="{DiasRetrasoHabiles}" name="{DiasRetrasoHabiles_Name}"><!-- END TextBox DiasRetrasoHabiles --></td> 
                                   <td><label for="mc_calificacion_capcDiasRetrasoNaturales" style="display: inline;"><label for="mc_calificacion_capcDiasRetrasoHabiles" style="display: inline;">Máximo&nbsp;días de retraso&nbsp;naturales</label></label></td> 
                                   <td><input type="text" onchange="CalculaRetraso()" id="mc_calificacion_capcDiasRetrasoNaturales" maxlength="5" size="5" value="{DiasRetrasoNaturales}" name="{DiasRetrasoNaturales_Name}"></td>
                                 </tr>

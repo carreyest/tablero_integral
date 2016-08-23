@@ -49,7 +49,7 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-19D08AB4
+//Class_Initialize Event @3-3240BAE1
     function clsRecordmc_calificacion_capc($RelativePath, & $Parent)
     {
 
@@ -123,6 +123,7 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
             $this->CAPFirmada->UncheckedValue = false;
             $this->FechaFirmaCAES = new clsControl(ccsTextBox, "FechaFirmaCAES", "FechaFirmaCAES", ccsDate, array("dd", "/", "mm", "/", "yyyy"), CCGetRequestParam("FechaFirmaCAES", $Method, NULL), $this);
             $this->DiasRetrasoHabiles = new clsControl(ccsTextBox, "DiasRetrasoHabiles", "DiasRetrasoHabiles", ccsFloat, array(False, 2, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("DiasRetrasoHabiles", $Method, NULL), $this);
+            $this->DiasRetrasoHabiles->Visible = false;
             $this->DiasRetrasoNaturales = new clsControl(ccsTextBox, "DiasRetrasoNaturales", "DiasRetrasoNaturales", ccsFloat, array(False, 2, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("DiasRetrasoNaturales", $Method, NULL), $this);
             $this->PctMaximo = new clsControl(ccsTextBox, "PctMaximo", "PctMaximo", ccsFloat, "", CCGetRequestParam("PctMaximo", $Method, NULL), $this);
             $this->DiasPlaneados = new clsControl(ccsTextBox, "DiasPlaneados", "DiasPlaneados", ccsFloat, array(False, 2, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("DiasPlaneados", $Method, NULL), $this);
@@ -146,13 +147,17 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @3-0A320629
             $this->paquetes_cerrados->UncheckedValue = false;
             $this->RETR_ENTREGABLE = new clsControl(ccsListBox, "RETR_ENTREGABLE", "RETR ENTREGABLE", ccsBoolean, $CCSLocales->GetFormatInfo("BooleanFormat"), CCGetRequestParam("RETR_ENTREGABLE", $Method, NULL), $this);
             $this->RETR_ENTREGABLE->DSType = dsListOfValues;
-            $this->RETR_ENTREGABLE->Values = array(array("1", "Cumple"), array("0", "No Cumple"));
+            $this->RETR_ENTREGABLE->Values = array(array("0", "No Cumple"), array("1", "Cumple"));
             $this->btnCalcular = new clsButton("btnCalcular", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->id_proveedor->Value) && !strlen($this->id_proveedor->Value) && $this->id_proveedor->Value !== false)
                     $this->id_proveedor->SetText(1);
                 if(!is_array($this->CAPFirmada->Value) && !strlen($this->CAPFirmada->Value) && $this->CAPFirmada->Value !== false)
                     $this->CAPFirmada->SetValue(false);
+                if(!is_array($this->DiasRetrasoHabiles->Value) && !strlen($this->DiasRetrasoHabiles->Value) && $this->DiasRetrasoHabiles->Value !== false)
+                    $this->DiasRetrasoHabiles->SetText(0);
+                if(!is_array($this->DiasPlaneados->Value) && !strlen($this->DiasPlaneados->Value) && $this->DiasPlaneados->Value !== false)
+                    $this->DiasPlaneados->SetText(0);
                 if(!is_array($this->SLO->Value) && !strlen($this->SLO->Value) && $this->SLO->Value !== false)
                     $this->SLO->SetValue(false);
                 if(!is_array($this->paquetes_cerrados->Value) && !strlen($this->paquetes_cerrados->Value) && $this->paquetes_cerrados->Value !== false)

@@ -120,43 +120,43 @@
 						</JDateTimePicker>
 					</Features>
 				</TextBox>
-				<TextBox id="65" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="DiasRetrasoHabiles" PathID="mc_calificacion_capcDiasRetrasoHabiles" fieldSource="DiasRetrasoHabiles" format="0.00">
+				<TextBox id="65" visible="No" fieldSourceType="DBColumn" dataType="Float" name="DiasRetrasoHabiles" PathID="mc_calificacion_capcDiasRetrasoHabiles" fieldSource="DiasRetrasoHabiles" format="0.00" defaultValue="0">
 					<Components/>
 					<Events>
-<Event name="OnChange" type="Client">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="165"/>
-</Actions>
-</Event>
-</Events>
+						<Event name="OnChange" type="Client">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="165"/>
+							</Actions>
+						</Event>
+					</Events>
 					<Attributes/>
 					<Features/>
 				</TextBox>
 				<TextBox id="66" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="DiasRetrasoNaturales" PathID="mc_calificacion_capcDiasRetrasoNaturales" fieldSource="DiasRetrasoNaturales" format="0.00">
 					<Components/>
 					<Events>
-<Event name="OnChange" type="Client">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="166"/>
-</Actions>
-</Event>
-</Events>
+						<Event name="OnChange" type="Client">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="166"/>
+							</Actions>
+						</Event>
+					</Events>
 					<Attributes/>
 					<Features/>
 				</TextBox>
 				<TextBox id="67" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="PctMaximo" PathID="mc_calificacion_capcPctMaximo" fieldSource="PctMaximo">
 					<Components/>
 					<Events>
-<Event name="OnChange" type="Client">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="167"/>
-</Actions>
-</Event>
-</Events>
+						<Event name="OnChange" type="Client">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="167"/>
+							</Actions>
+						</Event>
+					</Events>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="35" visible="No" fieldSourceType="DBColumn" dataType="Float" name="DiasPlaneados" PathID="mc_calificacion_capcDiasPlaneados" fieldSource="DiasPlaneados" format="0.00" required="False">
+				<TextBox id="35" visible="No" fieldSourceType="DBColumn" dataType="Float" name="DiasPlaneados" PathID="mc_calificacion_capcDiasPlaneados" fieldSource="DiasPlaneados" format="0.00" required="False" defaultValue="0">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -205,7 +205,7 @@
 					<Attributes/>
 					<Features/>
 				</CheckBox>
-				<ListBox id="19" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Boolean" returnValueType="Number" name="RETR_ENTREGABLE" fieldSource="RETR_ENTREGABLE" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="RETR ENTREGABLE" caption="RETR ENTREGABLE" required="False" unique="False" connection="cnDisenio" wizardEmptyCaption="Seleccionar Valor" PathID="mc_calificacion_capcRETR_ENTREGABLE" dataSource="1;Cumple;0;No Cumple">
+				<ListBox id="19" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Boolean" returnValueType="Number" name="RETR_ENTREGABLE" fieldSource="RETR_ENTREGABLE" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="RETR ENTREGABLE" caption="RETR ENTREGABLE" required="False" unique="False" connection="cnDisenio" wizardEmptyCaption="Seleccionar Valor" PathID="mc_calificacion_capcRETR_ENTREGABLE" dataSource="0;No Cumple;1;Cumple">
 					<Components/>
 					<Events/>
 					<TableParameters/>
@@ -244,8 +244,8 @@
 			<SPParameters/>
 			<SQLParameters/>
 			<JoinTables>
-				<JoinTable id="132" tableName="mc_calificacion_capc"/>
-			</JoinTables>
+				<JoinTable id="168" tableName="mc_calificacion_capc"/>
+</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="73" fieldName="*"/>

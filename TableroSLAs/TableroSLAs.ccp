@@ -1283,7 +1283,7 @@ and m.IdUniverso not in (select id from mc_universo_cds where revision=2  )
 				and Id_incidente in (select numero from mc_universo_cds where SLO={sSLO} and tipo = 'IN') 
 				)  mi on  mi.IdServicioCont= sc.Id 
 left join  (select SUM(CumpleSLA) Cumple_EF, COUNT(CumpleSLA) Total_EF, Id_Proveedor, MesReporte , anioreporte , 2 IdServicioCont  
-			from mc_eficiencia_presupuestal  where CumpleSLA in (1,0)  
+			from mc_eficiencia_presupuestal  where CumpleSLA in (1,0) and  not 1={sSLO}  
 			and (([GrupoAplicativos] not like 'Todos%' and (4&lt;&gt;4 or (MesReporte&gt;2 and anioreporte &gt;2013)) ) 
 					or (4=4 and MesReporte&lt;=2 and anioreporte &lt;2014 ) or 0=4)
 			group by Id_Proveedor, MesReporte , anioreporte  ) ef 
@@ -1636,10 +1636,10 @@ order by sc.orden" pageSizeLimit="100" pageSize="True" wizardCaption="Niveles de
 					<SPParameters/>
 					<SQLParameters>
 						<SQLParameter id="608" dataType="Integer" defaultValue="date('m')-2" designDefaultValue="1" old_temp_id="346" parameterSource="s_MesReporte" parameterType="URL" variable="sMes"/>
-						<SQLParameter id="609" dataType="Integer" defaultValue="date('Y')" designDefaultValue="2014" old_temp_id="347" parameterSource="s_AnioReporte" parameterType="URL" variable="sAnio"/>
-						<SQLParameter id="610" dataType="Integer" defaultValue="0" designDefaultValue="3" old_temp_id="348" parameterSource="s_id_proveedor" parameterType="URL" variable="sProveedor"/>
-						<SQLParameter id="611" dataType="Integer" defaultValue="0" designDefaultValue="1" old_temp_id="349" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
-					</SQLParameters>
+<SQLParameter id="609" dataType="Integer" defaultValue="date('Y')" designDefaultValue="2014" old_temp_id="347" parameterSource="s_AnioReporte" parameterType="URL" variable="sAnio"/>
+<SQLParameter id="610" dataType="Integer" defaultValue="0" designDefaultValue="3" old_temp_id="348" parameterSource="s_id_proveedor" parameterType="URL" variable="sProveedor"/>
+<SQLParameter id="611" dataType="Integer" defaultValue="0" designDefaultValue="1" old_temp_id="349" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
+</SQLParameters>
 					<SecurityGroups/>
 					<Attributes/>
 					<Features/>

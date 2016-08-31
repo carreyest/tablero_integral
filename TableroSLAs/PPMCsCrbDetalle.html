@@ -155,8 +155,8 @@ function MostrarSLA(opt){
 }
 
 function calificaSLA(){
-        sMax = document.getElementById("mc_info_rs_ap_ECPctMax").value + document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoHab").value +
-                   document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoNat").value
+        sMax = parseFloat(document.getElementById("mc_info_rs_ap_ECPctMax").value) + parseFloat(document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoHab").value) +
+                   parseFloat(document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoNat").value)
 
     sPct = document.getElementById("mc_info_rs_ap_ECPctMax").value;
     sDiasHabiles =   document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoHab").value;
@@ -455,8 +455,8 @@ jQuery(function ($) {
 
 //Custom Code @411-2A29BDB7
         // -------------------------
-        sMax = document.getElementById("mc_info_rs_ap_ECPctMax").value + document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoHab").value +
-                   document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoNat").value
+        sMax = parseFloat(document.getElementById("mc_info_rs_ap_ECPctMax").value) + parseFloat(document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoHab").value) +
+                   parseFloat(document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoNat").value)
         
         if (sMax>0){
 		  document.getElementById("mc_info_rs_ap_ECCumplioHE").value=0;
@@ -479,8 +479,8 @@ jQuery(function ($) {
 
 //Custom Code @412-2A29BDB7
         // -------------------------
-        sMax = document.getElementById("mc_info_rs_ap_ECPctMax").value + document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoHab").value +
-                   document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoNat").value
+        sMax = parseFloat(document.getElementById("mc_info_rs_ap_ECPctMax").value) + parseFloat(document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoHab").value) +
+                   parseFloat(document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoNat").value)
         
         if (sMax>0){
 		  document.getElementById("mc_info_rs_ap_ECCumplioHE").value=0;
@@ -503,8 +503,8 @@ jQuery(function ($) {
 
 //Custom Code @413-2A29BDB7
         // -------------------------
-    sMax = document.getElementById("mc_info_rs_ap_ECPctMax").value + document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoHab").value +
-           document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoNat").value
+    sMax = parseFloat(document.getElementById("mc_info_rs_ap_ECPctMax").value )+ parseFloat(document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoHab").value) +
+           parseFloat(document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoNat").value)
         
         if (sMax>0){
 		  document.getElementById("mc_info_rs_ap_ECCumplioHE").value=0;

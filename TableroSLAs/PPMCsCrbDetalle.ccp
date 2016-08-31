@@ -237,23 +237,23 @@ order by nombre
 							</Actions>
 						</Event>
 						<Event name="OnChange" type="Client">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="411"/>
-</Actions>
-</Event>
-</Events>
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="411"/>
+							</Actions>
+						</Event>
+					</Events>
 					<Attributes/>
 					<Features/>
 				</TextBox>
 				<TextBox id="148" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="MaxDiasRetrasoHab" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="mc_info_rs_ap_ECMaxDiasRetrasoHab" fieldSource="MaxDiasRetrasoHab" required="False" defaultValue="0" format="0.000">
 					<Components/>
 					<Events>
-<Event name="OnChange" type="Client">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="412"/>
-</Actions>
-</Event>
-</Events>
+						<Event name="OnChange" type="Client">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="412"/>
+							</Actions>
+						</Event>
+					</Events>
 					<Attributes/>
 					<Features/>
 				</TextBox>
@@ -266,11 +266,11 @@ order by nombre
 							</Actions>
 						</Event>
 						<Event name="OnChange" type="Client">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="413"/>
-</Actions>
-</Event>
-</Events>
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="413"/>
+							</Actions>
+						</Event>
+					</Events>
 					<Attributes/>
 					<Features/>
 				</TextBox>
@@ -415,8 +415,8 @@ order by nombre
 			<SPParameters/>
 			<SQLParameters/>
 			<JoinTables>
-				<JoinTable id="410" tableName="mc_info_rs_cr_RE_RC"/>
-			</JoinTables>
+				<JoinTable id="414" tableName="mc_info_rs_cr_RE_RC"/>
+</JoinTables>
 			<JoinLinks/>
 			<Fields>
 			</Fields>

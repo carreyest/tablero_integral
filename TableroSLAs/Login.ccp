@@ -26,13 +26,7 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<Image id="12" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="Image1" PathID="Login1Image1">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Image>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>

@@ -27,11 +27,20 @@ function Login1_Button_DoLogin_OnClick(& $sender)
         $Container->password->SetValue("");
         $Login1_Button_DoLogin_OnClick = 0;
     } else {
+//Inicia la insercion de usuarios
+
+            global $db;
+		    $db= new clsDBcnDisenio;
+		    $sSQL="INSERT INTO mc_acceso_usuarios(id_usuario,id_session,acceso) values(".CCGetUserId().",'".session_id()."',getdate())";
+    		$db->query($sSQL);
+    		$db->close();
+
+
         global $Redirect;
         global $PathToRoot;
         $Redirect = $PathToRoot . "Index.php";
         $Login1_Button_DoLogin_OnClick = 1;
-        
+
         // obtiene el grupo del usuario
         $db = new  clsDBcnDisenio();
         $sGrupoValoracion = CCDLookUp("Grupo","mc_c_usuarios","id= " . CCGetUserID() , $db);

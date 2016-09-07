@@ -45,7 +45,7 @@ class clsRecordLogin1 { //Login1 Class @2-621CEC6C
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-47C41F53
+//Class_Initialize Event @2-5EEAD90E
     function clsRecordLogin1($RelativePath, & $Parent)
     {
 
@@ -74,7 +74,6 @@ class clsRecordLogin1 { //Login1 Class @2-621CEC6C
             $this->login->Required = true;
             $this->password = new clsControl(ccsTextBox, "password", "password", ccsText, "", CCGetRequestParam("password", $Method, NULL), $this);
             $this->password->Required = true;
-            $this->Image1 = new clsControl(ccsImage, "Image1", "Image1", ccsText, "", CCGetRequestParam("Image1", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
@@ -94,13 +93,12 @@ class clsRecordLogin1 { //Login1 Class @2-621CEC6C
     }
 //End Validate Method
 
-//CheckErrors Method @2-00BC7998
+//CheckErrors Method @2-CE95D583
     function CheckErrors()
     {
         $errors = false;
         $errors = ($errors || $this->login->Errors->Count());
         $errors = ($errors || $this->password->Errors->Count());
-        $errors = ($errors || $this->Image1->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -138,7 +136,7 @@ class clsRecordLogin1 { //Login1 Class @2-621CEC6C
     }
 //End Operation Method
 
-//Show Method @2-03C51E55
+//Show Method @2-F13EE043
     function Show()
     {
         global $CCSUseAmp;
@@ -164,7 +162,6 @@ class clsRecordLogin1 { //Login1 Class @2-621CEC6C
             $Error = "";
             $Error = ComposeStrings($Error, $this->login->Errors->ToString());
             $Error = ComposeStrings($Error, $this->password->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->Image1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -185,7 +182,6 @@ class clsRecordLogin1 { //Login1 Class @2-621CEC6C
         $this->Button_DoLogin->Show();
         $this->login->Show();
         $this->password->Show();
-        $this->Image1->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }

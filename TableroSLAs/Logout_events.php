@@ -38,9 +38,21 @@ function Page_BeforeShow(& $sender)
 
 //Custom Code @3-2A29BDB7
 // -------------------------
+ 
+ //Inicia registro de cierre de usuario
+    global $db;
+    $db= new clsDBcnDisenio;
+    $sSQL="UPDATE mc_acceso_usuarios set cierre=getdate() where id_session='".session_id()."' and id = (select max(id) from mc_acceso_usuarios where id_session='".session_id()."')";
+    if (CCGetUserLogin()=='fjaime'){
+			echo($sSQL);die;
+		}
+	$db->query($sSQL);
+	$db->close();
+
     global $Redirect;
     CCSetSession("GrupoValoracion",""); 
     $Redirect ="login.php";
+
 // -------------------------
 //End Custom Code
 

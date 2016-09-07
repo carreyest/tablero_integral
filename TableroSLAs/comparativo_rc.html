@@ -1,0 +1,226 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>comparativo</title>
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-2504AB44
+</script>
+<script src="ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-A87AC9EE
+</script>
+{page:scriptIncludes}
+<script type="text/javascript">
+//End Include User Scripts
+
+//End CCS script
+</script>
+<style type='text/css'>
+ 
+#Grid1 > tbody > tr > td > table.Grid  >  tbody > tr:nth-child(odd) > td {
+    background-color:#f2f2f2;
+}
+#Grid1 > tbody > tr > td > table.Grid  >  tbody > tr:nth-child(even) > td {
+    background-color:#fbfbfb;
+}
+ 
+</style>
+<link rel="stylesheet" type="text/css" href="Styles/Austere4/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="Styles/Austere4/jquery-ui.css">
+</head>
+<body>
+<p>{Header}</p>
+<p>
+<!-- BEGIN Record periodos_carga -->
+<form id="periodos_carga" method="post" name="{HTMLFormName}" action="{Action}">
+  <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td> 
+            <td class="th"><strong>Seleccionar Periodo</strong></td> 
+            <td class="HeaderRight"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr id="{@error-block}" class="Error">
+            <td colspan="5">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <td class="th"><label for="periodos_cargas_id_periodo">Periodo</label></td> 
+            <td>
+              <select id="periodos_cargas_id_periodo" name="{s_id_periodo_Name}">
+                <option selected value="">Seleccionar Valor</option>
+                {s_id_periodo_Options}
+              </select>
+ </td> 
+            <td class="th"><label for="periodos_cargas_id_proveedor">Proveedor</label></td> 
+            <td>&nbsp; 
+              <select id="periodos_cargas_id_proveedor" name="{s_id_proveedor_Name}">
+                <option selected value="">Seleccionar Valor</option>
+                {s_id_proveedor_Options}
+              </select>
+ </td> 
+            <td><font style="BACKGROUND-COLOR: #ffffff">Nivel de Servicio</font>&nbsp; 
+              <select id="periodos_cargas_opt_slas" name="{s_opt_slas_Name}">
+                <option selected value="">Seleccionar Valor</option>
+                {s_opt_slas_Options}
+              </select>
+ &nbsp;</td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td style="TEXT-ALIGN: right" colspan="5">
+              <!-- BEGIN Button Button_DoSearch --><input type="submit" id="periodos_cargaButton_DoSearch" class="Button" alt="Buscar" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+          </tr>
+        </table>
+      </td> 
+      <td width="300"></td> 
+      <td colspan="4">
+        <h2><font size="5">COMPARATIVO CAPC / CDS</font> </h2>
+      </td>
+    </tr>
+ 
+    <tr>
+      <td></td> 
+      <td></td> 
+      <td><a href="{Link1_Src}" id="periodos_cargaLink1">Resumen</a></td> 
+      <td><a href="{Link2_Src}" id="periodos_cargaLink2">Incidentes</a></td> 
+      <td><a href="{Link3_Src}" id="periodos_cargaLink3">Req. Apertura</a></td> 
+      <td><a href="{Link4_Src}" id="periodos_cargaLink4">Req. Cierre</a></td>
+    </tr>
+  </table>
+</form>
+<!-- END Record periodos_carga --></p>
+<br>
+<br>
+<table align="center">
+  <tr>
+    <td>
+      <h1><font size="5"><em>REQUERIMIENTOS DE CIERRE</em></font></h1>
+    </td>
+  </tr>
+</table>
+<p><br>
+<br>
+<br>
+<!-- BEGIN Grid Grid1 -->
+<table id="Grid1" class="MainTable" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td valign="top">
+      <table class="Header" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td class="HeaderLeft"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td> 
+          <td class="th"><strong>Comparativo Requerimientos Cierre </strong></td> 
+          <td class="HeaderRight"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Caption">
+          <th scope="col">Estado Comparativo</th>
+ 
+          <th scope="col">Id Ppmc</th>
+ 
+          <th scope="col">Id Estimacion</th>
+ 
+          <th scope="col">Servicio Negocio</th>
+ 
+          <th scope="col">Descripcion</th>
+ 
+          <th scope="col">Cump Req Func</th>
+ 
+          <th scope="col">Retraso Entregables</th>
+ 
+          <th scope="col">Calidad Prod Term</th>
+ 
+          <th scope="col">Calidad Codigo</th>
+ 
+          <th scope="col">Defectos Fugados Amb Prod</th>
+ 
+          <th scope="col">Tipo</th>
+ 
+          <th scope="col">Serv Contractual</th>
+ 
+          <th scope="col">Fecha Caes</th>
+ 
+          <th scope="col">Tipo Nivel Servicio</th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr class="Row">
+          <td><strong>{estado_comparativo}</strong>&nbsp;</td> 
+          <td style="TEXT-ALIGN: right">{id_ppmc}&nbsp;</td> 
+          <td style="TEXT-ALIGN: right">{id_estimacion}&nbsp;</td> 
+          <td>{servicio_negocio}&nbsp;</td> 
+          <td>{descripcion}&nbsp;</td> 
+          <td>
+            <p>{cump_req_func}&nbsp;</p>
+ 
+            <p><img id="Grid1imgcump_req_func" alt="" src="{imgcump_req_func}"></p>
+          </td> 
+          <td>
+            <p>{retraso_entregables}&nbsp;</p>
+ 
+            <p><img id="Grid1imgretraso_entregables" alt="" src="{imgretraso_entregables}"></p>
+          </td> 
+          <td>
+            <p>{calidad_prod_term}&nbsp;</p>
+ 
+            <p><img id="Grid1imgcalidad_prod_term" alt="" src="{imgcalidad_prod_term}"></p>
+          </td> 
+          <td>
+            <p>{calidad_codigo}&nbsp;</p>
+ 
+            <p><img id="Grid1imgcalidad_codigo" alt="" src="{imgcalidad_codigo}"></p>
+          </td> 
+          <td>
+            <p>{defectos_fugados_amb_prod}&nbsp;</p>
+ 
+            <p><img id="Grid1imgdefectos_fugados_amb_prod" alt="" src="{imgdefectos_fugados_amb_prod}"></p>
+          </td> 
+          <td>{tipo}&nbsp;</td> 
+          <td>{serv_contractual}&nbsp;</td> 
+          <td>{fecha_caes}&nbsp;</td> 
+          <td>{tipo_nivel_servicio}&nbsp;</td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="14">No hay registros</td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="Footer">
+          <td colspan="14">
+            <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+            <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+              <option selected value="">-</option>
+ {PageSize_Options}
+            </select>
+ 
+            <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/Austere4/Images/First.gif"></a> <!-- END First_On -->
+            <!-- BEGIN First_Off --><img alt="{First_URL}" src="Styles/Austere4/Images/FirstOff.gif"><!-- END First_Off -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="Styles/Austere4/Images/Prev.gif"></a> <!-- END Prev_On -->
+            <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="Styles/Austere4/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+            <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/Austere4/Images/Next.gif"></a> <!-- END Next_On -->
+            <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/Austere4/Images/NextOff.gif"><!-- END Next_Off -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/Austere4/Images/Last.gif"></a> <!-- END Last_On -->
+            <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/Austere4/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid Grid1 --><br>
+</p>
+</body>
+</html>

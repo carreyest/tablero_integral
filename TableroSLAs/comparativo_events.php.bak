@@ -81,7 +81,7 @@ function Grid2_BeforeShowRow(& $sender)
 					$result2= $Grid2->$sTotal->GetValue();
 					$total_div=($result/$result2)*100;
 					$Grid2->$sAcronimo->SetValue($Grid2->$sCumplen->GetValue() . "/" . $Grid2->$sTotal->GetValue() . " = " . round($total_div,2) . "%");
-					if($Grid2->DataSource->f($db->f(0)."_sat")<$Grid2->DataSource->f($sMeta)){
+					if($Grid2->DataSource->f($db->f(0))<$Grid2->DataSource->f($sMeta)){
 						$Grid2->$sImg->SetValue("images/down.png");						
 					} else {
 						$Grid2->$sImg->SetValue("images/up.png");

@@ -110,7 +110,19 @@ function mc_info_incidentes_BeforeShow(& $sender)
 
 	global $DBcnDisenio;
 	global $miArray;
+	global $mc_info_incidentesSearch;
   	$miArray = array();
+  	
+    //Modificación para llamar a un segundo detalle para aplicar solicitud a partir de Agosto 2016; 
+    
+	    $mesCons = $mc_info_incidentesSearch->s_mes_param->GetValue();
+	    $anioCons = $mc_info_incidentesSearch->s_anio_param->GetValue();
+	    if (($anioCons==2016 and $mesCons>=8) OR ($anioCons>2016)){
+	    	$temp =  $mc_info_incidentes->Id_incidente->GetLink();
+	    	$temp = str_replace("&amp;","&",$temp);
+			$mc_info_incidentes->Id_incidente->SetLink(str_replace('IncidenteDetalle.php','IncidenteDetalle2.php',$temp));
+	    }
+  	
   	
   	$DBcnDisenio->query($mc_info_incidentes->DataSource->SQL);
   	while ($DBcnDisenio->has_next_record())

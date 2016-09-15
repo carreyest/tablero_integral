@@ -16,17 +16,16 @@ from mc_info_incidentes i
 	) as r on r.Id_Incidente = det.Id_Incidente and r.Paquete = det.Paquete and MONTH(r.FechaCarga )= u.mes  and YEAR(r.FechaCarga )= u.anio 
 	left join (select id_incidente, paquete, FechaCarga, SUM(dbo.ufDiffFechasMCSec(FechaInicioMov,FechaFinMov)) TotalSecPaquete
 			from mc_detalle_incidente_avl dett
-				inner join mc_c_movimiento mov on mov.ClaveMovimiento = dett.ClaveMovimiento  and mov.issolucion=1 
+				inner join mc_c_movimiento mov on mov.ClaveMovimiento = dett.ClaveMovimiento  and mov.issolucion3=1 
 				group by id_incidente, Paquete, FechaCarga  
 	) as t on t.Id_Incidente = det.Id_Incidente and t.Paquete = det.Paquete and MONTH(t.FechaCarga )= u.mes  and YEAR(t.FechaCarga )= u.anio 
 	left join (select id_incidente, FechaCarga, SUM(dbo.ufDiffFechasMCSec(FechaInicioMov,FechaFinMov)) TotalHoras
 			from mc_detalle_incidente_avl dett
-				inner join mc_c_movimiento mov on mov.ClaveMovimiento = dett.ClaveMovimiento  and mov.issolucion=1 
+				inner join mc_c_movimiento mov on mov.ClaveMovimiento = dett.ClaveMovimiento  and mov.issolucion3=1 
 				group by id_incidente, FechaCarga  
 	) as s on s.Id_Incidente = det.Id_Incidente and MONTH(s.FechaCarga )= u.mes and YEAR(s.FechaCarga )= u.anio 
 where i.id_incidente = '{Id_incidente}'
 	and i.Estado = 'Closed'
-	and det.ClaveMovimiento not in (508)	
 	order by Paquete, FechaInicioMov " pageSizeLimit="100" pageSize="True" wizardCaption="List of Mc Detalle Incidente Avl " wizardThemeApplyTo="Page" wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No records" wizardGridPagingType="Simple" wizardUseSearch="False" wizardAddNbsp="True" gridTotalRecords="False" wizardAddPanels="False" wizardType="Grid" wizardUseInterVariables="False" addTemplatePanel="False" changedCaptionGrid="False" gridExtendedHTML="False" PathID="mc_detalle_incidente_avl">
 			<Components>
 				<Sorter id="69" visible="True" name="Sorter_ClaveMovimiento" column="ClaveMovimiento" wizardCaption="Clave Movimiento" wizardSortingType="SimpleDir" wizardControl="ClaveMovimiento" wizardAddNbsp="False" PathID="mc_detalle_incidente_avlSorter_ClaveMovimiento">
@@ -1318,8 +1317,8 @@ WHERE mi.Id_incidente = '{Id_incidente}' " errorSummator="Error" allowCancel="Fa
 		</Record>
 	</Components>
 	<CodeFiles>
-		<CodeFile id="Events" language="PHPTemplates" name="IncidenteDetalle_events.php" forShow="False" comment="//" codePage="windows-1252"/>
-		<CodeFile id="Code" language="PHPTemplates" name="IncidenteDetalle.php" forShow="True" url="IncidenteDetalle.php" comment="//" codePage="windows-1252"/>
+		<CodeFile id="Events" language="PHPTemplates" name="IncidenteDetalle3_events.php" forShow="False" comment="//" codePage="windows-1252"/>
+		<CodeFile id="Code" language="PHPTemplates" name="IncidenteDetalle3.php" forShow="True" url="IncidenteDetalle3.php" comment="//" codePage="windows-1252"/>
 	</CodeFiles>
 	<SecurityGroups>
 		<Group id="307" groupID="3"/>

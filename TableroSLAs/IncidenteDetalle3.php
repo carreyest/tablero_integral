@@ -1,8 +1,8 @@
 <?php
-//Include Common Files @1-2AE82908
+//Include Common Files @1-D3AF159A
 define("RelativePath", ".");
 define("PathToCurrentPage", "/");
-define("FileName", "IncidenteDetalle.php");
+define("FileName", "IncidenteDetalle3.php");
 include_once(RelativePath . "/Common.php");
 include_once(RelativePath . "/Template.php");
 include_once(RelativePath . "/Sorter.php");
@@ -313,7 +313,7 @@ class clsmc_detalle_incidente_avlDataSource extends clsDBcnDisenio {  //mc_detal
     }
 //End Prepare Method
 
-//Open Method @68-0B934ABF
+//Open Method @68-D0CCFE2F
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -333,17 +333,16 @@ class clsmc_detalle_incidente_avlDataSource extends clsDBcnDisenio {  //mc_detal
         "	) as r on r.Id_Incidente = det.Id_Incidente and r.Paquete = det.Paquete and MONTH(r.FechaCarga )= u.mes  and YEAR(r.FechaCarga )= u.anio \n" .
         "	left join (select id_incidente, paquete, FechaCarga, SUM(dbo.ufDiffFechasMCSec(FechaInicioMov,FechaFinMov)) TotalSecPaquete\n" .
         "			from mc_detalle_incidente_avl dett\n" .
-        "				inner join mc_c_movimiento mov on mov.ClaveMovimiento = dett.ClaveMovimiento  and mov.issolucion=1 \n" .
+        "				inner join mc_c_movimiento mov on mov.ClaveMovimiento = dett.ClaveMovimiento  and mov.issolucion3=1 \n" .
         "				group by id_incidente, Paquete, FechaCarga  \n" .
         "	) as t on t.Id_Incidente = det.Id_Incidente and t.Paquete = det.Paquete and MONTH(t.FechaCarga )= u.mes  and YEAR(t.FechaCarga )= u.anio \n" .
         "	left join (select id_incidente, FechaCarga, SUM(dbo.ufDiffFechasMCSec(FechaInicioMov,FechaFinMov)) TotalHoras\n" .
         "			from mc_detalle_incidente_avl dett\n" .
-        "				inner join mc_c_movimiento mov on mov.ClaveMovimiento = dett.ClaveMovimiento  and mov.issolucion=1 \n" .
+        "				inner join mc_c_movimiento mov on mov.ClaveMovimiento = dett.ClaveMovimiento  and mov.issolucion3=1 \n" .
         "				group by id_incidente, FechaCarga  \n" .
         "	) as s on s.Id_Incidente = det.Id_Incidente and MONTH(s.FechaCarga )= u.mes and YEAR(s.FechaCarga )= u.anio \n" .
         "where i.id_incidente = '" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "'\n" .
-        "	and i.Estado = 'Closed'\n" .
-        "	and det.ClaveMovimiento not in (508)) cnt";
+        "	and i.Estado = 'Closed') cnt";
         $this->SQL = "select TOP {SqlParam_endRecord} 	det.ClaveMovimiento, det.DescMovimiento , det.FechaInicioMov, det.FechaFinMov, det.Paquete    \n" .
         "	, dbo.ufDiffFechasMCSec(i.FechaEnCurso,i.FechaResuelto) TiempoSolucionRmdy\n" .
         "	, r.LiberacionAVL , r.CountPaquete, t.TotalSecPaquete , s.TotalHoras  \n" .
@@ -360,17 +359,16 @@ class clsmc_detalle_incidente_avlDataSource extends clsDBcnDisenio {  //mc_detal
         "	) as r on r.Id_Incidente = det.Id_Incidente and r.Paquete = det.Paquete and MONTH(r.FechaCarga )= u.mes  and YEAR(r.FechaCarga )= u.anio \n" .
         "	left join (select id_incidente, paquete, FechaCarga, SUM(dbo.ufDiffFechasMCSec(FechaInicioMov,FechaFinMov)) TotalSecPaquete\n" .
         "			from mc_detalle_incidente_avl dett\n" .
-        "				inner join mc_c_movimiento mov on mov.ClaveMovimiento = dett.ClaveMovimiento  and mov.issolucion=1 \n" .
+        "				inner join mc_c_movimiento mov on mov.ClaveMovimiento = dett.ClaveMovimiento  and mov.issolucion3=1 \n" .
         "				group by id_incidente, Paquete, FechaCarga  \n" .
         "	) as t on t.Id_Incidente = det.Id_Incidente and t.Paquete = det.Paquete and MONTH(t.FechaCarga )= u.mes  and YEAR(t.FechaCarga )= u.anio \n" .
         "	left join (select id_incidente, FechaCarga, SUM(dbo.ufDiffFechasMCSec(FechaInicioMov,FechaFinMov)) TotalHoras\n" .
         "			from mc_detalle_incidente_avl dett\n" .
-        "				inner join mc_c_movimiento mov on mov.ClaveMovimiento = dett.ClaveMovimiento  and mov.issolucion=1 \n" .
+        "				inner join mc_c_movimiento mov on mov.ClaveMovimiento = dett.ClaveMovimiento  and mov.issolucion3=1 \n" .
         "				group by id_incidente, FechaCarga  \n" .
         "	) as s on s.Id_Incidente = det.Id_Incidente and MONTH(s.FechaCarga )= u.mes and YEAR(s.FechaCarga )= u.anio \n" .
         "where i.id_incidente = '" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "'\n" .
         "	and i.Estado = 'Closed'\n" .
-        "	and det.ClaveMovimiento not in (508)	\n" .
         "	 {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
@@ -3505,7 +3503,7 @@ class clsmc_incidentes_reasignacioDataSource extends clsDBcnDisenio {  //mc_inci
 
 
 
-//Initialize Page @1-1EA3AB04
+//Initialize Page @1-46529897
 // Variables
 $FileName = "";
 $Redirect = "";
@@ -3522,7 +3520,7 @@ $TemplateSource = "";
 
 $FileName = FileName;
 $Redirect = "";
-$TemplateFileName = "IncidenteDetalle.html";
+$TemplateFileName = "IncidenteDetalle3.html";
 $BlockToParse = "main";
 $TemplateEncoding = "CP1252";
 $ContentType = "text/html";
@@ -3536,8 +3534,8 @@ $Charset = $Charset ? $Charset : "windows-1252";
 CCSecurityRedirect("3", "");
 //End Authenticate User
 
-//Include events file @1-325DE2FD
-include_once("./IncidenteDetalle_events.php");
+//Include events file @1-CCE3D925
+include_once("./IncidenteDetalle3_events.php");
 //End Include events file
 
 //BeforeInitialize Binding @1-17AC9191

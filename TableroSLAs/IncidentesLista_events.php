@@ -117,6 +117,11 @@ function mc_info_incidentes_BeforeShow(& $sender)
     
 	    $mesCons = $mc_info_incidentesSearch->s_mes_param->GetValue();
 	    $anioCons = $mc_info_incidentesSearch->s_anio_param->GetValue();
+	    if (($anioCons==2016 and $mesCons==7)){
+	    	$temp =  $mc_info_incidentes->Id_incidente->GetLink();
+	    	$temp = str_replace("&amp;","&",$temp);
+			$mc_info_incidentes->Id_incidente->SetLink(str_replace('IncidenteDetalle.php','IncidenteDetalle3.php',$temp));
+	    }
 	    if (($anioCons==2016 and $mesCons>=8) OR ($anioCons>2016)){
 	    	$temp =  $mc_info_incidentes->Id_incidente->GetLink();
 	    	$temp = str_replace("&amp;","&",$temp);

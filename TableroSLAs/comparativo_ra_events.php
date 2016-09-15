@@ -1,11 +1,38 @@
 <?php
-//BindEvents Method @1-B1A6A580
+//BindEvents Method @1-5D22336D
 function BindEvents()
 {
+    global $periodos_carga;
     global $Grid1;
+    $periodos_carga->Label1->CCSEvents["BeforeShow"] = "periodos_carga_Label1_BeforeShow";
     $Grid1->CCSEvents["BeforeShowRow"] = "Grid1_BeforeShowRow";
 }
 //End BindEvents Method
+
+//periodos_carga_Label1_BeforeShow @190-4CC7D3D8
+function periodos_carga_Label1_BeforeShow(& $sender)
+{
+    $periodos_carga_Label1_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $periodos_carga; //Compatibility
+//End periodos_carga_Label1_BeforeShow
+
+//Custom Code @191-2A29BDB7
+// -------------------------
+	global $DBcnDisenio;
+	$DBcnDisenio->query("select nombre_mes + '/' + convert(varchar(4),anio) fecha from archivosxls.dbo.periodos_carga where id_periodo=". $periodos_carga->s_id_periodo->getValue());
+	if($DBcnDisenio->next_record()){
+		$periodos_carga->Label1->SetValue($DBcnDisenio->f("fecha"));
+	}
+
+// -------------------------
+//End Custom Code
+
+//Close periodos_carga_Label1_BeforeShow @190-EAE38E32
+    return $periodos_carga_Label1_BeforeShow;
+}
+//End Close periodos_carga_Label1_BeforeShow
 
 //Grid1_BeforeShowRow @135-FCC1FF76
 function Grid1_BeforeShowRow(& $sender)

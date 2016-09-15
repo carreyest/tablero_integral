@@ -16,17 +16,17 @@
 				<ListBox id="5" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Integer" returnValueType="Number" name="s_id_periodo" fieldSource="id_periodo" wizardIsPassword="False" wizardEmptyCaption="Seleccionar Valor" wizardCaption="Id Periodo" caption="Id Periodo" required="False" unique="False" connection="cnDisenio" dataSource="select distinct id_periodo,  periodo+tipo_periodo as periodo
 from archivosxls.dbo.periodos_hist
 where (id_proveedor=0 or id_proveedor={s_id_proveedor} or {s_id_proveedor} =1)
-and id_periodo &gt; 28	
+and id_periodo &gt; 30
 and id_periodo  in (select distinct id_periodo from resumen_sat where id_proveedor={s_id_proveedor})
 
 
-" boundColumn="id_periodo" textColumn="periodo" PathID="periodos_cargas_id_periodo" defaultValue="29">
+" boundColumn="id_periodo" textColumn="periodo" PathID="periodos_cargas_id_periodo" defaultValue="31">
 					<Components/>
 					<Events/>
 					<TableParameters/>
 					<SPParameters/>
 					<SQLParameters>
-						<SQLParameter id="23" dataType="Text" defaultValue="2" designDefaultValue="2" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
+						<SQLParameter id="166" dataType="Text" defaultValue="2" designDefaultValue="2" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
 					</SQLParameters>
 					<JoinTables/>
 					<JoinLinks/>
@@ -85,7 +85,19 @@ and id_periodo  in (select distinct id_periodo from resumen_sat where id_proveed
 					<Attributes/>
 					<Features/>
 				</Link>
-			</Components>
+				<Label id="170" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Label1" PathID="periodos_cargaLabel1">
+					<Components/>
+					<Events>
+						<Event name="BeforeShow" type="Server">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="171"/>
+							</Actions>
+						</Event>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Label>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
@@ -378,10 +390,10 @@ AND a.id_incidencia=uno.id_incidencia
 			<PKFields/>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="163" dataType="Text" defaultValue="2" designDefaultValue="2" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
-<SQLParameter id="164" dataType="Text" defaultValue="29" designDefaultValue="29" parameterSource="s_id_periodo" parameterType="URL" variable="s_id_periodo"/>
-<SQLParameter id="165" dataType="Text" defaultValue="'SLA'" designDefaultValue="'SLA'" parameterSource="s_opt_slas" parameterType="URL" variable="s_opt_slas"/>
-</SQLParameters>
+				<SQLParameter id="167" dataType="Text" defaultValue="2" designDefaultValue="2" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
+				<SQLParameter id="168" dataType="Text" defaultValue="31" designDefaultValue="31" parameterSource="s_id_periodo" parameterType="URL" variable="s_id_periodo"/>
+				<SQLParameter id="169" dataType="Text" defaultValue="'SLA'" designDefaultValue="'SLA'" parameterSource="s_opt_slas" parameterType="URL" variable="s_opt_slas"/>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>

@@ -49,7 +49,7 @@ class clsRecordperiodos_carga { //periodos_carga Class @3-C6BD6D21
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-392F2171
+//Class_Initialize Event @3-76ACA409
     function clsRecordperiodos_carga($RelativePath, & $Parent)
     {
 
@@ -85,7 +85,7 @@ class clsRecordperiodos_carga { //periodos_carga Class @3-C6BD6D21
             $this->s_id_periodo->DataSource->SQL = "select distinct id_periodo,  periodo+tipo_periodo as periodo\n" .
             "from archivosxls.dbo.periodos_hist\n" .
             "where (id_proveedor=0 or id_proveedor=" . $this->s_id_periodo->DataSource->SQLValue($this->s_id_periodo->DataSource->wp->GetDBValue("1"), ccsText) . " or " . $this->s_id_periodo->DataSource->SQLValue($this->s_id_periodo->DataSource->wp->GetDBValue("1"), ccsText) . " =1)\n" .
-            "and id_periodo > 28	\n" .
+            "and id_periodo > 30\n" .
             "and id_periodo  in (select distinct id_periodo from resumen_sat where id_proveedor=" . $this->s_id_periodo->DataSource->SQLValue($this->s_id_periodo->DataSource->wp->GetDBValue("1"), ccsText) . ")\n" .
             "\n" .
             "\n" .
@@ -113,9 +113,10 @@ class clsRecordperiodos_carga { //periodos_carga Class @3-C6BD6D21
             $this->Link4 = new clsControl(ccsLink, "Link4", "Link4", ccsText, "", CCGetRequestParam("Link4", $Method, NULL), $this);
             $this->Link4->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
             $this->Link4->Page = "comparativo_rc.php";
+            $this->Label1 = new clsControl(ccsLabel, "Label1", "Label1", ccsText, "", CCGetRequestParam("Label1", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->s_id_periodo->Value) && !strlen($this->s_id_periodo->Value) && $this->s_id_periodo->Value !== false)
-                    $this->s_id_periodo->SetText(29);
+                    $this->s_id_periodo->SetText(31);
                 if(!is_array($this->s_id_proveedor->Value) && !strlen($this->s_id_proveedor->Value) && $this->s_id_proveedor->Value !== false)
                     $this->s_id_proveedor->SetText(2);
                 if(!is_array($this->s_opt_slas->Value) && !strlen($this->s_opt_slas->Value) && $this->s_opt_slas->Value !== false)
@@ -142,7 +143,7 @@ class clsRecordperiodos_carga { //periodos_carga Class @3-C6BD6D21
     }
 //End Validate Method
 
-//CheckErrors Method @3-0650568A
+//CheckErrors Method @3-DF0950CD
     function CheckErrors()
     {
         $errors = false;
@@ -153,6 +154,7 @@ class clsRecordperiodos_carga { //periodos_carga Class @3-C6BD6D21
         $errors = ($errors || $this->Link2->Errors->Count());
         $errors = ($errors || $this->Link3->Errors->Count());
         $errors = ($errors || $this->Link4->Errors->Count());
+        $errors = ($errors || $this->Label1->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -191,7 +193,7 @@ class clsRecordperiodos_carga { //periodos_carga Class @3-C6BD6D21
     }
 //End Operation Method
 
-//Show Method @3-1813686C
+//Show Method @3-4A21EC81
     function Show()
     {
         global $CCSUseAmp;
@@ -225,6 +227,7 @@ class clsRecordperiodos_carga { //periodos_carga Class @3-C6BD6D21
             $Error = ComposeStrings($Error, $this->Link2->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Link3->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Link4->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->Label1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -250,6 +253,7 @@ class clsRecordperiodos_carga { //periodos_carga Class @3-C6BD6D21
         $this->Link2->Show();
         $this->Link3->Show();
         $this->Link4->Show();
+        $this->Label1->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
@@ -1189,7 +1193,7 @@ class clsGrid2DataSource extends clsDBcnDisenio {  //Grid2DataSource Class @24-C
     }
 //End SetOrder Method
 
-//Prepare Method @24-4C9B2290
+//Prepare Method @24-9EC2BDA4
     function Prepare()
     {
         global $CCSLocales;
@@ -1197,11 +1201,11 @@ class clsGrid2DataSource extends clsDBcnDisenio {  //Grid2DataSource Class @24-C
         $this->wp = new clsSQLParameters($this->ErrorBlock);
         $this->wp->AddParameter("1", "urls_opt_slas", ccsText, "", "", $this->Parameters["urls_opt_slas"], 'SLA', false);
         $this->wp->AddParameter("2", "urls_id_proveedor", ccsText, "", "", $this->Parameters["urls_id_proveedor"], 2, false);
-        $this->wp->AddParameter("3", "urls_id_periodo", ccsText, "", "", $this->Parameters["urls_id_periodo"], 29, false);
+        $this->wp->AddParameter("3", "urls_id_periodo", ccsText, "", "", $this->Parameters["urls_id_periodo"], 31, false);
     }
 //End Prepare Method
 
-//Open Method @24-F3B2429E
+//Open Method @24-5BF8CB28
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -1296,7 +1300,7 @@ class clsGrid2DataSource extends clsDBcnDisenio {  //Grid2DataSource Class @24-C
         "	left join (select SUM(case when efic_presupuestal='1' then 1 else 0 end) Cumple_EF, COUNT(efic_presupuestal) Total_EF, Id_Proveedor,  2 IdServicioCont  \n" .
         "			from [archivosxls].[dbo].l_detalle_eficiencia_presupuestal_sat \n" .
         "			where (id_periodo=  " . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "   and id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "  and tipo_nivel_servicio ='" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "'   and estatus ='F'\n" .
-        "				and num_carga=(select max(b.num_carga) from [archivosxls].[dbo].l_calificacion_incidentes_aut_sat b \n" .
+        "				and num_carga=(select max(b.num_carga) from [archivosxls].[dbo].l_detalle_eficiencia_presupuestal_sat b \n" .
         "				where b.id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "  and b.id_periodo = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "  and b.tipo_nivel_servicio = '" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "'  and b.estatus='F' ) \n" .
         "				) group by id_proveedor ) ef on ef.IdServicioCont = capc.id\n" .
         "where capc.Aplica ='CDS' and IdOld <>0\n" .
@@ -1455,7 +1459,7 @@ class clsGrid2DataSource extends clsDBcnDisenio {  //Grid2DataSource Class @24-C
         "	left join (select SUM(case when efic_presupuestal='1' then 1 else 0 end) Cumple_EF, COUNT(efic_presupuestal) Total_EF, Id_Proveedor,  2 IdServicioCont  \n" .
         "			from [archivosxls].[dbo].l_detalle_eficiencia_presupuestal_sat \n" .
         "			where (id_periodo=  " . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "   and id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "  and tipo_nivel_servicio ='" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "'   and estatus ='F'\n" .
-        "				and num_carga=(select max(b.num_carga) from [archivosxls].[dbo].l_calificacion_incidentes_aut_sat b \n" .
+        "				and num_carga=(select max(b.num_carga) from [archivosxls].[dbo].l_detalle_eficiencia_presupuestal_sat b \n" .
         "				where b.id_proveedor = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "  and b.id_periodo = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "  and b.tipo_nivel_servicio = '" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "'  and b.estatus='F' ) \n" .
         "				) group by id_proveedor ) ef on ef.IdServicioCont = capc.id\n" .
         "where capc.Aplica ='CDS' and IdOld <>0\n" .
@@ -1856,14 +1860,14 @@ class clsGrid1DataSource extends clsDBcnDisenio {  //Grid1DataSource Class @9-9B
     }
 //End SetOrder Method
 
-//Prepare Method @9-193DFA36
+//Prepare Method @9-BB2E3F5A
     function Prepare()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->wp = new clsSQLParameters($this->ErrorBlock);
         $this->wp->AddParameter("1", "urls_id_proveedor", ccsInteger, "", "", $this->Parameters["urls_id_proveedor"], 2, false);
-        $this->wp->AddParameter("2", "urls_id_periodo", ccsInteger, "", "", $this->Parameters["urls_id_periodo"], 29, false);
+        $this->wp->AddParameter("2", "urls_id_periodo", ccsInteger, "", "", $this->Parameters["urls_id_periodo"], 31, false);
         $this->wp->AddParameter("3", "urls_opt_slas", ccsText, "", "", $this->Parameters["urls_opt_slas"], 'SLA', false);
     }
 //End Prepare Method

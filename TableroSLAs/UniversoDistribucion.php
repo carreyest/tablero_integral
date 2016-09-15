@@ -49,7 +49,7 @@ class clsRecordmc_c_proveedor_mc_EfPresu { //mc_c_proveedor_mc_EfPresu Class @22
     // Class variables
 //End Variables
 
-//Class_Initialize Event @22-420041F7
+//Class_Initialize Event @22-ABC5C6D3
     function clsRecordmc_c_proveedor_mc_EfPresu($RelativePath, & $Parent)
     {
 
@@ -123,6 +123,9 @@ class clsRecordmc_c_proveedor_mc_EfPresu { //mc_c_proveedor_mc_EfPresu Class @22
                  false, 
                  $this->s_analista->DataSource->wp->Criterion[1], 
                  $this->s_analista->DataSource->wp->Criterion[2]);
+            $this->Link1 = new clsControl(ccsLink, "Link1", "Link1", ccsText, "", CCGetRequestParam("Link1", $Method, NULL), $this);
+            $this->Link1->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
+            $this->Link1->Page = "ListadoMes.php";
             if(!$this->FormSubmitted) {
                 if(!is_array($this->s_mes->Value) && !strlen($this->s_mes->Value) && $this->s_mes->Value !== false)
                     $this->s_mes->SetText(date("m")-2);
@@ -156,7 +159,7 @@ class clsRecordmc_c_proveedor_mc_EfPresu { //mc_c_proveedor_mc_EfPresu Class @22
     }
 //End Validate Method
 
-//CheckErrors Method @22-923323F8
+//CheckErrors Method @22-EE738123
     function CheckErrors()
     {
         $errors = false;
@@ -166,6 +169,7 @@ class clsRecordmc_c_proveedor_mc_EfPresu { //mc_c_proveedor_mc_EfPresu Class @22
         $errors = ($errors || $this->s_mes->Errors->Count());
         $errors = ($errors || $this->s_anio->Errors->Count());
         $errors = ($errors || $this->s_analista->Errors->Count());
+        $errors = ($errors || $this->Link1->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -204,7 +208,7 @@ class clsRecordmc_c_proveedor_mc_EfPresu { //mc_c_proveedor_mc_EfPresu Class @22
     }
 //End Operation Method
 
-//Show Method @22-39D675E2
+//Show Method @22-C5D0019D
     function Show()
     {
         global $CCSUseAmp;
@@ -237,6 +241,7 @@ class clsRecordmc_c_proveedor_mc_EfPresu { //mc_c_proveedor_mc_EfPresu Class @22
             $Error = ComposeStrings($Error, $this->s_mes->Errors->ToString());
             $Error = ComposeStrings($Error, $this->s_anio->Errors->ToString());
             $Error = ComposeStrings($Error, $this->s_analista->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->Link1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -261,6 +266,7 @@ class clsRecordmc_c_proveedor_mc_EfPresu { //mc_c_proveedor_mc_EfPresu Class @22
         $this->s_mes->Show();
         $this->s_anio->Show();
         $this->s_analista->Show();
+        $this->Link1->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
@@ -1736,11 +1742,15 @@ class clsmc_universo_cds1DataSource extends clsDBcnDisenio {  //mc_universo_cds1
     }
 //End Prepare Method
 
-//Open Method @57-425C982E
+//Open Method @57-26BF9E4A
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT mc_universo_cds.*, mc_c_proveedor.nombre , m.mes NombreMes\n" .
+        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT mc_universo_cds.id,mc_universo_cds.id_proveedor,mc_universo_cds.numero,ISNULL(mc_universo_cds.IdEstimacion,(select top 1 ESTIMACION_ID from PPMC_ESTIMACION where id_ppmc=mc_universo_cds.numero  and month(fecha_carga)=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and year(fecha_carga)=" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " \n" .
+        "    and ESTADO_REQ_ESTIM = 'Estimación Aprobada' and RESULTADO_ESTIMACION <> 'Rechazada'  and (PROVEEDOR like '%softtek%'\n" .
+        "or PROVEEDOR like '%hewlett packard%' or PROVEEDOR like '%Itera%' or PROVEEDOR like '%hp%'))) IdEstimacion ,\n" .
+        "	   mc_universo_cds.tipo,mc_universo_cds.mes,mc_universo_cds.anio,mc_universo_cds.descartar_manual,mc_universo_cds.analista,\n" .
+        "	   mc_universo_cds.medido,mc_universo_cds.notas_manual, mc_c_proveedor.nombre , m.mes NombreMes\n" .
         "FROM mc_universo_cds \n" .
         "	INNER JOIN mc_c_proveedor ON  mc_universo_cds.id_proveedor = mc_c_proveedor.id_proveedor \n" .
         "	left join mc_c_mes m on m.idMes = mc_universo_cds.mes \n" .
@@ -1751,7 +1761,11 @@ class clsmc_universo_cds1DataSource extends clsDBcnDisenio {  //mc_universo_cds1
         "	and (mc_universo_cds.tipo like '%" . $this->SQLValue($this->wp->GetDBValue("5"), ccsText) . "%')\n" .
         "	and (mc_universo_cds.numero like '%" . $this->SQLValue($this->wp->GetDBValue("6"), ccsText) . "%')\n" .
         "	and (mc_universo_cds.tipo not like 'IN')) cnt";
-        $this->SQL = "SELECT mc_universo_cds.*, mc_c_proveedor.nombre , m.mes NombreMes\n" .
+        $this->SQL = "SELECT mc_universo_cds.id,mc_universo_cds.id_proveedor,mc_universo_cds.numero,ISNULL(mc_universo_cds.IdEstimacion,(select top 1 ESTIMACION_ID from PPMC_ESTIMACION where id_ppmc=mc_universo_cds.numero  and month(fecha_carga)=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . " and year(fecha_carga)=" . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " \n" .
+        "    and ESTADO_REQ_ESTIM = 'Estimación Aprobada' and RESULTADO_ESTIMACION <> 'Rechazada'  and (PROVEEDOR like '%softtek%'\n" .
+        "or PROVEEDOR like '%hewlett packard%' or PROVEEDOR like '%Itera%' or PROVEEDOR like '%hp%'))) IdEstimacion ,\n" .
+        "	   mc_universo_cds.tipo,mc_universo_cds.mes,mc_universo_cds.anio,mc_universo_cds.descartar_manual,mc_universo_cds.analista,\n" .
+        "	   mc_universo_cds.medido,mc_universo_cds.notas_manual, mc_c_proveedor.nombre , m.mes NombreMes\n" .
         "FROM mc_universo_cds \n" .
         "	INNER JOIN mc_c_proveedor ON  mc_universo_cds.id_proveedor = mc_c_proveedor.id_proveedor \n" .
         "	left join mc_c_mes m on m.idMes = mc_universo_cds.mes \n" .

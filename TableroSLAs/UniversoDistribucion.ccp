@@ -101,7 +101,13 @@
 					<Attributes/>
 					<Features/>
 				</ListBox>
-			</Components>
+				<Link id="166" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link1" PathID="mc_c_proveedor_mc_EfPresuLink1" hrefSource="ListadoMes.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'UniversoExcel','textSourceDB':'','hrefSource':'ListadoMes.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
+<Events/>
+<LinkParameters/>
+<Attributes/>
+<Features/>
+</Link>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
@@ -351,7 +357,11 @@ AND Activo = {Expr0}
 			<Attributes/>
 			<Features/>
 		</EditableGrid>
-		<EditableGrid id="57" urlType="Relative" secured="False" emptyRows="0" allowInsert="False" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" sourceType="SQL" defaultPageSize="25" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="mc_universo_cds1" connection="cnDisenio" dataSource="SELECT mc_universo_cds.*, mc_c_proveedor.nombre , m.mes NombreMes
+		<EditableGrid id="57" urlType="Relative" secured="False" emptyRows="0" allowInsert="False" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" sourceType="SQL" defaultPageSize="25" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="mc_universo_cds1" connection="cnDisenio" dataSource="SELECT mc_universo_cds.id,mc_universo_cds.id_proveedor,mc_universo_cds.numero,ISNULL(mc_universo_cds.IdEstimacion,(select top 1 ESTIMACION_ID from PPMC_ESTIMACION where id_ppmc=mc_universo_cds.numero  and month(fecha_carga)={s_mes} and year(fecha_carga)={s_anio} 
+    and ESTADO_REQ_ESTIM = 'Estimación Aprobada' and RESULTADO_ESTIMACION &lt;&gt; 'Rechazada'  and (PROVEEDOR like '%softtek%'
+or PROVEEDOR like '%hewlett packard%' or PROVEEDOR like '%Itera%' or PROVEEDOR like '%hp%'))) IdEstimacion ,
+	   mc_universo_cds.tipo,mc_universo_cds.mes,mc_universo_cds.anio,mc_universo_cds.descartar_manual,mc_universo_cds.analista,
+	   mc_universo_cds.medido,mc_universo_cds.notas_manual, mc_c_proveedor.nombre , m.mes NombreMes
 FROM mc_universo_cds 
 	INNER JOIN mc_c_proveedor ON  mc_universo_cds.id_proveedor = mc_c_proveedor.id_proveedor 
 	left join mc_c_mes m on m.idMes = mc_universo_cds.mes 
@@ -537,18 +547,18 @@ where mes = {sMes} and anio = {sAnio})" boundColumn="Usuario" textColumn="Usuari
 					<Features/>
 				</Button>
 				<Sorter id="158" visible="True" name="Sorter_IdEstimacion" wizardSortingType="SimpleDir" PathID="mc_universo_cds1Sorter_IdEstimacion" wizardCaption="Estimación" column="IdEstimacion">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Sorter>
-<Label id="159" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="IdEstimacion" PathID="mc_universo_cds1IdEstimacion" fieldSource="IdEstimacion">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-</Components>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Sorter>
+				<Label id="159" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="IdEstimacion" PathID="mc_universo_cds1IdEstimacion" fieldSource="IdEstimacion">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+			</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
@@ -559,12 +569,12 @@ where mes = {sMes} and anio = {sAnio})" boundColumn="Usuario" textColumn="Usuari
 			<TableParameters/>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="99" dataType="Integer" defaultValue="0" designDefaultValue="2" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
-				<SQLParameter id="100" dataType="Text" parameterSource="s_analista" parameterType="URL" variable="s_analista"/>
-				<SQLParameter id="101" dataType="Integer" defaultValue="date(&quot;Y&quot;)" designDefaultValue="2014" parameterSource="s_anio" parameterType="URL" variable="s_anio"/>
-				<SQLParameter id="102" dataType="Integer" defaultValue="date(&quot;m&quot;)-2" designDefaultValue="1" parameterSource="s_mes" parameterType="URL" variable="s_mes"/>
-				<SQLParameter id="103" dataType="Text" designDefaultValue="PA" parameterSource="s_tipo" parameterType="URL" variable="s_tipo"/>
-				<SQLParameter id="104" dataType="Text" parameterSource="s_numero" parameterType="URL" variable="s_numero"/>
+				<SQLParameter id="160" dataType="Integer" defaultValue="0" designDefaultValue="2" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
+				<SQLParameter id="161" dataType="Text" parameterSource="s_analista" parameterType="URL" variable="s_analista"/>
+				<SQLParameter id="162" dataType="Integer" defaultValue="date(&quot;Y&quot;)" designDefaultValue="2014" parameterSource="s_anio" parameterType="URL" variable="s_anio"/>
+				<SQLParameter id="163" dataType="Integer" defaultValue="date(&quot;m&quot;)-2" designDefaultValue="1" parameterSource="s_mes" parameterType="URL" variable="s_mes"/>
+				<SQLParameter id="164" dataType="Text" designDefaultValue="PA" parameterSource="s_tipo" parameterType="URL" variable="s_tipo"/>
+				<SQLParameter id="165" dataType="Text" parameterSource="s_numero" parameterType="URL" variable="s_numero"/>
 			</SQLParameters>
 			<JoinTables/>
 			<JoinLinks/>

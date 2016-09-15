@@ -42,7 +42,7 @@ function Page_OnInitializeView(& $sender)
 
 	
 	
-$vMes  = CCGetParam("MesReporte", date("m"-1));
+$vMes  = CCGetParam("MesReporte", date("m")-1);
 $vAnio = CCGetParam("anioreporte", date("Y"));
 $vProveedor = CCGetParam("busqproveedor",1);
 $usuario = CCGetUserLogin();

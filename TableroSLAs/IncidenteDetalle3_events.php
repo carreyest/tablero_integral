@@ -323,7 +323,7 @@ function slAnterior_BeforeShow(& $sender)
    			$Container->slSiguiente->SetValue($miArray[$claveSiguiente]);
 		$Container->slAnterior->SetValue($miArray[$claveAnterior]);
 
-   		$RedirectAnterior =  "IncidenteDetalle.php?" . CCAddParam( CCRemoveParam( CCGetQueryString("QueryString","Id_incidente"),"ccsForm"),"Id_incidente",$miArray[$claveAnterior]);
+   		$RedirectAnterior =  "IncidenteDetalle3.php?" . CCAddParam( CCRemoveParam( CCGetQueryString("QueryString","Id_incidente"),"ccsForm"),"Id_incidente",$miArray[$claveAnterior]);
 	$Container->slAnterior->SetLink($RedirectAnterior);
 
 	}
@@ -335,7 +335,7 @@ function slAnterior_BeforeShow(& $sender)
 
 	}
 
-   	$RedirectSiguiente =  "IncidenteDetalle.php?" . CCAddParam( CCRemoveParam( CCGetQueryString("QueryString","Id_incidente"),"ccsForm"),"Id_incidente",$miArray[$claveSiguiente]);
+   	$RedirectSiguiente =  "IncidenteDetalle3.php?" . CCAddParam( CCRemoveParam( CCGetQueryString("QueryString","Id_incidente"),"ccsForm"),"Id_incidente",$miArray[$claveSiguiente]);
 
 
 	$Container->slSiguiente->SetLink($RedirectSiguiente);
@@ -368,8 +368,8 @@ function slSiguiente_BeforeShow(& $sender)
 		$Container->slSiguiente->SetValue($miArray[$claveSiguiente]);
 		$Container->slAnterior->SetValue($miArray[$claveAnterior]);
 	
-   		$RedirectAnterior =  "IncidenteDetalle.php?" . CCAddParam( CCRemoveParam( CCGetQueryString("QueryString","Id_incidente"),"ccsForm"),"Id_incidente",$miArray[$claveAnterior]);
-   		$RedirectSiguiente =  "IncidenteDetalle.php?" . CCAddParam( CCRemoveParam( CCGetQueryString("QueryString","Id_incidente"),"ccsForm"),"Id_incidente",$miArray[$claveSiguiente]);
+   		$RedirectAnterior =  "IncidenteDetalle3.php?" . CCAddParam( CCRemoveParam( CCGetQueryString("QueryString","Id_incidente"),"ccsForm"),"Id_incidente",$miArray[$claveAnterior]);
+   		$RedirectSiguiente =  "IncidenteDetalle3.php?" . CCAddParam( CCRemoveParam( CCGetQueryString("QueryString","Id_incidente"),"ccsForm"),"Id_incidente",$miArray[$claveSiguiente]);
    		
    		$Container->slAnterior->SetLink($RedirectAnterior);
 		$Container->slSiguiente->SetLink($RedirectSiguiente);		
@@ -1785,7 +1785,7 @@ function Final_ImageLink1_BeforeShow(& $sender)
 //Custom Code @252-2A29BDB7
 // -------------------------
 	global $Redirec;
-   	$Redirec =  "IncidenteDetalle.php?" . CCAddParam( CCRemoveParam( CCGetQueryString("QueryString","export"),"ccsForm"),"export","1");
+   	$Redirec =  "IncidenteDetalle3.php?" . CCAddParam( CCRemoveParam( CCGetQueryString("QueryString","export"),"ccsForm"),"export","1");
 	$Final->ImageLink1->SetLink($Redirec);
 
 	if (CCGetUserLogin()=="omendoza")

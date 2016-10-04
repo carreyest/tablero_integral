@@ -51,6 +51,8 @@ function mc_c_ServContractual_mc_c_BeforeShowRow(& $sender)
 	{
 		if ($anioCons>=2016) {
 		$mc_c_ServContractual_mc_c->numero->SetLink('SLAsCapcApbDetalle2.php?s_mes='.$mc_calificacion_capc->s_mes->GetValue().'&s_anio='.$mc_calificacion_capc->s_anio->GetValue().'&'. CCAddParam(CCAddParam("","sID",$mc_c_ServContractual_mc_c->DataSource->f("id")),"s_numero",$mc_c_ServContractual_mc_c->DataSource->f("numero")));
+		$mc_c_ServContractual_mc_c->Img_HERR_EST_COST->SetLink('SLAsCapcApbDetalle2.php?s_mes='.$mc_calificacion_capc->s_mes->GetValue().'&s_anio='.$mc_calificacion_capc->s_anio->GetValue().'&'. CCAddParam(CCAddParam("","sID",$mc_c_ServContractual_mc_c->DataSource->f("id")),"s_numero",$mc_c_ServContractual_mc_c->DataSource->f("numero")));
+		$mc_c_ServContractual_mc_c->Img_REQ_SERV->SetLink('SLAsCapcApbDetalle2.php?s_mes='.$mc_calificacion_capc->s_mes->GetValue().'&s_anio='.$mc_calificacion_capc->s_anio->GetValue().'&'. CCAddParam(CCAddParam("","sID",$mc_c_ServContractual_mc_c->DataSource->f("id")),"s_numero",$mc_c_ServContractual_mc_c->DataSource->f("numero")));
 
 		} else {
 		$mc_c_ServContractual_mc_c->numero->SetLink('SLAsCapcApbDetalle.php?s_mes='.$mc_calificacion_capc->s_mes->GetValue().'&s_anio='.$mc_calificacion_capc->s_anio->GetValue().'&'. CCAddParam(CCAddParam("","sID",$mc_c_ServContractual_mc_c->DataSource->f("id")),"s_numero",$mc_c_ServContractual_mc_c->DataSource->f("numero")));

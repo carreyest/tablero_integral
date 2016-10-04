@@ -366,7 +366,19 @@ order by nombre
 					<Attributes/>
 					<Features/>
 				</Label>
-			</Components>
+				<CheckBox id="415" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="evidencia_salvedad" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="mc_info_rs_ap_ECevidencia_salvedad" fieldSource="evidencia_salvedad" checkedValue="True" uncheckedValue="False">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</CheckBox>
+<TextArea id="416" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="observacion_salvedad" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="mc_info_rs_ap_ECobservacion_salvedad" fieldSource="observacion_salvedad">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</TextArea>
+</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>
@@ -416,7 +428,7 @@ order by nombre
 			<SQLParameters/>
 			<JoinTables>
 				<JoinTable id="414" tableName="mc_info_rs_cr_RE_RC"/>
-</JoinTables>
+			</JoinTables>
 			<JoinLinks/>
 			<Fields>
 			</Fields>

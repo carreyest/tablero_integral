@@ -118,8 +118,8 @@
                                 document.getElementById("mc_calificacion_capcPctMaximo").value= 30 + iDesviacion   *0.143; 
 
                                 } else {
-        						//document.getElementById("mc_calificacion_capcPctMaximo").value= iDesviacion   * ((iDesviacion   - 5)/10);
-        						document.getElementById("mc_calificacion_capcPctMaximo").value=  iDesviacion   - 5;
+                                                        //document.getElementById("mc_calificacion_capcPctMaximo").value= iDesviacion   * ((iDesviacion   - 5)/10);
+                                                        document.getElementById("mc_calificacion_capcPctMaximo").value=  iDesviacion   - 5;
                                 }
                         }
                 }
@@ -411,7 +411,7 @@ jQuery(function ($) {
                                   <td>
                                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Todos los paquetes cerrados?<input type="checkbox" id="mc_calificacion_capcpaquetes_cerrados" value="1" name="{paquetes_cerrados_Name}" {paquetes_cerrados}></p>
                                   </td> 
-                                  <td>Retraso en entregables : 
+                                  <td colspan="2">Retraso en entregables : 
                                     <select id="mc_calificacion_capcRETR_ENTREGABLE" name="{RETR_ENTREGABLE_Name}">
                                       <option selected value="">No Aplica</option>
                                       {RETR_ENTREGABLE_Options}
@@ -439,12 +439,12 @@ jQuery(function ($) {
                                   <td></td> 
                                   <td></td> 
                                   <td></td> 
-                                  <td></td>
+                                  <td colspan="3"></td>
                                 </tr>
  
                                 <tr class="Controls">
                                   <td></td> 
-                                  <td></td>
+                                  <td colspan="7"></td>
                                 </tr>
  
                                 <tr class="Controls">
@@ -455,6 +455,12 @@ jQuery(function ($) {
                                 <tr class="Controls">
                                   <td class="th"><label for="mc_calificacion_capcObservaciones">Observaciones</label></td> 
                                   <td colspan="7"><textarea id="mc_calificacion_capcObservaciones" rows="3" cols="62" name="{Observaciones_Name}">{Observaciones}</textarea></td>
+                                </tr>
+ 
+                                <tr class="Controls">
+                                  <td class="th">&nbsp;<label for="mc_calificacion_capcevidencia_salvedad" style="display: block;">Evidencia de<br>
+                                    Salvedad</label><input type="checkbox" id="mc_calificacion_capcevidencia_salvedad" value="1" name="{evidencia_salvedad_Name}" {evidencia_salvedad}></td> 
+                                  <td colspan="7">&nbsp;<label for="mc_calificacion_capcobservacion_salvedad" style="display: block;">Observaciones de evidencia de salvedad</label> <textarea id="mc_calificacion_capcobservacion_salvedad" rows="3" cols="50" name="{observacion_salvedad_Name}">{observacion_salvedad}</textarea></td>
                                 </tr>
                               </table>
                             </td>

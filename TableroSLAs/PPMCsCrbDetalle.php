@@ -51,7 +51,7 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-4C3A7009
+//Class_Initialize Event @3-BD122026
     function clsRecordmc_info_rs_ap_EC($RelativePath, & $Parent)
     {
 
@@ -140,6 +140,10 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
             $this->hdUsrUltMod = new clsControl(ccsHidden, "hdUsrUltMod", "hdUsrUltMod", ccsText, "", CCGetRequestParam("hdUsrUltMod", $Method, NULL), $this);
             $this->btnCalcular = new clsButton("btnCalcular", $Method, $this);
             $this->lReportado = new clsControl(ccsLabel, "lReportado", "lReportado", ccsText, "", CCGetRequestParam("lReportado", $Method, NULL), $this);
+            $this->evidencia_salvedad = new clsControl(ccsCheckBox, "evidencia_salvedad", "evidencia_salvedad", ccsBoolean, $CCSLocales->GetFormatInfo("BooleanFormat"), CCGetRequestParam("evidencia_salvedad", $Method, NULL), $this);
+            $this->evidencia_salvedad->CheckedValue = true;
+            $this->evidencia_salvedad->UncheckedValue = false;
+            $this->observacion_salvedad = new clsControl(ccsTextArea, "observacion_salvedad", "observacion_salvedad", ccsText, "", CCGetRequestParam("observacion_salvedad", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->hdFechaUltMod->Value) && !strlen($this->hdFechaUltMod->Value) && $this->hdFechaUltMod->Value !== false)
                     $this->hdFechaUltMod->SetText(date("Y-m-d H:i"));
@@ -155,6 +159,8 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
                     $this->CAPFirmada->SetValue(false);
                 if(!is_array($this->TPaquetes->Value) && !strlen($this->TPaquetes->Value) && $this->TPaquetes->Value !== false)
                     $this->TPaquetes->SetValue(false);
+                if(!is_array($this->evidencia_salvedad->Value) && !strlen($this->evidencia_salvedad->Value) && $this->evidencia_salvedad->Value !== false)
+                    $this->evidencia_salvedad->SetValue(false);
             }
             if(!is_array($this->sIdPPMC->Value) && !strlen($this->sIdPPMC->Value) && $this->sIdPPMC->Value !== false)
                 $this->sIdPPMC->SetText(CCGetParam("ID_PPMC"));
@@ -173,7 +179,7 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
     }
 //End Initialize Method
 
-//Validate Method @3-22C72BC1
+//Validate Method @3-C0B40F07
     function Validate()
     {
         global $CCSLocales;
@@ -203,6 +209,8 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
         $Validation = ($this->hExiste->Validate() && $Validation);
         $Validation = ($this->sID->Validate() && $Validation);
         $Validation = ($this->hdUsrUltMod->Validate() && $Validation);
+        $Validation = ($this->evidencia_salvedad->Validate() && $Validation);
+        $Validation = ($this->observacion_salvedad->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->sServicioNegocio->Errors->Count() == 0);
         $Validation =  $Validation && ($this->sTipoRequerimiento->Errors->Count() == 0);
@@ -228,11 +236,13 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
         $Validation =  $Validation && ($this->hExiste->Errors->Count() == 0);
         $Validation =  $Validation && ($this->sID->Errors->Count() == 0);
         $Validation =  $Validation && ($this->hdUsrUltMod->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->evidencia_salvedad->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->observacion_salvedad->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-9707F94C
+//CheckErrors Method @3-81F7B700
     function CheckErrors()
     {
         $errors = false;
@@ -269,6 +279,8 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
         $errors = ($errors || $this->sID->Errors->Count());
         $errors = ($errors || $this->hdUsrUltMod->Errors->Count());
         $errors = ($errors || $this->lReportado->Errors->Count());
+        $errors = ($errors || $this->evidencia_salvedad->Errors->Count());
+        $errors = ($errors || $this->observacion_salvedad->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -331,7 +343,7 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
     }
 //End Operation Method
 
-//InsertRow Method @3-2AA6E325
+//InsertRow Method @3-A4B31DC9
     function InsertRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
@@ -368,13 +380,15 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
         $this->DataSource->sID->SetValue($this->sID->GetValue(true));
         $this->DataSource->hdUsrUltMod->SetValue($this->hdUsrUltMod->GetValue(true));
         $this->DataSource->lReportado->SetValue($this->lReportado->GetValue(true));
+        $this->DataSource->evidencia_salvedad->SetValue($this->evidencia_salvedad->GetValue(true));
+        $this->DataSource->observacion_salvedad->SetValue($this->observacion_salvedad->GetValue(true));
         $this->DataSource->Insert();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterInsert", $this);
         return (!$this->CheckErrors());
     }
 //End InsertRow Method
 
-//UpdateRow Method @3-7CC87443
+//UpdateRow Method @3-9EA5A7AB
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
@@ -411,13 +425,15 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
         $this->DataSource->sID->SetValue($this->sID->GetValue(true));
         $this->DataSource->hdUsrUltMod->SetValue($this->hdUsrUltMod->GetValue(true));
         $this->DataSource->lReportado->SetValue($this->lReportado->GetValue(true));
+        $this->DataSource->evidencia_salvedad->SetValue($this->evidencia_salvedad->GetValue(true));
+        $this->DataSource->observacion_salvedad->SetValue($this->observacion_salvedad->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
         return (!$this->CheckErrors());
     }
 //End UpdateRow Method
 
-//Show Method @3-3A06CCEC
+//Show Method @3-2A3EE58A
     function Show()
     {
         global $CCSUseAmp;
@@ -472,6 +488,8 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
                     $this->TPaquetes->SetValue($this->DataSource->TPaquetes->GetValue());
                     $this->sID->SetValue($this->DataSource->sID->GetValue());
                     $this->hdUsrUltMod->SetValue($this->DataSource->hdUsrUltMod->GetValue());
+                    $this->evidencia_salvedad->SetValue($this->DataSource->evidencia_salvedad->GetValue());
+                    $this->observacion_salvedad->SetValue($this->DataSource->observacion_salvedad->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -515,6 +533,8 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
             $Error = ComposeStrings($Error, $this->sID->Errors->ToString());
             $Error = ComposeStrings($Error, $this->hdUsrUltMod->Errors->ToString());
             $Error = ComposeStrings($Error, $this->lReportado->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->evidencia_salvedad->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->observacion_salvedad->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -573,6 +593,8 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
         $this->hdUsrUltMod->Show();
         $this->btnCalcular->Show();
         $this->lReportado->Show();
+        $this->evidencia_salvedad->Show();
+        $this->observacion_salvedad->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -583,7 +605,7 @@ class clsRecordmc_info_rs_ap_EC { //mc_info_rs_ap_EC Class @3-3A652514
 
 class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_ECDataSource Class @3-9CE83123
 
-//DataSource Variables @3-DA0FFC0D
+//DataSource Variables @3-566D7B6D
     public $Parent = "";
     public $CCSEvents = "";
     public $CCSEventResult;
@@ -632,9 +654,11 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
     public $sID;
     public $hdUsrUltMod;
     public $lReportado;
+    public $evidencia_salvedad;
+    public $observacion_salvedad;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @3-BEA33032
+//DataSourceClass_Initialize Event @3-E503442C
     function clsmc_info_rs_ap_ECDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -706,6 +730,10 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
         
         $this->lReportado = new clsField("lReportado", ccsText, "");
         
+        $this->evidencia_salvedad = new clsField("evidencia_salvedad", ccsBoolean, $this->BooleanFormat);
+        
+        $this->observacion_salvedad = new clsField("observacion_salvedad", ccsText, "");
+        
 
         $this->InsertFields["id_servicio_negocio"] = array("Name" => "id_servicio_negocio", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["IdTipoReq"] = array("Name" => "[IdTipoReq]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
@@ -728,6 +756,8 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
         $this->InsertFields["TPaquetes"] = array("Name" => "[TPaquetes]", "Value" => "", "DataType" => ccsBoolean);
         $this->InsertFields["Id"] = array("Name" => "[Id]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->InsertFields["UsuarioUltMod"] = array("Name" => "[UsuarioUltMod]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->InsertFields["evidencia_salvedad"] = array("Name" => "evidencia_salvedad", "Value" => "", "DataType" => ccsBoolean);
+        $this->InsertFields["observacion_salvedad"] = array("Name" => "observacion_salvedad", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["id_servicio_negocio"] = array("Name" => "id_servicio_negocio", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["IdTipoReq"] = array("Name" => "[IdTipoReq]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["UsuarioAlta"] = array("Name" => "[UsuarioAlta]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
@@ -749,6 +779,8 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
         $this->UpdateFields["TPaquetes"] = array("Name" => "[TPaquetes]", "Value" => "", "DataType" => ccsBoolean);
         $this->UpdateFields["Id"] = array("Name" => "[Id]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->UpdateFields["UsuarioUltMod"] = array("Name" => "[UsuarioUltMod]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["evidencia_salvedad"] = array("Name" => "evidencia_salvedad", "Value" => "", "DataType" => ccsBoolean);
+        $this->UpdateFields["observacion_salvedad"] = array("Name" => "observacion_salvedad", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
     }
 //End DataSourceClass_Initialize Event
 
@@ -778,7 +810,7 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
     }
 //End Open Method
 
-//SetValues Method @3-E99CFCF2
+//SetValues Method @3-190A59F3
     function SetValues()
     {
         $this->Id_Proveedor->SetDBValue(trim($this->f("Id_Proveedor")));
@@ -803,10 +835,12 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
         $this->TPaquetes->SetDBValue(trim($this->f("TPaquetes")));
         $this->sID->SetDBValue(trim($this->f("Id")));
         $this->hdUsrUltMod->SetDBValue($this->f("UsuarioUltMod"));
+        $this->evidencia_salvedad->SetDBValue(trim($this->f("evidencia_salvedad")));
+        $this->observacion_salvedad->SetDBValue($this->f("observacion_salvedad"));
     }
 //End SetValues Method
 
-//Insert Method @3-DB83D63A
+//Insert Method @3-0F931CFC
     function Insert()
     {
         global $CCSLocales;
@@ -834,6 +868,8 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
         $this->InsertFields["TPaquetes"]["Value"] = $this->TPaquetes->GetDBValue(true);
         $this->InsertFields["Id"]["Value"] = $this->sID->GetDBValue(true);
         $this->InsertFields["UsuarioUltMod"]["Value"] = $this->hdUsrUltMod->GetDBValue(true);
+        $this->InsertFields["evidencia_salvedad"]["Value"] = $this->evidencia_salvedad->GetDBValue(true);
+        $this->InsertFields["observacion_salvedad"]["Value"] = $this->observacion_salvedad->GetDBValue(true);
         $this->SQL = CCBuildInsert("mc_info_rs_cr_RE_RC", $this->InsertFields, $this);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
@@ -843,7 +879,7 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
     }
 //End Insert Method
 
-//Update Method @3-9B6AFC27
+//Update Method @3-53F51417
     function Update()
     {
         global $CCSLocales;
@@ -872,6 +908,8 @@ class clsmc_info_rs_ap_ECDataSource extends clsDBcnDisenio {  //mc_info_rs_ap_EC
         $this->UpdateFields["TPaquetes"]["Value"] = $this->TPaquetes->GetDBValue(true);
         $this->UpdateFields["Id"]["Value"] = $this->sID->GetDBValue(true);
         $this->UpdateFields["UsuarioUltMod"]["Value"] = $this->hdUsrUltMod->GetDBValue(true);
+        $this->UpdateFields["evidencia_salvedad"]["Value"] = $this->evidencia_salvedad->GetDBValue(true);
+        $this->UpdateFields["observacion_salvedad"]["Value"] = $this->observacion_salvedad->GetDBValue(true);
         $this->SQL = CCBuildUpdate("mc_info_rs_cr_RE_RC", $this->UpdateFields, $this);
         $this->SQL .= strlen($this->Where) ? " WHERE " . $this->Where : $this->Where;
         if (!strlen($this->Where) && $this->Errors->Count() == 0) 

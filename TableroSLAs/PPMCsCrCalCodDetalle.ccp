@@ -60,7 +60,7 @@
 			<Attributes/>
 			<Features/>
 		</Link>
-		<Record id="27" sourceType="Table" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="mc_info_rs_CC" connection="cnDisenio" dataSource="mc_info_rs_CC" errorSummator="Error" allowCancel="False" recordDeleteConfirmation="False" buttonsType="button" wizardRecordKey="Id" encryptPasswordField="False" wizardUseInterVariables="False" pkIsAutoincrement="False" wizardCaption="Calificar Calidad de Código" wizardThemeApplyTo="Page" wizardFormMethod="post" wizardType="Record" changedCaptionRecord="True" recordDirection="Vertical" recordAddTemplatePanel="False" PathID="mc_info_rs_CC" activeCollection="IFormElements" activeTableType="mc_info_rs_CC" customInsertType="Table" customInsert="mc_info_rs_CC" customUpdateType="Table" customUpdate="mc_info_rs_CC">
+		<Record id="27" sourceType="Table" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="mc_info_rs_CC" connection="cnDisenio" dataSource="mc_info_rs_CC" errorSummator="Error" allowCancel="False" recordDeleteConfirmation="False" buttonsType="button" wizardRecordKey="Id" encryptPasswordField="False" wizardUseInterVariables="False" pkIsAutoincrement="False" wizardCaption="Calificar Calidad de Código" wizardThemeApplyTo="Page" wizardFormMethod="post" wizardType="Record" changedCaptionRecord="True" recordDirection="Vertical" recordAddTemplatePanel="False" PathID="mc_info_rs_CC" activeCollection="UFormElements" activeTableType="mc_info_rs_CC" customInsertType="Table" customInsert="mc_info_rs_CC" customUpdateType="Table" customUpdate="mc_info_rs_CC">
 			<Components>
 				<Button id="29" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Agregar" PathID="mc_info_rs_CCButton_Insert">
 					<Components/>
@@ -171,6 +171,18 @@
 					<Attributes/>
 					<Features/>
 				</Hidden>
+				<CheckBox id="213" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="evidencia_salvedad" PathID="mc_info_rs_CCevidencia_salvedad" fieldSource="evidencia_salvedad" checkedValue="True" uncheckedValue="False">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</CheckBox>
+				<TextArea id="214" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="observacion_salvedad" PathID="mc_info_rs_CCobservacion_salvedad" fieldSource="observacion_salvedad">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextArea>
 			</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
@@ -221,7 +233,7 @@
 			<SQLParameters/>
 			<JoinTables>
 				<JoinTable id="212" tableName="mc_info_rs_CC"/>
-</JoinTables>
+			</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="208" fieldName="*"/>
@@ -241,7 +253,9 @@
 				<CustomParameter id="163" field="Id_PPMC" dataType="Integer" parameterType="Control" omitIfEmpty="True" parameterSource="Id_PPMC_HID"/>
 				<CustomParameter id="164" field="ID_Estimacion" dataType="Integer" parameterType="Control" omitIfEmpty="True" parameterSource="ID_Estimacion_HID"/>
 				<CustomParameter id="204" field="IdUniverso" dataType="Integer" parameterType="URL" omitIfEmpty="True" parameterSource="Id"/>
-			</IFormElements>
+				<CustomParameter id="215" field="evidencia_salvedad" dataType="Boolean" parameterType="Control" omitIfEmpty="True" parameterSource="evidencia_salvedad"/>
+<CustomParameter id="216" field="observacion_salvedad" dataType="Text" parameterType="Control" omitIfEmpty="True" parameterSource="observacion_salvedad"/>
+</IFormElements>
 			<USPParameters/>
 			<USQLParameters/>
 			<UConditions>
@@ -256,7 +270,9 @@
 				<CustomParameter id="191" field="UsuarioUltMod" dataType="Text" parameterType="Control" omitIfEmpty="True" parameterSource="UsuarioUltMod"/>
 				<CustomParameter id="192" field="FechaUltMod" dataType="Date" parameterType="Control" omitIfEmpty="True" parameterSource="FechaUltMod"/>
 				<CustomParameter id="193" field="Observaciones" dataType="Text" parameterType="Control" omitIfEmpty="True" parameterSource="Observaciones"/>
-			</UFormElements>
+				<CustomParameter id="217" field="evidencia_salvedad" dataType="Boolean" parameterType="Control" omitIfEmpty="True" parameterSource="evidencia_salvedad"/>
+<CustomParameter id="218" field="observacion_salvedad" dataType="Text" parameterType="Control" omitIfEmpty="True" parameterSource="observacion_salvedad"/>
+</UFormElements>
 			<DSPParameters/>
 			<DSQLParameters/>
 			<DConditions/>

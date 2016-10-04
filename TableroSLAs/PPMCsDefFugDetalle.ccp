@@ -196,7 +196,19 @@
 					<Attributes/>
 					<Features/>
 				</Label>
-			</Components>
+				<CheckBox id="230" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="evidencia_salvedad" PathID="mc_info_rs_cr_deffugevidencia_salvedad" fieldSource="evidencia_salvedad" checkedValue="True" uncheckedValue="False">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</CheckBox>
+<TextArea id="231" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="observacion_salvedad" PathID="mc_info_rs_cr_deffugobservacion_salvedad" fieldSource="observacion_salvedad">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</TextArea>
+</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>

@@ -227,16 +227,28 @@
 				<CheckBox id="80" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="SinDatosParaMedir" PathID="mc_info_rs_cr_RFSinDatosParaMedir" fieldSource="SinDatosParaMedir">
 					<Components/>
 					<Events>
-<Event name="OnClick" type="Client">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="81"/>
-</Actions>
-</Event>
-</Events>
+						<Event name="OnClick" type="Client">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="81"/>
+							</Actions>
+						</Event>
+					</Events>
 					<Attributes/>
 					<Features/>
 				</CheckBox>
-			</Components>
+				<CheckBox id="82" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="evidencia_salvedad" PathID="mc_info_rs_cr_RFevidencia_salvedad" fieldSource="evidencia_salvedad" checkedValue="True" uncheckedValue="False">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</CheckBox>
+<TextArea id="83" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="observacion_salvedad" fieldSource="observacion_salvedad" PathID="mc_info_rs_cr_RFobservacion_salvedad">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</TextArea>
+</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>

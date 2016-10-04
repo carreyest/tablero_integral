@@ -184,9 +184,9 @@ function calificaSLA(){
         }
 
         if (sMax>0){
-			document.getElementById("mc_info_rs_ap_ECCumplioHE").value=0;
+                        document.getElementById("mc_info_rs_ap_ECCumplioHE").value=0;
         } else {
-			document.getElementById("mc_info_rs_ap_ECCumplioHE").value=1;
+                        document.getElementById("mc_info_rs_ap_ECCumplioHE").value=1;
         }
 
 
@@ -459,9 +459,9 @@ jQuery(function ($) {
                    parseFloat(document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoNat").value)
         
         if (sMax>0){
-		  document.getElementById("mc_info_rs_ap_ECCumplioHE").value=0;
-	    } else {
-		  document.getElementById("mc_info_rs_ap_ECCumplioHE").value=1;
+                  document.getElementById("mc_info_rs_ap_ECCumplioHE").value=0;
+            } else {
+                  document.getElementById("mc_info_rs_ap_ECCumplioHE").value=1;
         }
 
         // -------------------------
@@ -483,9 +483,9 @@ jQuery(function ($) {
                    parseFloat(document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoNat").value)
         
         if (sMax>0){
-		  document.getElementById("mc_info_rs_ap_ECCumplioHE").value=0;
-	    } else {
-		  document.getElementById("mc_info_rs_ap_ECCumplioHE").value=1;
+                  document.getElementById("mc_info_rs_ap_ECCumplioHE").value=0;
+            } else {
+                  document.getElementById("mc_info_rs_ap_ECCumplioHE").value=1;
         }
 
         // -------------------------
@@ -507,9 +507,9 @@ jQuery(function ($) {
            parseFloat(document.getElementById("mc_info_rs_ap_ECMaxDiasRetrasoNat").value)
         
         if (sMax>0){
-		  document.getElementById("mc_info_rs_ap_ECCumplioHE").value=0;
-	    } else {
-		  document.getElementById("mc_info_rs_ap_ECCumplioHE").value=1;
+                  document.getElementById("mc_info_rs_ap_ECCumplioHE").value=0;
+            } else {
+                  document.getElementById("mc_info_rs_ap_ECCumplioHE").value=1;
         }
 
         // -------------------------
@@ -632,7 +632,7 @@ jQuery(function ($) {
             <!-- END Error -->
             <tr class="Controls">
               <td class="th">SLA a validar&nbsp;<input type="hidden" id="mc_info_rs_ap_EChExiste" value="{hExiste}" name="{hExiste_Name}"></td> 
-              <td><label style="display: none;" for="mc_info_rs_ap_EClbSLA">ListBox1</label> 
+              <td><label for="mc_info_rs_ap_EClbSLA" style="display: none;">ListBox1</label> 
                 <select onchange="MostrarSLA(1)" id="mc_info_rs_ap_EClbSLA" name="{lbSLA_Name}">
                   <option selected value="1">Retraso en entregables</option>
                 </select>
@@ -721,7 +721,7 @@ jQuery(function ($) {
  
             <tr class="Controls">
               <td class="th">&nbsp;<input type="hidden" id="mc_info_rs_ap_EChIDPPMC" value="{hIDPPMC}" name="{hIDPPMC_Name}"></td> 
-              <td>&nbsp;<label style="display: none;" for="mc_info_rs_ap_ECCAPFirmada">CheckBox1</label></td> 
+              <td>&nbsp;<label for="mc_info_rs_ap_ECCAPFirmada" style="display: none;">CheckBox1</label></td> 
               <td>&nbsp; 
                 <div id="divRElbl" style="DISPLAY: inline">
                   Retraso en entregables 
@@ -746,8 +746,15 @@ jQuery(function ($) {
             </tr>
  
             <tr class="Controls">
+              <td class="th"><label for="mc_info_rs_ap_ECevidencia_salvedad" style="display: block;">Evidencia de </br>salvedad </label><input type="checkbox" id="mc_info_rs_ap_ECevidencia_salvedad" value="1" name="{evidencia_salvedad_Name}" {evidencia_salvedad}></td> 
+              <td>&nbsp;<label for="mc_info_rs_ap_ECobservacion_salvedad" style="display: block;">Observaciones de evidencia de salvedad</label> <textarea id="mc_info_rs_ap_ECobservacion_salvedad" rows="3" cols="50" name="{observacion_salvedad_Name}">{observacion_salvedad}</textarea></td> 
+              <td>&nbsp;</td> 
+              <td>&nbsp;</td>
+            </tr>
+ 
+            <tr class="Controls">
               <td class="th">&nbsp;<input type="hidden" id="mc_info_rs_ap_ECsID" value="{sID}" name="{sID_Name}"></td> 
-              <td>&nbsp;<label style="display: none;" for="mc_info_rs_ap_EChdFechaUltMod">hdFechaUltMod</label><input type="hidden" id="mc_info_rs_ap_EChdFechaUltMod" value="{hdFechaUltMod}" name="{hdFechaUltMod_Name}"></td> 
+              <td>&nbsp;<label for="mc_info_rs_ap_EChdFechaUltMod" style="display: none;">hdFechaUltMod</label><input type="hidden" id="mc_info_rs_ap_EChdFechaUltMod" value="{hdFechaUltMod}" name="{hdFechaUltMod_Name}"></td> 
               <td>&nbsp;</td> 
               <td>&nbsp;</td>
             </tr>
@@ -839,8 +846,8 @@ jQuery(function ($) {
  
                   <tr class="Controls">
                     <td class="th"><label for="mc_info_rs_cr_RE_RC_Artef1FechaAlta">&nbsp;</label></td> 
-                    <td><label style="display: none;" for="mc_info_rs_cr_RE_RC_Artef1UsuarioAlta">Usuario alta</label><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1UsuarioAlta" value="{UsuarioAlta}" name="{UsuarioAlta_Name}"><label style="display: none;" for="mc_info_rs_cr_RE_RC_Artef1FechaUltMod">Fecha Ult Mod</label><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1FechaUltMod" value="{FechaUltMod}" name="{FechaUltMod_Name}"><label style="display: none;" for="mc_info_rs_cr_RE_RC_Artef1UsuarioUltMod">Usuario Ult Mod</label><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1UsuarioUltMod" value="{UsuarioUltMod}" name="{UsuarioUltMod_Name}"><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1Id_Padre" value="{Id_Padre}" name="{Id_Padre_Name}"></td> 
-                    <td>&nbsp;<label style="display: none;" for="mc_info_rs_cr_RE_RC_Artef1Pct">Pct</label><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1Pct" value="{Pct}" name="{Pct_Name}"><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1ID_PPMC" value="{ID_PPMC}" name="{ID_PPMC_Name}"></td> 
+                    <td><label for="mc_info_rs_cr_RE_RC_Artef1UsuarioAlta" style="display: none;">Usuario alta</label><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1UsuarioAlta" value="{UsuarioAlta}" name="{UsuarioAlta_Name}"><label for="mc_info_rs_cr_RE_RC_Artef1FechaUltMod" style="display: none;">Fecha Ult Mod</label><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1FechaUltMod" value="{FechaUltMod}" name="{FechaUltMod_Name}"><label for="mc_info_rs_cr_RE_RC_Artef1UsuarioUltMod" style="display: none;">Usuario Ult Mod</label><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1UsuarioUltMod" value="{UsuarioUltMod}" name="{UsuarioUltMod_Name}"><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1Id_Padre" value="{Id_Padre}" name="{Id_Padre_Name}"></td> 
+                    <td>&nbsp;<label for="mc_info_rs_cr_RE_RC_Artef1Pct" style="display: none;">Pct</label><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1Pct" value="{Pct}" name="{Pct_Name}"><input type="hidden" id="mc_info_rs_cr_RE_RC_Artef1ID_PPMC" value="{ID_PPMC}" name="{ID_PPMC_Name}"></td> 
                     <td>&nbsp;</td>
                   </tr>
  
@@ -968,7 +975,7 @@ jQuery(function ($) {
             <td style="TEXT-ALIGN: center">{PctDeductiva}</td> 
             <td style="TEXT-ALIGN: center">{Comentarios}</td> 
             <td>
-              <!-- BEGIN Panel CheckBox_Delete_Panel --><label style="display: none;" for="mc_info_rs_cr_RE_RC_Artef2CheckBox_Delete_PanelCheckBox_Delete_{mc_info_rs_cr_RE_RC_Artef2:rowNumber}">Borrar</label> 
+              <!-- BEGIN Panel CheckBox_Delete_Panel --><label for="mc_info_rs_cr_RE_RC_Artef2CheckBox_Delete_PanelCheckBox_Delete_{mc_info_rs_cr_RE_RC_Artef2:rowNumber}" style="display: none;">Borrar</label> 
               <!-- BEGIN CheckBox CheckBox_Delete --><input type="checkbox" id="mc_info_rs_cr_RE_RC_Artef2CheckBox_Delete_PanelCheckBox_Delete_{mc_info_rs_cr_RE_RC_Artef2:rowNumber}" value="1" name="{CheckBox_Delete_Name}" {CheckBox_Delete}><!-- END CheckBox CheckBox_Delete --><!-- END Panel CheckBox_Delete_Panel -->&nbsp;</td>
           </tr>
  <!-- END Row -->

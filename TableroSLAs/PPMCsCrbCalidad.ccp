@@ -8,13 +8,13 @@
 		</Label>
 		<Record id="81" sourceType="Table" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="mc_info_rs_cr_calidad" connection="cnDisenio" dataSource="mc_info_rs_cr_calidad" errorSummator="Error" allowCancel="False" recordDeleteConfirmation="False" buttonsType="button" wizardRecordKey="id" encryptPasswordField="False" wizardUseInterVariables="False" pkIsAutoincrement="False" wizardCaption="Calificar Calidad de Productos Terminados" wizardThemeApplyTo="Page" wizardFormMethod="post" wizardType="Record" changedCaptionRecord="True" recordDirection="Vertical" recordAddTemplatePanel="False" PathID="mc_info_rs_cr_calidad">
 			<Components>
-				<Button id="83" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Agregar" PathID="mc_info_rs_cr_calidadButton_Insert">
+				<Button id="83" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Agregar" PathID="mc_info_rs_cr_calidadButton_Insert" returnPage="PPMCsCrbCalidad.ccp">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Button>
-				<Button id="84" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Update" operation="Update" wizardCaption="Enviar" PathID="mc_info_rs_cr_calidadButton_Update">
+				<Button id="84" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Update" operation="Update" wizardCaption="Enviar" PathID="mc_info_rs_cr_calidadButton_Update" returnPage="PPMCsCrbCalidad.ccp">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -123,7 +123,7 @@
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<Hidden id="158" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="lsServNegocio" wizardEmptyCaption="Seleccionar Valor" PathID="mc_info_rs_cr_calidadlsServNegocio" fieldSource="Id_Serv_Negocio" connection="cnDisenio" dataSource="select id_servicio, nombre
+				<Hidden id="158" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="lsServNegocio" wizardEmptyCaption="Seleccionar Valor" PathID="mc_info_rs_cr_calidadlsServNegocio" fieldSource="Id_Serv_Negocio" connection="con_xls" dataSource="select id_servicio, nombre
 from mc_c_servicio where id_tipo_servicio=2
 order by nombre" boundColumn="id_servicio" textColumn="nombre" required="True" caption="Servicio de Negocio">
 					<Components/>
@@ -138,7 +138,7 @@ order by nombre" boundColumn="id_servicio" textColumn="nombre" required="True" c
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<Hidden id="159" visible="Yes" fieldSourceType="DBColumn" sourceType="Table" dataType="Text" returnValueType="Number" name="lsServContractual" wizardEmptyCaption="Seleccionar Valor" PathID="mc_info_rs_cr_calidadlsServContractual" fieldSource="Id_Serv_Contractual" connection="cnDisenio" dataSource="mc_c_ServContractual" boundColumn="Id" textColumn="Descripcion" required="True" caption="Servicio Contractual">
+				<Hidden id="159" visible="Yes" fieldSourceType="DBColumn" sourceType="Table" dataType="Text" returnValueType="Number" name="lsServContractual" wizardEmptyCaption="Seleccionar Valor" PathID="mc_info_rs_cr_calidadlsServContractual" fieldSource="Id_Serv_Contractual" connection="con_xls" dataSource="mc_c_ServContractual" boundColumn="Id" textColumn="Descripcion" required="True" caption="Servicio Contractual">
 					<Components/>
 					<Events/>
 					<TableParameters>
@@ -225,7 +225,19 @@ order by nombre" boundColumn="id_servicio" textColumn="nombre" required="True" c
 					<Attributes/>
 					<Features/>
 				</Label>
-			</Components>
+				<CheckBox id="325" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="evidencia_salvedad" PathID="mc_info_rs_cr_calidadevidencia_salvedad" fieldSource="evidencia_salvedad" checkedValue="True" uncheckedValue="False">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</CheckBox>
+<TextArea id="326" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="observacion_salvedad" PathID="mc_info_rs_cr_calidadobservacion_salvedad" fieldSource="observacion_salvedad">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</TextArea>
+</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>
@@ -618,8 +630,8 @@ AND det.TipoRegistro  = '{Expr0}'
 			<SQLParameters/>
 			<JoinTables>
 				<JoinTable id="323" tableName="mc_info_detalle_defectos_calidad"/>
-<JoinTable id="324" tableName="mc_c_proveedor"/>
-</JoinTables>
+				<JoinTable id="324" tableName="mc_c_proveedor"/>
+			</JoinTables>
 			<JoinLinks>
 				<JoinTable2 id="305" conditionType="Equal" fieldLeft="mc_info_detalle_defectos_calidad.id_ProveedorPaq" fieldRight="mc_c_proveedor.id_proveedor" joinType="left" tableLeft="mc_info_detalle_defectos_calidad" tableRight="mc_c_proveedor"/>
 			</JoinLinks>

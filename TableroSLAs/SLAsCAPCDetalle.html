@@ -4,8 +4,8 @@
 <meta http-equiv="content-type" content="text/html; charset=windows-1252">
 <title>SLAsCAPCDetalle</title>
 <meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
-<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css" />
-<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
 <script>
         function HabilitaDefectos(){
             var chkRevision = document.getElementById("mc_calificacion_capcRevisionPares");
@@ -165,8 +165,8 @@
 
 //Include User Scripts @1-FA240378
 </script>
-<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css" />
-<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/ccs-jquery-ui-calendar.css" />
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/ccs-jquery-ui-calendar.css">
 {page:scriptIncludes}
 <script type="text/javascript">
 //End Include User Scripts
@@ -214,7 +214,7 @@ jQuery(function ($) {
       <div align="right">
 <a href="{lkSiguiente_Src}" id="lkSiguiente">{lkSiguiente}</a> 
       </div>
- </td> 
+    </td>
   </tr>
 </table>
 </p>
@@ -225,7 +225,7 @@ jQuery(function ($) {
       requisitos funcionales</a></td> 
     <td><a href="{lkCalidad_Src}" id="lkCalidad">Calidad de<br>
       productos terminados</a></td> 
-    <td><a href="{lkRetraso_Src}" id="lkRetraso">Retraso en entregables</a></td> 
+    <td><a href="{lkRetraso_Src}" id="lkRetraso">Retraso en entregables</a></td>
   </tr>
 </table>
 </p>
@@ -234,7 +234,7 @@ jQuery(function ($) {
   <tr>
     <td>&nbsp;</td> 
     <td></td> 
-    <td>&nbsp;</td> 
+    <td>&nbsp;</td>
   </tr>
  
   <tr>
@@ -242,36 +242,34 @@ jQuery(function ($) {
     <td>
       <!-- BEGIN Record mc_calificacion_capc -->
       <form id="mc_calificacion_capc" method="post" name="{HTMLFormName}" action="{Action}">
-        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
           <tr>
             <td valign="top">
-              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Detalle SLAs del CAPC</strong></td> 
-                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
                 </tr>
- 
               </table>
  
               <table class="Record" cellspacing="0" cellpadding="0">
                 <!-- BEGIN Error -->
                 <tr id="ErrorBlock" class="Error">
-                  <td colspan="3">{Error}</td> 
+                  <td colspan="3">{Error}</td>
                 </tr>
- <!-- END Error -->
+                <!-- END Error -->
                 <tr class="Controls">
                   <td class="th"><label for="mc_calificacion_capcnumero">Requerimiento</label></td> 
-                  <td><input type="text" id="mc_calificacion_capcnumero" value="{numero}" maxlength="6" size="6" name="{numero_Name}"></td> 
-                  <td><label for="mc_calificacion_capcSLO" style="display: inline;">SLO</label><input type="checkbox" id="mc_calificacion_capcSLO" value="1" name="{SLO_Name}" {SLO}></td> 
+                  <td><input type="text" id="mc_calificacion_capcnumero" maxlength="6" size="6" value="{numero}" name="{numero_Name}"></td> 
+                  <td><label for="mc_calificacion_capcSLO" style="display: inline;">SLO</label><input type="checkbox" id="mc_calificacion_capcSLO" value="1" name="{SLO_Name}" {SLO}></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">Id estimación</td> 
-                  <td><input type="text" id="mc_calificacion_capcIdEstimacion" value="{IdEstimacion}" maxlength="6" size="6" name="{IdEstimacion_Name}"></td> 
-                  <td>&nbsp;</td> 
+                  <td><input type="text" id="mc_calificacion_capcIdEstimacion" maxlength="6" size="6" value="{IdEstimacion}" name="{IdEstimacion_Name}"></td> 
+                  <td>&nbsp;</td>
                 </tr>
- 
                 <!--<tr class="Controls">
                   <td class="th">Rubro</td> 
                   <td><input type="text" id="mc_calificacion_capcAgrupador" value="{Agrupador}" maxlength="75" size="50" name="{Agrupador_Name}"></td> 
@@ -282,20 +280,20 @@ jQuery(function ($) {
                   <td>
                     <select id="mc_calificacion_capcid_servicionegocio" name="{id_servicionegocio_Name}">
                       <option selected value="">Seleccionar valor</option>
- {id_servicionegocio_Options} 
+                      {id_servicionegocio_Options}
                     </select>
  </td> 
-                  <td>&nbsp;</td> 
+                  <td>&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">Servicio contractual</td> 
                   <td>
-                    <select id="mc_calificacion_capcid_serviciocont" onchange="OcultaSLAs()" name="{id_serviciocont_Name}">
-                      {id_serviciocont_Options} 
+                    <select onchange="OcultaSLAs()" id="mc_calificacion_capcid_serviciocont" name="{id_serviciocont_Name}">
+                      {id_serviciocont_Options}
                     </select>
  </td> 
-                  <td></td> 
+                  <td></td>
                 </tr>
  
                 <tr class="Controls">
@@ -303,15 +301,15 @@ jQuery(function ($) {
                   <td>
                     <select id="mc_calificacion_capcid_tipo" name="{id_tipo_Name}">
                       <option selected value="">Seleccionar valor</option>
- {id_tipo_Options} 
+                      {id_tipo_Options}
                     </select>
  </td> 
-                  <td>&nbsp;</td> 
+                  <td>&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_calificacion_capcDescripcion">Descripción</label></td> 
-                  <td colspan="2"><input type="text" id="mc_calificacion_capcDescripcion" value="{Descripcion}" maxlength="350" size="75" name="{Descripcion_Name}"></td> 
+                  <td colspan="2"><input type="text" id="mc_calificacion_capcDescripcion" maxlength="350" size="75" value="{Descripcion}" name="{Descripcion_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
@@ -319,10 +317,10 @@ jQuery(function ($) {
                   <td>
                     <select id="mc_calificacion_capcmes" name="{mes_Name}">
                       <option selected value="">Seleccionar valor</option>
- {mes_Options} 
+                      {mes_Options}
                     </select>
  </td> 
-                  <td>&nbsp;</td> 
+                  <td>&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">
@@ -330,12 +328,18 @@ jQuery(function ($) {
                   <td>
                     <select id="mc_calificacion_capcanio" name="{anio_Name}">
                       <option selected value="">Seleccionar valor</option>
- {anio_Options} 
+                      {anio_Options}
                     </select>
  </td> 
-                  <td>&nbsp;</td> 
+                  <td>&nbsp;</td>
                 </tr>
  
+                <tr class="Controls">
+                  <td class="th">&nbsp;<label for="mc_calificacion_capcevidencia_salvedad" style="display: block;">Evidencia de<br>
+                    Salvedad</label><input type="checkbox" id="mc_calificacion_capcevidencia_salvedad" value="1" name="{evidencia_salvedad_Name}" {evidencia_salvedad}></td> 
+                  <td>&nbsp;<label for="mc_calificacion_capcobservacion_salvedad" style="display: block;">Observaciones evidencia de salvedad</label> <textarea id="mc_calificacion_capcobservacion_salvedad" rows="3" cols="50" name="{observacion_salvedad_Name}">{observacion_salvedad}</textarea></td> 
+                  <td>&nbsp;</td>
+                </tr>
                 <!--
                 <tr class="Controls">
                   <td colspan="3">
@@ -407,19 +411,17 @@ jQuery(function ($) {
                     <div id="divDeductiva">
                       <table width="100%">
                         <tr>
-                          <td style="BACKGROUND-COLOR: rgb(216,216,216)" class="th"><label for="mc_calificacion_capcDEDUC_OMISION">Deductivas por Omisión</label></td> 
+                          <td class="th" style="BACKGROUND-COLOR: rgb(216,216,216)"><label for="mc_calificacion_capcDEDUC_OMISION">Deductivas por Omisión</label></td> 
                           <td style="BACKGROUND-COLOR: rgb(216,216,216)">
                             <select id="mc_calificacion_capcDEDUC_OMISION" name="{DEDUC_OMISION_Name}">
                               <option selected value="">No Aplica</option>
- {DEDUC_OMISION_Options} 
+                              {DEDUC_OMISION_Options}
                             </select>
- </td> 
+ </td>
                         </tr>
- 
                       </table>
- 
                     </div>
- </td> 
+                  </td>
                 </tr>
  
                 <tr class="Controls">
@@ -427,13 +429,13 @@ jQuery(function ($) {
                     <div id="divEficiencia">
                       <table>
                         <tr>
-                          <td style="BACKGROUND-COLOR: rgb(216,216,216)" class="th"><label for="mc_calificacion_capcEFIC_PRESUP">Eficiencia Presupuestal</label></td> 
+                          <td class="th" style="BACKGROUND-COLOR: rgb(216,216,216)"><label for="mc_calificacion_capcEFIC_PRESUP">Eficiencia Presupuestal</label></td> 
                           <td style="BACKGROUND-COLOR: rgb(216,216,216)">
                             <select id="mc_calificacion_capcEFIC_PRESUP" name="{EFIC_PRESUP_Name}">
                               <option selected value="">No Aplica</option>
- {EFIC_PRESUP_Options} 
+                              {EFIC_PRESUP_Options}
                             </select>
- </td> 
+ </td>
                         </tr>
  
                         <tr>
@@ -442,32 +444,28 @@ jQuery(function ($) {
                               <tr>
                                 <td><label for="mc_calificacion_capcUnidadesActuales" style="display: inline;">Costo actual y/o<br>
                                   Total de unidades</label></td> 
-                                <td><input type="text" id="mc_calificacion_capcUnidadesActuales" value="{UnidadesActuales}" maxlength="20" name="{UnidadesActuales_Name}"></td> 
+                                <td><input type="text" id="mc_calificacion_capcUnidadesActuales" maxlength="20" value="{UnidadesActuales}" name="{UnidadesActuales_Name}"></td> 
                                 <td><label for="mc_calificacion_capcUnidadesAnteriores" style="display: inline;">Costo estimado y/o total de<br>
                                   Unidades optimizadas</label></td> 
-                                <td><input type="text" id="mc_calificacion_capcUnidadesAnteriores" value="{UnidadesAnteriores}" maxlength="20" name="{UnidadesAnteriores_Name}"></td> 
+                                <td><input type="text" id="mc_calificacion_capcUnidadesAnteriores" maxlength="20" value="{UnidadesAnteriores}" name="{UnidadesAnteriores_Name}"></td>
                               </tr>
  
                               <tr>
                                 <td><label for="mc_calificacion_capctxtEntregableEF" style="display: inline;">Entregable:</label>&nbsp;</td> 
-                                <td colspan="3"><textarea id="mc_calificacion_capctxtEntregableEF" cols="62" name="{txtEntregableEF_Name}">{txtEntregableEF}</textarea>&nbsp; </td> 
+                                <td colspan="3"><textarea id="mc_calificacion_capctxtEntregableEF" cols="62" name="{txtEntregableEF_Name}">{txtEntregableEF}</textarea>&nbsp; </td>
                               </tr>
  
                               <tr>
                                 <td><label for="mc_calificacion_capcDetalleEficPres" style="display: inline;">Detalle medicion EF</label>&nbsp;</td> 
-                                <td colspan="3"><textarea id="mc_calificacion_capcDetalleEficPres" rows="3" cols="62" name="{DetalleEficPres_Name}">{DetalleEficPres}</textarea>&nbsp; </td> 
+                                <td colspan="3"><textarea id="mc_calificacion_capcDetalleEficPres" rows="3" cols="62" name="{DetalleEficPres_Name}">{DetalleEficPres}</textarea>&nbsp; </td>
                               </tr>
- 
                             </table>
- </td> 
+                          </td>
                         </tr>
- 
                       </table>
- 
                     </div>
- </td> 
+                  </td>
                 </tr>
- 
                 <!--
                 <tr class="Controls">
                   <td colspan="3">
@@ -534,26 +532,23 @@ jQuery(function ($) {
  -->
                 <tr class="Bottom">
                   <td style="TEXT-ALIGN: right" colspan="3">
-                    <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_calificacion_capcButton_Insert" class="Button" value="Guardar" alt="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
-                    <!-- BEGIN Button Button_Update --><input type="submit" id="mc_calificacion_capcButton_Update" class="Button" value="Guardar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Update --><input type="hidden" id="mc_calificacion_capcid_proveedor" value="{id_proveedor}" name="{id_proveedor_Name}"></td> 
+                    <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_calificacion_capcButton_Insert" class="Button" alt="Agregar" value="Guardar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input type="submit" id="mc_calificacion_capcButton_Update" class="Button" alt="Enviar" value="Guardar" name="{Button_Name}"><!-- END Button Button_Update --><input type="hidden" id="mc_calificacion_capcid_proveedor" value="{id_proveedor}" name="{id_proveedor_Name}"></td>
                 </tr>
- 
               </table>
- </td> 
+            </td>
           </tr>
- 
         </table>
- 
       </form>
- <!-- END Record mc_calificacion_capc --><br>
+      <!-- END Record mc_calificacion_capc --><br>
     </td> 
-    <td>&nbsp;</td> 
+    <td>&nbsp;</td>
   </tr>
  
   <tr>
     <td>&nbsp;</td> 
     <td></td> 
-    <td>&nbsp;</td> 
+    <td>&nbsp;</td>
   </tr>
 </table>
 <p></p>

@@ -249,7 +249,19 @@ order by nombre" boundColumn="id_servicio" textColumn="nombre" required="True" c
 					<Attributes/>
 					<Features/>
 				</Button>
-			</Components>
+				<CheckBox id="351" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="evidencia_salvedad" PathID="mc_info_rs_cr_calidad_capcevidencia_salvedad" fieldSource="evidencia_salvedad" checkedValue="True" uncheckedValue="False">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</CheckBox>
+<TextArea id="352" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="observacion_salvedad" PathID="mc_info_rs_cr_calidad_capcobservacion_salvedad" fieldSource="observacion_salvedad">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</TextArea>
+</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>

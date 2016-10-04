@@ -118,10 +118,10 @@ jQuery(function ($) {
     <td>&nbsp;&nbsp; 
       <!-- BEGIN Record mc_info_rs_cr_deffug -->
       <form id="mc_info_rs_cr_deffug" method="post" name="{HTMLFormName}" action="{Action}">
-        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
           <tr>
             <td valign="top">
-              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="data:image/png;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="></td> 
                   <td class="th"><strong>Calificar defectos fugados</strong>&nbsp;{lReportado} </td> 
@@ -158,14 +158,14 @@ jQuery(function ($) {
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_info_rs_cr_deffugIncidentes">Incidente en &nbsp;PPMC</label></td> 
-                  <td><input type="text" id="mc_info_rs_cr_deffugIncidentes" value="{Incidentes}" maxlength="250" size="50" name="{Incidentes_Name}"></td> 
+                  <td><input type="text" id="mc_info_rs_cr_deffugIncidentes" maxlength="250" size="50" value="{Incidentes}" name="{Incidentes_Name}"></td> 
                   <td class="th"></td> 
                   <td class="th"></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_info_rs_cr_deffugNumIncidentes">Cantidad de&nbsp;&nbsp;paquetes</label></td> 
-                  <td><input type="text" id="mc_info_rs_cr_deffugNumIncidentes" value="{NumIncidentes}" maxlength="10" size="10" name="{NumIncidentes_Name}"></td> 
+                  <td><input type="text" id="mc_info_rs_cr_deffugNumIncidentes" maxlength="10" size="10" value="{NumIncidentes}" name="{NumIncidentes_Name}"></td> 
                   <td class="th"></td> 
                   <td class="th"></td>
                 </tr>
@@ -173,28 +173,28 @@ jQuery(function ($) {
                 <tr class="Controls">
                   <td class="th"><label for="mc_info_rs_cr_deffugIncidentesRAPE">Incidente RAPE<br>
                     Garantías</label></td> 
-                  <td><input type="text" id="mc_info_rs_cr_deffugIncidentesRAPE" value="{IncidentesRAPE}" maxlength="250" size="50" name="{IncidentesRAPE_Name}"></td> 
+                  <td><input type="text" id="mc_info_rs_cr_deffugIncidentesRAPE" maxlength="250" size="50" value="{IncidentesRAPE}" name="{IncidentesRAPE_Name}"></td> 
                   <td class="th"></td> 
                   <td class="th"></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_info_rs_cr_deffugNumIncidentesRAPE">Cantidad de paquetes </label></td> 
-                  <td><input type="text" id="mc_info_rs_cr_deffugNumIncidentesRAPE" value="{NumIncidentesRAPE}" maxlength="10" size="10" name="{NumIncidentesRAPE_Name}"></td> 
+                  <td><input type="text" id="mc_info_rs_cr_deffugNumIncidentesRAPE" maxlength="10" size="10" value="{NumIncidentesRAPE}" name="{NumIncidentesRAPE_Name}"></td> 
                   <td class="th"></td> 
                   <td class="th"></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_info_rs_cr_deffugPaquetes">Paquetes del requerimiento</label></td> 
-                  <td><input type="text" id="mc_info_rs_cr_deffugPaquetes" value="{Paquetes}" maxlength="5" size="5" name="{Paquetes_Name}"></td> 
+                  <td><input type="text" id="mc_info_rs_cr_deffugPaquetes" maxlength="5" size="5" value="{Paquetes}" name="{Paquetes_Name}"></td> 
                   <td class="th"></td> 
                   <td class="th"></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_info_rs_cr_deffugNumPaquetes">Rechazos de operaciones</label></td> 
-                  <td><input type="text" id="mc_info_rs_cr_deffugNumPaquetes" value="{NumPaquetes}" maxlength="10" size="10" name="{NumPaquetes_Name}"></td> 
+                  <td><input type="text" id="mc_info_rs_cr_deffugNumPaquetes" maxlength="10" size="10" value="{NumPaquetes}" name="{NumPaquetes_Name}"></td> 
                   <td class="th"></td> 
                   <td class="th"></td>
                 </tr>
@@ -212,7 +212,7 @@ jQuery(function ($) {
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_info_rs_cr_deffugDeductiva">Deductiva</label></td> 
-                  <td><input type="text" id="mc_info_rs_cr_deffugDeductiva" value="{Deductiva}" maxlength="4" size="4" name="{Deductiva_Name}">&nbsp;%</td> 
+                  <td><input type="text" id="mc_info_rs_cr_deffugDeductiva" maxlength="4" size="4" value="{Deductiva}" name="{Deductiva_Name}">&nbsp;%</td> 
                   <td class="th"></td> 
                   <td class="th"></td>
                 </tr>
@@ -252,12 +252,20 @@ jQuery(function ($) {
                   <td class="th"></td>
                 </tr>
  
+                <tr class="Controls">
+                  <td class="th">&nbsp;<label for="mc_info_rs_cr_deffugevidencia_salvedad" style="display: block;">Evicenica de <br>
+                    salvedad</label><input type="checkbox" id="mc_info_rs_cr_deffugevidencia_salvedad" value="1" name="{evidencia_salvedad_Name}" {evidencia_salvedad}></td> 
+                  <td>&nbsp;<label for="mc_info_rs_cr_deffugobservacion_salvedad" style="display: block;">Observaciones de evidencia de salvedad</label> <textarea id="mc_info_rs_cr_deffugobservacion_salvedad" rows="3" cols="50" name="{observacion_salvedad_Name}">{observacion_salvedad}</textarea></td> 
+                  <td class="th">&nbsp;</td> 
+                  <td class="th">&nbsp;</td>
+                </tr>
+ 
                 <tr class="Bottom">
                   <td>
-                    <!-- BEGIN Button btnCalcula --><input type="submit" id="mc_info_rs_cr_deffugbtnCalcula" class="Button" value="Buscar paquetes" alt="Button1" name="{Button_Name}" size="20"><!-- END Button btnCalcula --></td> 
+                    <!-- BEGIN Button btnCalcula --><input type="submit" id="mc_info_rs_cr_deffugbtnCalcula" class="Button" alt="Button1" value="Buscar paquetes" name="{Button_Name}" size="20"><!-- END Button btnCalcula --></td> 
                   <td style="TEXT-ALIGN: right">
-                    <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_info_rs_cr_deffugButton_Insert" class="Button" value="Agregar" alt="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
-                    <!-- BEGIN Button Button_Update --><input type="submit" id="mc_info_rs_cr_deffugButton_Update" class="Button" value="Enviar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Update --><input type="hidden" id="mc_info_rs_cr_deffugId" value="{Id}" name="{Id_Name}"></td> 
+                    <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_info_rs_cr_deffugButton_Insert" class="Button" alt="Agregar" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input type="submit" id="mc_info_rs_cr_deffugButton_Update" class="Button" alt="Enviar" value="Enviar" name="{Button_Name}"><!-- END Button Button_Update --><input type="hidden" id="mc_info_rs_cr_deffugId" value="{Id}" name="{Id_Name}"></td> 
                   <td></td> 
                   <td></td>
                 </tr>
@@ -277,10 +285,10 @@ jQuery(function ($) {
       <!-- BEGIN EditableGrid IncidentesPPMC -->
       <form id="IncidentesPPMC" method="post" name="{HTMLFormName}" action="{Action}">
         <input type="hidden" value="{FormState}" name="FormState">{FormScript} 
-        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
           <tr>
             <td valign="top">
-              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Paquetes del incidente en PPMC</strong></td> 
@@ -374,7 +382,7 @@ jQuery(function ($) {
                     <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
                     <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
                     <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->
-                    <!-- BEGIN Button Button_Submit --><input type="submit" id="IncidentesPPMCButton_Submit" class="Button" value="Enviar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Submit --></td>
+                    <!-- BEGIN Button Button_Submit --><input type="submit" id="IncidentesPPMCButton_Submit" class="Button" alt="Enviar" value="Enviar" name="{Button_Name}"><!-- END Button Button_Submit --></td>
                 </tr>
               </table>
             </td>
@@ -392,10 +400,10 @@ jQuery(function ($) {
       <!-- BEGIN EditableGrid EditableGrid1 -->
       <form id="EditableGrid1" method="post" name="{HTMLFormName}" action="{Action}">
         <input type="hidden" value="{FormState}" name="FormState">{FormScript} 
-        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
           <tr>
             <td valign="top">
-              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Paquetes del incidente del RAPE</strong></td> 
@@ -483,7 +491,7 @@ jQuery(function ($) {
                     <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
                     <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
                     <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->
-                    <!-- BEGIN Button Button_Submit --><input type="submit" id="EditableGrid1Button_Submit" class="Button" value="Enviar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Submit --></td>
+                    <!-- BEGIN Button Button_Submit --><input type="submit" id="EditableGrid1Button_Submit" class="Button" alt="Enviar" value="Enviar" name="{Button_Name}"><!-- END Button Button_Submit --></td>
                 </tr>
               </table>
             </td>
@@ -504,10 +512,10 @@ jQuery(function ($) {
       <!-- BEGIN EditableGrid mc_info_detalle_PPMC_avl -->
       <form id="mc_info_detalle_PPMC_avl" method="post" name="{HTMLFormName}" action="{Action}">
         <input type="hidden" value="{FormState}" name="FormState">{FormScript} 
-        <table class="MainTable" border="0" cellspacing="0" cellpadding="0">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
           <tr>
             <td valign="top">
-              <table class="Header" border="0" cellspacing="0" cellpadding="0">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Paquetes del PPMC</strong></td> 
@@ -601,7 +609,7 @@ jQuery(function ($) {
                     <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
                     <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
                     <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->
-                    <!-- BEGIN Button Button_Submit --><input type="submit" id="mc_info_detalle_PPMC_avlButton_Submit" class="Button" value="Enviar" alt="Enviar" name="{Button_Name}"><!-- END Button Button_Submit --></td>
+                    <!-- BEGIN Button Button_Submit --><input type="submit" id="mc_info_detalle_PPMC_avlButton_Submit" class="Button" alt="Enviar" value="Enviar" name="{Button_Name}"><!-- END Button Button_Submit --></td>
                 </tr>
               </table>
             </td>

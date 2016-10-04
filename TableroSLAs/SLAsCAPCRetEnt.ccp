@@ -230,6 +230,18 @@
 					<Attributes/>
 					<Features/>
 				</Button>
+				<CheckBox id="169" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="evidencia_salvedad" PathID="mc_calificacion_capcevidencia_salvedad" fieldSource="evidencia_salvedad_re" checkedValue="True" uncheckedValue="Flase">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</CheckBox>
+				<TextArea id="170" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="observacion_salvedad" PathID="mc_calificacion_capcobservacion_salvedad" fieldSource="observacion_salvedad_dpo">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextArea>
 			</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
@@ -245,7 +257,7 @@
 			<SQLParameters/>
 			<JoinTables>
 				<JoinTable id="168" tableName="mc_calificacion_capc"/>
-</JoinTables>
+			</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="73" fieldName="*"/>

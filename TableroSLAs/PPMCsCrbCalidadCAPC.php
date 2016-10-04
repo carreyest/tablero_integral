@@ -45,7 +45,7 @@ class clsRecordmc_info_rs_cr_calidad_capc { //mc_info_rs_cr_calidad_capc Class @
     // Class variables
 //End Variables
 
-//Class_Initialize Event @81-15B199EE
+//Class_Initialize Event @81-5F8B132C
     function clsRecordmc_info_rs_cr_calidad_capc($RelativePath, & $Parent)
     {
 
@@ -113,6 +113,10 @@ class clsRecordmc_info_rs_cr_calidad_capc { //mc_info_rs_cr_calidad_capc Class @
             $this->defectos_incumpl_acept = new clsControl(ccsTextBox, "defectos_incumpl_acept", "defectos_incumpl_acept", ccsInteger, "", CCGetRequestParam("defectos_incumpl_acept", $Method, NULL), $this);
             $this->defectos_doc_incorrecta = new clsControl(ccsTextBox, "defectos_doc_incorrecta", "defectos_doc_incorrecta", ccsInteger, "", CCGetRequestParam("defectos_doc_incorrecta", $Method, NULL), $this);
             $this->btnCalculaUpdate = new clsButton("btnCalculaUpdate", $Method, $this);
+            $this->evidencia_salvedad = new clsControl(ccsCheckBox, "evidencia_salvedad", "evidencia_salvedad", ccsBoolean, $CCSLocales->GetFormatInfo("BooleanFormat"), CCGetRequestParam("evidencia_salvedad", $Method, NULL), $this);
+            $this->evidencia_salvedad->CheckedValue = true;
+            $this->evidencia_salvedad->UncheckedValue = false;
+            $this->observacion_salvedad = new clsControl(ccsTextArea, "observacion_salvedad", "observacion_salvedad", ccsText, "", CCGetRequestParam("observacion_salvedad", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->IndiceCalidadDoc->Value) && !strlen($this->IndiceCalidadDoc->Value) && $this->IndiceCalidadDoc->Value !== false)
                     $this->IndiceCalidadDoc->SetText(0);
@@ -124,6 +128,8 @@ class clsRecordmc_info_rs_cr_calidad_capc { //mc_info_rs_cr_calidad_capc Class @
                     $this->FechaUltMod->SetText(date("Y-m-d H:i"));
                 if(!is_array($this->hdId->Value) && !strlen($this->hdId->Value) && $this->hdId->Value !== false)
                     $this->hdId->SetText(CCGetParam("Id"));
+                if(!is_array($this->evidencia_salvedad->Value) && !strlen($this->evidencia_salvedad->Value) && $this->evidencia_salvedad->Value !== false)
+                    $this->evidencia_salvedad->SetValue(false);
             }
         }
     }
@@ -140,7 +146,7 @@ class clsRecordmc_info_rs_cr_calidad_capc { //mc_info_rs_cr_calidad_capc Class @
     }
 //End Initialize Method
 
-//Validate Method @81-0F901382
+//Validate Method @81-87CC07B6
     function Validate()
     {
         global $CCSLocales;
@@ -168,6 +174,8 @@ class clsRecordmc_info_rs_cr_calidad_capc { //mc_info_rs_cr_calidad_capc Class @
         $Validation = ($this->defectos_falta_vinculo->Validate() && $Validation);
         $Validation = ($this->defectos_incumpl_acept->Validate() && $Validation);
         $Validation = ($this->defectos_doc_incorrecta->Validate() && $Validation);
+        $Validation = ($this->evidencia_salvedad->Validate() && $Validation);
+        $Validation = ($this->observacion_salvedad->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->id_ppmc->Errors->Count() == 0);
         $Validation =  $Validation && ($this->id_estimacion->Errors->Count() == 0);
@@ -191,11 +199,13 @@ class clsRecordmc_info_rs_cr_calidad_capc { //mc_info_rs_cr_calidad_capc Class @
         $Validation =  $Validation && ($this->defectos_falta_vinculo->Errors->Count() == 0);
         $Validation =  $Validation && ($this->defectos_incumpl_acept->Errors->Count() == 0);
         $Validation =  $Validation && ($this->defectos_doc_incorrecta->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->evidencia_salvedad->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->observacion_salvedad->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @81-622E0E08
+//CheckErrors Method @81-EAE22147
     function CheckErrors()
     {
         $errors = false;
@@ -228,6 +238,8 @@ class clsRecordmc_info_rs_cr_calidad_capc { //mc_info_rs_cr_calidad_capc Class @
         $errors = ($errors || $this->defectos_falta_vinculo->Errors->Count());
         $errors = ($errors || $this->defectos_incumpl_acept->Errors->Count());
         $errors = ($errors || $this->defectos_doc_incorrecta->Errors->Count());
+        $errors = ($errors || $this->evidencia_salvedad->Errors->Count());
+        $errors = ($errors || $this->observacion_salvedad->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -289,7 +301,7 @@ class clsRecordmc_info_rs_cr_calidad_capc { //mc_info_rs_cr_calidad_capc Class @
     }
 //End Operation Method
 
-//InsertRow Method @81-FF8F22FF
+//InsertRow Method @81-E03266AB
     function InsertRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
@@ -323,13 +335,15 @@ class clsRecordmc_info_rs_cr_calidad_capc { //mc_info_rs_cr_calidad_capc Class @
         $this->DataSource->defectos_falta_vinculo->SetValue($this->defectos_falta_vinculo->GetValue(true));
         $this->DataSource->defectos_incumpl_acept->SetValue($this->defectos_incumpl_acept->GetValue(true));
         $this->DataSource->defectos_doc_incorrecta->SetValue($this->defectos_doc_incorrecta->GetValue(true));
+        $this->DataSource->evidencia_salvedad->SetValue($this->evidencia_salvedad->GetValue(true));
+        $this->DataSource->observacion_salvedad->SetValue($this->observacion_salvedad->GetValue(true));
         $this->DataSource->Insert();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterInsert", $this);
         return (!$this->CheckErrors());
     }
 //End InsertRow Method
 
-//UpdateRow Method @81-BDC78292
+//UpdateRow Method @81-A0FAD002
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
@@ -363,13 +377,15 @@ class clsRecordmc_info_rs_cr_calidad_capc { //mc_info_rs_cr_calidad_capc Class @
         $this->DataSource->defectos_falta_vinculo->SetValue($this->defectos_falta_vinculo->GetValue(true));
         $this->DataSource->defectos_incumpl_acept->SetValue($this->defectos_incumpl_acept->GetValue(true));
         $this->DataSource->defectos_doc_incorrecta->SetValue($this->defectos_doc_incorrecta->GetValue(true));
+        $this->DataSource->evidencia_salvedad->SetValue($this->evidencia_salvedad->GetValue(true));
+        $this->DataSource->observacion_salvedad->SetValue($this->observacion_salvedad->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
         return (!$this->CheckErrors());
     }
 //End UpdateRow Method
 
-//Show Method @81-6B80C6F2
+//Show Method @81-0E7EE6B7
     function Show()
     {
         global $CCSUseAmp;
@@ -420,6 +436,8 @@ class clsRecordmc_info_rs_cr_calidad_capc { //mc_info_rs_cr_calidad_capc Class @
                     $this->defectos_falta_vinculo->SetValue($this->DataSource->defectos_falta_vinculo->GetValue());
                     $this->defectos_incumpl_acept->SetValue($this->DataSource->defectos_incumpl_acept->GetValue());
                     $this->defectos_doc_incorrecta->SetValue($this->DataSource->defectos_doc_incorrecta->GetValue());
+                    $this->evidencia_salvedad->SetValue($this->DataSource->evidencia_salvedad->GetValue());
+                    $this->observacion_salvedad->SetValue($this->DataSource->observacion_salvedad->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -457,6 +475,8 @@ class clsRecordmc_info_rs_cr_calidad_capc { //mc_info_rs_cr_calidad_capc Class @
             $Error = ComposeStrings($Error, $this->defectos_falta_vinculo->Errors->ToString());
             $Error = ComposeStrings($Error, $this->defectos_incumpl_acept->Errors->ToString());
             $Error = ComposeStrings($Error, $this->defectos_doc_incorrecta->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->evidencia_salvedad->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->observacion_salvedad->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -512,6 +532,8 @@ class clsRecordmc_info_rs_cr_calidad_capc { //mc_info_rs_cr_calidad_capc Class @
         $this->defectos_incumpl_acept->Show();
         $this->defectos_doc_incorrecta->Show();
         $this->btnCalculaUpdate->Show();
+        $this->evidencia_salvedad->Show();
+        $this->observacion_salvedad->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -522,7 +544,7 @@ class clsRecordmc_info_rs_cr_calidad_capc { //mc_info_rs_cr_calidad_capc Class @
 
 class clsmc_info_rs_cr_calidad_capcDataSource extends clsDBcnDisenio {  //mc_info_rs_cr_calidad_capcDataSource Class @81-290FB435
 
-//DataSource Variables @81-C8B4DDEC
+//DataSource Variables @81-93F44C84
     public $Parent = "";
     public $CCSEvents = "";
     public $CCSEventResult;
@@ -567,9 +589,11 @@ class clsmc_info_rs_cr_calidad_capcDataSource extends clsDBcnDisenio {  //mc_inf
     public $defectos_falta_vinculo;
     public $defectos_incumpl_acept;
     public $defectos_doc_incorrecta;
+    public $evidencia_salvedad;
+    public $observacion_salvedad;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @81-93C8D9C4
+//DataSourceClass_Initialize Event @81-61379FD8
     function clsmc_info_rs_cr_calidad_capcDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -633,6 +657,10 @@ class clsmc_info_rs_cr_calidad_capcDataSource extends clsDBcnDisenio {  //mc_inf
         
         $this->defectos_doc_incorrecta = new clsField("defectos_doc_incorrecta", ccsInteger, "");
         
+        $this->evidencia_salvedad = new clsField("evidencia_salvedad", ccsBoolean, $this->BooleanFormat);
+        
+        $this->observacion_salvedad = new clsField("observacion_salvedad", ccsText, "");
+        
 
         $this->InsertFields["id_ppmc"] = array("Name" => "id_ppmc", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->InsertFields["id_estimacion"] = array("Name" => "id_estimacion", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
@@ -656,6 +684,8 @@ class clsmc_info_rs_cr_calidad_capcDataSource extends clsDBcnDisenio {  //mc_inf
         $this->InsertFields["defectos_falta_vinculo"] = array("Name" => "defectos_falta_vinculo", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->InsertFields["defectos_incumpl_acept"] = array("Name" => "defectos_incumpl_acept", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->InsertFields["defectos_doc_incorrecta"] = array("Name" => "defectos_doc_incorrecta", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
+        $this->InsertFields["evidencia_salvedad"] = array("Name" => "evidencia_salvedad", "Value" => "", "DataType" => ccsBoolean);
+        $this->InsertFields["observacion_salvedad"] = array("Name" => "observacion_salvedad", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["id_ppmc"] = array("Name" => "id_ppmc", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->UpdateFields["id_estimacion"] = array("Name" => "id_estimacion", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->UpdateFields["IndiceCalidadDoc"] = array("Name" => "[IndiceCalidadDoc]", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
@@ -678,6 +708,8 @@ class clsmc_info_rs_cr_calidad_capcDataSource extends clsDBcnDisenio {  //mc_inf
         $this->UpdateFields["defectos_falta_vinculo"] = array("Name" => "defectos_falta_vinculo", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->UpdateFields["defectos_incumpl_acept"] = array("Name" => "defectos_incumpl_acept", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->UpdateFields["defectos_doc_incorrecta"] = array("Name" => "defectos_doc_incorrecta", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
+        $this->UpdateFields["evidencia_salvedad"] = array("Name" => "evidencia_salvedad", "Value" => "", "DataType" => ccsBoolean);
+        $this->UpdateFields["observacion_salvedad"] = array("Name" => "observacion_salvedad", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
     }
 //End DataSourceClass_Initialize Event
 
@@ -707,7 +739,7 @@ class clsmc_info_rs_cr_calidad_capcDataSource extends clsDBcnDisenio {  //mc_inf
     }
 //End Open Method
 
-//SetValues Method @81-D5EA600C
+//SetValues Method @81-EFAB730E
     function SetValues()
     {
         $this->id_ppmc->SetDBValue(trim($this->f("id_ppmc")));
@@ -732,10 +764,12 @@ class clsmc_info_rs_cr_calidad_capcDataSource extends clsDBcnDisenio {  //mc_inf
         $this->defectos_falta_vinculo->SetDBValue(trim($this->f("defectos_falta_vinculo")));
         $this->defectos_incumpl_acept->SetDBValue(trim($this->f("defectos_incumpl_acept")));
         $this->defectos_doc_incorrecta->SetDBValue(trim($this->f("defectos_doc_incorrecta")));
+        $this->evidencia_salvedad->SetDBValue(trim($this->f("evidencia_salvedad")));
+        $this->observacion_salvedad->SetDBValue($this->f("observacion_salvedad"));
     }
 //End SetValues Method
 
-//Insert Method @81-60775B6A
+//Insert Method @81-3001CA0C
     function Insert()
     {
         global $CCSLocales;
@@ -764,6 +798,8 @@ class clsmc_info_rs_cr_calidad_capcDataSource extends clsDBcnDisenio {  //mc_inf
         $this->InsertFields["defectos_falta_vinculo"]["Value"] = $this->defectos_falta_vinculo->GetDBValue(true);
         $this->InsertFields["defectos_incumpl_acept"]["Value"] = $this->defectos_incumpl_acept->GetDBValue(true);
         $this->InsertFields["defectos_doc_incorrecta"]["Value"] = $this->defectos_doc_incorrecta->GetDBValue(true);
+        $this->InsertFields["evidencia_salvedad"]["Value"] = $this->evidencia_salvedad->GetDBValue(true);
+        $this->InsertFields["observacion_salvedad"]["Value"] = $this->observacion_salvedad->GetDBValue(true);
         $this->SQL = CCBuildInsert("mc_info_rs_cr_calidad_CAPC", $this->InsertFields, $this);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
@@ -773,7 +809,7 @@ class clsmc_info_rs_cr_calidad_capcDataSource extends clsDBcnDisenio {  //mc_inf
     }
 //End Insert Method
 
-//Update Method @81-FDCD84E7
+//Update Method @81-AE755356
     function Update()
     {
         global $CCSLocales;
@@ -803,6 +839,8 @@ class clsmc_info_rs_cr_calidad_capcDataSource extends clsDBcnDisenio {  //mc_inf
         $this->UpdateFields["defectos_falta_vinculo"]["Value"] = $this->defectos_falta_vinculo->GetDBValue(true);
         $this->UpdateFields["defectos_incumpl_acept"]["Value"] = $this->defectos_incumpl_acept->GetDBValue(true);
         $this->UpdateFields["defectos_doc_incorrecta"]["Value"] = $this->defectos_doc_incorrecta->GetDBValue(true);
+        $this->UpdateFields["evidencia_salvedad"]["Value"] = $this->evidencia_salvedad->GetDBValue(true);
+        $this->UpdateFields["observacion_salvedad"]["Value"] = $this->observacion_salvedad->GetDBValue(true);
         $this->SQL = CCBuildUpdate("mc_info_rs_cr_calidad_CAPC", $this->UpdateFields, $this);
         $this->SQL .= strlen($this->Where) ? " WHERE " . $this->Where : $this->Where;
         if (!strlen($this->Where) && $this->Errors->Count() == 0) 

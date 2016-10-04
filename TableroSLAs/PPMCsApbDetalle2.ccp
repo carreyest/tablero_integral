@@ -575,7 +575,31 @@ order by nombre
 					<Attributes/>
 					<Features/>
 				</CheckBox>
-			</Components>
+				<TextArea id="205" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="observacion_salvedad_HE" PathID="mc_info_rs_ap_ECobservacion_salvedad_HE" fieldSource="observacion_salvedad_HE">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</TextArea>
+<TextArea id="207" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="observaciones_salvedad_RS" PathID="mc_info_rs_ap_ECobservaciones_salvedad_RS" fieldSource="observacion_salvedad_RS">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</TextArea>
+<CheckBox id="204" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="ev_salvedad_HE" PathID="mc_info_rs_ap_ECev_salvedad_HE" checkedValue="True" uncheckedValue="False" fieldSource="evidencia_salvedad_HE">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</CheckBox>
+<CheckBox id="206" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="ev_salvedad_RS" PathID="mc_info_rs_ap_ECev_salvedad_RS" fieldSource="evidencia_salvedad_RS" checkedValue="True" uncheckedValue="False">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</CheckBox>
+</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>

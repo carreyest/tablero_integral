@@ -521,19 +521,19 @@ order by nombre
 			</Events>
 			<TableParameters>
 				<TableParameter id="209" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Id" logicOperator="And" orderNumber="1" parameterSource="sID" parameterType="URL" searchConditionType="Equal"/>
-</TableParameters>
+			</TableParameters>
 			<SPParameters/>
 			<SQLParameters/>
 			<JoinTables>
 				<JoinTable id="212" tableName="mc_info_capc_ap"/>
-</JoinTables>
+			</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="210" fieldName="*"/>
-</Fields>
+			</Fields>
 			<PKFields>
 				<PKField id="211" dataType="Text" fieldName="ID_PPMC" tableName="mc_info_capc_ap"/>
-</PKFields>
+			</PKFields>
 			<ISPParameters/>
 			<ISQLParameters>
 				<SQLParameter id="87" variable="URLReferencia" dataType="Memo" parameterType="Control" parameterSource="URLReferencia"/>

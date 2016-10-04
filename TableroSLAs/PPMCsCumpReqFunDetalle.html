@@ -346,11 +346,11 @@ jQuery(function ($) {
           </tr>
  
           <tr class="Controls">
-            <td colspan="2"><label style="display: inline;" for="mc_info_rs_cr_RFTienePonderacion">Los requisitos están ponderados </label><input type="checkbox" id="mc_info_rs_cr_RFTienePonderacion" value="1" name="{TienePonderacion_Name}" {TienePonderacion}><input type="hidden" id="mc_info_rs_cr_RFTotalRequisitos" value="{TotalRequisitos}" name="{TotalRequisitos_Name}"></td>
+            <td colspan="2"><label for="mc_info_rs_cr_RFTienePonderacion" style="display: inline;">Los requisitos están ponderados </label><input type="checkbox" id="mc_info_rs_cr_RFTienePonderacion" value="1" name="{TienePonderacion_Name}" {TienePonderacion}><input type="hidden" id="mc_info_rs_cr_RFTotalRequisitos" value="{TotalRequisitos}" name="{TotalRequisitos_Name}"></td>
           </tr>
  
           <tr class="Controls">
-            <td colspan="2"><label style="display: inline;" for="mc_info_rs_cr_RFTieneCalificacion">Los requisitos están calificados&nbsp;&nbsp;&nbsp;</label><input type="checkbox" id="mc_info_rs_cr_RFTieneCalificacion" value="1" name="{TieneCalificacion_Name}" {TieneCalificacion}>&nbsp;</td>
+            <td colspan="2"><label for="mc_info_rs_cr_RFTieneCalificacion" style="display: inline;">Los requisitos están calificados&nbsp;&nbsp;&nbsp;</label><input type="checkbox" id="mc_info_rs_cr_RFTieneCalificacion" value="1" name="{TieneCalificacion_Name}" {TieneCalificacion}>&nbsp;</td>
           </tr>
  
           <tr class="Controls">
@@ -372,11 +372,11 @@ jQuery(function ($) {
             <td>
               <!-- BEGIN TextBox FechaSubida --><input type="text" onblur="muestraCheck()" id="mc_info_rs_cr_RFFechaSubida" maxlength="100" size="10" value="{FechaSubida}" name="{FechaSubida_Name}"><!-- END TextBox FechaSubida -->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
               <div id="ListaPDF">
-                <label style="display: inline;" for="mc_info_rs_cr_RFListaenPDF">Lista de requisitos en PDF </label><input type="checkbox" id="mc_info_rs_cr_RFListaenPDF" value="1" name="{ListaenPDF_Name}" {ListaenPDF}>
+                <label for="mc_info_rs_cr_RFListaenPDF" style="display: inline;">Lista de requisitos en PDF </label><input type="checkbox" id="mc_info_rs_cr_RFListaenPDF" value="1" name="{ListaenPDF_Name}" {ListaenPDF}>
               </div>
  
               <div id="ListaCAES">
-                <label style="display: inline;" for="mc_info_rs_cr_RFListaenCAES">Lista de requisitos en CAES </label><input type="checkbox" id="mc_info_rs_cr_RFListaenCAES" value="1" name="{ListaenCAES_Name}" {ListaenCAES}>
+                <label for="mc_info_rs_cr_RFListaenCAES" style="display: inline;">Lista de requisitos en CAES </label><input type="checkbox" id="mc_info_rs_cr_RFListaenCAES" value="1" name="{ListaenCAES_Name}" {ListaenCAES}>
               </div>
             </td>
           </tr>
@@ -402,6 +402,15 @@ jQuery(function ($) {
             <td>
               <p><textarea id="mc_info_rs_cr_RFObservaciones" rows="3" cols="50" name="{Observaciones_Name}">{Observaciones}</textarea></p>
             </td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">
+              <p>&nbsp;<label for="mc_info_rs_cr_RFevidencia_salvedad" style="display: block;">Evidencia de </br> salvedad </label><input type="checkbox" id="mc_info_rs_cr_RFevidencia_salvedad" value="1" name="{evidencia_salvedad_Name}" {evidencia_salvedad}></p>
+ 
+              <p>&nbsp;</p>
+            </td> 
+            <td>&nbsp;<label for="mc_info_rs_cr_RFobservacion_salvedad" style="display: block;">Observaciones de evidencia de salvedad</label> <textarea id="mc_info_rs_cr_RFobservacion_salvedad" rows="3" cols="50" name="{observacion_salvedad_Name}">{observacion_salvedad}</textarea></td>
           </tr>
  
           <tr class="Bottom">

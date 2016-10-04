@@ -547,8 +547,8 @@ AND i.estado = 'Closed'">
 					<Attributes/>
 					<Features/>
 				</Button>
-				<ListBox id="186" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="slSeveridad" wizardEmptyCaption="{res:CCS_SelectValue}" PathID="mc_calificacion_incidenteslSeveridad" dataSource="1;1;2;2;3;3;4;4" fieldSource="severidad">
-					<Components/>
+				<Label id="186" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="slSeveridad" wizardEmptyCaption="{res:CCS_SelectValue}" PathID="mc_calificacion_incidenteslSeveridad" dataSource="1;1;2;2;3;3;4;4" fieldSource="severidad" html="False">
+<Components/>
 					<Events>
 						<Event name="BeforeShow" type="Server">
 							<Actions>
@@ -565,8 +565,8 @@ AND i.estado = 'Closed'">
 					<PKFields/>
 					<Attributes/>
 					<Features/>
-				</ListBox>
-				<CheckBox id="256" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="CheckBox1" PathID="mc_calificacion_incidenteCheckBox1" fieldSource="chkTiempo">
+				</Label>
+<CheckBox id="256" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="CheckBox1" PathID="mc_calificacion_incidenteCheckBox1" fieldSource="chkTiempo">
 					<Components>
 						<Label id="257" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="TotalHorasSolucion" PathID="mc_calificacion_incidenteCheckBox1TotalHorasSolucion">
 							<Components/>
@@ -718,18 +718,18 @@ AND i.estado = 'Closed'">
 					<Features/>
 				</TextArea>
 				<CheckBox id="390" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="evidencia_salvedad_TS" PathID="mc_calificacion_incidenteevidencia_salvedad_TS" fieldSource="evidencia_salvedad_TS" checkedValue="True" uncheckedValue="False">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</CheckBox>
-<TextArea id="391" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="observacion_salvedad_TS" PathID="mc_calificacion_incidenteobservacion_salvedad_TS" fieldSource="observacion_salvedad_TS">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextArea>
-</Components>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</CheckBox>
+				<TextArea id="391" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="observacion_salvedad_TS" PathID="mc_calificacion_incidenteobservacion_salvedad_TS" fieldSource="observacion_salvedad_TS">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextArea>
+			</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>
@@ -847,7 +847,6 @@ WHERE Id_incidente = '{Id_incidente}' " errorSummator="Error" allowCancel="False
 			<Components>
 				<Label id="125" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="FechaEnCurso" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Fecha En Curso" wizardAddNbsp="True" PathID="mc_info_incidentes4FechaEnCurso">
 					<Components/>
-
 					<Events/>
 					<Attributes/>
 					<Features/>

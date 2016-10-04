@@ -860,7 +860,7 @@ class clsRecordmc_calificacion_incidente { //mc_calificacion_incidente Class @14
     // Class variables
 //End Variables
 
-//Class_Initialize Event @143-A8D7F9F8
+//Class_Initialize Event @143-D9A8BFAA
     function clsRecordmc_calificacion_incidente($RelativePath, & $Parent)
     {
 
@@ -910,9 +910,7 @@ class clsRecordmc_calificacion_incidente { //mc_calificacion_incidente Class @14
             $this->shIdProveedor = new clsControl(ccsHidden, "shIdProveedor", "shIdProveedor", ccsText, "", CCGetRequestParam("shIdProveedor", $Method, NULL), $this);
             $this->shId_Aplicacion = new clsControl(ccsHidden, "shId_Aplicacion", "shId_Aplicacion", ccsText, "", CCGetRequestParam("shId_Aplicacion", $Method, NULL), $this);
             $this->Cancelar = new clsButton("Cancelar", $Method, $this);
-            $this->slSeveridad = new clsControl(ccsListBox, "slSeveridad", "slSeveridad", ccsText, "", CCGetRequestParam("slSeveridad", $Method, NULL), $this);
-            $this->slSeveridad->DSType = dsListOfValues;
-            $this->slSeveridad->Values = array(array("1", "1"), array("2", "2"), array("3", "3"), array("4", "4"));
+            $this->slSeveridad = new clsControl(ccsLabel, "slSeveridad", "slSeveridad", ccsText, "", CCGetRequestParam("slSeveridad", $Method, NULL), $this);
             $this->CheckBox1 = new clsControl(ccsCheckBox, "CheckBox1", "CheckBox1", ccsBoolean, $CCSLocales->GetFormatInfo("BooleanFormat"), CCGetRequestParam("CheckBox1", $Method, NULL), $this);
             $this->CheckBox1->CheckedValue = true;
             $this->CheckBox1->UncheckedValue = false;
@@ -966,7 +964,7 @@ class clsRecordmc_calificacion_incidente { //mc_calificacion_incidente Class @14
     }
 //End Initialize Method
 
-//Validate Method @143-4EA1227E
+//Validate Method @143-98F06DE9
     function Validate()
     {
         global $CCSLocales;
@@ -983,7 +981,6 @@ class clsRecordmc_calificacion_incidente { //mc_calificacion_incidente Class @14
         $Validation = ($this->shAnio->Validate() && $Validation);
         $Validation = ($this->shIdProveedor->Validate() && $Validation);
         $Validation = ($this->shId_Aplicacion->Validate() && $Validation);
-        $Validation = ($this->slSeveridad->Validate() && $Validation);
         $Validation = ($this->CheckBox1->Validate() && $Validation);
         $Validation = ($this->shTiempoAtencion->Validate() && $Validation);
         $Validation = ($this->shTiempoSolucion->Validate() && $Validation);
@@ -1011,7 +1008,6 @@ class clsRecordmc_calificacion_incidente { //mc_calificacion_incidente Class @14
         $Validation =  $Validation && ($this->shAnio->Errors->Count() == 0);
         $Validation =  $Validation && ($this->shIdProveedor->Errors->Count() == 0);
         $Validation =  $Validation && ($this->shId_Aplicacion->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->slSeveridad->Errors->Count() == 0);
         $Validation =  $Validation && ($this->CheckBox1->Errors->Count() == 0);
         $Validation =  $Validation && ($this->shTiempoAtencion->Errors->Count() == 0);
         $Validation =  $Validation && ($this->shTiempoSolucion->Errors->Count() == 0);
@@ -1220,7 +1216,7 @@ class clsRecordmc_calificacion_incidente { //mc_calificacion_incidente Class @14
     }
 //End UpdateRow Method
 
-//Show Method @143-84A35692
+//Show Method @143-515DEF73
     function Show()
     {
         global $CCSUseAmp;
@@ -1236,7 +1232,6 @@ class clsRecordmc_calificacion_incidente { //mc_calificacion_incidente Class @14
 
         $this->Cumple_Inc_TiempoAsignacion->Prepare();
         $this->Cumple_Inc_TiempoSolucion->Prepare();
-        $this->slSeveridad->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -1250,6 +1245,7 @@ class clsRecordmc_calificacion_incidente { //mc_calificacion_incidente Class @14
             $this->DataSource->Open();
             if($this->DataSource->Errors->Count() == 0 && $this->DataSource->next_record()) {
                 $this->DataSource->SetValues();
+                $this->slSeveridad->SetValue($this->DataSource->slSeveridad->GetValue());
                 $this->lblUsuarioUltMod->SetValue($this->DataSource->lblUsuarioUltMod->GetValue());
                 $this->lblFechaUltMod->SetValue($this->DataSource->lblFechaUltMod->GetValue());
                 if(!$this->FormSubmitted){
@@ -1263,7 +1259,6 @@ class clsRecordmc_calificacion_incidente { //mc_calificacion_incidente Class @14
                     $this->shMes->SetValue($this->DataSource->shMes->GetValue());
                     $this->shAnio->SetValue($this->DataSource->shAnio->GetValue());
                     $this->shIdProveedor->SetValue($this->DataSource->shIdProveedor->GetValue());
-                    $this->slSeveridad->SetValue($this->DataSource->slSeveridad->GetValue());
                     $this->CheckBox1->SetValue($this->DataSource->CheckBox1->GetValue());
                     $this->shTiempoAtencion->SetValue($this->DataSource->shTiempoAtencion->GetValue());
                     $this->shTiempoSolucion->SetValue($this->DataSource->shTiempoSolucion->GetValue());
@@ -1447,7 +1442,7 @@ class clsmc_calificacion_incidenteDataSource extends clsDBcnDisenio {  //mc_cali
     public $observacion_salvedad_TS;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @143-21355BC1
+//DataSourceClass_Initialize Event @143-8BF0D97C
     function clsmc_calificacion_incidenteDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1536,7 +1531,6 @@ class clsmc_calificacion_incidenteDataSource extends clsDBcnDisenio {  //mc_cali
         $this->InsertFields["MesReporte"] = array("Name" => "[MesReporte]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["AnioReporte"] = array("Name" => "[AnioReporte]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["id_proveedor"] = array("Name" => "id_proveedor", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->InsertFields["severidad"] = array("Name" => "severidad", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["chkTiempo"] = array("Name" => "[chkTiempo]", "Value" => "", "DataType" => ccsBoolean);
         $this->InsertFields["Med_Ate_Mod"] = array("Name" => "[Med_Ate_Mod]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->InsertFields["Med_Sol_Mod"] = array("Name" => "[Med_Sol_Mod]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
@@ -1562,7 +1556,6 @@ class clsmc_calificacion_incidenteDataSource extends clsDBcnDisenio {  //mc_cali
         $this->UpdateFields["MesReporte"] = array("Name" => "[MesReporte]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["AnioReporte"] = array("Name" => "[AnioReporte]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["id_proveedor"] = array("Name" => "id_proveedor", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->UpdateFields["severidad"] = array("Name" => "severidad", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["chkTiempo"] = array("Name" => "[chkTiempo]", "Value" => "", "DataType" => ccsBoolean);
         $this->UpdateFields["Med_Ate_Mod"] = array("Name" => "[Med_Ate_Mod]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->UpdateFields["Med_Sol_Mod"] = array("Name" => "[Med_Sol_Mod]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
@@ -1641,7 +1634,7 @@ class clsmc_calificacion_incidenteDataSource extends clsDBcnDisenio {  //mc_cali
     }
 //End SetValues Method
 
-//Insert Method @143-09BFB3A3
+//Insert Method @143-BEAB1B8A
     function Insert()
     {
         global $CCSLocales;
@@ -1658,7 +1651,6 @@ class clsmc_calificacion_incidenteDataSource extends clsDBcnDisenio {  //mc_cali
         $this->InsertFields["MesReporte"]["Value"] = $this->shMes->GetDBValue(true);
         $this->InsertFields["AnioReporte"]["Value"] = $this->shAnio->GetDBValue(true);
         $this->InsertFields["id_proveedor"]["Value"] = $this->shIdProveedor->GetDBValue(true);
-        $this->InsertFields["severidad"]["Value"] = $this->slSeveridad->GetDBValue(true);
         $this->InsertFields["chkTiempo"]["Value"] = $this->CheckBox1->GetDBValue(true);
         $this->InsertFields["Med_Ate_Mod"]["Value"] = $this->shTiempoAtencion->GetDBValue(true);
         $this->InsertFields["Med_Sol_Mod"]["Value"] = $this->shTiempoSolucion->GetDBValue(true);
@@ -1683,7 +1675,7 @@ class clsmc_calificacion_incidenteDataSource extends clsDBcnDisenio {  //mc_cali
     }
 //End Insert Method
 
-//Update Method @143-222047A5
+//Update Method @143-1F42DA6D
     function Update()
     {
         global $CCSLocales;
@@ -1701,7 +1693,6 @@ class clsmc_calificacion_incidenteDataSource extends clsDBcnDisenio {  //mc_cali
         $this->UpdateFields["MesReporte"]["Value"] = $this->shMes->GetDBValue(true);
         $this->UpdateFields["AnioReporte"]["Value"] = $this->shAnio->GetDBValue(true);
         $this->UpdateFields["id_proveedor"]["Value"] = $this->shIdProveedor->GetDBValue(true);
-        $this->UpdateFields["severidad"]["Value"] = $this->slSeveridad->GetDBValue(true);
         $this->UpdateFields["chkTiempo"]["Value"] = $this->CheckBox1->GetDBValue(true);
         $this->UpdateFields["Med_Ate_Mod"]["Value"] = $this->shTiempoAtencion->GetDBValue(true);
         $this->UpdateFields["Med_Sol_Mod"]["Value"] = $this->shTiempoSolucion->GetDBValue(true);

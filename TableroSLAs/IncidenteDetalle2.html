@@ -292,14 +292,15 @@ jQuery(function ($) {
     var params = { };
 //End Common Script Start
 
-//Controls Selecting @1-74A42C38
+//Controls Selecting @1-C6A722FB
     $('body').ccsBind(function() {
         features["mc_incidentes_reasignacioprimera_fecha_asignacionInlineDatePicker1"] = $('*:ccsControl(mc_incidentes_reasignacio, primera_fecha_asignacion)');
         features["mc_incidentes_reasignacioprimera_fecha_encursoInlineDatePicker2"] = $('*:ccsControl(mc_incidentes_reasignacio, primera_fecha_encurso)');
+        features["mc_incidentes_reasignacioprimera_fecha_nuevoInlineDatePicker3"] = $('*:ccsControl(mc_incidentes_reasignacio, primera_fecha_nuevo)');
     });
 //End Controls Selecting
 
-//Feature Parameters @1-982A3605
+//Feature Parameters @1-2293DB89
     params["mc_incidentes_reasignacioprimera_fecha_asignacionInlineDatePicker1"] = { 
         dateFormat: "dd/MM/yyyy HH:mm:ss",
         isWeekend: true
@@ -308,14 +309,21 @@ jQuery(function ($) {
         dateFormat: "dd/MM/yyyy HH:mm:ss",
         isWeekend: true
     };
+    params["mc_incidentes_reasignacioprimera_fecha_nuevoInlineDatePicker3"] = { 
+        dateFormat: "dd/MM/yyyy HH:mm:ss",
+        isWeekend: true
+    };
 //End Feature Parameters
 
-//Feature Init @1-A6355655
+//Feature Init @1-473D070B
     features["mc_incidentes_reasignacioprimera_fecha_asignacionInlineDatePicker1"].ccsBind(function() {
         this.ccsDateTimePicker(params["mc_incidentes_reasignacioprimera_fecha_asignacionInlineDatePicker1"]);
     });
     features["mc_incidentes_reasignacioprimera_fecha_encursoInlineDatePicker2"].ccsBind(function() {
         this.ccsDateTimePicker(params["mc_incidentes_reasignacioprimera_fecha_encursoInlineDatePicker2"]);
+    });
+    features["mc_incidentes_reasignacioprimera_fecha_nuevoInlineDatePicker3"].ccsBind(function() {
+        this.ccsDateTimePicker(params["mc_incidentes_reasignacioprimera_fecha_nuevoInlineDatePicker3"]);
     });
 //End Feature Init
 
@@ -408,7 +416,7 @@ jQuery(function ($) {
                   <td><strong>Nombre del producto</strong></td> 
                   <td><strong>Nuevo</strong></td> 
                   <td><strong>Asignado&nbsp;</strong></td> 
-                  <td><strong>En cCurso&nbsp;</strong></td> 
+                  <td><strong>En Curso&nbsp;</strong></td> 
                   <td><strong>Pendiente&nbsp;</strong></td> 
                   <td><strong>Resuelto&nbsp;</strong></td> 
                   <td><strong>Cerrado</strong></td> 
@@ -638,6 +646,12 @@ jQuery(function ($) {
                 <tr class="Controls">
                   <td class="th"><label for="mc_incidentes_reasignacioprimera_fecha_encurso">Primera Fecha Encurso</label></td> 
                   <td><input type="text" id="mc_incidentes_reasignacioprimera_fecha_encurso" style="HEIGHT: 22px; WIDTH: 169px" maxlength="100" size="18" value="{primera_fecha_encurso}" name="{primera_fecha_encurso_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">&nbsp;Primera Fecha Nuevo</td> 
+                  <td>
+                    <!-- BEGIN TextBox primera_fecha_nuevo --><input type="text" id="mc_incidentes_reasignacioprimera_fecha_nuevo" style="HEIGHT: 22px; WIDTH: 169px" maxlength="100" size="18" value="{primera_fecha_nuevo}" name="{primera_fecha_nuevo_Name}"><!-- END TextBox primera_fecha_nuevo --></td>
                 </tr>
  
                 <tr class="Controls">
@@ -944,9 +958,7 @@ jQuery(function ($) {
  
                         <tr class="Controls">
                           <td class="th"><label for="mc_calificacion_incidenteseveridad">Severidad</label></td> 
-                          <td><label for="mc_fcacion_incidentesh_Severidad" style="display: none;">&nbsp;</label> 
-                            {slSeveridad}
- &nbsp;&nbsp; </td>
+                          <td><label for="mc_fcacion_incidentesh_Severidad" style="display: none;">&nbsp;</label> {slSeveridad} &nbsp;&nbsp; </td>
                         </tr>
  
                         <tr class="Controls">

@@ -212,7 +212,10 @@ where i.id_incidente = '{Id_incidente}'
 			<Features/>
 			<LinkParameters/>
 		</Link>
-		<Record id="20" sourceType="SQL" urlType="Relative" secured="False" allowInsert="False" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="mc_info_incidentes" connection="cnDisenio" errorSummator="Error" allowCancel="False" recordDeleteConfirmation="False" buttonsType="button" wizardRecordKey="Id" encryptPasswordField="False" wizardUseInterVariables="False" pkIsAutoincrement="True" wizardCaption="Add/Edit Mc Info Incidentes " wizardThemeApplyTo="Page" wizardFormMethod="post" wizardType="Record" changedCaptionRecord="False" recordDirection="Horizontal" templatePageRecord="C:\Program Files (x86)\CodeChargeStudio5//Templates//Record//Horizontal.ccp|ccsTemplate" recordAddTemplatePanel="False" PathID="mc_info_incidentes" editableComponentTypeString="Record" dataSource=" SELECT i.*, p.Nombre ,p.Id_Proveedor, a.severidad SeveridadApp,
+		<Record id="20" sourceType="SQL" urlType="Relative" secured="False" allowInsert="False" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="mc_info_incidentes" connection="cnDisenio" errorSummator="Error" allowCancel="False" recordDeleteConfirmation="False" buttonsType="button" wizardRecordKey="Id" encryptPasswordField="False" wizardUseInterVariables="False" pkIsAutoincrement="True" wizardCaption="Add/Edit Mc Info Incidentes " wizardThemeApplyTo="Page" wizardFormMethod="post" wizardType="Record" changedCaptionRecord="False" recordDirection="Horizontal" templatePageRecord="C:\Program Files (x86)\CodeChargeStudio5//Templates//Record//Horizontal.ccp|ccsTemplate" recordAddTemplatePanel="False" PathID="mc_info_incidentes" editableComponentTypeString="Record" dataSource="SELECT i.Id,i.Id_incidente,i.ServicioNegocio,i.Aplicacion,
+case when (select primera_fecha_nuevo from mc_incidentes_reasignaciones where id_incidente='{Id_incidente}') IS NULL THEN i.FechaNuevo ELSE (select primera_fecha_nuevo from mc_incidentes_reasignaciones where id_incidente='{Id_incidente}') END FechaNuevo,
+i.FechaAsignado,i.FechaEnCurso,i.FechaPendiente,i.FechaResuelto,i.FechaCerrado,i.FechaCarga,i.Estado,i.Severidad,i.Dictamen,i.Historial,i.IncPadre,i.Dictamen2, 
+p.Nombre ,p.Id_Proveedor, a.severidad SeveridadApp,
  	(select rtrim(valor) from mc_parametros where parametro= 
 	case when a.severidad = 0 then 'TASeveridad0Segundos' when a.severidad =1 then 'TASeveridad1Segundos' 
 		 when a.severidad = 2 then 'TASeveridad2Segundos' when a.severidad =3 then 'TASeveridad3Segundos'	end ) as TiempoAtencion,
@@ -355,8 +358,8 @@ AND i.estado = 'Closed'">
 			</TableParameters>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="382" dataType="Text" designDefaultValue="INC000003620123" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
-			</SQLParameters>
+				<SQLParameter id="393" dataType="Text" designDefaultValue="INC000003620123" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
+</SQLParameters>
 			<JoinTables>
 			</JoinTables>
 			<JoinLinks>
@@ -458,7 +461,6 @@ AND i.estado = 'Closed'">
 				</TextArea>
 				<Label id="155" fieldSourceType="DBColumn" dataType="Text" html="True" generateSpan="False" name="Aplicacion" PathID="mc_calificacion_incidenteAplicacion">
 					<Components/>
-
 					<Events>
 						<Event name="BeforeShow" type="Server">
 							<Actions>
@@ -548,7 +550,7 @@ AND i.estado = 'Closed'">
 					<Features/>
 				</Button>
 				<Label id="186" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="slSeveridad" wizardEmptyCaption="{res:CCS_SelectValue}" PathID="mc_calificacion_incidenteslSeveridad" dataSource="1;1;2;2;3;3;4;4" fieldSource="severidad" html="False">
-<Components/>
+					<Components/>
 					<Events>
 						<Event name="BeforeShow" type="Server">
 							<Actions>
@@ -566,7 +568,7 @@ AND i.estado = 'Closed'">
 					<Attributes/>
 					<Features/>
 				</Label>
-<CheckBox id="256" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="CheckBox1" PathID="mc_calificacion_incidenteCheckBox1" fieldSource="chkTiempo">
+				<CheckBox id="256" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="CheckBox1" PathID="mc_calificacion_incidenteCheckBox1" fieldSource="chkTiempo">
 					<Components>
 						<Label id="257" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="TotalHorasSolucion" PathID="mc_calificacion_incidenteCheckBox1TotalHorasSolucion">
 							<Components/>
@@ -1289,7 +1291,25 @@ WHERE mi.Id_incidente = '{Id_incidente}' " errorSummator="Error" allowCancel="Fa
 					<Attributes/>
 					<Features/>
 				</Hidden>
-			</Components>
+				<TextBox id="392" visible="Dynamic" fieldSourceType="DBColumn" dataType="Date" name="primera_fecha_nuevo" PathID="mc_incidentes_reasignacioprimera_fecha_nuevo" fieldSource="primera_fecha_nuevo" format="dd/mm/yyyy HH:nn:ss" required="True" unique="False" DBFormat="yyyy-mm-dd HH:nn:ss.S" generateDiv="False" features="(assigned)">
+<Components/>
+<Events/>
+<Attributes/>
+<Features>
+<JDateTimePicker id="394" show_weekend="True" name="InlineDatePicker3" category="jQuery" featureNameChanged="No">
+<Components/>
+<Events/>
+<TableParameters/>
+<SPParameters/>
+<SQLParameters/>
+<JoinTables/>
+<JoinLinks/>
+<Fields/>
+<Features/>
+</JDateTimePicker>
+</Features>
+</TextBox>
+</Components>
 			<Events>
 				<Event name="AfterExecuteInsert" type="Server">
 					<Actions>

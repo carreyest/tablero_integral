@@ -1,5 +1,5 @@
 <?php
-//BindEvents Method @1-7C6F9B2F
+//BindEvents Method @1-8ADD8DFE
 function BindEvents()
 {
     global $mc_detalle_incidente_avl;
@@ -56,6 +56,7 @@ function BindEvents()
     $mc_incidentes_reasignacio->primera_fecha_asignacion->CCSEvents["BeforeShow"] = "mc_incidentes_reasignacio_primera_fecha_asignacion_BeforeShow";
     $mc_incidentes_reasignacio->primera_fecha_encurso->CCSEvents["BeforeShow"] = "mc_incidentes_reasignacio_primera_fecha_encurso_BeforeShow";
     $mc_incidentes_reasignacio->horas_invertidas->CCSEvents["BeforeShow"] = "mc_incidentes_reasignacio_horas_invertidas_BeforeShow";
+    $mc_incidentes_reasignacio->primera_fecha_nuevo->CCSEvents["BeforeShow"] = "mc_incidentes_reasignacio_primera_fecha_nuevo_BeforeShow";
     $mc_incidentes_reasignacio->ds->CCSEvents["AfterExecuteInsert"] = "mc_incidentes_reasignacio_ds_AfterExecuteInsert";
     $mc_incidentes_reasignacio->CCSEvents["BeforeShow"] = "mc_incidentes_reasignacio_BeforeShow";
     $mc_incidentes_reasignacio->CCSEvents["AfterUpdate"] = "mc_incidentes_reasignacio_AfterUpdate";
@@ -426,6 +427,7 @@ function mc_info_incidentes_BeforeShow(& $sender)
 		$minutos =($secs % 3600)/60  ;
 		$segundos =(($secs % 3600)%60);
 		$mc_info_incidentes->TiempoSolucion->SetValue( (($horas>9)?$horas:"0".$horas) . ":" . (($minutos>9)?$minutos:"0".$minutos) . ":" . (($segundos>9)?$segundos:"0".$segundos));
+
 // -------------------------
 //End Custom Code
 
@@ -1969,6 +1971,20 @@ function mc_incidentes_reasignacio_horas_invertidas_BeforeShow(& $sender)
 }
 //End Close mc_incidentes_reasignacio_horas_invertidas_BeforeShow
 
+//mc_incidentes_reasignacio_primera_fecha_nuevo_BeforeShow @392-5BAC5992
+function mc_incidentes_reasignacio_primera_fecha_nuevo_BeforeShow(& $sender)
+{
+    $mc_incidentes_reasignacio_primera_fecha_nuevo_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $mc_incidentes_reasignacio; //Compatibility
+//End mc_incidentes_reasignacio_primera_fecha_nuevo_BeforeShow
+
+//Close mc_incidentes_reasignacio_primera_fecha_nuevo_BeforeShow @392-4163567A
+    return $mc_incidentes_reasignacio_primera_fecha_nuevo_BeforeShow;
+}
+//End Close mc_incidentes_reasignacio_primera_fecha_nuevo_BeforeShow
+
 //mc_incidentes_reasignacio_ds_AfterExecuteInsert @347-E7167F6C
 function mc_incidentes_reasignacio_ds_AfterExecuteInsert(& $sender)
 {
@@ -2015,8 +2031,11 @@ function mc_incidentes_reasignacio_BeforeShow(& $sender)
 //Custom Code @378-2A29BDB7
 // -------------------------
 	global $mc_info_incidentes2;
+    global $mc_info_incidentes1;
 	global $existe_actualizacion_asignacion;	
-	$mc_incidentes_reasignacio->Visible=$existe_actualizacion_asignacion < 1 && $mc_info_incidentes2->HorasInvertidas->GetValue()!='N/A Incumplimiento a Proceso' ? false : true;
+	global $mc_info_incidentes;
+
+	$mc_incidentes_reasignacio->Visible=$existe_actualizacion_asignacion < 1 && $mc_info_incidentes2->HorasInvertidas->GetValue()!='N/A Incumplimiento a Proceso' && $mc_info_incidentes1->HorasInvertidas->GetValue()!='N/A Incumplimiento a Proceso' ? false : true;
 	$mc_incidentes_reasignacio->horas_invertidas->SetValue(sec_to_time($mc_incidentes_reasignacio->H_horas_invertidas->GetValue()));	
 
    

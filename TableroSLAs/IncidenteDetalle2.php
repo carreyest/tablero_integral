@@ -772,11 +772,14 @@ class clsmc_info_incidentesDataSource extends clsDBcnDisenio {  //mc_info_incide
     }
 //End Prepare Method
 
-//Open Method @20-B913A1C5
+//Open Method @20-39B214B9
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->SQL = " SELECT i.*, p.Nombre ,p.Id_Proveedor, a.severidad SeveridadApp,\n" .
+        $this->SQL = "SELECT i.Id,i.Id_incidente,i.ServicioNegocio,i.Aplicacion,\n" .
+        "case when (select primera_fecha_nuevo from mc_incidentes_reasignaciones where id_incidente='" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "') IS NULL THEN i.FechaNuevo ELSE (select primera_fecha_nuevo from mc_incidentes_reasignaciones where id_incidente='" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "') END FechaNuevo,\n" .
+        "i.FechaAsignado,i.FechaEnCurso,i.FechaPendiente,i.FechaResuelto,i.FechaCerrado,i.FechaCarga,i.Estado,i.Severidad,i.Dictamen,i.Historial,i.IncPadre,i.Dictamen2, \n" .
+        "p.Nombre ,p.Id_Proveedor, a.severidad SeveridadApp,\n" .
         " 	(select rtrim(valor) from mc_parametros where parametro= \n" .
         "	case when a.severidad = 0 then 'TASeveridad0Segundos' when a.severidad =1 then 'TASeveridad1Segundos' \n" .
         "		 when a.severidad = 2 then 'TASeveridad2Segundos' when a.severidad =3 then 'TASeveridad3Segundos'	end ) as TiempoAtencion,\n" .
@@ -3057,7 +3060,7 @@ class clsRecordmc_incidentes_reasignacio { //mc_incidentes_reasignacio Class @34
     // Class variables
 //End Variables
 
-//Class_Initialize Event @347-1B919760
+//Class_Initialize Event @347-635E5E7F
     function clsRecordmc_incidentes_reasignacio($RelativePath, & $Parent)
     {
 
@@ -3103,6 +3106,8 @@ class clsRecordmc_incidentes_reasignacio { //mc_incidentes_reasignacio Class @34
             $this->H_mes = new clsControl(ccsHidden, "H_mes", "H_mes", ccsText, "", CCGetRequestParam("H_mes", $Method, NULL), $this);
             $this->H_anio = new clsControl(ccsHidden, "H_anio", "H_anio", ccsText, "", CCGetRequestParam("H_anio", $Method, NULL), $this);
             $this->H_horas_invertidas = new clsControl(ccsHidden, "H_horas_invertidas", "H_horas_invertidas", ccsFloat, "", CCGetRequestParam("H_horas_invertidas", $Method, NULL), $this);
+            $this->primera_fecha_nuevo = new clsControl(ccsTextBox, "primera_fecha_nuevo", "primera_fecha_nuevo", ccsDate, array("dd", "/", "mm", "/", "yyyy", " ", "HH", ":", "nn", ":", "ss"), CCGetRequestParam("primera_fecha_nuevo", $Method, NULL), $this);
+            $this->primera_fecha_nuevo->Required = true;
             if(!$this->FormSubmitted) {
                 if(!is_array($this->H_id_incidente->Value) && !strlen($this->H_id_incidente->Value) && $this->H_id_incidente->Value !== false)
                     $this->H_id_incidente->SetText(CCGetParam("Id_incidente"));
@@ -3132,7 +3137,7 @@ class clsRecordmc_incidentes_reasignacio { //mc_incidentes_reasignacio Class @34
     }
 //End Initialize Method
 
-//Validate Method @347-B4D060AF
+//Validate Method @347-A7EE5B20
     function Validate()
     {
         global $CCSLocales;
@@ -3144,6 +3149,7 @@ class clsRecordmc_incidentes_reasignacio { //mc_incidentes_reasignacio Class @34
         $Validation = ($this->H_mes->Validate() && $Validation);
         $Validation = ($this->H_anio->Validate() && $Validation);
         $Validation = ($this->H_horas_invertidas->Validate() && $Validation);
+        $Validation = ($this->primera_fecha_nuevo->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->primera_fecha_asignacion->Errors->Count() == 0);
         $Validation =  $Validation && ($this->primera_fecha_encurso->Errors->Count() == 0);
@@ -3151,11 +3157,12 @@ class clsRecordmc_incidentes_reasignacio { //mc_incidentes_reasignacio Class @34
         $Validation =  $Validation && ($this->H_mes->Errors->Count() == 0);
         $Validation =  $Validation && ($this->H_anio->Errors->Count() == 0);
         $Validation =  $Validation && ($this->H_horas_invertidas->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->primera_fecha_nuevo->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @347-EB2075D9
+//CheckErrors Method @347-017AA63B
     function CheckErrors()
     {
         $errors = false;
@@ -3169,6 +3176,7 @@ class clsRecordmc_incidentes_reasignacio { //mc_incidentes_reasignacio Class @34
         $errors = ($errors || $this->H_mes->Errors->Count());
         $errors = ($errors || $this->H_anio->Errors->Count());
         $errors = ($errors || $this->H_horas_invertidas->Errors->Count());
+        $errors = ($errors || $this->primera_fecha_nuevo->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -3229,7 +3237,7 @@ class clsRecordmc_incidentes_reasignacio { //mc_incidentes_reasignacio Class @34
     }
 //End Operation Method
 
-//InsertRow Method @347-CB7E3A6F
+//InsertRow Method @347-59BA2C58
     function InsertRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
@@ -3244,13 +3252,14 @@ class clsRecordmc_incidentes_reasignacio { //mc_incidentes_reasignacio Class @34
         $this->DataSource->H_mes->SetValue($this->H_mes->GetValue(true));
         $this->DataSource->H_anio->SetValue($this->H_anio->GetValue(true));
         $this->DataSource->H_horas_invertidas->SetValue($this->H_horas_invertidas->GetValue(true));
+        $this->DataSource->primera_fecha_nuevo->SetValue($this->primera_fecha_nuevo->GetValue(true));
         $this->DataSource->Insert();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterInsert", $this);
         return (!$this->CheckErrors());
     }
 //End InsertRow Method
 
-//UpdateRow Method @347-1330B912
+//UpdateRow Method @347-4191865D
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
@@ -3265,6 +3274,7 @@ class clsRecordmc_incidentes_reasignacio { //mc_incidentes_reasignacio Class @34
         $this->DataSource->H_mes->SetValue($this->H_mes->GetValue(true));
         $this->DataSource->H_anio->SetValue($this->H_anio->GetValue(true));
         $this->DataSource->H_horas_invertidas->SetValue($this->H_horas_invertidas->GetValue(true));
+        $this->DataSource->primera_fecha_nuevo->SetValue($this->primera_fecha_nuevo->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
         return (!$this->CheckErrors());
@@ -3282,7 +3292,7 @@ class clsRecordmc_incidentes_reasignacio { //mc_incidentes_reasignacio Class @34
     }
 //End DeleteRow Method
 
-//Show Method @347-715E79FD
+//Show Method @347-434D7595
     function Show()
     {
         global $CCSUseAmp;
@@ -3319,6 +3329,7 @@ class clsRecordmc_incidentes_reasignacio { //mc_incidentes_reasignacio Class @34
                     $this->H_mes->SetValue($this->DataSource->H_mes->GetValue());
                     $this->H_anio->SetValue($this->DataSource->H_anio->GetValue());
                     $this->H_horas_invertidas->SetValue($this->DataSource->H_horas_invertidas->GetValue());
+                    $this->primera_fecha_nuevo->SetValue($this->DataSource->primera_fecha_nuevo->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -3337,6 +3348,7 @@ class clsRecordmc_incidentes_reasignacio { //mc_incidentes_reasignacio Class @34
             $Error = ComposeStrings($Error, $this->H_mes->Errors->ToString());
             $Error = ComposeStrings($Error, $this->H_anio->Errors->ToString());
             $Error = ComposeStrings($Error, $this->H_horas_invertidas->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->primera_fecha_nuevo->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -3372,6 +3384,7 @@ class clsRecordmc_incidentes_reasignacio { //mc_incidentes_reasignacio Class @34
         $this->H_mes->Show();
         $this->H_anio->Show();
         $this->H_horas_invertidas->Show();
+        $this->primera_fecha_nuevo->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -3382,7 +3395,7 @@ class clsRecordmc_incidentes_reasignacio { //mc_incidentes_reasignacio Class @34
 
 class clsmc_incidentes_reasignacioDataSource extends clsDBcnDisenio {  //mc_incidentes_reasignacioDataSource Class @347-5A6F6ECF
 
-//DataSource Variables @347-4DDC2895
+//DataSource Variables @347-ED12A638
     public $Parent = "";
     public $CCSEvents = "";
     public $CCSEventResult;
@@ -3409,9 +3422,10 @@ class clsmc_incidentes_reasignacioDataSource extends clsDBcnDisenio {  //mc_inci
     public $H_mes;
     public $H_anio;
     public $H_horas_invertidas;
+    public $primera_fecha_nuevo;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @347-E7BBC786
+//DataSourceClass_Initialize Event @347-DFB6608A
     function clsmc_incidentes_reasignacioDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -3437,6 +3451,8 @@ class clsmc_incidentes_reasignacioDataSource extends clsDBcnDisenio {  //mc_inci
         
         $this->H_horas_invertidas = new clsField("H_horas_invertidas", ccsFloat, "");
         
+        $this->primera_fecha_nuevo = new clsField("primera_fecha_nuevo", ccsDate, array("yyyy", "-", "mm", "-", "dd", " ", "HH", ":", "nn", ":", "ss", ".", "S"));
+        
 
         $this->InsertFields["primera_fecha_asignacion"] = array("Name" => "primera_fecha_asignacion", "Value" => "", "DataType" => ccsDate, "OmitIfEmpty" => 1);
         $this->InsertFields["primera_fecha_encurso"] = array("Name" => "primera_fecha_encurso", "Value" => "", "DataType" => ccsDate, "OmitIfEmpty" => 1);
@@ -3444,12 +3460,14 @@ class clsmc_incidentes_reasignacioDataSource extends clsDBcnDisenio {  //mc_inci
         $this->InsertFields["mes"] = array("Name" => "mes", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["anio"] = array("Name" => "anio", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["horas_invertidas"] = array("Name" => "horas_invertidas", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
+        $this->InsertFields["primera_fecha_nuevo"] = array("Name" => "primera_fecha_nuevo", "Value" => "", "DataType" => ccsDate, "OmitIfEmpty" => 1);
         $this->UpdateFields["primera_fecha_asignacion"] = array("Name" => "primera_fecha_asignacion", "Value" => "", "DataType" => ccsDate, "OmitIfEmpty" => 1);
         $this->UpdateFields["primera_fecha_encurso"] = array("Name" => "primera_fecha_encurso", "Value" => "", "DataType" => ccsDate, "OmitIfEmpty" => 1);
         $this->UpdateFields["id_incidente"] = array("Name" => "id_incidente", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["mes"] = array("Name" => "mes", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["anio"] = array("Name" => "anio", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["horas_invertidas"] = array("Name" => "horas_invertidas", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
+        $this->UpdateFields["primera_fecha_nuevo"] = array("Name" => "primera_fecha_nuevo", "Value" => "", "DataType" => ccsDate, "OmitIfEmpty" => 1);
     }
 //End DataSourceClass_Initialize Event
 
@@ -3479,7 +3497,7 @@ class clsmc_incidentes_reasignacioDataSource extends clsDBcnDisenio {  //mc_inci
     }
 //End Open Method
 
-//SetValues Method @347-98349A6C
+//SetValues Method @347-5A33B2E5
     function SetValues()
     {
         $this->id_incidente->SetDBValue($this->f("id_incidente"));
@@ -3491,10 +3509,11 @@ class clsmc_incidentes_reasignacioDataSource extends clsDBcnDisenio {  //mc_inci
         $this->H_mes->SetDBValue($this->f("mes"));
         $this->H_anio->SetDBValue($this->f("anio"));
         $this->H_horas_invertidas->SetDBValue(trim($this->f("horas_invertidas")));
+        $this->primera_fecha_nuevo->SetDBValue(trim($this->f("primera_fecha_nuevo")));
     }
 //End SetValues Method
 
-//Insert Method @347-05046EE8
+//Insert Method @347-270EEB9A
     function Insert()
     {
         global $CCSLocales;
@@ -3507,6 +3526,7 @@ class clsmc_incidentes_reasignacioDataSource extends clsDBcnDisenio {  //mc_inci
         $this->InsertFields["mes"]["Value"] = $this->H_mes->GetDBValue(true);
         $this->InsertFields["anio"]["Value"] = $this->H_anio->GetDBValue(true);
         $this->InsertFields["horas_invertidas"]["Value"] = $this->H_horas_invertidas->GetDBValue(true);
+        $this->InsertFields["primera_fecha_nuevo"]["Value"] = $this->primera_fecha_nuevo->GetDBValue(true);
         $this->SQL = CCBuildInsert("mc_incidentes_reasignaciones", $this->InsertFields, $this);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
@@ -3516,7 +3536,7 @@ class clsmc_incidentes_reasignacioDataSource extends clsDBcnDisenio {  //mc_inci
     }
 //End Insert Method
 
-//Update Method @347-4FFCF01D
+//Update Method @347-6E393EA3
     function Update()
     {
         global $CCSLocales;
@@ -3530,6 +3550,7 @@ class clsmc_incidentes_reasignacioDataSource extends clsDBcnDisenio {  //mc_inci
         $this->UpdateFields["mes"]["Value"] = $this->H_mes->GetDBValue(true);
         $this->UpdateFields["anio"]["Value"] = $this->H_anio->GetDBValue(true);
         $this->UpdateFields["horas_invertidas"]["Value"] = $this->H_horas_invertidas->GetDBValue(true);
+        $this->UpdateFields["primera_fecha_nuevo"]["Value"] = $this->primera_fecha_nuevo->GetDBValue(true);
         $this->SQL = CCBuildUpdate("mc_incidentes_reasignaciones", $this->UpdateFields, $this);
         $this->SQL .= strlen($this->Where) ? " WHERE " . $this->Where : $this->Where;
         if (!strlen($this->Where) && $this->Errors->Count() == 0) 

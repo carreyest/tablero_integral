@@ -2842,13 +2842,13 @@ class clsEditableGrid1DataSource extends clsDBcnDisenio {  //EditableGrid1DataSo
     }
 //End Prepare Method
 
-//Open Method @238-90F78277
+//Open Method @238-28899200
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->CountSQL = "SELECT COUNT(*) FROM (SELECT det.id id_rec, det.Paquete, det.ClaveMovimiento, det.c_rdl, det.PAQ_CVE_FOL, \n" .
         "		paq.FechaInicioMov,  det.considerar, e.Tipo, det.ciclo,\n" .
-        "		(select top 1 DescMovimiento from mc_detalle_PPMC_avl paq2 where paq2.Paquete = det.Paquete and paq2.c_rdl = det.c_rdl and paq2.DescMovimiento like ('%Cerrado%')) Cierre\n" .
+        "		(select top 1 DescMovimiento from mc_detalle_PPMC_avl paq2 where paq2.Paquete = det.Paquete and paq2.c_rdl = det.c_rdl and paq2.DescMovimiento like ('%Cerrado%') and MONTH(paq2.FechaCarga)= MONTH(det.FechaCarga ) and year(paq2.FechaCarga)= year(det.FechaCarga )) Cierre\n" .
         "from mc_detalle_PPMC_Monitor_avl det\n" .
         "		inner join mc_detalle_PPMC_avl paq on paq.Paquete = det.Paquete and paq.c_rdl = det.c_rdl and paq.ClaveMovimiento in (16,500)\n" .
         "		and paq.ciclo = det.ciclo  and det.Id_PPMC = paq.Id_PPMC \n" .
@@ -2860,7 +2860,7 @@ class clsEditableGrid1DataSource extends clsDBcnDisenio {  //EditableGrid1DataSo
         "where mc_universo_cds.id =  " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . " and (det.idpadre is null or det.idpadre = mc_universo_cds.id)) cnt";
         $this->SQL = "SELECT TOP {SqlParam_endRecord} det.id id_rec, det.Paquete, det.ClaveMovimiento, det.c_rdl, det.PAQ_CVE_FOL, \n" .
         "		paq.FechaInicioMov,  det.considerar, e.Tipo, det.ciclo,\n" .
-        "		(select top 1 DescMovimiento from mc_detalle_PPMC_avl paq2 where paq2.Paquete = det.Paquete and paq2.c_rdl = det.c_rdl and paq2.DescMovimiento like ('%Cerrado%')) Cierre\n" .
+        "		(select top 1 DescMovimiento from mc_detalle_PPMC_avl paq2 where paq2.Paquete = det.Paquete and paq2.c_rdl = det.c_rdl and paq2.DescMovimiento like ('%Cerrado%') and MONTH(paq2.FechaCarga)= MONTH(det.FechaCarga ) and year(paq2.FechaCarga)= year(det.FechaCarga )) Cierre\n" .
         "from mc_detalle_PPMC_Monitor_avl det\n" .
         "		inner join mc_detalle_PPMC_avl paq on paq.Paquete = det.Paquete and paq.c_rdl = det.c_rdl and paq.ClaveMovimiento in (16,500)\n" .
         "		and paq.ciclo = det.ciclo  and det.Id_PPMC = paq.Id_PPMC \n" .

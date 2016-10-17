@@ -226,18 +226,18 @@ order by nombre" boundColumn="id_servicio" textColumn="nombre" required="True" c
 					<Features/>
 				</Label>
 				<CheckBox id="325" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="evidencia_salvedad" PathID="mc_info_rs_cr_calidadevidencia_salvedad" fieldSource="evidencia_salvedad" checkedValue="True" uncheckedValue="False">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</CheckBox>
-<TextArea id="326" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="observacion_salvedad" PathID="mc_info_rs_cr_calidadobservacion_salvedad" fieldSource="observacion_salvedad">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextArea>
-</Components>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</CheckBox>
+				<TextArea id="326" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="observacion_salvedad" PathID="mc_info_rs_cr_calidadobservacion_salvedad" fieldSource="observacion_salvedad">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextArea>
+			</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>
@@ -671,7 +671,7 @@ AND det.TipoRegistro  = '{Expr0}'
 		</EditableGrid>
 		<EditableGrid id="238" urlType="Relative" secured="False" emptyRows="0" allowInsert="False" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" sourceType="SQL" defaultPageSize="5" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="EditableGrid1" connection="cnDisenio" dataSource="SELECT det.id id_rec, det.Paquete, det.ClaveMovimiento, det.c_rdl, det.PAQ_CVE_FOL, 
 		paq.FechaInicioMov,  det.considerar, e.Tipo, det.ciclo,
-		(select top 1 DescMovimiento from mc_detalle_PPMC_avl paq2 where paq2.Paquete = det.Paquete and paq2.c_rdl = det.c_rdl and paq2.DescMovimiento like ('%Cerrado%')) Cierre
+		(select top 1 DescMovimiento from mc_detalle_PPMC_avl paq2 where paq2.Paquete = det.Paquete and paq2.c_rdl = det.c_rdl and paq2.DescMovimiento like ('%Cerrado%') and MONTH(paq2.FechaCarga)= MONTH(det.FechaCarga ) and year(paq2.FechaCarga)= year(det.FechaCarga )) Cierre
 from mc_detalle_PPMC_Monitor_avl det
 		inner join mc_detalle_PPMC_avl paq on paq.Paquete = det.Paquete and paq.c_rdl = det.c_rdl and paq.ClaveMovimiento in (16,500)
 		and paq.ciclo = det.ciclo  and det.Id_PPMC = paq.Id_PPMC 
@@ -749,9 +749,9 @@ order by det.ciclo, det.c_rdl, det.fechainiciomov, e.tipo
 			<TableParameters/>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="317" dataType="Integer" defaultValue="0" designDefaultValue="4024" parameterSource="Id" parameterType="URL" variable="Id"/>
-				<SQLParameter id="318" dataType="Integer" defaultValue="0" designDefaultValue="68443" parameterSource="c_rdl" parameterType="URL" variable="c_rdl"/>
-			</SQLParameters>
+				<SQLParameter id="327" dataType="Integer" defaultValue="0" designDefaultValue="4024" parameterSource="Id" parameterType="URL" variable="Id"/>
+<SQLParameter id="328" dataType="Integer" defaultValue="0" designDefaultValue="68443" parameterSource="c_rdl" parameterType="URL" variable="c_rdl"/>
+</SQLParameters>
 			<JoinTables/>
 			<JoinLinks/>
 			<Fields/>

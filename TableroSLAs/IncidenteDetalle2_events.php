@@ -705,7 +705,7 @@ function mc_calificacion_incidente_CheckBox1_TotalHorasSolucion_BeforeShow(& $se
 		echo "Index -" .  $arrayMovimiento[$i] . "<br>";
 	
 		
-		echo "FechaIni -"  . CCFormatDate($arrayFechaIni[$i],array("dd","/","mm","/","yyyy"," ","H",":","nn",":","ss")). "<br>";
+		echo "FechaIni -"  . CCFormatDate($arrayFechaIni[$i],array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")). "<br>";
 		echo "FechaFin -" . CCFormatDate($arrayFechaFin[$i],array("yyyy","/","mm","/","dd"," ","HH",":","nn",":","ss")) . "<br>";
 		echo "Segundos -" . $arraySegundos[$i] . "<br>";
 	
@@ -717,11 +717,11 @@ function mc_calificacion_incidente_CheckBox1_TotalHorasSolucion_BeforeShow(& $se
 			if ($arrayMovimiento[$i]==$arrayMovimiento[$ii] && $arraySegundos[$ii]>0){
 				if ($fechaINI>=CCFormatDate($arrayFechaIni[$ii],array("dd","/","mm","/","yyyy")) &&  CCFormatDate($arrayFechaFin[$ii],array("dd","/","mm","/","yyyy")) >= $fechaFIN){
 					if ($arraySegundos[$i]<$arraySegundos[$ii]  && $i<$ii){
-						echo "1.-No se Suma " . $fechaINI . " & " . CCFormatDate($arrayFechaIni[$ii],array("dd","/","mm","/","yyyy"," ","H",":","nn",":","ss")) . "<br>";
+						echo "1.-No se Suma " . $fechaINI . " & " . CCFormatDate($arrayFechaIni[$ii],array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")) . "<br>";
 						$i++;
 					} else {
 						if ($arraySegundos[$i]<$arraySegundos[$ii]  && $i>$ii){
-							echo "3.-No se Suma " . $fechaINI . " & " . CCFormatDate($arrayFechaIni[$ii],array("dd","/","mm","/","yyyy"," ","H",":","nn",":","ss")) . "<br>";
+							echo "3.-No se Suma " . $fechaINI . " & " . CCFormatDate($arrayFechaIni[$ii],array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")) . "<br>";
 						}	
 					}
 				}
@@ -1268,17 +1268,17 @@ function mc_info_incidentes4_BeforeShow(& $sender)
 	global $MinutosF;
 
 
-	$mc_info_incidentes4->FechaResuelto->SetValue(CCFormatDate(CCParseDate($FechaResuelto,array("yyyy","/","mm","/","dd"," ","HH",":","nn",":","ss")),array("dd","/","mm","/","yyyy"," ","H",":","nn",":","ss")));
+	$mc_info_incidentes4->FechaResuelto->SetValue(CCFormatDate(CCParseDate($FechaResuelto,array("yyyy","/","mm","/","dd"," ","HH",":","nn",":","ss")),array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")));
 	
 	global $existe_actualizacion_asignacion;	
     global $mc_incidentes_reasignacio;
     global $nueva_fecha_encurso;
 	if ($existe_actualizacion_asignacion > 0){
 		
-		$mc_info_incidentes4->FechaEnCurso->SetValue(CCFormatDate(CCParseDate($nueva_fecha_encurso,array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")),array("dd","/","mm","/","yyyy"," ","H",":","nn",":","ss")));
+		$mc_info_incidentes4->FechaEnCurso->SetValue(CCFormatDate(CCParseDate($nueva_fecha_encurso,array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")),array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")));
 		$FechaenCurso=CCFormatDate(CCParseDate($mc_info_incidentes4->FechaEnCurso->GetValue(),array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")), array("yyyy","/","mm","/","dd"," ","HH",":","nn",":","ss"));
 	} else {
-		$mc_info_incidentes4->FechaEnCurso->SetValue(CCFormatDate(CCParseDate($FechaenCurso,array("yyyy","/","mm","/","dd"," ","HH",":","nn",":","ss")),array("dd","/","mm","/","yyyy"," ","H",":","nn",":","ss")));
+		$mc_info_incidentes4->FechaEnCurso->SetValue(CCFormatDate(CCParseDate($FechaenCurso,array("yyyy","/","mm","/","dd"," ","HH",":","nn",":","ss")),array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")));
 	}
 	
 	$DBcnDisenio->query("SELECT dbo.ufDiffFechasMCSec('".$FechaenCurso."','".$FechaResuelto."') as Minutos");
@@ -1395,8 +1395,8 @@ function mc_info_incidentes1_BeforeShow(& $sender)
 	global $FechaAsignado;
 	global $FechaenCurso;
 
-	$mc_info_incidentes1->FechaAsignado->SetValue(CCFormatDate(CCParseDate($FechaAsignado,array("yyyy","/","mm","/","dd"," ","HH",":","nn",":","ss")),array("dd","/","mm","/","yyyy"," ","H",":","nn",":","ss")));
-	$mc_info_incidentes1->FechaEnCurso->SetValue(CCFormatDate(CCParseDate($FechaenCurso,array("yyyy","/","mm","/","dd"," ","HH",":","nn",":","ss")),array("dd","/","mm","/","yyyy"," ","H",":","nn",":","ss")));
+	$mc_info_incidentes1->FechaAsignado->SetValue(CCFormatDate(CCParseDate($FechaAsignado,array("yyyy","/","mm","/","dd"," ","HH",":","nn",":","ss")),array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")));
+	$mc_info_incidentes1->FechaEnCurso->SetValue(CCFormatDate(CCParseDate($FechaenCurso,array("yyyy","/","mm","/","dd"," ","HH",":","nn",":","ss")),array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")));
 
 	$DBcnDisenio->query("SELECT dbo.ufDiffFechasMCSec('".$FechaAsignado."','".$FechaenCurso."') as Minutos");
 	if($DBcnDisenio->next_record()){
@@ -1440,8 +1440,8 @@ function mc_info_incidentes1_BeforeShow(& $sender)
 		global $nueva_fecha_asignacion;
 		global $nueva_fecha_encurso;
 		global $nuevas_horas_invertidas;
-		$mc_info_incidentes1->FechaAsignado->SetValue(CCFormatDate(CCParseDate($nueva_fecha_asignacion,array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")),array("dd","/","mm","/","yyyy"," ","H",":","nn",":","ss")));
-		$mc_info_incidentes1->FechaEnCurso->SetValue(CCFormatDate(CCParseDate($nueva_fecha_encurso,array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")),array("dd","/","mm","/","yyyy"," ","H",":","nn",":","ss")));
+		$mc_info_incidentes1->FechaAsignado->SetValue(CCFormatDate(CCParseDate($nueva_fecha_asignacion,array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")),array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")));
+		$mc_info_incidentes1->FechaEnCurso->SetValue(CCFormatDate(CCParseDate($nueva_fecha_encurso,array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")),array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")));
 		$mc_info_incidentes1->HorasInvertidas->SetValue($nuevas_horas_invertidas);
 	}
 
@@ -2034,8 +2034,8 @@ function mc_incidentes_reasignacio_BeforeShow(& $sender)
     global $mc_info_incidentes1;
 	global $existe_actualizacion_asignacion;	
 	global $mc_info_incidentes;
-
-	$mc_incidentes_reasignacio->Visible=$existe_actualizacion_asignacion < 1 && $mc_info_incidentes2->HorasInvertidas->GetValue()!='N/A Incumplimiento a Proceso' && $mc_info_incidentes1->HorasInvertidas->GetValue()!='N/A Incumplimiento a Proceso' ? false : true;
+//La indicación del id del incidente explicito es a petición de la MMyA eramirez y naguilar 13/10/2016
+	$mc_incidentes_reasignacio->Visible=$existe_actualizacion_asignacion < 1 && $mc_info_incidentes2->HorasInvertidas->GetValue()!='N/A Incumplimiento a Proceso' && $mc_info_incidentes1->HorasInvertidas->GetValue()!='N/A Incumplimiento a Proceso' && CCGetParam("Id_incidente",0)!='INC000005811148'? false : true;
 	$mc_incidentes_reasignacio->horas_invertidas->SetValue(sec_to_time($mc_incidentes_reasignacio->H_horas_invertidas->GetValue()));	
 
    

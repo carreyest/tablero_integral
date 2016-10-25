@@ -304,7 +304,7 @@ class clsRecordmc_info_rs_cr_deffug { //mc_info_rs_cr_deffug Class @3-B56FF5B4
     }
 //End InsertRow Method
 
-//UpdateRow Method @3-DF053A87
+//UpdateRow Method @3-138D7F99
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
@@ -323,13 +323,6 @@ class clsRecordmc_info_rs_cr_deffug { //mc_info_rs_cr_deffug Class @3-B56FF5B4
         $this->DataSource->Observaciones->SetValue($this->Observaciones->GetValue(true));
         $this->DataSource->UsuarioUltMod->SetValue($this->UsuarioUltMod->GetValue(true));
         $this->DataSource->FechaUltMod->SetValue($this->FechaUltMod->GetValue(true));
-        $this->DataSource->hdIdProveedor->SetValue($this->hdIdProveedor->GetValue(true));
-        $this->DataSource->lbPPMC->SetValue($this->lbPPMC->GetValue(true));
-        $this->DataSource->sNombreProyecto->SetValue($this->sNombreProyecto->GetValue(true));
-        $this->DataSource->lServNegocio->SetValue($this->lServNegocio->GetValue(true));
-        $this->DataSource->sTipoRequerimiento->SetValue($this->sTipoRequerimiento->GetValue(true));
-        $this->DataSource->lbTotalDefectos->SetValue($this->lbTotalDefectos->GetValue(true));
-        $this->DataSource->lReportado->SetValue($this->lReportado->GetValue(true));
         $this->DataSource->evidencia_salvedad->SetValue($this->evidencia_salvedad->GetValue(true));
         $this->DataSource->observacion_salvedad->SetValue($this->observacion_salvedad->GetValue(true));
         $this->DataSource->Update();
@@ -513,7 +506,7 @@ class clsmc_info_rs_cr_deffugDataSource extends clsDBcnDisenio {  //mc_info_rs_c
     public $observacion_salvedad;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @3-8F9F421A
+//DataSourceClass_Initialize Event @3-5544B834
     function clsmc_info_rs_cr_deffugDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -593,10 +586,10 @@ class clsmc_info_rs_cr_deffugDataSource extends clsDBcnDisenio {  //mc_info_rs_c
         $this->UpdateFields["NumIncidentesRAPE"] = array("Name" => "[NumIncidentesRAPE]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->UpdateFields["Deductiva"] = array("Name" => "[Deductiva]", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
         $this->UpdateFields["CumpleDefFug"] = array("Name" => "[CumpleDefFug]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
-        $this->UpdateFields["Observaciones"] = array("Name" => "[Observaciones]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["Observaciones"] = array("Name" => "[Observaciones]", "Value" => "", "DataType" => ccsText);
         $this->UpdateFields["UsuarioUltMod"] = array("Name" => "[UsuarioUltMod]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["FechaUltMod"] = array("Name" => "[FechaUltMod]", "Value" => "", "DataType" => ccsDate, "OmitIfEmpty" => 1);
-        $this->UpdateFields["evidencia_salvedad"] = array("Name" => "evidencia_salvedad", "Value" => "", "DataType" => ccsBoolean);
+        $this->UpdateFields["evidencia_salvedad"] = array("Name" => "evidencia_salvedad", "Value" => "", "DataType" => ccsBoolean, "OmitIfEmpty" => 1);
         $this->UpdateFields["observacion_salvedad"] = array("Name" => "observacion_salvedad", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
     }
 //End DataSourceClass_Initialize Event
@@ -681,34 +674,88 @@ class clsmc_info_rs_cr_deffugDataSource extends clsDBcnDisenio {  //mc_info_rs_c
     }
 //End Insert Method
 
-//Update Method @3-4D58C962
+//Update Method @3-F7DFBC6C
     function Update()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->CmdExecution = true;
         $Where = "";
-        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
-        $this->UpdateFields["Id"]["Value"] = $this->Id->GetDBValue(true);
-        $this->UpdateFields["Id_PPMC"]["Value"] = $this->Id_PPMC->GetDBValue(true);
-        $this->UpdateFields["ID_Estimacion"]["Value"] = $this->ID_Estimacion->GetDBValue(true);
-        $this->UpdateFields["Incidentes"]["Value"] = $this->Incidentes->GetDBValue(true);
-        $this->UpdateFields["NumIncidentes"]["Value"] = $this->NumIncidentes->GetDBValue(true);
-        $this->UpdateFields["Paquetes"]["Value"] = $this->Paquetes->GetDBValue(true);
-        $this->UpdateFields["NumPaquetes"]["Value"] = $this->NumPaquetes->GetDBValue(true);
-        $this->UpdateFields["IncidentesRAPE"]["Value"] = $this->IncidentesRAPE->GetDBValue(true);
-        $this->UpdateFields["NumIncidentesRAPE"]["Value"] = $this->NumIncidentesRAPE->GetDBValue(true);
-        $this->UpdateFields["Deductiva"]["Value"] = $this->Deductiva->GetDBValue(true);
-        $this->UpdateFields["CumpleDefFug"]["Value"] = $this->CumpleDefFug->GetDBValue(true);
-        $this->UpdateFields["Observaciones"]["Value"] = $this->Observaciones->GetDBValue(true);
-        $this->UpdateFields["UsuarioUltMod"]["Value"] = $this->UsuarioUltMod->GetDBValue(true);
-        $this->UpdateFields["FechaUltMod"]["Value"] = $this->FechaUltMod->GetDBValue(true);
-        $this->UpdateFields["evidencia_salvedad"]["Value"] = $this->evidencia_salvedad->GetDBValue(true);
-        $this->UpdateFields["observacion_salvedad"]["Value"] = $this->observacion_salvedad->GetDBValue(true);
-        $this->SQL = CCBuildUpdate("mc_info_rs_cr_deffug", $this->UpdateFields, $this);
-        $this->SQL .= strlen($this->Where) ? " WHERE " . $this->Where : $this->Where;
-        if (!strlen($this->Where) && $this->Errors->Count() == 0) 
+        $this->cp["Id"] = new clsSQLParameter("ctrlId", ccsInteger, "", "", $this->Id->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["Id_PPMC"] = new clsSQLParameter("ctrlId_PPMC", ccsInteger, "", "", $this->Id_PPMC->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["ID_Estimacion"] = new clsSQLParameter("ctrlID_Estimacion", ccsInteger, "", "", $this->ID_Estimacion->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["Incidentes"] = new clsSQLParameter("ctrlIncidentes", ccsText, "", "", $this->Incidentes->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["NumIncidentes"] = new clsSQLParameter("ctrlNumIncidentes", ccsInteger, "", "", $this->NumIncidentes->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["Paquetes"] = new clsSQLParameter("ctrlPaquetes", ccsText, "", "", $this->Paquetes->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["NumPaquetes"] = new clsSQLParameter("ctrlNumPaquetes", ccsInteger, "", "", $this->NumPaquetes->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["IncidentesRAPE"] = new clsSQLParameter("ctrlIncidentesRAPE", ccsText, "", "", $this->IncidentesRAPE->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["NumIncidentesRAPE"] = new clsSQLParameter("ctrlNumIncidentesRAPE", ccsInteger, "", "", $this->NumIncidentesRAPE->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["Deductiva"] = new clsSQLParameter("ctrlDeductiva", ccsFloat, "", "", $this->Deductiva->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["CumpleDefFug"] = new clsSQLParameter("ctrlCumpleDefFug", ccsInteger, "", "", $this->CumpleDefFug->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["Observaciones"] = new clsSQLParameter("ctrlObservaciones", ccsText, "", "", $this->Observaciones->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["UsuarioUltMod"] = new clsSQLParameter("ctrlUsuarioUltMod", ccsText, "", "", $this->UsuarioUltMod->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["FechaUltMod"] = new clsSQLParameter("ctrlFechaUltMod", ccsDate, array("yyyy", "-", "mm", "-", "dd", " ", "HH", ":", "nn"), array("yyyy", "-", "mm", "-", "dd", " ", "HH", ":", "nn", ":", "ss", ".", "S"), $this->FechaUltMod->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["evidencia_salvedad"] = new clsSQLParameter("ctrlevidencia_salvedad", ccsBoolean, $CCSLocales->GetFormatInfo("BooleanFormat"), $this->BooleanFormat, $this->evidencia_salvedad->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["observacion_salvedad"] = new clsSQLParameter("ctrlobservacion_salvedad", ccsText, "", "", $this->observacion_salvedad->GetValue(true), NULL, false, $this->ErrorBlock);
+        $wp = new clsSQLParameters($this->ErrorBlock);
+        $wp->AddParameter("1", "urlId", ccsInteger, "", "", CCGetFromGet("Id", NULL), "", false);
+        if(!$wp->AllParamsSet()) {
             $this->Errors->addError($CCSLocales->GetText("CCS_CustomOperationError_MissingParameters"));
+        }
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
+        if (!is_null($this->cp["Id"]->GetValue()) and !strlen($this->cp["Id"]->GetText()) and !is_bool($this->cp["Id"]->GetValue())) 
+            $this->cp["Id"]->SetValue($this->Id->GetValue(true));
+        if (!is_null($this->cp["Id_PPMC"]->GetValue()) and !strlen($this->cp["Id_PPMC"]->GetText()) and !is_bool($this->cp["Id_PPMC"]->GetValue())) 
+            $this->cp["Id_PPMC"]->SetValue($this->Id_PPMC->GetValue(true));
+        if (!is_null($this->cp["ID_Estimacion"]->GetValue()) and !strlen($this->cp["ID_Estimacion"]->GetText()) and !is_bool($this->cp["ID_Estimacion"]->GetValue())) 
+            $this->cp["ID_Estimacion"]->SetValue($this->ID_Estimacion->GetValue(true));
+        if (!is_null($this->cp["Incidentes"]->GetValue()) and !strlen($this->cp["Incidentes"]->GetText()) and !is_bool($this->cp["Incidentes"]->GetValue())) 
+            $this->cp["Incidentes"]->SetValue($this->Incidentes->GetValue(true));
+        if (!is_null($this->cp["NumIncidentes"]->GetValue()) and !strlen($this->cp["NumIncidentes"]->GetText()) and !is_bool($this->cp["NumIncidentes"]->GetValue())) 
+            $this->cp["NumIncidentes"]->SetValue($this->NumIncidentes->GetValue(true));
+        if (!is_null($this->cp["Paquetes"]->GetValue()) and !strlen($this->cp["Paquetes"]->GetText()) and !is_bool($this->cp["Paquetes"]->GetValue())) 
+            $this->cp["Paquetes"]->SetValue($this->Paquetes->GetValue(true));
+        if (!is_null($this->cp["NumPaquetes"]->GetValue()) and !strlen($this->cp["NumPaquetes"]->GetText()) and !is_bool($this->cp["NumPaquetes"]->GetValue())) 
+            $this->cp["NumPaquetes"]->SetValue($this->NumPaquetes->GetValue(true));
+        if (!is_null($this->cp["IncidentesRAPE"]->GetValue()) and !strlen($this->cp["IncidentesRAPE"]->GetText()) and !is_bool($this->cp["IncidentesRAPE"]->GetValue())) 
+            $this->cp["IncidentesRAPE"]->SetValue($this->IncidentesRAPE->GetValue(true));
+        if (!is_null($this->cp["NumIncidentesRAPE"]->GetValue()) and !strlen($this->cp["NumIncidentesRAPE"]->GetText()) and !is_bool($this->cp["NumIncidentesRAPE"]->GetValue())) 
+            $this->cp["NumIncidentesRAPE"]->SetValue($this->NumIncidentesRAPE->GetValue(true));
+        if (!is_null($this->cp["Deductiva"]->GetValue()) and !strlen($this->cp["Deductiva"]->GetText()) and !is_bool($this->cp["Deductiva"]->GetValue())) 
+            $this->cp["Deductiva"]->SetValue($this->Deductiva->GetValue(true));
+        if (!is_null($this->cp["CumpleDefFug"]->GetValue()) and !strlen($this->cp["CumpleDefFug"]->GetText()) and !is_bool($this->cp["CumpleDefFug"]->GetValue())) 
+            $this->cp["CumpleDefFug"]->SetValue($this->CumpleDefFug->GetValue(true));
+        if (!is_null($this->cp["Observaciones"]->GetValue()) and !strlen($this->cp["Observaciones"]->GetText()) and !is_bool($this->cp["Observaciones"]->GetValue())) 
+            $this->cp["Observaciones"]->SetValue($this->Observaciones->GetValue(true));
+        if (!is_null($this->cp["UsuarioUltMod"]->GetValue()) and !strlen($this->cp["UsuarioUltMod"]->GetText()) and !is_bool($this->cp["UsuarioUltMod"]->GetValue())) 
+            $this->cp["UsuarioUltMod"]->SetValue($this->UsuarioUltMod->GetValue(true));
+        if (!is_null($this->cp["FechaUltMod"]->GetValue()) and !strlen($this->cp["FechaUltMod"]->GetText()) and !is_bool($this->cp["FechaUltMod"]->GetValue())) 
+            $this->cp["FechaUltMod"]->SetValue($this->FechaUltMod->GetValue(true));
+        if (!is_null($this->cp["evidencia_salvedad"]->GetValue()) and !strlen($this->cp["evidencia_salvedad"]->GetText()) and !is_bool($this->cp["evidencia_salvedad"]->GetValue())) 
+            $this->cp["evidencia_salvedad"]->SetValue($this->evidencia_salvedad->GetValue(true));
+        if (!is_null($this->cp["observacion_salvedad"]->GetValue()) and !strlen($this->cp["observacion_salvedad"]->GetText()) and !is_bool($this->cp["observacion_salvedad"]->GetValue())) 
+            $this->cp["observacion_salvedad"]->SetValue($this->observacion_salvedad->GetValue(true));
+        $wp->Criterion[1] = $wp->Operation(opEqual, "[Id]", $wp->GetDBValue("1"), $this->ToSQL($wp->GetDBValue("1"), ccsInteger),false);
+        $Where = 
+             $wp->Criterion[1];
+        $this->UpdateFields["Id"]["Value"] = $this->cp["Id"]->GetDBValue(true);
+        $this->UpdateFields["Id_PPMC"]["Value"] = $this->cp["Id_PPMC"]->GetDBValue(true);
+        $this->UpdateFields["ID_Estimacion"]["Value"] = $this->cp["ID_Estimacion"]->GetDBValue(true);
+        $this->UpdateFields["Incidentes"]["Value"] = $this->cp["Incidentes"]->GetDBValue(true);
+        $this->UpdateFields["NumIncidentes"]["Value"] = $this->cp["NumIncidentes"]->GetDBValue(true);
+        $this->UpdateFields["Paquetes"]["Value"] = $this->cp["Paquetes"]->GetDBValue(true);
+        $this->UpdateFields["NumPaquetes"]["Value"] = $this->cp["NumPaquetes"]->GetDBValue(true);
+        $this->UpdateFields["IncidentesRAPE"]["Value"] = $this->cp["IncidentesRAPE"]->GetDBValue(true);
+        $this->UpdateFields["NumIncidentesRAPE"]["Value"] = $this->cp["NumIncidentesRAPE"]->GetDBValue(true);
+        $this->UpdateFields["Deductiva"]["Value"] = $this->cp["Deductiva"]->GetDBValue(true);
+        $this->UpdateFields["CumpleDefFug"]["Value"] = $this->cp["CumpleDefFug"]->GetDBValue(true);
+        $this->UpdateFields["Observaciones"]["Value"] = $this->cp["Observaciones"]->GetDBValue(true);
+        $this->UpdateFields["UsuarioUltMod"]["Value"] = $this->cp["UsuarioUltMod"]->GetDBValue(true);
+        $this->UpdateFields["FechaUltMod"]["Value"] = $this->cp["FechaUltMod"]->GetDBValue(true);
+        $this->UpdateFields["evidencia_salvedad"]["Value"] = $this->cp["evidencia_salvedad"]->GetDBValue(true);
+        $this->UpdateFields["observacion_salvedad"]["Value"] = $this->cp["observacion_salvedad"]->GetDBValue(true);
+        $this->SQL = CCBuildUpdate("mc_info_rs_cr_deffug", $this->UpdateFields, $this);
+        $this->SQL .= strlen($Where) ? " WHERE " . $Where : $Where;
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
             $this->query($this->SQL);

@@ -25,7 +25,7 @@
 			<Attributes/>
 			<Features/>
 		</Link>
-		<Record id="3" sourceType="Table" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="mc_info_rs_cr_deffug" connection="cnDisenio" dataSource="mc_info_rs_cr_deffug" errorSummator="Error" allowCancel="False" recordDeleteConfirmation="False" buttonsType="button" wizardRecordKey="Id" encryptPasswordField="False" wizardUseInterVariables="False" pkIsAutoincrement="False" wizardCaption="Calificar Defectos Fugados" wizardThemeApplyTo="Page" wizardFormMethod="post" wizardType="Record" changedCaptionRecord="True" recordDirection="Vertical" recordAddTemplatePanel="False" PathID="mc_info_rs_cr_deffug">
+		<Record id="3" sourceType="Table" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="mc_info_rs_cr_deffug" connection="cnDisenio" dataSource="mc_info_rs_cr_deffug" errorSummator="Error" allowCancel="False" recordDeleteConfirmation="False" buttonsType="button" wizardRecordKey="Id" encryptPasswordField="False" wizardUseInterVariables="False" pkIsAutoincrement="False" wizardCaption="Calificar Defectos Fugados" wizardThemeApplyTo="Page" wizardFormMethod="post" wizardType="Record" changedCaptionRecord="True" recordDirection="Vertical" recordAddTemplatePanel="False" PathID="mc_info_rs_cr_deffug" activeCollection="UFormElements" activeTableType="mc_info_rs_cr_deffug" customUpdate="mc_info_rs_cr_deffug" customUpdateType="Table">
 			<Components>
 				<Button id="5" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Agregar" PathID="mc_info_rs_cr_deffugButton_Insert" returnPage="PPMCsDefFugDetalle.ccp">
 					<Components/>
@@ -197,18 +197,18 @@
 					<Features/>
 				</Label>
 				<CheckBox id="230" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="evidencia_salvedad" PathID="mc_info_rs_cr_deffugevidencia_salvedad" fieldSource="evidencia_salvedad" checkedValue="True" uncheckedValue="False">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</CheckBox>
-<TextArea id="231" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="observacion_salvedad" PathID="mc_info_rs_cr_deffugobservacion_salvedad" fieldSource="observacion_salvedad">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextArea>
-</Components>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</CheckBox>
+				<TextArea id="231" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="observacion_salvedad" PathID="mc_info_rs_cr_deffugobservacion_salvedad" fieldSource="observacion_salvedad">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextArea>
+			</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>
@@ -247,8 +247,27 @@
 			<IFormElements/>
 			<USPParameters/>
 			<USQLParameters/>
-			<UConditions/>
-			<UFormElements/>
+			<UConditions>
+<TableParameter id="232" conditionType="Parameter" useIsNull="False" field="Id" dataType="Integer" parameterType="URL" parameterSource="Id" searchConditionType="Equal" logicOperator="And" orderNumber="1"/>
+</UConditions>
+			<UFormElements>
+<CustomParameter id="233" field="Id" dataType="Integer" parameterType="Control" parameterSource="Id" omitIfEmpty="True"/>
+<CustomParameter id="234" field="Id_PPMC" dataType="Integer" parameterType="Control" parameterSource="Id_PPMC" omitIfEmpty="True"/>
+<CustomParameter id="235" field="ID_Estimacion" dataType="Integer" parameterType="Control" parameterSource="ID_Estimacion" omitIfEmpty="True"/>
+<CustomParameter id="236" field="Incidentes" dataType="Text" parameterType="Control" parameterSource="Incidentes" omitIfEmpty="True"/>
+<CustomParameter id="237" field="NumIncidentes" dataType="Integer" parameterType="Control" parameterSource="NumIncidentes" omitIfEmpty="True"/>
+<CustomParameter id="238" field="Paquetes" dataType="Text" parameterType="Control" parameterSource="Paquetes" omitIfEmpty="True"/>
+<CustomParameter id="239" field="NumPaquetes" dataType="Integer" parameterType="Control" parameterSource="NumPaquetes" omitIfEmpty="True"/>
+<CustomParameter id="240" field="IncidentesRAPE" dataType="Text" parameterType="Control" parameterSource="IncidentesRAPE" omitIfEmpty="True"/>
+<CustomParameter id="241" field="NumIncidentesRAPE" dataType="Integer" parameterType="Control" parameterSource="NumIncidentesRAPE" omitIfEmpty="True"/>
+<CustomParameter id="242" field="Deductiva" dataType="Float" parameterType="Control" parameterSource="Deductiva" omitIfEmpty="True"/>
+<CustomParameter id="243" field="CumpleDefFug" dataType="Integer" parameterType="Control" parameterSource="CumpleDefFug" omitIfEmpty="True"/>
+<CustomParameter id="244" field="Observaciones" dataType="Text" parameterType="Control" parameterSource="Observaciones" omitIfEmpty="False"/>
+<CustomParameter id="245" field="UsuarioUltMod" dataType="Text" parameterType="Control" parameterSource="UsuarioUltMod" omitIfEmpty="True"/>
+<CustomParameter id="246" field="FechaUltMod" dataType="Date" parameterType="Control" parameterSource="FechaUltMod" format="yyyy-mm-dd HH:nn" DBFormat="yyyy-mm-dd HH:nn:ss.S" omitIfEmpty="True"/>
+<CustomParameter id="247" field="evidencia_salvedad" dataType="Boolean" parameterType="Control" parameterSource="evidencia_salvedad" omitIfEmpty="True"/>
+<CustomParameter id="248" field="observacion_salvedad" dataType="Text" parameterType="Control" parameterSource="observacion_salvedad" omitIfEmpty="True"/>
+</UFormElements>
 			<DSPParameters/>
 			<DSQLParameters/>
 			<DConditions/>

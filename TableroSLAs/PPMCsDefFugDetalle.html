@@ -22,7 +22,8 @@
 function calculaSLA(){
     
     var  sObs = document.getElementById("mc_info_rs_cr_deffugObservaciones").value;
-    if(sObs.length == 0){
+    var  esEdicion = document.getElementById("mc_info_rs_cr_deffugButton_Update");
+    if(sObs.length == 0 and !esEdicion){
         var iTotalDefectos=document.getElementById("TotalDefectos").innerHTML;
         sObs = "El nivel de servicio se reporta como " ;
         if(iTotalDefectos.valueOf()>0){

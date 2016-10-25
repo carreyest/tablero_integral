@@ -1,0 +1,385 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>comparativo</title>
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
+<style type="text/css">
+ 
+#Grid1 > tbody > tr > td > table.Grid  >  tbody > tr:nth-child(odd) > td {
+    background-color:#f2f2f2;
+}
+#Grid1 > tbody > tr > td > table.Grid  >  tbody > tr:nth-child(even) > td {
+    background-color:#fbfbfb;
+}
+ 
+</style>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-2504AB44
+</script>
+<script src="ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-A87AC9EE
+</script>
+{page:scriptIncludes}
+<script type="text/javascript">
+//End Include User Scripts
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="Styles/Austere4/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="Styles/Austere4/jquery-ui.css">
+</head>
+<body>
+<p>{Header}</p>
+<p>
+<!-- BEGIN Record periodos_carga -->
+<form id="periodos_carga" method="post" name="{HTMLFormName}" action="{Action}">
+  <table class="MainTable" style="HEIGHT: 158px; WIDTH: 1422px" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td> 
+            <td class="th"><strong>Seleccionar Periodo</strong></td> 
+            <td class="HeaderRight"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr id="{@error-block}" class="Error">
+            <td colspan="5">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <td class="th"><label for="periodos_cargas_id_periodo">Periodo</label></td> 
+            <td>
+              <select id="periodos_cargas_id_periodo" name="{s_id_periodo_Name}">
+                <option selected value="">Seleccionar Valor</option>
+                {s_id_periodo_Options}
+              </select>
+ </td> 
+            <td class="th"><label for="periodos_cargas_id_proveedor">Proveedor</label></td> 
+            <td>&nbsp; 
+              <select id="periodos_cargas_id_proveedor" name="{s_id_proveedor_Name}">
+                <option selected value="">Seleccionar Valor</option>
+                {s_id_proveedor_Options}
+              </select>
+ </td> 
+            <td><font style="BACKGROUND-COLOR: #ffffff">Nivel de Servicio</font>&nbsp; 
+              <select id="periodos_cargas_opt_slas" name="{s_opt_slas_Name}">
+                <option selected value="">Seleccionar Valor</option>
+                {s_opt_slas_Options}
+              </select>
+ &nbsp;</td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td style="TEXT-ALIGN: right" colspan="5">
+              <!-- BEGIN Button Button_DoSearch --><input type="submit" id="periodos_cargaButton_DoSearch" class="Button" alt="Buscar" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+          </tr>
+        </table>
+      </td> 
+      <td width="20%"></td> 
+      <td colspan="5">
+        <h2><font size="4">COMPARATIVO {Label1}</font></h2>
+ 
+        <h2><font size="4">CAPC / ENTREGA SAT CDS's</font></h2>
+      </td>
+    </tr>
+ 
+    <tr>
+      <td></td> 
+      <td></td> 
+      <td><a href="{Link1_Src}" id="periodos_cargaLink1">Resumen</a></td> 
+      <td><a href="{Link2_Src}" id="periodos_cargaLink2">Incidentes</a></td> 
+      <td><a href="{Link3_Src}" id="periodos_cargaLink3">Req. Apertura</a></td> 
+      <td><a href="{Link4_Src}" id="periodos_cargaLink4">Req. Cierre</a></td>
+    </tr>
+  </table>
+</form>
+<!-- END Record periodos_carga --></p>
+<table align="center">
+  <tr>
+    <td>
+      <h1><font size="5"><em>REQUERIMIENTOS DE CIERRE</em></font></h1>
+    </td>
+  </tr>
+</table>
+<p align="center">&nbsp;</p>
+<p align="center">
+<table width="90%">
+  <tr>
+    <td valign="top" width="15%">
+
+<!-- BEGIN Grid result_comparativo_cierre -->
+<table id="result_comparativo_cierre" class="MainTable" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td valign="top">
+      <table class="Header" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td class="HeaderLeft"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td> 
+          <td class="th"><strong>Requerimientos con diferencias </strong></td> 
+          <td class="HeaderRight"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Row">
+          <td colspan="2">Total de Registros:&nbsp;{result_comparativo_cierre_TotalRecords}</td>
+        </tr>
+ 
+        <tr class="Caption">
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_id_ppmc --><span class="Sorter"><a href="{Sort_URL}" id="result_comparativo_cierreSorter_id_ppmc">Id Ppmc</a> 
+          <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_id_ppmc --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_id_estimacion --><span class="Sorter"><a href="{Sort_URL}" id="result_comparativo_cierreSorter_id_estimacion">Id Estimacion</a> 
+          <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_id_estimacion --></th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr {result_comparativo_cierre:rowStyle}>
+          <td style="TEXT-ALIGN: right"><a href="{id_ppmc_Src}" id="result_comparativo_cierreid_ppmc_{result_comparativo_cierre:rowNumber}">{id_ppmc}</a>&nbsp;</td> 
+          <td style="TEXT-ALIGN: right">{id_estimacion}&nbsp;</td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="2">No hay registros</td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="Footer">
+          <td colspan="2">
+            <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+            <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+              <option selected value="">-</option>
+ {PageSize_Options}
+            </select>
+ 
+            <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/Austere4/Images/First.gif"></a> <!-- END First_On -->
+            <!-- BEGIN First_Off --><img alt="{First_URL}" src="Styles/Austere4/Images/FirstOff.gif"><!-- END First_Off -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="Styles/Austere4/Images/Prev.gif"></a> <!-- END Prev_On -->
+            <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="Styles/Austere4/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+            <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/Austere4/Images/Next.gif"></a> <!-- END Next_On -->
+            <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/Austere4/Images/NextOff.gif"><!-- END Next_Off -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/Austere4/Images/Last.gif"></a> <!-- END Last_On -->
+            <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/Austere4/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid result_comparativo_cierre --></td> 
+    <td width="5%"></td> 
+    <td valign="top" width="30%">
+<!-- BEGIN Record result_comparativo_cierre1 -->
+<form id="result_comparativo_cierre1" method="post" name="{HTMLFormName}" action="{Action}">
+  <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td> 
+            <td class="th"><strong>Registro CAPC</strong></td> 
+            <td class="HeaderRight"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr id="ErrorBlock" class="Error">
+            <td colspan="2">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <td class="th">Id PPMC</td> 
+            <td>&nbsp;{id_ppmc}</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Id Estimacion</td> 
+            <td>{id_estimacion}</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Servicio Negocio</td> 
+            <td>{servicio_negocio}</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Tipo</td> 
+            <td>{tipo}</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Cump Req Func</td> 
+            <td><img id="result_comparativo_cierre1imgcump_req_func" alt="" src="{imgcump_req_func}">{cump_req_func}</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Retraso Entregables</td> 
+            <td><img id="result_comparativo_cierre1imgretraso_entregables" alt="" src="{imgretraso_entregables}">{retraso_entregables}</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Calidad Prod Term</td> 
+            <td><img id="result_comparativo_cierre1imgcalidad_prod_term" alt="" src="{imgcalidad_prod_term}">{calidad_prod_term}</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Calidad Codigo</td> 
+            <td><img id="result_comparativo_cierre1imgcalidad_codigo" alt="" src="{imgcalidad_codigo}">{calidad_codigo}</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Defectos Fugados Amb Prod</td> 
+            <td>{defectos_fugados_amb_prod}<img id="result_comparativo_cierre1imgdefectos_fugados_amb_prod" alt="" src="{imgdefectos_fugados_amb_prod}"></td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Serv Contractual</td> 
+            <td>{serv_contractual}</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Fecha Caes</td> 
+            <td>{fecha_caes}</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Tipo Nivel Servicio</td> 
+            <td>{tipo_nivel_servicio}</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Id Periodo</td> 
+            <td>{id_periodo}</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Id Proveedor</td> 
+            <td>{id_proveedor}</td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td style="TEXT-ALIGN: right" colspan="2"></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record result_comparativo_cierre1 --></td> 
+    <td width="5%"></td> 
+    <td valign="top" width="30%">
+<!-- BEGIN Record result_comparativo_cierre2 -->
+<form id="result_comparativo_cierre2" method="post" name="{HTMLFormName}" action="{Action}">
+  <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td> 
+            <td class="th"><strong>Registro CDS</strong></td> 
+            <td class="HeaderRight"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr id="ErrorBlock" class="Error">
+            <td colspan="2">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <td class="th">Id PPMC&nbsp;</td> 
+            <td>{id_ppmc}</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Id Estimacion</td> 
+            <td>{id_estimacion}</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Servicio Negocio</td> 
+            <td>{servicio_negocio}</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Tipo</td> 
+            <td>{tipo}</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Cump Req Func</td> 
+            <td><img id="result_comparativo_cierre2imgcump_req_func" alt="" src="{imgcump_req_func}">{cump_req_func}</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Retraso Entregables</td> 
+            <td><img id="result_comparativo_cierre2imgretraso_entregables" alt="" src="{imgretraso_entregables}">{retraso_entregables}</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Calidad Prod Term</td> 
+            <td><img id="result_comparativo_cierre2imgcalidad_prod_term" alt="" src="{imgcalidad_prod_term}">{calidad_prod_term}</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Calidad Codigo</td> 
+            <td><img id="result_comparativo_cierre2imgcalidad_codigo" alt="" src="{imgcalidad_codigo}">{calidad_codigo}</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Defectos Fugados Amb Prod</td> 
+            <td><img id="result_comparativo_cierre2imgdefectos_fugados_amb_prod_prod" alt="" src="{imgdefectos_fugados_amb_prod}">{defectos_fugados_amb_prod}</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Serv Contractual</td> 
+            <td>{serv_contractual}</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Fecha Caes</td> 
+            <td>{fecha_caes}</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Tipo Nivel Servicio</td> 
+            <td>{tipo_nivel_servicio}</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Id Periodo</td> 
+            <td>{id_periodo}</td>
+          </tr>
+ 
+          <tr class="Controls">
+            <td class="th">Id Proveedor</td> 
+            <td>{id_proveedor}</td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td style="TEXT-ALIGN: right" colspan="2"></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record result_comparativo_cierre2 --></td>
+  </tr>
+</table>
+</p>
+</body>
+</html>

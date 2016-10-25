@@ -1,0 +1,429 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>comparativo</title>
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-2504AB44
+</script>
+<script src="ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-A87AC9EE
+</script>
+{page:scriptIncludes}
+<script type="text/javascript">
+//End Include User Scripts
+
+//End CCS script
+</script>
+<style>
+#Grid2 .Caption th {width:4%}
+</style>
+<link rel="stylesheet" type="text/css" href="Styles/Austere4/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="Styles/Austere4/jquery-ui.css">
+<script type="text/javascript">
+    $(document).on("ready", function(){          
+           
+                for (var fila=3; fila<8; fila++) {
+                    for (var col=2; col<22; col=col+2) {
+                            var colsig = col+1;
+                                if (       
+                                        $('#Grid2 > tbody > tr > td > table.Grid > tbody > tr:nth-child('+fila+') > td:nth-child('+col+') > p:nth-child(2) ').html() !=
+                                        $('#Grid2 > tbody > tr > td > table.Grid > tbody > tr:nth-child('+fila+') > td:nth-child('+colsig+') > p:nth-child(2) ').html()
+                                        
+                                    ) {
+                                        $('#Grid2 > tbody > tr > td > table.Grid > tbody > tr:nth-child('+fila+') > td:nth-child('+col+')').css("background-color", "#E99F9F");
+                                        $('#Grid2 > tbody > tr > td > table.Grid > tbody > tr:nth-child('+fila+') > td:nth-child('+colsig+')').css("background-color", "#E99F9F");
+                                }               
+                    }
+                    
+                }
+                for (var fila=2; fila<6; fila++) {
+                                if (
+                                        $('#Grid1 > tbody > tr > td > table.Grid > tbody > tr:nth-child('+fila+') > td:nth-child(2) ').html() !=
+                                        $('#Grid1 > tbody > tr > td > table.Grid > tbody > tr:nth-child('+fila+') > td:nth-child(3) ').html()
+                                    ) {
+                                                        console.log("entro");
+                                        $('#Grid1 > tbody > tr > td > table.Grid > tbody > tr:nth-child('+fila+') > td:nth-child(2) ').css("background-color", "#E99F9F");
+                                        $('#Grid1 > tbody > tr > td > table.Grid > tbody > tr:nth-child('+fila+') > td:nth-child(3) ').css("background-color", "#E99F9F");
+                                }                                   
+                }
+                
+                                
+    });
+</script>
+</head>
+<body>
+<p>{Header}</p>
+<p>
+<!-- BEGIN Record periodos_carga -->
+<form id="periodos_carga" method="post" name="{HTMLFormName}" action="{Action}">
+  <table class="MainTable" style="HEIGHT: 158px; WIDTH: 1422px" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td> 
+            <td class="th"><strong>Seleccionar Periodo</strong></td> 
+            <td class="HeaderRight"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr id="{@error-block}" class="Error">
+            <td colspan="5">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls">
+            <td class="th"><label for="periodos_cargas_id_periodo">Periodo</label></td> 
+            <td>
+              <select id="periodos_cargas_id_periodo" name="{s_id_periodo_Name}">
+                <option selected value="">Seleccionar Valor</option>
+                {s_id_periodo_Options}
+              </select>
+ </td> 
+            <td class="th"><label for="periodos_cargas_id_proveedor">Proveedor</label></td> 
+            <td>&nbsp; 
+              <select id="periodos_cargas_id_proveedor" name="{s_id_proveedor_Name}">
+                <option selected value="">Seleccionar Valor</option>
+                {s_id_proveedor_Options}
+              </select>
+ </td> 
+            <td><font style="BACKGROUND-COLOR: #ffffff">Nivel de Servicio</font>&nbsp; 
+              <select id="periodos_cargas_opt_slas" name="{s_opt_slas_Name}">
+                <option selected value="">Seleccionar Valor</option>
+                {s_opt_slas_Options}
+              </select>
+ &nbsp;</td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td style="TEXT-ALIGN: right" colspan="5">
+              <!-- BEGIN Button Button_DoSearch --><input type="submit" id="periodos_cargaButton_DoSearch" class="Button" alt="Buscar" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+          </tr>
+        </table>
+      </td> 
+      <td width="20%"></td> 
+      <td colspan="5">
+        <h2><font size="4">COMPARATIVO {Label1}</font></h2>
+ 
+        <h2><font size="4">CAPC / ENTREGA SAT CDS's</font></h2>
+      </td>
+    </tr>
+ 
+    <tr>
+      <td></td> 
+      <td></td> 
+      <td><a href="{Link1_Src}" id="periodos_cargaLink1">Resumen</a></td> 
+      <td><a href="{Link2_Src}" id="periodos_cargaLink2">Incidentes</a></td> 
+      <td><a href="{Link3_Src}" id="periodos_cargaLink3">Req. Apertura</a></td> 
+      <td><a href="{Link4_Src}" id="periodos_cargaLink4">Req. Cierre</a></td>
+    </tr>
+  </table>
+</form>
+<!-- END Record periodos_carga -->
+<table align="center">
+  <tr>
+    <td>
+      <h1><font size="5"><em>RESUMEN</em></font></h1>
+    </td>
+  </tr>
+</table>
+</p>
+<p>
+<!-- BEGIN Grid Grid1 -->
+<table id="Grid1" class="MainTable" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td valign="top">
+      <table class="Header" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td class="HeaderLeft"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td> 
+          <td class="th"><strong>Comparativo / Totales </strong></td> 
+          <td class="HeaderRight"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Caption">
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_Medicion_sat --><span class="Sorter"><a href="{Sort_URL}" id="Grid1Sorter_Medicion_sat">Medicion</a> 
+          <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Medicion_sat --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_Total_sat --><span class="Sorter"><a href="{Sort_URL}" id="Grid1Sorter_Total_sat">Total CDS</a> 
+          <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Total_sat --></th>
+ 
+          <th scope="col">
+          <!-- BEGIN Sorter Sorter_Total_capc --><span class="Sorter"><a href="{Sort_URL}" id="Grid1Sorter_Total_capc">Total CAPC</a> 
+          <!-- BEGIN Asc_On --><img alt="Ascendente" src="Styles/Austere4/Images/Asc.gif"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/Austere4/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Total_capc --></th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr class="Row">
+          <td>{Medicion_sat}&nbsp;</td> 
+          <td style="TEXT-ALIGN: right">{Total_sat}&nbsp;</td> 
+          <td style="TEXT-ALIGN: right">{Total_capc}&nbsp;</td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="3">No hay registros</td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="Footer">
+          <td colspan="3">
+            <!-- BEGIN Navigator Navigator --><span class="Navigator">Registro por página 
+            <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+              <option selected value="">-</option>
+ {PageSize_Options}
+            </select>
+ 
+            <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/Austere4/Images/First.gif"></a> <!-- END First_On -->
+            <!-- BEGIN First_Off --><img alt="{First_URL}" src="Styles/Austere4/Images/FirstOff.gif"><!-- END First_Off -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="Styles/Austere4/Images/Prev.gif"></a> <!-- END Prev_On -->
+            <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="Styles/Austere4/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+            <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/Austere4/Images/Next.gif"></a> <!-- END Next_On -->
+            <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/Austere4/Images/NextOff.gif"><!-- END Next_Off -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/Austere4/Images/Last.gif"></a> <!-- END Last_On -->
+            <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/Austere4/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid Grid1 --><br>
+<br>
+<!-- BEGIN Grid Grid2 -->
+<table id="Grid2" class="MainTable" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td valign="top">
+      <table class="Header" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td class="HeaderLeft"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td> 
+          <td class="th"><strong>Comparativo resumen de niveles de servicio </strong></td> 
+          <td class="HeaderRight"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0" border="1">
+        <tr class="Caption">
+          <th scope="col">&nbsp;</th>
+ 
+          <th colspan="2" scope="col">
+          <p><font size="2">Uso de una <br>
+          herramienta<br>
+          para estimación<br>
+          de Costo<br>
+          y Tiempos</font></p>
+          </th>
+ 
+          <th colspan="2" scope="col"><font size="2">Requisitos <br>
+          de servicio</font></th>
+ 
+          <th colspan="2" scope="col">
+          <p><font size="2">Cumplimiento en<br>
+          requisitos<br>
+          funcionales</font></p>
+          </th>
+ 
+          <th colspan="2" scope="col"><font size="2">Calidad de <br>
+          productos <br>
+          terminados</font></th>
+ 
+          <th colspan="2" scope="col"><font size="2">Retraso en <br>
+          entregables</font></th>
+ 
+          <th colspan="2" scope="col"><font size="2">Calidad de <br>
+          código</font></th>
+ 
+          <th colspan="2" scope="col"><font size="2">Defectos fugados <br>
+          al ambiente<br>
+          productivo</font></th>
+ 
+          <th colspan="2" scope="col"><font size="2">Manejo de <br>
+          incidentes <br>
+          tiempo de <br>
+          atención</font></th>
+ 
+          <th colspan="2" scope="col"><font size="2">Manejo de <br>
+          incidentes <br>
+          tiempo de <br>
+          solución</font></th>
+ 
+          <th colspan="2" scope="col"><font size="2">Eficiciencia <br>
+          presupuestal</font></th>
+          <!--<th colspan="6" scope="col">&nbsp;</th>-->
+        </tr>
+ 
+        <tr class="Caption">
+          <th scope="col"></th>
+ 
+          <th scope="col">CDS</th>
+ 
+          <th scope="col">CAPC</th>
+ 
+          <th scope="col">CDS</th>
+ 
+          <th scope="col">CAPC</th>
+ 
+          <th scope="col">CDS</th>
+ 
+          <th scope="col">CAPC</th>
+ 
+          <th scope="col">CDS</th>
+ 
+          <th scope="col">CAPC</th>
+ 
+          <th scope="col">CDS</th>
+ 
+          <th scope="col">CAPC</th>
+ 
+          <th scope="col">CDS</th>
+ 
+          <th scope="col">CAPC</th>
+ 
+          <th scope="col">CDS</th>
+ 
+          <th scope="col">CAPC</th>
+ 
+          <th scope="col">CDS</th>
+ 
+          <th scope="col">CAPC</th>
+ 
+          <th scope="col">CDS</th>
+ 
+          <th scope="col">CAPC</th>
+ 
+          <th scope="col">CDS</th>
+ 
+          <th scope="col">CAPC</th>
+          <!--<th colspan="6" scope="col"></th>-->
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr class="Row">
+          <td><font size="2"><b>{descripcion_sat}&nbsp;</b></font></td> 
+          <td style="TEXT-ALIGN: right" align="center">
+            <p align="center"><img id="Grid2imgherr_est_cost_sat" alt="" src="{imgherr_est_cost_sat}"></p>
+ 
+            <p align="center">{cumplenherr_est_cost_sat}{totherr_est_cost_sat}{herr_est_cost_sat}&nbsp;</p>
+            <input type="hidden" id="Grid2meta_herr_est_cost_sat_{Grid2:rowNumber}" value="{meta_herr_est_cost_sat}" name="{meta_herr_est_cost_sat_Name}"></td> 
+          <td style="TEXT-ALIGN: right">
+            <p align="center"><img id="Grid2imgherr_est_cost" alt="" src="{imgherr_est_cost}"></p>
+ 
+            <p align="center">{cumplenherr_est_cost}{totherr_est_cost}{herr_est_cost}&nbsp;</p>
+            <input type="hidden" id="Grid2meta_herr_est_cost_{Grid2:rowNumber}" value="{meta_herr_est_cost}" name="{meta_herr_est_cost_Name}"></td> 
+          <td style="TEXT-ALIGN: right">
+            <p align="center"><img id="Grid2imgreq_serv_sat" alt="" src="{imgreq_serv_sat}"></p>
+ 
+            <p align="center">{cumplenreq_serv_sat}{totreq_serv_sat}{req_serv_sat}&nbsp;</p>
+            <input type="hidden" id="Grid2meta_req_serv_sat_{Grid2:rowNumber}" value="{meta_req_serv_sat}" name="{meta_req_serv_sat_Name}"></td> 
+          <td style="TEXT-ALIGN: right">
+            <p align="center"><img id="Grid2imgreq_serv" alt="" src="{imgreq_serv}"></p>
+ 
+            <p align="center">{cumplenreq_serv}{totreq_serv}{req_serv}&nbsp;</p>
+            <input type="hidden" id="Grid2meta_req_serv_{Grid2:rowNumber}" value="{meta_req_serv}" name="{meta_req_serv_Name}"></td> 
+          <td style="TEXT-ALIGN: right">
+            <p align="center"><img id="Grid2imgcumpl_req_func_sat" alt="" src="{imgcumpl_req_func_sat}"></p>
+ 
+            <p align="center">{cumplencumpl_req_func_sat}{totcumpl_req_func_sat}&nbsp;{cumpl_req_func_sat}</p>
+            <input type="hidden" id="Grid2meta_cumpl_req_func_sat_{Grid2:rowNumber}" value="{meta_cumpl_req_func_sat}" name="{meta_cumpl_req_func_sat_Name}"></td> 
+          <td style="TEXT-ALIGN: right">
+            <p align="center"><img id="Grid2imgcumpl_req_func" alt="" src="{imgcumpl_req_func}"></p>
+ 
+            <p align="center">{cumplencumpl_req_func}{totcumpl_req_func}&nbsp;{cumpl_req_func}</p>
+            <input type="hidden" id="Grid2meta_cumpl_req_func_{Grid2:rowNumber}" value="{meta_cumpl_req_func}" name="{meta_cumpl_req_func_Name}"></td> 
+          <td style="TEXT-ALIGN: right">
+            <p align="center"><img id="Grid2imgcalidad_prod_term_sat_sat" alt="" src="{imgcalidad_prod_term_sat}"></p>
+ 
+            <p align="center">{cumplencalidad_prod_term_sat}{totcalidad_prod_term_sat}&nbsp;{calidad_prod_term_sat}</p>
+            <input type="hidden" id="Grid2meta_calidad_prod_term_sat_{Grid2:rowNumber}" value="{meta_calidad_prod_term_sat}" name="{meta_calidad_prod_term_sat_Name}"></td> 
+          <td style="TEXT-ALIGN: right">
+            <p align="center"><img id="Grid2imgcalidad_prod_term" alt="" src="{imgcalidad_prod_term}"></p>
+ 
+            <p align="center">{cumplencalidad_prod_term}{totcalidad_prod_term}&nbsp;{calidad_prod_term}</p>
+            <input type="hidden" id="Grid2meta_calidad_prod_term_{Grid2:rowNumber}" value="{meta_calidad_prod_term}" name="{meta_calidad_prod_term_Name}"></td> 
+          <td style="TEXT-ALIGN: right">
+            <p align="center"><img id="Grid2imgretr_entregable_sat" alt="" src="{imgretr_entregable_sat}"></p>
+ 
+            <p align="center">{cumplenretr_entregable_sat}{totretr_entregable_sat}&nbsp;{retr_entregable_sat}</p>
+            <input type="hidden" id="Grid2meta_retr_entregable_sat_{Grid2:rowNumber}" value="{meta_retr_entregable_sat}" name="{meta_retr_entregable_sat_Name}"></td> 
+          <td style="TEXT-ALIGN: right">
+            <p align="center"><img id="Grid2imgretr_entregable" alt="" src="{imgretr_entregable}"></p>
+ 
+            <p align="center">{cumplenretr_entregable}{totretr_entregable}&nbsp;{retr_entregable}</p>
+            <input type="hidden" id="Grid2meta_retr_entregable_{Grid2:rowNumber}" value="{meta_retr_entregable}" name="{meta_retr_entregable_Name}"></td> 
+          <td style="TEXT-ALIGN: right">
+            <p align="center"><img id="Grid2imgcal_cod_sat" alt="" src="{imgcal_cod_sat}"></p>
+ 
+            <p align="center">{cumplencal_cod_sat}{totcal_cod_sat}&nbsp;{cal_cod_sat}</p>
+            <input type="hidden" id="Grid2meta_cal_cod_sat_{Grid2:rowNumber}" value="{meta_cal_cod_sat}" name="{meta_cal_cod_sat_Name}"></td> 
+          <td style="TEXT-ALIGN: right">
+            <p align="center"><img id="Grid2imgcal_cod" alt="" src="{imgcal_cod}"></p>
+ 
+            <p align="center">{cumplencal_cod}{totcal_cod}&nbsp;{cal_cod}</p>
+            <input type="hidden" id="Grid2meta_cal_cod_{Grid2:rowNumber}" value="{meta_cal_cod}" name="{meta_cal_cod_Name}"></td> 
+          <td style="TEXT-ALIGN: right">
+            <p align="center"><img id="Grid2imgdef_fug_amb_prod_sat" alt="" src="{imgdef_fug_amb_prod_sat}"></p>
+ 
+            <p align="center">{cumplendef_fug_amb_prod_sat}{totdef_fug_amb_prod_sat}&nbsp;{def_fug_amb_prod_sat}</p>
+            <input type="hidden" id="Grid2meta_def_fug_amb_prod_sat_{Grid2:rowNumber}" value="{meta_def_fug_amb_prod_sat}" name="{meta_def_fug_amb_prod_sat_Name}"></td> 
+          <td style="TEXT-ALIGN: right">
+            <p align="center"><img id="Grid2imgdef_fug_amb_prod" alt="" src="{imgdef_fug_amb_prod}"></p>
+ 
+            <p align="center">{cumplendef_fug_amb_prod}{totdef_fug_amb_prod}&nbsp;{def_fug_amb_prod}</p>
+            <input type="hidden" id="Grid2meta_def_fug_amb_prod_{Grid2:rowNumber}" value="{meta_def_fug_amb_prod}" name="{meta_def_fug_amb_prod_Name}"></td> 
+          <td style="TEXT-ALIGN: right">
+            <p align="center"><img id="Grid2imginc_tiempoasignacion_sat" alt="" src="{imginc_tiempoasignacion_sat}"></p>
+ 
+            <p align="center">{cumpleninc_tiempoasignacion_sat}{totinc_tiempoasignacion_sat}&nbsp;{inc_tiempoasignacion_sat}</p>
+            <input type="hidden" id="Grid2meta_inc_tiempoasignacion_sat_{Grid2:rowNumber}" value="{meta_inc_tiempoasignacion_sat}" name="{meta_inc_tiempoasignacion_sat_Name}"></td> 
+          <td style="TEXT-ALIGN: right">
+            <p align="center"><img id="Grid2imginc_tiempoasignacion" alt="" src="{imginc_tiempoasignacion}"></p>
+ 
+            <p align="center">{cumpleninc_tiempoasignacion}{totinc_tiempoasignacion}&nbsp;{inc_tiempoasignacion}</p>
+            <input type="hidden" id="Grid2meta_inc_tiempoasignacion_{Grid2:rowNumber}" value="{meta_inc_tiempoasignacion}" name="{meta_inc_tiempoasignacion_Name}"><input type="hidden" id="Grid2meta_inc_tiemposolucion_{Grid2:rowNumber}" value="{meta_inc_tiemposolucion}" name="{meta_inc_tiemposolucion_Name}"></td> 
+          <td style="TEXT-ALIGN: right">
+            <p align="center"><img id="Grid2imginc_tiemposolucion_sat" alt="" src="{imginc_tiemposolucion_sat}"></p>
+ 
+            <p align="center">{cumpleninc_tiemposolucion_sat}{totinc_tiemposolucion_sat}&nbsp;{inc_tiemposolucion_sat}</p>
+            <input type="hidden" id="Grid2meta_inc_tiemposolucion_sat_{Grid2:rowNumber}" value="{meta_inc_tiemposolucion_sat}" name="{meta_inc_tiemposolucion_sat_Name}"></td> 
+          <td style="TEXT-ALIGN: right">
+            <p align="center"><img id="Grid2imginc_tiemposolucion" alt="" src="{imginc_tiemposolucion}"></p>
+ 
+            <p align="center">{cumpleninc_tiemposolucion}{totinc_tiemposolucion}&nbsp;{inc_tiemposolucion}</p>
+          </td> 
+          <td style="TEXT-ALIGN: right">
+            <p align="center"><img id="Grid2imgefic_presup_sat" alt="" src="{imgefic_presup_sat}"></p>
+ 
+            <p align="center">{cumplenefic_presup_sat}&nbsp;{totefic_presup_sat}{efic_presup_sat}</p>
+            <input type="hidden" id="Grid2meta_efic_presup_sat_{Grid2:rowNumber}" value="{meta_efic_presup_sat}" name="{meta_efic_presup_sat_Name}"></td> 
+          <td style="TEXT-ALIGN: right">
+            <p align="center"><img id="Grid2imgefic_presup" alt="" src="{imgefic_presup}"></p>
+ 
+            <p align="center">{cumplenefic_presup}&nbsp;{totefic_presup}{efic_presup}</p>
+            <input type="hidden" id="Grid2meta_efic_presup_{Grid2:rowNumber}" value="{meta_efic_presup}" name="{meta_efic_presup_Name}"></td>
+          <!--<td style="TEXT-ALIGN: right" colspan="6">&nbsp;</td>-->
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="27">No hay registros</td>
+        </tr>
+        <!-- END NoRecords -->
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid Grid2 --><br>
+</p>
+</body>
+</html>

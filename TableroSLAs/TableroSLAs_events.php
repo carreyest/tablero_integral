@@ -512,24 +512,44 @@ function Page_BeforeShow(& $sender)
 // -------------------------
 	global $db;
 	global $UrlCDS;
+	global $Link1;
 	global $grdTableroSLAsMG;
 	global $pnlSLAsCAPC;
 	$db = new clsDBcnDisenio();
 	if(CCGetParam('s_id_proveedor',0)==0){
 		$UrlCDS->SetValue("Sin Proveedor seleccionado");
+		$Link1->SetValue("Sin Proveedor seleccionado");
 		$grdTableroSLAsMG->Visible = true;
 		
 		$UrlCDS->SetLink('');
+		$Link1->SetLink('');
 	} else {
 		$grdTableroSLAsMG->Visible = false;
 		if(CCDLookUp("UrlTableroCDS","mc_c_proveedor","id_proveedor = " . $db->ToSQL(CCGetParam('s_id_proveedor',0),ccsInteger),$db)==""){
 			//$UrlCDS->SetValue("Sin datos para el tablero del proveedor");
 			$UrlCDS->SetValue("");
+			$Link1->SetValue("");
 			$UrlCDS->SetLink('');
+			$Link1->SetLink('');
 		} else {
 		    CCSetSession("id_proveedor",CCGetParam('s_id_proveedor',0));
+		    $sla_str= CCGetParam('sSLO',0) == 1 ? 'SLO' : 'SLA';
 			$UrlCDS->SetValue(CCDLookUp("UrlTableroCDS","mc_c_proveedor","id_proveedor = " . $db->ToSQL(CCGetParam('s_id_proveedor',0),ccsInteger),$db));
 			$UrlCDS->SetLink(CCDLookUp("UrlTableroCDS","mc_c_proveedor","id_proveedor = " . $db->ToSQL(CCGetParam('s_id_proveedor',0),ccsInteger),$db));
+			$periodo_comparativo=0;
+			$db->query("select id_periodo from archivosxls.dbo.periodos_carga where mes=".CCGetParam('s_MesReporte',0)." and anio=".CCGetParam('s_AnioReporte',0)." and id_periodo > 30 and id_periodo  in ( select distinct id_periodo from archivosxls.dbo.resumen_sat where id_proveedor=".CCGetParam('s_id_proveedor',0)." and tipo_nivel_servicio='".$sla_str."' ) ");
+			while($db->next_record()){
+				$periodo_comparativo=$db->f(0);
+			}
+			if ($periodo_comparativo==0){
+				$Link1->SetValue("No existe carga de CDS para comparar");
+				$Link1->SetLink("");			
+			} else {
+			    
+				$Link1->SetValue("http://webiterasrv2:8080/mymsdma4/comparativo_resumen.php?s_id_periodo=".$periodo_comparativo."&s_id_proveedor=".CCGetParam('s_id_proveedor',0)."&s_opt_slas=".$sla_str);
+				$Link1->SetLink("comparativo_resumen.php?s_id_periodo=".$periodo_comparativo."&s_id_proveedor=".CCGetParam('s_id_proveedor',0)."&s_opt_slas=".$sla_str);						
+			}
+			
 		}
 	}
 	$db->close();

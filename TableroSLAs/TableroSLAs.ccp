@@ -21,8 +21,8 @@
 					<SPParameters/>
 					<SQLParameters/>
 					<JoinTables>
-						<JoinTable id="276" posHeight="180" posLeft="10" posTop="10" posWidth="158" tableName="mc_c_proveedor"/>
-					</JoinTables>
+						<JoinTable id="613" tableName="mc_c_proveedor"/>
+</JoinTables>
 					<JoinLinks/>
 					<Fields>
 						<Field id="277" fieldName="*"/>
@@ -1636,10 +1636,10 @@ order by sc.orden" pageSizeLimit="100" pageSize="True" wizardCaption="Niveles de
 					<SPParameters/>
 					<SQLParameters>
 						<SQLParameter id="608" dataType="Integer" defaultValue="date('m')-2" designDefaultValue="1" old_temp_id="346" parameterSource="s_MesReporte" parameterType="URL" variable="sMes"/>
-<SQLParameter id="609" dataType="Integer" defaultValue="date('Y')" designDefaultValue="2014" old_temp_id="347" parameterSource="s_AnioReporte" parameterType="URL" variable="sAnio"/>
-<SQLParameter id="610" dataType="Integer" defaultValue="0" designDefaultValue="3" old_temp_id="348" parameterSource="s_id_proveedor" parameterType="URL" variable="sProveedor"/>
-<SQLParameter id="611" dataType="Integer" defaultValue="0" designDefaultValue="1" old_temp_id="349" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
-</SQLParameters>
+						<SQLParameter id="609" dataType="Integer" defaultValue="date('Y')" designDefaultValue="2014" old_temp_id="347" parameterSource="s_AnioReporte" parameterType="URL" variable="sAnio"/>
+						<SQLParameter id="610" dataType="Integer" defaultValue="0" designDefaultValue="3" old_temp_id="348" parameterSource="s_id_proveedor" parameterType="URL" variable="sProveedor"/>
+						<SQLParameter id="611" dataType="Integer" defaultValue="0" designDefaultValue="1" old_temp_id="349" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
+					</SQLParameters>
 					<SecurityGroups/>
 					<Attributes/>
 					<Features/>
@@ -1649,6 +1649,12 @@ order by sc.orden" pageSizeLimit="100" pageSize="True" wizardCaption="Niveles de
 			<Attributes/>
 			<Features/>
 		</Panel>
+		<Link id="612" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link1" PathID="Link1" wizardUseTemplateBlock="False" linkProperties="{'textSource':'UrlComparativo','textSourceDB':'','hrefSource':'','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
+			<Events/>
+			<LinkParameters/>
+			<Attributes/>
+			<Features/>
+		</Link>
 	</Components>
 	<CodeFiles>
 		<CodeFile id="Code" language="PHPTemplates" name="TableroSLAs.php" forShow="True" url="TableroSLAs.php" comment="//" codePage="windows-1252"/>

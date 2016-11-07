@@ -2,8 +2,9 @@
 	<Components>
 		<Grid id="68" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="10" name="mc_detalle_incidente_avl" connection="cnDisenio" dataSource="select 	det.ClaveMovimiento, det.DescMovimiento , det.FechaInicioMov, det.FechaFinMov, det.Paquete    
 	, dbo.ufDiffFechasMCSec(i.FechaEnCurso,i.FechaResuelto) TiempoSolucionRmdy
-	, r.LiberacionAVL , r.CountPaquete, t.TotalSecPaquete , s.TotalHoras  
-, dbo.ufDiffFechasMCSec(det.FechaInicioMov,  det.FechaFinMov) HorasInvertidas
+	, case when i.id_incidente = 'INC000005935483' then '2016-10-24 03:12:00' else r.LiberacionAVL end LiberacionAVL
+	, case when i.id_incidente = 'INC000005935483' then 1 else r.CountPaquete end CountPaquete, t.TotalSecPaquete , s.TotalHoras   
+    , dbo.ufDiffFechasMCSec(det.FechaInicioMov,  det.FechaFinMov) HorasInvertidas
 from mc_info_incidentes i 
 	inner join mc_universo_cds u on i.Id_incidente = u.numero  and month(i.FechaCarga ) = u.mes and YEAR(fechacarga)= u.anio 
 	inner join mc_detalle_incidente_avl det on (det.Id_Incidente = i.Id_incidente or det.Id_Incidente = i.IncPadre )
@@ -180,8 +181,8 @@ where i.id_incidente = '{Id_incidente}'
 			</PKFields>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="387" dataType="Text" designDefaultValue="INC000003376478" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
-			</SQLParameters>
+				<SQLParameter id="449" dataType="Text" designDefaultValue="INC000003376478" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
+</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -359,7 +360,7 @@ AND i.estado = 'Closed'">
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="393" dataType="Text" designDefaultValue="INC000003620123" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
-</SQLParameters>
+			</SQLParameters>
 			<JoinTables>
 			</JoinTables>
 			<JoinLinks>
@@ -382,7 +383,7 @@ AND i.estado = 'Closed'">
 			<Attributes/>
 			<Features/>
 		</Record>
-		<Record id="143" sourceType="Table" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="mc_calificacion_incidente" connection="cnDisenio" dataSource="mc_calificacion_incidentes_MC" errorSummator="Error" allowCancel="False" recordDeleteConfirmation="False" buttonsType="button" wizardRecordKey="id_incidente" encryptPasswordField="False" wizardUseInterVariables="True" pkIsAutoincrement="True" wizardCaption="{res:mc_calificacion_incidentes_MC_RecordForm}" wizardThemeApplyTo="Page" wizardFormMethod="post" wizardType="Record" changedCaptionRecord="False" recordDirection="Vertical" templatePageRecord="C:/Program Files (x86)/CodeChargeStudio5/Templates/Record/Dialog.ccp|ccsTemplate" recordAddTemplatePanel="False" PathID="mc_calificacion_incidente" returnPage="IncidenteDetalle2.ccp">
+		<Record id="143" sourceType="Table" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="mc_calificacion_incidente" connection="cnDisenio" dataSource="mc_calificacion_incidentes_MC" errorSummator="Error" allowCancel="False" recordDeleteConfirmation="False" buttonsType="button" wizardRecordKey="id_incidente" encryptPasswordField="False" wizardUseInterVariables="True" pkIsAutoincrement="True" wizardCaption="{res:mc_calificacion_incidentes_MC_RecordForm}" wizardThemeApplyTo="Page" wizardFormMethod="post" wizardType="Record" changedCaptionRecord="False" recordDirection="Vertical" templatePageRecord="C:/Program Files (x86)/CodeChargeStudio5/Templates/Record/Dialog.ccp|ccsTemplate" recordAddTemplatePanel="False" PathID="mc_calificacion_incidente" returnPage="IncidenteDetalle2.ccp" activeCollection="IFormElements" activeTableType="mc_calificacion_incidentes_MC" customUpdate="mc_calificacion_incidentes_MC" customUpdateType="Table" customInsert="mc_calificacion_incidentes_MC" customInsertType="Table">
 			<Components>
 				<Button id="145" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="{res:CCS_Insert}" PathID="mc_calificacion_incidenteButton_Insert">
 					<Components/>
@@ -731,6 +732,12 @@ AND i.estado = 'Closed'">
 					<Attributes/>
 					<Features/>
 				</TextArea>
+				<Hidden id="446" fieldSourceType="DBColumn" dataType="Text" name="hslSeveridad" PathID="mc_calificacion_incidentehslSeveridad">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
 			</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
@@ -770,11 +777,67 @@ AND i.estado = 'Closed'">
 			<PKFields/>
 			<ISPParameters/>
 			<ISQLParameters/>
-			<IFormElements/>
+			<IFormElements>
+				<CustomParameter id="421" field="id_servicio" dataType="Integer" parameterType="Control" parameterSource="id_servicio" omitIfEmpty="True"/>
+				<CustomParameter id="422" field="Cumple_Inc_TiempoAsignacion" dataType="Integer" parameterType="Control" parameterSource="Cumple_Inc_TiempoAsignacion" omitIfEmpty="True"/>
+				<CustomParameter id="423" field="Cumple_Inc_TiempoSolucion" dataType="Integer" parameterType="Control" parameterSource="Cumple_Inc_TiempoSolucion" omitIfEmpty="True"/>
+				<CustomParameter id="424" field="Cumple_DISP_SOPORTE" dataType="Integer" parameterType="Control" parameterSource="Cumple_DISP_SOPORTE" omitIfEmpty="True"/>
+				<CustomParameter id="425" field="Obs_Manuales" dataType="Text" parameterType="Control" parameterSource="Obs_Manuales" omitIfEmpty="True"/>
+				<CustomParameter id="426" field="id_incidente" dataType="Text" parameterType="Control" parameterSource="shId_Incidente" omitIfEmpty="True"/>
+				<CustomParameter id="427" field="descartar" dataType="Text" parameterType="Control" parameterSource="shDescartar" omitIfEmpty="True"/>
+				<CustomParameter id="428" field="MesReporte" dataType="Text" parameterType="Control" parameterSource="shMes" omitIfEmpty="True"/>
+				<CustomParameter id="429" field="AnioReporte" dataType="Text" parameterType="Control" parameterSource="shAnio" omitIfEmpty="True"/>
+				<CustomParameter id="430" field="id_proveedor" dataType="Text" parameterType="Control" parameterSource="shIdProveedor" omitIfEmpty="True"/>
+				<CustomParameter id="431" field="chkTiempo" dataType="Boolean" parameterType="Control" parameterSource="CheckBox1" omitIfEmpty="True"/>
+				<CustomParameter id="432" field="Med_Ate_Mod" dataType="Integer" parameterType="Control" parameterSource="shTiempoAtencion" omitIfEmpty="True"/>
+				<CustomParameter id="433" field="Med_Sol_Mod" dataType="Integer" parameterType="Control" parameterSource="shTiempoSolucion" omitIfEmpty="True"/>
+				<CustomParameter id="434" field="Med_Sop_Mod" dataType="Integer" parameterType="Control" parameterSource="shTiempoSoporte" omitIfEmpty="True"/>
+				<CustomParameter id="435" field="UsuarioAlta" dataType="Text" parameterType="Control" parameterSource="shUsuarioAlta" omitIfEmpty="True"/>
+				<CustomParameter id="436" field="FechaUltMod" dataType="Date" parameterType="Control" parameterSource="FechaUltMod" format="dd/mm/yyyy HH:nn:ss" DBFormat="yyyy-mm-dd HH:nn:ss.S" omitIfEmpty="True"/>
+				<CustomParameter id="437" field="UsuarioUltMod" dataType="Text" parameterType="Control" parameterSource="shUsuarioUltMod" omitIfEmpty="True"/>
+				<CustomParameter id="438" field="Obs_Med_Ate" dataType="Text" parameterType="Control" parameterSource="txtCumple_Inc_TiempoAsignacion" omitIfEmpty="True"/>
+				<CustomParameter id="439" field="Obs_Med_Sol" dataType="Text" parameterType="Control" parameterSource="txtCumple_Inc_TiempoSolucion" omitIfEmpty="True"/>
+				<CustomParameter id="440" field="Obs_Med_Sop" dataType="Text" parameterType="Control" parameterSource="txtCumple_DISP_SOPORTE" omitIfEmpty="True"/>
+				<CustomParameter id="441" field="TiempoTotal" dataType="Text" parameterType="Control" parameterSource="Hidden1" omitIfEmpty="True"/>
+				<CustomParameter id="442" field="evidencia_salvedad_TA" dataType="Boolean" parameterType="Control" parameterSource="evidencia_salvedad_TA" omitIfEmpty="True"/>
+				<CustomParameter id="443" field="observacion_salvedad_TA" dataType="Text" parameterType="Control" parameterSource="observacion_salvedad_TA" omitIfEmpty="True"/>
+				<CustomParameter id="444" field="evidencia_salvedad_TS" dataType="Boolean" parameterType="Control" parameterSource="evidencia_salvedad_TS" omitIfEmpty="True"/>
+				<CustomParameter id="445" field="observacion_salvedad_TS" dataType="Text" parameterType="Control" parameterSource="observacion_salvedad_TS" omitIfEmpty="True"/>
+				<CustomParameter id="448" field="severidad" dataType="Integer" parameterType="Control" omitIfEmpty="True" parameterSource="hslSeveridad"/>
+			</IFormElements>
 			<USPParameters/>
 			<USQLParameters/>
-			<UConditions/>
-			<UFormElements/>
+			<UConditions>
+				<TableParameter id="395" conditionType="Parameter" useIsNull="False" field="id_incidente" dataType="Text" parameterType="URL" parameterSource="Id_incidente" searchConditionType="Equal" logicOperator="And" orderNumber="1"/>
+			</UConditions>
+			<UFormElements>
+				<CustomParameter id="396" field="id_servicio" dataType="Integer" parameterType="Control" parameterSource="id_servicio" omitIfEmpty="True"/>
+				<CustomParameter id="397" field="Cumple_Inc_TiempoAsignacion" dataType="Integer" parameterType="Control" parameterSource="Cumple_Inc_TiempoAsignacion" omitIfEmpty="True"/>
+				<CustomParameter id="398" field="Cumple_Inc_TiempoSolucion" dataType="Integer" parameterType="Control" parameterSource="Cumple_Inc_TiempoSolucion" omitIfEmpty="True"/>
+				<CustomParameter id="399" field="Cumple_DISP_SOPORTE" dataType="Integer" parameterType="Control" parameterSource="Cumple_DISP_SOPORTE" omitIfEmpty="True"/>
+				<CustomParameter id="400" field="Obs_Manuales" dataType="Text" parameterType="Control" parameterSource="Obs_Manuales" omitIfEmpty="True"/>
+				<CustomParameter id="401" field="id_incidente" dataType="Text" parameterType="Control" parameterSource="shId_Incidente" omitIfEmpty="True"/>
+				<CustomParameter id="402" field="descartar" dataType="Text" parameterType="Control" parameterSource="shDescartar" omitIfEmpty="True"/>
+				<CustomParameter id="403" field="MesReporte" dataType="Text" parameterType="Control" parameterSource="shMes" omitIfEmpty="True"/>
+				<CustomParameter id="404" field="AnioReporte" dataType="Text" parameterType="Control" parameterSource="shAnio" omitIfEmpty="True"/>
+				<CustomParameter id="405" field="id_proveedor" dataType="Text" parameterType="Control" parameterSource="shIdProveedor" omitIfEmpty="True"/>
+				<CustomParameter id="406" field="chkTiempo" dataType="Boolean" parameterType="Control" parameterSource="CheckBox1" omitIfEmpty="True"/>
+				<CustomParameter id="407" field="Med_Ate_Mod" dataType="Integer" parameterType="Control" parameterSource="shTiempoAtencion" omitIfEmpty="True"/>
+				<CustomParameter id="408" field="Med_Sol_Mod" dataType="Integer" parameterType="Control" parameterSource="shTiempoSolucion" omitIfEmpty="True"/>
+				<CustomParameter id="409" field="Med_Sop_Mod" dataType="Integer" parameterType="Control" parameterSource="shTiempoSoporte" omitIfEmpty="True"/>
+				<CustomParameter id="410" field="UsuarioAlta" dataType="Text" parameterType="Control" parameterSource="shUsuarioAlta" omitIfEmpty="True"/>
+				<CustomParameter id="411" field="FechaUltMod" dataType="Date" parameterType="Control" parameterSource="FechaUltMod" format="dd/mm/yyyy HH:nn:ss" DBFormat="yyyy-mm-dd HH:nn:ss.S" omitIfEmpty="True"/>
+				<CustomParameter id="412" field="UsuarioUltMod" dataType="Text" parameterType="Control" parameterSource="shUsuarioUltMod" omitIfEmpty="True"/>
+				<CustomParameter id="413" field="Obs_Med_Ate" dataType="Text" parameterType="Control" parameterSource="txtCumple_Inc_TiempoAsignacion" omitIfEmpty="True"/>
+				<CustomParameter id="414" field="Obs_Med_Sol" dataType="Text" parameterType="Control" parameterSource="txtCumple_Inc_TiempoSolucion" omitIfEmpty="True"/>
+				<CustomParameter id="415" field="Obs_Med_Sop" dataType="Text" parameterType="Control" parameterSource="txtCumple_DISP_SOPORTE" omitIfEmpty="True"/>
+				<CustomParameter id="416" field="TiempoTotal" dataType="Text" parameterType="Control" parameterSource="Hidden1" omitIfEmpty="True"/>
+				<CustomParameter id="417" field="evidencia_salvedad_TA" dataType="Boolean" parameterType="Control" parameterSource="evidencia_salvedad_TA" omitIfEmpty="True"/>
+				<CustomParameter id="418" field="observacion_salvedad_TA" dataType="Text" parameterType="Control" parameterSource="observacion_salvedad_TA" omitIfEmpty="True"/>
+				<CustomParameter id="419" field="evidencia_salvedad_TS" dataType="Boolean" parameterType="Control" parameterSource="evidencia_salvedad_TS" omitIfEmpty="True"/>
+				<CustomParameter id="420" field="observacion_salvedad_TS" dataType="Text" parameterType="Control" parameterSource="observacion_salvedad_TS" omitIfEmpty="True"/>
+				<CustomParameter id="447" field="severidad" dataType="Integer" parameterType="Control" omitIfEmpty="True" parameterSource="hslSeveridad"/>
+			</UFormElements>
 			<DSPParameters/>
 			<DSQLParameters/>
 			<DConditions/>
@@ -842,6 +905,7 @@ WHERE Id_incidente = '{Id_incidente}' " errorSummator="Error" allowCancel="False
 			<DSQLParameters/>
 			<DConditions/>
 			<SecurityGroups/>
+
 			<Attributes/>
 			<Features/>
 		</Record>
@@ -1292,24 +1356,24 @@ WHERE mi.Id_incidente = '{Id_incidente}' " errorSummator="Error" allowCancel="Fa
 					<Features/>
 				</Hidden>
 				<TextBox id="392" visible="Dynamic" fieldSourceType="DBColumn" dataType="Date" name="primera_fecha_nuevo" PathID="mc_incidentes_reasignacioprimera_fecha_nuevo" fieldSource="primera_fecha_nuevo" format="dd/mm/yyyy HH:nn:ss" required="True" unique="False" DBFormat="yyyy-mm-dd HH:nn:ss.S" generateDiv="False" features="(assigned)">
-<Components/>
-<Events/>
-<Attributes/>
-<Features>
-<JDateTimePicker id="394" show_weekend="True" name="InlineDatePicker3" category="jQuery" featureNameChanged="No">
-<Components/>
-<Events/>
-<TableParameters/>
-<SPParameters/>
-<SQLParameters/>
-<JoinTables/>
-<JoinLinks/>
-<Fields/>
-<Features/>
-</JDateTimePicker>
-</Features>
-</TextBox>
-</Components>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features>
+						<JDateTimePicker id="394" show_weekend="True" name="InlineDatePicker3" category="jQuery" featureNameChanged="No">
+							<Components/>
+							<Events/>
+							<TableParameters/>
+							<SPParameters/>
+							<SQLParameters/>
+							<JoinTables/>
+							<JoinLinks/>
+							<Fields/>
+							<Features/>
+						</JDateTimePicker>
+					</Features>
+				</TextBox>
+			</Components>
 			<Events>
 				<Event name="AfterExecuteInsert" type="Server">
 					<Actions>

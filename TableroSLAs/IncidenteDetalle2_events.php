@@ -531,7 +531,7 @@ function mc_calificacion_incidente_Aplicacion_BeforeShow(& $sender)
 		global $PatToRoot;
 		$mc_calificacion_incidente->Aplicacion->SetValue("<a href='" . $PatToRoot . "/MyMSDMA4/Catalogos/AplicacionesLista.php?descripcion=" . trim($Aplicacion) . "'>No existe esta Aplicación</a>");
 	}
-
+    $mc_calificacion_incidente->hslSeveridad->SetValue($mc_calificacion_incidente->slSeveridad->GetValue());
     // Write your own code here.
 // -------------------------
 //End Custom Code
@@ -2030,12 +2030,14 @@ function mc_incidentes_reasignacio_BeforeShow(& $sender)
 
 //Custom Code @378-2A29BDB7
 // -------------------------
+	global $mc_info_incidentes3;
 	global $mc_info_incidentes2;
     global $mc_info_incidentes1;
 	global $existe_actualizacion_asignacion;	
 	global $mc_info_incidentes;
 //La indicación del id del incidente explicito es a petición de la MMyA eramirez y naguilar 13/10/2016
-	$mc_incidentes_reasignacio->Visible=$existe_actualizacion_asignacion < 1 && $mc_info_incidentes2->HorasInvertidas->GetValue()!='N/A Incumplimiento a Proceso' && $mc_info_incidentes1->HorasInvertidas->GetValue()!='N/A Incumplimiento a Proceso' && CCGetParam("Id_incidente",0)!='INC000005811148'? false : true;
+//Se agrega una tercera condición con $mc_info_incidentes3 en HorasInvertidas 31/11/2016 a petición de Erick, confirmando con un correo de Vanesa
+	$mc_incidentes_reasignacio->Visible=$existe_actualizacion_asignacion < 1 && $mc_info_incidentes2->HorasInvertidas->GetValue()!='N/A Incumplimiento a Proceso' && $mc_info_incidentes3->HorasInvertidas->GetValue()!='N/A Incumplimiento a Proceso' && $mc_info_incidentes1->HorasInvertidas->GetValue()!='N/A Incumplimiento a Proceso' && CCGetParam("Id_incidente",0)!='INC000005811148'? false : true;
 	$mc_incidentes_reasignacio->horas_invertidas->SetValue(sec_to_time($mc_incidentes_reasignacio->H_horas_invertidas->GetValue()));	
 
    

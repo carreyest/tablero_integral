@@ -313,14 +313,15 @@ class clsmc_detalle_incidente_avlDataSource extends clsDBcnDisenio {  //mc_detal
     }
 //End Prepare Method
 
-//Open Method @68-E6F25B1A
+//Open Method @68-3E5659C9
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->CountSQL = "SELECT COUNT(*) FROM (select 	det.ClaveMovimiento, det.DescMovimiento , det.FechaInicioMov, det.FechaFinMov, det.Paquete    \n" .
         "	, dbo.ufDiffFechasMCSec(i.FechaEnCurso,i.FechaResuelto) TiempoSolucionRmdy\n" .
-        "	, r.LiberacionAVL , r.CountPaquete, t.TotalSecPaquete , s.TotalHoras  \n" .
-        ", dbo.ufDiffFechasMCSec(det.FechaInicioMov,  det.FechaFinMov) HorasInvertidas\n" .
+        "	, case when i.id_incidente = 'INC000005935483' then '2016-10-24 03:12:00' else r.LiberacionAVL end LiberacionAVL\n" .
+        "	, case when i.id_incidente = 'INC000005935483' then 1 else r.CountPaquete end CountPaquete, t.TotalSecPaquete , s.TotalHoras   \n" .
+        "    , dbo.ufDiffFechasMCSec(det.FechaInicioMov,  det.FechaFinMov) HorasInvertidas\n" .
         "from mc_info_incidentes i \n" .
         "	inner join mc_universo_cds u on i.Id_incidente = u.numero  and month(i.FechaCarga ) = u.mes and YEAR(fechacarga)= u.anio \n" .
         "	inner join mc_detalle_incidente_avl det on (det.Id_Incidente = i.Id_incidente or det.Id_Incidente = i.IncPadre )\n" .
@@ -346,8 +347,9 @@ class clsmc_detalle_incidente_avlDataSource extends clsDBcnDisenio {  //mc_detal
         "	and det.ClaveMovimiento not in (550,701,702,703,704,705,710,711)) cnt";
         $this->SQL = "select TOP {SqlParam_endRecord} 	det.ClaveMovimiento, det.DescMovimiento , det.FechaInicioMov, det.FechaFinMov, det.Paquete    \n" .
         "	, dbo.ufDiffFechasMCSec(i.FechaEnCurso,i.FechaResuelto) TiempoSolucionRmdy\n" .
-        "	, r.LiberacionAVL , r.CountPaquete, t.TotalSecPaquete , s.TotalHoras  \n" .
-        ", dbo.ufDiffFechasMCSec(det.FechaInicioMov,  det.FechaFinMov) HorasInvertidas\n" .
+        "	, case when i.id_incidente = 'INC000005935483' then '2016-10-24 03:12:00' else r.LiberacionAVL end LiberacionAVL\n" .
+        "	, case when i.id_incidente = 'INC000005935483' then 1 else r.CountPaquete end CountPaquete, t.TotalSecPaquete , s.TotalHoras   \n" .
+        "    , dbo.ufDiffFechasMCSec(det.FechaInicioMov,  det.FechaFinMov) HorasInvertidas\n" .
         "from mc_info_incidentes i \n" .
         "	inner join mc_universo_cds u on i.Id_incidente = u.numero  and month(i.FechaCarga ) = u.mes and YEAR(fechacarga)= u.anio \n" .
         "	inner join mc_detalle_incidente_avl det on (det.Id_Incidente = i.Id_incidente or det.Id_Incidente = i.IncPadre )\n" .
@@ -863,7 +865,7 @@ class clsRecordmc_calificacion_incidente { //mc_calificacion_incidente Class @14
     // Class variables
 //End Variables
 
-//Class_Initialize Event @143-D9A8BFAA
+//Class_Initialize Event @143-6DA036A9
     function clsRecordmc_calificacion_incidente($RelativePath, & $Parent)
     {
 
@@ -942,6 +944,7 @@ class clsRecordmc_calificacion_incidente { //mc_calificacion_incidente Class @14
             $this->evidencia_salvedad_TS->CheckedValue = true;
             $this->evidencia_salvedad_TS->UncheckedValue = false;
             $this->observacion_salvedad_TS = new clsControl(ccsTextArea, "observacion_salvedad_TS", "observacion_salvedad_TS", ccsText, "", CCGetRequestParam("observacion_salvedad_TS", $Method, NULL), $this);
+            $this->hslSeveridad = new clsControl(ccsHidden, "hslSeveridad", "hslSeveridad", ccsText, "", CCGetRequestParam("hslSeveridad", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->shDescartar->Value) && !strlen($this->shDescartar->Value) && $this->shDescartar->Value !== false)
                     $this->shDescartar->SetText(0);
@@ -967,7 +970,7 @@ class clsRecordmc_calificacion_incidente { //mc_calificacion_incidente Class @14
     }
 //End Initialize Method
 
-//Validate Method @143-98F06DE9
+//Validate Method @143-F842EB0B
     function Validate()
     {
         global $CCSLocales;
@@ -999,6 +1002,7 @@ class clsRecordmc_calificacion_incidente { //mc_calificacion_incidente Class @14
         $Validation = ($this->observacion_salvedad_TA->Validate() && $Validation);
         $Validation = ($this->evidencia_salvedad_TS->Validate() && $Validation);
         $Validation = ($this->observacion_salvedad_TS->Validate() && $Validation);
+        $Validation = ($this->hslSeveridad->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->id_servicio->Errors->Count() == 0);
         $Validation =  $Validation && ($this->Cumple_Inc_TiempoAsignacion->Errors->Count() == 0);
@@ -1026,11 +1030,12 @@ class clsRecordmc_calificacion_incidente { //mc_calificacion_incidente Class @14
         $Validation =  $Validation && ($this->observacion_salvedad_TA->Errors->Count() == 0);
         $Validation =  $Validation && ($this->evidencia_salvedad_TS->Errors->Count() == 0);
         $Validation =  $Validation && ($this->observacion_salvedad_TS->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->hslSeveridad->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @143-FEE399FB
+//CheckErrors Method @143-503C3430
     function CheckErrors()
     {
         $errors = false;
@@ -1070,6 +1075,7 @@ class clsRecordmc_calificacion_incidente { //mc_calificacion_incidente Class @14
         $errors = ($errors || $this->observacion_salvedad_TA->Errors->Count());
         $errors = ($errors || $this->evidencia_salvedad_TS->Errors->Count());
         $errors = ($errors || $this->observacion_salvedad_TS->Errors->Count());
+        $errors = ($errors || $this->hslSeveridad->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -1125,7 +1131,7 @@ class clsRecordmc_calificacion_incidente { //mc_calificacion_incidente Class @14
     }
 //End Operation Method
 
-//InsertRow Method @143-2E0279C5
+//InsertRow Method @143-95FCD6DE
     function InsertRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
@@ -1135,44 +1141,34 @@ class clsRecordmc_calificacion_incidente { //mc_calificacion_incidente Class @14
         $this->DataSource->Cumple_Inc_TiempoSolucion->SetValue($this->Cumple_Inc_TiempoSolucion->GetValue(true));
         $this->DataSource->Cumple_DISP_SOPORTE->SetValue($this->Cumple_DISP_SOPORTE->GetValue(true));
         $this->DataSource->Obs_Manuales->SetValue($this->Obs_Manuales->GetValue(true));
-        $this->DataSource->Aplicacion->SetValue($this->Aplicacion->GetValue(true));
         $this->DataSource->shId_Incidente->SetValue($this->shId_Incidente->GetValue(true));
         $this->DataSource->shDescartar->SetValue($this->shDescartar->GetValue(true));
         $this->DataSource->shMes->SetValue($this->shMes->GetValue(true));
         $this->DataSource->shAnio->SetValue($this->shAnio->GetValue(true));
-        $this->DataSource->Servicio->SetValue($this->Servicio->GetValue(true));
         $this->DataSource->shIdProveedor->SetValue($this->shIdProveedor->GetValue(true));
-        $this->DataSource->shId_Aplicacion->SetValue($this->shId_Aplicacion->GetValue(true));
-        $this->DataSource->slSeveridad->SetValue($this->slSeveridad->GetValue(true));
         $this->DataSource->CheckBox1->SetValue($this->CheckBox1->GetValue(true));
-        $this->DataSource->TotalHorasSolucion->SetValue($this->TotalHorasSolucion->GetValue(true));
         $this->DataSource->shTiempoAtencion->SetValue($this->shTiempoAtencion->GetValue(true));
         $this->DataSource->shTiempoSolucion->SetValue($this->shTiempoSolucion->GetValue(true));
         $this->DataSource->shTiempoSoporte->SetValue($this->shTiempoSoporte->GetValue(true));
-        $this->DataSource->lblCalificado->SetValue($this->lblCalificado->GetValue(true));
         $this->DataSource->shUsuarioAlta->SetValue($this->shUsuarioAlta->GetValue(true));
         $this->DataSource->FechaUltMod->SetValue($this->FechaUltMod->GetValue(true));
         $this->DataSource->shUsuarioUltMod->SetValue($this->shUsuarioUltMod->GetValue(true));
-        $this->DataSource->lblUsuarioUltMod->SetValue($this->lblUsuarioUltMod->GetValue(true));
-        $this->DataSource->lblFechaUltMod->SetValue($this->lblFechaUltMod->GetValue(true));
         $this->DataSource->txtCumple_Inc_TiempoAsignacion->SetValue($this->txtCumple_Inc_TiempoAsignacion->GetValue(true));
         $this->DataSource->txtCumple_Inc_TiempoSolucion->SetValue($this->txtCumple_Inc_TiempoSolucion->GetValue(true));
         $this->DataSource->txtCumple_DISP_SOPORTE->SetValue($this->txtCumple_DISP_SOPORTE->GetValue(true));
-        $this->DataSource->Image1->SetValue($this->Image1->GetValue(true));
-        $this->DataSource->Image2->SetValue($this->Image2->GetValue(true));
-        $this->DataSource->Image3->SetValue($this->Image3->GetValue(true));
         $this->DataSource->Hidden1->SetValue($this->Hidden1->GetValue(true));
         $this->DataSource->evidencia_salvedad_TA->SetValue($this->evidencia_salvedad_TA->GetValue(true));
         $this->DataSource->observacion_salvedad_TA->SetValue($this->observacion_salvedad_TA->GetValue(true));
         $this->DataSource->evidencia_salvedad_TS->SetValue($this->evidencia_salvedad_TS->GetValue(true));
         $this->DataSource->observacion_salvedad_TS->SetValue($this->observacion_salvedad_TS->GetValue(true));
+        $this->DataSource->hslSeveridad->SetValue($this->hslSeveridad->GetValue(true));
         $this->DataSource->Insert();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterInsert", $this);
         return (!$this->CheckErrors());
     }
 //End InsertRow Method
 
-//UpdateRow Method @143-C0A0978C
+//UpdateRow Method @143-78526BB2
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
@@ -1182,44 +1178,34 @@ class clsRecordmc_calificacion_incidente { //mc_calificacion_incidente Class @14
         $this->DataSource->Cumple_Inc_TiempoSolucion->SetValue($this->Cumple_Inc_TiempoSolucion->GetValue(true));
         $this->DataSource->Cumple_DISP_SOPORTE->SetValue($this->Cumple_DISP_SOPORTE->GetValue(true));
         $this->DataSource->Obs_Manuales->SetValue($this->Obs_Manuales->GetValue(true));
-        $this->DataSource->Aplicacion->SetValue($this->Aplicacion->GetValue(true));
         $this->DataSource->shId_Incidente->SetValue($this->shId_Incidente->GetValue(true));
         $this->DataSource->shDescartar->SetValue($this->shDescartar->GetValue(true));
         $this->DataSource->shMes->SetValue($this->shMes->GetValue(true));
         $this->DataSource->shAnio->SetValue($this->shAnio->GetValue(true));
-        $this->DataSource->Servicio->SetValue($this->Servicio->GetValue(true));
         $this->DataSource->shIdProveedor->SetValue($this->shIdProveedor->GetValue(true));
-        $this->DataSource->shId_Aplicacion->SetValue($this->shId_Aplicacion->GetValue(true));
-        $this->DataSource->slSeveridad->SetValue($this->slSeveridad->GetValue(true));
         $this->DataSource->CheckBox1->SetValue($this->CheckBox1->GetValue(true));
-        $this->DataSource->TotalHorasSolucion->SetValue($this->TotalHorasSolucion->GetValue(true));
         $this->DataSource->shTiempoAtencion->SetValue($this->shTiempoAtencion->GetValue(true));
         $this->DataSource->shTiempoSolucion->SetValue($this->shTiempoSolucion->GetValue(true));
         $this->DataSource->shTiempoSoporte->SetValue($this->shTiempoSoporte->GetValue(true));
-        $this->DataSource->lblCalificado->SetValue($this->lblCalificado->GetValue(true));
         $this->DataSource->shUsuarioAlta->SetValue($this->shUsuarioAlta->GetValue(true));
         $this->DataSource->FechaUltMod->SetValue($this->FechaUltMod->GetValue(true));
         $this->DataSource->shUsuarioUltMod->SetValue($this->shUsuarioUltMod->GetValue(true));
-        $this->DataSource->lblUsuarioUltMod->SetValue($this->lblUsuarioUltMod->GetValue(true));
-        $this->DataSource->lblFechaUltMod->SetValue($this->lblFechaUltMod->GetValue(true));
         $this->DataSource->txtCumple_Inc_TiempoAsignacion->SetValue($this->txtCumple_Inc_TiempoAsignacion->GetValue(true));
         $this->DataSource->txtCumple_Inc_TiempoSolucion->SetValue($this->txtCumple_Inc_TiempoSolucion->GetValue(true));
         $this->DataSource->txtCumple_DISP_SOPORTE->SetValue($this->txtCumple_DISP_SOPORTE->GetValue(true));
-        $this->DataSource->Image1->SetValue($this->Image1->GetValue(true));
-        $this->DataSource->Image2->SetValue($this->Image2->GetValue(true));
-        $this->DataSource->Image3->SetValue($this->Image3->GetValue(true));
         $this->DataSource->Hidden1->SetValue($this->Hidden1->GetValue(true));
         $this->DataSource->evidencia_salvedad_TA->SetValue($this->evidencia_salvedad_TA->GetValue(true));
         $this->DataSource->observacion_salvedad_TA->SetValue($this->observacion_salvedad_TA->GetValue(true));
         $this->DataSource->evidencia_salvedad_TS->SetValue($this->evidencia_salvedad_TS->GetValue(true));
         $this->DataSource->observacion_salvedad_TS->SetValue($this->observacion_salvedad_TS->GetValue(true));
+        $this->DataSource->hslSeveridad->SetValue($this->hslSeveridad->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
         return (!$this->CheckErrors());
     }
 //End UpdateRow Method
 
-//Show Method @143-515DEF73
+//Show Method @143-F5FF3CDA
     function Show()
     {
         global $CCSUseAmp;
@@ -1323,6 +1309,7 @@ class clsRecordmc_calificacion_incidente { //mc_calificacion_incidente Class @14
             $Error = ComposeStrings($Error, $this->observacion_salvedad_TA->Errors->ToString());
             $Error = ComposeStrings($Error, $this->evidencia_salvedad_TS->Errors->ToString());
             $Error = ComposeStrings($Error, $this->observacion_salvedad_TS->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->hslSeveridad->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -1381,6 +1368,7 @@ class clsRecordmc_calificacion_incidente { //mc_calificacion_incidente Class @14
         $this->observacion_salvedad_TA->Show();
         $this->evidencia_salvedad_TS->Show();
         $this->observacion_salvedad_TS->Show();
+        $this->hslSeveridad->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -1391,7 +1379,7 @@ class clsRecordmc_calificacion_incidente { //mc_calificacion_incidente Class @14
 
 class clsmc_calificacion_incidenteDataSource extends clsDBcnDisenio {  //mc_calificacion_incidenteDataSource Class @143-BFB23304
 
-//DataSource Variables @143-6607C6DD
+//DataSource Variables @143-A32BD001
     public $Parent = "";
     public $CCSEvents = "";
     public $CCSEventResult;
@@ -1443,9 +1431,10 @@ class clsmc_calificacion_incidenteDataSource extends clsDBcnDisenio {  //mc_cali
     public $observacion_salvedad_TA;
     public $evidencia_salvedad_TS;
     public $observacion_salvedad_TS;
+    public $hslSeveridad;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @143-8BF0D97C
+//DataSourceClass_Initialize Event @143-1267334D
     function clsmc_calificacion_incidenteDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1523,6 +1512,8 @@ class clsmc_calificacion_incidenteDataSource extends clsDBcnDisenio {  //mc_cali
         
         $this->observacion_salvedad_TS = new clsField("observacion_salvedad_TS", ccsText, "");
         
+        $this->hslSeveridad = new clsField("hslSeveridad", ccsText, "");
+        
 
         $this->InsertFields["id_servicio"] = array("Name" => "id_servicio", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->InsertFields["Cumple_Inc_TiempoAsignacion"] = array("Name" => "[Cumple_Inc_TiempoAsignacion]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
@@ -1534,7 +1525,7 @@ class clsmc_calificacion_incidenteDataSource extends clsDBcnDisenio {  //mc_cali
         $this->InsertFields["MesReporte"] = array("Name" => "[MesReporte]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["AnioReporte"] = array("Name" => "[AnioReporte]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["id_proveedor"] = array("Name" => "id_proveedor", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->InsertFields["chkTiempo"] = array("Name" => "[chkTiempo]", "Value" => "", "DataType" => ccsBoolean);
+        $this->InsertFields["chkTiempo"] = array("Name" => "[chkTiempo]", "Value" => "", "DataType" => ccsBoolean, "OmitIfEmpty" => 1);
         $this->InsertFields["Med_Ate_Mod"] = array("Name" => "[Med_Ate_Mod]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->InsertFields["Med_Sol_Mod"] = array("Name" => "[Med_Sol_Mod]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->InsertFields["Med_Sop_Mod"] = array("Name" => "[Med_Sop_Mod]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
@@ -1545,10 +1536,11 @@ class clsmc_calificacion_incidenteDataSource extends clsDBcnDisenio {  //mc_cali
         $this->InsertFields["Obs_Med_Sol"] = array("Name" => "[Obs_Med_Sol]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["Obs_Med_Sop"] = array("Name" => "[Obs_Med_Sop]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["TiempoTotal"] = array("Name" => "[TiempoTotal]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->InsertFields["evidencia_salvedad_TA"] = array("Name" => "[evidencia_salvedad_TA]", "Value" => "", "DataType" => ccsBoolean);
+        $this->InsertFields["evidencia_salvedad_TA"] = array("Name" => "[evidencia_salvedad_TA]", "Value" => "", "DataType" => ccsBoolean, "OmitIfEmpty" => 1);
         $this->InsertFields["observacion_salvedad_TA"] = array("Name" => "[observacion_salvedad_TA]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->InsertFields["evidencia_salvedad_TS"] = array("Name" => "[evidencia_salvedad_TS]", "Value" => "", "DataType" => ccsBoolean);
+        $this->InsertFields["evidencia_salvedad_TS"] = array("Name" => "[evidencia_salvedad_TS]", "Value" => "", "DataType" => ccsBoolean, "OmitIfEmpty" => 1);
         $this->InsertFields["observacion_salvedad_TS"] = array("Name" => "[observacion_salvedad_TS]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->InsertFields["severidad"] = array("Name" => "severidad", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->UpdateFields["id_servicio"] = array("Name" => "id_servicio", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->UpdateFields["Cumple_Inc_TiempoAsignacion"] = array("Name" => "[Cumple_Inc_TiempoAsignacion]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->UpdateFields["Cumple_Inc_TiempoSolucion"] = array("Name" => "[Cumple_Inc_TiempoSolucion]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
@@ -1559,7 +1551,7 @@ class clsmc_calificacion_incidenteDataSource extends clsDBcnDisenio {  //mc_cali
         $this->UpdateFields["MesReporte"] = array("Name" => "[MesReporte]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["AnioReporte"] = array("Name" => "[AnioReporte]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["id_proveedor"] = array("Name" => "id_proveedor", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->UpdateFields["chkTiempo"] = array("Name" => "[chkTiempo]", "Value" => "", "DataType" => ccsBoolean);
+        $this->UpdateFields["chkTiempo"] = array("Name" => "[chkTiempo]", "Value" => "", "DataType" => ccsBoolean, "OmitIfEmpty" => 1);
         $this->UpdateFields["Med_Ate_Mod"] = array("Name" => "[Med_Ate_Mod]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->UpdateFields["Med_Sol_Mod"] = array("Name" => "[Med_Sol_Mod]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->UpdateFields["Med_Sop_Mod"] = array("Name" => "[Med_Sop_Mod]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
@@ -1570,10 +1562,11 @@ class clsmc_calificacion_incidenteDataSource extends clsDBcnDisenio {  //mc_cali
         $this->UpdateFields["Obs_Med_Sol"] = array("Name" => "[Obs_Med_Sol]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["Obs_Med_Sop"] = array("Name" => "[Obs_Med_Sop]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["TiempoTotal"] = array("Name" => "[TiempoTotal]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->UpdateFields["evidencia_salvedad_TA"] = array("Name" => "[evidencia_salvedad_TA]", "Value" => "", "DataType" => ccsBoolean);
+        $this->UpdateFields["evidencia_salvedad_TA"] = array("Name" => "[evidencia_salvedad_TA]", "Value" => "", "DataType" => ccsBoolean, "OmitIfEmpty" => 1);
         $this->UpdateFields["observacion_salvedad_TA"] = array("Name" => "[observacion_salvedad_TA]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->UpdateFields["evidencia_salvedad_TS"] = array("Name" => "[evidencia_salvedad_TS]", "Value" => "", "DataType" => ccsBoolean);
+        $this->UpdateFields["evidencia_salvedad_TS"] = array("Name" => "[evidencia_salvedad_TS]", "Value" => "", "DataType" => ccsBoolean, "OmitIfEmpty" => 1);
         $this->UpdateFields["observacion_salvedad_TS"] = array("Name" => "[observacion_salvedad_TS]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["severidad"] = array("Name" => "severidad", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
     }
 //End DataSourceClass_Initialize Event
 
@@ -1637,38 +1630,117 @@ class clsmc_calificacion_incidenteDataSource extends clsDBcnDisenio {  //mc_cali
     }
 //End SetValues Method
 
-//Insert Method @143-BEAB1B8A
+//Insert Method @143-5C855F0A
     function Insert()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->CmdExecution = true;
+        $this->cp["id_servicio"] = new clsSQLParameter("ctrlid_servicio", ccsInteger, "", "", $this->id_servicio->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["Cumple_Inc_TiempoAsignacion"] = new clsSQLParameter("ctrlCumple_Inc_TiempoAsignacion", ccsInteger, "", "", $this->Cumple_Inc_TiempoAsignacion->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["Cumple_Inc_TiempoSolucion"] = new clsSQLParameter("ctrlCumple_Inc_TiempoSolucion", ccsInteger, "", "", $this->Cumple_Inc_TiempoSolucion->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["Cumple_DISP_SOPORTE"] = new clsSQLParameter("ctrlCumple_DISP_SOPORTE", ccsInteger, "", "", $this->Cumple_DISP_SOPORTE->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["Obs_Manuales"] = new clsSQLParameter("ctrlObs_Manuales", ccsText, "", "", $this->Obs_Manuales->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["id_incidente"] = new clsSQLParameter("ctrlshId_Incidente", ccsText, "", "", $this->shId_Incidente->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["descartar"] = new clsSQLParameter("ctrlshDescartar", ccsText, "", "", $this->shDescartar->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["MesReporte"] = new clsSQLParameter("ctrlshMes", ccsText, "", "", $this->shMes->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["AnioReporte"] = new clsSQLParameter("ctrlshAnio", ccsText, "", "", $this->shAnio->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["id_proveedor"] = new clsSQLParameter("ctrlshIdProveedor", ccsText, "", "", $this->shIdProveedor->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["chkTiempo"] = new clsSQLParameter("ctrlCheckBox1", ccsBoolean, $CCSLocales->GetFormatInfo("BooleanFormat"), $this->BooleanFormat, $this->CheckBox1->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["Med_Ate_Mod"] = new clsSQLParameter("ctrlshTiempoAtencion", ccsInteger, "", "", $this->shTiempoAtencion->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["Med_Sol_Mod"] = new clsSQLParameter("ctrlshTiempoSolucion", ccsInteger, "", "", $this->shTiempoSolucion->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["Med_Sop_Mod"] = new clsSQLParameter("ctrlshTiempoSoporte", ccsInteger, "", "", $this->shTiempoSoporte->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["UsuarioAlta"] = new clsSQLParameter("ctrlshUsuarioAlta", ccsText, "", "", $this->shUsuarioAlta->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["FechaUltMod"] = new clsSQLParameter("ctrlFechaUltMod", ccsDate, array("dd", "/", "mm", "/", "yyyy", " ", "HH", ":", "nn", ":", "ss"), array("yyyy", "-", "mm", "-", "dd", " ", "HH", ":", "nn", ":", "ss", ".", "S"), $this->FechaUltMod->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["UsuarioUltMod"] = new clsSQLParameter("ctrlshUsuarioUltMod", ccsText, "", "", $this->shUsuarioUltMod->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["Obs_Med_Ate"] = new clsSQLParameter("ctrltxtCumple_Inc_TiempoAsignacion", ccsText, "", "", $this->txtCumple_Inc_TiempoAsignacion->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["Obs_Med_Sol"] = new clsSQLParameter("ctrltxtCumple_Inc_TiempoSolucion", ccsText, "", "", $this->txtCumple_Inc_TiempoSolucion->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["Obs_Med_Sop"] = new clsSQLParameter("ctrltxtCumple_DISP_SOPORTE", ccsText, "", "", $this->txtCumple_DISP_SOPORTE->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["TiempoTotal"] = new clsSQLParameter("ctrlHidden1", ccsText, "", "", $this->Hidden1->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["evidencia_salvedad_TA"] = new clsSQLParameter("ctrlevidencia_salvedad_TA", ccsBoolean, $CCSLocales->GetFormatInfo("BooleanFormat"), $this->BooleanFormat, $this->evidencia_salvedad_TA->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["observacion_salvedad_TA"] = new clsSQLParameter("ctrlobservacion_salvedad_TA", ccsText, "", "", $this->observacion_salvedad_TA->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["evidencia_salvedad_TS"] = new clsSQLParameter("ctrlevidencia_salvedad_TS", ccsBoolean, $CCSLocales->GetFormatInfo("BooleanFormat"), $this->BooleanFormat, $this->evidencia_salvedad_TS->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["observacion_salvedad_TS"] = new clsSQLParameter("ctrlobservacion_salvedad_TS", ccsText, "", "", $this->observacion_salvedad_TS->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["severidad"] = new clsSQLParameter("ctrlhslSeveridad", ccsInteger, "", "", $this->hslSeveridad->GetValue(true), NULL, false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildInsert", $this->Parent);
-        $this->InsertFields["id_servicio"]["Value"] = $this->id_servicio->GetDBValue(true);
-        $this->InsertFields["Cumple_Inc_TiempoAsignacion"]["Value"] = $this->Cumple_Inc_TiempoAsignacion->GetDBValue(true);
-        $this->InsertFields["Cumple_Inc_TiempoSolucion"]["Value"] = $this->Cumple_Inc_TiempoSolucion->GetDBValue(true);
-        $this->InsertFields["Cumple_DISP_SOPORTE"]["Value"] = $this->Cumple_DISP_SOPORTE->GetDBValue(true);
-        $this->InsertFields["Obs_Manuales"]["Value"] = $this->Obs_Manuales->GetDBValue(true);
-        $this->InsertFields["id_incidente"]["Value"] = $this->shId_Incidente->GetDBValue(true);
-        $this->InsertFields["descartar"]["Value"] = $this->shDescartar->GetDBValue(true);
-        $this->InsertFields["MesReporte"]["Value"] = $this->shMes->GetDBValue(true);
-        $this->InsertFields["AnioReporte"]["Value"] = $this->shAnio->GetDBValue(true);
-        $this->InsertFields["id_proveedor"]["Value"] = $this->shIdProveedor->GetDBValue(true);
-        $this->InsertFields["chkTiempo"]["Value"] = $this->CheckBox1->GetDBValue(true);
-        $this->InsertFields["Med_Ate_Mod"]["Value"] = $this->shTiempoAtencion->GetDBValue(true);
-        $this->InsertFields["Med_Sol_Mod"]["Value"] = $this->shTiempoSolucion->GetDBValue(true);
-        $this->InsertFields["Med_Sop_Mod"]["Value"] = $this->shTiempoSoporte->GetDBValue(true);
-        $this->InsertFields["UsuarioAlta"]["Value"] = $this->shUsuarioAlta->GetDBValue(true);
-        $this->InsertFields["FechaUltMod"]["Value"] = $this->FechaUltMod->GetDBValue(true);
-        $this->InsertFields["UsuarioUltMod"]["Value"] = $this->shUsuarioUltMod->GetDBValue(true);
-        $this->InsertFields["Obs_Med_Ate"]["Value"] = $this->txtCumple_Inc_TiempoAsignacion->GetDBValue(true);
-        $this->InsertFields["Obs_Med_Sol"]["Value"] = $this->txtCumple_Inc_TiempoSolucion->GetDBValue(true);
-        $this->InsertFields["Obs_Med_Sop"]["Value"] = $this->txtCumple_DISP_SOPORTE->GetDBValue(true);
-        $this->InsertFields["TiempoTotal"]["Value"] = $this->Hidden1->GetDBValue(true);
-        $this->InsertFields["evidencia_salvedad_TA"]["Value"] = $this->evidencia_salvedad_TA->GetDBValue(true);
-        $this->InsertFields["observacion_salvedad_TA"]["Value"] = $this->observacion_salvedad_TA->GetDBValue(true);
-        $this->InsertFields["evidencia_salvedad_TS"]["Value"] = $this->evidencia_salvedad_TS->GetDBValue(true);
-        $this->InsertFields["observacion_salvedad_TS"]["Value"] = $this->observacion_salvedad_TS->GetDBValue(true);
+        if (!is_null($this->cp["id_servicio"]->GetValue()) and !strlen($this->cp["id_servicio"]->GetText()) and !is_bool($this->cp["id_servicio"]->GetValue())) 
+            $this->cp["id_servicio"]->SetValue($this->id_servicio->GetValue(true));
+        if (!is_null($this->cp["Cumple_Inc_TiempoAsignacion"]->GetValue()) and !strlen($this->cp["Cumple_Inc_TiempoAsignacion"]->GetText()) and !is_bool($this->cp["Cumple_Inc_TiempoAsignacion"]->GetValue())) 
+            $this->cp["Cumple_Inc_TiempoAsignacion"]->SetValue($this->Cumple_Inc_TiempoAsignacion->GetValue(true));
+        if (!is_null($this->cp["Cumple_Inc_TiempoSolucion"]->GetValue()) and !strlen($this->cp["Cumple_Inc_TiempoSolucion"]->GetText()) and !is_bool($this->cp["Cumple_Inc_TiempoSolucion"]->GetValue())) 
+            $this->cp["Cumple_Inc_TiempoSolucion"]->SetValue($this->Cumple_Inc_TiempoSolucion->GetValue(true));
+        if (!is_null($this->cp["Cumple_DISP_SOPORTE"]->GetValue()) and !strlen($this->cp["Cumple_DISP_SOPORTE"]->GetText()) and !is_bool($this->cp["Cumple_DISP_SOPORTE"]->GetValue())) 
+            $this->cp["Cumple_DISP_SOPORTE"]->SetValue($this->Cumple_DISP_SOPORTE->GetValue(true));
+        if (!is_null($this->cp["Obs_Manuales"]->GetValue()) and !strlen($this->cp["Obs_Manuales"]->GetText()) and !is_bool($this->cp["Obs_Manuales"]->GetValue())) 
+            $this->cp["Obs_Manuales"]->SetValue($this->Obs_Manuales->GetValue(true));
+        if (!is_null($this->cp["id_incidente"]->GetValue()) and !strlen($this->cp["id_incidente"]->GetText()) and !is_bool($this->cp["id_incidente"]->GetValue())) 
+            $this->cp["id_incidente"]->SetValue($this->shId_Incidente->GetValue(true));
+        if (!is_null($this->cp["descartar"]->GetValue()) and !strlen($this->cp["descartar"]->GetText()) and !is_bool($this->cp["descartar"]->GetValue())) 
+            $this->cp["descartar"]->SetValue($this->shDescartar->GetValue(true));
+        if (!is_null($this->cp["MesReporte"]->GetValue()) and !strlen($this->cp["MesReporte"]->GetText()) and !is_bool($this->cp["MesReporte"]->GetValue())) 
+            $this->cp["MesReporte"]->SetValue($this->shMes->GetValue(true));
+        if (!is_null($this->cp["AnioReporte"]->GetValue()) and !strlen($this->cp["AnioReporte"]->GetText()) and !is_bool($this->cp["AnioReporte"]->GetValue())) 
+            $this->cp["AnioReporte"]->SetValue($this->shAnio->GetValue(true));
+        if (!is_null($this->cp["id_proveedor"]->GetValue()) and !strlen($this->cp["id_proveedor"]->GetText()) and !is_bool($this->cp["id_proveedor"]->GetValue())) 
+            $this->cp["id_proveedor"]->SetValue($this->shIdProveedor->GetValue(true));
+        if (!is_null($this->cp["chkTiempo"]->GetValue()) and !strlen($this->cp["chkTiempo"]->GetText()) and !is_bool($this->cp["chkTiempo"]->GetValue())) 
+            $this->cp["chkTiempo"]->SetValue($this->CheckBox1->GetValue(true));
+        if (!is_null($this->cp["Med_Ate_Mod"]->GetValue()) and !strlen($this->cp["Med_Ate_Mod"]->GetText()) and !is_bool($this->cp["Med_Ate_Mod"]->GetValue())) 
+            $this->cp["Med_Ate_Mod"]->SetValue($this->shTiempoAtencion->GetValue(true));
+        if (!is_null($this->cp["Med_Sol_Mod"]->GetValue()) and !strlen($this->cp["Med_Sol_Mod"]->GetText()) and !is_bool($this->cp["Med_Sol_Mod"]->GetValue())) 
+            $this->cp["Med_Sol_Mod"]->SetValue($this->shTiempoSolucion->GetValue(true));
+        if (!is_null($this->cp["Med_Sop_Mod"]->GetValue()) and !strlen($this->cp["Med_Sop_Mod"]->GetText()) and !is_bool($this->cp["Med_Sop_Mod"]->GetValue())) 
+            $this->cp["Med_Sop_Mod"]->SetValue($this->shTiempoSoporte->GetValue(true));
+        if (!is_null($this->cp["UsuarioAlta"]->GetValue()) and !strlen($this->cp["UsuarioAlta"]->GetText()) and !is_bool($this->cp["UsuarioAlta"]->GetValue())) 
+            $this->cp["UsuarioAlta"]->SetValue($this->shUsuarioAlta->GetValue(true));
+        if (!is_null($this->cp["FechaUltMod"]->GetValue()) and !strlen($this->cp["FechaUltMod"]->GetText()) and !is_bool($this->cp["FechaUltMod"]->GetValue())) 
+            $this->cp["FechaUltMod"]->SetValue($this->FechaUltMod->GetValue(true));
+        if (!is_null($this->cp["UsuarioUltMod"]->GetValue()) and !strlen($this->cp["UsuarioUltMod"]->GetText()) and !is_bool($this->cp["UsuarioUltMod"]->GetValue())) 
+            $this->cp["UsuarioUltMod"]->SetValue($this->shUsuarioUltMod->GetValue(true));
+        if (!is_null($this->cp["Obs_Med_Ate"]->GetValue()) and !strlen($this->cp["Obs_Med_Ate"]->GetText()) and !is_bool($this->cp["Obs_Med_Ate"]->GetValue())) 
+            $this->cp["Obs_Med_Ate"]->SetValue($this->txtCumple_Inc_TiempoAsignacion->GetValue(true));
+        if (!is_null($this->cp["Obs_Med_Sol"]->GetValue()) and !strlen($this->cp["Obs_Med_Sol"]->GetText()) and !is_bool($this->cp["Obs_Med_Sol"]->GetValue())) 
+            $this->cp["Obs_Med_Sol"]->SetValue($this->txtCumple_Inc_TiempoSolucion->GetValue(true));
+        if (!is_null($this->cp["Obs_Med_Sop"]->GetValue()) and !strlen($this->cp["Obs_Med_Sop"]->GetText()) and !is_bool($this->cp["Obs_Med_Sop"]->GetValue())) 
+            $this->cp["Obs_Med_Sop"]->SetValue($this->txtCumple_DISP_SOPORTE->GetValue(true));
+        if (!is_null($this->cp["TiempoTotal"]->GetValue()) and !strlen($this->cp["TiempoTotal"]->GetText()) and !is_bool($this->cp["TiempoTotal"]->GetValue())) 
+            $this->cp["TiempoTotal"]->SetValue($this->Hidden1->GetValue(true));
+        if (!is_null($this->cp["evidencia_salvedad_TA"]->GetValue()) and !strlen($this->cp["evidencia_salvedad_TA"]->GetText()) and !is_bool($this->cp["evidencia_salvedad_TA"]->GetValue())) 
+            $this->cp["evidencia_salvedad_TA"]->SetValue($this->evidencia_salvedad_TA->GetValue(true));
+        if (!is_null($this->cp["observacion_salvedad_TA"]->GetValue()) and !strlen($this->cp["observacion_salvedad_TA"]->GetText()) and !is_bool($this->cp["observacion_salvedad_TA"]->GetValue())) 
+            $this->cp["observacion_salvedad_TA"]->SetValue($this->observacion_salvedad_TA->GetValue(true));
+        if (!is_null($this->cp["evidencia_salvedad_TS"]->GetValue()) and !strlen($this->cp["evidencia_salvedad_TS"]->GetText()) and !is_bool($this->cp["evidencia_salvedad_TS"]->GetValue())) 
+            $this->cp["evidencia_salvedad_TS"]->SetValue($this->evidencia_salvedad_TS->GetValue(true));
+        if (!is_null($this->cp["observacion_salvedad_TS"]->GetValue()) and !strlen($this->cp["observacion_salvedad_TS"]->GetText()) and !is_bool($this->cp["observacion_salvedad_TS"]->GetValue())) 
+            $this->cp["observacion_salvedad_TS"]->SetValue($this->observacion_salvedad_TS->GetValue(true));
+        if (!is_null($this->cp["severidad"]->GetValue()) and !strlen($this->cp["severidad"]->GetText()) and !is_bool($this->cp["severidad"]->GetValue())) 
+            $this->cp["severidad"]->SetValue($this->hslSeveridad->GetValue(true));
+        $this->InsertFields["id_servicio"]["Value"] = $this->cp["id_servicio"]->GetDBValue(true);
+        $this->InsertFields["Cumple_Inc_TiempoAsignacion"]["Value"] = $this->cp["Cumple_Inc_TiempoAsignacion"]->GetDBValue(true);
+        $this->InsertFields["Cumple_Inc_TiempoSolucion"]["Value"] = $this->cp["Cumple_Inc_TiempoSolucion"]->GetDBValue(true);
+        $this->InsertFields["Cumple_DISP_SOPORTE"]["Value"] = $this->cp["Cumple_DISP_SOPORTE"]->GetDBValue(true);
+        $this->InsertFields["Obs_Manuales"]["Value"] = $this->cp["Obs_Manuales"]->GetDBValue(true);
+        $this->InsertFields["id_incidente"]["Value"] = $this->cp["id_incidente"]->GetDBValue(true);
+        $this->InsertFields["descartar"]["Value"] = $this->cp["descartar"]->GetDBValue(true);
+        $this->InsertFields["MesReporte"]["Value"] = $this->cp["MesReporte"]->GetDBValue(true);
+        $this->InsertFields["AnioReporte"]["Value"] = $this->cp["AnioReporte"]->GetDBValue(true);
+        $this->InsertFields["id_proveedor"]["Value"] = $this->cp["id_proveedor"]->GetDBValue(true);
+        $this->InsertFields["chkTiempo"]["Value"] = $this->cp["chkTiempo"]->GetDBValue(true);
+        $this->InsertFields["Med_Ate_Mod"]["Value"] = $this->cp["Med_Ate_Mod"]->GetDBValue(true);
+        $this->InsertFields["Med_Sol_Mod"]["Value"] = $this->cp["Med_Sol_Mod"]->GetDBValue(true);
+        $this->InsertFields["Med_Sop_Mod"]["Value"] = $this->cp["Med_Sop_Mod"]->GetDBValue(true);
+        $this->InsertFields["UsuarioAlta"]["Value"] = $this->cp["UsuarioAlta"]->GetDBValue(true);
+        $this->InsertFields["FechaUltMod"]["Value"] = $this->cp["FechaUltMod"]->GetDBValue(true);
+        $this->InsertFields["UsuarioUltMod"]["Value"] = $this->cp["UsuarioUltMod"]->GetDBValue(true);
+        $this->InsertFields["Obs_Med_Ate"]["Value"] = $this->cp["Obs_Med_Ate"]->GetDBValue(true);
+        $this->InsertFields["Obs_Med_Sol"]["Value"] = $this->cp["Obs_Med_Sol"]->GetDBValue(true);
+        $this->InsertFields["Obs_Med_Sop"]["Value"] = $this->cp["Obs_Med_Sop"]->GetDBValue(true);
+        $this->InsertFields["TiempoTotal"]["Value"] = $this->cp["TiempoTotal"]->GetDBValue(true);
+        $this->InsertFields["evidencia_salvedad_TA"]["Value"] = $this->cp["evidencia_salvedad_TA"]->GetDBValue(true);
+        $this->InsertFields["observacion_salvedad_TA"]["Value"] = $this->cp["observacion_salvedad_TA"]->GetDBValue(true);
+        $this->InsertFields["evidencia_salvedad_TS"]["Value"] = $this->cp["evidencia_salvedad_TS"]->GetDBValue(true);
+        $this->InsertFields["observacion_salvedad_TS"]["Value"] = $this->cp["observacion_salvedad_TS"]->GetDBValue(true);
+        $this->InsertFields["severidad"]["Value"] = $this->cp["severidad"]->GetDBValue(true);
         $this->SQL = CCBuildInsert("mc_calificacion_incidentes_MC", $this->InsertFields, $this);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
@@ -1678,43 +1750,128 @@ class clsmc_calificacion_incidenteDataSource extends clsDBcnDisenio {  //mc_cali
     }
 //End Insert Method
 
-//Update Method @143-1F42DA6D
+//Update Method @143-A410E2D3
     function Update()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->CmdExecution = true;
         $Where = "";
-        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
-        $this->UpdateFields["id_servicio"]["Value"] = $this->id_servicio->GetDBValue(true);
-        $this->UpdateFields["Cumple_Inc_TiempoAsignacion"]["Value"] = $this->Cumple_Inc_TiempoAsignacion->GetDBValue(true);
-        $this->UpdateFields["Cumple_Inc_TiempoSolucion"]["Value"] = $this->Cumple_Inc_TiempoSolucion->GetDBValue(true);
-        $this->UpdateFields["Cumple_DISP_SOPORTE"]["Value"] = $this->Cumple_DISP_SOPORTE->GetDBValue(true);
-        $this->UpdateFields["Obs_Manuales"]["Value"] = $this->Obs_Manuales->GetDBValue(true);
-        $this->UpdateFields["id_incidente"]["Value"] = $this->shId_Incidente->GetDBValue(true);
-        $this->UpdateFields["descartar"]["Value"] = $this->shDescartar->GetDBValue(true);
-        $this->UpdateFields["MesReporte"]["Value"] = $this->shMes->GetDBValue(true);
-        $this->UpdateFields["AnioReporte"]["Value"] = $this->shAnio->GetDBValue(true);
-        $this->UpdateFields["id_proveedor"]["Value"] = $this->shIdProveedor->GetDBValue(true);
-        $this->UpdateFields["chkTiempo"]["Value"] = $this->CheckBox1->GetDBValue(true);
-        $this->UpdateFields["Med_Ate_Mod"]["Value"] = $this->shTiempoAtencion->GetDBValue(true);
-        $this->UpdateFields["Med_Sol_Mod"]["Value"] = $this->shTiempoSolucion->GetDBValue(true);
-        $this->UpdateFields["Med_Sop_Mod"]["Value"] = $this->shTiempoSoporte->GetDBValue(true);
-        $this->UpdateFields["UsuarioAlta"]["Value"] = $this->shUsuarioAlta->GetDBValue(true);
-        $this->UpdateFields["FechaUltMod"]["Value"] = $this->FechaUltMod->GetDBValue(true);
-        $this->UpdateFields["UsuarioUltMod"]["Value"] = $this->shUsuarioUltMod->GetDBValue(true);
-        $this->UpdateFields["Obs_Med_Ate"]["Value"] = $this->txtCumple_Inc_TiempoAsignacion->GetDBValue(true);
-        $this->UpdateFields["Obs_Med_Sol"]["Value"] = $this->txtCumple_Inc_TiempoSolucion->GetDBValue(true);
-        $this->UpdateFields["Obs_Med_Sop"]["Value"] = $this->txtCumple_DISP_SOPORTE->GetDBValue(true);
-        $this->UpdateFields["TiempoTotal"]["Value"] = $this->Hidden1->GetDBValue(true);
-        $this->UpdateFields["evidencia_salvedad_TA"]["Value"] = $this->evidencia_salvedad_TA->GetDBValue(true);
-        $this->UpdateFields["observacion_salvedad_TA"]["Value"] = $this->observacion_salvedad_TA->GetDBValue(true);
-        $this->UpdateFields["evidencia_salvedad_TS"]["Value"] = $this->evidencia_salvedad_TS->GetDBValue(true);
-        $this->UpdateFields["observacion_salvedad_TS"]["Value"] = $this->observacion_salvedad_TS->GetDBValue(true);
-        $this->SQL = CCBuildUpdate("mc_calificacion_incidentes_MC", $this->UpdateFields, $this);
-        $this->SQL .= strlen($this->Where) ? " WHERE " . $this->Where : $this->Where;
-        if (!strlen($this->Where) && $this->Errors->Count() == 0) 
+        $this->cp["id_servicio"] = new clsSQLParameter("ctrlid_servicio", ccsInteger, "", "", $this->id_servicio->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["Cumple_Inc_TiempoAsignacion"] = new clsSQLParameter("ctrlCumple_Inc_TiempoAsignacion", ccsInteger, "", "", $this->Cumple_Inc_TiempoAsignacion->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["Cumple_Inc_TiempoSolucion"] = new clsSQLParameter("ctrlCumple_Inc_TiempoSolucion", ccsInteger, "", "", $this->Cumple_Inc_TiempoSolucion->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["Cumple_DISP_SOPORTE"] = new clsSQLParameter("ctrlCumple_DISP_SOPORTE", ccsInteger, "", "", $this->Cumple_DISP_SOPORTE->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["Obs_Manuales"] = new clsSQLParameter("ctrlObs_Manuales", ccsText, "", "", $this->Obs_Manuales->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["id_incidente"] = new clsSQLParameter("ctrlshId_Incidente", ccsText, "", "", $this->shId_Incidente->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["descartar"] = new clsSQLParameter("ctrlshDescartar", ccsText, "", "", $this->shDescartar->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["MesReporte"] = new clsSQLParameter("ctrlshMes", ccsText, "", "", $this->shMes->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["AnioReporte"] = new clsSQLParameter("ctrlshAnio", ccsText, "", "", $this->shAnio->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["id_proveedor"] = new clsSQLParameter("ctrlshIdProveedor", ccsText, "", "", $this->shIdProveedor->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["chkTiempo"] = new clsSQLParameter("ctrlCheckBox1", ccsBoolean, $CCSLocales->GetFormatInfo("BooleanFormat"), $this->BooleanFormat, $this->CheckBox1->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["Med_Ate_Mod"] = new clsSQLParameter("ctrlshTiempoAtencion", ccsInteger, "", "", $this->shTiempoAtencion->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["Med_Sol_Mod"] = new clsSQLParameter("ctrlshTiempoSolucion", ccsInteger, "", "", $this->shTiempoSolucion->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["Med_Sop_Mod"] = new clsSQLParameter("ctrlshTiempoSoporte", ccsInteger, "", "", $this->shTiempoSoporte->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["UsuarioAlta"] = new clsSQLParameter("ctrlshUsuarioAlta", ccsText, "", "", $this->shUsuarioAlta->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["FechaUltMod"] = new clsSQLParameter("ctrlFechaUltMod", ccsDate, array("dd", "/", "mm", "/", "yyyy", " ", "HH", ":", "nn", ":", "ss"), array("yyyy", "-", "mm", "-", "dd", " ", "HH", ":", "nn", ":", "ss", ".", "S"), $this->FechaUltMod->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["UsuarioUltMod"] = new clsSQLParameter("ctrlshUsuarioUltMod", ccsText, "", "", $this->shUsuarioUltMod->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["Obs_Med_Ate"] = new clsSQLParameter("ctrltxtCumple_Inc_TiempoAsignacion", ccsText, "", "", $this->txtCumple_Inc_TiempoAsignacion->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["Obs_Med_Sol"] = new clsSQLParameter("ctrltxtCumple_Inc_TiempoSolucion", ccsText, "", "", $this->txtCumple_Inc_TiempoSolucion->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["Obs_Med_Sop"] = new clsSQLParameter("ctrltxtCumple_DISP_SOPORTE", ccsText, "", "", $this->txtCumple_DISP_SOPORTE->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["TiempoTotal"] = new clsSQLParameter("ctrlHidden1", ccsText, "", "", $this->Hidden1->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["evidencia_salvedad_TA"] = new clsSQLParameter("ctrlevidencia_salvedad_TA", ccsBoolean, $CCSLocales->GetFormatInfo("BooleanFormat"), $this->BooleanFormat, $this->evidencia_salvedad_TA->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["observacion_salvedad_TA"] = new clsSQLParameter("ctrlobservacion_salvedad_TA", ccsText, "", "", $this->observacion_salvedad_TA->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["evidencia_salvedad_TS"] = new clsSQLParameter("ctrlevidencia_salvedad_TS", ccsBoolean, $CCSLocales->GetFormatInfo("BooleanFormat"), $this->BooleanFormat, $this->evidencia_salvedad_TS->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["observacion_salvedad_TS"] = new clsSQLParameter("ctrlobservacion_salvedad_TS", ccsText, "", "", $this->observacion_salvedad_TS->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["severidad"] = new clsSQLParameter("ctrlhslSeveridad", ccsInteger, "", "", $this->hslSeveridad->GetValue(true), NULL, false, $this->ErrorBlock);
+        $wp = new clsSQLParameters($this->ErrorBlock);
+        $wp->AddParameter("1", "urlId_incidente", ccsText, "", "", CCGetFromGet("Id_incidente", NULL), "", false);
+        if(!$wp->AllParamsSet()) {
             $this->Errors->addError($CCSLocales->GetText("CCS_CustomOperationError_MissingParameters"));
+        }
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
+        if (!is_null($this->cp["id_servicio"]->GetValue()) and !strlen($this->cp["id_servicio"]->GetText()) and !is_bool($this->cp["id_servicio"]->GetValue())) 
+            $this->cp["id_servicio"]->SetValue($this->id_servicio->GetValue(true));
+        if (!is_null($this->cp["Cumple_Inc_TiempoAsignacion"]->GetValue()) and !strlen($this->cp["Cumple_Inc_TiempoAsignacion"]->GetText()) and !is_bool($this->cp["Cumple_Inc_TiempoAsignacion"]->GetValue())) 
+            $this->cp["Cumple_Inc_TiempoAsignacion"]->SetValue($this->Cumple_Inc_TiempoAsignacion->GetValue(true));
+        if (!is_null($this->cp["Cumple_Inc_TiempoSolucion"]->GetValue()) and !strlen($this->cp["Cumple_Inc_TiempoSolucion"]->GetText()) and !is_bool($this->cp["Cumple_Inc_TiempoSolucion"]->GetValue())) 
+            $this->cp["Cumple_Inc_TiempoSolucion"]->SetValue($this->Cumple_Inc_TiempoSolucion->GetValue(true));
+        if (!is_null($this->cp["Cumple_DISP_SOPORTE"]->GetValue()) and !strlen($this->cp["Cumple_DISP_SOPORTE"]->GetText()) and !is_bool($this->cp["Cumple_DISP_SOPORTE"]->GetValue())) 
+            $this->cp["Cumple_DISP_SOPORTE"]->SetValue($this->Cumple_DISP_SOPORTE->GetValue(true));
+        if (!is_null($this->cp["Obs_Manuales"]->GetValue()) and !strlen($this->cp["Obs_Manuales"]->GetText()) and !is_bool($this->cp["Obs_Manuales"]->GetValue())) 
+            $this->cp["Obs_Manuales"]->SetValue($this->Obs_Manuales->GetValue(true));
+        if (!is_null($this->cp["id_incidente"]->GetValue()) and !strlen($this->cp["id_incidente"]->GetText()) and !is_bool($this->cp["id_incidente"]->GetValue())) 
+            $this->cp["id_incidente"]->SetValue($this->shId_Incidente->GetValue(true));
+        if (!is_null($this->cp["descartar"]->GetValue()) and !strlen($this->cp["descartar"]->GetText()) and !is_bool($this->cp["descartar"]->GetValue())) 
+            $this->cp["descartar"]->SetValue($this->shDescartar->GetValue(true));
+        if (!is_null($this->cp["MesReporte"]->GetValue()) and !strlen($this->cp["MesReporte"]->GetText()) and !is_bool($this->cp["MesReporte"]->GetValue())) 
+            $this->cp["MesReporte"]->SetValue($this->shMes->GetValue(true));
+        if (!is_null($this->cp["AnioReporte"]->GetValue()) and !strlen($this->cp["AnioReporte"]->GetText()) and !is_bool($this->cp["AnioReporte"]->GetValue())) 
+            $this->cp["AnioReporte"]->SetValue($this->shAnio->GetValue(true));
+        if (!is_null($this->cp["id_proveedor"]->GetValue()) and !strlen($this->cp["id_proveedor"]->GetText()) and !is_bool($this->cp["id_proveedor"]->GetValue())) 
+            $this->cp["id_proveedor"]->SetValue($this->shIdProveedor->GetValue(true));
+        if (!is_null($this->cp["chkTiempo"]->GetValue()) and !strlen($this->cp["chkTiempo"]->GetText()) and !is_bool($this->cp["chkTiempo"]->GetValue())) 
+            $this->cp["chkTiempo"]->SetValue($this->CheckBox1->GetValue(true));
+        if (!is_null($this->cp["Med_Ate_Mod"]->GetValue()) and !strlen($this->cp["Med_Ate_Mod"]->GetText()) and !is_bool($this->cp["Med_Ate_Mod"]->GetValue())) 
+            $this->cp["Med_Ate_Mod"]->SetValue($this->shTiempoAtencion->GetValue(true));
+        if (!is_null($this->cp["Med_Sol_Mod"]->GetValue()) and !strlen($this->cp["Med_Sol_Mod"]->GetText()) and !is_bool($this->cp["Med_Sol_Mod"]->GetValue())) 
+            $this->cp["Med_Sol_Mod"]->SetValue($this->shTiempoSolucion->GetValue(true));
+        if (!is_null($this->cp["Med_Sop_Mod"]->GetValue()) and !strlen($this->cp["Med_Sop_Mod"]->GetText()) and !is_bool($this->cp["Med_Sop_Mod"]->GetValue())) 
+            $this->cp["Med_Sop_Mod"]->SetValue($this->shTiempoSoporte->GetValue(true));
+        if (!is_null($this->cp["UsuarioAlta"]->GetValue()) and !strlen($this->cp["UsuarioAlta"]->GetText()) and !is_bool($this->cp["UsuarioAlta"]->GetValue())) 
+            $this->cp["UsuarioAlta"]->SetValue($this->shUsuarioAlta->GetValue(true));
+        if (!is_null($this->cp["FechaUltMod"]->GetValue()) and !strlen($this->cp["FechaUltMod"]->GetText()) and !is_bool($this->cp["FechaUltMod"]->GetValue())) 
+            $this->cp["FechaUltMod"]->SetValue($this->FechaUltMod->GetValue(true));
+        if (!is_null($this->cp["UsuarioUltMod"]->GetValue()) and !strlen($this->cp["UsuarioUltMod"]->GetText()) and !is_bool($this->cp["UsuarioUltMod"]->GetValue())) 
+            $this->cp["UsuarioUltMod"]->SetValue($this->shUsuarioUltMod->GetValue(true));
+        if (!is_null($this->cp["Obs_Med_Ate"]->GetValue()) and !strlen($this->cp["Obs_Med_Ate"]->GetText()) and !is_bool($this->cp["Obs_Med_Ate"]->GetValue())) 
+            $this->cp["Obs_Med_Ate"]->SetValue($this->txtCumple_Inc_TiempoAsignacion->GetValue(true));
+        if (!is_null($this->cp["Obs_Med_Sol"]->GetValue()) and !strlen($this->cp["Obs_Med_Sol"]->GetText()) and !is_bool($this->cp["Obs_Med_Sol"]->GetValue())) 
+            $this->cp["Obs_Med_Sol"]->SetValue($this->txtCumple_Inc_TiempoSolucion->GetValue(true));
+        if (!is_null($this->cp["Obs_Med_Sop"]->GetValue()) and !strlen($this->cp["Obs_Med_Sop"]->GetText()) and !is_bool($this->cp["Obs_Med_Sop"]->GetValue())) 
+            $this->cp["Obs_Med_Sop"]->SetValue($this->txtCumple_DISP_SOPORTE->GetValue(true));
+        if (!is_null($this->cp["TiempoTotal"]->GetValue()) and !strlen($this->cp["TiempoTotal"]->GetText()) and !is_bool($this->cp["TiempoTotal"]->GetValue())) 
+            $this->cp["TiempoTotal"]->SetValue($this->Hidden1->GetValue(true));
+        if (!is_null($this->cp["evidencia_salvedad_TA"]->GetValue()) and !strlen($this->cp["evidencia_salvedad_TA"]->GetText()) and !is_bool($this->cp["evidencia_salvedad_TA"]->GetValue())) 
+            $this->cp["evidencia_salvedad_TA"]->SetValue($this->evidencia_salvedad_TA->GetValue(true));
+        if (!is_null($this->cp["observacion_salvedad_TA"]->GetValue()) and !strlen($this->cp["observacion_salvedad_TA"]->GetText()) and !is_bool($this->cp["observacion_salvedad_TA"]->GetValue())) 
+            $this->cp["observacion_salvedad_TA"]->SetValue($this->observacion_salvedad_TA->GetValue(true));
+        if (!is_null($this->cp["evidencia_salvedad_TS"]->GetValue()) and !strlen($this->cp["evidencia_salvedad_TS"]->GetText()) and !is_bool($this->cp["evidencia_salvedad_TS"]->GetValue())) 
+            $this->cp["evidencia_salvedad_TS"]->SetValue($this->evidencia_salvedad_TS->GetValue(true));
+        if (!is_null($this->cp["observacion_salvedad_TS"]->GetValue()) and !strlen($this->cp["observacion_salvedad_TS"]->GetText()) and !is_bool($this->cp["observacion_salvedad_TS"]->GetValue())) 
+            $this->cp["observacion_salvedad_TS"]->SetValue($this->observacion_salvedad_TS->GetValue(true));
+        if (!is_null($this->cp["severidad"]->GetValue()) and !strlen($this->cp["severidad"]->GetText()) and !is_bool($this->cp["severidad"]->GetValue())) 
+            $this->cp["severidad"]->SetValue($this->hslSeveridad->GetValue(true));
+        $wp->Criterion[1] = $wp->Operation(opEqual, "id_incidente", $wp->GetDBValue("1"), $this->ToSQL($wp->GetDBValue("1"), ccsText),false);
+        $Where = 
+             $wp->Criterion[1];
+        $this->UpdateFields["id_servicio"]["Value"] = $this->cp["id_servicio"]->GetDBValue(true);
+        $this->UpdateFields["Cumple_Inc_TiempoAsignacion"]["Value"] = $this->cp["Cumple_Inc_TiempoAsignacion"]->GetDBValue(true);
+        $this->UpdateFields["Cumple_Inc_TiempoSolucion"]["Value"] = $this->cp["Cumple_Inc_TiempoSolucion"]->GetDBValue(true);
+        $this->UpdateFields["Cumple_DISP_SOPORTE"]["Value"] = $this->cp["Cumple_DISP_SOPORTE"]->GetDBValue(true);
+        $this->UpdateFields["Obs_Manuales"]["Value"] = $this->cp["Obs_Manuales"]->GetDBValue(true);
+        $this->UpdateFields["id_incidente"]["Value"] = $this->cp["id_incidente"]->GetDBValue(true);
+        $this->UpdateFields["descartar"]["Value"] = $this->cp["descartar"]->GetDBValue(true);
+        $this->UpdateFields["MesReporte"]["Value"] = $this->cp["MesReporte"]->GetDBValue(true);
+        $this->UpdateFields["AnioReporte"]["Value"] = $this->cp["AnioReporte"]->GetDBValue(true);
+        $this->UpdateFields["id_proveedor"]["Value"] = $this->cp["id_proveedor"]->GetDBValue(true);
+        $this->UpdateFields["chkTiempo"]["Value"] = $this->cp["chkTiempo"]->GetDBValue(true);
+        $this->UpdateFields["Med_Ate_Mod"]["Value"] = $this->cp["Med_Ate_Mod"]->GetDBValue(true);
+        $this->UpdateFields["Med_Sol_Mod"]["Value"] = $this->cp["Med_Sol_Mod"]->GetDBValue(true);
+        $this->UpdateFields["Med_Sop_Mod"]["Value"] = $this->cp["Med_Sop_Mod"]->GetDBValue(true);
+        $this->UpdateFields["UsuarioAlta"]["Value"] = $this->cp["UsuarioAlta"]->GetDBValue(true);
+        $this->UpdateFields["FechaUltMod"]["Value"] = $this->cp["FechaUltMod"]->GetDBValue(true);
+        $this->UpdateFields["UsuarioUltMod"]["Value"] = $this->cp["UsuarioUltMod"]->GetDBValue(true);
+        $this->UpdateFields["Obs_Med_Ate"]["Value"] = $this->cp["Obs_Med_Ate"]->GetDBValue(true);
+        $this->UpdateFields["Obs_Med_Sol"]["Value"] = $this->cp["Obs_Med_Sol"]->GetDBValue(true);
+        $this->UpdateFields["Obs_Med_Sop"]["Value"] = $this->cp["Obs_Med_Sop"]->GetDBValue(true);
+        $this->UpdateFields["TiempoTotal"]["Value"] = $this->cp["TiempoTotal"]->GetDBValue(true);
+        $this->UpdateFields["evidencia_salvedad_TA"]["Value"] = $this->cp["evidencia_salvedad_TA"]->GetDBValue(true);
+        $this->UpdateFields["observacion_salvedad_TA"]["Value"] = $this->cp["observacion_salvedad_TA"]->GetDBValue(true);
+        $this->UpdateFields["evidencia_salvedad_TS"]["Value"] = $this->cp["evidencia_salvedad_TS"]->GetDBValue(true);
+        $this->UpdateFields["observacion_salvedad_TS"]["Value"] = $this->cp["observacion_salvedad_TS"]->GetDBValue(true);
+        $this->UpdateFields["severidad"]["Value"] = $this->cp["severidad"]->GetDBValue(true);
+        $this->SQL = CCBuildUpdate("mc_calificacion_incidentes_MC", $this->UpdateFields, $this);
+        $this->SQL .= strlen($Where) ? " WHERE " . $Where : $Where;
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
             $this->query($this->SQL);

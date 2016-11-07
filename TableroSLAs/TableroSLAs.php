@@ -2248,7 +2248,7 @@ class clsgrdTableroSLAsDataSource extends clsDBcnDisenio {  //grdTableroSLAsData
     }
 //End Prepare Method
 
-//Open Method @3-8E889F65
+//Open Method @3-C36F82EC
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -2268,7 +2268,7 @@ class clsgrdTableroSLAsDataSource extends clsDBcnDisenio {  //grdTableroSLAsData
         "	 COUNT(COMPL_RUTA_CRITICA) TotCOMPL_RUTA_CRITICA, SUM(cast(COMPL_RUTA_CRITICA as int)) CumplenCOMPL_RUTA_CRITICA, SUM(cast(COMPL_RUTA_CRITICA as float))/COUNT(COMPL_RUTA_CRITICA)*100 COMPL_RUTA_CRITICA,\n" .
         "	 (Select Meta from mc_c_metrica where acronimo='COMPL_RUTA_CRITICA') as Meta_COMPL_RUTA_CRITICA,\n" .
         "	 COUNT(CAL_COD) TotCAL_COD, SUM(cast(CAL_COD as int)) CumplenCAL_COD, SUM(cast(CAL_COD as float))/COUNT(CAL_COD)*100 CAL_COD,\n" .
-        "	 (Select Meta from mc_c_metrica where acronimo='EST_PROY') as Meta_EST_PROY,\n" .
+        "	 (Select Meta from mc_c_metrica where acronimo='CAL_COD') as Meta_CAL_COD,\n" .
         "	 COUNT(DEF_FUG_AMB_PROD) TotDEF_FUG_AMB_PROD, SUM(cast(DEF_FUG_AMB_PROD as int)) CumplenDEF_FUG_AMB_PROD, SUM(cast(DEF_FUG_AMB_PROD as float))/COUNT(DEF_FUG_AMB_PROD)*100  DEF_FUG_AMB_PROD,\n" .
         "	 (Select Meta from mc_c_metrica where acronimo='DEF_FUG_AMB_PROD') as Meta_DEF_FUG_AMB_PROD,\n" .
         "	 COUNT(Cumple_Inc_TiempoAsignacion) TotTiempoAsignacion, SUM(cast(Cumple_Inc_TiempoAsignacion as int)) CumplenTiempoAsignacion, SUM(cast(Cumple_Inc_TiempoAsignacion as float))/COUNT(Cumple_Inc_TiempoAsignacion)*100 Inc_TiempoAsignacion,\n" .
@@ -2319,7 +2319,7 @@ class clsgrdTableroSLAsDataSource extends clsDBcnDisenio {  //grdTableroSLAsData
         "	 COUNT(COMPL_RUTA_CRITICA) TotCOMPL_RUTA_CRITICA, SUM(cast(COMPL_RUTA_CRITICA as int)) CumplenCOMPL_RUTA_CRITICA, SUM(cast(COMPL_RUTA_CRITICA as float))/COUNT(COMPL_RUTA_CRITICA)*100 COMPL_RUTA_CRITICA,\n" .
         "	 (Select Meta from mc_c_metrica where acronimo='COMPL_RUTA_CRITICA') as Meta_COMPL_RUTA_CRITICA,\n" .
         "	 COUNT(CAL_COD) TotCAL_COD, SUM(cast(CAL_COD as int)) CumplenCAL_COD, SUM(cast(CAL_COD as float))/COUNT(CAL_COD)*100 CAL_COD,\n" .
-        "	 (Select Meta from mc_c_metrica where acronimo='EST_PROY') as Meta_EST_PROY,\n" .
+        "	 (Select Meta from mc_c_metrica where acronimo='CAL_COD') as Meta_CAL_COD,\n" .
         "	 COUNT(DEF_FUG_AMB_PROD) TotDEF_FUG_AMB_PROD, SUM(cast(DEF_FUG_AMB_PROD as int)) CumplenDEF_FUG_AMB_PROD, SUM(cast(DEF_FUG_AMB_PROD as float))/COUNT(DEF_FUG_AMB_PROD)*100  DEF_FUG_AMB_PROD,\n" .
         "	 (Select Meta from mc_c_metrica where acronimo='DEF_FUG_AMB_PROD') as Meta_DEF_FUG_AMB_PROD,\n" .
         "	 COUNT(Cumple_Inc_TiempoAsignacion) TotTiempoAsignacion, SUM(cast(Cumple_Inc_TiempoAsignacion as int)) CumplenTiempoAsignacion, SUM(cast(Cumple_Inc_TiempoAsignacion as float))/COUNT(Cumple_Inc_TiempoAsignacion)*100 Inc_TiempoAsignacion,\n" .
@@ -2455,7 +2455,7 @@ include_once("./TableroSLAs_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-524D926D
+//Initialize Objects @1-1640197A
 $DBcnDisenio = new clsDBcnDisenio();
 $MainPage->Connections["cnDisenio"] = & $DBcnDisenio;
 $Attributes = new clsAttributes("page:");
@@ -2476,6 +2476,9 @@ $grdSLAsCAPC = new clsGridgrdSLAsCAPC("", $MainPage);
 $grdTableroSLAsMG = new clsGridgrdTableroSLAsMG("", $MainPage);
 $pnlTableroSLAs = new clsPanel("pnlTableroSLAs", $MainPage);
 $grdTableroSLAs = new clsGridgrdTableroSLAs("", $MainPage);
+$Link1 = new clsControl(ccsLink, "Link1", "Link1", ccsText, "", CCGetRequestParam("Link1", ccsGet, NULL), $MainPage);
+$Link1->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
+$Link1->Page = "";
 $MainPage->Header = & $Header;
 $MainPage->Grid2 = & $Grid2;
 $MainPage->MenuTablero = & $MenuTablero;
@@ -2485,6 +2488,7 @@ $MainPage->grdSLAsCAPC = & $grdSLAsCAPC;
 $MainPage->grdTableroSLAsMG = & $grdTableroSLAsMG;
 $MainPage->pnlTableroSLAs = & $pnlTableroSLAs;
 $MainPage->grdTableroSLAs = & $grdTableroSLAs;
+$MainPage->Link1 = & $Link1;
 $pnlSLAsCAPC->AddComponent("grdSLAsCAPC", $grdSLAsCAPC);
 $pnlTableroSLAs->AddComponent("grdTableroSLAs", $grdTableroSLAs);
 $grdSLAsCAPC->Initialize();
@@ -2548,7 +2552,7 @@ if($Redirect)
 }
 //End Go to destination page
 
-//Show Page @1-358D63FD
+//Show Page @1-0F0442D4
 $Header->Show();
 $Grid2->Show();
 $MenuTablero->Show();
@@ -2556,6 +2560,7 @@ $grdTableroSLAsMG->Show();
 $UrlCDS->Show();
 $pnlSLAsCAPC->Show();
 $pnlTableroSLAs->Show();
+$Link1->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);

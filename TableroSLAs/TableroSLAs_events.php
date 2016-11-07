@@ -248,6 +248,7 @@ function grdTableroSLAsMG_BeforeShowRow(& $sender)
    	global $db;
 	global $lColorCeldaMG;
 	$db= new clsDBcnDisenio();
+	
 	/*
 	para que este código funcione es necesario que el nombre de los controles cumpla con lo esperado en el código
 	un prefijo seguido del acronimo del SLA 
@@ -438,7 +439,7 @@ function grdTableroSLAs_BeforeShowRow(& $sender)
 			$grdTableroSLAs->$sImg->SetValue("images/blank_SLA.png");
 			if (isset($grdTableroSLAs->$sImg)){
 				if($grdTableroSLAs->DataSource->f($db->f(1)) != ""){
-					$grdTableroSLAs->$sAcronimo->SetValue($grdTableroSLAs->$sCumplen->GetValue() . "/" . $grdTableroSLAs->$sTotal->GetValue() . " = " . number_format($grdTableroSLAs->$sAcronimo->GetValue(), 2, '.', '') . "%");
+					$grdTableroSLAs->$sAcronimo->SetValue($grdTableroSLAs->$sCumplen->GetValue() . "/" . $grdTableroSLAs->$sTotal->GetValue() . " = " . number_format($grdTableroSLAs->$sAcronimo->GetValue(), 2, '.', '') . "%");				
 					if($grdTableroSLAs->DataSource->f($db->f(1))<$grdTableroSLAs->DataSource->f($sMeta)){
 						$grdTableroSLAs->$sImg->SetValue("images/down.png");
 					} else {

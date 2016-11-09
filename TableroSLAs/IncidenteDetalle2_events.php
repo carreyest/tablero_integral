@@ -1555,8 +1555,15 @@ function mc_info_incidentes2_BeforeShow(& $sender)
 		//$nuevaFechaEnCurso = CCFormatDate(CCParseDate($nueva_fecha_encurso,array("yyyy","/","mm","/","dd"," ","HH",":","nn",":","ss")),array("yyyy","/","mm","/","dd"," ","HH",":","nn",":","ss"));
 		
 		$fechainicioavl=CCFormatDate($mc_info_incidentes2->lblRegistroAVL->GetValue(),array("yyyy","/","mm","/","dd"," ","HH",":","nn",":","ss"));
-		$calculo_tiempo=CCDLookUp("top 1 dbo.ufDiffFechasMCSec('".$nuevaFechaEnCurso."','".$fechainicioavl."')","mc_incidentes_reasignaciones"," 1=1", $DBcnDisenio);
-		$mc_info_incidentes2->HorasInvertidas->SetValue($calculo_tiempo);
+		if ($fechainicioavl!=""){
+			$calculo_tiempo=CCDLookUp("top 1 dbo.ufDiffFechasMCSec('".$nuevaFechaEnCurso."','".$fechainicioavl."')","mc_incidentes_reasignaciones"," 1=1", $DBcnDisenio);
+			$mc_info_incidentes2->HorasInvertidas->SetValue($calculo_tiempo);
+		}
+		else {
+		 $mc_info_incidentes2->HorasInvertidas->SetValue("");
+		}
+
+
 	}
 // -------------------------
 //End Custom Code
@@ -2037,7 +2044,8 @@ function mc_incidentes_reasignacio_BeforeShow(& $sender)
 	global $mc_info_incidentes;
 //La indicación del id del incidente explicito es a petición de la MMyA eramirez y naguilar 13/10/2016
 //Se agrega una tercera condición con $mc_info_incidentes3 en HorasInvertidas 31/11/2016 a petición de Erick, confirmando con un correo de Vanesa
-	$mc_incidentes_reasignacio->Visible=$existe_actualizacion_asignacion < 1 && $mc_info_incidentes2->HorasInvertidas->GetValue()!='N/A Incumplimiento a Proceso' && $mc_info_incidentes3->HorasInvertidas->GetValue()!='N/A Incumplimiento a Proceso' && $mc_info_incidentes1->HorasInvertidas->GetValue()!='N/A Incumplimiento a Proceso' && CCGetParam("Id_incidente",0)!='INC000005811148'? false : true;
+//De acuerdo Mail de Erick del día 8/11/2016 se elimina restricción de forma para reasignaciones y estas se realicen a consideración del que mide
+//	$mc_incidentes_reasignacio->Visible=$existe_actualizacion_asignacion < 1 && $mc_info_incidentes2->HorasInvertidas->GetValue()!='N/A Incumplimiento a Proceso' && $mc_info_incidentes3->HorasInvertidas->GetValue()!='N/A Incumplimiento a Proceso' && $mc_info_incidentes1->HorasInvertidas->GetValue()!='N/A Incumplimiento a Proceso' && CCGetParam("Id_incidente",0)!='INC000005811148'? false : true;
 	$mc_incidentes_reasignacio->horas_invertidas->SetValue(sec_to_time($mc_incidentes_reasignacio->H_horas_invertidas->GetValue()));	
 
    

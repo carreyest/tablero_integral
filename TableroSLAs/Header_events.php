@@ -77,6 +77,21 @@ function Header_BeforeShow(& $sender)
     	$Component->LabelReportesSitioSAT->Visible = false;
 
     }
+/*
+    if(CCGetSession("id_usuario",0)!=49 && CCGetSession("id_usuario",0)!=50 && CCGetSession("id_usuario",0)!=121 && CCGetSession("id_usuario",0)!=56) {
+	   	$Component->Link7->Visible = false;
+    	$Component->LabelSeguimientoOperativo->Visible = true;
+    	$Component->LabelSeguimientoOperativo->SetValue("Seguimiento Operativo");
+    } else {
+   	   	$Component->Link7->Visible = true;
+   	   	$Component->Link7->SetLink("http://webiterasrv2:8080/CargaSegOperativo/rep_seg_operativo.php");
+    	$Component->LabelSeguimientoOperativo->Visible = false;
+
+    }
+*/
+   	   	$Component->Link7->Visible = true;
+   	   	$Component->Link7->SetLink("http://webiterasrv2:8080/CargaSegOperativo/rep_seg_operativo.php");
+        $Component->LabelSeguimientoOperativo->Visible = false;
     
     global $id_repo;
     $id_repo=CCGetParam("IdReporte",0) ; 

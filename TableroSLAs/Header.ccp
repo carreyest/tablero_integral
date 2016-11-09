@@ -192,12 +192,26 @@
 					<Features/>
 				</Link>
 				<Label id="35" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="LabelReportesSitioSAT" PathID="HeaderPanel4LabelReportesSitioSAT">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+
+				</Label>
+				<Link id="36" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link7" PathID="HeaderPanel4Link7" hrefSource="/CargaSegOperativo/rep_seg_operativo.ccp" wizardUseTemplateBlock="False" linkProperties="{&quot;textSource&quot;:&quot;Seguimiento Operativo&quot;,&quot;textSourceDB&quot;:&quot;&quot;,&quot;hrefSource&quot;:&quot;/CargaSegOperativo/rep_seg_operativo.ccp&quot;,&quot;hrefSourceDB&quot;:&quot;&quot;,&quot;title&quot;:&quot;&quot;,&quot;target&quot;:&quot;&quot;,&quot;name&quot;:&quot;&quot;,&quot;linkParameters&quot;:{&quot;length&quot;:0,&quot;objectType&quot;:&quot;linkParameters&quot;}}">
 <Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-</Components>
+					<Events/>
+					<LinkParameters/>
+					<Attributes/>
+					<Features/>
+				</Link>
+				<Label id="37" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="LabelSeguimientoOperativo" PathID="HeaderPanel4LabelSeguimientoOperativo">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+			</Components>
 			<Events/>
 			<Attributes/>
 			<Features/>

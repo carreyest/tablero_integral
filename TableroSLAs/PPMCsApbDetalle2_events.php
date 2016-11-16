@@ -639,11 +639,15 @@ function mc_info_rs_ap_EC_OnValidate(& $sender)
     	}
     } 
     //valida si debe tener fecha de evidencia herramienta estimacion
+    $Svoceria43="17/Oct/2016:16:40:00";
+	$dvoceria43= date_create_from_format('d/M/Y:H:i:s', $Svoceria43);
+	$arreglofecha=$mc_info_rs_ap_EC->FechaAsignacion->GetValue();
+
     if($mc_info_rs_ap_EC->SinEvidencia->GetValue()==0){
-    	if($mc_info_rs_ap_EC->FechaEntregaEvidencia->GetValue()==""){
+    	if($mc_info_rs_ap_EC->FechaEntregaEvidencia->GetValue()=="" && date_timestamp_get($dvoceria43) > $arreglofecha[0]){
     		$mc_info_rs_ap_EC->Errors->addError("Debe especificar la fecha de entrega de la evidencia de la herramienta de estimación");	
     		}
-    }
+    } 
     //valida si debe tener fecha de aceptación propuesta
     if($mc_info_rs_ap_EC->EstNoAprobada->GetValue()==0){
     	if($mc_info_rs_ap_EC->FechaAceptacionPropuesta->GetValue()==""){

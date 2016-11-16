@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
 <script language="JavaScript" type="text/javascript">
 //Begin CCS script
+
 //Include Common JSFunctions @1-2504AB44
 </script>
 <script src="ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
@@ -239,47 +240,73 @@ function calculaSLA(){
             document.getElementById("mc_info_rs_ap_ECCumplioRS").value="0";
         }
 
-
         //si la propuesta esta antes de la asignación se marca como rebasado
         if(dPropuesta < dAsignacion  ){
                 document.getElementById("mc_info_rs_ap_ECCumplioRS").value="0";
         }        
-        if(document.getElementById("mc_info_rs_ap_ECsHorasManuales").value!=0){
-            sEvidencia = document.getElementById("mc_info_rs_ap_ECFechaEntregaEvidencia").value;
-            sEvidenciaHrs = sEvidencia.substr(sEvidencia.indexOf(" ")+1);
-            aEvidenciaHrs = sEvidenciaHrs.split(":");
-            sEvidencia = sEvidencia.substr(0,sEvidencia.indexOf(" "));
-            aEvidencia = sEvidencia.split("/");
-                        
-            //si no tiene fecha de evidencia se marca como que no cumple
-            if(document.getElementById("mc_info_rs_ap_ECFechaEntregaEvidencia").value==""){
-                document.getElementById("mc_info_rs_ap_ECCumplioHE").value="0";
-            }else{
-                var dEvidencia = new Date(aEvidencia[2].valueOf(),aEvidencia[1].valueOf()-1,aEvidencia[0].valueOf(),aEvidenciaHrs[0].valueOf(),aEvidenciaHrs[1].valueOf(),0);
-                if(document.getElementById("mc_info_rs_ap_ECFechaEntregaHerramienta").value!=""){
-                    sHerramienta = document.getElementById("mc_info_rs_ap_ECFechaEntregaHerramienta").value;
-                    sHerramientaHrs= sHerramienta.substr(sHerramienta.indexOf(" ")+1);
-                    aHerramientaHrs = sHerramientaHrs.split(":");
-                    sHerramienta = sHerramienta.substr(0,sHerramienta.indexOf(" "));
-                    aHerramienta = sHerramienta.split("/");
-                    var dHerramienta= new Date(aHerramienta[2].valueOf(),aHerramienta[1].valueOf()-1,aHerramienta[0].valueOf(),aHerramientaHrs[0].valueOf(),aHerramientaHrs[1].valueOf(),0);
-                    if(( dEvidencia.getTime() > dPropuesta.getTime()) || (dHerramienta.getTime() > dPropuesta.getTime() )){//se valida si entrego antes la evidencia que la pruesta
-                        document.getElementById("mc_info_rs_ap_ECCumplioHE").value="0";
-                    } else {
-                        document.getElementById("mc_info_rs_ap_ECCumplioHE").value="1";
-                    }
+                //Debido a la vocería 43 se agrega esta condición, aplica sólo con fechas de asignación superiores al 17 de Oct de 2016
+                dateVoceria43 = new Date("October 17,2016 18:40:00");
+                if ( dAsignacion.getTime() > dateVoceria43.getTime() ) {
+                        if(document.getElementById("mc_info_rs_ap_ECsHorasManuales").value!=0){                        
+                            //si no tiene fecha de evidencia 
+                            if(document.getElementById("mc_info_rs_ap_ECFechaEntregaEvidencia").value==""){
+                                if(document.getElementById("mc_info_rs_ap_ECFechaEntregaHerramienta").value!=""){
+                                    sHerramienta = document.getElementById("mc_info_rs_ap_ECFechaEntregaHerramienta").value;
+                                    sHerramientaHrs= sHerramienta.substr(sHerramienta.indexOf(" ")+1);
+                                    aHerramientaHrs = sHerramientaHrs.split(":");
+                                    sHerramienta = sHerramienta.substr(0,sHerramienta.indexOf(" "));
+                                    aHerramienta = sHerramienta.split("/");
+                                    var dHerramienta= new Date(aHerramienta[2].valueOf(),aHerramienta[1].valueOf()-1,aHerramienta[0].valueOf(),aHerramientaHrs[0].valueOf(),aHerramientaHrs[1].valueOf(),0);
+                                    if((dHerramienta.getTime() > dPropuesta.getTime() )){//se valida si entrego antes la herramienta que la pruesta
+                                        document.getElementById("mc_info_rs_ap_ECCumplioHE").value="0";
+                                    } else {
+                                        document.getElementById("mc_info_rs_ap_ECCumplioHE").value="1";
+                                    }
+                                }
+                            }
+                        }else {
+                            document.getElementById("mc_info_rs_ap_ECCumplioHE").value="";
+                        }
+
+
                 } else {
-                    if(dEvidencia.getTime() > dPropuesta.getTime() ){//se valida si la pruesta es posterior a la evidencia de herramienta
-                        document.getElementById("mc_info_rs_ap_ECCumplioHE").value="0";
-                    } else {
-                        document.getElementById("mc_info_rs_ap_ECCumplioHE").value="1";
-                    }
-                }
-            }
-        }else {
-            document.getElementById("mc_info_rs_ap_ECCumplioHE").value="";
-        }
-                
+
+                        if(document.getElementById("mc_info_rs_ap_ECsHorasManuales").value!=0){
+                            sEvidencia = document.getElementById("mc_info_rs_ap_ECFechaEntregaEvidencia").value;
+                            sEvidenciaHrs = sEvidencia.substr(sEvidencia.indexOf(" ")+1);
+                            aEvidenciaHrs = sEvidenciaHrs.split(":");
+                            sEvidencia = sEvidencia.substr(0,sEvidencia.indexOf(" "));
+                            aEvidencia = sEvidencia.split("/");
+                                        
+                            //si no tiene fecha de evidencia se marca como que no cumple
+                            if(document.getElementById("mc_info_rs_ap_ECFechaEntregaEvidencia").value==""){
+                                document.getElementById("mc_info_rs_ap_ECCumplioHE").value="0";
+                            }else{
+                                var dEvidencia = new Date(aEvidencia[2].valueOf(),aEvidencia[1].valueOf()-1,aEvidencia[0].valueOf(),aEvidenciaHrs[0].valueOf(),aEvidenciaHrs[1].valueOf(),0);
+                                if(document.getElementById("mc_info_rs_ap_ECFechaEntregaHerramienta").value!=""){
+                                    sHerramienta = document.getElementById("mc_info_rs_ap_ECFechaEntregaHerramienta").value;
+                                    sHerramientaHrs= sHerramienta.substr(sHerramienta.indexOf(" ")+1);
+                                    aHerramientaHrs = sHerramientaHrs.split(":");
+                                    sHerramienta = sHerramienta.substr(0,sHerramienta.indexOf(" "));
+                                    aHerramienta = sHerramienta.split("/");
+                                    var dHerramienta= new Date(aHerramienta[2].valueOf(),aHerramienta[1].valueOf()-1,aHerramienta[0].valueOf(),aHerramientaHrs[0].valueOf(),aHerramientaHrs[1].valueOf(),0);
+                                    if(( dEvidencia.getTime() > dPropuesta.getTime()) || (dHerramienta.getTime() > dPropuesta.getTime() )){//se valida si entrego antes la evidencia que la pruesta
+                                        document.getElementById("mc_info_rs_ap_ECCumplioHE").value="0";
+                                    } else {
+                                        document.getElementById("mc_info_rs_ap_ECCumplioHE").value="1";
+                                    }
+                                } else {
+                                    if(dEvidencia.getTime() > dPropuesta.getTime() ){//se valida si la pruesta es posterior a la evidencia de herramienta
+                                        document.getElementById("mc_info_rs_ap_ECCumplioHE").value="0";
+                                    } else {
+                                        document.getElementById("mc_info_rs_ap_ECCumplioHE").value="1";
+                                    }
+                                }
+                            }
+                        }else {
+                            document.getElementById("mc_info_rs_ap_ECCumplioHE").value="";
+                        }
+                }                
        //si es menor y tiene más de 400Hrs No Cumple 
        if(document.getElementById("mc_info_rs_ap_ECsTipoRequerimiento").value == 3){
             if(document.getElementById("mc_info_rs_ap_ECsHorasManuales").value > 400){
@@ -325,9 +352,14 @@ function addObservaciones(){
             sObservaciones= sObservaciones + "no aplica. Ya que así fué autorizado por el MG para este caso en particular";
     }
         
-        sObservaciones = sObservaciones +  " la propuesta se carga el " + document.getElementById("mc_info_rs_ap_ECFechaEntregaPropuesta").value;
-        sObservaciones = sObservaciones +  " y la evidencia se carga el día  " + document.getElementById("mc_info_rs_ap_ECFechaEntregaEvidencia").value;
-    
+        sObservaciones = sObservaciones +  " La propuesta se carga el " + document.getElementById("mc_info_rs_ap_ECFechaEntregaPropuesta").value;
+                //Debido a la vocería 43 se agrega esta condición, aplica sólo con fechas de asignación superiores al 17 de Oct de 2016, se deja de tomar como requerido la fecha de evidencia
+        if (document.getElementById("mc_info_rs_ap_ECFechaEntregaEvidencia").value!="") { 
+                sObservaciones = sObservaciones +  " y la evidencia se carga el día  " + document.getElementById("mc_info_rs_ap_ECFechaEntregaEvidencia").value + " ";
+		} else {
+				sObservaciones = sObservaciones +  " y la herramienta se carga el día  " + document.getElementById("mc_info_rs_ap_ECFechaEntregaHerramienta").value  + " ";
+		}
+
         sPropuesta = document.getElementById("mc_info_rs_ap_ECFechaEntregaPropuesta").value;
         sEvidencia = document.getElementById("mc_info_rs_ap_ECFechaEntregaEvidencia").value;
         
@@ -365,23 +397,57 @@ function addObservaciones(){
 
         
         //se convierte en fecha la evidencia para poder comparar        
-        sEvidencia = document.getElementById("mc_info_rs_ap_ECFechaEntregaEvidencia").value;
-        sEvidenciaHrs = sEvidencia.substr(sEvidencia.indexOf(" ")+1);
-        aEvidenciaHrs = sEvidenciaHrs.split(":");
-        sEvidencia = sEvidencia.substr(0,sEvidencia.indexOf(" "));
-        aEvidencia = sEvidencia.split("/");
-        var dEvidencia = new Date(aEvidencia[2].valueOf(),aEvidencia[1].valueOf()-1,aEvidencia[0].valueOf(),aEvidenciaHrs[0].valueOf(),aEvidenciaHrs[1].valueOf(),0);
+        //Debido a la vocería 43 se agrega esta condición, aplica sólo con fechas de asignación superiores al 17 de Oct de 2016 
+        //se convierte en fecha la asignacon para poder comparar        
+        sAsignacion = document.getElementById("mc_info_rs_ap_ECFechaAsignacion").value;
+        sAsignacionHrs = sAsignacion.substr(sAsignacion.indexOf(" ")+1);
+        sAsignacionHrs = sAsignacionHrs.split(":");
+        sAsignacion = sAsignacion.substr(0,sAsignacion.indexOf(" "));
+        aAsignacion = sAsignacion.split("/");
+        
+        var dAsignacion =  new Date(aAsignacion[2].valueOf(),aAsignacion[1].valueOf()-1,aAsignacion[0].valueOf(),aAsignacionHrs[0].valueOf(),aAsignacionHrs[1].valueOf(),0);
+        var dAsignacion2 = new Date(aAsignacion[2].valueOf(),aAsignacion[1].valueOf()-1,aAsignacion[0].valueOf(),aAsignacionHrs[0].valueOf(),aAsignacionHrs[1].valueOf(),0);
 
-        if(dPropuesta > dEvidencia){
-                sObservaciones = sObservaciones  + " de forma previa a la propuesta. ";
+
+        dateVoceria43 = new Date("October 17,2016 18:40:00");
+        if ( dAsignacion.getTime() < dateVoceria43.getTime() ) {   
+                sEvidencia = document.getElementById("mc_info_rs_ap_ECFechaEntregaEvidencia").value;
+                sEvidenciaHrs = sEvidencia.substr(sEvidencia.indexOf(" ")+1);
+                aEvidenciaHrs = sEvidenciaHrs.split(":");
+                sEvidencia = sEvidencia.substr(0,sEvidencia.indexOf(" "));
+                aEvidencia = sEvidencia.split("/");
+                var dEvidencia = new Date(aEvidencia[2].valueOf(),aEvidencia[1].valueOf()-1,aEvidencia[0].valueOf(),aEvidenciaHrs[0].valueOf(),aEvidenciaHrs[1].valueOf(),0);
+        
+                if(dPropuesta > dEvidencia){
+                    sObservaciones = sObservaciones  + " de forma previa a la propuesta. ";
                 } else {
-                        if(dPropuesta < dEvidencia){
-                        sObservaciones = sObservaciones  + " de forma posterior a la propuesta. ";
+                      if(dPropuesta < dEvidencia){
+                       	sObservaciones = sObservaciones  + " de forma posterior a la propuesta. ";
+                	  } else {
+                   		sObservaciones = sObservaciones  + " a la misma hora que la propuesta. ";
+                      }
+                }
+
+		} else {
+                sHerramienta = document.getElementById("mc_info_rs_ap_ECFechaEntregaHerramienta").value;
+                sHerramientaHrs = sHerramienta.substr(sHerramienta.indexOf(" ")+1);
+                aHerramientaHrs = sHerramientaHrs.split(":");
+                sHerramienta = sHerramienta.substr(0,sHerramienta.indexOf(" "));
+                aHerramienta = sHerramienta.split("/");
+                var dHerramienta = new Date(aHerramienta[2].valueOf(),aHerramienta[1].valueOf()-1,aHerramienta[0].valueOf(),aHerramientaHrs[0].valueOf(),aHerramientaHrs[1].valueOf(),0);
+        
+                if(dPropuesta > dHerramienta){
+                    sObservaciones = sObservaciones  + " de forma previa a la propuesta. ";
                 } else {
-                sObservaciones = sObservaciones  + " a la misma hora que la propuesta. ";
-           }
-        }
-    /*    
+                      if(dPropuesta < dHerramienta){
+                       	sObservaciones = sObservaciones  + " de forma posterior a la propuesta. ";
+                	  } else {
+                   		sObservaciones = sObservaciones  + " a la misma hora que la propuesta. ";
+                      }
+                }
+
+		}
+/*    
     if(document.getElementById("mc_info_rs_ap_ECCumplioHE").checked){
                 sObservaciones = sObservaciones  + "Dicha evidencia no cumple ";
     } else {

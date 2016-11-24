@@ -1787,7 +1787,7 @@ class clsmc_universo_cds1DataSource extends clsDBcnDisenio {  //mc_universo_cds1
     }
 //End Open Method
 
-//SetValues Method @57-60021E68
+//SetValues Method @57-971A32C7
     function SetValues()
     {
         $this->id->SetDBValue(trim($this->f("id")));
@@ -1800,7 +1800,7 @@ class clsmc_universo_cds1DataSource extends clsDBcnDisenio {  //mc_universo_cds1
         $this->hdID->SetDBValue($this->f("id"));
         $this->descartar_manual->SetDBValue($this->f("descartar_manual"));
         $this->notas_manual->SetDBValue($this->f("notas_manual"));
-        $this->Medido->SetDBValue(trim($this->f("Medido")));
+        $this->Medido->SetDBValue(trim($this->f("medido")));
         $this->IdEstimacion->SetDBValue($this->f("IdEstimacion"));
     }
 //End SetValues Method

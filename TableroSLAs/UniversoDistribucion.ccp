@@ -102,12 +102,12 @@
 					<Features/>
 				</ListBox>
 				<Link id="166" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link1" PathID="mc_c_proveedor_mc_EfPresuLink1" hrefSource="ListadoMes.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'UniversoExcel','textSourceDB':'','hrefSource':'ListadoMes.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
-<Events/>
-<LinkParameters/>
-<Attributes/>
-<Features/>
-</Link>
-</Components>
+					<Events/>
+					<LinkParameters/>
+					<Attributes/>
+					<Features/>
+				</Link>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
@@ -528,7 +528,7 @@ where mes = {sMes} and anio = {sAnio})" boundColumn="Usuario" textColumn="Usuari
 					<Attributes/>
 					<Features/>
 				</Label>
-				<CheckBox id="107" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" defaultValue="Unchecked" name="Medido" PathID="mc_universo_cds1Medido" fieldSource="Medido" checkedValue="1" uncheckedValue="0">
+				<CheckBox id="107" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" defaultValue="Unchecked" name="Medido" PathID="mc_universo_cds1Medido" fieldSource="medido" checkedValue="1" uncheckedValue="0">
 					<Components/>
 					<Events/>
 					<Attributes/>

@@ -102,6 +102,16 @@ function Header_BeforeShow(& $sender)
         }
    
     global $id_repo;
+    
+    if ((CCGetUserLogin()=="fjaime"))
+    {
+    
+    if ( CCGetParam("fullscreen",0)==1) {    	
+    	$Component->img_abre_pantalla->SetValue("images/cierra_verde.jpg");
+    	$Component->img_abre_pantalla->SetLink(str_replace("fullscreen=0","fullscreen=1",$Component->img_abre_pantalla->GetLink()));
+    }
+    } 
+    
     $id_repo=CCGetParam("IdReporte",0) ; 
    if($id_repo<1)
     	$Component->img_abre_pantalla->Visible=false;

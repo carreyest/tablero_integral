@@ -79,7 +79,7 @@ function ReportesMyM_Nombre_BeforeShow(& $sender)
 
 //Custom Code @38-2A29BDB7
 // -------------------------
-    
+   
     if($ReportesMyM->activo->GetValue()==1){
     	if($ReportesMyM->Nombre->GetValue()=="Tendencias de Niveles de Servicio"){
     		$ReportesMyM->Nombre->SetLink("Charts/Charts.php");

@@ -45,7 +45,7 @@ class clsRecordproceso_carga_archivos { //proceso_carga_archivos Class @2-B88AA5
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-E62C4099
+//Class_Initialize Event @2-9150D237
     function clsRecordproceso_carga_archivos($RelativePath, & $Parent)
     {
 
@@ -110,9 +110,22 @@ class clsRecordproceso_carga_archivos { //proceso_carga_archivos Class @2-B88AA5
             $this->db_destino->Values = array(array("Reportes_ACDMA", "Reportes_ACDMA"), array("TableroMyM_SDMA4", "TableroMyM_SDMA4"), array("archivosxls", "archivosxls"), array("MesaControl_Prod", "MesaControl_Prod"), array("MesaControlHistorico_Desa", "MesaControlHistorico_Desa"), array("replica_mcam", "replica_mcam"), array("replica_mcam_temp", "replica_mcam_temp"), array("replica_mcam_v2", "replica_mcam_v2"), array("Tablero_MesaControl_Pruebas", "Tablero_MesaControl_Pruebas"));
             $this->db_destino->Required = true;
             $this->campo_grupo = new clsControl(ccsTextBox, "campo_grupo", "campo_grupo", ccsText, "", CCGetRequestParam("campo_grupo", $Method, NULL), $this);
+            $this->carga_metricas = new clsControl(ccsCheckBox, "carga_metricas", "carga_metricas", ccsBoolean, $CCSLocales->GetFormatInfo("BooleanFormat"), CCGetRequestParam("carga_metricas", $Method, NULL), $this);
+            $this->carga_metricas->CheckedValue = true;
+            $this->carga_metricas->UncheckedValue = false;
+            $this->eliminar = new clsControl(ccsCheckBox, "eliminar", "eliminar", ccsBoolean, $CCSLocales->GetFormatInfo("BooleanFormat"), CCGetRequestParam("eliminar", $Method, NULL), $this);
+            $this->eliminar->CheckedValue = true;
+            $this->eliminar->UncheckedValue = false;
+            $this->ListBox1 = new clsControl(ccsListBox, "ListBox1", "ListBox1", ccsText, "", CCGetRequestParam("ListBox1", $Method, NULL), $this);
+            $this->ListBox1->DSType = dsListOfValues;
+            $this->ListBox1->Values = array(array("SOFTTEK", "SOFTTEK"), array("HP", "HP"), array("CAPC", "CAPC"), array("TODOS", "TODOS"));
             if(!$this->FormSubmitted) {
                 if(!is_array($this->campo_indice_identity->Value) && !strlen($this->campo_indice_identity->Value) && $this->campo_indice_identity->Value !== false)
                     $this->campo_indice_identity->SetValue(false);
+                if(!is_array($this->carga_metricas->Value) && !strlen($this->carga_metricas->Value) && $this->carga_metricas->Value !== false)
+                    $this->carga_metricas->SetValue(false);
+                if(!is_array($this->eliminar->Value) && !strlen($this->eliminar->Value) && $this->eliminar->Value !== false)
+                    $this->eliminar->SetValue(false);
             }
         }
     }
@@ -129,7 +142,7 @@ class clsRecordproceso_carga_archivos { //proceso_carga_archivos Class @2-B88AA5
     }
 //End Initialize Method
 
-//Validate Method @2-3D94B05D
+//Validate Method @2-728A184F
     function Validate()
     {
         global $CCSLocales;
@@ -151,6 +164,9 @@ class clsRecordproceso_carga_archivos { //proceso_carga_archivos Class @2-B88AA5
         $Validation = ($this->cve_carga->Validate() && $Validation);
         $Validation = ($this->db_destino->Validate() && $Validation);
         $Validation = ($this->campo_grupo->Validate() && $Validation);
+        $Validation = ($this->carga_metricas->Validate() && $Validation);
+        $Validation = ($this->eliminar->Validate() && $Validation);
+        $Validation = ($this->ListBox1->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->descripcion->Errors->Count() == 0);
         $Validation =  $Validation && ($this->mascara_archivo->Errors->Count() == 0);
@@ -168,11 +184,14 @@ class clsRecordproceso_carga_archivos { //proceso_carga_archivos Class @2-B88AA5
         $Validation =  $Validation && ($this->cve_carga->Errors->Count() == 0);
         $Validation =  $Validation && ($this->db_destino->Errors->Count() == 0);
         $Validation =  $Validation && ($this->campo_grupo->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->carga_metricas->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->eliminar->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->ListBox1->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @2-693823C7
+//CheckErrors Method @2-63A302EE
     function CheckErrors()
     {
         $errors = false;
@@ -192,6 +211,9 @@ class clsRecordproceso_carga_archivos { //proceso_carga_archivos Class @2-B88AA5
         $errors = ($errors || $this->cve_carga->Errors->Count());
         $errors = ($errors || $this->db_destino->Errors->Count());
         $errors = ($errors || $this->campo_grupo->Errors->Count());
+        $errors = ($errors || $this->carga_metricas->Errors->Count());
+        $errors = ($errors || $this->eliminar->Errors->Count());
+        $errors = ($errors || $this->ListBox1->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -246,7 +268,7 @@ class clsRecordproceso_carga_archivos { //proceso_carga_archivos Class @2-B88AA5
     }
 //End Operation Method
 
-//InsertRow Method @2-6166F44F
+//InsertRow Method @2-F07160E3
     function InsertRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
@@ -267,13 +289,16 @@ class clsRecordproceso_carga_archivos { //proceso_carga_archivos Class @2-B88AA5
         $this->DataSource->cve_carga->SetValue($this->cve_carga->GetValue(true));
         $this->DataSource->db_destino->SetValue($this->db_destino->GetValue(true));
         $this->DataSource->campo_grupo->SetValue($this->campo_grupo->GetValue(true));
+        $this->DataSource->carga_metricas->SetValue($this->carga_metricas->GetValue(true));
+        $this->DataSource->eliminar->SetValue($this->eliminar->GetValue(true));
+        $this->DataSource->ListBox1->SetValue($this->ListBox1->GetValue(true));
         $this->DataSource->Insert();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterInsert", $this);
         return (!$this->CheckErrors());
     }
 //End InsertRow Method
 
-//UpdateRow Method @2-657145D0
+//UpdateRow Method @2-87A436EA
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
@@ -294,6 +319,9 @@ class clsRecordproceso_carga_archivos { //proceso_carga_archivos Class @2-B88AA5
         $this->DataSource->cve_carga->SetValue($this->cve_carga->GetValue(true));
         $this->DataSource->db_destino->SetValue($this->db_destino->GetValue(true));
         $this->DataSource->campo_grupo->SetValue($this->campo_grupo->GetValue(true));
+        $this->DataSource->carga_metricas->SetValue($this->carga_metricas->GetValue(true));
+        $this->DataSource->eliminar->SetValue($this->eliminar->GetValue(true));
+        $this->DataSource->ListBox1->SetValue($this->ListBox1->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
         return (!$this->CheckErrors());
@@ -311,7 +339,7 @@ class clsRecordproceso_carga_archivos { //proceso_carga_archivos Class @2-B88AA5
     }
 //End DeleteRow Method
 
-//Show Method @2-E8A85F48
+//Show Method @2-79002A9E
     function Show()
     {
         global $CCSUseAmp;
@@ -328,6 +356,7 @@ class clsRecordproceso_carga_archivos { //proceso_carga_archivos Class @2-B88AA5
         $this->formato_archivo->Prepare();
         $this->periodicidad->Prepare();
         $this->db_destino->Prepare();
+        $this->ListBox1->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -358,6 +387,9 @@ class clsRecordproceso_carga_archivos { //proceso_carga_archivos Class @2-B88AA5
                     $this->cve_carga->SetValue($this->DataSource->cve_carga->GetValue());
                     $this->db_destino->SetValue($this->DataSource->db_destino->GetValue());
                     $this->campo_grupo->SetValue($this->DataSource->campo_grupo->GetValue());
+                    $this->carga_metricas->SetValue($this->DataSource->carga_metricas->GetValue());
+                    $this->eliminar->SetValue($this->DataSource->eliminar->GetValue());
+                    $this->ListBox1->SetValue($this->DataSource->ListBox1->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -382,6 +414,9 @@ class clsRecordproceso_carga_archivos { //proceso_carga_archivos Class @2-B88AA5
             $Error = ComposeStrings($Error, $this->cve_carga->Errors->ToString());
             $Error = ComposeStrings($Error, $this->db_destino->Errors->ToString());
             $Error = ComposeStrings($Error, $this->campo_grupo->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->carga_metricas->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->eliminar->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->ListBox1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -422,6 +457,9 @@ class clsRecordproceso_carga_archivos { //proceso_carga_archivos Class @2-B88AA5
         $this->cve_carga->Show();
         $this->db_destino->Show();
         $this->campo_grupo->Show();
+        $this->carga_metricas->Show();
+        $this->eliminar->Show();
+        $this->ListBox1->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -432,7 +470,7 @@ class clsRecordproceso_carga_archivos { //proceso_carga_archivos Class @2-B88AA5
 
 class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_carga_archivosDataSource Class @2-C2127757
 
-//DataSource Variables @2-5575ECED
+//DataSource Variables @2-2FD7D80C
     public $Parent = "";
     public $CCSEvents = "";
     public $CCSEventResult;
@@ -465,9 +503,12 @@ class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_ca
     public $cve_carga;
     public $db_destino;
     public $campo_grupo;
+    public $carga_metricas;
+    public $eliminar;
+    public $ListBox1;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-E4D38297
+//DataSourceClass_Initialize Event @2-AD125F34
     function clsproceso_carga_archivosDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -505,6 +546,12 @@ class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_ca
         
         $this->campo_grupo = new clsField("campo_grupo", ccsText, "");
         
+        $this->carga_metricas = new clsField("carga_metricas", ccsBoolean, $this->BooleanFormat);
+        
+        $this->eliminar = new clsField("eliminar", ccsBoolean, $this->BooleanFormat);
+        
+        $this->ListBox1 = new clsField("ListBox1", ccsText, "");
+        
 
         $this->InsertFields["descripcion"] = array("Name" => "descripcion", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["mascara_archivo"] = array("Name" => "mascara_archivo", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
@@ -522,6 +569,9 @@ class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_ca
         $this->InsertFields["cve_carga"] = array("Name" => "cve_carga", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["db_destino"] = array("Name" => "db_destino", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->InsertFields["grupo"] = array("Name" => "grupo", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->InsertFields["carga_metricas"] = array("Name" => "carga_metricas", "Value" => "", "DataType" => ccsBoolean);
+        $this->InsertFields["eliminado"] = array("Name" => "eliminado", "Value" => "", "DataType" => ccsBoolean);
+        $this->InsertFields["proveedor"] = array("Name" => "proveedor", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["descripcion"] = array("Name" => "descripcion", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["mascara_archivo"] = array("Name" => "mascara_archivo", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["formato_archivo"] = array("Name" => "formato_archivo", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
@@ -538,6 +588,9 @@ class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_ca
         $this->UpdateFields["cve_carga"] = array("Name" => "cve_carga", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["db_destino"] = array("Name" => "db_destino", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["grupo"] = array("Name" => "grupo", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["carga_metricas"] = array("Name" => "carga_metricas", "Value" => "", "DataType" => ccsBoolean);
+        $this->UpdateFields["eliminado"] = array("Name" => "eliminado", "Value" => "", "DataType" => ccsBoolean);
+        $this->UpdateFields["proveedor"] = array("Name" => "proveedor", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
     }
 //End DataSourceClass_Initialize Event
 
@@ -567,7 +620,7 @@ class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_ca
     }
 //End Open Method
 
-//SetValues Method @2-6AFFF0C2
+//SetValues Method @2-17D8F061
     function SetValues()
     {
         $this->descripcion->SetDBValue($this->f("descripcion"));
@@ -586,10 +639,13 @@ class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_ca
         $this->cve_carga->SetDBValue($this->f("cve_carga"));
         $this->db_destino->SetDBValue($this->f("db_destino"));
         $this->campo_grupo->SetDBValue($this->f("grupo"));
+        $this->carga_metricas->SetDBValue(trim($this->f("carga_metricas")));
+        $this->eliminar->SetDBValue(trim($this->f("eliminado")));
+        $this->ListBox1->SetDBValue($this->f("proveedor"));
     }
 //End SetValues Method
 
-//Insert Method @2-E9B35C88
+//Insert Method @2-B24FBBB6
     function Insert()
     {
         global $CCSLocales;
@@ -612,6 +668,9 @@ class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_ca
         $this->InsertFields["cve_carga"]["Value"] = $this->cve_carga->GetDBValue(true);
         $this->InsertFields["db_destino"]["Value"] = $this->db_destino->GetDBValue(true);
         $this->InsertFields["grupo"]["Value"] = $this->campo_grupo->GetDBValue(true);
+        $this->InsertFields["carga_metricas"]["Value"] = $this->carga_metricas->GetDBValue(true);
+        $this->InsertFields["eliminado"]["Value"] = $this->eliminar->GetDBValue(true);
+        $this->InsertFields["proveedor"]["Value"] = $this->ListBox1->GetDBValue(true);
         $this->SQL = CCBuildInsert("proceso_carga_archivos", $this->InsertFields, $this);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
@@ -621,7 +680,7 @@ class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_ca
     }
 //End Insert Method
 
-//Update Method @2-16E1C379
+//Update Method @2-C0354B52
     function Update()
     {
         global $CCSLocales;
@@ -645,6 +704,9 @@ class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_ca
         $this->UpdateFields["cve_carga"]["Value"] = $this->cve_carga->GetDBValue(true);
         $this->UpdateFields["db_destino"]["Value"] = $this->db_destino->GetDBValue(true);
         $this->UpdateFields["grupo"]["Value"] = $this->campo_grupo->GetDBValue(true);
+        $this->UpdateFields["carga_metricas"]["Value"] = $this->carga_metricas->GetDBValue(true);
+        $this->UpdateFields["eliminado"]["Value"] = $this->eliminar->GetDBValue(true);
+        $this->UpdateFields["proveedor"]["Value"] = $this->ListBox1->GetDBValue(true);
         $this->SQL = CCBuildUpdate("proceso_carga_archivos", $this->UpdateFields, $this);
         $this->SQL .= strlen($this->Where) ? " WHERE " . $this->Where : $this->Where;
         if (!strlen($this->Where) && $this->Errors->Count() == 0) 
@@ -685,7 +747,7 @@ include_once(RelativePath . "/Header.php");
 
 class clsMenuMenu1 extends clsMenu { //Menu1 class @31-FEAC4CDE
 
-//Class_Initialize Event @31-391691DD
+//Class_Initialize Event @31-B74632F7
     function clsMenuMenu1($RelativePath, & $Parent)
     {
         global $FileName;
@@ -702,7 +764,6 @@ class clsMenuMenu1 extends clsMenu { //Menu1 class @31-FEAC4CDE
         $this->StaticItems[] = array("item_id" => "MenuItem2", "item_id_parent" => null, "item_caption" => "Procesos de carga", "item_url" => array("Page" => "ProcesoCargaAList.php", "Parameters" => null), "item_target" => "_self", "item_title" => "");
         $this->StaticItems[] = array("item_id" => "MenuItem3", "item_id_parent" => null, "item_caption" => "Layouts de procesos de carga", "item_url" => array("Page" => "DetalleLayoutList.php", "Parameters" => null), "item_target" => "_self", "item_title" => "");
         $this->StaticItems[] = array("item_id" => "MenuItem1", "item_id_parent" => null, "item_caption" => "Log ultimas cargas", "item_url" => array("Page" => "UltimasCargas.php", "Parameters" => null), "item_target" => "_self", "item_title" => "");
-        $this->StaticItems[] = array("item_id" => "MenuItem4", "item_id_parent" => null, "item_caption" => "Ejecutar Carga", "item_url" => array("Page" => "ExecCarga.php", "Parameters" => null), "item_target" => "_self", "item_title" => "");
 
         $this->DataSource = new clsMenu1DataSource($this);
         $this->ds = & $this->DataSource;

@@ -132,11 +132,36 @@
 					<PKFields/>
 				</ListBox>
 				<TextBox id="37" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="campo_grupo" PathID="proceso_carga_archivoscampo_grupo" fieldSource="grupo">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<CheckBox id="41" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="carga_metricas" PathID="proceso_carga_archivoscarga_metricas" fieldSource="carga_metricas">
 <Components/>
 <Events/>
 <Attributes/>
 <Features/>
-</TextBox>
+</CheckBox>
+<CheckBox id="42" visible="Yes" fieldSourceType="DBColumn" dataType="Boolean" defaultValue="Unchecked" name="eliminar" PathID="proceso_carga_archivoseliminar" fieldSource="eliminado">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</CheckBox>
+<ListBox id="43" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox1" wizardEmptyCaption="Seleccionar Valor" PathID="proceso_carga_archivosListBox1" fieldSource="proveedor" dataSource="SOFTTEK;SOFTTEK;HP;HP;CAPC;CAPC;TODOS;TODOS">
+<Components/>
+<Events/>
+<TableParameters/>
+<SPParameters/>
+<SQLParameters/>
+<JoinTables/>
+<JoinLinks/>
+<Fields/>
+<PKFields/>
+<Attributes/>
+<Features/>
+</ListBox>
 </Components>
 			<Events/>
 			<TableParameters>
@@ -145,8 +170,8 @@
 			<SPParameters/>
 			<SQLParameters/>
 			<JoinTables>
-				<JoinTable id="25" tableName="proceso_carga_archivos"/>
-			</JoinTables>
+				<JoinTable id="44" tableName="proceso_carga_archivos"/>
+</JoinTables>
 			<JoinLinks/>
 			<Fields/>
 			<PKFields/>
@@ -191,9 +216,9 @@
 			<Attributes/>
 			<MenuItems>
 				<MenuItem id="38" name="MenuItem2" caption="Procesos de carga" url="ProcesoCargaAList.ccp" target="_self"/>
-<MenuItem id="39" name="MenuItem3" caption="Layouts de procesos de carga" url="DetalleLayoutList.ccp" target="_self"/>
-<MenuItem id="40" name="MenuItem1" caption="Log ultimas cargas" url="UltimasCargas.ccp" target="_self"/>
-</MenuItems>
+				<MenuItem id="39" name="MenuItem3" caption="Layouts de procesos de carga" url="DetalleLayoutList.ccp" target="_self"/>
+				<MenuItem id="40" name="MenuItem1" caption="Log ultimas cargas" url="UltimasCargas.ccp" target="_self"/>
+			</MenuItems>
 			<Features/>
 		</Menu>
 	</Components>

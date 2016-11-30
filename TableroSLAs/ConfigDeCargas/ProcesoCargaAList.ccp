@@ -40,7 +40,7 @@
 		<Grid id="6" secured="False" sourceType="SQL" returnValueType="Number" name="proceso_carga_archivos" connection="ConnCarga" pageSizeLimit="100" wizardCaption="List of Proceso Carga Archivos " wizardGridType="Tabular" wizardAllowSorting="True" wizardSortingType="SimpleDir" wizardUsePageScroller="True" wizardAllowInsert="True" wizardAltRecord="False" wizardRecordSeparator="False" wizardAltRecordType="Controls" wizardUseSearch="True" childId="2" dataSource="SELECT periodicidad, campo_indice, campo_fecha_cierre, filas_sin_datos_excel, numero_hoja_excel, tabla_destino, db_destino, repositorio,
 formato_archivo, mascara_archivo, descripcion, cve_carga, grupo 
 FROM proceso_carga_archivos
-WHERE periodicidad LIKE '%{s_keyword}%' 
+WHERE (periodicidad LIKE '%{s_keyword}%' 
 OR campo_indice LIKE '%{s_keyword}%'
 OR campo_fecha_cierre LIKE '%{s_keyword}%'
 OR procedimiento_extra LIKE '%{s_keyword}%'
@@ -51,7 +51,8 @@ OR repositorio LIKE '%{s_keyword}%'
 OR formato_archivo LIKE '%{s_keyword}%'
 OR mascara_archivo LIKE '%{s_keyword}%'
 OR descripcion LIKE '%{s_keyword}%'
-OR  cve_carga LIKE '%{s_keyword}%' " defaultPageSize="20">
+OR  cve_carga LIKE '%{s_keyword}%' )
+AND eliminado != 1" defaultPageSize="20">
 			<Components>
 				<Link id="8" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="proceso_carga_archivos_Insert" hrefSource="ProcesoCargaAMaint.ccp" removeParameters="cve_carga" wizardThemeItem="NavigatorLink" wizardDefaultValue="Add New" PathID="proceso_carga_archivosproceso_carga_archivos_Insert">
 					<Components/>
@@ -244,7 +245,7 @@ OR  cve_carga LIKE '%{s_keyword}%' " defaultPageSize="20">
 			</PKFields>
 			<SPParameters/>
 			<SQLParameters>
-<SQLParameter id="298" dataType="Text" designDefaultValue="semanal" parameterSource="s_keyword" parameterType="URL" variable="s_keyword"/>
+				<SQLParameter id="298" dataType="Text" designDefaultValue="semanal" parameterSource="s_keyword" parameterType="URL" variable="s_keyword"/>
 </SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>

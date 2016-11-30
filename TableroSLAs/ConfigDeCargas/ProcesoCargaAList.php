@@ -548,7 +548,7 @@ class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_ca
     }
 //End Prepare Method
 
-//Open Method @6-BFB44604
+//Open Method @6-C4211B60
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -566,7 +566,8 @@ class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_ca
         "OR formato_archivo LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
         "OR mascara_archivo LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
         "OR descripcion LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
-        "OR  cve_carga LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' ) cnt";
+        "OR  cve_carga LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' \n" .
+        "AND eliminado = 1) cnt";
         $this->SQL = "SELECT periodicidad, campo_indice, campo_fecha_cierre, filas_sin_datos_excel, numero_hoja_excel, tabla_destino, db_destino, repositorio,\n" .
         "formato_archivo, mascara_archivo, descripcion, cve_carga, grupo \n" .
         "FROM proceso_carga_archivos\n" .
@@ -581,7 +582,8 @@ class clsproceso_carga_archivosDataSource extends clsDBConnCarga {  //proceso_ca
         "OR formato_archivo LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
         "OR mascara_archivo LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
         "OR descripcion LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
-        "OR  cve_carga LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' ";
+        "OR  cve_carga LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' \n" .
+        "AND eliminado = 1";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);

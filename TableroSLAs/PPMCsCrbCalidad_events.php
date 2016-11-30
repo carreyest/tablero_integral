@@ -62,6 +62,7 @@ function mc_info_rs_cr_calidad_BeforeShow(& $sender)
 	global $lDocs;
 	global $sServNegocio;
 
+
 	//se va por la información de la estimación
 	$DBcnDisenio->query('SELECT e.estimacion_id, sum(CAST(replace(e.esfuerzo,\',\',\'.\') AS FLOAT)) esfuerzo, e.tipo_unidad, sum(cast(replace(e.unidades_resultantes,\',\',\'.\') AS FLOAT)) unidades_resultantes, ' .
 			' e.requerimiento_relacionado, e.solicitante, max(e.fecha_asignacion) fecha_asignacion, e.ID_PPMC, e.Proveedor, max(e.FECHA_APROBACION) FECHA_APROBACION, u.id_proveedor, max(m.Mes) NomMes ' .
@@ -204,11 +205,14 @@ function mc_info_rs_cr_calidad_BeforeShow(& $sender)
 	    	$mc_info_rs_cr_calidad->btnCalcula->Visible = true;
 	    }
 	    
+	    if($mc_info_rs_cr_calidad->Button_Insert->Visible==true){
+	    	$mc_info_rs_cr_calidad->Button_Update->Visible= false;
+	    }
 		
 		$db->close();
 		if(!$mc_info_rs_cr_calidad->EditMode){
 	 		CalculaIndiceCalidad();   
-	 	}
+		}
     //}
 // -------------------------
 //End Custom Code
@@ -458,7 +462,8 @@ function Page_BeforeShow(& $sender)
     		$lkSiguiente->SetValue("");
     	}
     }
-	
+
+
 	//verifica si ya tienen registros relacionados en los detalles de paquetes, si no los tiene los genera.
 	global $db;
 	$db= new clsDBcnDisenio;
@@ -568,7 +573,7 @@ function InsertaDatosPaquetes(){
 	
 		//inserta los hallazgos	
 		$sSQL='insert into mc_info_detalle_defectos_calidad (Estado, TipoRegistro, Tipo, Paquete, Descripcion, IdRelacionado, Ignorar, IdPadre, Id_ProveedorPaq)' . 
-				' SELECT distinct ESTADO, TIPO_INCIDENCIA, TIPO_DEFECTO, NOMBRE_RDL, DESCRIPCION, ID_DEFECTO, ' .
+				' SELECT distinct ESTADO, TIPO_INCIDENCIA, TIPO_DEFECTO, SUBSTRING(NOMBRE_RDL,1,74), DESCRIPCION, ID_DEFECTO, ' .
 				' case when paq.id_proveedor = u.id_proveedor and  def.NOMBRE_RDL = paq.Paquete  then 0 else 1 end,' . $sId . 
 				' ,paq.Id_proveedor  FROM mc_universo_cds u ' .
 				' inner join mc_detalle_PPMC_Defectos def on def.ID_PPMC = u.numero ' .
@@ -579,7 +584,7 @@ function InsertaDatosPaquetes(){
 				' and ESTADO in (\'Cerrado Corregido\', \'Cerrado Corrección Exitosa\', \'Cerrado Incidente Corregido\', \'Cerrado Prueba Exitosa\',  \'Corregido\', \'Validación\')' .
 				' And Month(Fecha_Carga)= u.mes AND Year(Fecha_Carga)= u.Anio'   ;
 		$db->query($sSQL);    
-	    
+
 	    //inserta los defectos
 		$sSQL='insert into mc_info_detalle_defectos_calidad (Estado, TipoRegistro, Tipo, Paquete, Descripcion, IdRelacionado, Ignorar, IdPadre, Id_ProveedorPaq)' . 
 				' SELECT distinct ESTADO, TIPO_INCIDENCIA, TIPO_DEFECTO, NOMBRE_RDL, DESCRIPCION, ID_DEFECTO, ' .

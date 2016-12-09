@@ -1000,7 +1000,6 @@ function mc_calificacion_incidente_BeforeUpdate(& $sender)
 		//$mc_calificacion_incidente->Obs_Manuales->SetValue($mc_calificacion_incidente->Obs_Manuales->GetValue() .  " Obs. TS: " . $mc_calificacion_incidente->txtCumple_Inc_TiempoSolucion->GetValue());
 	}
 
-	
     // Write your own code here.
 // -------------------------
 //End Custom Code
@@ -1021,6 +1020,8 @@ function mc_calificacion_incidente_BeforeInsert(& $sender)
 
 //Custom Code @285-2A29BDB7
 // -------------------------
+
+
 	if ($valorAtencion!=$mc_calificacion_incidente->Cumple_Inc_TiempoAsignacion->GetValue())
 	{$mc_calificacion_incidente->shTiempoAtencion->SetValue(1);}
 	if ($valorSolucion!=$mc_calificacion_incidente->Cumple_Inc_TiempoSolucion->GetValue())
@@ -1037,6 +1038,8 @@ function mc_calificacion_incidente_BeforeInsert(& $sender)
 	if($mc_calificacion_incidente->txtCumple_Inc_TiempoSolucion->GetValue()!=""){
 		//$mc_calificacion_incidente->Obs_Manuales->SetValue($mc_calificacion_incidente->Obs_Manuales->GetValue() .  " Obs. TS: " . $mc_calificacion_incidente->txtCumple_Inc_TiempoSolucion->GetValue());
 	}
+
+
 // -------------------------
 //End Custom Code
 
@@ -1044,6 +1047,16 @@ function mc_calificacion_incidente_BeforeInsert(& $sender)
     return $mc_calificacion_incidente_BeforeInsert;
 }
 //End Close mc_calificacion_incidente_BeforeInsert
+
+//DEL  // -------------------------
+//DEL  /*
+//DEL   		if (CCGetUserLogin()=="fjaime")
+//DEL  		{
+//DEL  			echo($mc_calificacion_incidente->DataSource->SQL);die;
+//DEL  		}
+//DEL  */
+//DEL      // Write your own code here.
+//DEL  // -------------------------
 
 //mc_info_incidentes3_HorasInvertidas_BeforeShow @114-C527685B
 function mc_info_incidentes3_HorasInvertidas_BeforeShow(& $sender)

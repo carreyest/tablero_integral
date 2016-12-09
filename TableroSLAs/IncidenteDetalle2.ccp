@@ -182,7 +182,7 @@ where i.id_incidente = '{Id_incidente}'
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="449" dataType="Text" designDefaultValue="INC000003376478" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
-</SQLParameters>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -383,7 +383,7 @@ AND i.estado = 'Closed'">
 			<Attributes/>
 			<Features/>
 		</Record>
-		<Record id="143" sourceType="Table" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="mc_calificacion_incidente" connection="cnDisenio" dataSource="mc_calificacion_incidentes_MC" errorSummator="Error" allowCancel="False" recordDeleteConfirmation="False" buttonsType="button" wizardRecordKey="id_incidente" encryptPasswordField="False" wizardUseInterVariables="True" pkIsAutoincrement="True" wizardCaption="{res:mc_calificacion_incidentes_MC_RecordForm}" wizardThemeApplyTo="Page" wizardFormMethod="post" wizardType="Record" changedCaptionRecord="False" recordDirection="Vertical" templatePageRecord="C:/Program Files (x86)/CodeChargeStudio5/Templates/Record/Dialog.ccp|ccsTemplate" recordAddTemplatePanel="False" PathID="mc_calificacion_incidente" returnPage="IncidenteDetalle2.ccp" activeCollection="IFormElements" activeTableType="mc_calificacion_incidentes_MC" customUpdate="mc_calificacion_incidentes_MC" customUpdateType="Table" customInsert="mc_calificacion_incidentes_MC" customInsertType="Table">
+		<Record id="143" sourceType="Table" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="mc_calificacion_incidente" connection="cnDisenio" dataSource="mc_calificacion_incidentes_MC" errorSummator="Error" allowCancel="False" recordDeleteConfirmation="False" buttonsType="button" wizardRecordKey="id_incidente" encryptPasswordField="False" wizardUseInterVariables="True" pkIsAutoincrement="True" wizardCaption="{res:mc_calificacion_incidentes_MC_RecordForm}" wizardThemeApplyTo="Page" wizardFormMethod="post" wizardType="Record" changedCaptionRecord="False" recordDirection="Vertical" templatePageRecord="C:/Program Files (x86)/CodeChargeStudio5/Templates/Record/Dialog.ccp|ccsTemplate" recordAddTemplatePanel="False" PathID="mc_calificacion_incidente" returnPage="IncidenteDetalle2.ccp" activeCollection="UFormElements" activeTableType="mc_calificacion_incidentes_MC" customUpdate="mc_calificacion_incidentes_MC" customUpdateType="Table" customInsert="mc_calificacion_incidentes_MC" customInsertType="Table">
 			<Components>
 				<Button id="145" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="{res:CCS_Insert}" PathID="mc_calificacion_incidenteButton_Insert">
 					<Components/>
@@ -821,7 +821,7 @@ AND i.estado = 'Closed'">
 				<CustomParameter id="403" field="MesReporte" dataType="Text" parameterType="Control" parameterSource="shMes" omitIfEmpty="True"/>
 				<CustomParameter id="404" field="AnioReporte" dataType="Text" parameterType="Control" parameterSource="shAnio" omitIfEmpty="True"/>
 				<CustomParameter id="405" field="id_proveedor" dataType="Text" parameterType="Control" parameterSource="shIdProveedor" omitIfEmpty="True"/>
-				<CustomParameter id="406" field="chkTiempo" dataType="Boolean" parameterType="Control" parameterSource="CheckBox1" omitIfEmpty="True"/>
+				<CustomParameter id="406" field="chkTiempo" dataType="Boolean" parameterType="Control" parameterSource="CheckBox1" omitIfEmpty="False" defaultValue="0"/>
 				<CustomParameter id="407" field="Med_Ate_Mod" dataType="Integer" parameterType="Control" parameterSource="shTiempoAtencion" omitIfEmpty="True"/>
 				<CustomParameter id="408" field="Med_Sol_Mod" dataType="Integer" parameterType="Control" parameterSource="shTiempoSolucion" omitIfEmpty="True"/>
 				<CustomParameter id="409" field="Med_Sop_Mod" dataType="Integer" parameterType="Control" parameterSource="shTiempoSoporte" omitIfEmpty="True"/>
@@ -905,7 +905,6 @@ WHERE Id_incidente = '{Id_incidente}' " errorSummator="Error" allowCancel="False
 			<DSQLParameters/>
 			<DConditions/>
 			<SecurityGroups/>
-
 			<Attributes/>
 			<Features/>
 		</Record>

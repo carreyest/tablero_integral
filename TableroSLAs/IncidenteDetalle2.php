@@ -1434,7 +1434,7 @@ class clsmc_calificacion_incidenteDataSource extends clsDBcnDisenio {  //mc_cali
     public $hslSeveridad;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @143-1267334D
+//DataSourceClass_Initialize Event @143-D256032D
     function clsmc_calificacion_incidenteDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1551,7 +1551,7 @@ class clsmc_calificacion_incidenteDataSource extends clsDBcnDisenio {  //mc_cali
         $this->UpdateFields["MesReporte"] = array("Name" => "[MesReporte]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["AnioReporte"] = array("Name" => "[AnioReporte]", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["id_proveedor"] = array("Name" => "id_proveedor", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->UpdateFields["chkTiempo"] = array("Name" => "[chkTiempo]", "Value" => "", "DataType" => ccsBoolean, "OmitIfEmpty" => 1);
+        $this->UpdateFields["chkTiempo"] = array("Name" => "[chkTiempo]", "Value" => "", "DataType" => ccsBoolean);
         $this->UpdateFields["Med_Ate_Mod"] = array("Name" => "[Med_Ate_Mod]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->UpdateFields["Med_Sol_Mod"] = array("Name" => "[Med_Sol_Mod]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
         $this->UpdateFields["Med_Sop_Mod"] = array("Name" => "[Med_Sop_Mod]", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
@@ -1750,7 +1750,7 @@ class clsmc_calificacion_incidenteDataSource extends clsDBcnDisenio {  //mc_cali
     }
 //End Insert Method
 
-//Update Method @143-A410E2D3
+//Update Method @143-4901B409
     function Update()
     {
         global $CCSLocales;
@@ -1767,7 +1767,7 @@ class clsmc_calificacion_incidenteDataSource extends clsDBcnDisenio {  //mc_cali
         $this->cp["MesReporte"] = new clsSQLParameter("ctrlshMes", ccsText, "", "", $this->shMes->GetValue(true), NULL, false, $this->ErrorBlock);
         $this->cp["AnioReporte"] = new clsSQLParameter("ctrlshAnio", ccsText, "", "", $this->shAnio->GetValue(true), NULL, false, $this->ErrorBlock);
         $this->cp["id_proveedor"] = new clsSQLParameter("ctrlshIdProveedor", ccsText, "", "", $this->shIdProveedor->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["chkTiempo"] = new clsSQLParameter("ctrlCheckBox1", ccsBoolean, $CCSLocales->GetFormatInfo("BooleanFormat"), $this->BooleanFormat, $this->CheckBox1->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["chkTiempo"] = new clsSQLParameter("ctrlCheckBox1", ccsBoolean, $CCSLocales->GetFormatInfo("BooleanFormat"), $this->BooleanFormat, $this->CheckBox1->GetValue(true), 0, false, $this->ErrorBlock);
         $this->cp["Med_Ate_Mod"] = new clsSQLParameter("ctrlshTiempoAtencion", ccsInteger, "", "", $this->shTiempoAtencion->GetValue(true), NULL, false, $this->ErrorBlock);
         $this->cp["Med_Sol_Mod"] = new clsSQLParameter("ctrlshTiempoSolucion", ccsInteger, "", "", $this->shTiempoSolucion->GetValue(true), NULL, false, $this->ErrorBlock);
         $this->cp["Med_Sop_Mod"] = new clsSQLParameter("ctrlshTiempoSoporte", ccsInteger, "", "", $this->shTiempoSoporte->GetValue(true), NULL, false, $this->ErrorBlock);
@@ -1811,6 +1811,8 @@ class clsmc_calificacion_incidenteDataSource extends clsDBcnDisenio {  //mc_cali
             $this->cp["id_proveedor"]->SetValue($this->shIdProveedor->GetValue(true));
         if (!is_null($this->cp["chkTiempo"]->GetValue()) and !strlen($this->cp["chkTiempo"]->GetText()) and !is_bool($this->cp["chkTiempo"]->GetValue())) 
             $this->cp["chkTiempo"]->SetValue($this->CheckBox1->GetValue(true));
+        if (!strlen($this->cp["chkTiempo"]->GetText()) and !is_bool($this->cp["chkTiempo"]->GetValue(true))) 
+            $this->cp["chkTiempo"]->SetText(0);
         if (!is_null($this->cp["Med_Ate_Mod"]->GetValue()) and !strlen($this->cp["Med_Ate_Mod"]->GetText()) and !is_bool($this->cp["Med_Ate_Mod"]->GetValue())) 
             $this->cp["Med_Ate_Mod"]->SetValue($this->shTiempoAtencion->GetValue(true));
         if (!is_null($this->cp["Med_Sol_Mod"]->GetValue()) and !strlen($this->cp["Med_Sol_Mod"]->GetText()) and !is_bool($this->cp["Med_Sol_Mod"]->GetValue())) 

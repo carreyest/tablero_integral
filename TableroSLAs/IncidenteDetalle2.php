@@ -313,7 +313,7 @@ class clsmc_detalle_incidente_avlDataSource extends clsDBcnDisenio {  //mc_detal
     }
 //End Prepare Method
 
-//Open Method @68-3E5659C9
+//Open Method @68-5902F2DC
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -329,8 +329,18 @@ class clsmc_detalle_incidente_avlDataSource extends clsDBcnDisenio {  //mc_detal
         "	inner join mc_c_movimiento m on m.ClaveMovimiento = det.ClaveMovimiento \n" .
         "	left join (select id_incidente, paquete, FechaCarga, Max(FechaFinMov) LiberacionAVL, count(FechaFinMov)  CountPaquete\n" .
         "			from mc_detalle_incidente_avl det \n" .
-        "				where ClaveMovimiento ='38' OR ClaveMovimiento ='49' OR ClaveMovimiento ='36' OR ClaveMovimiento ='47' OR ClaveMovimiento ='40'\n" .
-        "				group by id_incidente, Paquete, FechaCarga  \n" .
+        "				where  (\n" .
+        "						( MONTH(FechaCarga) >= 11 and YEAR(FechaCarga) = 2016 ) OR YEAR(FechaCarga) >= 2017\n" .
+        "						AND\n" .
+        "						ClaveMovimiento in ('38','36','49')\n" .
+        "					   )\n" .
+        "					   OR\n" .
+        "					   (\n" .
+        "						( MONTH(FechaCarga) < 11 and YEAR(FechaCarga) = 2016 ) OR YEAR(FechaCarga) <= 2015\n" .
+        "						AND\n" .
+        "						ClaveMovimiento in ('38','49','36','47','40')\n" .
+        "					   )					   \n" .
+        "group by id_incidente, Paquete, FechaCarga    \n" .
         "	) as r on r.Id_Incidente = det.Id_Incidente and r.Paquete = det.Paquete and MONTH(r.FechaCarga )= u.mes  and YEAR(r.FechaCarga )= u.anio \n" .
         "	left join (select id_incidente, paquete, FechaCarga, SUM(dbo.ufDiffFechasMCSec(FechaInicioMov,FechaFinMov)) TotalSecPaquete\n" .
         "			from mc_detalle_incidente_avl dett\n" .
@@ -357,8 +367,18 @@ class clsmc_detalle_incidente_avlDataSource extends clsDBcnDisenio {  //mc_detal
         "	inner join mc_c_movimiento m on m.ClaveMovimiento = det.ClaveMovimiento \n" .
         "	left join (select id_incidente, paquete, FechaCarga, Max(FechaFinMov) LiberacionAVL, count(FechaFinMov)  CountPaquete\n" .
         "			from mc_detalle_incidente_avl det \n" .
-        "				where ClaveMovimiento ='38' OR ClaveMovimiento ='49' OR ClaveMovimiento ='36' OR ClaveMovimiento ='47' OR ClaveMovimiento ='40'\n" .
-        "				group by id_incidente, Paquete, FechaCarga  \n" .
+        "				where  (\n" .
+        "						( MONTH(FechaCarga) >= 11 and YEAR(FechaCarga) = 2016 ) OR YEAR(FechaCarga) >= 2017\n" .
+        "						AND\n" .
+        "						ClaveMovimiento in ('38','36','49')\n" .
+        "					   )\n" .
+        "					   OR\n" .
+        "					   (\n" .
+        "						( MONTH(FechaCarga) < 11 and YEAR(FechaCarga) = 2016 ) OR YEAR(FechaCarga) <= 2015\n" .
+        "						AND\n" .
+        "						ClaveMovimiento in ('38','49','36','47','40')\n" .
+        "					   )					   \n" .
+        "group by id_incidente, Paquete, FechaCarga    \n" .
         "	) as r on r.Id_Incidente = det.Id_Incidente and r.Paquete = det.Paquete and MONTH(r.FechaCarga )= u.mes  and YEAR(r.FechaCarga )= u.anio \n" .
         "	left join (select id_incidente, paquete, FechaCarga, SUM(dbo.ufDiffFechasMCSec(FechaInicioMov,FechaFinMov)) TotalSecPaquete\n" .
         "			from mc_detalle_incidente_avl dett\n" .

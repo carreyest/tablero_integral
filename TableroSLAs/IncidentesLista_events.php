@@ -113,10 +113,28 @@ function mc_info_incidentes_BeforeShow(& $sender)
 	global $mc_info_incidentesSearch;
   	$miArray = array();
   	
-    //Modificación para llamar a un segundo detalle para aplicar solicitud a partir de Agosto 2016; 
-    
-	    $mesCons = $mc_info_incidentesSearch->s_mes_param->GetValue();
-	    $anioCons = $mc_info_incidentesSearch->s_anio_param->GetValue();
+    //Modificación para llamar a un segundo detalle para aplicar solicitud a partir de Agosto 2016;     
+					
+  	if ($mc_info_incidentesSearch->s_mes_param->GetValue()!=0)
+  	 {
+  	 		 	
+	    	 	
+	    	$mesCons = $mc_info_incidentesSearch->s_mes_param->GetValue();	       
+	    	$anioCons = $mc_info_incidentesSearch->s_anio_param->GetValue();
+/*
+        if ($mc_info_incidentesSearch->s_mes_param->GetValue()>0)	       
+	    	$mesCons = $mc_info_incidentesSearch->s_mes_param->GetValue();	       
+	    else {
+	       	$mesCons=CCDLookUp("mes","mc_universo_cds"," numero = '".$mc_info_incidentes->Id_incidente->GetValue()."' ", $DBcnDisenio);
+	       	echo("|".$mc_info_incidentes->Id_incidente->GetValue());
+	    }
+	       	
+		if ($mc_info_incidentesSearch->s_anio_param->GetValue()!='')
+	    	$anioCons = $mc_info_incidentesSearch->s_anio_param->GetValue();
+	    else
+	    	$anioCons = CCDLookUp("anio","mc_universo_cds"," numero = '".$mc_info_incidentes->Id_incidente->GetValue()."' ", $DBcnDisenio);
+	    	
+*/	  
 	    if (($anioCons==2016 and $mesCons==7)){
 	    	$temp =  $mc_info_incidentes->Id_incidente->GetLink();
 	    	$temp = str_replace("&amp;","&",$temp);
@@ -128,7 +146,7 @@ function mc_info_incidentes_BeforeShow(& $sender)
 			$mc_info_incidentes->Id_incidente->SetLink(str_replace('IncidenteDetalle.php','IncidenteDetalle2.php',$temp));
 	    }
   	
-  	
+  	 }
   	$DBcnDisenio->query($mc_info_incidentes->DataSource->SQL);
   	while ($DBcnDisenio->has_next_record())
   	{
@@ -145,8 +163,8 @@ function mc_info_incidentes_BeforeShow(& $sender)
 
 //echo $miArray[2];
 
-$_SESSION['SQL']= serialize($miArray); //$mc_info_incidentes->DataSource->SQL;
 
+$_SESSION['SQL']= serialize($miArray); //$mc_info_incidentes->DataSource->SQL;
     if(CCGetSession("GrupoValoracion")!="CAPC"){
     	$mc_info_incidentes->analista->Visible=false;
     	$mc_info_incidentes->lAnalista->Visible=false;
@@ -170,6 +188,59 @@ function mc_info_incidentes_BeforeShowRow(& $sender)
 
 //Custom Code @208-2A29BDB7
 // -------------------------
+	global $mc_info_incidentesSearch;
+//echo($mc_info_incidentesSearch->s_mes_param->GetValue());
+	global $DBcnDisenio;
+		
+
+
+  	if ($mc_info_incidentesSearch->s_mes_param->GetValue()==0)
+  	 {
+    	$temp =  $mc_info_incidentes->Id_incidente->GetLink();
+    	$temp = str_replace("&amp;","&",$temp);
+
+ 	 	//Reset de la liga del incidente, debido al cambio en un row anterior
+	    if (strpos($temp,'IncidenteDetalle2.php')!==false) {
+	      $mc_info_incidentes->Id_incidente->SetLink(str_replace('IncidenteDetalle2.php','IncidenteDetalle.php',$temp));
+	      	    		    if 	($mc_info_incidentes->Id_incidente->GetValue()=='INC000005222533') {
+	    	echo("<br>entro en 2 y queda como  : ".$mc_info_incidentes->Id_incidente->GetLink());
+	    } 
+
+	    } 
+	    if (strpos($temp,'IncidenteDetalle3.php')!==false) {
+	      $mc_info_incidentes->Id_incidente->SetLink(str_replace('IncidenteDetalle3.php','IncidenteDetalle.php',$temp));
+	      	    		    if 	($mc_info_incidentes->Id_incidente->GetValue()=='INC000005222533') {
+	    	echo("<br>entro en 3 y queda como  : ".$mc_info_incidentes->Id_incidente->GetLink());
+	    } 
+
+	    } 
+
+
+
+     //Modificación para llamar a un segundo detalle para aplicar solicitud a partir de Agosto 2016;     
+
+      $mesCons=CCDLookUp("mes","mc_universo_cds"," numero = '".$mc_info_incidentes->Id_incidente->GetValue()."' ", $DBcnDisenio);
+	       	
+		if ($mc_info_incidentesSearch->s_anio_param->GetValue()!='')
+	    	$anioCons = $mc_info_incidentesSearch->s_anio_param->GetValue();
+	    else
+	    	$anioCons = CCDLookUp("anio","mc_universo_cds"," numero = '".$mc_info_incidentes->Id_incidente->GetValue()."' ", $DBcnDisenio);
+	    
+	    if (($anioCons==2016 and $mesCons==7)){
+
+	    	$temp =  $mc_info_incidentes->Id_incidente->GetLink();
+	    	$temp = str_replace("&amp;","&",$temp);
+			$mc_info_incidentes->Id_incidente->SetLink(str_replace('IncidenteDetalle.php','IncidenteDetalle3.php',$temp));
+	    }
+	    if (($anioCons==2016 and $mesCons>=8) OR ($anioCons>2016)){
+
+	    	$temp =  $mc_info_incidentes->Id_incidente->GetLink();
+	    	$temp = str_replace("&amp;","&",$temp);
+			$mc_info_incidentes->Id_incidente->SetLink(str_replace('IncidenteDetalle.php','IncidenteDetalle2.php',$temp));
+	    }
+	    
+  	 }
+	 
     // Write your own code here.
 // -------------------------
 //End Custom Code

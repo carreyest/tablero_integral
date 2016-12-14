@@ -202,16 +202,10 @@ function mc_info_incidentes_BeforeShowRow(& $sender)
  	 	//Reset de la liga del incidente, debido al cambio en un row anterior
 	    if (strpos($temp,'IncidenteDetalle2.php')!==false) {
 	      $mc_info_incidentes->Id_incidente->SetLink(str_replace('IncidenteDetalle2.php','IncidenteDetalle.php',$temp));
-	      	    		    if 	($mc_info_incidentes->Id_incidente->GetValue()=='INC000005222533') {
-	    	echo("<br>entro en 2 y queda como  : ".$mc_info_incidentes->Id_incidente->GetLink());
-	    } 
 
 	    } 
 	    if (strpos($temp,'IncidenteDetalle3.php')!==false) {
 	      $mc_info_incidentes->Id_incidente->SetLink(str_replace('IncidenteDetalle3.php','IncidenteDetalle.php',$temp));
-	      	    		    if 	($mc_info_incidentes->Id_incidente->GetValue()=='INC000005222533') {
-	    	echo("<br>entro en 3 y queda como  : ".$mc_info_incidentes->Id_incidente->GetLink());
-	    } 
 
 	    } 
 

@@ -466,6 +466,7 @@ function mc_info_rs_ap_EC_ds_BeforeBuildInsert(& $sender)
     $mc_info_rs_ap_EC->hdUsrAlta->SetValue(CCGetUserLogin());
     $mc_info_rs_ap_EC->hdUsrUltMod->SetValue(CCGetUserLogin());
     
+    
 	//se guarda en califica para obtener el ID
 	$sCumpleRS=$mc_info_rs_ap_EC->CumplioRS->GetValue();
 	if($sCumpleRS == ""){
@@ -848,13 +849,13 @@ function mc_info_rs_cr_RE_RC_Artef2_BeforeShowRow(& $sender)
 //DEL      $mc_info_rs_cr_RE_RC_Artef2->Label1->SetValue ($mc_info_rs_cr_RE_RC_Artef2->RowNumber);
 //DEL  // -------------------------
 
-//Page_BeforeShow @1-C24CACAA
+//Page_BeforeShow @1-672471D5
 function Page_BeforeShow(& $sender)
 {
     $Page_BeforeShow = true;
     $Component = & $sender;
     $Container = & CCGetParentContainer($sender);
-    global $PPMCsCrbDetalle; //Compatibility
+    global $PPMCsCrbDetalle2; //Compatibility
 //End Page_BeforeShow
 
 //Custom Code @23-2A29BDB7
@@ -909,13 +910,13 @@ function Page_BeforeShow(& $sender)
 }
 //End Close Page_BeforeShow
 
-//Page_BeforeOutput @1-DF12B696
+//Page_BeforeOutput @1-48565348
 function Page_BeforeOutput(& $sender)
 {
     $Page_BeforeOutput = true;
     $Component = & $sender;
     $Container = & CCGetParentContainer($sender);
-    global $PPMCsCrbDetalle; //Compatibility
+    global $PPMCsCrbDetalle2; //Compatibility
 //End Page_BeforeOutput
 
 //Custom Code @53-2A29BDB7
@@ -929,13 +930,13 @@ function Page_BeforeOutput(& $sender)
 }
 //End Close Page_BeforeOutput
 
-//Page_AfterInitialize @1-B959BAA8
+//Page_AfterInitialize @1-895105EF
 function Page_AfterInitialize(& $sender)
 {
     $Page_AfterInitialize = true;
     $Component = & $sender;
     $Container = & CCGetParentContainer($sender);
-    global $PPMCsCrbDetalle; //Compatibility
+    global $PPMCsCrbDetalle2; //Compatibility
 //End Page_AfterInitialize
 
 //Custom Code @318-2A29BDB7
@@ -959,9 +960,7 @@ function Page_AfterInitialize(& $sender)
     	$vAnio = $db->f(2);
 	}
 
-
-
-
+    
 
  	if (isset($_FILES['userfile']['name'])) {
 	 	$nombre_archivo = $_FILES['userfile']['name']; 
@@ -1036,7 +1035,7 @@ function Page_AfterInitialize(& $sender)
 							'			when af.DiasNaturalesDesviacion between 4 and 6 then 3 ' . 
 							'			when af.DiasNaturalesDesviacion between 7 and 10 then 5 ' . 
 							'			else ' . 
-							'				case when af.DiasNaturalesDesviacion >35 then 30 + af.DiasNaturalesDesviacion  * 0.143' . 
+							'				case when af.DiasNaturalesDesviacion >35 then 30 + af.DiasNaturalesDesviacion  * 0.2' . 
 							'				else (abs(af.DiasNaturalesDesviacion-5)) end ' . 
 							'		end ' . 
 							'	end ' . 
@@ -1061,6 +1060,29 @@ function Page_AfterInitialize(& $sender)
     return $Page_AfterInitialize;
 }
 //End Close Page_AfterInitialize
+
+//DEL  // -------------------------
+//DEL  
+//DEL      global $mc_info_rs_ap_EC;
+//DEL   	$db = new clsDBcnDisenio;
+//DEL   	$vId= CCGetParam("sID",0);
+//DEL  	$db->query('SELECT numero, mes, anio FROM mc_universo_cds u WHERE u.Id = ' . $vId );
+//DEL  	if($db->next_record()){
+//DEL      	$vIdPPMC = $db->f(0);
+//DEL      	$vMes= $db->f(1);
+//DEL      	$vAnio = $db->f(2);
+//DEL  	}
+//DEL  
+//DEL      if ( ($vMes >= 11 AND $vAnio==2016) OR $vAnio>2016){
+//DEL      	$mc_info_rs_ap_EC->porc_re->SetValue('.2');
+//DEL      }
+//DEL      else {
+//DEL      	$mc_info_rs_ap_EC->porc_re->SetValue('.143');
+//DEL      }
+//DEL  
+//DEL      // Write your own code here.
+//DEL  // -------------------------
+
 
 function CallSOAPCurl($tipoquery,$ItemId, $URLSahrepoint, $GUID_Lista, $GUID_Vista, $GUID_WebId){
 	global $dbSOAPIds;

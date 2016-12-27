@@ -291,12 +291,12 @@ where  isnull(descartar_manual,0)=0 and tipo='PC'
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="224" dataType="Integer" defaultValue="date(&quot;m&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="11" parameterSource="s_mesparam" parameterType="URL" variable="s_mesparam"/>
-<SQLParameter id="225" dataType="Integer" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;)-1,date(&quot;d&quot;),date(&quot;Y&quot;)))" designDefaultValue="2013" parameterSource="s_anioparam" parameterType="URL" variable="s_anioparam"/>
-<SQLParameter id="226" dataType="Integer" defaultValue="CCGetSession(&quot;CDSPreferido&quot;)" designDefaultValue="0" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
-<SQLParameter id="227" dataType="Text" designDefaultValue="eminero" parameterSource="sAnalista" parameterType="URL" variable="sAnalista"/>
-<SQLParameter id="228" dataType="Text" designDefaultValue="0" parameterSource="s_numero" parameterType="URL" variable="s_numero"/>
-<SQLParameter id="229" dataType="Integer" defaultValue="0" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
-</SQLParameters>
+				<SQLParameter id="225" dataType="Integer" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;)-1,date(&quot;d&quot;),date(&quot;Y&quot;)))" designDefaultValue="2013" parameterSource="s_anioparam" parameterType="URL" variable="s_anioparam"/>
+				<SQLParameter id="226" dataType="Integer" defaultValue="CCGetSession(&quot;CDSPreferido&quot;)" designDefaultValue="0" parameterSource="s_id_proveedor" parameterType="URL" variable="s_id_proveedor"/>
+				<SQLParameter id="227" dataType="Text" designDefaultValue="eminero" parameterSource="sAnalista" parameterType="URL" variable="sAnalista"/>
+				<SQLParameter id="228" dataType="Text" designDefaultValue="0" parameterSource="s_numero" parameterType="URL" variable="s_numero"/>
+				<SQLParameter id="229" dataType="Integer" defaultValue="0" parameterSource="sSLO" parameterType="URL" variable="sSLO"/>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -355,7 +355,7 @@ where  isnull(descartar_manual,0)=0 and tipo='PC'
 					<Fields/>
 					<PKFields/>
 				</ListBox>
-				<ListBox id="30" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" name="s_anioparam" fieldSource="anio" wizardIsPassword="False" wizardCaption="Anio" caption="Anio" required="False" unique="False" wizardSize="10" wizardMaxLength="10" PathID="Grid2s_anioparam" sourceType="Table" connection="cnDisenio" dataSource="mc_c_anio" boundColumn="Ano" textColumn="Ano" defaultValue="2014">
+				<ListBox id="30" visible="Yes" fieldSourceType="DBColumn" dataType="Integer" name="s_anioparam" fieldSource="anio" wizardIsPassword="False" wizardCaption="Anio" caption="Anio" required="False" unique="False" wizardSize="10" wizardMaxLength="10" PathID="Grid2s_anioparam" sourceType="Table" connection="cnDisenio" dataSource="mc_c_anio" boundColumn="Ano" textColumn="Ano">
 					<Components/>
 					<Events>
 						<Event name="BeforeBuildSelect" type="Server">

@@ -603,7 +603,7 @@ class clsRecordGrid2 { //Grid2 Class @21-542C3E47
     // Class variables
 //End Variables
 
-//Class_Initialize Event @21-2488C6FE
+//Class_Initialize Event @21-B0B3DCED
     function clsRecordGrid2($RelativePath, & $Parent)
     {
 
@@ -690,8 +690,6 @@ class clsRecordGrid2 { //Grid2 Class @21-542C3E47
                     $this->s_id_proveedor->SetText(CCGetSession("CDSPreferido",""));
                 if(!is_array($this->s_mesparam->Value) && !strlen($this->s_mesparam->Value) && $this->s_mesparam->Value !== false)
                     $this->s_mesparam->SetText(date("m",mktime(0,0,0,date("m"),date("d")-45,date("Y"))));
-                if(!is_array($this->s_anioparam->Value) && !strlen($this->s_anioparam->Value) && $this->s_anioparam->Value !== false)
-                    $this->s_anioparam->SetText(2014);
                 if(!is_array($this->sSLO->Value) && !strlen($this->sSLO->Value) && $this->sSLO->Value !== false)
                     $this->sSLO->SetValue(false);
             }

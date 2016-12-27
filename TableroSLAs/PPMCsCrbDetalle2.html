@@ -215,7 +215,7 @@ function mtoMenor(daysDiff,diasHabiles,DiasPlaneados){
                     var dNatDesviacion = document.getElementById("mc_info_rs_cr_RE_RC_Artef1DiasNaturalesDesviacion").value;
                     if(dNatDesviacion > 35){
                         //dDeductiva = 30 + ((dNatDesviacion -35)*0.143); 
-                    dDeductiva = 30 +dNatDesviacion *0.143;
+                    dDeductiva = 30 +dNatDesviacion *0.2;
                     } else {
                             dDeductiva =  (dNatDesviacion - 5);
                     }
@@ -636,7 +636,7 @@ jQuery(function ($) {
                 <select onchange="MostrarSLA(1)" id="mc_info_rs_ap_EClbSLA" name="{lbSLA_Name}">
                   <option selected value="1">Retraso en entregables</option>
                 </select>
- </td> 
+ <input type="hidden" id="mc_info_rs_ap_ECporc_re" value="{porc_re}" name="{porc_re_Name}"></td> 
               <td colspan="2">&nbsp; 
                 <table width="100%">
                   <tr>

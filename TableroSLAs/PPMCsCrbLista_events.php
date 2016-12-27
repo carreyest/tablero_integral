@@ -35,8 +35,8 @@ function Grid1_BeforeShowRow(& $sender)
     global $aPPMCsAPbValues;
   	array_push($aPPMCsAPbIds,$Grid1->ds->f("Id"));
   	array_push($aPPMCsAPbValues,$Grid1->ds->f("ID_PPMC"));
-	
-	
+	global $DBcnDisenio;
+	global $Grid2;
 	//Requisitos Funcionales
 	$Grid1->CUMPL_REQ_FUNC->Visible=false;
 	if($Grid1->CUMPL_REQ_FUNC->GetValue()==""){
@@ -161,6 +161,54 @@ function Grid1_BeforeShowRow(& $sender)
 	} else {
 		$Grid1->lRevision->SetValue("");
 	}
+
+   //Modificación para llamar a un segundo detalle para aplicar solicitud a partir de Noviembre 2016;     
+
+
+
+ 	 	//Reset de la liga del incidente, debido al cambio en un row anterior
+    	$temp =  $Grid1->lkCumpleHE->GetLink();
+    	$temp = str_replace("&amp;","&",$temp);
+	    if (strpos($temp,'PPMCsCrbDetalle2.php')!==false) {
+	      $Grid1->lkCumpleHE->SetLink(str_replace('PPMCsCrbDetalle2.php','PPMCsCrbDetalle.php',$temp));
+
+	    } 
+		//Lo mismo para la imágen
+    	$temp =  $Grid1->imgCumpleHE->GetLink();
+    	$temp = str_replace("&amp;","&",$temp);
+	    if (strpos($temp,'PPMCsCrbDetalle2.php')!==false) {
+	      $Grid1->imgCumpleHE->SetLink(str_replace('PPMCsCrbDetalle2.php','PPMCsCrbDetalle.php',$temp));
+
+	    } 
+
+
+  	if ($Grid2->s_mesparam->GetValue()==0)
+  		$mesCons=CCDLookUp("mes","mc_universo_cds"," numero = '".$Grid1->ID_PPMC->GetValue()."' AND tipo='PC'", $DBcnDisenio);
+  	else	
+	 	$mesCons = $Grid2->s_mesparam->GetValue();      	
+	 	
+	if ($Grid2->s_anioparam->GetValue()!='')
+		$anioCons = $Grid2->s_anioparam->GetValue();
+	else
+	    $anioCons = CCDLookUp("anio","mc_universo_cds"," numero = '".$Grid1->ID_PPMC->GetValue()."' AND tipo='PC'", $DBcnDisenio);
+
+//echo("Mes: ".$mesCons. " Anio: ".$anioCons."<br>");
+	    
+	    if (($anioCons==2016 and $mesCons>=11) OR ($anioCons>2016)){
+
+	    	$temp =  $Grid1->lkCumpleHE->GetLink();
+	    	$temp = str_replace("&amp;","&",$temp);
+			$Grid1->lkCumpleHE->SetLink(str_replace('PPMCsCrbDetalle.php','PPMCsCrbDetalle2.php',$temp));
+	    	$temp =  $Grid1->imgCumpleHE->GetLink();
+    		$temp = str_replace("&amp;","&",$temp);
+		     $Grid1->imgCumpleHE->SetLink(str_replace('PPMCsCrbDetalle.php','PPMCsCrbDetalle2.php',$temp));
+
+	    }
+	    
+  	 
+	 
+
+
 
 // -------------------------
 

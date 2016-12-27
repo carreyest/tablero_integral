@@ -198,7 +198,9 @@ function calculaSLA(){
         }
 
         var daysDiffRound = Math.round(Math.abs((dAsignacion2-dPropuesta3)/86400000));
+//console.log('daysDiffRound :' + daysDiffRound)
         var HrsDiff  = Math.abs((dAsignacion2-dPropuesta3)/3600000);
+//console.log('HrsDiff :' + HrsDiff)
         var MinsDiff = Math.abs((dAsignacion2-dPropuesta3)/60000);
                 var diasInhabiles = 0;
 
@@ -235,6 +237,7 @@ function calculaSLA(){
         }
                 
         if(iDias*9*60 >= ( (MinsDiff-(diasInhabiles*9*60)-(iTiempoSAT.valueOf()*60))-(15*60*daysDiffRound) ) ){//se verifica si rebasa los días que tenía para entregar la propuesta tomando 9 horas x dia como nuevo requerimiento
+        	//console.log("diasInhabiles*9*60 :" + diasInhabiles*9*60);
             document.getElementById("mc_info_rs_ap_ECCumplioRS").value="1";
         } else {
             document.getElementById("mc_info_rs_ap_ECCumplioRS").value="0";
@@ -245,7 +248,7 @@ function calculaSLA(){
                 document.getElementById("mc_info_rs_ap_ECCumplioRS").value="0";
         }        
                 //Debido a la vocería 43 se agrega esta condición, aplica sólo con fechas de asignación superiores al 17 de Oct de 2016
-                dateVoceria43 = new Date("October 17,2016 18:40:00");
+                dateVoceria43 = new Date("October 17,2016 16:40:00");
                 if ( dAsignacion.getTime() > dateVoceria43.getTime() ) {
                         if(document.getElementById("mc_info_rs_ap_ECsHorasManuales").value!=0){                        
                             //si no tiene fecha de evidencia 
@@ -409,7 +412,7 @@ function addObservaciones(){
         var dAsignacion2 = new Date(aAsignacion[2].valueOf(),aAsignacion[1].valueOf()-1,aAsignacion[0].valueOf(),aAsignacionHrs[0].valueOf(),aAsignacionHrs[1].valueOf(),0);
 
 
-        dateVoceria43 = new Date("October 17,2016 18:40:00");
+        dateVoceria43 = new Date("October 17,2016 16:40:00");
         if ( dAsignacion.getTime() < dateVoceria43.getTime() ) {   
                 sEvidencia = document.getElementById("mc_info_rs_ap_ECFechaEntregaEvidencia").value;
                 sEvidenciaHrs = sEvidencia.substr(sEvidencia.indexOf(" ")+1);
@@ -504,6 +507,10 @@ function addObservaciones(){
         var MinsDiff = Math.abs((dAsignacion-dPropuesta2)/60000);
         var HrsTotal = document.getElementById("mc_info_rs_ap_ECsDiasPropuesta").value*9;
         var diasInhabiles = 0;
+//console.log('dAsignacion :' + dAsignacion);
+//console.log('dPropuesta2 :' + dPropuesta2);
+//console.log('dAsignacion-dPropuesta2 :' + (dAsignacion-dPropuesta2));
+
         if(dAsignacion>dPropuesta){
                 sObservaciones= sObservaciones + "es decir, de forma previa a la asignación de la estimación, lo cual es inconsistente con el proceso y se identifica como una desviación del nivel de servicio";
         }
@@ -535,7 +542,7 @@ function addObservaciones(){
         
         //se obtiene los dias inhabiles sumando fines de semana y festivos
         diasInhabiles = diasFinSemana+iNoHabiles;
-
+		//console.log('diasInhabiles :' + diasInhabiles);
         var iTiempoSAT = document.getElementById("mc_info_rs_ap_ECHorasSAT").value;
         if(iTiempoSAT<=2){
                 iTiempoSAT=0;
@@ -553,6 +560,8 @@ function addObservaciones(){
         var lstTipo = document.getElementById("mc_info_rs_ap_ECsTipoRequerimiento").selectedIndex;
         var lstTipoPPMC = document.getElementById("mc_info_rs_ap_ECsTipoRequerimiento").options;
 //        var diffNeta = (HrsDiff  -(iTiempoSAT.valueOf())-(diasHabiles*9));
+//console.log('MinsDiff : ' + MinsDiff);
+//console.log('daysDiffRound*15*60 : ' + daysDiffRound*15*60);
                 var diffNeta2 = ( ( MinsDiff - (daysDiffRound*15*60) - (diasInhabiles*60*9)-(iTiempoSAT.valueOf()*60) ) /60);
                 var horaDiffNeta2 =Math.floor(diffNeta2);
                 var minDiffNeta2 =Math.floor((diffNeta2-horaDiffNeta2)*60);

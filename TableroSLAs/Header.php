@@ -65,7 +65,7 @@ class clsHeader { //Header class @1-CC982CB1
     }
 //End Operations Method
 
-//Initialize Method @1-CAB37954
+//Initialize Method @1-8DB19633
     function Initialize($Path = "")
     {
         global $FileName;
@@ -106,15 +106,6 @@ class clsHeader { //Header class @1-CC982CB1
         $this->Link2->Page = $this->RelativePath . "EficienciaPresLista.php";
         $this->Link3 = new clsControl(ccsLink, "Link3", "Link3", ccsText, "", CCGetRequestParam("Link3", ccsGet, NULL), $this);
         $this->Link3->Page = $this->RelativePath . "SLAsCAPCLista.php";
-        $this->Panel1 = new clsPanel("Panel1", $this);
-        $this->lSesion = new clsControl(ccsLink, "lSesion", "lSesion", ccsText, "", CCGetRequestParam("lSesion", ccsGet, NULL), $this);
-        $this->lSesion->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
-        $this->lSesion->Page = $this->RelativePath . "CambiarPsw.php";
-        $this->Link1 = new clsControl(ccsLink, "Link1", "Link1", ccsText, "", CCGetRequestParam("Link1", ccsGet, NULL), $this);
-        $this->Link1->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
-        $this->Link1->Page = $this->RelativePath . "Logout.php";
-        $this->img_abre_pantalla = new clsControl(ccsImageLink, "img_abre_pantalla", "img_abre_pantalla", ccsText, "", CCGetRequestParam("img_abre_pantalla", ccsGet, NULL), $this);
-        $this->img_abre_pantalla->Page = $this->RelativePath . "MuestraReporte.php";
         $this->Panel2 = new clsPanel("Panel2", $this);
         $this->Link4 = new clsControl(ccsLink, "Link4", "Link4", ccsText, "", CCGetRequestParam("Link4", ccsGet, NULL), $this);
         $this->Link4->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
@@ -131,6 +122,18 @@ class clsHeader { //Header class @1-CC982CB1
         $this->Link7->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
         $this->Link7->Page = "CargaSegOperativo/rep_seg_operativo.php";
         $this->LabelSeguimientoOperativo = new clsControl(ccsLabel, "LabelSeguimientoOperativo", "LabelSeguimientoOperativo", ccsText, "", CCGetRequestParam("LabelSeguimientoOperativo", ccsGet, NULL), $this);
+        $this->Link8 = new clsControl(ccsLink, "Link8", "Link8", ccsText, "", CCGetRequestParam("Link8", ccsGet, NULL), $this);
+        $this->Link8->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
+        $this->Link8->Page = $this->RelativePath . "CargaMW.php";
+        $this->Panel1 = new clsPanel("Panel1", $this);
+        $this->lSesion = new clsControl(ccsLink, "lSesion", "lSesion", ccsText, "", CCGetRequestParam("lSesion", ccsGet, NULL), $this);
+        $this->lSesion->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
+        $this->lSesion->Page = $this->RelativePath . "CambiarPsw.php";
+        $this->Link1 = new clsControl(ccsLink, "Link1", "Link1", ccsText, "", CCGetRequestParam("Link1", ccsGet, NULL), $this);
+        $this->Link1->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
+        $this->Link1->Page = $this->RelativePath . "Logout.php";
+        $this->img_abre_pantalla = new clsControl(ccsImageLink, "img_abre_pantalla", "img_abre_pantalla", ccsText, "", CCGetRequestParam("img_abre_pantalla", ccsGet, NULL), $this);
+        $this->img_abre_pantalla->Page = $this->RelativePath . "MuestraReporte.php";
         $this->pnlMenu->AddComponent("pnlMenuAdmin", $this->pnlMenuAdmin);
         $this->pnlMenu->AddComponent("Panel3", $this->Panel3);
         $this->pnlMenuAdmin->AddComponent("lkAdmin", $this->lkAdmin);
@@ -140,15 +143,16 @@ class clsHeader { //Header class @1-CC982CB1
         $this->Panel3->AddComponent("lkPPMCCierre", $this->lkPPMCCierre);
         $this->Panel3->AddComponent("Link2", $this->Link2);
         $this->Panel3->AddComponent("Link3", $this->Link3);
-        $this->Panel1->AddComponent("lSesion", $this->lSesion);
-        $this->Panel1->AddComponent("Link1", $this->Link1);
-        $this->Panel1->AddComponent("img_abre_pantalla", $this->img_abre_pantalla);
         $this->Panel2->AddComponent("Link4", $this->Link4);
         $this->Panel2->AddComponent("Link5", $this->Link5);
         $this->Panel4->AddComponent("Link6", $this->Link6);
         $this->Panel4->AddComponent("LabelReportesSitioSAT", $this->LabelReportesSitioSAT);
         $this->Panel4->AddComponent("Link7", $this->Link7);
         $this->Panel4->AddComponent("LabelSeguimientoOperativo", $this->LabelSeguimientoOperativo);
+        $this->Panel4->AddComponent("Link8", $this->Link8);
+        $this->Panel1->AddComponent("lSesion", $this->lSesion);
+        $this->Panel1->AddComponent("Link1", $this->Link1);
+        $this->Panel1->AddComponent("img_abre_pantalla", $this->img_abre_pantalla);
         $this->BindEvents();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnInitializeView", $this);
         $this->lkIncidentes->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
@@ -158,7 +162,7 @@ class clsHeader { //Header class @1-CC982CB1
     }
 //End Initialize Method
 
-//Show Method @1-F869D785
+//Show Method @1-37696A19
     function Show()
     {
         global $Tpl;
@@ -180,9 +184,9 @@ class clsHeader { //Header class @1-CC982CB1
         $this->ImageLink1->Show();
         $this->hdLogoPath->Show();
         $this->pnlMenu->Show();
-        $this->Panel1->Show();
         $this->Panel2->Show();
         $this->Panel4->Show();
+        $this->Panel1->Show();
         $Tpl->Parse();
         $Tpl->block_path = $block_path;
         $TplData = $Tpl->GetVar($this->ComponentName);

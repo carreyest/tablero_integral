@@ -65,7 +65,9 @@ function Header_BeforeShow(& $sender)
     	if(CCGetGroupID()==4 && CCGetSession("GrupoValoracion")=="MyM"){
     		$Component->pnlMenu->Visible=true;
     		$Component->Panel3->Visible=false;
+    		$Component->Panel2->Visible=true;
     		$Component->pnlMenuAdmin->Visible=true;
+    		$Component->Link4->Visible = false;
     	} 
     }
     if(CCGetSession("Rape",0)==1) {
@@ -100,24 +102,42 @@ function Header_BeforeShow(& $sender)
 		
 		    }
         }
+			   	
+
+        if (CCGetUserID()!='') {
+	        global $db;
+		    $db= new clsDBcnDisenio;
+			$carga_metricas = CCDLookUp("carga_metricas" ,"mc_c_usuarios","id= " . CCGetUserID() , $db);
+	    	$db->close();
+	
+		    if($carga_metricas == 0) {
+			   	$Component->Link8->Visible = false;
+		    } else {
+		   	   	$Component->Link8->Visible = true;
+		
+		    }
+        } else {
+		   	   	$Component->Link8->Visible = false;        
+        }
+
+
    
     global $id_repo;
-    
+/*    
     if ((CCGetUserLogin()=="fjaime"))
     {
     
-    if ( CCGetParam("fullscreen",0)==1) {    	
-    	$Component->img_abre_pantalla->SetValue("images/cierra_verde.jpg");
-    	$Component->img_abre_pantalla->SetLink(str_replace("fullscreen=0","fullscreen=1",$Component->img_abre_pantalla->GetLink()));
-    }
+	    if ( CCGetParam("fullscreen",0)==1) {    	
+	    	$Component->img_abre_pantalla->SetValue("images/cierra_verde.jpg");
+	    	$Component->img_abre_pantalla->SetLink(str_replace("fullscreen=0","fullscreen=1",$Component->img_abre_pantalla->GetLink()));
+	    }
     } 
-    
+*/    
     $id_repo=CCGetParam("IdReporte",0) ; 
    if($id_repo<1)
     	$Component->img_abre_pantalla->Visible=false;
     	
-    global $FileName;
-    //echo  $FileName."hola";
+    global $FileName;    
     if ($FileName!="MuestraReporte.php"){
     	$Component->img_abre_pantalla->Visible=false;
    }

@@ -123,6 +123,67 @@
 			<Attributes/>
 			<Features/>
 		</Panel>
+		<Panel id="23" visible="True" generateDiv="False" name="Panel2" wizardInnerHTML="&lt;table&gt;&lt;tr&gt;&lt;td&gt;
+    &lt;div style=&quot;FONT-SIZE: 12px; HEIGHT: 20px; WIDTH: 100px; COLOR: #444444; MARGIN-LEFT: 7px; BACKGROUND-COLOR: #ffffff&quot;&gt;
+		&lt;a href=&quot;{Link4_Src}&quot; id=&quot;HeaderMyMLink4&quot;&gt;Tablero SLAs&lt;/a&gt;&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div style=&quot;FONT-SIZE: 12px; HEIGHT: 20px; WIDTH: 125px; COLOR: #444444; MARGIN-LEFT: 7px; BACKGROUND-COLOR: #ffffff&quot;&gt;
+		&lt;a href=&quot;{Link5_Src}&quot; id=&quot;HeaderMyMLink5&quot;&gt;Métricas y Mediciones&lt;/a&gt; 
+    &lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" PathID="HeaderPanel2">
+			<Components>
+				<Link id="31" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link4" PathID="HeaderPanel2Link4" hrefSource="TableroSLAs.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Tablero SLAs','textSourceDB':'','hrefSource':'TableroSLAs.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
+					<Events/>
+					<LinkParameters/>
+					<Attributes/>
+					<Features/>
+				</Link>
+				<Link id="32" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link5" PathID="HeaderPanel2Link5" hrefSource="MuestraReporte.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Métricas y Mediciones','textSourceDB':'','hrefSource':'MuestraReporte.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
+					<Events/>
+					<LinkParameters/>
+					<Attributes/>
+					<Features/>
+				</Link>
+			</Components>
+			<Events/>
+			<Attributes/>
+			<Features/>
+		</Panel>
+		<Panel id="34" visible="True" generateDiv="False" name="Panel4" PathID="HeaderPanel4">
+			<Components>
+				<Link id="33" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link6" PathID="HeaderPanel4Link6" hrefSource="http://webiterasrv2/sites/SDMA_Reporte/Pages/default.aspx" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Reportes Sitio SAT','textSourceDB':'','hrefSource':'http://webiterasrv2/sites/SDMA_Reporte/Pages/default.aspx','hrefSourceDB':'','title':'','target':'_blank','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
+					<Events/>
+					<LinkParameters/>
+					<Attributes/>
+					<Features/>
+				</Link>
+				<Label id="35" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="LabelReportesSitioSAT" PathID="HeaderPanel4LabelReportesSitioSAT">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Link id="36" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link7" PathID="HeaderPanel4Link7" hrefSource="/CargaSegOperativo/rep_seg_operativo.ccp" wizardUseTemplateBlock="False" linkProperties="{&quot;textSource&quot;:&quot;Seguimiento Operativo&quot;,&quot;textSourceDB&quot;:&quot;&quot;,&quot;hrefSource&quot;:&quot;/CargaSegOperativo/rep_seg_operativo.ccp&quot;,&quot;hrefSourceDB&quot;:&quot;&quot;,&quot;title&quot;:&quot;&quot;,&quot;target&quot;:&quot;&quot;,&quot;name&quot;:&quot;&quot;,&quot;linkParameters&quot;:{&quot;length&quot;:0,&quot;objectType&quot;:&quot;linkParameters&quot;}}">
+					<Components/>
+					<Events/>
+					<LinkParameters/>
+					<Attributes/>
+					<Features/>
+				</Link>
+				<Label id="37" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="LabelSeguimientoOperativo" PathID="HeaderPanel4LabelSeguimientoOperativo">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Link id="38" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link8" PathID="HeaderPanel4Link8" hrefSource="CargaMW.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Carga archivo de métricas','textSourceDB':'','hrefSource':'CargaMW.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
+<Events/>
+<LinkParameters/>
+<Attributes/>
+<Features/>
+</Link>
+</Components>
+			<Events/>
+			<Attributes/>
+			<Features/>
+		</Panel>
 		<Panel id="13" visible="True" generateDiv="False" name="Panel1" wizardInnerHTML=" &lt;td style=&quot;FONT-SIZE: 10px; WIDTH: 25%; FONT-WEIGHT: bold; COLOR: rgb(0,122,173); BACKGROUND-COLOR: rgb(222,222,213)&quot;&gt;
       &lt;div style=&quot;HEIGHT: 24px; COLOR: #444444; MARGIN-LEFT: 7px; BACKGROUND-COLOR: #ffffff&quot;&gt;
         &lt;img style=&quot;MARGIN-TOP: 5px&quot; src=&quot;images/user.png&quot;&gt;&lt;/img&gt;&amp;nbsp;&amp;nbsp;Usuario:&amp;nbsp;{lSesion} 
@@ -155,62 +216,6 @@
 					<Attributes/>
 					<Features/>
 				</ImageLink>
-			</Components>
-			<Events/>
-			<Attributes/>
-			<Features/>
-		</Panel>
-		<Panel id="23" visible="True" generateDiv="False" name="Panel2" wizardInnerHTML="&lt;table&gt;&lt;tr&gt;&lt;td&gt;
-    &lt;div style=&quot;FONT-SIZE: 12px; HEIGHT: 20px; WIDTH: 100px; COLOR: #444444; MARGIN-LEFT: 7px; BACKGROUND-COLOR: #ffffff&quot;&gt;
-		&lt;a href=&quot;{Link4_Src}&quot; id=&quot;HeaderMyMLink4&quot;&gt;Tablero SLAs&lt;/a&gt;&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div style=&quot;FONT-SIZE: 12px; HEIGHT: 20px; WIDTH: 125px; COLOR: #444444; MARGIN-LEFT: 7px; BACKGROUND-COLOR: #ffffff&quot;&gt;
-		&lt;a href=&quot;{Link5_Src}&quot; id=&quot;HeaderMyMLink5&quot;&gt;Métricas y Mediciones&lt;/a&gt; 
-    &lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" PathID="HeaderPanel2">
-			<Components>
-				<Link id="31" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link4" PathID="HeaderPanel2Link4" hrefSource="TableroSLAs.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Tablero SLAs','textSourceDB':'','hrefSource':'TableroSLAs.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
-					<Events/>
-					<LinkParameters/>
-					<Attributes/>
-					<Features/>
-				</Link>
-				<Link id="32" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link5" PathID="HeaderPanel2Link5" hrefSource="MuestraReporte.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Métricas y Mediciones','textSourceDB':'','hrefSource':'MuestraReporte.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
-					<Events/>
-					<LinkParameters/>
-					<Attributes/>
-					<Features/>
-				</Link>
-			</Components>
-			<Events/>
-			<Attributes/>
-			<Features/>
-		</Panel>
-		<Panel id="34" visible="True" generateDiv="False" name="Panel4" PathID="HeaderPanel4">
-			<Components>
-				<Link id="33" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link6" PathID="HeaderPanel4Link6" hrefSource="http://webiterasrv2/sites/SDMA_Reporte/Pages/default.aspx" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Reportes Sitio SAT','textSourceDB':'','hrefSource':'http://webiterasrv2/sites/SDMA_Reporte/Pages/default.aspx','hrefSourceDB':'','title':'','target':'_blank','name':'','linkParameters':{'length':0,'objectType':'linkParameters'}}"><Components/>
-					<Events/>
-					<LinkParameters/>
-					<Attributes/>
-					<Features/>
-				</Link>
-				<Label id="35" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="LabelReportesSitioSAT" PathID="HeaderPanel4LabelReportesSitioSAT">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-
-				</Label>
-				<Link id="36" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Link7" PathID="HeaderPanel4Link7" hrefSource="/CargaSegOperativo/rep_seg_operativo.ccp" wizardUseTemplateBlock="False" linkProperties="{&quot;textSource&quot;:&quot;Seguimiento Operativo&quot;,&quot;textSourceDB&quot;:&quot;&quot;,&quot;hrefSource&quot;:&quot;/CargaSegOperativo/rep_seg_operativo.ccp&quot;,&quot;hrefSourceDB&quot;:&quot;&quot;,&quot;title&quot;:&quot;&quot;,&quot;target&quot;:&quot;&quot;,&quot;name&quot;:&quot;&quot;,&quot;linkParameters&quot;:{&quot;length&quot;:0,&quot;objectType&quot;:&quot;linkParameters&quot;}}">
-<Components/>
-					<Events/>
-					<LinkParameters/>
-					<Attributes/>
-					<Features/>
-				</Link>
-				<Label id="37" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="LabelSeguimientoOperativo" PathID="HeaderPanel4LabelSeguimientoOperativo">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Label>
 			</Components>
 			<Events/>
 			<Attributes/>

@@ -237,7 +237,7 @@ class clsRecordmc_calificacion_capc { //mc_calificacion_capc Class @39-0A320629
 
 class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-584A250C
 
-//Variables @3-8FE0E334
+//Variables @3-E8B19C71
 
     // Public variables
     public $ComponentType = "Grid";
@@ -273,10 +273,9 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
     public $Sorter_CALIDAD_PROD_TERM;
     public $Sorter_DEDUC_OMISION;
     public $Sorter_RETR_ENTREGABLE;
-    public $Sorter_Observaciones;
 //End Variables
 
-//Class_Initialize Event @3-0E885D8E
+//Class_Initialize Event @3-C3BCDC82
     function clsGridmc_c_ServContractual_mc_c($RelativePath, & $Parent)
     {
         global $FileName;
@@ -320,7 +319,6 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
         $this->RETR_ENTREGABLE = new clsControl(ccsLink, "RETR_ENTREGABLE", "RETR_ENTREGABLE", ccsText, "", CCGetRequestParam("RETR_ENTREGABLE", ccsGet, NULL), $this);
         $this->RETR_ENTREGABLE->HTML = true;
         $this->RETR_ENTREGABLE->Page = "SLAsCAPCRetEnt.php";
-        $this->Observaciones = new clsControl(ccsLabel, "Observaciones", "Observaciones", ccsText, "", CCGetRequestParam("Observaciones", ccsGet, NULL), $this);
         $this->Img_CALIDAD_PROD_TERM = new clsControl(ccsImageLink, "Img_CALIDAD_PROD_TERM", "Img_CALIDAD_PROD_TERM", ccsText, "", CCGetRequestParam("Img_CALIDAD_PROD_TERM", ccsGet, NULL), $this);
         $this->Img_CALIDAD_PROD_TERM->Page = "PPMCsCrbCalidadCAPC.php";
         $this->Img_DEDUC_OMISION = new clsControl(ccsImageLink, "Img_DEDUC_OMISION", "Img_DEDUC_OMISION", ccsText, "", CCGetRequestParam("Img_DEDUC_OMISION", ccsGet, NULL), $this);
@@ -340,10 +338,6 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
         $this->Img_REQ_SERV->Page = "SLAsCapcApbDetalle.php";
         $this->Img_CUMPL_REQ_FUN = new clsControl(ccsImageLink, "Img_CUMPL_REQ_FUN", "Img_CUMPL_REQ_FUN", ccsText, "", CCGetRequestParam("Img_CUMPL_REQ_FUN", ccsGet, NULL), $this);
         $this->Img_CUMPL_REQ_FUN->Page = "SLAsCAPCReqFunDetalle.php";
-        $this->DetalleCalidad = new clsControl(ccsLabel, "DetalleCalidad", "DetalleCalidad", ccsText, "", CCGetRequestParam("DetalleCalidad", ccsGet, NULL), $this);
-        $this->Obs_AP = new clsControl(ccsLabel, "Obs_AP", "Obs_AP", ccsText, "", CCGetRequestParam("Obs_AP", ccsGet, NULL), $this);
-        $this->rf_obs = new clsControl(ccsLabel, "rf_obs", "rf_obs", ccsText, "", CCGetRequestParam("rf_obs", ccsGet, NULL), $this);
-        $this->cal_obs = new clsControl(ccsLabel, "cal_obs", "cal_obs", ccsText, "", CCGetRequestParam("cal_obs", ccsGet, NULL), $this);
         $this->Sorter_mc_c_ServContractual_Descripcion = new clsSorter($this->ComponentName, "Sorter_mc_c_ServContractual_Descripcion", $FileName, $this);
         $this->Sorter_numero = new clsSorter($this->ComponentName, "Sorter_numero", $FileName, $this);
         $this->Sorter_Descripcion = new clsSorter($this->ComponentName, "Sorter_Descripcion", $FileName, $this);
@@ -351,7 +345,6 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
         $this->Sorter_CALIDAD_PROD_TERM = new clsSorter($this->ComponentName, "Sorter_CALIDAD_PROD_TERM", $FileName, $this);
         $this->Sorter_DEDUC_OMISION = new clsSorter($this->ComponentName, "Sorter_DEDUC_OMISION", $FileName, $this);
         $this->Sorter_RETR_ENTREGABLE = new clsSorter($this->ComponentName, "Sorter_RETR_ENTREGABLE", $FileName, $this);
-        $this->Sorter_Observaciones = new clsSorter($this->ComponentName, "Sorter_Observaciones", $FileName, $this);
         $this->Navigator = new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpSimple, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
         $this->Link1 = new clsControl(ccsLink, "Link1", "Link1", ccsText, "", CCGetRequestParam("Link1", ccsGet, NULL), $this);
@@ -371,7 +364,7 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
     }
 //End Initialize Method
 
-//Show Method @3-955EA46B
+//Show Method @3-09BA5BB7
     function Show()
     {
         $Tpl = CCGetTemplate($this);
@@ -410,7 +403,6 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
             $this->ControlsVisible["CALIDAD_PROD_TERM"] = $this->CALIDAD_PROD_TERM->Visible;
             $this->ControlsVisible["DEDUC_OMISION"] = $this->DEDUC_OMISION->Visible;
             $this->ControlsVisible["RETR_ENTREGABLE"] = $this->RETR_ENTREGABLE->Visible;
-            $this->ControlsVisible["Observaciones"] = $this->Observaciones->Visible;
             $this->ControlsVisible["Img_CALIDAD_PROD_TERM"] = $this->Img_CALIDAD_PROD_TERM->Visible;
             $this->ControlsVisible["Img_DEDUC_OMISION"] = $this->Img_DEDUC_OMISION->Visible;
             $this->ControlsVisible["Img_RETR_ENTREGABLE"] = $this->Img_RETR_ENTREGABLE->Visible;
@@ -420,10 +412,6 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
             $this->ControlsVisible["Img_HERR_EST_COST"] = $this->Img_HERR_EST_COST->Visible;
             $this->ControlsVisible["Img_REQ_SERV"] = $this->Img_REQ_SERV->Visible;
             $this->ControlsVisible["Img_CUMPL_REQ_FUN"] = $this->Img_CUMPL_REQ_FUN->Visible;
-            $this->ControlsVisible["DetalleCalidad"] = $this->DetalleCalidad->Visible;
-            $this->ControlsVisible["Obs_AP"] = $this->Obs_AP->Visible;
-            $this->ControlsVisible["rf_obs"] = $this->rf_obs->Visible;
-            $this->ControlsVisible["cal_obs"] = $this->cal_obs->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -452,7 +440,6 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
                 $this->RETR_ENTREGABLE->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
                 $this->RETR_ENTREGABLE->Parameters = CCAddParam($this->RETR_ENTREGABLE->Parameters, "s_numero", $this->DataSource->f("numero"));
                 $this->RETR_ENTREGABLE->Parameters = CCAddParam($this->RETR_ENTREGABLE->Parameters, "id", $this->DataSource->f("id"));
-                $this->Observaciones->SetValue($this->DataSource->Observaciones->GetValue());
                 $this->Img_CALIDAD_PROD_TERM->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
                 $this->Img_CALIDAD_PROD_TERM->Parameters = CCAddParam($this->Img_CALIDAD_PROD_TERM->Parameters, "Id", $this->DataSource->f("id"));
                 $this->Img_DEDUC_OMISION->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
@@ -475,10 +462,6 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
                 $this->Img_CUMPL_REQ_FUN->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
                 $this->Img_CUMPL_REQ_FUN->Parameters = CCAddParam($this->Img_CUMPL_REQ_FUN->Parameters, "sID", $this->DataSource->f("id"));
                 $this->Img_CUMPL_REQ_FUN->Parameters = CCAddParam($this->Img_CUMPL_REQ_FUN->Parameters, "s_numero", $this->DataSource->f("numero"));
-                $this->DetalleCalidad->SetValue($this->DataSource->DetalleCalidad->GetValue());
-                $this->Obs_AP->SetValue($this->DataSource->Obs_AP->GetValue());
-                $this->rf_obs->SetValue($this->DataSource->rf_obs->GetValue());
-                $this->cal_obs->SetValue($this->DataSource->cal_obs->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -489,7 +472,6 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
                 $this->CALIDAD_PROD_TERM->Show();
                 $this->DEDUC_OMISION->Show();
                 $this->RETR_ENTREGABLE->Show();
-                $this->Observaciones->Show();
                 $this->Img_CALIDAD_PROD_TERM->Show();
                 $this->Img_DEDUC_OMISION->Show();
                 $this->Img_RETR_ENTREGABLE->Show();
@@ -499,10 +481,6 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
                 $this->Img_HERR_EST_COST->Show();
                 $this->Img_REQ_SERV->Show();
                 $this->Img_CUMPL_REQ_FUN->Show();
-                $this->DetalleCalidad->Show();
-                $this->Obs_AP->Show();
-                $this->rf_obs->Show();
-                $this->cal_obs->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -535,7 +513,6 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
         $this->Sorter_CALIDAD_PROD_TERM->Show();
         $this->Sorter_DEDUC_OMISION->Show();
         $this->Sorter_RETR_ENTREGABLE->Show();
-        $this->Sorter_Observaciones->Show();
         $this->Navigator->Show();
         $this->Link1->Show();
         $Tpl->parse();
@@ -544,7 +521,7 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
     }
 //End Show Method
 
-//GetErrors Method @3-0799AAAD
+//GetErrors Method @3-7DA3C989
     function GetErrors()
     {
         $errors = "";
@@ -555,7 +532,6 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
         $errors = ComposeStrings($errors, $this->CALIDAD_PROD_TERM->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DEDUC_OMISION->Errors->ToString());
         $errors = ComposeStrings($errors, $this->RETR_ENTREGABLE->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->Observaciones->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Img_CALIDAD_PROD_TERM->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Img_DEDUC_OMISION->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Img_RETR_ENTREGABLE->Errors->ToString());
@@ -565,10 +541,6 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
         $errors = ComposeStrings($errors, $this->Img_HERR_EST_COST->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Img_REQ_SERV->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Img_CUMPL_REQ_FUN->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->DetalleCalidad->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->Obs_AP->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->rf_obs->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->cal_obs->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -579,7 +551,7 @@ class clsGridmc_c_ServContractual_mc_c { //mc_c_ServContractual_mc_c class @3-58
 
 class clsmc_c_ServContractual_mc_cDataSource extends clsDBcnDisenio {  //mc_c_ServContractual_mc_cDataSource Class @3-51953D32
 
-//DataSource Variables @3-3E829BD3
+//DataSource Variables @3-A3EC1ED0
     public $Parent = "";
     public $CCSEvents = "";
     public $CCSEventResult;
@@ -598,17 +570,12 @@ class clsmc_c_ServContractual_mc_cDataSource extends clsDBcnDisenio {  //mc_c_Se
     public $CALIDAD_PROD_TERM;
     public $DEDUC_OMISION;
     public $RETR_ENTREGABLE;
-    public $Observaciones;
     public $HERR_EST_COST;
     public $REQ_SERV;
     public $CUMPL_REQ_FUN;
-    public $DetalleCalidad;
-    public $Obs_AP;
-    public $rf_obs;
-    public $cal_obs;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @3-D1304724
+//DataSourceClass_Initialize Event @3-C55EAC96
     function clsmc_c_ServContractual_mc_cDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -628,27 +595,17 @@ class clsmc_c_ServContractual_mc_cDataSource extends clsDBcnDisenio {  //mc_c_Se
         
         $this->RETR_ENTREGABLE = new clsField("RETR_ENTREGABLE", ccsText, "");
         
-        $this->Observaciones = new clsField("Observaciones", ccsText, "");
-        
         $this->HERR_EST_COST = new clsField("HERR_EST_COST", ccsText, "");
         
         $this->REQ_SERV = new clsField("REQ_SERV", ccsText, "");
         
         $this->CUMPL_REQ_FUN = new clsField("CUMPL_REQ_FUN", ccsText, "");
         
-        $this->DetalleCalidad = new clsField("DetalleCalidad", ccsText, "");
-        
-        $this->Obs_AP = new clsField("Obs_AP", ccsText, "");
-        
-        $this->rf_obs = new clsField("rf_obs", ccsText, "");
-        
-        $this->cal_obs = new clsField("cal_obs", ccsText, "");
-        
 
     }
 //End DataSourceClass_Initialize Event
 
-//SetOrder Method @3-4B7535C5
+//SetOrder Method @3-47540220
     function SetOrder($SorterName, $SorterDirection)
     {
         $this->Order = "";
@@ -659,8 +616,7 @@ class clsmc_c_ServContractual_mc_cDataSource extends clsDBcnDisenio {  //mc_c_Se
             "Sorter_Agrupador" => array("Agrupador", ""), 
             "Sorter_CALIDAD_PROD_TERM" => array("CALIDAD_PROD_TERM", ""), 
             "Sorter_DEDUC_OMISION" => array("DEDUC_OMISION", ""), 
-            "Sorter_RETR_ENTREGABLE" => array("RETR_ENTREGABLE", ""), 
-            "Sorter_Observaciones" => array("Observaciones", "")));
+            "Sorter_RETR_ENTREGABLE" => array("RETR_ENTREGABLE", "")));
     }
 //End SetOrder Method
 
@@ -750,7 +706,7 @@ class clsmc_c_ServContractual_mc_cDataSource extends clsDBcnDisenio {  //mc_c_Se
     }
 //End Open Method
 
-//SetValues Method @3-C64B6656
+//SetValues Method @3-A458DE2E
     function SetValues()
     {
         $this->mc_c_ServContractual_Descripcion->SetDBValue($this->f("mc_c_ServContractual_Descripcion"));
@@ -760,14 +716,9 @@ class clsmc_c_ServContractual_mc_cDataSource extends clsDBcnDisenio {  //mc_c_Se
         $this->CALIDAD_PROD_TERM->SetDBValue($this->f("CALIDAD_PROD_TERM"));
         $this->DEDUC_OMISION->SetDBValue($this->f("DEDUC_OMISION"));
         $this->RETR_ENTREGABLE->SetDBValue($this->f("RETR_ENTREGABLE"));
-        $this->Observaciones->SetDBValue($this->f("Observaciones"));
         $this->HERR_EST_COST->SetDBValue($this->f("HERR_EST_COST"));
         $this->REQ_SERV->SetDBValue($this->f("REQ_SERV"));
         $this->CUMPL_REQ_FUN->SetDBValue($this->f("CUMPL_REQ_FUN"));
-        $this->DetalleCalidad->SetDBValue($this->f("DetalleCalidad"));
-        $this->Obs_AP->SetDBValue($this->f("Obs_Ap"));
-        $this->rf_obs->SetDBValue($this->f("obs_rf"));
-        $this->cal_obs->SetDBValue($this->f("obs_cal"));
     }
 //End SetValues Method
 

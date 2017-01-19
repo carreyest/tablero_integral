@@ -161,12 +161,6 @@ left join PPMC_PROYECTOS_AS pp on pp.ID_PROYECTO =slas.PPMC_Relacionado and MONT
 					<Attributes/>
 					<Features/>
 				</Sorter>
-				<Sorter id="20" visible="True" name="Sorter_Observaciones" column="Observaciones" wizardCaption="Observaciones" wizardSortingType="SimpleDir" wizardControl="Observaciones" wizardAddNbsp="False" PathID="mc_c_ServContractual_mc_cSorter_Observaciones">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Sorter>
 				<Label id="22" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="mc_c_ServContractual_Descripcion" fieldSource="mc_c_ServContractual_Descripcion" wizardCaption="Mc C Serv Contractual Descripcion" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_c_ServContractual_mc_cmc_c_ServContractual_Descripcion" visible="Yes" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="SLAsCAPCDetalle.ccp" linkProperties="{'textSource':'','textSourceDB':'mc_c_ServContractual_Descripcion','hrefSource':'SLAsCAPCDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'id','parameterName':'id'},'length':1,'objectType':'linkParameters'}}"><Components/>
 					<Events/>
 					<Attributes/>
@@ -228,12 +222,6 @@ left join PPMC_PROYECTOS_AS pp on pp.ID_PROYECTO =slas.PPMC_Relacionado and MONT
 						<LinkParameter id="127" sourceType="DataField" name="id" source="id"/>
 					</LinkParameters>
 				</Link>
-				<Label id="30" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Observaciones" fieldSource="Observaciones" wizardCaption="Observaciones" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_c_ServContractual_mc_cObservaciones">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Label>
 				<Navigator id="31" size="10" type="Simple" pageSizes="1;5;10;25;50" name="Navigator" wizardPagingType="Simple" wizardFirst="True" wizardFirstText="Inicio" wizardPrev="True" wizardPrevText="Anterior" wizardNext="True" wizardNextText="Siguiente" wizardLast="True" wizardLastText="Final" wizardImages="Images" wizardPageNumbers="Simple" wizardSize="10" wizardTotalPages="True" wizardHideDisabled="False" wizardOfText="de" wizardPageSize="True" wizardImagesScheme="{ccs_style}">
 					<Components/>
 					<Events/>
@@ -322,30 +310,6 @@ left join PPMC_PROYECTOS_AS pp on pp.ID_PROYECTO =slas.PPMC_Relacionado and MONT
 						<LinkParameter id="108" sourceType="DataField" name="s_numero" source="numero"/>
 					</LinkParameters>
 				</ImageLink>
-				<Label id="109" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="DetalleCalidad" PathID="mc_c_ServContractual_mc_cDetalleCalidad" fieldSource="DetalleCalidad">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Label>
-				<Label id="114" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Obs_AP" PathID="mc_c_ServContractual_mc_cObs_AP" fieldSource="Obs_Ap">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Label>
-				<Label id="137" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="rf_obs" PathID="mc_c_ServContractual_mc_crf_obs" fieldSource="obs_rf">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Label>
-				<Label id="138" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="cal_obs" PathID="mc_c_ServContractual_mc_ccal_obs" fieldSource="obs_cal">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Label>
 			</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">

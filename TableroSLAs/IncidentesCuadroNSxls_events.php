@@ -55,13 +55,13 @@ function grdIncCuadroNS_BeforeShowRow(& $sender)
     if($grdIncCuadroNS->DataSource->f('nombre')=='Manejo de Incidentes (Tiempo de Solución)'){
 	    switch($grdIncCuadroNS->severidad->GetValue()){
 	    	case 0:
-	    		$grdIncCuadroNS->pena->SetValue('20%');
-	    		break;
-	    	case 1:
 	    		$grdIncCuadroNS->pena->SetValue('15%');
 	    		break;
-	    	case 2:
+	    	case 1:
 	    		$grdIncCuadroNS->pena->SetValue('10%');
+	    		break;
+	    	case 2:
+	    		$grdIncCuadroNS->pena->SetValue('5%');
 	    		break;
 	    	case 3:
 	    		$grdIncCuadroNS->pena->SetValue('5%');

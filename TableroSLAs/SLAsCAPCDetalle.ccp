@@ -344,13 +344,13 @@
 					<Attributes/>
 					<Features/>
 				</CheckBox>
-				<TextArea id="103" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="observacion_salvedad" PathID="mc_calificacion_capcobservacion_salvedad" fieldSource="observacion_salvedad_dpo">
+<TextArea id="104" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="observacion_salvedad" PathID="mc_calificacion_capcobservacion_salvedad" fieldSource="observacion_salvedad_dpo">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextArea>
-			</Components>
+</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>

@@ -44,7 +44,7 @@
                 }
                 // si es el Arquitectura o      Capacitación no aplcia  Deductiva por Omision
                 if(idSC==2 || idSC==3){
-                        dvEficiencia.style.display = "inline";
+                        dvEficiencia.style.display = "none";//A petició de la Mesa vía e-mail 01-02-2017
                         dvCalidad.style.display = "inline";
                         dvDeductiva.style.display = "none";
                         document.getElementById("mc_calificacion_capcDEDUC_OMISION").selectedIndex=0;
@@ -333,13 +333,6 @@ jQuery(function ($) {
  </td> 
                   <td>&nbsp;</td>
                 </tr>
- 
-                <tr class="Controls">
-                  <td class="th">&nbsp;<label for="mc_calificacion_capcevidencia_salvedad" style="display: block;">Evidencia de<br>
-                    Salvedad</label><input type="checkbox" id="mc_calificacion_capcevidencia_salvedad" value="1" name="{evidencia_salvedad_Name}" {evidencia_salvedad}></td> 
-                  <td>&nbsp;<label for="mc_calificacion_capcobservacion_salvedad" style="display: block;">Observaciones evidencia de salvedad</label> <textarea id="mc_calificacion_capcobservacion_salvedad" rows="3" cols="50" name="{observacion_salvedad_Name}">{observacion_salvedad}</textarea></td> 
-                  <td>&nbsp;</td>
-                </tr>
                 <!--
                 <tr class="Controls">
                   <td colspan="3">
@@ -422,6 +415,19 @@ jQuery(function ($) {
                       </table>
                     </div>
                   </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">
+                    <p>&nbsp;<label for="mc_calificacion_capcevidencia_salvedad" style="display: block;">Evidencia de<br>
+                    Salvedad, deductivas</label><label for="mc_calificacion_capcevidencia_salvedad" style="display: block;">por omisión</label><input type="checkbox" id="mc_calificacion_capcevidencia_salvedad" value="1" name="{evidencia_salvedad_Name}" {evidencia_salvedad}></p>
+                  </td> 
+                  <td>
+                    <p>&nbsp;<label for="mc_calificacion_capcobservacion_salvedad" style="display: block;">Observaciones evidencia de salvedad, deductivas por omisión</label></p>
+ 
+                    <p><label for="mc_calificacion_capcobservacion_salvedad" style="display: block;">&nbsp;</label>&nbsp;<textarea id="mc_calificacion_capcobservacion_salvedad" rows="3" cols="50" name="{observacion_salvedad_Name}">{observacion_salvedad}</textarea></p>
+                  </td> 
+                  <td>&nbsp;</td>
                 </tr>
  
                 <tr class="Controls">

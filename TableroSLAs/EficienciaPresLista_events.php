@@ -73,8 +73,10 @@ function mc_eficiencia_presupuesta_ds_AfterExecuteUpdate(& $sender)
 //Custom Code @108-2A29BDB7
 // -------------------------
     // va por el mes y año del CFM Actualizado
+/*
     $db=new clsDBcnDisenio();
     $db1=new clsDBcnDisenio();
+
     $db->Query('select id_proveedor, MesReporte, anioreporte  from mc_eficiencia_presupuestal ' .
     	' where id = '. CCGetParam("Id",0));
     if($db->has_next_record()){
@@ -96,6 +98,7 @@ function mc_eficiencia_presupuesta_ds_AfterExecuteUpdate(& $sender)
     }
     $db->close();
     $db1->close();
+*/    
 // -------------------------
 //End Custom Code
 

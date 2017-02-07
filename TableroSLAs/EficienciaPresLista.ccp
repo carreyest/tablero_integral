@@ -187,15 +187,15 @@ AND (anioreporte = {s_AnioRepote} or {s_AnioRepote}=0 )" pageSizeLimit="100" pag
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="125" dataType="Integer" defaultValue="0" designDefaultValue="3" parameterSource="s_Id_Proveedor" parameterType="URL" variable="s_Id_Proveedor"/>
-<SQLParameter id="126" dataType="Text" designDefaultValue="Todos" parameterSource="s_GrupoAplicativos" parameterType="URL" variable="s_GrupoAplicativos"/>
-<SQLParameter id="127" dataType="Integer" defaultValue="date(&quot;m&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="1" parameterSource="s_MesReporte" parameterType="URL" variable="s_MesReporte"/>
-<SQLParameter id="128" dataType="Integer" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;)-1,date(&quot;d&quot;),date(&quot;Y&quot;)))" designDefaultValue="2014" parameterSource="s_AnioRepote" parameterType="URL" variable="s_AnioRepote"/>
-</SQLParameters>
+				<SQLParameter id="126" dataType="Text" designDefaultValue="Todos" parameterSource="s_GrupoAplicativos" parameterType="URL" variable="s_GrupoAplicativos"/>
+				<SQLParameter id="127" dataType="Integer" defaultValue="date(&quot;m&quot;,mktime(0,0,0,date(&quot;m&quot;),date(&quot;d&quot;)-45,date(&quot;Y&quot;)))" designDefaultValue="1" parameterSource="s_MesReporte" parameterType="URL" variable="s_MesReporte"/>
+				<SQLParameter id="128" dataType="Integer" defaultValue="date(&quot;Y&quot;,mktime(0,0,0,date(&quot;m&quot;)-1,date(&quot;d&quot;),date(&quot;Y&quot;)))" designDefaultValue="2014" parameterSource="s_AnioRepote" parameterType="URL" variable="s_AnioRepote"/>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
 		</Grid>
-		<Record id="54" sourceType="Table" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="mc_eficiencia_presupuesta" connection="cnDisenio" dataSource="mc_eficiencia_presupuestal" errorSummator="Error" allowCancel="False" recordDeleteConfirmation="False" buttonsType="button" wizardRecordKey="Id" encryptPasswordField="False" wizardUseInterVariables="False" pkIsAutoincrement="True" wizardCaption="Eficiencia Presupuestal " wizardThemeApplyTo="Page" wizardFormMethod="post" wizardType="Record" changedCaptionRecord="True" recordDirection="Vertical" recordAddTemplatePanel="False" PathID="mc_eficiencia_presupuesta">
+		<Record id="54" sourceType="Table" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="mc_eficiencia_presupuesta" connection="cnDisenio" dataSource="mc_eficiencia_presupuestal" errorSummator="Error" allowCancel="False" recordDeleteConfirmation="False" buttonsType="button" wizardRecordKey="Id" encryptPasswordField="False" wizardUseInterVariables="False" pkIsAutoincrement="True" wizardCaption="Eficiencia Presupuestal " wizardThemeApplyTo="Page" wizardFormMethod="post" wizardType="Record" changedCaptionRecord="True" recordDirection="Vertical" recordAddTemplatePanel="False" PathID="mc_eficiencia_presupuesta" activeCollection="UFormElements" activeTableType="mc_eficiencia_presupuestal">
 			<Components>
 				<Button id="56" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Agregar" PathID="mc_eficiencia_presupuestaButton_Insert">
 					<Components/>
@@ -343,11 +343,32 @@ AND (anioreporte = {s_AnioRepote} or {s_AnioRepote}=0 )" pageSizeLimit="100" pag
 			</PKFields>
 			<ISPParameters/>
 			<ISQLParameters/>
-			<IFormElements/>
+			<IFormElements>
+<CustomParameter id="130" field="Id_Proveedor" dataType="Integer" parameterType="Control" parameterSource="Id_Proveedor"/>
+<CustomParameter id="131" field="GrupoAplicativos" dataType="Text" parameterType="Control" parameterSource="GrupoAplicativos"/>
+<CustomParameter id="132" field="ServiciosRelacionados" dataType="Text" parameterType="Control" parameterSource="ServiciosRelacionados"/>
+<CustomParameter id="133" field="CFMAnterior" dataType="Float" parameterType="Control" parameterSource="CFMAnterior" format="0.0000"/>
+<CustomParameter id="134" field="CFMActual" dataType="Float" parameterType="Control" parameterSource="CFMActual" format="0.0000"/>
+<CustomParameter id="135" field="EficienciaPresupuestal" dataType="Float" parameterType="Control" parameterSource="EficienciaPresupuestal" format="0.0000"/>
+<CustomParameter id="136" field="CumpleSLA" dataType="Integer" parameterType="Control" parameterSource="CumpleSLA"/>
+<CustomParameter id="137" field="Observaciones" dataType="Text" parameterType="Control" parameterSource="Observaciones"/>
+</IFormElements>
 			<USPParameters/>
 			<USQLParameters/>
-			<UConditions/>
-			<UFormElements/>
+			<UConditions>
+<TableParameter id="138" conditionType="Parameter" useIsNull="False" field="Id" dataType="Integer" parameterType="DataSourceColumn" parameterSource="Id" searchConditionType="Equal" logicOperator="And"/>
+<TableParameter id="139" conditionType="Parameter" useIsNull="False" field="Id" dataType="Integer" parameterType="URL" parameterSource="Id" searchConditionType="Equal" logicOperator="And" orderNumber="1"/>
+</UConditions>
+			<UFormElements>
+<CustomParameter id="140" field="Id_Proveedor" dataType="Integer" parameterType="Control" parameterSource="Id_Proveedor"/>
+<CustomParameter id="141" field="GrupoAplicativos" dataType="Text" parameterType="Control" parameterSource="GrupoAplicativos"/>
+<CustomParameter id="142" field="ServiciosRelacionados" dataType="Text" parameterType="Control" parameterSource="ServiciosRelacionados"/>
+<CustomParameter id="143" field="CFMAnterior" dataType="Float" parameterType="Control" parameterSource="CFMAnterior" format="0.0000"/>
+<CustomParameter id="144" field="CFMActual" dataType="Float" parameterType="Control" parameterSource="CFMActual" format="0.0000"/>
+<CustomParameter id="145" field="EficienciaPresupuestal" dataType="Float" parameterType="Control" parameterSource="EficienciaPresupuestal" format="0.0000"/>
+<CustomParameter id="146" field="CumpleSLA" dataType="Integer" parameterType="Control" parameterSource="CumpleSLA"/>
+<CustomParameter id="147" field="Observaciones" dataType="Text" parameterType="Control" parameterSource="Observaciones"/>
+</UFormElements>
 			<DSPParameters/>
 			<DSQLParameters/>
 			<DConditions/>
@@ -449,10 +470,10 @@ AND (anioreporte = {s_AnioRepote} or {s_AnioRepote}=0 )" pageSizeLimit="100" pag
 	<Attributes/>
 	<Features/>
 	<Events>
-<Event name="BeforeShow" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="129"/>
-</Actions>
-</Event>
-</Events>
+		<Event name="BeforeShow" type="Server">
+			<Actions>
+				<Action actionName="Custom Code" actionCategory="General" id="129"/>
+			</Actions>
+		</Event>
+	</Events>
 </Page>

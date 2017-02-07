@@ -6,6 +6,7 @@
 <meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
 <script language="JavaScript" type="text/javascript">
 //Begin CCS script
+
 //Include Common JSFunctions @1-2504AB44
 </script>
 <script src="ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
@@ -87,8 +88,8 @@ jQuery(function ($) {
 
 //End CCS script
 </script>
-<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css">
-<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/Style_doctype.css" />
+<link rel="stylesheet" type="text/css" href="Styles/{CCS_Style}/jquery-ui.css" />
 </head>
 <body>
 <p>{Header}</p>
@@ -106,22 +107,23 @@ jQuery(function ($) {
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Buscar</strong></td> 
-                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                 </tr>
+ 
               </table>
  
               <table class="Record" cellspacing="0" cellpadding="0">
                 <!-- BEGIN Error -->
                 <tr id="{@error-block}" class="Error">
-                  <td colspan="8">{Error}</td>
+                  <td colspan="8">{Error}</td> 
                 </tr>
-                <!-- END Error -->
+ <!-- END Error -->
                 <tr class="Controls">
                   <td class="th"><label for="mc_eficiencia_presupuesta1s_Id_Proveedor">Id proveedor</label></td> 
                   <td>
                     <select id="mc_eficiencia_presupuesta1s_Id_Proveedor" name="{s_Id_Proveedor_Name}">
                       <option selected value="">Seleccionar valor</option>
-                      {s_Id_Proveedor_Options}
+ {s_Id_Proveedor_Options} 
                     </select>
  </td> 
                   <td class="th"><label for="mc_eficiencia_presupuesta1s_GrupoAplicativos">Grupo aplicativos</label></td> 
@@ -130,30 +132,33 @@ jQuery(function ($) {
                   <td>
                     <select id="mc_eficiencia_presupuesta1s_MesReporte" name="{s_MesReporte_Name}">
                       <option selected value="">Seleccionar valor</option>
-                      {s_MesReporte_Options}
+ {s_MesReporte_Options} 
                     </select>
  </td> 
                   <td class="th"><label for="mc_eficiencia_presupuesta1s_AnioRepote">Año reporte</label></td> 
                   <td>
                     <select id="mc_eficiencia_presupuesta1s_AnioRepote" name="{s_AnioRepote_Name}">
                       <option selected value="">Seleccionar valor</option>
-                      {s_AnioRepote_Options}
+ {s_AnioRepote_Options} 
                     </select>
- </td>
+ </td> 
                 </tr>
  
                 <tr class="Bottom">
                   <td style="TEXT-ALIGN: right" colspan="8">
-                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="mc_eficiencia_presupuesta1Button_DoSearch" class="Button" value="Buscar" alt="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                    <!-- BEGIN Button Button_DoSearch --><input type="submit" id="mc_eficiencia_presupuesta1Button_DoSearch" class="Button" value="Buscar" alt="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch --></td> 
                 </tr>
+ 
               </table>
-            </td>
+ </td> 
           </tr>
+ 
         </table>
+ 
       </form>
-      <!-- END Record mc_eficiencia_presupuesta1 --><br>
+ <!-- END Record mc_eficiencia_presupuesta1 --><br>
     </td> 
-    <td>&nbsp;</td>
+    <td>&nbsp;</td> 
   </tr>
  
   <tr>
@@ -167,13 +172,14 @@ jQuery(function ($) {
               <tr>
                 <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                 <td class="th"><strong>Eficiencia presupuestal </strong></td> 
-                <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
               </tr>
+ 
             </table>
  
             <table class="Grid" cellspacing="0" cellpadding="0">
               <tr class="Row">
-                <td colspan="11">Total de registros:&nbsp;{mc_c_proveedor_mc_eficien_TotalRecords}</td>
+                <td colspan="11">Total de registros:&nbsp;{mc_c_proveedor_mc_eficien_TotalRecords}</td> 
               </tr>
  
               <tr class="Caption">
@@ -228,6 +234,7 @@ jQuery(function ($) {
                 <!-- BEGIN Desc_On --><img alt="Descendente" src="Styles/{CCS_Style}/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_nombre --></th>
  
                 <th scope="col">&nbsp;</th>
+ 
               </tr>
  
               <!-- BEGIN Row -->
@@ -242,20 +249,20 @@ jQuery(function ($) {
                 <td style="TEXT-ALIGN: right">{MesReporte}&nbsp;</td> 
                 <td style="TEXT-ALIGN: right">{AnioRepote}&nbsp;</td> 
                 <td>{nombre}</td> 
-                <td style="TEXT-ALIGN: right">{observaciones}</td>
+                <td style="TEXT-ALIGN: right">{observaciones}</td> 
               </tr>
  <!-- END Row -->
               <!-- BEGIN NoRecords -->
               <tr class="NoRecords">
-                <td colspan="11">No hay registros</td>
+                <td colspan="11">No hay registros</td> 
               </tr>
-              <!-- END NoRecords -->
+ <!-- END NoRecords -->
               <tr class="Footer">
                 <td colspan="11">
                   <!-- BEGIN Navigator Navigator --><span class="Navigator">Registros por página: 
                   <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
                     <option selected value="">-</option>
- {PageSize_Options}
+ {PageSize_Options} 
                   </select>
  
                   <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
@@ -265,14 +272,16 @@ jQuery(function ($) {
                   <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/Next.gif"></a> <!-- END Next_On -->
                   <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
                   <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
-                  <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td>
+                  <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td> 
               </tr>
+ 
             </table>
-          </td>
+ </td> 
         </tr>
+ 
       </table>
-      <!-- END Grid mc_c_proveedor_mc_eficien --></td> 
-    <td>&nbsp;</td>
+ <!-- END Grid mc_c_proveedor_mc_eficien --></td> 
+    <td>&nbsp;</td> 
   </tr>
  
   <tr>
@@ -289,44 +298,45 @@ jQuery(function ($) {
                 <tr>
                   <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                   <td class="th"><strong>Eficiencia presupuestal </strong></td> 
-                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                  <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
                 </tr>
+ 
               </table>
  
               <table class="Record" cellspacing="0" cellpadding="0">
                 <!-- BEGIN Error -->
                 <tr id="ErrorBlock" class="Error">
-                  <td colspan="2">{Error}</td>
+                  <td colspan="2">{Error}</td> 
                 </tr>
-                <!-- END Error -->
+ <!-- END Error -->
                 <tr class="Controls">
                   <td class="th"><label for="mc_eficiencia_presupuestaId_Proveedor">Proveedor</label></td> 
-                  <td><input type="hidden" id="mc_eficiencia_presupuestaId_Proveedor" value="{Id_Proveedor}" name="{Id_Proveedor_Name}">{lProveedor} </td>
+                  <td><input type="hidden" id="mc_eficiencia_presupuestaId_Proveedor" value="{Id_Proveedor}" name="{Id_Proveedor_Name}">{lProveedor} </td> 
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_eficiencia_presupuestaGrupoAplicativos">Grupo aplicativos</label></td> 
-                  <td><input type="hidden" id="mc_eficiencia_presupuestaGrupoAplicativos" value="{GrupoAplicativos}" name="{GrupoAplicativos_Name}">&nbsp;{lGrupoAplicativos}</td>
+                  <td><input type="hidden" id="mc_eficiencia_presupuestaGrupoAplicativos" value="{GrupoAplicativos}" name="{GrupoAplicativos_Name}">&nbsp;{lGrupoAplicativos}</td> 
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_eficiencia_presupuestaServiciosRelacionados">Servicios relacionados</label></td> 
-                  <td><input type="hidden" id="mc_eficiencia_presupuestaServiciosRelacionados" value="{ServiciosRelacionados}" name="{ServiciosRelacionados_Name}">&nbsp;{lServiciosRelacionados}</td>
+                  <td><input type="hidden" id="mc_eficiencia_presupuestaServiciosRelacionados" value="{ServiciosRelacionados}" name="{ServiciosRelacionados_Name}">&nbsp;{lServiciosRelacionados}</td> 
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_eficiencia_presupuestaCFMAnterior">CFMAnterior</label></td> 
-                  <td><input type="hidden" id="mc_eficiencia_presupuestaCFMAnterior" value="{CFMAnterior}" name="{CFMAnterior_Name}">&nbsp;{lCFMAnterior}</td>
+                  <td><input type="hidden" id="mc_eficiencia_presupuestaCFMAnterior" value="{CFMAnterior}" name="{CFMAnterior_Name}">&nbsp;{lCFMAnterior}</td> 
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_eficiencia_presupuestaCFMActual">CFMActual</label></td> 
-                  <td><input type="text" id="mc_eficiencia_presupuestaCFMActual" value="{CFMActual}" maxlength="12" size="12" name="{CFMActual_Name}"></td>
+                  <td><input type="text" id="mc_eficiencia_presupuestaCFMActual" value="{CFMActual}" maxlength="12" size="12" name="{CFMActual_Name}"></td> 
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="mc_eficiencia_presupuestaEficienciaPresupuestal">Eficiencia presupuestal</label></td> 
-                  <td><input type="text" id="mc_eficiencia_presupuestaEficienciaPresupuestal" value="{EficienciaPresupuestal}" maxlength="12" size="12" name="{EficienciaPresupuestal_Name}"></td>
+                  <td><input type="text" id="mc_eficiencia_presupuestaEficienciaPresupuestal" value="{EficienciaPresupuestal}" maxlength="12" size="12" name="{EficienciaPresupuestal_Name}"></td> 
                 </tr>
  
                 <tr class="Controls">
@@ -334,36 +344,39 @@ jQuery(function ($) {
                   <td>
                     <select id="mc_eficiencia_presupuestaCumpleSLA" name="{CumpleSLA_Name}">
                       <option selected value="">No Aplica</option>
-                      {CumpleSLA_Options}
+ {CumpleSLA_Options} 
                     </select>
- </td>
+ </td> 
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">Observaciones</td> 
-                  <td><textarea id="mc_eficiencia_presupuestaObservaciones" rows="6" cols="50" name="{Observaciones_Name}">{Observaciones}</textarea></td>
+                  <td><textarea id="mc_eficiencia_presupuestaObservaciones" rows="6" cols="50" name="{Observaciones_Name}">{Observaciones}</textarea></td> 
                 </tr>
  
                 <tr class="Bottom">
                   <td style="TEXT-ALIGN: right" colspan="2">
                     <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_eficiencia_presupuestaButton_Insert" class="Button" value="Agregar" alt="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
                     <!-- BEGIN Button Button_Update --><input type="submit" id="mc_eficiencia_presupuestaButton_Update" class="Button" value="Guardar" alt="Enviar" name="{Button_Name}" size="20"><!-- END Button Button_Update -->
-                    <!-- BEGIN Button Button_Delete --><input type="submit" id="mc_eficiencia_presupuestaButton_Delete" class="Button" value="Borrar" alt="Borrar" name="{Button_Name}"><!-- END Button Button_Delete --></td>
+                    <!-- BEGIN Button Button_Delete --><input type="submit" id="mc_eficiencia_presupuestaButton_Delete" class="Button" value="Borrar" alt="Borrar" name="{Button_Name}"><!-- END Button Button_Delete --></td> 
                 </tr>
+ 
               </table>
-            </td>
+ </td> 
           </tr>
+ 
         </table>
  
         <p><br>
         </p>
+ 
       </form>
  
       <p>&nbsp;</p>
-      <!-- END Record mc_eficiencia_presupuesta -->
+ <!-- END Record mc_eficiencia_presupuesta -->
       <p></p>
-    </td> 
-    <td>&nbsp;</td>
+ </td> 
+    <td>&nbsp;</td> 
   </tr>
 </table>
 </body>

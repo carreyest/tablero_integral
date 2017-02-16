@@ -2390,7 +2390,7 @@ include_once("./PPMCsCrbDetalle2_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-634FC7FF
+//Initialize Objects @1-A2689CC9
 $DBcnDisenio = new clsDBcnDisenio();
 $MainPage->Connections["cnDisenio"] = & $DBcnDisenio;
 $Attributes = new clsAttributes("page:");
@@ -2416,9 +2416,8 @@ $lkCalidad = new clsControl(ccsLink, "lkCalidad", "lkCalidad", ccsText, "", CCGe
 $lkCalidad->Parameters = CCAddParam($lkCalidad->Parameters, "Id", CCGetFromGet("sID", NULL));
 $lkCalidad->Page = "PPMCsCrbCalidad.php";
 $lkRetEnt_Calidad = new clsControl(ccsLink, "lkRetEnt_Calidad", "lkRetEnt_Calidad", ccsText, "", CCGetRequestParam("lkRetEnt_Calidad", ccsGet, NULL), $MainPage);
-$lkRetEnt_Calidad->Parameters = CCAddParam($lkRetEnt_Calidad->Parameters, "sID", CCGetFromGet("Id", NULL));
-$lkRetEnt_Calidad->Parameters = CCAddParam($lkRetEnt_Calidad->Parameters, "Id", CCGetFromGet("Id", NULL));
-$lkRetEnt_Calidad->Page = "PPMCsCrbDetalle.php";
+$lkRetEnt_Calidad->Parameters = CCAddParam($lkRetEnt_Calidad->Parameters, "sID", CCGetFromGet("sID", NULL));
+$lkRetEnt_Calidad->Page = "PPMCsCrbDetalle2.php";
 $lkCalidadCod = new clsControl(ccsLink, "lkCalidadCod", "lkCalidadCod", ccsText, "", CCGetRequestParam("lkCalidadCod", ccsGet, NULL), $MainPage);
 $lkCalidadCod->Parameters = CCAddParam($lkCalidadCod->Parameters, "Id", CCGetFromGet("sID", NULL));
 $lkCalidadCod->Page = "PPMCsCrCalCodDetalle.php";

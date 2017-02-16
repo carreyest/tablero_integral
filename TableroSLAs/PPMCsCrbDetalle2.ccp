@@ -754,11 +754,10 @@ order by nombre
 			<Attributes/>
 			<Features/>
 		</Link>
-		<Link id="133" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkRetEnt_Calidad" PathID="lkRetEnt_Calidad" hrefSource="PPMCsCrbDetalle.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Retraso en Entregables/&lt;br&gt;        Completar Tareas en Ruta Crítica','textSourceDB':'','hrefSource':'PPMCsCrbDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'1':{'sourceType':'URL','parameterSource':'Id','parameterName':'sID'},'2':{'sourceType':'URL','parameterSource':'Id','parameterName':'sID'},'3':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'length':4,'objectType':'linkParameters'}}"><Components/>
+		<Link id="133" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="None" name="lkRetEnt_Calidad" PathID="lkRetEnt_Calidad" hrefSource="PPMCsCrbDetalle2.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Retraso en entregables','textSourceDB':'','hrefSource':'PPMCsCrbDetalle2.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'1':{'sourceType':'URL','parameterSource':'Id','parameterName':'sID'},'2':{'sourceType':'URL','parameterSource':'Id','parameterName':'sID'},'3':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'4':{'sourceType':'URL','parameterSource':'Id','parameterName':'sID'},'5':{'sourceType':'URL','parameterSource':'Id','parameterName':'sID'},'6':{'sourceType':'URL','parameterSource':'sID','parameterName':'sID'},'length':7,'objectType':'linkParameters'}}"><Components/>
 			<Events/>
 			<LinkParameters>
-				<LinkParameter id="367" sourceType="URL" format="yyyy-mm-dd" name="sID" source="Id"/>
-				<LinkParameter id="407" sourceType="URL" name="Id" source="Id"/>
+				<LinkParameter id="367" sourceType="URL" format="yyyy-mm-dd" name="sID" source="sID"/>
 			</LinkParameters>
 			<Attributes/>
 			<Features/>

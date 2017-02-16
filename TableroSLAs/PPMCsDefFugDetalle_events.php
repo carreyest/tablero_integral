@@ -229,6 +229,7 @@ function mc_info_rs_cr_deffug_ds_BeforeExecuteUpdate(& $sender)
 
 //Custom Code @214-2A29BDB7
 // -------------------------
+
     global $db;
     $db= new clsDBcnDisenio;
     $sSQL = "SELECT Id_Proveedor, Numero, Mes, Anio FROM mc_universo_cds WHERE Id=" . CCGetParam("Id") ;
@@ -382,6 +383,7 @@ function Page_BeforeShow(& $sender)
     global $lkAnterior;
     global $lkSiguiente;
     global $sPPMC;
+    global $lkRetEnt_Calidad;
     
     $aPPMCsAPbIds = unserialize(CCGetSession("aPPMCsAPbIds"));
     $aPPMCsAPbValues = unserialize(CCGetSession("aPPMCsAPbValues"));
@@ -412,6 +414,19 @@ function Page_BeforeShow(& $sender)
 			InsertaDatosPaquetes();
 		}
 	}
+	
+ $db= new clsDBcnDisenio();
+  	    $mesCons=CCDLookUp("mes","mc_universo_cds"," id = '".CCGetParam("Id")."' AND tipo='PC'", $db);
+	    $anioCons = CCDLookUp("anio","mc_universo_cds"," id = '".CCGetParam("Id")."' AND tipo='PC'", $db);
+
+
+	    if (($anioCons==2016 and $mesCons>=11) OR ($anioCons>2016)){
+
+	    	$temp =$lkRetEnt_Calidad->GetLink();
+	    	$temp = str_replace("&amp;","&",$temp);
+		$lkRetEnt_Calidad->SetLink(str_replace('PPMCsCrbDetalle.php','PPMCsCrbDetalle2.php',$temp));
+
+	    }	
 // -------------------------
 //End Custom Code
 

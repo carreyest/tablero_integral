@@ -25,7 +25,7 @@
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="9" visible="Yes" fieldSourceType="DBColumn" sourceType="Table" dataType="Text" returnValueType="Number" name="NombreProveedor" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Id Proveedor" caption="Id Proveedor" required="True" unique="False" connection="cnDisenio" wizardEmptyCaption="Seleccionar Valor" PathID="mc_calificacion_rs_MCNombreProveedor" dataSource="mc_c_proveedor" boundColumn="id_proveedor" textColumn="nombre" html="False">
+				<Label id="9" visible="Yes" fieldSourceType="DBColumn" sourceType="Table" dataType="Text" returnValueType="Number" name="NombreProveedor" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardCaption="Id Proveedor" caption="Id Proveedor" required="True" unique="False" connection="con_xls" wizardEmptyCaption="Seleccionar Valor" PathID="mc_calificacion_rs_MCNombreProveedor" dataSource="mc_c_proveedor" boundColumn="id_proveedor" textColumn="nombre" html="False">
 					<Components/>
 					<Events/>
 					<TableParameters/>
@@ -178,12 +178,12 @@ order by nombre" boundColumn="id_servicio" textColumn="nombre">
 					<Features/>
 				</TextBox>
 				<TextBox id="163" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="UPL" PathID="mc_calificacion_rs_MCUPL" fieldSource="UPL">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-</Components>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+			</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>
@@ -197,7 +197,7 @@ order by nombre" boundColumn="id_servicio" textColumn="nombre">
 			<SPParameters/>
 			<SQLParameters/>
 			<JoinTables>
-				<JoinTable id="140" posHeight="323" posLeft="10" posTop="10" posWidth="160" tableName="mc_calificacion_rs_MC"/>
+				<JoinTable id="167" tableName="mc_calificacion_rs_MC"/>
 			</JoinTables>
 			<JoinLinks/>
 			<Fields>
@@ -226,6 +226,8 @@ order by nombre" boundColumn="id_servicio" textColumn="nombre">
 				<CustomParameter id="154" field="USP" dataType="Float" parameterType="Control" parameterSource="USP" omitIfEmpty="True"/>
 				<CustomParameter id="155" field="UDA" dataType="Float" parameterType="Control" parameterSource="UDA" omitIfEmpty="True"/>
 				<CustomParameter id="156" field="UCOS" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="UCOS"/>
+				<CustomParameter id="165" field="UST" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="UST"/>
+				<CustomParameter id="166" field="UPL" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="UPL"/>
 			</IFormElements>
 			<USPParameters/>
 			<USQLParameters/>
@@ -256,7 +258,7 @@ order by nombre" boundColumn="id_servicio" textColumn="nombre">
 			<Attributes/>
 			<Features/>
 		</Link>
-		<Link id="133" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="lkRetEnt_Calidad" PathID="lkRetEnt_Calidad" hrefSource="PPMCsCrbDetalle.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Retraso en Entregables/&lt;br&gt;            Completar Tareas en Ruta Crítica','textSourceDB':'','hrefSource':'PPMCsCrbDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'1':{'sourceType':'URL','parameterSource':'Id','parameterName':'sID'},'2':{'sourceType':'URL','parameterSource':'Id','parameterName':'sID'},'3':{'sourceType':'Expression','parameterSource':'1','parameterName':'src'},'length':4,'objectType':'linkParameters'}}"><Components/>
+		<Link id="133" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="lkRetEnt_Calidad" PathID="lkRetEnt_Calidad" hrefSource="PPMCsCrbDetalle.ccp" wizardUseTemplateBlock="False" linkProperties="{'textSource':'Retraso en Entregables/&lt;br&gt;            Completar Tareas en Ruta Crítica','textSourceDB':'','hrefSource':'PPMCsCrbDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'URL','parameterSource':'Id','parameterName':'Id'},'1':{'sourceType':'URL','parameterSource':'Id','parameterName':'sID'},'2':{'sourceType':'URL','parameterSource':'Id','parameterName':'sID'},'3':{'sourceType':'Expression','parameterSource':'1','parameterName':'src'},'length':4,'objectType':'linkParameters'}}"><Components/>
 			<Events/>
 			<LinkParameters>
 				<LinkParameter id="134" sourceType="URL" format="yyyy-mm-dd" name="sID" source="Id"/>

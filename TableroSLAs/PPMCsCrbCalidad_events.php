@@ -327,6 +327,11 @@ function mc_info_rs_cr_calidad_ds_BeforeExecuteUpdate(& $sender)
     			', id_servicio_cont= ' . $sServContractual .
     			' WHERE IdUniverso =' . CCGetParam("Id");
     $db->query($sSQL);
+	if ((CCGetUserLogin()=="fjaime"))
+    {
+    	echo($sSQL);
+    }
+
     $db->close();
 // -------------------------
 //End Custom Code
@@ -443,6 +448,7 @@ function Page_BeforeShow(& $sender)
     global $lkAnterior;
     global $lkSiguiente;
     global $sPPMC;
+    global $lkRetEnt_Calidad;
     
     $aPPMCsAPbIds = unserialize(CCGetSession("aPPMCsAPbIds"));
     $aPPMCsAPbValues = unserialize(CCGetSession("aPPMCsAPbValues"));
@@ -474,6 +480,20 @@ function Page_BeforeShow(& $sender)
 			InsertaDatosPaquetes();
 		}
 	}
+
+ $db= new clsDBcnDisenio();
+  	    $mesCons=CCDLookUp("mes","mc_universo_cds"," id = '".CCGetParam("Id")."' AND tipo='PC'", $db);
+	    $anioCons = CCDLookUp("anio","mc_universo_cds"," id = '".CCGetParam("Id")."' AND tipo='PC'", $db);
+
+
+	    if (($anioCons==2016 and $mesCons>=11) OR ($anioCons>2016)){
+
+	    	$temp =$lkRetEnt_Calidad->GetLink();
+	    	$temp = str_replace("&amp;","&",$temp);
+		$lkRetEnt_Calidad->SetLink(str_replace('PPMCsCrbDetalle.php','PPMCsCrbDetalle2.php',$temp));
+
+	    }
+
 
 // -------------------------
 //End Custom Code

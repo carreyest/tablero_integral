@@ -902,6 +902,9 @@ function Page_BeforeShow(& $sender)
 		$Panel1->Visible=false;
 		}    
     
+//   	$temp =$lkRetEnt_Calidad->GetLink();
+//	$temp = str_replace("&amp;","&",$temp);
+//	$lkRetEnt_Calidad->SetLink(str_replace('sID=','sID='.CCGetParam("Id"),$temp));
 // -------------------------
 //End Custom Code
 

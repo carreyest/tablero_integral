@@ -65,7 +65,7 @@ function Page_BeforeShow(& $sender)
 	    	$sCDS = $db->f("nombre");
 	    	if(count($$sCDS)==0){ 
 	    		//$$sCDS = array();
-	    		$$sCDS = array(null,null,null,null,null,null,null,null,null,null,null,null);
+	    		$$sCDS = array(0,0,0,0,0,0,0,0,0,0,0,0);
 	    		array_push($aCDS, $db->f("nombre"));
 	    	}
 	    	// si el numero de mes es menor al indice del arreglo se insertan los meses que faltan	
@@ -76,12 +76,7 @@ function Page_BeforeShow(& $sender)
 	    	}
 	    	array_push($$sCDS, $db->f(0));
 	    	*/
-	    	if($db->f(0)!=null){
-				$aValores[$db->f("MesReporte")-1]= number_format($db->f(0));
-			} else {
-				$aValores[$db->f("MesReporte")-1]= "Sin Datos para Medir";
-			}
-	    	
+	    	$aValores[$db->f("MesReporte")-1]= number_format($db->f(0));
 	    }
 	    $db->close();
 	    // Dataset definition  
@@ -92,7 +87,7 @@ function Page_BeforeShow(& $sender)
 	    	$DataSet->AddPoint($$xCDS,$aCDS[$i]);  
 			$DataSet->AddSerie($aCDS[$i]);  
 			$DataSet->SetSerieName($aCDS[$i],$aCDS[$i]);  	
-			$sTable= $sTable . "<tr><td  width='80px'>" . $aCDS[$i] . "</td><td width='50px'>" . implode("</td><td  width='50px'>",$$aCDS[$i]) . "</td></tr>";
+			$sTable= $sTable . "<tr><td  width='80px'>" . $aCDS[$i] . "</td><td width='40px'>" . implode("</td><td  width='40px'>",$$aCDS[$i]) . "</td></tr>";
 		}
 		$DataSet->AddPoint(array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"),"Serie". $i+1);  
 		$DataSet->SetAbsciseLabelSerie("Serie". $i+1);  
@@ -101,7 +96,7 @@ function Page_BeforeShow(& $sender)
 		// Initialise the graph  
 		$Test = new pChart(780,230);  
 		$Test->setFontProperties("Fonts/tahoma.ttf",10);  
-		$Test->setGraphArea(120,40,728,200);  
+		$Test->setGraphArea(40,30,680,200);  
 		$Test->drawGraphArea(252,252,252);  
 		$Test->drawScale($DataSet->GetData(),$DataSet->GetDataDescription(),SCALE_NORMAL,150,150,150,TRUE,0,2);  
 		$Test->drawGrid(4,TRUE,230,230,230,255);  
@@ -112,9 +107,9 @@ function Page_BeforeShow(& $sender)
 		 
 		// Finish the graph  
 		$Test->setFontProperties("Fonts/tahoma.ttf",8);  
-		$Test->drawLegend(5,15,$DataSet->GetDataDescription(),255,255,255);  
+		$Test->drawLegend(685,35,$DataSet->GetDataDescription(),255,255,255);  
 		$Test->setFontProperties("Fonts/tahoma.ttf",10);  
-		$Test->drawTitle(80,22,"Incidentes Totales por CDS por Mes",50,50,50,585);  
+		$Test->drawTitle(60,22,"Incidentes Totales por CDS por Mes",50,50,50,585);  
 		$Test->Render("Incidentes.png");  
 	
 		//limpia los arreglos creados para los CDSs
@@ -137,7 +132,7 @@ function Page_BeforeShow(& $sender)
 	    	$sCDSa = $db->f("nombre");
 	    	if(count($$sCDSa)==0){ 
 	    		//$$sCDSa = array();
-	    		$$sCDSa = array(null,null,null,null,null,null,null,null,null,null,null,null);
+	    		$$sCDSa = array(0,0,0,0,0,0,0,0,0,0,0,0);
 	    		array_push($aCDSa, $db->f("nombre"));
 	    	}
 	    	// si el numero de mes es menor al indice del arreglo se insertan los meses que faltan	
@@ -159,7 +154,7 @@ function Page_BeforeShow(& $sender)
 	    	$DataSeta->AddPoint($$aCDSa[$i],$aCDSa[$i]);  
 			$DataSeta->AddSerie($aCDSa[$i]);  
 			$DataSeta->SetSerieName($aCDSa[$i],$aCDSa[$i]); 
-			$sTablea = $sTablea . "<tr><td  width='80px'>" . $aCDSa[$i] . "</td><td width='50px'>" . implode("</td><td  width='50px'>",$sCDSAcronimo) . "</td></tr>"; 	
+			$sTablea = $sTablea . "<tr><td  width='80px'>" . $aCDSa[$i] . "</td><td width='40px'>" . implode("</td><td  width='40px'>",$sCDSAcronimo) . "</td></tr>"; 	
 		}
 		$DataSeta->AddPoint(array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"),"Serie". $i+1);  
 		$DataSeta->SetAbsciseLabelSerie("Serie". $i+1);  
@@ -168,7 +163,7 @@ function Page_BeforeShow(& $sender)
 		// Initialise the graph  
 		$Testa = new pChart(780,230);  
 		$Testa->setFontProperties("Fonts/tahoma.ttf",10);  
-		$Testa->setGraphArea(120,40,728,200);  
+		$Testa->setGraphArea(40,30,680,200);  
 		$Testa->drawGraphArea(252,252,252);  
 		$Testa->drawScale($DataSeta->GetData(),$DataSeta->GetDataDescription(),SCALE_NORMAL,150,150,150,TRUE,0,2);  
 		$Testa->drawGrid(4,TRUE,230,230,230,255);  
@@ -179,9 +174,9 @@ function Page_BeforeShow(& $sender)
 		 
 		// Finish the graph  
 		$Testa->setFontProperties("Fonts/tahoma.ttf",8);  
-		$Testa->drawLegend(15,15,$DataSeta->GetDataDescription(),255,255,255);  
+		$Testa->drawLegend(685,35,$DataSeta->GetDataDescription(),255,255,255);  
 		$Testa->setFontProperties("Fonts/tahoma.ttf",10);  
-		$Testa->drawTitle(60,22,"Requerimientos de Apertura por CDS por Mes",50,50,50,585);  
+		$Testa->drawTitle(60,22,"Reuqerimientos de Apertura por CDS por Mes",50,50,50,585);  
 		$Testa->Render("Apertura1.png");  
 	
 		//limpia los arreglos creados para los CDSs
@@ -205,7 +200,7 @@ function Page_BeforeShow(& $sender)
 	    	$sCDSc = $db->f("nombre");
 	    	if(count($$sCDSc)==0){ 
 	    		//$$sCDSc = array();
-	    		$$sCDSc = array(null,null,null,null,null,null,null,null,null,null,null,null);
+	    		$$sCDSc = array(0,0,0,0,0,0,0,0,0,0,0,0);
 	    		array_push($aCDSc, $db->f("nombre"));
 	    	}
 	    	// si el numero de mes es menor al indice del arreglo se insertan los meses que faltan	
@@ -227,7 +222,7 @@ function Page_BeforeShow(& $sender)
 	    	$DataSetc->AddPoint($$aCDSc[$i],$aCDSc[$i]);  
 			$DataSetc->AddSerie($aCDSc[$i]);  
 			$DataSetc->SetSerieName($aCDSc[$i],$aCDSc[$i]);  	
-			$sTablec = $sTablec . "<tr><td  width='80px'>" . $aCDSc[$i] . "</td><td width='50px'>" . implode("</td><td  width='50px'>",$$aCDSc[$i]) . "</td></tr>";
+			$sTablec = $sTablec . "<tr><td  width='80px'>" . $aCDSc[$i] . "</td><td width='40px'>" . implode("</td><td  width='40px'>",$$aCDSc[$i]) . "</td></tr>";
 			//var_dump($$aCDSc[$i]);
 		}
 		$DataSetc->AddPoint(array("Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"),"Serie". $i+1);  
@@ -237,7 +232,7 @@ function Page_BeforeShow(& $sender)
 		// Initialise the graph  
 		$Testc = new pChart(780,230);  
 		$Testc->setFontProperties("Fonts/tahoma.ttf",10);  
-		$Testc->setGraphArea(120,40,728,200);  
+		$Testc->setGraphArea(40,30,680,200);  
 		$Testc->drawGraphArea(252,252,252);  
 		$Testc->drawScale($DataSetc->GetData(),$DataSetc->GetDataDescription(),SCALE_NORMAL,150,150,150,TRUE,0,2);  
 		$Testc->drawGrid(4,TRUE,230,230,230,255);  
@@ -248,7 +243,7 @@ function Page_BeforeShow(& $sender)
 		 
 		// Finish the graph  
 		$Testc->setFontProperties("Fonts/tahoma.ttf",8);  
-		$Testc->drawLegend(15,15,$DataSeta->GetDataDescription(),255,255,255);  
+		$Testc->drawLegend(685,35,$DataSetc->GetDataDescription(),255,255,255);  
 		$Testc->setFontProperties("Fonts/tahoma.ttf",10);  
 		$Testc->drawTitle(60,22,"Requerimientos de Cierre por CDS por Mes",50,50,50,585);  
 		$Testc->Render("Cierre1.png");  
@@ -315,12 +310,12 @@ function Page_BeforeInitialize(& $sender)
 
 function ufIndicadoresCumplimiento(){
 	global $sCharts;
-	global $sFecha;
-	$sFecha= time();
 	
 	$sSQL=" select    " .
 	 "COUNT(HERR_EST_COST) TotHERR_EST_COST, SUM(cast(HERR_EST_COST as int)) CumplenHERR_EST_COST, SUM(cast(HERR_EST_COST as float))/COUNT(HERR_EST_COST)*100 HERR_EST_COST,  " .
 	 "(Select Meta from mc_c_metrica where acronimo='HERR_EST_COST') as Meta_HERR_EST_COST,  " .
+ 	 " COUNT(CAL_COD) TotCAL_COD, SUM(cast(CAL_COD as int)) CumplenCAL_COD, SUM(cast(CAL_COD as float))/COUNT(CAL_COD)*100 CAL_COD,   " .
+	 " (Select Meta from mc_c_metrica where acronimo='CAL_COD') as Meta_CAL_COD,   " .	 
 	 "COUNT(REQ_SERV) TotREQ_SERV, SUM(cast(REQ_SERV as int)) CumplenREQ_SERV, SUM(cast(REQ_SERV as float))/COUNT(REQ_SERV)*100 REQ_SERV,  " .
 	 "(Select Meta from mc_c_metrica where acronimo='REQ_SERV') as Meta_REQ_SERV,  " .
 	 "COUNT(CUMPL_REQ_FUNC) TotCUMPL_REQ_FUNC, SUM(cast(CUMPL_REQ_FUNC as int)) CumplenCUMPL_REQ_FUNC, SUM(cast(CUMPL_REQ_FUNC as float))/COUNT(CUMPL_REQ_FUNC)*100 CUMPL_REQ_FUNC,  " .
@@ -377,7 +372,7 @@ function ufIndicadoresCumplimiento(){
 	    	for($iAcronimo=0;$iAcronimo<count($s_Acronimo);$iAcronimo++){
 				$sCDSAcronimo = $sCDS .$s_Acronimo[$iAcronimo] ;
 				if(count($$sCDSAcronimo)==0){ 
-					$$sCDSAcronimo = array(null,null,null,null,null,null,null,null,null,null,null,null);
+					$$sCDSAcronimo = array(0,0,0,0,0,0,0,0,0,0,0,0);
 					//$$sCDSAcronimo = array();
 				}
 				$aValores= &$$sCDSAcronimo;
@@ -393,7 +388,7 @@ function ufIndicadoresCumplimiento(){
 					default:
 						//array_push($$sCDSAcronimo, number_format($db->f($s_Acronimo[$iAcronimo])));	
 						if($db->f($s_Acronimo[$iAcronimo])!=null){
-							$aValores[$db->f("MesReporte")-1]= number_format($db->f($s_Acronimo[$iAcronimo]));
+							$aValores[$db->f("MesReporte")-1]= number_format($db->f($s_Acronimo[$iAcronimo]),1);
 						} else {
 							$aValores[$db->f("MesReporte")-1]= "Sin Datos para Medir";
 						}
@@ -437,10 +432,10 @@ function ufIndicadoresCumplimiento(){
 					$sTable = $sTable . "</table>";
 					
 					// Initialise the graph  					
-					$Test = new pChart(780,250);  
+					$Test = new pChart(920,250);  
 					$Test->setFontProperties("Fonts/tahoma.ttf",10);  
-					$Test->setGraphArea(120,40,728,200);  
-					$Test->drawGraphArea(252,252,252);  					
+					$Test->setGraphArea(40,30,720,200);  
+					$Test->drawGraphArea(252,252,252);  
 					$Test->drawScale($DataSet->GetData(),$DataSet->GetDataDescription(),SCALE_NORMAL,150,150,150,TRUE,0,2);  
 					$Test->drawGrid(4,TRUE,230,230,230,255);  
 				 
@@ -450,32 +445,24 @@ function ufIndicadoresCumplimiento(){
 					 
 					// Finish the graph  
 					$Test->setFontProperties("Fonts/tahoma.ttf",8);  
-					$Test->drawLegend(15,15,$DataSet->GetDataDescription(),255,255,255);  
+					$Test->drawLegend(745,15,$DataSet->GetDataDescription(),255,255,255);  
 					$Test->setFontProperties("Fonts/tahoma.ttf",10);  
 					
 					$dbNombre= new clsDBcnDisenio;
 				    $dbNombre->query("select nombre from mc_c_metrica where acronimo='" . $s_Acronimo[$iAcronimo] . "'");
-					$sTitle="Cumplimiento ";
-					if(CCGetParam("s_Metrica","")==1){
-						$sTitle="Medidos";
-					}
-					if(CCGetParam("s_Metrica","")==2){
-						$sTitle="Cumplen";
-					}
-					
 					if($dbNombre->next_record()){
-						$Test->drawTitle(140,22, $sTitle . " por Mes por CDS de " . $dbNombre->f(0) ,50,50,50,640);  
+						$Test->drawTitle(60,22,"Cumplimieto por Mes por CDS de " . $dbNombre->f(0) ,50,50,50,585);  
 					} else {
-						$Test->drawTitle(140,22, $sTitle . " por Mes por CDS de " . $s_Acronimo[$iAcronimo] ,50,50,50,640);  
+						$Test->drawTitle(60,22,"Cumplimieto por Mes por CDS de " . $s_Acronimo[$iAcronimo] ,50,50,50,585);  
 					}
 					$dbNombre->close;
 					
 					
-					$Test->Render( $sCDSAcronimo .  $sFecha . ".png");  	
+					$Test->Render( $sCDSAcronimo .".png");  	
 					$DataSet->AddSerie($aMeta[$iAcronimo]);  
 					unset($DataSet);
 					unset($Test);
-					$sCharts= $sCharts . '<center><img src="' .  $sCDSAcronimo . $sFecha . '.png" border=1/>' . $sTable  . '</center><br /> <br />';
+					$sCharts= $sCharts . '<center><img src="' .  $sCDSAcronimo . '.png" border=1/>' . $sTable  . '</center><br /> <br />';
 					
 	    }
 	} else {//si se especifico un mes, genera una gráfica de Radar
@@ -531,11 +518,9 @@ function ufIndicadoresCumplimiento(){
 					$Test->drawLegend(15,15,$DataSet->GetDataDescription(),255,255,255);  
 					$Test->setFontProperties("Fonts/tahoma.ttf",10);  
 					$Test->drawTitle(0,22,"Comparativa por CDS por Mes",50,50,50,400);  
-					//$Test->Render( "radar.png");  	
-					$Test->Render( "radar" .  $sFecha . ".png");  	
+					$Test->Render( "radar.png");  	
 					unset($Test);
-					//$sCharts= $sCharts . '<center><img src="radar.png" border=1/></center><br /> <br />';	  
-					$sCharts= $sCharts . '<center><img src="radar' . $sFecha . '.png" border=1/></center><br /> <br />';  
+					$sCharts= $sCharts . '<center><img src="radar.png" border=1/></center><br /> <br />';	    
 	}    
 		global $Tpl;
 		$Tpl->Setvar("vGrafica",$sCharts);	

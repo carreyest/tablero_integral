@@ -17,23 +17,22 @@
 					<Components/>
 					<Events/>
 					<TableParameters>
-						<TableParameter id="43" conditionType="Expression" useIsNull="False" dataType="Text" expression="Acronimo is not null" field="mc_c_metrica.Acronimo" logicOperator="And" parameterSource="Acronimo" parameterType="Expression" searchConditionType="Equal"/>
-<TableParameter id="44" conditionType="Parameter" useIsNull="False" dataType="Text" field="mc_metrica_atributo.nombre" logicOperator="And" parameterSource="'Orden'" parameterType="Expression" searchConditionType="Equal"/>
-<TableParameter id="45" conditionType="Parameter" useIsNull="False" dataType="Integer" field="id_metrica" logicOperator="And" parameterSource="13" parameterType="Expression" searchConditionType="LessThan"/>
-</TableParameters>
+						<TableParameter id="30" conditionType="Expression" useIsNull="False" dataType="Text" expression="Acronimo is not null" field="mc_c_metrica.Acronimo" logicOperator="And" parameterSource="Acronimo" parameterType="Expression" searchConditionType="Equal"/>
+						<TableParameter id="31" conditionType="Parameter" useIsNull="False" dataType="Text" field="mc_metrica_atributo.nombre" logicOperator="And" parameterSource="'Orden'" parameterType="Expression" searchConditionType="Equal"/>
+					</TableParameters>
 					<SPParameters/>
 					<SQLParameters/>
 					<JoinTables>
-						<JoinTable id="40" posHeight="180" posLeft="10" posTop="10" posWidth="117" tableName="mc_c_metrica"/>
-<JoinTable id="41" posHeight="180" posLeft="148" posTop="10" posWidth="149" tableName="mc_metrica_atributo"/>
-</JoinTables>
+						<JoinTable id="27" posHeight="180" posLeft="10" posTop="10" posWidth="117" tableName="mc_c_metrica"/>
+						<JoinTable id="28" posHeight="180" posLeft="148" posTop="10" posWidth="149" tableName="mc_metrica_atributo"/>
+					</JoinTables>
 					<JoinLinks>
-						<JoinTable2 id="42" conditionType="Equal" fieldLeft="mc_c_metrica.id_ver_metrica" fieldRight="mc_metrica_atributo.id_ver_metrica" joinType="inner" tableLeft="mc_c_metrica" tableRight="mc_metrica_atributo"/>
-</JoinLinks>
+						<JoinTable2 id="29" conditionType="Equal" fieldLeft="mc_c_metrica.id_ver_metrica" fieldRight="mc_metrica_atributo.id_ver_metrica" joinType="inner" tableLeft="mc_c_metrica" tableRight="mc_metrica_atributo"/>
+					</JoinLinks>
 					<Fields>
-						<Field id="46" fieldName="Acronimo" tableName="mc_c_metrica"/>
-<Field id="47" alias="mc_c_metrica_nombre" fieldName="mc_c_metrica.nombre" tableName="mc_c_metrica"/>
-</Fields>
+						<Field id="32" fieldName="Acronimo" tableName="mc_c_metrica"/>
+						<Field id="33" alias="mc_c_metrica_nombre" fieldName="mc_c_metrica.nombre" tableName="mc_c_metrica"/>
+					</Fields>
 					<PKFields>
 					</PKFields>
 					<Attributes/>
@@ -65,34 +64,20 @@
 					<Attributes/>
 					<Features/>
 				</ListBox>
-				<Panel id="39" visible="False" generateDiv="False" name="Panel1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardInnerHTML="  &lt;tr class=&quot;Controls&quot;&gt;
-                  &lt;td&gt;&lt;label for=&quot;mc_c_metricas_Mes&quot; style=&quot;display: inline;&quot;&gt;Mes&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/label&gt; 
-                    &lt;select name=&quot;{s_Mes_Name}&quot; id=&quot;mc_c_metricas_Mes&quot;&gt;
-                      &lt;option selected value=&quot;0&quot;&gt;Seleccionar Valor&lt;/option&gt;
-                      {s_Mes_Options}
-                    &lt;/select&gt;
- &lt;/td&gt;
-                &lt;/tr&gt;" PathID="mc_c_metricaPanel1">
-<Components>
-<ListBox id="34" visible="Yes" fieldSourceType="DBColumn" sourceType="Table" dataType="Text" returnValueType="Number" name="s_Mes" wizardEmptyCaption="Seleccionar Valor" PathID="mc_c_metricaPanel1s_Mes" connection="cnDisenio" dataSource="mc_c_mes" boundColumn="IdMes" textColumn="Mes">
-							<Components/>
-							<Events/>
-							<TableParameters/>
-							<SPParameters/>
-							<SQLParameters/>
-							<JoinTables/>
-							<JoinLinks/>
-							<Fields/>
-							<PKFields/>
-							<Attributes/>
-							<Features/>
-						</ListBox>
-</Components>
-<Events/>
-<Attributes/>
-<Features/>
-</Panel>
-</Components>
+				<ListBox id="34" visible="No" fieldSourceType="DBColumn" sourceType="Table" dataType="Text" returnValueType="Number" name="s_Mes" wizardEmptyCaption="Seleccionar Valor" PathID="mc_c_metricas_Mes" connection="cnDisenio" dataSource="mc_c_mes" boundColumn="IdMes" textColumn="Mes">
+					<Components/>
+					<Events/>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables/>
+					<JoinLinks/>
+					<Fields/>
+					<PKFields/>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>

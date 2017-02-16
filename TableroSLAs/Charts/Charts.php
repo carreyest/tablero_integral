@@ -49,7 +49,7 @@ class clsRecordmc_c_metrica { //mc_c_metrica Class @5-34284005
     // Class variables
 //End Variables
 
-//Class_Initialize Event @5-7016903E
+//Class_Initialize Event @5-BC9D556F
     function clsRecordmc_c_metrica($RelativePath, & $Parent)
     {
 
@@ -84,20 +84,15 @@ class clsRecordmc_c_metrica { //mc_c_metrica Class @5-34284005
 "mc_c_metrica.id_ver_metrica = mc_metrica_atributo.id_ver_metrica {SQL_Where} {SQL_OrderBy}";
             $this->s_Acronimo->DataSource->Order = "valor";
             list($this->s_Acronimo->BoundColumn, $this->s_Acronimo->TextColumn, $this->s_Acronimo->DBFormat) = array("Acronimo", "mc_c_metrica_nombre", "");
-            $this->s_Acronimo->DataSource->Parameters["expr44"] = 'Orden';
-            $this->s_Acronimo->DataSource->Parameters["expr45"] = 13;
+            $this->s_Acronimo->DataSource->Parameters["expr31"] = 'Orden';
             $this->s_Acronimo->DataSource->wp = new clsSQLParameters();
-            $this->s_Acronimo->DataSource->wp->AddParameter("2", "expr44", ccsText, "", "", $this->s_Acronimo->DataSource->Parameters["expr44"], "", false);
-            $this->s_Acronimo->DataSource->wp->AddParameter("3", "expr45", ccsInteger, "", "", $this->s_Acronimo->DataSource->Parameters["expr45"], "", false);
+            $this->s_Acronimo->DataSource->wp->AddParameter("2", "expr31", ccsText, "", "", $this->s_Acronimo->DataSource->Parameters["expr31"], "", false);
             $this->s_Acronimo->DataSource->wp->Criterion[1] = "( Acronimo is not null )";
             $this->s_Acronimo->DataSource->wp->Criterion[2] = $this->s_Acronimo->DataSource->wp->Operation(opEqual, "mc_metrica_atributo.nombre", $this->s_Acronimo->DataSource->wp->GetDBValue("2"), $this->s_Acronimo->DataSource->ToSQL($this->s_Acronimo->DataSource->wp->GetDBValue("2"), ccsText),false);
-            $this->s_Acronimo->DataSource->wp->Criterion[3] = $this->s_Acronimo->DataSource->wp->Operation(opLessThan, "id_metrica", $this->s_Acronimo->DataSource->wp->GetDBValue("3"), $this->s_Acronimo->DataSource->ToSQL($this->s_Acronimo->DataSource->wp->GetDBValue("3"), ccsInteger),false);
             $this->s_Acronimo->DataSource->Where = $this->s_Acronimo->DataSource->wp->opAND(
-                 false, $this->s_Acronimo->DataSource->wp->opAND(
                  false, 
                  $this->s_Acronimo->DataSource->wp->Criterion[1], 
-                 $this->s_Acronimo->DataSource->wp->Criterion[2]), 
-                 $this->s_Acronimo->DataSource->wp->Criterion[3]);
+                 $this->s_Acronimo->DataSource->wp->Criterion[2]);
             $this->s_Acronimo->DataSource->Order = "valor";
             $this->s_Acronimo->HTML = true;
             $this->s_Anio = new clsControl(ccsListBox, "s_Anio", "s_Anio", ccsText, "", CCGetRequestParam("s_Anio", $Method, NULL), $this);
@@ -110,7 +105,6 @@ class clsRecordmc_c_metrica { //mc_c_metrica Class @5-34284005
             $this->s_Metrica = new clsControl(ccsListBox, "s_Metrica", "s_Metrica", ccsText, "", CCGetRequestParam("s_Metrica", $Method, NULL), $this);
             $this->s_Metrica->DSType = dsListOfValues;
             $this->s_Metrica->Values = array(array("0", "% Cumplimiento"), array("1", "# Medidos"), array("2", "# Cumplen"));
-            $this->Panel1 = new clsPanel("Panel1", $this);
             $this->s_Mes = new clsControl(ccsListBox, "s_Mes", "s_Mes", ccsText, "", CCGetRequestParam("s_Mes", $Method, NULL), $this);
             $this->s_Mes->DSType = dsTable;
             $this->s_Mes->DataSource = new clsDBcnDisenio();
@@ -118,8 +112,7 @@ class clsRecordmc_c_metrica { //mc_c_metrica Class @5-34284005
             $this->s_Mes->DataSource->SQL = "SELECT * \n" .
 "FROM mc_c_mes {SQL_Where} {SQL_OrderBy}";
             list($this->s_Mes->BoundColumn, $this->s_Mes->TextColumn, $this->s_Mes->DBFormat) = array("IdMes", "Mes", "");
-            $this->Panel1->Visible = false;
-            $this->Panel1->AddComponent("s_Mes", $this->s_Mes);
+            $this->s_Mes->Visible = false;
             if(!$this->FormSubmitted) {
                 if(!is_array($this->s_Anio->Value) && !strlen($this->s_Anio->Value) && $this->s_Anio->Value !== false)
                     $this->s_Anio->SetText(date('Y'));
@@ -195,7 +188,7 @@ class clsRecordmc_c_metrica { //mc_c_metrica Class @5-34284005
     }
 //End Operation Method
 
-//Show Method @5-CAFE4036
+//Show Method @5-2B2C0DD2
     function Show()
     {
         global $CCSUseAmp;
@@ -248,7 +241,7 @@ class clsRecordmc_c_metrica { //mc_c_metrica Class @5-34284005
         $this->s_Acronimo->Show();
         $this->s_Anio->Show();
         $this->s_Metrica->Show();
-        $this->Panel1->Show();
+        $this->s_Mes->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }

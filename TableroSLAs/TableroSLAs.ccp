@@ -1284,8 +1284,7 @@ and m.IdUniverso not in (select id from mc_universo_cds where revision=2  )
 				)  mi on  mi.IdServicioCont= sc.Id 
 left join  (select SUM(CumpleSLA) Cumple_EF, COUNT(CumpleSLA) Total_EF, Id_Proveedor, MesReporte , anioreporte , 2 IdServicioCont  
 			from mc_eficiencia_presupuestal  where CumpleSLA in (1,0) and  not 1={sSLO}  
-			and (([GrupoAplicativos] not like 'Todos%' and (4&lt;&gt;4 or (MesReporte&gt;2 and anioreporte &gt;2013)) ) 
-					or (4=4 and MesReporte&lt;=2 and anioreporte &lt;2014 ) or 0=4)
+			and [GrupoAplicativos] not like 'Todos%' 
 			group by Id_Proveedor, MesReporte , anioreporte  ) ef 
 			on ef.Id_Proveedor  = m.id_proveedor  and m.MesReporte  = ef.MesReporte and m.AnioReporte  = ef.anioreporte  
 				and ef.IdServicioCont= sc.Id 

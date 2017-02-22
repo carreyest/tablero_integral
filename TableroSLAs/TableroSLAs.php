@@ -2248,7 +2248,7 @@ class clsgrdTableroSLAsDataSource extends clsDBcnDisenio {  //grdTableroSLAsData
     }
 //End Prepare Method
 
-//Open Method @3-C36F82EC
+//Open Method @3-3FD26452
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -2292,8 +2292,7 @@ class clsgrdTableroSLAsDataSource extends clsDBcnDisenio {  //grdTableroSLAsData
         "				)  mi on  mi.IdServicioCont= sc.Id \n" .
         "left join  (select SUM(CumpleSLA) Cumple_EF, COUNT(CumpleSLA) Total_EF, Id_Proveedor, MesReporte , anioreporte , 2 IdServicioCont  \n" .
         "			from mc_eficiencia_presupuestal  where CumpleSLA in (1,0) and  not 1=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . "  \n" .
-        "			and (([GrupoAplicativos] not like 'Todos%' and (4<>4 or (MesReporte>2 and anioreporte >2013)) ) \n" .
-        "					or (4=4 and MesReporte<=2 and anioreporte <2014 ) or 0=4)\n" .
+        "			and [GrupoAplicativos] not like 'Todos%' \n" .
         "			group by Id_Proveedor, MesReporte , anioreporte  ) ef \n" .
         "			on ef.Id_Proveedor  = m.id_proveedor  and m.MesReporte  = ef.MesReporte and m.AnioReporte  = ef.anioreporte  \n" .
         "				and ef.IdServicioCont= sc.Id \n" .
@@ -2343,8 +2342,7 @@ class clsgrdTableroSLAsDataSource extends clsDBcnDisenio {  //grdTableroSLAsData
         "				)  mi on  mi.IdServicioCont= sc.Id \n" .
         "left join  (select SUM(CumpleSLA) Cumple_EF, COUNT(CumpleSLA) Total_EF, Id_Proveedor, MesReporte , anioreporte , 2 IdServicioCont  \n" .
         "			from mc_eficiencia_presupuestal  where CumpleSLA in (1,0) and  not 1=" . $this->SQLValue($this->wp->GetDBValue("4"), ccsInteger) . "  \n" .
-        "			and (([GrupoAplicativos] not like 'Todos%' and (4<>4 or (MesReporte>2 and anioreporte >2013)) ) \n" .
-        "					or (4=4 and MesReporte<=2 and anioreporte <2014 ) or 0=4)\n" .
+        "			and [GrupoAplicativos] not like 'Todos%' \n" .
         "			group by Id_Proveedor, MesReporte , anioreporte  ) ef \n" .
         "			on ef.Id_Proveedor  = m.id_proveedor  and m.MesReporte  = ef.MesReporte and m.AnioReporte  = ef.anioreporte  \n" .
         "				and ef.IdServicioCont= sc.Id \n" .

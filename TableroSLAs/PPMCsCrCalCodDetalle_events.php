@@ -155,6 +155,13 @@ function mc_info_rs_CC_Id_PPMC_BeforeShow(& $sender)
   		$mesmedicion = $db->f("mes");
   		$aniomedicion = $db->f("anio");
     }
+    /*Caso especial requerimiento que se tiene que medir aunque su estimación no este aprobada a petición de Adrian Constantino 02/03/2017*/
+    if (CCGetParam("Id")==4745) {
+    	$IdPPMC = 94112; 
+  		$IdEstimacion = 94133;  		
+  		$mesmedicion = 1;
+  		$aniomedicion = 2017;
+    }
 /*    
     $sSQL="
     		SELECT count(*) 
@@ -162,12 +169,13 @@ function mc_info_rs_CC_Id_PPMC_BeforeShow(& $sender)
     		WHERE Id_PPMC=".$IdPPMC. " 
     		AND ID_Estimacion=".$IdEstimacion;
 */
+  
     $sSQL="
     		SELECT count(*) 
     		FROM mc_info_rs_CC 
     		WHERE Id_PPMC=".$IdPPMC. " 
-    		AND IdUniverso=".CCGetParam("Id");
-
+    		AND IdUniverso=".CCGetParam("Id");   	
+  
 
 	$db->query($sSQL);
 	if($db->next_record()){

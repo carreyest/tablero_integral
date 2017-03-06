@@ -232,8 +232,8 @@
 			<SPParameters/>
 			<SQLParameters/>
 			<JoinTables>
-				<JoinTable id="212" tableName="mc_info_rs_CC"/>
-			</JoinTables>
+				<JoinTable id="221" tableName="mc_info_rs_CC"/>
+</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="208" fieldName="*"/>
@@ -254,8 +254,8 @@
 				<CustomParameter id="164" field="ID_Estimacion" dataType="Integer" parameterType="Control" omitIfEmpty="True" parameterSource="ID_Estimacion_HID"/>
 				<CustomParameter id="204" field="IdUniverso" dataType="Integer" parameterType="URL" omitIfEmpty="True" parameterSource="Id"/>
 				<CustomParameter id="215" field="evidencia_salvedad" dataType="Boolean" parameterType="Control" omitIfEmpty="True" parameterSource="evidencia_salvedad"/>
-<CustomParameter id="216" field="observacion_salvedad" dataType="Text" parameterType="Control" omitIfEmpty="True" parameterSource="observacion_salvedad"/>
-</IFormElements>
+				<CustomParameter id="216" field="observacion_salvedad" dataType="Text" parameterType="Control" omitIfEmpty="True" parameterSource="observacion_salvedad"/>
+			</IFormElements>
 			<USPParameters/>
 			<USQLParameters/>
 			<UConditions>
@@ -271,8 +271,8 @@
 				<CustomParameter id="192" field="FechaUltMod" dataType="Date" parameterType="Control" omitIfEmpty="True" parameterSource="FechaUltMod"/>
 				<CustomParameter id="193" field="Observaciones" dataType="Text" parameterType="Control" omitIfEmpty="True" parameterSource="Observaciones"/>
 				<CustomParameter id="217" field="evidencia_salvedad" dataType="Boolean" parameterType="Control" omitIfEmpty="True" parameterSource="evidencia_salvedad"/>
-<CustomParameter id="218" field="observacion_salvedad" dataType="Text" parameterType="Control" omitIfEmpty="True" parameterSource="observacion_salvedad"/>
-</UFormElements>
+				<CustomParameter id="218" field="observacion_salvedad" dataType="Text" parameterType="Control" omitIfEmpty="True" parameterSource="observacion_salvedad"/>
+			</UFormElements>
 			<DSPParameters/>
 			<DSQLParameters/>
 			<DConditions/>
@@ -375,8 +375,8 @@
 			</Events>
 			<TableParameters/>
 			<JoinTables>
-				<JoinTable id="196" tableName="CalidadCodigoMetricas"/>
-			</JoinTables>
+				<JoinTable id="220" tableName="CalidadCodigoMetricas"/>
+</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="117" fieldName="Paquete" tableName="CalidadCodigoMetricas"/>
@@ -495,8 +495,8 @@
 			</Events>
 			<TableParameters/>
 			<JoinTables>
-				<JoinTable id="197" tableName="CalidadCodigoReglas"/>
-			</JoinTables>
+				<JoinTable id="219" tableName="CalidadCodigoReglas"/>
+</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="149" alias="Número_del Aplicativo" fieldName="[Número del Aplicativo]" tableName="CalidadCodigoReglas"/>

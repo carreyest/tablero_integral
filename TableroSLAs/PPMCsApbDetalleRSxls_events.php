@@ -247,6 +247,7 @@ function grdDetalleRS_BeforeShowRow(& $sender)
 		//. $grdDetalleRS->id_ppmc->GetValue() . "_C.doc");
 	}
 */
+/*
 	if(CCGetParam("s_AnioReporte",0)>=2016 ||(CCGetParam("s_AnioReporte",0)==2015 && CCGetParam("s_MesReporte") >= 10 )){
 		$grdDetalleRS->lkEvidencia->SetLink("http://satportal.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos%20compartidos/Forms/AllItems.aspx?RootFolder=%2Fagcti%2FSDMA4-Admvo%2FDocumentos%20compartidos%2FOperaci%C3%B3n%20del%20Servicio%2FItera%2F" . CCGetParam("s_AnioReporte","") . $sMes . "%2FNivelesServicio%2F". $sProveedor ."&InitialTabId=Ribbon%2EDocument&VisibilityContext=WSSTabPersistence");											 
 		
@@ -259,6 +260,16 @@ function grdDetalleRS_BeforeShowRow(& $sender)
 		$grdDetalleRS->lkEvidencia->SetLink("http://satportal.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos%20compartidos/Forms/AllItems.aspx?RootFolder=%2Fagcti%2FSDMA4-Admvo%2FDocumentos%20compartidos%2FOperaci%C3%B3n%20del%20Servicio%2FItera%2F" . CCGetParam("s_AnioReporte","") . $sMes . "%2FEntregablesPeri%C3%B3dicos%2FNivelesServicio%2F". $sProveedor ."&InitialTabId=Ribbon%2EDocument&VisibilityContext=WSSTabPersistence");				
 		                                    
 	}
+*/
+	if(CCGetParam("s_AnioReporte",0)==2015 && CCGetParam("s_MesReporte") <=9){
+		$grdDetalleRS->lkEvidencia->SetLink("http://sp13.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos%20compartidos/Forms/AllItems.aspx?RootFolder=%2Fagcti%2FSDMA4-Admvo%2FDocumentos%20compartidos%2FOperaci%C3%B3n%20del%20Servicio%2FItera%2F" . CCGetParam("s_AnioReporte","") . $sMes . "%2FEntregablesPeri%C3%B3dicos%2FNivelesServicio%2F". $sProveedor ."&FolderCTID=0x01200071A81A8B7B487F48A627E6ED3D7DC299&View=%7B96E558AB-DAB0-46EF-8563-31FCBBF53212%7D");											 
+	} elseif( (CCGetParam("s_AnioReporte",0)==2015 && CCGetParam("s_MesReporte") >=10) OR
+	          (CCGetParam("s_AnioReporte",0)==2016 && CCGetParam("s_MesReporte") <=8)
+	         ){
+				$grdDetalleRS->lkEvidencia->SetLink("http://sp13.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos%20compartidos/Forms/AllItems.aspx?RootFolder=%2Fagcti%2FSDMA4-Admvo%2FDocumentos%20compartidos%2FOperaci%C3%B3n%20del%20Servicio%2FItera%2F" . CCGetParam("s_AnioReporte","") . $sMes . "%2FNivelesServicio%2F". $sProveedor ."&FolderCTID=0x01200071A81A8B7B487F48A627E6ED3D7DC299&View=%7B96E558AB-DAB0-46EF-8563-31FCBBF53212%7D");											 		
+	         } else {
+				$grdDetalleRS->lkEvidencia->SetLink("http://sp13.dssat.sat.gob.mx/agcti/CAPC_ITERA4/Entregables%20Contractuales/Forms/AllItems.aspx?RootFolder=%2Fagcti%2FCAPC%5FITERA4%2FEntregables%20Contractuales%2FItera%2F" . CCGetParam("s_AnioReporte","") . $sMes . "%2FNivelesServicio%2F". $sProveedor ."&FolderCTID=0x01200071A81A8B7B487F48A627E6ED3D7DC299&View=%7B96E558AB-DAB0-46EF-8563-31FCBBF53212%7D");											 			         
+	         }
 
 
 	

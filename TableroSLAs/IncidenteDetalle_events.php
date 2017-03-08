@@ -277,11 +277,21 @@ function mc_detalle_incidente_avl_ds_AfterExecuteSelect(& $sender)
 
 //Custom Code @88-2A29BDB7
 // -------------------------
+/*
+	if($mc_detalle_incidente_avl->DataSource->RecordsCount ==0){
+		$mc_detalle_incidente_avl->DataSource->query("select ClaveMovimiento, Descripcion DescMovimiento, " .
+			" NULL FechaInicioMov, NULL FechaFinMov, NULL Paquete, NULL  TiempoSolucionRmdy, NULL  LiberacionAVL , " .
+			" NULL  CountPaquete, NULL TotalSecPaquete , NULL TotalHoras , 'N/A' HorasInvertidas " .
+			" from mc_c_movimiento  where clavemovimiento in (16) ");
+*/			
+			
+
 	if($mc_detalle_incidente_avl->DataSource->RecordsCount ==0){
 		$mc_detalle_incidente_avl->DataSource->query("select ClaveMovimiento, Descripcion DescMovimiento, " .
 			" NULL FechaInicioMov, NULL FechaFinMov, NULL Paquete, NULL  TiempoSolucionRmdy, NULL  LiberacionAVL , " .
 			" NULL  CountPaquete, NULL TotalSecPaquete , NULL TotalHoras , 'N/A' HorasInvertidas " .
 			" from mc_c_movimiento  where clavemovimiento in (16, 701, 702, 704, 705) ");
+
 	}
 	
 // -------------------------
@@ -1256,17 +1266,17 @@ function mc_info_incidentes4_BeforeShow(& $sender)
 	global $MinutosF;
 
 
-	$mc_info_incidentes4->FechaResuelto->SetValue(CCFormatDate(CCParseDate($FechaResuelto,array("yyyy","/","mm","/","dd"," ","HH",":","nn",":","ss")),array("dd","/","mm","/","yyyy"," ","H",":","nn",":","ss")));
+	$mc_info_incidentes4->FechaResuelto->SetValue(CCFormatDate(CCParseDate($FechaResuelto,array("yyyy","/","mm","/","dd"," ","HH",":","nn",":","ss")),array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")));
 	
 	global $existe_actualizacion_asignacion;	
     global $mc_incidentes_reasignacio;
     global $nueva_fecha_encurso;
 	if ($existe_actualizacion_asignacion > 0){
 		
-		$mc_info_incidentes4->FechaEnCurso->SetValue(CCFormatDate(CCParseDate($nueva_fecha_encurso,array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")),array("dd","/","mm","/","yyyy"," ","H",":","nn",":","ss")));
+		$mc_info_incidentes4->FechaEnCurso->SetValue(CCFormatDate(CCParseDate($nueva_fecha_encurso,array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")),array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")));
 		$FechaenCurso=CCFormatDate(CCParseDate($mc_info_incidentes4->FechaEnCurso->GetValue(),array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")), array("yyyy","/","mm","/","dd"," ","HH",":","nn",":","ss"));
 	} else {
-		$mc_info_incidentes4->FechaEnCurso->SetValue(CCFormatDate(CCParseDate($FechaenCurso,array("yyyy","/","mm","/","dd"," ","HH",":","nn",":","ss")),array("dd","/","mm","/","yyyy"," ","H",":","nn",":","ss")));
+		$mc_info_incidentes4->FechaEnCurso->SetValue(CCFormatDate(CCParseDate($FechaenCurso,array("yyyy","/","mm","/","dd"," ","HH",":","nn",":","ss")),array("dd","/","mm","/","yyyy"," ","HH",":","nn",":","ss")));
 	}
 	
 	$DBcnDisenio->query("SELECT dbo.ufDiffFechasMCSec('".$FechaenCurso."','".$FechaResuelto."') as Minutos");
@@ -2158,6 +2168,18 @@ function Page_BeforeShow(& $sender)
 
 //Custom Code @140-2A29BDB7
 // -------------------------
+	global $Tpl;
+  	$soloedicion= CCGetParam("NC","");
+  	if ($soloedicion=="1") {
+  		 $valorEstadoCampos='
+  		 $(".Record").find("input,button,textarea,select").attr("disabled", "disabled");
+  		 ';
+
+  	} else {
+  		$valorEstadoCampos="";
+  	}
+  	$Tpl->SetVar("EstadoCampos",$valorEstadoCampos);
+  		 
 	global $miArray;
   	
   	$clave= array_search(CCGetParam("Id_incidente",0),$miArray );

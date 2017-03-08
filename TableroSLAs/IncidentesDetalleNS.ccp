@@ -198,7 +198,7 @@ and (mcu.slo is null or mcu.slo =0)" pageSizeLimit="100" pageSize="True" wizardC
           &lt;td rowspan=&quot;1&quot; colspan=&quot;1&quot;&gt;{Obs_SAT}&lt;/td&gt;
         &lt;/tr&gt;" PathID="mc_info_incidentesPanel1">
 					<Components>
-						<Link id="38" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Id_incidente" fieldSource="Id_incidente" wizardCaption="Id Incidente" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_info_incidentesPanel1Id_incidente" visible="Yes" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="IncidenteDetalle.ccp" linkProperties="{&quot;textSource&quot;:&quot;&quot;,&quot;textSourceDB&quot;:&quot;Id_incidente&quot;,&quot;hrefSource&quot;:&quot;newpage4.ccp&quot;,&quot;hrefSourceDB&quot;:&quot;&quot;,&quot;title&quot;:&quot;&quot;,&quot;target&quot;:&quot;&quot;,&quot;name&quot;:&quot;&quot;,&quot;linkParameters&quot;:{&quot;0&quot;:{&quot;sourceType&quot;:&quot;DataField&quot;,&quot;parameterSource&quot;:&quot;Id_incidente&quot;,&quot;parameterName&quot;:&quot;s_Id_incidente&quot;},&quot;1&quot;:{&quot;sourceType&quot;:&quot;DataField&quot;,&quot;parameterSource&quot;:&quot;Id_incidente&quot;,&quot;parameterName&quot;:&quot;Id_incidente&quot;},&quot;2&quot;:{&quot;sourceType&quot;:&quot;DataField&quot;,&quot;parameterSource&quot;:&quot;Id_incidente&quot;,&quot;parameterName&quot;:&quot;Id_incidente&quot;},&quot;length&quot;:3,&quot;objectType&quot;:&quot;linkParameters&quot;}}">
+						<Link id="38" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Id_incidente" fieldSource="Id_incidente" wizardCaption="Id Incidente" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_info_incidentesPanel1Id_incidente" visible="Yes" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="IncidenteDetalle.ccp" linkProperties="{'textSource':'','textSourceDB':'Id_incidente','hrefSource':'IncidenteDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'Id_incidente','parameterName':'s_Id_incidente'},'1':{'sourceType':'DataField','parameterSource':'Id_incidente','parameterName':'Id_incidente'},'2':{'sourceType':'DataField','parameterSource':'Id_incidente','parameterName':'Id_incidente'},'3':{'sourceType':'DataField','parameterSource':'Id_incidente','parameterName':'Id_incidente'},'4':{'sourceType':'Expression','parameterSource':'1','parameterName':'NC'},'length':5,'objectType':'linkParameters'}}">
 							<Components/>
 							<Events>
 								<Event name="BeforeShow" type="Server">
@@ -211,7 +211,8 @@ and (mcu.slo is null or mcu.slo =0)" pageSizeLimit="100" pageSize="True" wizardC
 							<Features/>
 							<LinkParameters>
 								<LinkParameter id="215" sourceType="DataField" name="Id_incidente" source="Id_incidente" old_temp_id="56"/>
-							</LinkParameters>
+								<LinkParameter id="230" sourceType="Expression" name="NC" source="1"/>
+</LinkParameters>
 						</Link>
 						<Label id="39" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="ServicioNegocio" fieldSource="ServicioNegocio" wizardCaption="Servicio Negocio" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_info_incidentesPanel1ServicioNegocio">
 							<Components/>

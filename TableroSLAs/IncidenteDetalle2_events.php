@@ -2210,6 +2210,19 @@ function Page_BeforeShow(& $sender)
 
 //Custom Code @140-2A29BDB7
 // -------------------------
+	global $Tpl;
+  	$soloedicion= CCGetParam("NC","");
+  	if ($soloedicion=="1") {
+  		 $valorEstadoCampos='
+  		 $(".Record").find("input,button,textarea,select").attr("disabled", "disabled");
+  		 ';
+
+  	} else {
+  		$valorEstadoCampos="";
+  	}
+  	$Tpl->SetVar("EstadoCampos",$valorEstadoCampos);
+
+
 	global $miArray;
   	
   	$clave= array_search(CCGetParam("Id_incidente",0),$miArray );

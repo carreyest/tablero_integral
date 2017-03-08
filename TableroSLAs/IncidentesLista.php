@@ -416,7 +416,7 @@ class clsGridmc_info_incidentes { //mc_info_incidentes class @26-075BA89B
     }
 //End Initialize Method
 
-//Show Method @26-7434C7A0
+//Show Method @26-203015B8
     function Show()
     {
         $Tpl = CCGetTemplate($this);
@@ -469,7 +469,7 @@ class clsGridmc_info_incidentes { //mc_info_incidentes class @26-075BA89B
                 }
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock . "/Row";
                 $this->Id_incidente->SetValue($this->DataSource->Id_incidente->GetValue());
-                $this->Id_incidente->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
+                $this->Id_incidente->Parameters = CCGetQueryString("QueryString", array("NC", "ccsForm"));
                 $this->Id_incidente->Parameters = CCAddParam($this->Id_incidente->Parameters, "Id_incidente", $this->DataSource->f("Id_incidente"));
                 $this->Id_incidente->Parameters = CCAddParam($this->Id_incidente->Parameters, "s_mes_param", $this->DataSource->f("mes"));
                 $this->Id_incidente->Parameters = CCAddParam($this->Id_incidente->Parameters, "s_anio_param", $this->DataSource->f("anio"));

@@ -86,22 +86,22 @@
 					<Events/>
 					<TableParameters>
 						<TableParameter id="216" conditionType="Parameter" useIsNull="False" dataType="Integer" field="Nivel" logicOperator="Or" parameterSource="&quot;3&quot;" parameterType="Expression" searchConditionType="Equal"/>
-<TableParameter id="217" conditionType="Parameter" useIsNull="False" dataType="Text" field="Usuario" logicOperator="Or" parameterSource="&quot;rramos&quot;" parameterType="Expression" searchConditionType="Equal"/>
-<TableParameter id="218" conditionType="Parameter" useIsNull="False" dataType="Text" field="Usuario" logicOperator="Or" parameterSource="&quot;ldominguez&quot;" parameterType="Expression" searchConditionType="Equal"/>
-<TableParameter id="219" conditionType="Parameter" useIsNull="False" dataType="Text" field="Usuario" logicOperator="Or" parameterSource="&quot;gcortes&quot;" parameterType="Expression" searchConditionType="Equal"/>
-</TableParameters>
+						<TableParameter id="217" conditionType="Parameter" useIsNull="False" dataType="Text" field="Usuario" logicOperator="Or" parameterSource="&quot;rramos&quot;" parameterType="Expression" searchConditionType="Equal"/>
+						<TableParameter id="218" conditionType="Parameter" useIsNull="False" dataType="Text" field="Usuario" logicOperator="Or" parameterSource="&quot;ldominguez&quot;" parameterType="Expression" searchConditionType="Equal"/>
+						<TableParameter id="219" conditionType="Parameter" useIsNull="False" dataType="Text" field="Usuario" logicOperator="Or" parameterSource="&quot;gcortes&quot;" parameterType="Expression" searchConditionType="Equal"/>
+					</TableParameters>
 					<SPParameters/>
 					<SQLParameters/>
 					<JoinTables>
 						<JoinTable id="215" posHeight="180" posLeft="10" posTop="10" posWidth="153" tableName="mc_c_usuarios"/>
-</JoinTables>
+					</JoinTables>
 					<JoinLinks/>
 					<Fields>
 						<Field id="220" fieldName="*"/>
-</Fields>
+					</Fields>
 					<PKFields>
 						<PKField id="221" dataType="Integer" fieldName="Id" tableName="mc_c_usuarios"/>
-</PKFields>
+					</PKFields>
 					<Attributes/>
 					<Features/>
 				</ListBox>
@@ -235,7 +235,7 @@ and ((CASE WHEN (SELECT COUNT(id_incidente) from  mc_calificacion_incidentes_MC 
 					<Attributes/>
 					<Features/>
 				</Sorter>
-				<Link id="38" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Id_incidente" fieldSource="Id_incidente" wizardCaption="Id Incidente" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_info_incidentesId_incidente" visible="Yes" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="IncidenteDetalle.ccp" linkProperties="{'textSource':'','textSourceDB':'Id_incidente','hrefSource':'IncidenteDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'Id_incidente','parameterName':'s_Id_incidente'},'1':{'sourceType':'DataField','parameterSource':'Id_incidente','parameterName':'Id_incidente'},'2':{'sourceType':'DataField','parameterSource':'Id_incidente','parameterName':'Id_incidente'},'3':{'sourceType':'DataField','parameterSource':'Id_incidente','parameterName':'Id_incidente'},'4':{'sourceType':'DataField','parameterSource':'mes','parameterName':'s_MesReporte'},'5':{'sourceType':'DataField','parameterSource':'Id_incidente','parameterName':'Id_incidente'},'6':{'sourceType':'DataField','parameterSource':'mes','parameterName':'s_mes_param'},'7':{'sourceType':'DataField','parameterSource':'Id_incidente','parameterName':'Id_incidente'},'8':{'sourceType':'DataField','parameterSource':'mes','parameterName':'s_mes_param'},'9':{'sourceType':'DataField','parameterSource':'anio','parameterName':'s_anio_param'},'length':10,'objectType':'linkParameters'}}">
+				<Link id="38" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="Id_incidente" fieldSource="Id_incidente" wizardCaption="Id Incidente" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="mc_info_incidentesId_incidente" visible="Yes" hrefType="Page" urlType="Relative" preserveParameters="GET" hrefSource="IncidenteDetalle.ccp" linkProperties="{'textSource':'','textSourceDB':'Id_incidente','hrefSource':'IncidenteDetalle.ccp','hrefSourceDB':'','title':'','target':'','name':'','linkParameters':{'0':{'sourceType':'DataField','parameterSource':'Id_incidente','parameterName':'s_Id_incidente'},'1':{'sourceType':'DataField','parameterSource':'Id_incidente','parameterName':'Id_incidente'},'2':{'sourceType':'DataField','parameterSource':'Id_incidente','parameterName':'Id_incidente'},'3':{'sourceType':'DataField','parameterSource':'Id_incidente','parameterName':'Id_incidente'},'4':{'sourceType':'DataField','parameterSource':'mes','parameterName':'s_MesReporte'},'5':{'sourceType':'DataField','parameterSource':'Id_incidente','parameterName':'Id_incidente'},'6':{'sourceType':'DataField','parameterSource':'mes','parameterName':'s_mes_param'},'7':{'sourceType':'DataField','parameterSource':'Id_incidente','parameterName':'Id_incidente'},'8':{'sourceType':'DataField','parameterSource':'mes','parameterName':'s_mes_param'},'9':{'sourceType':'DataField','parameterSource':'anio','parameterName':'s_anio_param'},'length':10,'objectType':'linkParameters'}}" removeParameters="NC">
 					<Components/>
 					<Events>
 						<Event name="BeforeShow" type="Server">
@@ -320,7 +320,6 @@ and ((CASE WHEN (SELECT COUNT(id_incidente) from  mc_calificacion_incidentes_MC 
 				</Label>
 				<Label id="105" fieldSourceType="DBColumn" dataType="Text" html="False" generateSpan="False" name="lblCalificado" PathID="mc_info_incidenteslblCalificado" fieldSource="Estado">
 					<Components/>
-
 					<Events/>
 					<Attributes/>
 					<Features/>

@@ -166,11 +166,33 @@ function mc_info_incidentes_BeforeShow(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $mc_info_incidentes; //Compatibility
 //End mc_info_incidentes_BeforeShow
-
+	global $mc_info_incidentesSearch;
 //Custom Code @68-2A29BDB7
 // -------------------------
 
-		
+	 $mesCons=CCGetParam("s_MesReporte",0);
+	 $anioCons=CCGetParam("s_AnioReporte",0);
+
+
+	if ($mc_info_incidentesSearch->s_MesReporte->GetValue()!=0)
+  	 {
+	    $mesCons = $mc_info_incidentesSearch->s_MesReporte->GetValue();	       
+	    $anioCons = $mc_info_incidentesSearch->s_AnioReporte->GetValue();
+
+	    if (($anioCons==2016 and $mesCons==7)){
+	    	$temp =  $mc_info_incidentes->Id_incidente->GetLink();
+	    	//$temp = str_replace("&amp;","&",$temp);
+			$mc_info_incidentes->Id_incidente->SetLink(str_replace('IncidenteDetalle.php','IncidenteDetalle3.php',$temp));
+	    }
+	    if (($anioCons==2016 and $mesCons>=8) OR ($anioCons>2016)){
+	    	$temp =  $mc_info_incidentes->Id_incidente->GetLink();
+	    	//$temp = str_replace("&amp;","&",$temp);
+			$mc_info_incidentes->Id_incidente->SetLink(str_replace('IncidenteDetalle.php','IncidenteDetalle2.php',$temp));
+	    }
+  	
+  	 }
+ 
+	 
 		global $ExportToExcel;
 		
 			global $Grid1;
@@ -210,8 +232,8 @@ function mc_info_incidentes_BeforeShowRow(& $sender)
 //Custom Code @200-2A29BDB7
 // -------------------------
 
-    $mc_info_incidentes->Id_incidente->SetLink(str_replace('&amp;','&',$mc_info_incidentes->Id_incidente->GetLink())."&s_mes_param=".CCGetParam("s_MesReporte")."&s_anio_param=".CCGetParam("s_AnioReporte"));
-	switch (CCGetParam("s_id_proveedor")){
+    $mc_info_incidentes->Id_incidente->SetLink(str_replace('&amp;','&',$mc_info_incidentes->Id_incidente->GetLink())."&s_mes_param=".CCGetParam("s_MesReporte",0)."&s_anio_param=".CCGetParam("s_AnioReporte",0));
+	switch (CCGetParam("s_id_proveedor",0)){
 	//case 1 : $sProveedor = 'Evidencia_CAPC';break;
 	case 2 : $sProveedor = 'Evidencias_CDS1y3';break;
 	case 3 : $sProveedor = 'Evidencias_CDS2';break;
@@ -219,26 +241,24 @@ function mc_info_incidentes_BeforeShowRow(& $sender)
 	default: $sProveedor = 'Evidencias_CDS1y3';break;					
 	}
 
-	if(CCGetParam("s_MesReporte")<10){
-		$sMes = "0" . CCGetParam("s_MesReporte");
+	if(CCGetParam("s_MesReporte",0)<10){
+		$sMes = "0" . CCGetParam("s_MesReporte",0);
 	} else {
-		$sMes = CCGetParam("s_MesReporte");
+		$sMes = CCGetParam("s_MesReporte",0);
 	}
 	
 	//$mc_info_incidentes->lkEvidencia->SetLink("http://satportal.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos compartidos/Operación del Servicio/Itera/" . CCGetParam("s_AnioReporte","") . $sMes . "/EntregablesPeriódicos/NivelesServicio/". $sProveedor ."/");
-	if(CCGetParam("s_AnioReporte",0)>=2016 ||(CCGetParam("s_AnioReporte",0)==2015 && CCGetParam("s_MesReporte") >= 10 )){
-		$mc_info_incidentes->lkEvidencia->SetLink("http://satportal.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos%20compartidos/Forms/AllItems.aspx?RootFolder=%2Fagcti%2FSDMA4-Admvo%2FDocumentos%20compartidos%2FOperaci%C3%B3n%20del%20Servicio%2FItera%2F" . CCGetParam("s_AnioReporte","") . $sMes . "%2FNivelesServicio%2F". $sProveedor ."&InitialTabId=Ribbon%2EDocument&VisibilityContext=WSSTabPersistence");											 
-		
-				
-	} elseif (CCGetParam("s_AnioReporte",0)==2015 && CCGetParam("s_MesReporte") == 9) {
-		$mc_info_incidentes->lkEvidencia->SetLink("http://satportal.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos%20compartidos/Forms/AllItems.aspx?RootFolder=%2Fagcti%2FSDMA4-Admvo%2FDocumentos%20compartidos%2FOperaci%C3%B3n%20del%20Servicio%2FItera%2F" . CCGetParam("s_AnioReporte","") . $sMes . "%2FEntregablesPeri%C3%B3dicos%2FNivelesServicio&InitialTabId=Ribbon%2EDocument&VisibilityContext=WSSTabPersistence");				
-	}
 	
-	else {
-		$mc_info_incidentes->lkEvidencia->SetLink("http://satportal.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos%20compartidos/Forms/AllItems.aspx?RootFolder=%2Fagcti%2FSDMA4-Admvo%2FDocumentos%20compartidos%2FOperaci%C3%B3n%20del%20Servicio%2FItera%2F" . CCGetParam("s_AnioReporte","") . $sMes . "%2FEntregablesPeri%C3%B3dicos%2FNivelesServicio%2F". $sProveedor ."&InitialTabId=Ribbon%2EDocument&VisibilityContext=WSSTabPersistence");				
-		                                    
-	}
-
+	if(CCGetParam("s_AnioReporte",0)==2015 && CCGetParam("s_MesReporte",0) <=9){
+		$mc_info_incidentes->lkEvidencia->SetLink("http://sp13.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos%20compartidos/Forms/AllItems.aspx?RootFolder=%2Fagcti%2FSDMA4-Admvo%2FDocumentos%20compartidos%2FOperaci%C3%B3n%20del%20Servicio%2FItera%2F" . CCGetParam("s_AnioReporte","") . $sMes . "%2FEntregablesPeri%C3%B3dicos%2FNivelesServicio%2F". $sProveedor ."&FolderCTID=0x01200071A81A8B7B487F48A627E6ED3D7DC299&View=%7B96E558AB-DAB0-46EF-8563-31FCBBF53212%7D");											 
+	} elseif( (CCGetParam("s_AnioReporte",0)==2015 && CCGetParam("s_MesReporte",0) >=10) OR
+	          (CCGetParam("s_AnioReporte",0)==2016 && CCGetParam("s_MesReporte",0) <=8)
+	         ){
+				$mc_info_incidentes->lkEvidencia->SetLink("http://sp13.dssat.sat.gob.mx/agcti/SDMA4-Admvo/Documentos%20compartidos/Forms/AllItems.aspx?RootFolder=%2Fagcti%2FSDMA4-Admvo%2FDocumentos%20compartidos%2FOperaci%C3%B3n%20del%20Servicio%2FItera%2F" . CCGetParam("s_AnioReporte","") . $sMes . "%2FNivelesServicio%2F". $sProveedor ."&FolderCTID=0x01200071A81A8B7B487F48A627E6ED3D7DC299&View=%7B96E558AB-DAB0-46EF-8563-31FCBBF53212%7D");											 		
+	         } else {
+				$mc_info_incidentes->lkEvidencia->SetLink("http://sp13.dssat.sat.gob.mx/agcti/CAPC_ITERA4/Entregables%20Contractuales/Forms/AllItems.aspx?RootFolder=%2Fagcti%2FCAPC%5FITERA4%2FEntregables%20Contractuales%2FItera%2F" . CCGetParam("s_AnioReporte","") . $sMes . "%2FNivelesServicio%2F". $sProveedor ."&FolderCTID=0x01200071A81A8B7B487F48A627E6ED3D7DC299&View=%7B96E558AB-DAB0-46EF-8563-31FCBBF53212%7D");											 			         
+	         }
+	
 
 /*    
 	if (CCGetParam("s_id_proveedor")==4){

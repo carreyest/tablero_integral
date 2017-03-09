@@ -835,8 +835,9 @@ function mc_info_rs_cr_RE_RC_Artef2_BeforeShowRow(& $sender)
 
 //Custom Code @405-2A29BDB7
 // -------------------------
-    	$aDate=$mc_info_rs_cr_RE_RC_Artef2->FechaEntrega->GetValue();
-    	$mc_info_rs_cr_RE_RC_Artef2->FechaEntrega->Visible = ($aDate[0]!= 441784800);
+//Si la fecha de entrega  al cargar el archivo no existia en el despliegue se eliminaba la visibilidad, esto se quita para poner etiqueta html en su lugar correo Luis Dominguez 08/3/2017
+    	//$aDate=$mc_info_rs_cr_RE_RC_Artef2->FechaEntrega->GetValue();
+    	//$mc_info_rs_cr_RE_RC_Artef2->FechaEntrega->Visible = ($aDate[0]!= 441784800);
 // -------------------------
 //End Custom Code
 
@@ -1002,8 +1003,11 @@ function Page_AfterInitialize(& $sender)
 					        	$dUltDia = "1900-01-01";
 					        	if($EstFin == strtotime($dUltDia)){
 					        		$EstFin= date("Y-m-d",mktime(0, 0, 0, $vMes  , date("t",mktime(0, 0, 0, $vMes  , 1, $vAnio)), $vAnio));
-					        		$sValues = $sValues . " case when datediff(d,'" . $data[5]  . "','" . $EstFin . "')<0 THEN 0 else datediff(d,'" . $data[5]  . "','" . $EstFin . "') end , ";
-					        		$sValues = $sValues  . "dbo.ufNumDiasHabilesMC('" . $data[5] . "','" . $EstFin . "')- (select COUNT(fecha) from dia_inhabil where fecha >= '" . $data[5] . "' and fecha <= '" . $EstFin . "')";
+//					        		$sValues = $sValues . " case when datediff(d,'" . $data[5]  . "','" . $EstFin . "')<0 THEN 0 else datediff(d,'" . $data[5]  . "','" . $EstFin . "') end , ";
+//					        		$sValues = $sValues  . "dbo.ufNumDiasHabilesMC('" . $data[5] . "','" . $EstFin . "')- (select COUNT(fecha) from dia_inhabil where fecha >= '" . $data[5] . "' and fecha <= '" . $EstFin . "')";
+//                                  Cambio Solicitado por Luis Dominguez en correo del 8/3/2017 que en registros sin fecha de entrega ponga en automatico 35 días
+					        		$sValues = $sValues . " 35 , ";
+					        		$sValues = $sValues  . " 35 ";
 					        	} else {
 					        		$sValues = $sValues . " case when datediff(d,'" . $data[5]  . "','" . $data[6] . "')<0 THEN 0 else datediff(d,'" . $data[5]  . "','" . $data[6] . "') end , ";
 					        		$sValues = $sValues  . "dbo.ufNumDiasHabilesMC('" . $data[5] . "','" . $data[6] . "')- (select COUNT(fecha) from dia_inhabil where fecha >= '" . $data[5] . "' and fecha <= '" . $data[6] . "')";
@@ -1025,7 +1029,8 @@ function Page_AfterInitialize(& $sender)
 				        $row++;
 				    }
 				    fclose($handle);
-				    //se actualiza la deductiva de los artefactos
+				    //se actualiza la deductiva de los artefactos				    
+
 				    $ssql = ' update mc_info_rs_cr_RE_RC_Artefacto set PctDeductiva = ' .
 							' case when DiasNaturalesDesviacion>0 then ' . 
 							'	case ' . 

@@ -1,0 +1,1407 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Detalle Incidente</title>
+<meta name="GENERATOR" content="CodeCharge Studio 5.1.1.18990">
+<script language="JavaScript" type="text/javascript">
+
+function ayudaValidaciones(solucion, ejecutar){
+
+/*
+Tiempo de Atención -- Remedy “Asignado.Time” y “En Curso.Time”
+Severidad 0: Menor a 15 minutos para los incidentes en que el Proveedor Adjudicado es requerido en horario comercial o para las aplicaciones en régimen de soporte de 7 X 24.
+Severidad 1:  Menor a 2 horas.
+Severidad 2:  Menor a 4 horas.
+Severidad 3:  Menor a 8 horas.
+Severidad 4:  Según calendario establecido en común acuerdo con el SAT.
+*/
+var calificado= document.getElementById("lblCalificado").innerHTML;
+
+if (calificado=="No Calificado" || ejecutar==1){
+        var severidad= document.getElementById("mc_calificacion_incidenteslSeveridad").value;
+        var tiempoAtencion= document.getElementById("mc_lbl_tiempo_atencion").innerHTML;
+
+        //document.getElementById("mc_calificacion_incidenteCumple_DISP_SOPORTE").selectedIndex="2";      
+        
+        var ss = tiempoAtencion.split(":");
+        var horaAtencion=ss[0];
+        var minutoAtencion=ss[1];
+        var segundoatencion=ss[2];
+
+        switch(severidad)
+         {
+         case "0":
+         if (horaAtencion=0 & minutoAtencion<=15)
+                        {       
+                      document.getElementById("mc_calificacion_incidenteCumple_Inc_TiempoAsignacion").selectedIndex="1";      
+                        }
+                        else
+                        {
+                    document.getElementById("mc_calificacion_incidenteCumple_Inc_TiempoAsignacion").selectedIndex="2";      
+                        
+                        }
+           break;
+         case "1":
+         if (((horaAtencion<=2 & minutoAtencion==0) || (horaAtencion<=1 & minutoAtencion<=59) ) )
+                        {       
+                      document.getElementById("mc_calificacion_incidenteCumple_Inc_TiempoAsignacion").selectedIndex="1";      
+                        }
+                        else
+                        {
+                    document.getElementById("mc_calificacion_incidenteCumple_Inc_TiempoAsignacion").selectedIndex="2";      
+                        
+                        }
+           break;
+          
+         case "2":
+         if (((horaAtencion<=4 & minutoAtencion==0) || (horaAtencion<=3 & minutoAtencion<=59) ))
+                        {       
+                      document.getElementById("mc_calificacion_incidenteCumple_Inc_TiempoAsignacion").selectedIndex="1";      
+                        }
+                        else
+                        {
+                    document.getElementById("mc_calificacion_incidenteCumple_Inc_TiempoAsignacion").selectedIndex="2";      
+                        
+                        }
+           break;
+         case "3":
+         if (((horaAtencion<=8 & minutoAtencion==0) || (horaAtencion<=7 & minutoAtencion<=59) ) )
+                        {       
+                      document.getElementById("mc_calificacion_incidenteCumple_Inc_TiempoAsignacion").selectedIndex="1";      
+                        }
+                        else
+                        {
+                    document.getElementById("mc_calificacion_incidenteCumple_Inc_TiempoAsignacion").selectedIndex="2";      
+                        
+                        }
+           break;
+
+         default:
+                 document.getElementById("mc_calificacion_incidenteCumple_Inc_TiempoAsignacion").selectedIndex="0";      
+
+         }      
+
+
+
+/*
+Tiempo de Solución -- Remedy “En Curso.Time” y “Resuelto.Time”
+Severidad 0: Menor a 2 horas.
+Severidad 1:  Menor a 4 horas.
+Severidad 2:  Menor a 24 horas.
+Severidad 3:  Menor a 48 horas.
+Severidad 4:  Según calendario establecido en común acuerdo con el SAT.
+
+*/
+//              var totalDiv = document.getElementById("totalDiv").innerHTML
+                
+                
+                
+        var tiempoSolucion= document.getElementById("totalDivJS").innerHTML;
+                
+//        document.getElementById("mc_calificacion_incidenteObs_Manuales").value="Tiempo Sol. " . solucion;      
+
+                
+
+                if (solucion !="")
+                {
+
+                                        var ss = solucion.split(":");
+                                        var horaSolucion=ss[0];
+                                        var minutoSolucion=ss[1];
+                                        var segundoSolucion=ss[2];
+                document.getElementById("mc_calificacion_incidenteHidden1").value=((ss[0]*60*60) + (ss[1]*60) + Number(ss[2]));
+              
+
+//              var horaSolucion = new Date("2013/01/01 " + solucion);
+                }
+                else
+                {
+                                        var ss = tiempoSolucion.split(":");
+                                        var horaSolucion=ss[0];
+                                        var minutoSolucion=ss[1];
+                                        var segundoSolucion=ss[2];
+                                                                document.getElementById("mc_calificacion_incidenteHidden1").value=((ss[0]*60*60) + (ss[1]*60) + Number(ss[2]));
+                }       
+//        document.getElementById("mc_calificacion_incidenteObs_Manuales").value= horaSolucion;      
+                        
+        switch(severidad)
+         {
+         case "0":
+         if (((horaSolucion<=2 & minutoSolucion()==0) || (horaSolucion<=1 & minutoSolucion<=59) ) )
+                        {       
+                      document.getElementById("mc_calificacion_incidenteCumple_Inc_TiempoSolucion").selectedIndex="1";      
+                        }
+                        else
+                        {
+                    document.getElementById("mc_calificacion_incidenteCumple_Inc_TiempoSolucion").selectedIndex="2";      
+                        
+                        }
+           break;
+         case "1":
+         if (((horaSolucion()<=4 & minutoSolucion==0) || (horaSolucion<=3 & minutoSolucion<=59) ) )
+                        {       
+                      document.getElementById("mc_calificacion_incidenteCumple_Inc_TiempoSolucion").selectedIndex="1";      
+                        }
+                        else
+                        {
+                    document.getElementById("mc_calificacion_incidenteCumple_Inc_TiempoSolucion").selectedIndex="2";      
+                        
+                        }
+         
+           break;
+         case "2":
+         if (((horaSolucion<=24 & minutoSolucion==0) || (horaSolucion<=23 & minutoSolucion<=59) ))
+                       {       
+                      document.getElementById("mc_calificacion_incidenteCumple_Inc_TiempoSolucion").selectedIndex="1";      
+                        }
+                        else
+                        {
+                    document.getElementById("mc_calificacion_incidenteCumple_Inc_TiempoSolucion").selectedIndex="2";      
+
+//        document.getElementById("mc_calificacion_incidenteObs_Manuales").value="Entro" + tiempoSolucion;      
+
+                        
+                        }
+           break;
+         case "3":
+         if (((horaSolucion<=48 & minutoSolucion==0) || (horaSolucion<=47 & minutoSolucion<=59) ))
+                        {       
+                      document.getElementById("mc_calificacion_incidenteCumple_Inc_TiempoSolucion").selectedIndex="1";      
+                        }
+                        else
+                        {
+                    document.getElementById("mc_calificacion_incidenteCumple_Inc_TiempoSolucion").selectedIndex="2";      
+                        
+                        }
+           break;
+
+         default:
+          document.getElementById("mc_calificacion_incidenteCumple_Inc_TiempoSolucion").selectedIndex="0";      
+
+         }      
+
+}
+        //para poner retroactivo el tiempo de solución para aquellos que ya se guardaron en la base antes de este cambio
+        if(document.getElementById("mc_calificacion_incidenteHidden1").value==""){
+                var tiempoSolucion= document.getElementById("totalDivJS").innerHTML;
+                var ss = tiempoSolucion.split(":");
+                document.getElementById("mc_calificacion_incidenteHidden1").value=((ss[0]*60*60) + (ss[1]*60) + Number(ss[2]));
+        }
+
+}
+
+
+function ayudaMostrar(obj){
+        if ( document.getElementById(obj).style.display == "")
+        ayudaocultar(obj);
+        else
+        ayudadesplegar(obj);
+}
+
+function ayudaMostrarTotal(obj){
+
+    if (obj.checked){
+       document.getElementById("totalDivJS").style.display="none";
+       document.getElementById("totalDiv").style.display="none";
+       document.getElementById("totalDiv2").style.display="";
+       var totalDiv = document.getElementById("totalDiv2").innerHTML
+    } else {
+       document.getElementById("totalDivJS").style.display="none";
+       document.getElementById("totalDiv").style.display="";
+       document.getElementById("totalDiv2").style.display="none";
+       var totalDiv = document.getElementById("totalDiv").innerHTML
+    }
+        ayudaValidaciones(totalDiv,1)
+}
+
+function ayudadesplegar(obj)
+{
+//document.getElementById(obj).style.visibility="visible";
+document.getElementById(obj).style.display="";
+}
+
+function ayudaocultar (obj){
+//document.getElementById(obj).style.visibility="hidden";
+document.getElementById(obj).style.display="none";
+}
+
+function doSomething(){ 
+document.mc_info_incidentes.submit(); 
+}
+
+function validaModificacion(obj)
+{
+ 
+ var r=confirm("Modificaste la validación automatica del sistema, si no estas seguro pulsa F5");
+
+
+ if (r==true)
+   {
+//   x="You pressed OK!";
+//   document.getElementById(obj).style.visibility="visible";  //visible / hidden
+   document.getElementById(obj).style.display="";
+   }
+ else
+   {
+//   x="You pressed Cancel!";
+// document.getElementById(obj).style.visibility="hidden";  //visible / hidden
+   document.getElementById(obj).style.display="none";
+
+   } 
+
+/*
+        var valor = document.getElementById("mc_calificacion_incidentetxtCumple_Inc_TiempoAsignacion").innerHTML;
+
+        if (valor.trim != "")
+        {
+           document.getElementById("div_TiempoAtencion").style.display="";
+        }
+        if (document.getElementById("div_TiempoSolucion").innerHTML != "")
+        {
+           document.getElementById("div_TiempoSolucion").style.display="";
+        }
+        if (document.getElementById("div_DispSoporte").innerHTML != "")
+        {
+           document.getElementById("div_DispSoporte").style.display="";
+        }
+*/
+
+}
+function CalculaTiempoDeEsperaS() {
+    
+        if (document.getElementById("mc_incidentes_t_esperaDHoraEsperaS").value!=null && document.getElementById("mc_incidentes_t_esperaDHoraEsperaS").value!=0) {        
+                        TotHoras = document.getElementById("mc_incidentes_t_esperaDHoraEsperaS").value;
+        } else {
+                TotHoras = 0;
+        }       
+        if (document.getElementById("mc_incidentes_t_esperaDMinEsperaS").value!=null && document.getElementById("mc_incidentes_t_esperaDMinEsperaS").value!=0) {        
+                 TotMinutos = document.getElementById("mc_incidentes_t_esperaDMinEsperaS").value/60;
+        } else {
+                 TotMinutos = 0;
+        }       
+            if (document.getElementById("mc_incidentes_t_esperaDSegEsperaS").value!=null && document.getElementById("mc_incidentes_t_esperaDSegEsperaS").value!=0) {        
+                 TotSegundos = document.getElementById("mc_incidentes_t_esperaDSegEsperaS").value/3600;
+        } else {
+                 TotSegundos = 0;
+        }       
+                Ttotal = parseFloat(TotHoras) + parseFloat(TotMinutos) + parseFloat(TotSegundos);
+
+                document.getElementById("mc_incidentes_t_esperahoras_t_solucion").value =  document.getElementById("mc_incidentes_t_esperaoperacionTsolucion").value*Ttotal;       
+                
+
+        
+}
+function CalculaTiempoDeEsperaA() {
+
+        if (document.getElementById("mc_incidentes_t_esperaDHoraEsperaA").value!=null && document.getElementById("mc_incidentes_t_esperaDHoraEsperaA").value!=0) {        
+                        TotHorasA = document.getElementById("mc_incidentes_t_esperaDHoraEsperaA").value;
+        } else {
+                TotHorasA = 0;
+        }       
+        if (document.getElementById("mc_incidentes_t_esperaDMinEsperaA").value!=null && document.getElementById("mc_incidentes_t_esperaDMinEsperaA").value!=0) {        
+                 TotMinutosA = document.getElementById("mc_incidentes_t_esperaDMinEsperaA").value/60;
+        } else {
+                 TotMinutosA = 0;
+        }       
+            if (document.getElementById("mc_incidentes_t_esperaDSegEsperaA").value!=null && document.getElementById("mc_incidentes_t_esperaDSegEsperaA").value!=0) {        
+                 TotSegundosA = document.getElementById("mc_incidentes_t_esperaDSegEsperaA").value/3600;
+        } else {
+                 TotSegundosA = 0;
+        }       
+                TtotalA = parseFloat(TotHorasA) + parseFloat(TotMinutosA) + parseFloat(TotSegundosA);
+        document.getElementById("mc_incidentes_t_esperahoras_t_atencion").value =  document.getElementById("mc_incidentes_t_esperaoperacionTatencion").value*TtotalA;       
+
+        
+}
+
+//Begin CCS script
+//Include Common JSFunctions @1-2504AB44
+</script>
+<script src="ClientI18N.php?file=Globalize.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-6B493E1E
+</script>
+<link rel="stylesheet" type="text/css" href="Styles/Austere4/ccs-jquery-ui-calendar.css">
+{page:scriptIncludes}
+<script type="text/javascript">
+//End Include User Scripts
+
+//Common Script Start @1-8BFA436B
+jQuery(function ($) {
+    var features = { };
+    var actions = { };
+    var params = { };
+//End Common Script Start
+{EstadoCampos}
+
+//Controls Selecting @1-0FADB425
+    $('body').ccsBind(function() {
+        features["mc_incidentes_reasignacioprimera_fecha_asignacionInlineDatePicker1"] = $('*:ccsControl(mc_incidentes_reasignacio, primera_fecha_asignacion)');
+        features["mc_incidentes_reasignacioprimera_fecha_encursoInlineDatePicker2"] = $('*:ccsControl(mc_incidentes_reasignacio, primera_fecha_encurso)');
+        features["mc_incidentes_reasignacioprimera_fecha_nuevoInlineDatePicker3"] = $('*:ccsControl(mc_incidentes_reasignacio, primera_fecha_nuevo)');
+        features["mc_incidentes_t_esperaDHoraEsperaSNumericUpDown1"] = $('*:ccsControl(mc_incidentes_t_espera, DHoraEsperaS)');
+        features["mc_incidentes_t_esperaDMinEsperaSNumericUpDown2"] = $('*:ccsControl(mc_incidentes_t_espera, DMinEsperaS)');
+        features["mc_incidentes_t_esperaDSegEsperaSNumericUpDown3"] = $('*:ccsControl(mc_incidentes_t_espera, DSegEsperaS)');
+        features["mc_incidentes_t_esperaDHoraEsperaANumericUpDown4"] = $('*:ccsControl(mc_incidentes_t_espera, DHoraEsperaA)');
+        features["mc_incidentes_t_esperaDMinEsperaANumericUpDown5"] = $('*:ccsControl(mc_incidentes_t_espera, DMinEsperaA)');
+        features["mc_incidentes_t_esperaDSegEsperaANumericUpDown6"] = $('*:ccsControl(mc_incidentes_t_espera, DSegEsperaA)');
+    });
+//End Controls Selecting
+
+//Feature Parameters @1-70B84AFC
+    params["mc_incidentes_reasignacioprimera_fecha_asignacionInlineDatePicker1"] = { 
+        dateFormat: "dd/MM/yyyy HH:mm:ss",
+        isWeekend: true
+    };
+    params["mc_incidentes_reasignacioprimera_fecha_encursoInlineDatePicker2"] = { 
+        dateFormat: "dd/MM/yyyy HH:mm:ss",
+        isWeekend: true
+    };
+    params["mc_incidentes_reasignacioprimera_fecha_nuevoInlineDatePicker3"] = { 
+        dateFormat: "dd/MM/yyyy HH:mm:ss",
+        isWeekend: true
+    };
+    params["mc_incidentes_t_esperaDHoraEsperaSNumericUpDown1"] = { 
+        sourceType: "Numeric",
+        min: 0,
+        max: 23,
+        step: 1, 
+        altStep: 1
+    };
+    params["mc_incidentes_t_esperaDMinEsperaSNumericUpDown2"] = { 
+        sourceType: "Numeric",
+        min: 0,
+        max: 59,
+        step: 1, 
+        altStep: 1
+    };
+    params["mc_incidentes_t_esperaDSegEsperaSNumericUpDown3"] = { 
+        sourceType: "Numeric",
+        min: 0,
+        max: 59,
+        step: 1, 
+        altStep: 1
+    };
+    params["mc_incidentes_t_esperaDHoraEsperaANumericUpDown4"] = { 
+        sourceType: "Numeric",
+        min: 0,
+        max: 23,
+        step: 1, 
+        altStep: 1
+    };
+    params["mc_incidentes_t_esperaDMinEsperaANumericUpDown5"] = { 
+        sourceType: "Numeric",
+        min: 0,
+        max: 59,
+        step: 1, 
+        altStep: 1
+    };
+    params["mc_incidentes_t_esperaDSegEsperaANumericUpDown6"] = { 
+        sourceType: "Numeric",
+        min: 0,
+        max: 59,
+        step: 1, 
+        altStep: 1
+    };
+//End Feature Parameters
+
+//Feature Init @1-1ABC522C
+    features["mc_incidentes_reasignacioprimera_fecha_asignacionInlineDatePicker1"].ccsBind(function() {
+        this.ccsDateTimePicker(params["mc_incidentes_reasignacioprimera_fecha_asignacionInlineDatePicker1"]);
+    });
+    features["mc_incidentes_reasignacioprimera_fecha_encursoInlineDatePicker2"].ccsBind(function() {
+        this.ccsDateTimePicker(params["mc_incidentes_reasignacioprimera_fecha_encursoInlineDatePicker2"]);
+    });
+    features["mc_incidentes_reasignacioprimera_fecha_nuevoInlineDatePicker3"].ccsBind(function() {
+        this.ccsDateTimePicker(params["mc_incidentes_reasignacioprimera_fecha_nuevoInlineDatePicker3"]);
+    });
+    features["mc_incidentes_t_esperaDHoraEsperaSNumericUpDown1"].ccsBind(function() {
+        this.ccsNumericUpDown(params["mc_incidentes_t_esperaDHoraEsperaSNumericUpDown1"]);
+    });
+    features["mc_incidentes_t_esperaDMinEsperaSNumericUpDown2"].ccsBind(function() {
+        this.ccsNumericUpDown(params["mc_incidentes_t_esperaDMinEsperaSNumericUpDown2"]);
+    });
+    features["mc_incidentes_t_esperaDSegEsperaSNumericUpDown3"].ccsBind(function() {
+        this.ccsNumericUpDown(params["mc_incidentes_t_esperaDSegEsperaSNumericUpDown3"]);
+    });
+    features["mc_incidentes_t_esperaDHoraEsperaANumericUpDown4"].ccsBind(function() {
+        this.ccsNumericUpDown(params["mc_incidentes_t_esperaDHoraEsperaANumericUpDown4"]);
+    });
+    features["mc_incidentes_t_esperaDMinEsperaANumericUpDown5"].ccsBind(function() {
+        this.ccsNumericUpDown(params["mc_incidentes_t_esperaDMinEsperaANumericUpDown5"]);
+    });
+    features["mc_incidentes_t_esperaDSegEsperaANumericUpDown6"].ccsBind(function() {
+        this.ccsNumericUpDown(params["mc_incidentes_t_esperaDSegEsperaANumericUpDown6"]);
+    });
+//End Feature Init
+
+//mc_incidentes_reasignacioButton_DeleteOnClick Event Start @-AF0C7950
+    actions["mc_incidentes_reasignacioButton_DeleteOnClick"] = function (eventType, parameters) {
+        var result = true;
+//End mc_incidentes_reasignacioButton_DeleteOnClick Event Start
+
+//Confirmation Message @352-BED55CD3
+        return confirm('Borrar registro?');
+//End Confirmation Message
+
+//mc_incidentes_reasignacioButton_DeleteOnClick Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_incidentes_reasignacioButton_DeleteOnClick Event End
+
+//mc_incidentes_t_esperaDHoraEsperaSOnChange Event Start @-FD024D7F
+    actions["mc_incidentes_t_esperaDHoraEsperaSOnChange"] = function (eventType, parameters) {
+        var result = true;
+//End mc_incidentes_t_esperaDHoraEsperaSOnChange Event Start
+
+//Custom Code @479-2A29BDB7
+        // -------------------------
+CalculaTiempoDeEsperaS();
+
+        // -------------------------
+//End Custom Code
+
+//mc_incidentes_t_esperaDHoraEsperaSOnChange Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_incidentes_t_esperaDHoraEsperaSOnChange Event End
+
+//mc_incidentes_t_esperaDMinEsperaSOnChange Event Start @-20D2CB88
+    actions["mc_incidentes_t_esperaDMinEsperaSOnChange"] = function (eventType, parameters) {
+        var result = true;
+//End mc_incidentes_t_esperaDMinEsperaSOnChange Event Start
+
+//Custom Code @480-2A29BDB7
+        // -------------------------
+CalculaTiempoDeEsperaS();
+        // -------------------------
+//End Custom Code
+
+//mc_incidentes_t_esperaDMinEsperaSOnChange Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_incidentes_t_esperaDMinEsperaSOnChange Event End
+
+//mc_incidentes_t_esperaDSegEsperaSOnChange Event Start @-3329C107
+    actions["mc_incidentes_t_esperaDSegEsperaSOnChange"] = function (eventType, parameters) {
+        var result = true;
+//End mc_incidentes_t_esperaDSegEsperaSOnChange Event Start
+
+//Custom Code @481-2A29BDB7
+        // -------------------------
+CalculaTiempoDeEsperaS();
+
+        // -------------------------
+//End Custom Code
+
+//mc_incidentes_t_esperaDSegEsperaSOnChange Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_incidentes_t_esperaDSegEsperaSOnChange Event End
+
+//mc_incidentes_t_esperaDHoraEsperaAOnChange Event Start @-1FDABEEF
+    actions["mc_incidentes_t_esperaDHoraEsperaAOnChange"] = function (eventType, parameters) {
+        var result = true;
+//End mc_incidentes_t_esperaDHoraEsperaAOnChange Event Start
+
+//Custom Code @482-2A29BDB7
+        // -------------------------
+        CalculaTiempoDeEsperaA();
+
+        // -------------------------
+//End Custom Code
+
+//mc_incidentes_t_esperaDHoraEsperaAOnChange Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_incidentes_t_esperaDHoraEsperaAOnChange Event End
+
+//mc_incidentes_t_esperaDMinEsperaAOnChange Event Start @-C20A3818
+    actions["mc_incidentes_t_esperaDMinEsperaAOnChange"] = function (eventType, parameters) {
+        var result = true;
+//End mc_incidentes_t_esperaDMinEsperaAOnChange Event Start
+
+//Custom Code @483-2A29BDB7
+        // -------------------------
+CalculaTiempoDeEsperaA();
+
+        // -------------------------
+//End Custom Code
+
+//mc_incidentes_t_esperaDMinEsperaAOnChange Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_incidentes_t_esperaDMinEsperaAOnChange Event End
+
+//mc_incidentes_t_esperaDSegEsperaAOnChange Event Start @-D1F13297
+    actions["mc_incidentes_t_esperaDSegEsperaAOnChange"] = function (eventType, parameters) {
+        var result = true;
+//End mc_incidentes_t_esperaDSegEsperaAOnChange Event Start
+
+//Custom Code @484-2A29BDB7
+        // -------------------------
+CalculaTiempoDeEsperaA();
+
+        // -------------------------
+//End Custom Code
+
+//mc_incidentes_t_esperaDSegEsperaAOnChange Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_incidentes_t_esperaDSegEsperaAOnChange Event End
+
+//mc_incidentes_t_esperaoperacionTsolucionOnChange Event Start @-5C0E1A5E
+    actions["mc_incidentes_t_esperaoperacionTsolucionOnChange"] = function (eventType, parameters) {
+        var result = true;
+//End mc_incidentes_t_esperaoperacionTsolucionOnChange Event Start
+
+//Custom Code @509-2A29BDB7
+        // -------------------------
+CalculaTiempoDeEsperaS();
+        // -------------------------
+//End Custom Code
+
+//mc_incidentes_t_esperaoperacionTsolucionOnChange Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_incidentes_t_esperaoperacionTsolucionOnChange Event End
+
+//mc_incidentes_t_esperaoperacionTatencionOnChange Event Start @-20F26195
+    actions["mc_incidentes_t_esperaoperacionTatencionOnChange"] = function (eventType, parameters) {
+        var result = true;
+//End mc_incidentes_t_esperaoperacionTatencionOnChange Event Start
+
+//Custom Code @510-2A29BDB7
+        // -------------------------
+CalculaTiempoDeEsperaA();
+        // -------------------------
+//End Custom Code
+
+//mc_incidentes_t_esperaoperacionTatencionOnChange Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_incidentes_t_esperaoperacionTatencionOnChange Event End
+
+//Event Binding @1-E22A4467
+    $('*:ccsControl(mc_incidentes_reasignacio, Button_Delete)').ccsBind(function() {
+        this.bind("click", actions["mc_incidentes_reasignacioButton_DeleteOnClick"]);
+    });
+    $('*:ccsControl(mc_incidentes_t_espera, DHoraEsperaS)').ccsBind(function() {
+        this.bind("change", actions["mc_incidentes_t_esperaDHoraEsperaSOnChange"]);
+    });
+    $('*:ccsControl(mc_incidentes_t_espera, DMinEsperaS)').ccsBind(function() {
+        this.bind("change", actions["mc_incidentes_t_esperaDMinEsperaSOnChange"]);
+    });
+    $('*:ccsControl(mc_incidentes_t_espera, DSegEsperaS)').ccsBind(function() {
+        this.bind("change", actions["mc_incidentes_t_esperaDSegEsperaSOnChange"]);
+    });
+    $('*:ccsControl(mc_incidentes_t_espera, DHoraEsperaA)').ccsBind(function() {
+        this.bind("change", actions["mc_incidentes_t_esperaDHoraEsperaAOnChange"]);
+    });
+    $('*:ccsControl(mc_incidentes_t_espera, DMinEsperaA)').ccsBind(function() {
+        this.bind("change", actions["mc_incidentes_t_esperaDMinEsperaAOnChange"]);
+    });
+    $('*:ccsControl(mc_incidentes_t_espera, DSegEsperaA)').ccsBind(function() {
+        this.bind("change", actions["mc_incidentes_t_esperaDSegEsperaAOnChange"]);
+    });
+    $('*:ccsControl(mc_incidentes_t_espera, operacionTsolucion)').ccsBind(function() {
+        this.bind("change", actions["mc_incidentes_t_esperaoperacionTsolucionOnChange"]);
+    });
+    $('*:ccsControl(mc_incidentes_t_espera, operacionTatencion)').ccsBind(function() {
+        this.bind("change", actions["mc_incidentes_t_esperaoperacionTatencionOnChange"]);
+    });
+//End Event Binding
+
+//Plugin Calls @1-C93965CB
+    $('*:ccsControl(mc_calificacion_incidente, Cancelar)').ccsBind(function() {
+        this.bind("click", function(){ $("body").data("disableValidation", true); });
+    });
+    $('*:ccsControl(mc_incidentes_reasignacio, Button_Delete)').ccsBind(function() {
+        this.bind("click", function(){ $("body").data("disableValidation", true); });
+    });
+    $('*:ccsControl(mc_incidentes_reasignacio, Button_Cancel)').ccsBind(function() {
+        this.bind("click", function(){ $("body").data("disableValidation", true); });
+    });
+    $('*:ccsControl(mc_incidentes_t_espera, Button_Cancel)').ccsBind(function() {
+        this.bind("click", function(){ $("body").data("disableValidation", true); });
+    });
+//End Plugin Calls
+
+//Common Script End @1-562554DE
+});
+//End Common Script End
+
+//End CCS script
+</script>
+<link rel="stylesheet" type="text/css" href="Styles/Austere4/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="Styles/Austere4/jquery-ui.css">
+</head>
+<body onload="ayudaValidaciones('','')">
+<p>&nbsp;&nbsp;&nbsp;{Header}</p>
+<p align="left"></p>
+<table width="100%" border="0">
+  <tr>
+    <td>&nbsp;</td> 
+    <td colspan="2">&nbsp; 
+      <table width="100%">
+        <tr>
+          <td width="33%">&nbsp; <a href="{slAnterior_Src}" id="slAnterior">{slAnterior}</a></td> 
+          <td width="33%">&nbsp;<a href="{slSiguiente_Src}" id="slSiguiente">{slSiguiente}</a></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+ 
+  <tr>
+    <td>&nbsp;</td> 
+    <td colspan="2">
+      <p align="left"></p>
+      <!-- BEGIN Record mc_info_incidentes -->
+      <form id="mc_info_incidentes" method="post" name="{HTMLFormName}" action="{Action}">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"></td> 
+                  <td class="th"><strong>Detalle de incidente:&nbsp; {Id_incidente}&nbsp; de&nbsp;&nbsp; {slCDS}&nbsp; - Reportado en {lMes} </strong></td> 
+                  <td class="HeaderRight"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <tr class="Error">
+                  <td colspan="15"><input type="hidden" id="mc_info_incidentesshId_Proveedor" value="{shId_Proveedor}" name="{shId_Proveedor_Name}"></td>
+                </tr>
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="15"><span id="ErrorBlock">{Error}</span></td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td><strong>Servicion de negocio</strong></td> 
+                  <td>&nbsp;</td> 
+                  <td><strong>Nombre del producto</strong></td> 
+                  <td><strong>Nuevo</strong></td> 
+                  <td><strong>Asignado&nbsp;</strong></td> 
+                  <td><strong>En Curso&nbsp;</strong></td> 
+                  <td><strong>Pendiente&nbsp;</strong></td> 
+                  <td><strong>Resuelto&nbsp;</strong></td> 
+                  <td><strong>Cerrado</strong></td> 
+                  <td><strong>Dictamen</strong></td> 
+                  <td><strong>Aplicación</strong></td> 
+                  <td><strong>Severidad</strong></td> 
+                  <td><strong>Tiempo atención</strong></td> 
+                  <td><strong>Tiempo solución</strong></td> 
+                  <td>Historial&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td>{ServicioNegocio}</td> 
+                  <td>&nbsp;</td> 
+                  <td>{Aplicacion}</td> 
+                  <td>{FechaNuevo}</td> 
+                  <td>{FechaAsignado}</td> 
+                  <td>{FechaEnCurso}</td> 
+                  <td>{FechaPendiente}</td> 
+                  <td>{FechaResuelto}</td> 
+                  <td>{FechaCerrado}</td> 
+                  <td style="TEXT-ALIGN: center">{Dictamen}</td> 
+                  <td>{Label1}</td> 
+                  <td style="TEXT-ALIGN: center">{SeveridadApp}</td> 
+                  <td style="TEXT-ALIGN: center">{TiempoAtencion}</td> 
+                  <td style="TEXT-ALIGN: center">{TiempoSolucion}</td> 
+                  <td>&nbsp;<img onclick="ayudaMostrar('Historial')" id="Image1" alt="" src="Images/ayuda.jpg"></td>
+                </tr>
+ 
+                <tr class="Controls" width="33%">
+                  <td colspan="15">
+                    <div id="Historial" style="DISPLAY: none">
+                      {slHistorial} 
+                    </div>
+                  </td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td style="TEXT-ALIGN: right" colspan="15"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+ 
+      <p></p>
+      <!-- END Record mc_info_incidentes --></td>
+  </tr>
+ 
+  <tr>
+    <td>&nbsp;</td> 
+    <td style="VERTICAL-ALIGN: top">&nbsp; 
+      <!-- BEGIN Record mc_info_incidentes1 -->
+      <form id="mc_info_incidentes1" method="post" name="{HTMLFormName}" action="{Action}">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"></td> 
+                  <td class="th"><strong>Tiempo de atención</strong></td> 
+                  <td class="HeaderRight"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="4"><span id="ErrorBlock">{Error}</span></td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"></td> 
+                  <td><strong>Asignado</strong></td> 
+                  <td><strong>En curso</strong></td> 
+                  <td>&nbsp;<strong>Horas invertidas</strong></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Tiempo de atención</td> 
+                  <td>{FechaAsignado}</td> 
+                  <td>{FechaEnCurso}</td> 
+                  <td>&nbsp;<label id="mc_lbl_tiempo_atencion">{HorasInvertidas}</label></td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td style="TEXT-ALIGN: right" colspan="4"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record mc_info_incidentes1 --><br>
+      <!-- BEGIN Record mc_info_incidentes2 -->
+      <form id="mc_info_incidentes2" method="post" name="{HTMLFormName}" action="{Action}">
+        <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"></td> 
+                  <td class="th"><strong>Tiempo de solución&nbsp;</strong></td> 
+                  <td class="HeaderRight"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <tr class="Controls">
+                  <td class="th"></td> 
+                  <td><strong>En curso</strong></td> 
+                  <td><strong>Registro en AVL</strong></td> 
+                  <td><strong>Horas invertidas</strong></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Tiempo del estado "En curso" y el Registro en AVL</td> 
+                  <td>{FechaEnCurso}</td> 
+                  <td>{lblRegistroAVL}</td> 
+                  <td id="mc_lbl_tiemposolucion" style="TEXT-ALIGN: center">{HorasInvertidas}</td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td style="TEXT-ALIGN: right" colspan="4"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record mc_info_incidentes2 --></td> 
+    <td style="VERTICAL-ALIGN: top">
+      <!-- BEGIN Grid mc_incidentes_relacionado -->
+      <table id="mc_incidentes_relacionado" class="MainTable" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td valign="top">
+            <table class="Header" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                <td class="th"><strong>Incidentes relacionados </strong></td> 
+                <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+              </tr>
+            </table>
+ 
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <tr class="Caption">
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Inc_Secundario --><span class="Sorter"><a href="{Sort_URL}" id="mc_incidentes_relacionadoSorter_Inc_Secundario">Incidente</a></span><!-- END Sorter Sorter_Inc_Secundario --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Paquete --><span class="Sorter"><a href="{Sort_URL}" id="mc_incidentes_relacionadoSorter_Paquete">Paquete</a></span><!-- END Sorter Sorter_Paquete --></th>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr class="Row">
+                <td>{Inc_Secundario}&nbsp;</td> 
+                <td>{Paquete}&nbsp;</td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="2">No hay registros</td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="Footer">
+                <td colspan="2">
+                  <!-- BEGIN Navigator Navigator --><span class="Navigator">Registros por página: 
+                  <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+                    <option selected value="">-</option>
+ {PageSize_Options}
+                  </select>
+ 
+                  <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/First.gif"></a> <!-- END First_On -->
+                  <!-- BEGIN First_Off --><img alt="{First_URL}" src="Styles/{CCS_Style}/Images/FirstOff.gif"><!-- END First_Off -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/Prev.gif"></a> <!-- END Prev_On -->
+                  <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="Styles/{CCS_Style}/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp;{Page_Number} de&nbsp;{Total_Pages}&nbsp; 
+                  <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/Next.gif"></a> <!-- END Next_On -->
+                  <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/{CCS_Style}/Images/NextOff.gif"><!-- END Next_Off -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/Last.gif"></a> <!-- END Last_On -->
+                  <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/{CCS_Style}/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator -->&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- END Grid mc_incidentes_relacionado -->
+      <!-- BEGIN Record mc_incidentes_reasignacio -->
+      <div style="FLOAT: left">
+        <form id="mc_incidentes_reasignacio" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td valign="top">
+                <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td class="HeaderLeft"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td> 
+                    <td class="th"><strong>Cambio a primera asignación</strong></td> 
+                    <td class="HeaderRight"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr id="ErrorBlock" class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th">Id Incidente</td> 
+                    <td>{id_incidente}<input type="hidden" id="mc_incidentes_reasignacioH_id_incidente" value="{H_id_incidente}" name="{H_id_incidente_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Mes</td> 
+                    <td>{mes}<input type="hidden" id="mc_incidentes_reasignacioH_mes" value="{H_mes}" name="{H_mes_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Anio</td> 
+                    <td>{anio}<input type="hidden" id="mc_incidentes_reasignacioH_anio" value="{H_anio}" name="{H_anio_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="mc_incidentes_reasignacioprimera_fecha_asignacion">Primera Fecha Asignacion</label></td> 
+                    <td><input type="text" id="mc_incidentes_reasignacioprimera_fecha_asignacion" style="HEIGHT: 22px; WIDTH: 124px" maxlength="100" size="18" value="{primera_fecha_asignacion}" name="{primera_fecha_asignacion_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="mc_incidentes_reasignacioprimera_fecha_encurso">Primera Fecha Encurso</label></td> 
+                    <td><input type="text" id="mc_incidentes_reasignacioprimera_fecha_encurso" style="HEIGHT: 22px; WIDTH: 124px" maxlength="100" size="18" value="{primera_fecha_encurso}" name="{primera_fecha_encurso_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;Primera Fecha Nuevo</td> 
+                    <td>
+                      <!-- BEGIN TextBox primera_fecha_nuevo --><input type="text" id="mc_incidentes_reasignacioprimera_fecha_nuevo" style="HEIGHT: 22px; WIDTH: 124px" maxlength="100" size="18" value="{primera_fecha_nuevo}" name="{primera_fecha_nuevo_Name}"><!-- END TextBox primera_fecha_nuevo --></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="mc_incidentes_reasignaciohoras_invertidas">Horas Invertidas</label></td> 
+                    <td>{horas_invertidas}<input type="hidden" id="mc_incidentes_reasignacioH_horas_invertidas" value="{H_horas_invertidas}" name="{H_horas_invertidas_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td style="TEXT-ALIGN: right" colspan="2">
+                      <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_incidentes_reasignacioButton_Insert" class="Button" alt="Agregar" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input type="submit" id="mc_incidentes_reasignacioButton_Update" class="Button" alt="Enviar" value="Actualizar" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input type="submit" id="mc_incidentes_reasignacioButton_Delete" class="Button" alt="Borrar" value="Borrar" name="{Button_Name}"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input type="submit" id="mc_incidentes_reasignacioButton_Cancel" class="Button" alt="Cancelar" value="Cancelar" name="{Button_Name}"><!-- END Button Button_Cancel --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+      </div>
+      <!-- END Record mc_incidentes_reasignacio -->
+      <!-- BEGIN Record mc_incidentes_t_espera -->
+      <div style="FLOAT: right">
+        <form id="mc_incidentes_t_espera" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td valign="top">
+                <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td class="HeaderLeft"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td> 
+                    <td class="th"><strong>Agregar tiempo de espera</strong></td> 
+                    <td class="HeaderRight"><img alt="" src="Styles/Austere4/Images/Spacer.gif"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr id="ErrorBlock" class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th">&nbsp;Id Incidente</td> 
+                    <td>&nbsp;{id_incidente}<input type="hidden" id="mc_incidentes_t_esperaH_id_incidente" value="{H_id_incidente}" name="{H_id_incidente_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Mes</td> 
+                    <td>{mes}<input type="hidden" id="mc_incidentes_t_esperaH_mes" value="{H_mes}" name="{H_mes_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Anio</td> 
+                    <td>{anio}<input type="hidden" id="mc_incidentes_t_esperaH_anio" value="{H_anio}" name="{H_anio_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;Espera&nbsp;T. Solución</td> 
+                    <td><br>
+                      <label for="mc_incidentes_t_esperaoperacionTsolucion" style="display: none;">ListBox1</label> 
+                      <select id="mc_incidentes_t_esperaoperacionTsolucion" name="{operacionTsolucion_Name}">
+                        <option selected value="">Seleccionar Valor</option>
+                        {operacionTsolucion_Options}
+                      </select>
+ <br>
+                      <br>
+                      <label for="mc_incidentes_t_esperaDHoraEsperaS" style="display: none;">TextBox1</label><input type="text" id="mc_incidentes_t_esperaDHoraEsperaS" style="HEIGHT: 22px; WIDTH: 27px" size="1" value="{DHoraEsperaS}" name="{DHoraEsperaS_Name}"><label for="mc_incidentes_t_esperaDMinEsperaS" style="display: none;">TextBox1</label><input type="text" id="mc_incidentes_t_esperaDMinEsperaS" style="HEIGHT: 22px; WIDTH: 17px" size="1" value="{DMinEsperaS}" name="{DMinEsperaS_Name}"><label for="mc_incidentes_t_esperaDSegEsperaS" style="display: none;">TextBox1</label><input type="text" id="mc_incidentes_t_esperaDSegEsperaS" style="HEIGHT: 22px; WIDTH: 17px" size="1" value="{DSegEsperaS}" name="{DSegEsperaS_Name}"><input type="hidden" id="mc_incidentes_t_esperahoras_t_solucion" value="{horas_t_solucion}" name="{horas_t_solucion_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;Espera T. Atención</td> 
+                    <td><br>
+                      <label for="mc_incidentes_t_esperaoperacionTatencion" style="display: none;">ListBox1</label> 
+                      <select id="mc_incidentes_t_esperaoperacionTatencion" name="{operacionTatencion_Name}">
+                        <option selected value="">Seleccionar Valor</option>
+                        {operacionTatencion_Options}
+                      </select>
+ <br>
+                      <br>
+                      <label for="mc_incidentes_t_esperaDHoraEsperaA" style="display: none;">TextBox1</label><input type="text" id="mc_incidentes_t_esperaDHoraEsperaA" style="HEIGHT: 22px; WIDTH: 27px" size="1" value="{DHoraEsperaA}" name="{DHoraEsperaA_Name}"><label for="mc_incidentes_t_esperaDMinEsperaA" style="display: none;">TextBox1</label><input type="text" id="mc_incidentes_t_esperaDMinEsperaA" style="HEIGHT: 22px; WIDTH: 17px" size="1" value="{DMinEsperaA}" name="{DMinEsperaA_Name}"><label for="mc_incidentes_t_esperaDSegEsperaA" style="display: none;">TextBox1</label><input type="text" id="mc_incidentes_t_esperaDSegEsperaA" style="HEIGHT: 22px; WIDTH: 17px" size="1" value="{DSegEsperaA}" name="{DSegEsperaA_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td style="TEXT-ALIGN: right" colspan="2">
+                      <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_incidentes_t_esperaButton_Insert" class="Button" alt="Agregar" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input type="submit" id="mc_incidentes_t_esperaButton_Update" class="Button" alt="Enviar" value="Actualizar" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Cancel --><input type="submit" id="mc_incidentes_t_esperaButton_Cancel" class="Button" alt="Cancelar" value="Cancelar" name="{Button_Name}"><!-- END Button Button_Cancel --><input type="hidden" id="mc_incidentes_t_esperahoras_t_atencion" value="{horas_t_atencion}" name="{horas_t_atencion_Name}"></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+      </div>
+      <!-- END Record mc_incidentes_t_espera --><br>
+      <p></p>
+    </td>
+  </tr>
+ 
+  <tr>
+    <td></td> 
+    <td>
+      <p>
+      <!-- BEGIN Grid mc_detalle_incidente_avl -->
+      <table id="mc_detalle_incidente_avl" class="MainTable" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td valign="top">
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <tr class="Caption">
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_ClaveMovimiento --><span class="Sorter"><a href="{Sort_URL}" id="mc_detalle_incidente_avlSorter_ClaveMovimiento">ID movimiento</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascending" src="Styles/Basic/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/Basic/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_ClaveMovimiento --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_DescMovimiento --><span class="Sorter"><a href="{Sort_URL}" id="mc_detalle_incidente_avlSorter_DescMovimiento">Descripción</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascending" src="Styles/Basic/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/Basic/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_DescMovimiento --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_FechaInicioMov --><span class="Sorter"><a href="{Sort_URL}" id="mc_detalle_incidente_avlSorter_FechaInicioMov">Fecha inicio</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascending" src="Styles/Basic/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/Basic/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_FechaInicioMov --></th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_FechaFinMov --><span class="Sorter"><a href="{Sort_URL}" id="mc_detalle_incidente_avlSorter_FechaFinMov">Fecha fin</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascending" src="Styles/Basic/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/Basic/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_FechaFinMov --></th>
+ 
+                <th scope="col">
+                <p>Horas </p>
+ 
+                <p>Invertidas</p>
+                </th>
+ 
+                <th scope="col">
+                <!-- BEGIN Sorter Sorter_Paquete --><span class="Sorter"><a href="{Sort_URL}" id="mc_detalle_incidente_avlSorter_Paquete">Paquete</a> 
+                <!-- BEGIN Asc_On --><img alt="Ascending" src="Styles/Basic/Images/Asc.gif"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img alt="Descending" src="Styles/Basic/Images/Desc.gif"><!-- END Desc_On --></span><!-- END Sorter Sorter_Paquete --></th>
+ 
+                <th colspan="5" scope="col">
+                <p>Fecha </p>
+ 
+                <p>Liberación AVL&nbsp;</p>
+                </th>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr class="Row">
+                <td style="TEXT-ALIGN: right">{ClaveMovimiento}&nbsp;</td> 
+                <td>{DescMovimiento}&nbsp;</td> 
+                <td>{FechaInicioMov}&nbsp;</td> 
+                <td>{FechaFinMov}&nbsp;</td> 
+                <td style="TEXT-ALIGN: center">{Horas}</td> 
+                <!-- BEGIN Panel Panel1 -->
+                <td style="TEXT-ALIGN: right" rowspan="{iRows}">{Paquete}</td> <!-- END Panel Panel1 -->
+                <!-- BEGIN Panel Panel2 -->
+                <td style="TEXT-ALIGN: right" rowspan="{iRows}">{sflAVLG}</td> <!-- END Panel Panel2 -->
+                <td><input type="hidden" id="mc_detalle_incidente_avlsTotalSecPaquete" style="HEIGHT: 22px; WIDTH: 24px" size="1" value="{sTotalSecPaquete}" name="{sTotalSecPaquete_Name}"></td>
+              </tr>
+ <!-- END Row -->
+              <tr class="Total">
+                <td valign="baseline">&nbsp;</td> 
+                <td>&nbsp; </td> 
+                <td colspan="2">Total horas en solución</td> 
+                <td style="TEXT-ALIGN: center" valign="baseline">{TotalHoras} </td>
+              </tr>
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="11">No hay registros</td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="Footer">
+                <td colspan="11">
+                  <!-- BEGIN Navigator Navigator --><span class="Navigator">Registros por página: 
+                  <select style="VERTICAL-ALIGN: middle" name="{FormName}PageSize" data-grid-size="{FormName}">
+                    <option selected value="">-</option>
+ {PageSize_Options}
+                  </select>
+ 
+                  <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="Styles/Basic/Images/First.gif"></a> <!-- END First_On -->
+                  <!-- BEGIN First_Off --><img alt="{First_URL}" src="Styles/Basic/Images/FirstOff.gif"><!-- END First_Off -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="Styles/Basic/Images/Prev.gif"></a> <!-- END Prev_On -->
+                  <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="Styles/Basic/Images/PrevOff.gif"><!-- END Prev_Off -->{Page_Number} of&nbsp;{Total_Pages}&nbsp; 
+                  <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="Styles/Basic/Images/Next.gif"></a> <!-- END Next_On -->
+                  <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="Styles/Basic/Images/NextOff.gif"><!-- END Next_Off -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="Styles/Basic/Images/Last.gif"></a> <!-- END Last_On -->
+                  <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="Styles/Basic/Images/LastOff.gif"><!-- END Last_Off --></span><!-- END Navigator Navigator --></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- END Grid mc_detalle_incidente_avl --></p>
+ 
+      <p></p>
+ 
+      <p>&nbsp;</p>
+ 
+      <p></p>
+ 
+      <table width="100%">
+        <tr>
+          <td>
+            <p>&nbsp;</p>
+            <!-- BEGIN Record mc_info_incidentes3 -->
+            <p></p>
+ 
+            <form id="mc_info_incidentes3" method="post" name="{HTMLFormName}" action="{Action}">
+              <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td valign="top">
+                    <table class="Record" cellspacing="0" cellpadding="0">
+                      <!-- BEGIN Error -->
+                      <tr class="Error">
+                        <td colspan="4"><span id="ErrorBlock">{Error}</span></td>
+                      </tr>
+                      <!-- END Error -->
+                      <tr class="Controls">
+                        <td class="th"><strong>Descripción</strong></td> 
+                        <td><strong>Liberación AVL&nbsp;</strong></td> 
+                        <td><strong>Resuelto</strong></td> 
+                        <td><strong>Horas Invertidas</strong></td>
+                      </tr>
+ 
+                      <tr class="Controls">
+                        <td class="th"><strong><font size="2">Medición de pruebas concluidas a Resuelto</font></strong></td> 
+                        <td>{slblflAVL}</td> 
+                        <td>{FechaResuelto}</td> 
+                        <td style="TEXT-ALIGN: center">{HorasInvertidas}</td>
+                      </tr>
+ 
+                      <tr class="Bottom">
+                        <td style="TEXT-ALIGN: right" colspan="4"></td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </form>
+ 
+            <p></p>
+            <!-- END Record mc_info_incidentes3 -->
+            <p></p>
+ 
+            <p></p>
+            <!-- BEGIN Record mc_info_incidentes4 -->
+            <p></p>
+ 
+            <form id="mc_info_incidentes4" method="post" name="{HTMLFormName}" action="{Action}">
+              <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td valign="top">
+                    <table class="Record" cellspacing="0" cellpadding="0">
+                      <!-- BEGIN Error -->
+                      <tr class="Error">
+                        <td colspan="4"><span id="ErrorBlock">{Error}</span></td>
+                      </tr>
+                      <!-- END Error -->
+                      <tr class="Controls">
+                        <td class="th"><strong>Descripción</strong></td> 
+                        <td><strong>En Curso</strong></td> 
+                        <td class="th"><strong>Resuelto&nbsp;</strong></td> 
+                        <td><strong>Horas Invertidas</strong></td>
+                      </tr>
+ 
+                      <tr class="Controls">
+                        <td class="th"><strong><font size="2">Tiempo de En Curso a Resuelto</font></strong></td> 
+                        <td>{FechaEnCurso}</td> 
+                        <td class="th">{FechaResuelto}</td> 
+                        <td style="TEXT-ALIGN: center">{HorasInvertidas}</td>
+                      </tr>
+ 
+                      <tr class="Bottom">
+                        <td style="TEXT-ALIGN: right" colspan="4"></td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </form>
+ 
+            <p></p>
+            <!-- END Record mc_info_incidentes4 -->
+            <p></p>
+          </td> 
+          <td>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            <!-- BEGIN Record Final -->
+            <form id="Final" method="post" name="{HTMLFormName}" action="{Action}">
+              <table class="MainTable" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td valign="top">
+                    <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                      <tr>
+                        <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                        <td class="th"><strong>Total tiempo de solución</strong></td> 
+                        <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                      </tr>
+                    </table>
+ 
+                    <table class="Record" cellspacing="0" cellpadding="0">
+                      <!-- BEGIN Error -->
+                      <tr id="ErrorBlock" class="Error">
+                        <td>{Error}</td>
+                      </tr>
+                      <!-- END Error -->
+                      <tr class="Controls">
+                        <td style="TEXT-ALIGN: center">
+                          <div id="totalDiv" style="DISPLAY: none">
+                            {TotalHorasSolucion} 
+                          </div>
+ 
+                          <div id="totalDiv2" style="DISPLAY: none">
+                            {HorasCursoAResuelto} 
+                          </div>
+ 
+                          <div id="totalDivJS">
+                            {tFinal} 
+                          </div>
+                        </td>
+                      </tr>
+ 
+                      <tr class="Controls">
+                        <td style="TEXT-ALIGN: center">
+                          <!-- BEGIN ImageLink ImageLink1 --><a href="{ImageLink1}" id="FinalImageLink1"><img style="BORDER-LEFT-WIDTH: 0px; HEIGHT: 24px; BORDER-RIGHT-WIDTH: 0px; WIDTH: 27px; BORDER-BOTTOM-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; border-image: none" alt="{ImageLink1}" src="Images/xls.jpg" width="204" height="203"></a><!-- END ImageLink ImageLink1 --></td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </form>
+            &nbsp;<!-- END Record Final -->&nbsp;&nbsp; </td>
+        </tr>
+      </table>
+ 
+      <p></p>
+ 
+      <p></p>
+    </td> 
+    <td style="VERTICAL-ALIGN: top">
+      <table style="HEIGHT: 545px; WIDTH: 511px; MARGIN-TOP: 2px" width="511">
+        <tr>
+          <td>&nbsp; 
+            <!-- BEGIN Record mc_calificacion_incidente -->
+            <form id="mc_calificacion_incidente" method="post" name="{HTMLFormName}" action="{Action}">
+              <table class="MainTable" style="HEIGHT: 463px; WIDTH: 497px" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td valign="top">
+                    <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                      <tr>
+                        <td class="HeaderLeft"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td> 
+                        <td class="th"><strong>Califica Incidente</strong></td> 
+                        <td class="HeaderRight"><img alt="" src="Styles/{CCS_Style}/Images/Spacer.gif"></td>
+                      </tr>
+                    </table>
+ 
+                    <table class="Record" style="HEIGHT: 412px; WIDTH: 99.9%" cellspacing="0" cellpadding="0">
+                      <!-- BEGIN Error -->
+                      <tr id="ECalificados</a>k" class="Error">
+                        <td colspan="2">{Error}</td>
+                      </tr>
+                      <!-- END Error -->
+                      <tr class="Controls">
+                        <td class="th">Estado:</td> 
+                        <td>&nbsp;<label id="lblCalificado">{lblCalificado}</label></td>
+                      </tr>
+ 
+                      <tr class="Controls">
+                        <td class="th">Considerar tiempo total</td> 
+                        <td><input type="checkbox" onclick="ayudaMostrarTotal(this)" id="mc_calificacion_incidenteCheckBox1" value="1" name="{CheckBox1_Name}" {CheckBox1}></td> 
+                        <tr class="Controls">
+                          <td class="th"><label for="mc_calificacion_incidenteid_servicio">Servicio</label></td> 
+                          <td><input type="hidden" id="mc_calificacion_incidenteid_servicio" value="{id_servicio}" name="{id_servicio_Name}">{Servicio}</td>
+                        </tr>
+ 
+                        <tr class="Controls">
+                          <td class="th">Aplicación</td> 
+                          <td><input type="hidden" id="mc_calificacion_incidenteshId_Aplicacion" value="{shId_Aplicacion}" name="{shId_Aplicacion_Name}">{Aplicacion}&nbsp;</td>
+                        </tr>
+ 
+                        <tr class="Controls">
+                          <td class="th"><label for="mc_calificacion_incidenteseveridad">Severidad</label></td> 
+                          <td><label for="mc_fcacion_incidentesh_Severidad" style="display: none;">&nbsp;</label> <input type="hidden" id="mc_calificacion_incidentehslSeveridad" value="{hslSeveridad}" name="{hslSeveridad_Name}">{slSeveridad} &nbsp;&nbsp; </td>
+                        </tr>
+ 
+                        <tr class="Controls">
+                          <td class="th"><label for="mc_calificacion_incidenteCumple_Inc_TiempoAsignacion">Cumple Tiempo Atención</label></td> 
+                          <td>
+                            <select onchange="validaModificacion('div_TiempoAtencion')" id="mc_calificacion_incidenteCumple_Inc_TiempoAsignacion" name="{Cumple_Inc_TiempoAsignacion_Name}">
+                              <option selected value="">{res:CCS_SelectValue}</option>
+                              {Cumple_Inc_TiempoAsignacion_Options}
+                            </select>
+ <img onclick="ayudaMostrar('div_TiempoAtencion')" id="mc_calificacion_incidenteImage1" alt="" src="{Image1}"><label for="mc_calificacion_incidentetxtCumple_Inc_TiempoAsignacion" style="display: none;">txtCumple_Inc_TiempoAsignacion</label> 
+                            <div id="div_TiempoAtencion" style="DISPLAY: none">
+                              <textarea id="mc_calificacion_incidentetxtCumple_Inc_TiempoAsignacion" style="HEIGHT: 54px; WIDTH: 337px" rows="3" cols="7" name="{txtCumple_Inc_TiempoAsignacion_Name}">{txtCumple_Inc_TiempoAsignacion}</textarea>
+                            </div>
+                          </td>
+                        </tr>
+ 
+                        <tr class="Controls">
+                          <td class="th"><label for="mc_calificacion_incidenteCumple_Inc_TiempoSolucion">Cumple Tiempo Solución</label></td> 
+                          <td>
+                            <select onchange="validaModificacion('div_TiempoSolucion')" id="mc_calificacion_incidenteCumple_Inc_TiempoSolucion" name="{Cumple_Inc_TiempoSolucion_Name}">
+                              <option selected value="">{res:CCS_SelectValue}</option>
+                              {Cumple_Inc_TiempoSolucion_Options}
+                            </select>
+ <img onclick="ayudaMostrar('div_TiempoSolucion')" id="mc_calificacion_incidenteImage2" alt="" src="{Image2}"><label for="mc_calificacion_incidentetxtCumple_Inc_TiempoSolucion" style="display: none;">txtCumple_Inc_TiempoSolucion</label> 
+                            <div id="div_TiempoSolucion" style="DISPLAY: none">
+                              <textarea id="mc_calificacion_incidentetxtCumple_Inc_TiempoSolucion" style="HEIGHT: 54px; WIDTH: 336px" rows="3" cols="16" name="{txtCumple_Inc_TiempoSolucion_Name}">{txtCumple_Inc_TiempoSolucion}</textarea>
+                            </div>
+                          </td>
+                        </tr>
+ 
+                        <tr class="Controls">
+                          <td class="th"></td> 
+                          <td><input type="hidden" id="mc_calificacion_incidenteCumple_DISP_SOPORTE" value="{Cumple_DISP_SOPORTE}" name="{Cumple_DISP_SOPORTE_Name}"><img onclick="ayudaMostrar('div_DispSoporte')" id="mc_calificacion_incidenteImage3" alt="" src="{Image3}"><label for="mc_calificacion_incidentetxtCumple_DISP_SOPORTE" style="display: none;">txtCumple_DISP_SOPORTE</label> 
+                            <div id="div_DispSoporte" style="DISPLAY: none">
+                              <textarea id="mc_calificacion_incidentetxtCumple_DISP_SOPORTE" style="HEIGHT: 54px; WIDTH: 336px" rows="3" cols="18" name="{txtCumple_DISP_SOPORTE_Name}">{txtCumple_DISP_SOPORTE}</textarea>
+                            </div>
+                          </td>
+                        </tr>
+ 
+                        <tr class="Controls">
+                          <td class="th"><label for="mc_calificacion_incidenteObs_Manuales">Observaciones</label></td> 
+                          <td><textarea id="mc_calificacion_incidenteObs_Manuales" style="HEIGHT: 90px; WIDTH: 248px" rows="3" cols="1" name="{Obs_Manuales_Name}">{Obs_Manuales}</textarea></td>
+                        </tr>
+ 
+                        <tr class="Controls">
+                          <td class="th">Usuario Ultima Modificación&nbsp;</td> 
+                          <td><input type="hidden" id="mc_calificacion_incidenteshUsuarioUltMod" value="{shUsuarioUltMod}" name="{shUsuarioUltMod_Name}">{lblUsuarioUltMod} <input type="hidden" id="mc_calificacion_incidenteHidden1" value="{Hidden1}" name="{Hidden1_Name}"></td>
+                        </tr>
+ 
+                        <tr class="Controls">
+                          <td class="th">Fecha Ultima Modificación&nbsp;</td> 
+                          <td><input type="hidden" id="mc_calificacion_incidenteFechaUltMod" value="{FechaUltMod}" name="{FechaUltMod_Name}">{lblFechaUltMod}</td>
+                        </tr>
+ 
+                        <tr class="Controls">
+                          <td class="th">
+                            <p>&nbsp;<label for="mc_calificacion_incidenteevidencia_salvedad_TA" style="display: block;">Evidencia de salvedad <br>
+                            - Tiempo de atención</label><input type="checkbox" id="mc_calificacion_incidenteevidencia_salvedad_TA_TA" value="1" name="{evidencia_salvedad_TA_Name}" {evidencia_salvedad_TA}></p>
+                          </td> 
+                          <td>&nbsp;<label for="mc_calificacion_incidenteobservacion_salvedad_TA" style="display: block;">Observaciones de evidencia de salvedad - Tiempo de atención </label>&nbsp; <textarea id="mc_calificacion_incidenteobservacion_salvedad_TA_TA" rows="3" cols="50" name="{observacion_salvedad_TA_Name}">{observacion_salvedad_TA}</textarea></td>
+                        </tr>
+ 
+                        <tr class="Controls">
+                          <td class="th">&nbsp;<label for="mc_calificacion_incidenteevidencia_salvedad_TS" style="display: block;">Evidencia de salvedad <br>
+                            - Tiempo de solución</label><input type="checkbox" id="mc_calificacion_incidenteevidencia_salvedad_TS" value="1" name="{evidencia_salvedad_TS_Name}" {evidencia_salvedad_TS}></td> 
+                          <td>&nbsp;<label for="mc_calificacion_incidenteobservacion_salvedad_TS" style="display: block;">Observación de evidencia de salvedad - Tiempo de solución</label> <textarea id="mc_calificacion_incidenteobservacion_salvedad_TS" rows="3" cols="60" name="{observacion_salvedad_TS_Name}">{observacion_salvedad_TS}</textarea></td>
+                        </tr>
+ 
+                        <tr class="Bottom">
+                          <td style="FONT-WEIGHT: bolder; TEXT-ALIGN: right" colspan="2"><label for="mc_calificacion_incidenteshUsuarioAlta" style="display: none;">&nbsp;</label><input type="hidden" id="mc_calificacion_incidenteshUsuarioAlta" style="HEIGHT: 22px; WIDTH: 78px" size="3" value="{shUsuarioAlta}" name="{shUsuarioAlta_Name}"><input type="hidden" id="mc_calificacion_incidenteshTiempoSoporte" style="HEIGHT: 22px; WIDTH: 38px" size="1" value="{shTiempoSoporte}" name="{shTiempoSoporte_Name}"><input type="hidden" id="mc_calificacion_incidenteshTiempoSolucion" style="HEIGHT: 22px; WIDTH: 34px" size="1" value="{shTiempoSolucion}" name="{shTiempoSolucion_Name}"><input type="hidden" id="mc_calificacion_incidenteshTiempoAtencion" style="HEIGHT: 22px; WIDTH: 40px" size="1" value="{shTiempoAtencion}" name="{shTiempoAtencion_Name}"><input type="hidden" id="mc_calificacion_incidenteshIdProveedor" style="HEIGHT: 22px; WIDTH: 48px" size="1" value="{shIdProveedor}" name="{shIdProveedor_Name}"><input type="hidden" id="mc_calificacion_incidenteshAnio" style="HEIGHT: 22px; WIDTH: 58px" size="1" value="{shAnio}" name="{shAnio_Name}"><input type="hidden" id="mc_calificacion_incidenteshMes" style="HEIGHT: 22px; WIDTH: 42px" size="1" value="{shMes}" name="{shMes_Name}"><input type="hidden" id="mc_calificacion_incidenteshDescartar" style="HEIGHT: 22px; WIDTH: 66px" size="1" value="{shDescartar}" name="{shDescartar_Name}"><input type="hidden" id="mc_calificacion_incidenteshId_Incidente" style="HEIGHT: 22px; WIDTH: 55px" size="1" value="{shId_Incidente}" name="{shId_Incidente_Name}">&nbsp;</td>
+                        </tr>
+ 
+                        <tr class="Bottom">
+                          <td style="TEXT-ALIGN: right" colspan="2">&nbsp; 
+                            <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_calificacion_incidenteButton_Insert" class="Button" alt="{res:CCS_Insert}" value="Calificar" name="{Button_Name}"><!-- END Button Button_Insert -->
+                            <!-- BEGIN Button Button_Update --><input type="submit" id="mc_calificacion_incidenteButton_Update" class="Button" alt="{res:CCS_Update}" value="Calificar" name="{Button_Name}"><!-- END Button Button_Update -->
+                            <!-- BEGIN Button Cancelar --><input type="submit" id="mc_calificacion_incidenteCancelar" class="Button" alt="Button1" value="Cancelar" name="{Button_Name}"><!-- END Button Cancelar --></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </form>
+              <!-- END Record mc_calificacion_incidente --></td>
+          </tr>
+ 
+          <tr>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+        &nbsp;</td>
+    </tr>
+  </table>
+  <p align="left"><br>
+  </p>
+  <p></p>
+  </body>
+  </html>

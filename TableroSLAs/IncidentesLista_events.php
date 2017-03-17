@@ -135,16 +135,23 @@ function mc_info_incidentes_BeforeShow(& $sender)
 	    	$anioCons = CCDLookUp("anio","mc_universo_cds"," numero = '".$mc_info_incidentes->Id_incidente->GetValue()."' ", $DBcnDisenio);
 	    	
 */	  
+
 	    if (($anioCons==2016 and $mesCons==7)){
 	    	$temp =  $mc_info_incidentes->Id_incidente->GetLink();
 	    	$temp = str_replace("&amp;","&",$temp);
 			$mc_info_incidentes->Id_incidente->SetLink(str_replace('IncidenteDetalle.php','IncidenteDetalle3.php',$temp));
 	    }
-	    if (($anioCons==2016 and $mesCons>=8) OR ($anioCons>2016)){
+	    if (($anioCons==2016 and $mesCons>=8) OR ($anioCons==2017 and $mesCons==1)){
 	    	$temp =  $mc_info_incidentes->Id_incidente->GetLink();
 	    	$temp = str_replace("&amp;","&",$temp);
 			$mc_info_incidentes->Id_incidente->SetLink(str_replace('IncidenteDetalle.php','IncidenteDetalle2.php',$temp));
 	    }
+	    if (($anioCons==2017 and $mesCons>=2)){
+	    	$temp =  $mc_info_incidentes->Id_incidente->GetLink();
+	    	$temp = str_replace("&amp;","&",$temp);
+			$mc_info_incidentes->Id_incidente->SetLink(str_replace('IncidenteDetalle.php','IncidenteDetalle4.php',$temp));
+	    }
+
   	
   	 }
   	$DBcnDisenio->query($mc_info_incidentes->DataSource->SQL);
@@ -208,6 +215,10 @@ function mc_info_incidentes_BeforeShowRow(& $sender)
 	      $mc_info_incidentes->Id_incidente->SetLink(str_replace('IncidenteDetalle3.php','IncidenteDetalle.php',$temp));
 
 	    } 
+	    if (strpos($temp,'IncidenteDetalle4.php')!==false) {
+	      $mc_info_incidentes->Id_incidente->SetLink(str_replace('IncidenteDetalle4.php','IncidenteDetalle.php',$temp));
+
+	    } 
 
 
 
@@ -219,20 +230,24 @@ function mc_info_incidentes_BeforeShowRow(& $sender)
 	    	$anioCons = $mc_info_incidentesSearch->s_anio_param->GetValue();
 	    else
 	    	$anioCons = CCDLookUp("anio","mc_universo_cds"," numero = '".$mc_info_incidentes->Id_incidente->GetValue()."' ", $DBcnDisenio);
-	    
+
 	    if (($anioCons==2016 and $mesCons==7)){
 
 	    	$temp =  $mc_info_incidentes->Id_incidente->GetLink();
 	    	$temp = str_replace("&amp;","&",$temp);
 			$mc_info_incidentes->Id_incidente->SetLink(str_replace('IncidenteDetalle.php','IncidenteDetalle3.php',$temp));
 	    }
-	    if (($anioCons==2016 and $mesCons>=8) OR ($anioCons>2016)){
-
+   	    if (($anioCons==2016 and $mesCons>=8) OR ($anioCons==2017 and $mesCons==1)){
 	    	$temp =  $mc_info_incidentes->Id_incidente->GetLink();
 	    	$temp = str_replace("&amp;","&",$temp);
 			$mc_info_incidentes->Id_incidente->SetLink(str_replace('IncidenteDetalle.php','IncidenteDetalle2.php',$temp));
 	    }
-	    
+	    if (($anioCons==2017 and $mesCons>=2)){
+	    	$temp =  $mc_info_incidentes->Id_incidente->GetLink();
+	    	$temp = str_replace("&amp;","&",$temp);
+			$mc_info_incidentes->Id_incidente->SetLink(str_replace('IncidenteDetalle.php','IncidenteDetalle4.php',$temp));
+	    }	    
+	    	    
   	 }
 	 
     // Write your own code here.

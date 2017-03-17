@@ -184,10 +184,15 @@ function mc_info_incidentes_BeforeShow(& $sender)
 	    	//$temp = str_replace("&amp;","&",$temp);
 			$mc_info_incidentes->Id_incidente->SetLink(str_replace('IncidenteDetalle.php','IncidenteDetalle3.php',$temp));
 	    }
-	    if (($anioCons==2016 and $mesCons>=8) OR ($anioCons>2016)){
+	    if (($anioCons==2016 and $mesCons>=8) OR ($anioCons==2017 and $mesCons==1)){
 	    	$temp =  $mc_info_incidentes->Id_incidente->GetLink();
 	    	//$temp = str_replace("&amp;","&",$temp);
 			$mc_info_incidentes->Id_incidente->SetLink(str_replace('IncidenteDetalle.php','IncidenteDetalle2.php',$temp));
+	    }
+	    if (($anioCons==2017 and $mesCons>=2)){
+	    	$temp =  $mc_info_incidentes->Id_incidente->GetLink();
+	    	//$temp = str_replace("&amp;","&",$temp);
+			$mc_info_incidentes->Id_incidente->SetLink(str_replace('IncidenteDetalle.php','IncidenteDetalle4.php',$temp));
 	    }
   	
   	 }

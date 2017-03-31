@@ -737,10 +737,19 @@ function mc_calificacion_incidente_CheckBox1_TotalHorasSolucion_BeforeShow(& $se
 			$Final->TotalHorasSolucion->SetValue($TiempoCursoaResuelto);
 	}	
 
+	global $existe_t_esperaS;
+	global $t_esperaS;
+
 	if ($TiempoPaquetes>0 || $TienePaquetes > 0){
-		$Final->TotalHorasSolucion->SetValue($TiempoAtencion+$TiempoSolucion+$TiempoPaquetes+$TiempoConcluidaResuelto);
+		if (abs($existe_t_esperaS) > 0){
+			$Final->TotalHorasSolucion->SetValue($TiempoAtencion+$TiempoSolucion+$TiempoPaquetes+$TiempoConcluidaResuelto+$t_esperaS);
+		} else {
+			$Final->TotalHorasSolucion->SetValue($TiempoAtencion+$TiempoSolucion+$TiempoPaquetes+$TiempoConcluidaResuelto);
+		}
 	}	
 	
+
+
 
 	    global $Horas;
 	    global $Minutos;
@@ -1460,10 +1469,10 @@ function mc_info_incidentes1_BeforeShow(& $sender)
 		$mc_info_incidentes1->HorasInvertidas->SetValue($nuevas_horas_invertidas);
 	}
 
-	global $existe_t_esperaS;
-	global $t_esperaS;
-	if (abs($existe_t_esperaS) > 0){
-			$mc_info_incidentes1->HorasInvertidas->SetValue((($mc_info_incidentes1->HorasInvertidas->GetValue()/3600)+$t_esperaS)*3600);
+	global $existe_t_esperaA;
+	global $t_esperaA;
+	if (abs($existe_t_esperaA) > 0){
+			$mc_info_incidentes1->HorasInvertidas->SetValue((($mc_info_incidentes1->HorasInvertidas->GetValue()/3600)+$t_esperaA)*3600);
 	}
 		 
     // Write your own code here.
@@ -1585,13 +1594,13 @@ function mc_info_incidentes2_BeforeShow(& $sender)
 
 
 	}
-	
-	global $existe_t_esperaA;
-	global $t_esperaA;
-	if (abs($existe_t_esperaA) > 0){
-			$mc_info_incidentes2->HorasInvertidas->SetValue((($mc_info_incidentes2->HorasInvertidas->GetValue()/3600)+$t_esperaA)*3600);
+/*	
+	global $existe_t_esperaS;
+	global $t_esperaS;
+	if (abs($existe_t_esperaS) > 0){
+			$mc_info_incidentes2->HorasInvertidas->SetValue((($mc_info_incidentes2->HorasInvertidas->GetValue()/3600)+$t_esperaS)*3600);
 	}
-
+*/
 
 // -------------------------
 //End Custom Code
@@ -1745,8 +1754,15 @@ function Final_TotalHorasSolucion_BeforeShow(& $sender)
 			if ($TiempoAtencion<0){$TiempoAtencion=0;}
 			if ($TiempoConcluidaResuelto<0){$TiempoConcluidaResuelto=0;}
 			
+			global $existe_t_esperaS;
+			global $t_esperaS;
+			if (abs($existe_t_esperaS) > 0){
+				$Final->TotalHorasSolucion->SetValue($TiempoPaquetes+$TiempoConcluidaResuelto+$TiempoSolucion+($t_esperaS*3600));
+			} else {
+				$Final->TotalHorasSolucion->SetValue($TiempoPaquetes+$TiempoConcluidaResuelto+$TiempoSolucion);
+			}
 
-			$Final->TotalHorasSolucion->SetValue($TiempoPaquetes+$TiempoConcluidaResuelto+$TiempoSolucion);
+			
 		}	
 			
  		//++

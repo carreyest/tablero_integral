@@ -3800,7 +3800,7 @@ class clsRecordmc_incidentes_t_espera { //mc_incidentes_t_espera Class @450-9CB2
     // Class variables
 //End Variables
 
-//Class_Initialize Event @450-A6CDA315
+//Class_Initialize Event @450-80202D5F
     function clsRecordmc_incidentes_t_espera($RelativePath, & $Parent)
     {
 
@@ -3855,6 +3855,7 @@ class clsRecordmc_incidentes_t_espera { //mc_incidentes_t_espera Class @450-9CB2
             $this->operacionTatencion->DSType = dsListOfValues;
             $this->operacionTatencion->Values = array(array("1", "Sumar"), array("-1", "Restar"));
             $this->operacionTatencion->Required = true;
+            $this->Button_Delete = new clsButton("Button_Delete", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->H_id_incidente->Value) && !strlen($this->H_id_incidente->Value) && $this->H_id_incidente->Value !== false)
                     $this->H_id_incidente->SetText(CCGetParam("Id_incidente"));
@@ -3951,7 +3952,7 @@ class clsRecordmc_incidentes_t_espera { //mc_incidentes_t_espera Class @450-9CB2
     }
 //End CheckErrors Method
 
-//Operation Method @450-0BF2B389
+//Operation Method @450-0BCA9704
     function Operation()
     {
         if(!$this->Visible)
@@ -3974,11 +3975,17 @@ class clsRecordmc_incidentes_t_espera { //mc_incidentes_t_espera Class @450-9CB2
                 $this->PressedButton = "Button_Update";
             } else if($this->Button_Cancel->Pressed) {
                 $this->PressedButton = "Button_Cancel";
+            } else if($this->Button_Delete->Pressed) {
+                $this->PressedButton = "Button_Delete";
             }
         }
         $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
         if($this->PressedButton == "Button_Cancel") {
             if(!CCGetEvent($this->Button_Cancel->CCSEvents, "OnClick", $this->Button_Cancel)) {
+                $Redirect = "";
+            }
+        } else if($this->PressedButton == "Button_Delete") {
+            if(!CCGetEvent($this->Button_Delete->CCSEvents, "OnClick", $this->Button_Delete) || !$this->DeleteRow()) {
                 $Redirect = "";
             }
         } else if($this->Validate()) {
@@ -4064,7 +4071,7 @@ class clsRecordmc_incidentes_t_espera { //mc_incidentes_t_espera Class @450-9CB2
     }
 //End DeleteRow Method
 
-//Show Method @450-3D0D1445
+//Show Method @450-DFBE781D
     function Show()
     {
         global $CCSUseAmp;
@@ -4140,6 +4147,7 @@ class clsRecordmc_incidentes_t_espera { //mc_incidentes_t_espera Class @450-9CB2
         $Tpl->SetVar("HTMLFormEnctype", $this->FormEnctype);
         $this->Button_Insert->Visible = !$this->EditMode && $this->InsertAllowed;
         $this->Button_Update->Visible = $this->EditMode && $this->UpdateAllowed;
+        $this->Button_Delete->Visible = $this->EditMode && $this->DeleteAllowed;
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShow", $this);
         $this->Attributes->Show();
@@ -4167,6 +4175,7 @@ class clsRecordmc_incidentes_t_espera { //mc_incidentes_t_espera Class @450-9CB2
         $this->horas_t_atencion->Show();
         $this->operacionTsolucion->Show();
         $this->operacionTatencion->Show();
+        $this->Button_Delete->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();

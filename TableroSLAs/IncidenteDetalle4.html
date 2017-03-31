@@ -585,7 +585,21 @@ CalculaTiempoDeEsperaA();
     };
 //End mc_incidentes_t_esperaoperacionTatencionOnChange Event End
 
-//Event Binding @1-E22A4467
+//mc_incidentes_t_esperaButton_DeleteOnClick Event Start @-AE67951A
+    actions["mc_incidentes_t_esperaButton_DeleteOnClick"] = function (eventType, parameters) {
+        var result = true;
+//End mc_incidentes_t_esperaButton_DeleteOnClick Event Start
+
+//Confirmation Message @512-07A5D1FA
+        return confirm('Borrar el registro?');
+//End Confirmation Message
+
+//mc_incidentes_t_esperaButton_DeleteOnClick Event End @-A5B9ECB8
+        return result;
+    };
+//End mc_incidentes_t_esperaButton_DeleteOnClick Event End
+
+//Event Binding @1-72C2A26D
     $('*:ccsControl(mc_incidentes_reasignacio, Button_Delete)').ccsBind(function() {
         this.bind("click", actions["mc_incidentes_reasignacioButton_DeleteOnClick"]);
     });
@@ -613,9 +627,12 @@ CalculaTiempoDeEsperaA();
     $('*:ccsControl(mc_incidentes_t_espera, operacionTatencion)').ccsBind(function() {
         this.bind("change", actions["mc_incidentes_t_esperaoperacionTatencionOnChange"]);
     });
+    $('*:ccsControl(mc_incidentes_t_espera, Button_Delete)').ccsBind(function() {
+        this.bind("click", actions["mc_incidentes_t_esperaButton_DeleteOnClick"]);
+    });
 //End Event Binding
 
-//Plugin Calls @1-C93965CB
+//Plugin Calls @1-D1B0F1B2
     $('*:ccsControl(mc_calificacion_incidente, Cancelar)').ccsBind(function() {
         this.bind("click", function(){ $("body").data("disableValidation", true); });
     });
@@ -626,6 +643,9 @@ CalculaTiempoDeEsperaA();
         this.bind("click", function(){ $("body").data("disableValidation", true); });
     });
     $('*:ccsControl(mc_incidentes_t_espera, Button_Cancel)').ccsBind(function() {
+        this.bind("click", function(){ $("body").data("disableValidation", true); });
+    });
+    $('*:ccsControl(mc_incidentes_t_espera, Button_Delete)').ccsBind(function() {
         this.bind("click", function(){ $("body").data("disableValidation", true); });
     });
 //End Plugin Calls
@@ -640,7 +660,7 @@ CalculaTiempoDeEsperaA();
 <link rel="stylesheet" type="text/css" href="Styles/Austere4/jquery-ui.css">
 </head>
 <body onload="ayudaValidaciones('','')">
-<p>&nbsp;&nbsp;&nbsp;{Header}</p>
+<p lang="20" class="Button">&nbsp;&nbsp;&nbsp;{Header}</p>
 <p align="left"></p>
 <table width="100%" border="0">
   <tr>
@@ -906,7 +926,7 @@ CalculaTiempoDeEsperaA();
                   </tr>
  
                   <tr class="Controls">
-                    <td class="th">Anio</td> 
+                    <td class="th">Año</td> 
                     <td>{anio}<input type="hidden" id="mc_incidentes_reasignacioH_anio" value="{H_anio}" name="{H_anio_Name}"></td>
                   </tr>
  
@@ -976,7 +996,7 @@ CalculaTiempoDeEsperaA();
                   </tr>
  
                   <tr class="Controls">
-                    <td class="th">Anio</td> 
+                    <td class="th">Año</td> 
                     <td>{anio}<input type="hidden" id="mc_incidentes_t_esperaH_anio" value="{H_anio}" name="{H_anio_Name}"></td>
                   </tr>
  
@@ -1009,7 +1029,8 @@ CalculaTiempoDeEsperaA();
                   <tr class="Bottom">
                     <td style="TEXT-ALIGN: right" colspan="2">
                       <!-- BEGIN Button Button_Insert --><input type="submit" id="mc_incidentes_t_esperaButton_Insert" class="Button" alt="Agregar" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
-                      <!-- BEGIN Button Button_Update --><input type="submit" id="mc_incidentes_t_esperaButton_Update" class="Button" alt="Enviar" value="Actualizar" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Update --><input type="submit" id="mc_incidentes_t_esperaButton_Update" class="Button" alt="Enviar" value="Actualizar" name="{Button_Name}"><!-- END Button Button_Update -->&nbsp; 
+                      <!-- BEGIN Button Button_Delete --><input type="submit" id="mc_incidentes_t_esperaButton_Delete" class="Button" alt="Button1" value="Borrar" name="{Button_Name}"><!-- END Button Button_Delete -->
                       <!-- BEGIN Button Button_Cancel --><input type="submit" id="mc_incidentes_t_esperaButton_Cancel" class="Button" alt="Cancelar" value="Cancelar" name="{Button_Name}"><!-- END Button Button_Cancel --><input type="hidden" id="mc_incidentes_t_esperahoras_t_atencion" value="{horas_t_atencion}" name="{horas_t_atencion_Name}"></td>
                   </tr>
                 </table>

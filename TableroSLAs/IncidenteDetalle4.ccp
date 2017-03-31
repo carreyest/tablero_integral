@@ -1669,7 +1669,19 @@ WHERE mi.Id_incidente = '{Id_incidente}' " errorSummator="Error" allowCancel="Fa
 					<Attributes/>
 					<Features/>
 				</ListBox>
-			</Components>
+				<Button id="511" urlType="Relative" enableValidation="False" isDefault="False" name="Button_Delete" PathID="mc_incidentes_t_esperaButton_Delete" operation="Delete">
+<Components/>
+<Events>
+<Event name="OnClick" type="Client">
+<Actions>
+<Action actionName="Confirmation Message" actionCategory="General" id="512" message="Borrar el registro?"/>
+</Actions>
+</Event>
+</Events>
+<Attributes/>
+<Features/>
+</Button>
+</Components>
 			<Events/>
 			<TableParameters>
 				<TableParameter id="505" conditionType="Parameter" useIsNull="False" dataType="Text" field="id_incidente" logicOperator="And" orderNumber="1" parameterSource="Id_incidente" parameterType="URL" searchConditionType="Equal"/>

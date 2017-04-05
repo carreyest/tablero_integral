@@ -1102,7 +1102,7 @@ class clsRecordmc_calificacion_incidente { //mc_calificacion_incidente Class @14
     }
 //End CheckErrors Method
 
-//Operation Method @143-25DBB9ED
+//Operation Method @143-1687407F
     function Operation()
     {
         if(!$this->Visible)
@@ -1135,10 +1135,12 @@ class clsRecordmc_calificacion_incidente { //mc_calificacion_incidente Class @14
             }
         } else if($this->Validate()) {
             if($this->PressedButton == "Button_Insert") {
+                $Redirect = "IncidenteDetalle4.php" . "?" . CCGetQueryString("QueryString", array("ccsForm"));
                 if(!CCGetEvent($this->Button_Insert->CCSEvents, "OnClick", $this->Button_Insert) || !$this->InsertRow()) {
                     $Redirect = "";
                 }
             } else if($this->PressedButton == "Button_Update") {
+                $Redirect = "IncidenteDetalle4.php" . "?" . CCGetQueryString("QueryString", array("ccsForm"));
                 if(!CCGetEvent($this->Button_Update->CCSEvents, "OnClick", $this->Button_Update) || !$this->UpdateRow()) {
                     $Redirect = "";
                 }

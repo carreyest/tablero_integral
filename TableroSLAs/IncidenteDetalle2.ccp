@@ -192,7 +192,7 @@ where i.id_incidente = '{Id_incidente}'
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="449" dataType="Text" designDefaultValue="INC000003376478" parameterSource="Id_incidente" parameterType="URL" variable="Id_incidente"/>
-</SQLParameters>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -395,13 +395,13 @@ AND i.estado = 'Closed'">
 		</Record>
 		<Record id="143" sourceType="Table" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="mc_calificacion_incidente" connection="cnDisenio" dataSource="mc_calificacion_incidentes_MC" errorSummator="Error" allowCancel="False" recordDeleteConfirmation="False" buttonsType="button" wizardRecordKey="id_incidente" encryptPasswordField="False" wizardUseInterVariables="True" pkIsAutoincrement="True" wizardCaption="{res:mc_calificacion_incidentes_MC_RecordForm}" wizardThemeApplyTo="Page" wizardFormMethod="post" wizardType="Record" changedCaptionRecord="False" recordDirection="Vertical" templatePageRecord="C:/Program Files (x86)/CodeChargeStudio5/Templates/Record/Dialog.ccp|ccsTemplate" recordAddTemplatePanel="False" PathID="mc_calificacion_incidente" returnPage="IncidenteDetalle2.ccp" activeCollection="UFormElements" activeTableType="mc_calificacion_incidentes_MC" customUpdate="mc_calificacion_incidentes_MC" customUpdateType="Table" customInsert="mc_calificacion_incidentes_MC" customInsertType="Table">
 			<Components>
-				<Button id="145" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="{res:CCS_Insert}" PathID="mc_calificacion_incidenteButton_Insert">
+				<Button id="145" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="{res:CCS_Insert}" PathID="mc_calificacion_incidenteButton_Insert" returnPage="IncidenteDetalle2.ccp">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Button>
-				<Button id="146" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Update" operation="Update" wizardCaption="{res:CCS_Update}" PathID="mc_calificacion_incidenteButton_Update">
+				<Button id="146" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Update" operation="Update" wizardCaption="{res:CCS_Update}" PathID="mc_calificacion_incidenteButton_Update" returnPage="IncidenteDetalle2.ccp">
 					<Components/>
 					<Events/>
 					<Attributes/>
